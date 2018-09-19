@@ -21,13 +21,13 @@
     <parent>
       <groupId>org.eclipse.ee4j</groupId>
       <artifactId>project</artifactId>
-      <version>1.0</version>
+      <version>1.0.1</version>
       <relativePath/>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
-    <groupId>javax.el</groupId>
-    <artifactId>javax.el-api</artifactId>
+    <groupId>jakarta.el</groupId>
+    <artifactId>jakarta.el-api</artifactId>
     <packaging>jar</packaging>
     <version>3.0.1-b07-SNAPSHOT</version>
     <name>Expression Language 3.0 API</name>
