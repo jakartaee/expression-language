@@ -16,7 +16,10 @@
 
 package javax.el;
 
-import java.lang.reflect.Modifier;
+import static java.lang.reflect.Modifier.isAbstract;
+import static java.lang.reflect.Modifier.isInterface;
+import static java.lang.reflect.Modifier.isPublic;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -51,8 +54,10 @@ public class ImportHandler {
         if (i <= 0) {
             throw new ELException("The name " + name + " is not a full static member name");
         }
+
         String memberName = name.substring(i + 1);
         String className = name.substring(0, i);
+
         staticNameMap.put(memberName, className);
     }
 
@@ -67,7 +72,9 @@ public class ImportHandler {
         if (i <= 0) {
             throw new ELException("The name " + name + " is not a full class name");
         }
+
         String className = name.substring(i + 1);
+
         classNameMap.put(className, name);
     }
 
@@ -89,7 +96,6 @@ public class ImportHandler {
      * @throws ELException if the class is abstract or is an interface, or not public.
      */
     public Class<?> resolveClass(String name) {
-
         String className = classNameMap.get(name);
         if (className != null) {
             return resolveClassFor(className);
@@ -103,6 +109,7 @@ public class ImportHandler {
                 return c;
             }
         }
+
         return null;
     }
 
@@ -122,6 +129,7 @@ public class ImportHandler {
                 return c;
             }
         }
+
         return null;
     }
 
@@ -130,11 +138,13 @@ public class ImportHandler {
         if (c != null) {
             return c;
         }
+
         c = getClassFor(className);
         if (c != null) {
             checkModifiers(c.getModifiers());
             classMap.put(className, c);
         }
+
         return c;
     }
 
@@ -146,11 +156,12 @@ public class ImportHandler {
                 notAClass.add(className);
             }
         }
+
         return null;
     }
 
     private void checkModifiers(int modifiers) {
-        if (Modifier.isAbstract(modifiers) || Modifier.isInterface(modifiers) || !Modifier.isPublic((modifiers))) {
+        if (isAbstract(modifiers) || isInterface(modifiers) || !isPublic((modifiers))) {
             throw new ELException("Imported class must be public, and cannot be abstract or an interface");
         }
     }

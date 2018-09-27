@@ -17,6 +17,8 @@
 
 package javax.el;
 
+import static java.io.File.separator;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -40,12 +42,14 @@ class FactoryFinder {
             } else {
                 spiClass = classLoader.loadClass(className);
             }
+
             if (properties != null) {
-                Constructor constr = null;
+                Constructor<?> constr = null;
                 try {
                     constr = spiClass.getConstructor(Properties.class);
                 } catch (Exception ex) {
                 }
+
                 if (constr != null) {
                     return constr.newInstance(properties);
                 }
@@ -81,6 +85,7 @@ class FactoryFinder {
         }
 
         String serviceId = "META-INF/services/" + factoryId;
+
         // try to find services in CLASSPATH
         try {
             InputStream is = null;
@@ -91,10 +96,10 @@ class FactoryFinder {
             }
 
             if (is != null) {
-                BufferedReader rd = new BufferedReader(new InputStreamReader(is, "UTF-8"));
+                BufferedReader reader = new BufferedReader(new InputStreamReader(is, "UTF-8"));
 
-                String factoryClassName = rd.readLine();
-                rd.close();
+                String factoryClassName = reader.readLine();
+                reader.close();
 
                 if (factoryClassName != null && !"".equals(factoryClassName)) {
                     return newInstance(factoryClassName, classLoader, properties);
@@ -103,15 +108,17 @@ class FactoryFinder {
         } catch (Exception ex) {
         }
 
-        // try to read from $java.home/lib/el.properties
+        // Try to read from $java.home/lib/el.properties
         try {
             String javah = System.getProperty("java.home");
-            String configFile = javah + File.separator + "lib" + File.separator + "el.properties";
-            File f = new File(configFile);
-            if (f.exists()) {
+            String configFileName = javah + separator + "lib" + separator + "el.properties";
+
+            File configFile = new File(configFileName);
+            if (configFile.exists()) {
                 Properties props = new Properties();
-                props.load(new FileInputStream(f));
+                props.load(new FileInputStream(configFile));
                 String factoryClassName = props.getProperty(factoryId);
+
                 return newInstance(factoryClassName, classLoader, properties);
             }
         } catch (Exception ex) {

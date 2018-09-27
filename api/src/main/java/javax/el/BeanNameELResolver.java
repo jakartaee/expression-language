@@ -79,12 +79,14 @@ public class BeanNameELResolver extends ELResolver {
         if (context == null) {
             throw new NullPointerException();
         }
+
         if (base == null && property instanceof String) {
             if (beanNameResolver.isNameResolved((String) property)) {
                 context.setPropertyResolved(base, property);
                 return beanNameResolver.getBean((String) property);
             }
         }
+
         return null;
     }
 
@@ -143,7 +145,6 @@ public class BeanNameELResolver extends ELResolver {
      */
     @Override
     public Class<?> getType(ELContext context, Object base, Object property) {
-
         if (context == null) {
             throw new NullPointerException();
         }
@@ -154,6 +155,7 @@ public class BeanNameELResolver extends ELResolver {
                 return beanNameResolver.getBean((String) property).getClass();
             }
         }
+
         return null;
     }
 
@@ -188,6 +190,7 @@ public class BeanNameELResolver extends ELResolver {
                 return beanNameResolver.isReadOnly((String) property);
             }
         }
+
         return false;
     }
 

@@ -48,11 +48,14 @@ import java.util.List;
  */
 public class ListELResolver extends ELResolver {
 
+    static private Class<?> theUnmodifiableListClass = Collections.unmodifiableList(new ArrayList<Object>()).getClass();
+    private boolean isReadOnly;
+
     /**
      * Creates a new read/write <code>ListELResolver</code>.
      */
     public ListELResolver() {
-        this.isReadOnly = false;
+        isReadOnly = false;
     }
 
     /**
@@ -91,20 +94,21 @@ public class ListELResolver extends ELResolver {
      */
     @Override
     public Class<?> getType(ELContext context, Object base, Object property) {
-
         if (context == null) {
             throw new NullPointerException();
         }
 
         if (base != null && base instanceof List) {
             context.setPropertyResolved(true);
-            List list = (List) base;
+            List<?> list = (List<?>) base;
             int index = toInteger(property);
             if (index < 0 || index >= list.size()) {
                 throw new PropertyNotFoundException();
             }
+
             return Object.class;
         }
+
         return null;
     }
 
@@ -131,20 +135,21 @@ public class ListELResolver extends ELResolver {
      */
     @Override
     public Object getValue(ELContext context, Object base, Object property) {
-
         if (context == null) {
             throw new NullPointerException();
         }
 
         if (base != null && base instanceof List) {
             context.setPropertyResolved(base, property);
-            List list = (List) base;
+            List<?> list = (List<?>) base;
             int index = toInteger(property);
             if (index < 0 || index >= list.size()) {
                 return null;
             }
+
             return list.get(index);
         }
+
         return null;
     }
 
@@ -189,7 +194,6 @@ public class ListELResolver extends ELResolver {
      */
     @Override
     public void setValue(ELContext context, Object base, Object property, Object val) {
-
         if (context == null) {
             throw new NullPointerException();
         }
@@ -198,11 +202,12 @@ public class ListELResolver extends ELResolver {
             context.setPropertyResolved(base, property);
             // Safe cast
             @SuppressWarnings("unchecked")
-            List<Object> list = (List) base;
+            List<Object> list = (List<Object>) base;
             int index = toInteger(property);
             if (isReadOnly) {
                 throw new PropertyNotWritableException();
             }
+
             try {
                 list.set(index, val);
             } catch (UnsupportedOperationException ex) {
@@ -218,8 +223,6 @@ public class ListELResolver extends ELResolver {
             }
         }
     }
-
-    static private Class<?> theUnmodifiableListClass = Collections.unmodifiableList(new ArrayList<Object>()).getClass();
 
     /**
      * If the base object is a list, returns whether a call to {@link #setValue} will always fail.
@@ -255,20 +258,21 @@ public class ListELResolver extends ELResolver {
      */
     @Override
     public boolean isReadOnly(ELContext context, Object base, Object property) {
-
         if (context == null) {
             throw new NullPointerException();
         }
 
         if (base != null && base instanceof List) {
             context.setPropertyResolved(true);
-            List list = (List) base;
+            List<?> list = (List<?>) base;
             int index = toInteger(property);
             if (index < 0 || index >= list.size()) {
                 throw new PropertyNotFoundException();
             }
+
             return list.getClass() == theUnmodifiableListClass || isReadOnly;
         }
+
         return false;
     }
 
@@ -306,6 +310,7 @@ public class ListELResolver extends ELResolver {
         if (base != null && base instanceof List) {
             return Integer.class;
         }
+
         return null;
     }
 
@@ -324,6 +329,4 @@ public class ListELResolver extends ELResolver {
         }
         throw new IllegalArgumentException();
     }
-
-    private boolean isReadOnly;
 }

@@ -94,8 +94,9 @@ public class ExpressionFactoryImpl extends ExpressionFactory {
     }
 
     public String getProperty(String key) {
-        if (properties == null)
+        if (properties == null) {
             return null;
+        }
         return properties.getProperty(key);
     }
 

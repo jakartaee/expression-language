@@ -24,6 +24,8 @@ package javax.el;
  */
 public class ELException extends RuntimeException {
 
+    private static final long serialVersionUID = -2161386187282690885L;
+
     // -------------------------------------
     /**
      * Creates an <code>ELException</code> with no detail message.

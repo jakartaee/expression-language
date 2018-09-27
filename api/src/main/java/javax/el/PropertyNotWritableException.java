@@ -28,7 +28,8 @@ package javax.el;
  */
 public class PropertyNotWritableException extends ELException {
 
-    // -------------------------------------
+    private static final long serialVersionUID = 4511862414551151572L;
+
     /**
      * Creates a <code>PropertyNotWritableException</code> with no detail message.
      */
@@ -36,7 +37,6 @@ public class PropertyNotWritableException extends ELException {
         super();
     }
 
-    // -------------------------------------
     /**
      * Creates a <code>PropertyNotWritableException</code> with the provided detail message.
      *
@@ -46,7 +46,6 @@ public class PropertyNotWritableException extends ELException {
         super(pMessage);
     }
 
-    // -------------------------------------
     /**
      * Creates a <code>PropertyNotWritableException</code> with the given root cause.
      *
@@ -56,7 +55,6 @@ public class PropertyNotWritableException extends ELException {
         super(exception);
     }
 
-    // -------------------------------------
     /**
      * Creates a <code>PropertyNotWritableException</code> with the given detail message and root cause.
      *

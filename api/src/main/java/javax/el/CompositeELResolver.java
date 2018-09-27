@@ -71,7 +71,6 @@ public class CompositeELResolver extends ELResolver {
      * @throws NullPointerException If the provided resolver is <code>null</code>.
      */
     public void add(ELResolver elResolver) {
-
         if (elResolver == null) {
             throw new NullPointerException();
         }
@@ -129,7 +128,6 @@ public class CompositeELResolver extends ELResolver {
      */
     @Override
     public Object getValue(ELContext context, Object base, Object property) {
-
         context.setPropertyResolved(false);
 
         Object value = null;
@@ -139,11 +137,12 @@ public class CompositeELResolver extends ELResolver {
                 return value;
             }
         }
+
         return null;
     }
 
     /**
-     * Attemps to resolve and invoke the given <code>method</code> on the given <code>base</code> object by querying all
+     * Attempts to resolve and invoke the given <code>method</code> on the given <code>base</code> object by querying all
      * component resolvers.
      *
      * <p>
@@ -189,7 +188,6 @@ public class CompositeELResolver extends ELResolver {
      */
     @Override
     public Object invoke(ELContext context, Object base, Object method, Class<?>[] paramTypes, Object[] params) {
-
         context.setPropertyResolved(false);
 
         Object value;
@@ -199,6 +197,7 @@ public class CompositeELResolver extends ELResolver {
                 return value;
             }
         }
+
         return null;
     }
 
@@ -230,9 +229,9 @@ public class CompositeELResolver extends ELResolver {
      *
      * <p>
      * If none of the component resolvers were able to perform this operation, the value <code>null</code> is returned and
-     * the <code>propertyResolved</code> flag remains set to <code>false</code>
+     * the <code>propertyResolved</code> flag remains set to <code>false</code>.
      * </p>
-     * .
+     *
      *
      * <p>
      * Any exception thrown by component resolvers during the iteration is propagated to the caller of this method.
@@ -252,7 +251,6 @@ public class CompositeELResolver extends ELResolver {
      */
     @Override
     public Class<?> getType(ELContext context, Object base, Object property) {
-
         context.setPropertyResolved(false);
 
         Class<?> type;
@@ -262,6 +260,7 @@ public class CompositeELResolver extends ELResolver {
                 return type;
             }
         }
+
         return null;
     }
 
@@ -308,7 +307,6 @@ public class CompositeELResolver extends ELResolver {
      */
     @Override
     public void setValue(ELContext context, Object base, Object property, Object val) {
-
         context.setPropertyResolved(false);
 
         for (int i = 0; i < size; i++) {
@@ -368,7 +366,6 @@ public class CompositeELResolver extends ELResolver {
      */
     @Override
     public boolean isReadOnly(ELContext context, Object base, Object property) {
-
         context.setPropertyResolved(false);
 
         boolean readOnly;
@@ -378,6 +375,7 @@ public class CompositeELResolver extends ELResolver {
                 return readOnly;
             }
         }
+
         return false; // Does not matter
     }
 
@@ -447,6 +445,7 @@ public class CompositeELResolver extends ELResolver {
                 return null;
             }
         }
+
         return commonPropertyType;
     }
 
@@ -466,7 +465,6 @@ public class CompositeELResolver extends ELResolver {
      */
     @Override
     public Object convertToType(ELContext context, Object obj, Class<?> targetType) {
-
         context.setPropertyResolved(false);
 
         Object value = null;
@@ -476,6 +474,7 @@ public class CompositeELResolver extends ELResolver {
                 return value;
             }
         }
+
         return null;
     }
 

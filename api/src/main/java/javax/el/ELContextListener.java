@@ -31,6 +31,6 @@ public interface ELContextListener extends java.util.EventListener {
      *
      * @param ece the notification event.
      */
-    public void contextCreated(ELContextEvent ece);
+    void contextCreated(ELContextEvent ece);
 
 }

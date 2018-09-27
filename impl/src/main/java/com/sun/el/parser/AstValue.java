@@ -120,7 +120,7 @@ public final class AstValue extends SimpleNode {
         return value;
     }
 
-    private final Object getBase(EvaluationContext ctx) {
+    private Object getBase(EvaluationContext ctx) {
         try {
             return this.children[0].getValue(ctx);
         } catch (PropertyNotFoundException ex) {
@@ -139,7 +139,7 @@ public final class AstValue extends SimpleNode {
         }
     }
 
-    private final Target getTarget(EvaluationContext ctx) throws ELException {
+    private Target getTarget(EvaluationContext ctx) throws ELException {
         // evaluate expr-a to value-a
         Object base = getBase(ctx);
 

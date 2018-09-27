@@ -128,12 +128,12 @@ public final class ExpressionBuilder implements NodeVisitor {
         }
     }
 
-    public final static Node createNode(String expr) throws ELException {
+    public static Node createNode(String expr) throws ELException {
         Node n = createNodeInternal(expr);
         return n;
     }
 
-    private final static Node createNodeInternal(String expr) throws ELException {
+    private static Node createNodeInternal(String expr) throws ELException {
         if (expr == null) {
             throw new ELException(MessageFactory.get("error.null"));
         }
@@ -155,11 +155,12 @@ public final class ExpressionBuilder implements NodeVisitor {
                         Node child = null;
                         for (int i = 0; i < numChildren; i++) {
                             child = n.jjtGetChild(i);
-                            if (child instanceof AstLiteralExpression)
+                            if (child instanceof AstLiteralExpression) {
                                 continue;
-                            if (type == null)
+                            }
+                            if (type == null) {
                                 type = child.getClass();
-                            else {
+                            } else {
                                 if (!type.equals(child.getClass())) {
                                     throw new ELException(MessageFactory.get("error.mixed", expr));
                                 }

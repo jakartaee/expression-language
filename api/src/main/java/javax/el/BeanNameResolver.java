@@ -25,6 +25,7 @@ package javax.el;
  * @since EL 3.0
  */
 public abstract class BeanNameResolver {
+
     /**
      * Returns whether the given name is resolved by the BeanNameResolver
      *

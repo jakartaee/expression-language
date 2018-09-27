@@ -149,8 +149,9 @@ public class FunctionMapperImpl extends FunctionMapper implements Externalizable
         public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
 
             this.prefix = in.readUTF();
-            if ("".equals(this.prefix))
+            if ("".equals(this.prefix)) {
                 this.prefix = null;
+            }
             this.localName = in.readUTF();
             this.owner = in.readUTF();
             this.name = in.readUTF();
@@ -172,17 +173,19 @@ public class FunctionMapperImpl extends FunctionMapper implements Externalizable
 
         public boolean matches(String prefix, String localName) {
             if (this.prefix != null) {
-                if (prefix == null)
+                if (prefix == null) {
                     return false;
-                if (!this.prefix.equals(prefix))
+                }
+                if (!this.prefix.equals(prefix)) {
                     return false;
+                }
             }
             return this.localName.equals(localName);
         }
 
         /*
          * (non-Javadoc)
-         * 
+         *
          * @see java.lang.Object#equals(java.lang.Object)
          */
         @Override
@@ -195,7 +198,7 @@ public class FunctionMapperImpl extends FunctionMapper implements Externalizable
 
         /*
          * (non-Javadoc)
-         * 
+         *
          * @see java.lang.Object#hashCode()
          */
         @Override

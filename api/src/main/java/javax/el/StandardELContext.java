@@ -52,7 +52,7 @@ public class StandardELContext extends ELContext {
     private FunctionMapper functionMapper;
 
     /*
-     * The pre-confured init function map;
+     * The pre-configured init function map;
      */
     private Map<String, Method> initFunctionMap;
 
@@ -65,7 +65,7 @@ public class StandardELContext extends ELContext {
      * If non-null, indicates the presence of a delegate ELContext. When a Standard is constructed from another ELContext,
      * there is no easy way to get its private context map, therefore delegation is needed.
      */
-    private ELContext delegate = null;
+    private ELContext delegate;
 
     /**
      * A bean repository local to this context
@@ -78,7 +78,7 @@ public class StandardELContext extends ELContext {
      * @param factory The ExpressionFactory
      */
     public StandardELContext(ExpressionFactory factory) {
-        this.streamELResolver = factory.getStreamELResolver();
+        streamELResolver = factory.getStreamELResolver();
         initFunctionMap = factory.getInitFunctionMap();
     }
 
@@ -88,14 +88,16 @@ public class StandardELContext extends ELContext {
      * @param context The ELContext that acts as a delegate in most cases
      */
     public StandardELContext(ELContext context) {
-        this.delegate = context;
+        delegate = context;
+
         // Copy all attributes except map and resolved
-        CompositeELResolver elr = new CompositeELResolver();
-        elr.add(new BeanNameELResolver(new LocalBeanNameResolver()));
+        CompositeELResolver compositeELResolver = new CompositeELResolver();
+        compositeELResolver.add(new BeanNameELResolver(new LocalBeanNameResolver()));
         customResolvers = new CompositeELResolver();
-        elr.add(customResolvers);
-        elr.add(context.getELResolver());
-        elResolver = elr;
+
+        compositeELResolver.add(customResolvers);
+        compositeELResolver.add(context.getELResolver());
+        elResolver = compositeELResolver;
 
         functionMapper = context.getFunctionMapper();
         variableMapper = context.getVariableMapper();
@@ -113,11 +115,11 @@ public class StandardELContext extends ELContext {
 
     @Override
     public Object getContext(Class key) {
-        if (delegate != null) {
-            return delegate.getContext(key);
-        } else {
+        if (delegate == null) {
             return super.getContext(key);
         }
+
+        return delegate.getContext(key);
     }
 
     /**
@@ -159,6 +161,7 @@ public class StandardELContext extends ELContext {
             resolver.add(new BeanELResolver());
             elResolver = resolver;
         }
+
         return elResolver;
     }
 
@@ -192,6 +195,7 @@ public class StandardELContext extends ELContext {
         if (functionMapper == null) {
             functionMapper = new DefaultFunctionMapper(initFunctionMap);
         }
+
         return functionMapper;
     }
 
@@ -205,12 +209,13 @@ public class StandardELContext extends ELContext {
         if (variableMapper == null) {
             variableMapper = new DefaultVariableMapper();
         }
+
         return variableMapper;
     }
 
     private static class DefaultFunctionMapper extends FunctionMapper {
 
-        private Map<String, Method> functions = null;
+        private Map<String, Method> functions;
 
         DefaultFunctionMapper(Map<String, Method> initMap) {
             functions = (initMap == null) ? new HashMap<String, Method>() : new HashMap<String, Method>(initMap);
@@ -229,13 +234,14 @@ public class StandardELContext extends ELContext {
 
     private static class DefaultVariableMapper extends VariableMapper {
 
-        private Map<String, ValueExpression> variables = null;
+        private Map<String, ValueExpression> variables;
 
         @Override
         public ValueExpression resolveVariable(String variable) {
             if (variables == null) {
                 return null;
             }
+
             return variables.get(variable);
         }
 
@@ -244,12 +250,14 @@ public class StandardELContext extends ELContext {
             if (variables == null) {
                 variables = new HashMap<String, ValueExpression>();
             }
+
             ValueExpression prev = null;
             if (expression == null) {
                 prev = variables.remove(variable);
             } else {
                 prev = variables.put(variable, expression);
             }
+
             return prev;
         }
     }

@@ -51,7 +51,7 @@ public class LambdaExpression {
     private ValueExpression expression;
     private ELContext context;
     // Arguments from nesting lambdas, when the body is another lambda
-    private Map<String, Object> envirArgs = null;
+    private Map<String, Object> envirArgs;
 
     /**
      * Creates a new LambdaExpression.
@@ -123,6 +123,7 @@ public class LambdaExpression {
             ((LambdaExpression) ret).envirArgs.putAll(lambdaArgs);
         }
         elContext.exitLambdaScope();
+
         return ret;
     }
 
@@ -147,6 +148,6 @@ public class LambdaExpression {
      * @throws ELException if not enough arguments are provided
      */
     public Object invoke(Object... args) {
-        return invoke(this.context, args);
+        return invoke(context, args);
     }
 }

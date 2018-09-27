@@ -48,6 +48,9 @@ package javax.el;
  * @since JSP 2.1
  */
 public abstract class MethodExpression extends Expression {
+
+    private static final long serialVersionUID = -1151639017737837708L;
+
     // Evaluation
 
     /**

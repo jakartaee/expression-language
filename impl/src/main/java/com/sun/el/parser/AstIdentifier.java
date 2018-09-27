@@ -145,7 +145,7 @@ public final class AstIdentifier extends SimpleNode {
         }
     }
 
-    private final Object invokeTarget(EvaluationContext ctx, Object target, Object[] paramValues) throws ELException {
+    private Object invokeTarget(EvaluationContext ctx, Object target, Object[] paramValues) throws ELException {
         if (target instanceof MethodExpression) {
             MethodExpression me = (MethodExpression) target;
             return me.invoke(ctx.getELContext(), paramValues);
@@ -167,7 +167,7 @@ public final class AstIdentifier extends SimpleNode {
         return this.getMethodExpression(ctx).getMethodInfo(ctx.getELContext());
     }
 
-    private final MethodExpression getMethodExpression(EvaluationContext ctx) throws ELException {
+    private MethodExpression getMethodExpression(EvaluationContext ctx) throws ELException {
         Object obj = null;
 
         // case A: ValueExpression exists, getValue which must

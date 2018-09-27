@@ -55,7 +55,6 @@ class ELUtil {
      * This class may not be constructed.
      * </p>
      */
-
     private ELUtil() {
     }
 
@@ -85,39 +84,33 @@ class ELUtil {
 
     private static Map<String, ResourceBundle> getCurrentInstance() {
         Map<String, ResourceBundle> result = instance.get();
-        if (null == result) {
+        if (result == null) {
             result = new HashMap<String, ResourceBundle>();
             setCurrentInstance(result);
         }
+
         return result;
 
     }
 
     /**
-     * <p>
      * Replace the Map with the argument context.
-     * </p>
      *
      * @param context the Map to be stored in ThreadLocal storage.
      */
-
     private static void setCurrentInstance(Map<String, ResourceBundle> context) {
-
         instance.set(context);
-
     }
 
-    /*
-     * <p>Convenience method, calls through to {@link #getExceptionMessageString(javax.el.ELContext,java.lang.String,Object
-     * []). </p>
+    /**
+     * Convenience method, calls through to getExceptionMessageString(javax.el.ELContext,java.lang.String,Object
+     * []).
      *
      * @param context the ELContext from which the Locale for this message is extracted.
-     *
      * @param messageId the messageId String in the ResourceBundle
      *
      * @return a localized String for the argument messageId
      */
-
     public static String getExceptionMessageString(ELContext context, String messageId) {
         return getExceptionMessageString(context, messageId, null);
     }
@@ -140,7 +133,6 @@ class ELUtil {
      *
      * @return a localized String for the argument messageId
      */
-
     public static String getExceptionMessageString(ELContext context, String messageId, Object[] params) {
         String result = "";
         Locale locale = null;
@@ -152,16 +144,18 @@ class ELUtil {
         if (null == (locale = context.getLocale())) {
             locale = Locale.getDefault();
         }
-        if (null != locale) {
+
+        if (locale != null) {
             Map<String, ResourceBundle> threadMap = getCurrentInstance();
-            ResourceBundle rb = null;
-            if (null == (rb = threadMap.get(locale.toString()))) {
-                rb = ResourceBundle.getBundle("javax.el.PrivateMessages", locale);
-                threadMap.put(locale.toString(), rb);
+            ResourceBundle resourceBundle = null;
+            if (null == (resourceBundle = threadMap.get(locale.toString()))) {
+                resourceBundle = ResourceBundle.getBundle("javax.el.PrivateMessages", locale);
+                threadMap.put(locale.toString(), resourceBundle);
             }
-            if (null != rb) {
+
+            if (null != resourceBundle) {
                 try {
-                    result = rb.getString(messageId);
+                    result = resourceBundle.getString(messageId);
                     if (null != params) {
                         result = MessageFormat.format(result, params);
                     }
@@ -202,14 +196,15 @@ class ELUtil {
         if (result == null) {
             return null;
         }
+
         return getConstructor(klass, (Constructor<?>) result.unWrap());
     }
 
-    static Object invokeConstructor(ELContext context, Constructor<?> c, Object[] params) {
-        Object[] parameters = buildParameters(context, c.getParameterTypes(), c.isVarArgs(), params);
+    static Object invokeConstructor(ELContext context, Constructor<?> constructor, Object[] params) {
+        Object[] parameters = buildParameters(context, constructor.getParameterTypes(), constructor.isVarArgs(), params);
         ;
         try {
-            return c.newInstance(parameters);
+            return constructor.newInstance(parameters);
         } catch (IllegalAccessException iae) {
             throw new ELException(iae);
         } catch (IllegalArgumentException iae) {
@@ -221,23 +216,23 @@ class ELUtil {
         }
     }
 
-    static Method findMethod(Class<?> klass, String method, Class<?>[] paramTypes, Object[] params, boolean staticOnly) {
-        Method m = findMethod(klass, method, paramTypes, params);
-        if (staticOnly && !Modifier.isStatic(m.getModifiers())) {
-            throw new MethodNotFoundException("Method " + method + "for class " + klass + " not found or accessible");
+    static Method findMethod(Class<?> klass, String methodName, Class<?>[] paramTypes, Object[] params, boolean staticOnly) {
+        Method method = findMethod(klass, methodName, paramTypes, params);
+        if (staticOnly && !Modifier.isStatic(method.getModifiers())) {
+            throw new MethodNotFoundException("Method " + methodName + "for class " + klass + " not found or accessible");
         }
 
-        return m;
+        return method;
     }
 
     /*
      * This method duplicates code in com.sun.el.util.ReflectionUtil. When making changes keep the code in sync.
      */
-    static Object invokeMethod(ELContext context, Method m, Object base, Object[] params) {
+    static Object invokeMethod(ELContext context, Method method, Object base, Object[] params) {
 
-        Object[] parameters = buildParameters(context, m.getParameterTypes(), m.isVarArgs(), params);
+        Object[] parameters = buildParameters(context, method.getParameterTypes(), method.isVarArgs(), params);
         try {
-            return m.invoke(base, parameters);
+            return method.invoke(base, parameters);
         } catch (IllegalAccessException iae) {
             throw new ELException(iae);
         } catch (IllegalArgumentException iae) {
@@ -251,7 +246,6 @@ class ELUtil {
      * This method duplicates code in com.sun.el.util.ReflectionUtil. When making changes keep the code in sync.
      */
     static Method findMethod(Class<?> clazz, String methodName, Class<?>[] paramTypes, Object[] paramValues) {
-
         if (clazz == null || methodName == null) {
             throw new MethodNotFoundException("Method not found: " + clazz + "." + methodName + "(" + paramString(paramTypes) + ")");
         }
@@ -269,6 +263,7 @@ class ELUtil {
         if (result == null) {
             return null;
         }
+
         return getMethod(clazz, (Method) result.unWrap());
     }
 
@@ -276,7 +271,6 @@ class ELUtil {
      * This method duplicates code in com.sun.el.util.ReflectionUtil. When making changes keep the code in sync.
      */
     private static Wrapper findWrapper(Class<?> clazz, List<Wrapper> wrappers, String name, Class<?>[] paramTypes, Object[] paramValues) {
-
         List<Wrapper> assignableCandidates = new ArrayList<Wrapper>();
         List<Wrapper> coercibleCandidates = new ArrayList<Wrapper>();
         List<Wrapper> varArgsCandidates = new ArrayList<Wrapper>();
@@ -500,25 +494,30 @@ class ELUtil {
         if (clazz.isPrimitive()) {
             if (clazz == Boolean.TYPE) {
                 return Boolean.class;
-            } else if (clazz == Character.TYPE) {
-                return Character.class;
-            } else if (clazz == Byte.TYPE) {
-                return Byte.class;
-            } else if (clazz == Short.TYPE) {
-                return Short.class;
-            } else if (clazz == Integer.TYPE) {
-                return Integer.class;
-            } else if (clazz == Long.TYPE) {
-                return Long.class;
-            } else if (clazz == Float.TYPE) {
-                return Float.class;
-            } else {
-                return Double.class;
             }
+            if (clazz == Character.TYPE) {
+                return Character.class;
+            }
+            if (clazz == Byte.TYPE) {
+                return Byte.class;
+            }
+            if (clazz == Short.TYPE) {
+                return Short.class;
+            }
+            if (clazz == Integer.TYPE) {
+                return Integer.class;
+            }
+            if (clazz == Long.TYPE) {
+                return Long.class;
+            }
+            if (clazz == Float.TYPE) {
+                return Float.class;
+            }
+
+            return Double.class;
         } else {
             return clazz;
         }
-
     }
 
     /*
@@ -583,6 +582,7 @@ class ELUtil {
         } catch (Exception e) {
             return false;
         }
+
         return true;
     }
 
@@ -602,6 +602,7 @@ class ELUtil {
                 result[i] = values[i].getClass();
             }
         }
+
         return result;
     }
 

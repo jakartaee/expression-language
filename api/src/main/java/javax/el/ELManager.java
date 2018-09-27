@@ -49,6 +49,7 @@ public class ELManager {
         if (elContext == null) {
             elContext = new StandardELContext(getExpressionFactory());
         }
+
         return elContext;
     }
 
@@ -60,30 +61,30 @@ public class ELManager {
      * @return The previous ELContext, null if none.
      */
     public ELContext setELContext(ELContext context) {
-        ELContext prev = elContext;
+        ELContext prevELContext = elContext;
         elContext = new StandardELContext(context);
-        return prev;
+        return prevELContext;
     }
 
     /**
      * Register a BeanNameResolver. Construct a BeanNameELResolver with the BeanNameResolver and add it to the list of
      * ELResolvers. Once registered, the BeanNameResolver cannot be removed.
      *
-     * @param bnr The BeanNameResolver to be registered.
+     * @param beanNameResolver The BeanNameResolver to be registered.
      */
-    public void addBeanNameResolver(BeanNameResolver bnr) {
-        getELContext().addELResolver(new BeanNameELResolver(bnr));
+    public void addBeanNameResolver(BeanNameResolver beanNameResolver) {
+        getELContext().addELResolver(new BeanNameELResolver(beanNameResolver));
     }
 
     /**
      * Add an user defined ELResolver to the list of ELResolvers. Can be called multiple times. The new ELResolver is placed
      * ahead of the default ELResolvers. The list of the ELResolvers added this way are ordered chronologically.
      *
-     * @param elr The ELResolver to be added to the list of ELResolvers in ELContext.
+     * @param elResolver The ELResolver to be added to the list of ELResolvers in ELContext.
      * @see StandardELContext#addELResolver
      */
-    public void addELResolver(ELResolver elr) {
-        getELContext().addELResolver(elr);
+    public void addELResolver(ELResolver elResolver) {
+        getELContext().addELResolver(elResolver);
     }
 
     /**
@@ -91,10 +92,10 @@ public class ELManager {
      *
      * @param prefix The namespace of the functions, can be "".
      * @param function The name of the function.
-     * @param meth The static method to be invoked when the function is used.
+     * @param method The static method to be invoked when the function is used.
      */
-    public void mapFunction(String prefix, String function, Method meth) {
-        getELContext().getFunctionMapper().mapFunction(prefix, function, meth);
+    public void mapFunction(String prefix, String function, Method method) {
+        getELContext().getFunctionMapper().mapFunction(prefix, function, method);
     }
 
     /**
@@ -147,9 +148,9 @@ public class ELManager {
      * @return the previous bean (if any) mapped to <code>name</code>
      */
     public Object defineBean(String name, Object bean) {
-        Object ret = getELContext().getBeans().get(name);
+        Object previousBean = getELContext().getBeans().get(name);
         getELContext().getBeans().put(name, bean);
-        return ret;
+        return previousBean;
     }
 
     /**

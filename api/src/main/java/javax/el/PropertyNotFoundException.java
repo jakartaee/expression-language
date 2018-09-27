@@ -29,6 +29,8 @@ package javax.el;
  */
 public class PropertyNotFoundException extends ELException {
 
+    private static final long serialVersionUID = 7876728153282609955L;
+
     // -------------------------------------
     /**
      * Creates a <code>PropertyNotFoundException</code> with no detail message.

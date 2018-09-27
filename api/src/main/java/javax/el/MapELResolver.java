@@ -17,6 +17,8 @@
 
 package javax.el;
 
+import static java.lang.Boolean.TRUE;
+
 import java.beans.FeatureDescriptor;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -50,11 +52,14 @@ import java.util.Map;
  */
 public class MapELResolver extends ELResolver {
 
+    static private Class<?> theUnmodifiableMapClass = Collections.unmodifiableMap(new HashMap<Object, Object>()).getClass();
+    private boolean isReadOnly;
+
     /**
      * Creates a new read/write <code>MapELResolver</code>.
      */
     public MapELResolver() {
-        this.isReadOnly = false;
+        isReadOnly = false;
     }
 
     /**
@@ -91,7 +96,6 @@ public class MapELResolver extends ELResolver {
      */
     @Override
     public Class<?> getType(ELContext context, Object base, Object property) {
-
         if (context == null) {
             throw new NullPointerException();
         }
@@ -100,6 +104,7 @@ public class MapELResolver extends ELResolver {
             context.setPropertyResolved(true);
             return Object.class;
         }
+
         return null;
     }
 
@@ -132,20 +137,18 @@ public class MapELResolver extends ELResolver {
      */
     @Override
     public Object getValue(ELContext context, Object base, Object property) {
-
         if (context == null) {
             throw new NullPointerException();
         }
 
         if (base != null && base instanceof Map) {
             context.setPropertyResolved(base, property);
-            Map map = (Map) base;
+            Map<?, ?> map = (Map<?, ?>) base;
             return map.get(property);
         }
+
         return null;
     }
-
-    static private Class<?> theUnmodifiableMapClass = Collections.unmodifiableMap(new HashMap<Object, Object>()).getClass();
 
     /**
      * If the base object is a map, attempts to set the value associated with the given key, as specified by the
@@ -184,19 +187,20 @@ public class MapELResolver extends ELResolver {
      */
     @Override
     public void setValue(ELContext context, Object base, Object property, Object val) {
-
         if (context == null) {
             throw new NullPointerException();
         }
 
         if (base != null && base instanceof Map) {
             context.setPropertyResolved(base, property);
+
             // The cast is safe
             @SuppressWarnings("unchecked")
-            Map<Object, Object> map = (Map) base;
+            Map<Object, Object> map = (Map<Object, Object>) base;
             if (isReadOnly || map.getClass() == theUnmodifiableMapClass) {
                 throw new PropertyNotWritableException();
             }
+
             try {
                 map.put(property, val);
             } catch (UnsupportedOperationException ex) {
@@ -237,16 +241,16 @@ public class MapELResolver extends ELResolver {
      */
     @Override
     public boolean isReadOnly(ELContext context, Object base, Object property) {
-
         if (context == null) {
             throw new NullPointerException();
         }
 
         if (base != null && base instanceof Map) {
             context.setPropertyResolved(true);
-            Map map = (Map) base;
+            Map<?,?> map = (Map<?,?>) base;
             return isReadOnly || map.getClass() == theUnmodifiableMapClass;
         }
+
         return false;
     }
 
@@ -283,29 +287,33 @@ public class MapELResolver extends ELResolver {
      */
     @Override
     public Iterator<FeatureDescriptor> getFeatureDescriptors(ELContext context, Object base) {
-
         if (base != null && base instanceof Map) {
-            Map map = (Map) base;
-            Iterator iter = map.keySet().iterator();
+            Map<?,?> map = (Map<?,?>) base;
+            Iterator<?> iter = map.keySet().iterator();
             List<FeatureDescriptor> list = new ArrayList<FeatureDescriptor>();
+
             while (iter.hasNext()) {
                 Object key = iter.next();
                 FeatureDescriptor descriptor = new FeatureDescriptor();
-                String name = (key == null) ? null : key.toString();
+                String name = key == null ? null : key.toString();
                 descriptor.setName(name);
                 descriptor.setDisplayName(name);
                 descriptor.setShortDescription("");
                 descriptor.setExpert(false);
                 descriptor.setHidden(false);
                 descriptor.setPreferred(true);
+
                 if (key != null) {
                     descriptor.setValue("type", key.getClass());
                 }
-                descriptor.setValue("resolvableAtDesignTime", Boolean.TRUE);
+
+                descriptor.setValue("resolvableAtDesignTime", TRUE);
                 list.add(descriptor);
             }
+
             return list.iterator();
         }
+
         return null;
     }
 
@@ -327,8 +335,8 @@ public class MapELResolver extends ELResolver {
         if (base != null && base instanceof Map) {
             return Object.class;
         }
+
         return null;
     }
 
-    private boolean isReadOnly;
 }

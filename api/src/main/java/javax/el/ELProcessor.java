@@ -16,6 +16,7 @@
 
 package javax.el;
 
+import java.lang.reflect.Array;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 
@@ -78,7 +79,7 @@ import java.lang.reflect.Modifier;
 public class ELProcessor {
 
     private ELManager elManager = new ELManager();
-    private ExpressionFactory factory = elManager.getExpressionFactory();
+    private ExpressionFactory factory = ELManager.getExpressionFactory();
 
     /**
      * Return the ELManager used for EL processing.
@@ -159,15 +160,16 @@ public class ELProcessor {
      * if the method signature is not valid, or if the method is not a static method.
      */
     public void defineFunction(String prefix, String function, String className, String method) throws ClassNotFoundException, NoSuchMethodException {
-
         if (prefix == null || function == null || className == null || method == null) {
             throw new NullPointerException("Null argument for defineFunction");
         }
 
         Method meth = null;
         ClassLoader loader = Thread.currentThread().getContextClassLoader();
-        if (loader == null)
+        if (loader == null) {
             loader = getClass().getClassLoader();
+        }
+
         Class<?> klass = Class.forName(className, false, loader);
         int j = method.indexOf('(');
         if (j < 0) {
@@ -187,7 +189,9 @@ public class ELProcessor {
             if (p < 0) {
                 throw new NoSuchMethodException("Bad method singnature: " + method);
             }
+
             String methodName = method.substring(p + 1, j).trim();
+
             // Extract parameter types
             p = method.indexOf(')', j + 1);
             if (p < 0) {
@@ -203,9 +207,11 @@ public class ELProcessor {
         if (!Modifier.isStatic(meth.getModifiers())) {
             throw new NoSuchMethodException("The method specified in defineFunction must be static: " + meth);
         }
+
         if (function.equals("")) {
             function = method;
         }
+
         elManager.mapFunction(prefix, function, meth);
     }
 
@@ -228,6 +234,7 @@ public class ELProcessor {
         if (function.equals("")) {
             function = method.getName();
         }
+
         elManager.mapFunction(prefix, function, method);
     }
 
@@ -246,46 +253,49 @@ public class ELProcessor {
      * Return the Class object associated with the class or interface with the given name.
      */
     private static Class<?> toClass(String type, ClassLoader loader) throws ClassNotFoundException {
-
         Class<?> c = null;
         int i0 = type.indexOf('[');
         int dims = 0;
         if (i0 > 0) {
             // This is an array. Count the dimensions
             for (int i = 0; i < type.length(); i++) {
-                if (type.charAt(i) == '[')
+                if (type.charAt(i) == '[') {
                     dims++;
+                }
             }
             type = type.substring(0, i0);
         }
 
-        if ("boolean".equals(type))
+        if ("boolean".equals(type)) {
             c = boolean.class;
-        else if ("char".equals(type))
+        } else if ("char".equals(type)) {
             c = char.class;
-        else if ("byte".equals(type))
+        } else if ("byte".equals(type)) {
             c = byte.class;
-        else if ("short".equals(type))
+        } else if ("short".equals(type)) {
             c = short.class;
-        else if ("int".equals(type))
+        } else if ("int".equals(type)) {
             c = int.class;
-        else if ("long".equals(type))
+        } else if ("long".equals(type)) {
             c = long.class;
-        else if ("float".equals(type))
+        } else if ("float".equals(type)) {
             c = float.class;
-        else if ("double".equals(type))
+        } else if ("double".equals(type)) {
             c = double.class;
-        else
+        } else {
             c = loader.loadClass(type);
+        }
 
-        if (dims == 0)
+        if (dims == 0) {
             return c;
+        }
 
-        if (dims == 1)
+        if (dims == 1) {
             return java.lang.reflect.Array.newInstance(c, 1).getClass();
+        }
 
         // Array of more than i dimension
-        return java.lang.reflect.Array.newInstance(c, new int[dims]).getClass();
+        return Array.newInstance(c, new int[dims]).getClass();
     }
 
     private String bracket(String expression) {

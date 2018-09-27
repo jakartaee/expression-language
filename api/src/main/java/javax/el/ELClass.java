@@ -27,7 +27,6 @@ package javax.el;
  *
  * @since EL 3.0
  */
-
 public class ELClass {
 
     private Class<?> klass;

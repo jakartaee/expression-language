@@ -76,6 +76,13 @@ import java.util.Stack;
  */
 public abstract class ELContext {
 
+    private boolean resolved;
+    private HashMap<Class<?>, Object> map = new HashMap<Class<?>, Object>();
+    private transient List<EvaluationListener> listeners;
+    private Stack<Map<String, Object>> lambdaArgs;
+    private ImportHandler importHandler;
+    private Locale locale;
+
     /**
      * Called to indicate that a <code>ELResolver</code> has successfully resolved a given (base, property) pair. Use
      * {@link #setPropertyResolved(Object, Object)} if resolved is true and to notify {@link EvaluationListener}s.
@@ -147,9 +154,10 @@ public abstract class ELContext {
      * @throws NullPointerException if key is null or contextObject is null.
      */
     public void putContext(Class key, Object contextObject) {
-        if ((key == null) || (contextObject == null)) {
+        if (key == null || contextObject == null) {
             throw new NullPointerException();
         }
+
         map.put(key, contextObject);
     }
 
@@ -175,6 +183,7 @@ public abstract class ELContext {
         if (key == null) {
             throw new NullPointerException();
         }
+
         return map.get(key);
     }
 
@@ -205,6 +214,7 @@ public abstract class ELContext {
         if (importHandler == null) {
             importHandler = new ImportHandler();
         }
+
         return importHandler;
     }
 
@@ -216,11 +226,6 @@ public abstract class ELContext {
     public abstract FunctionMapper getFunctionMapper();
 
     /**
-     * Holds value of property locale.
-     */
-    private Locale locale;
-
-    /**
      * Get the <code>Locale</code> stored by a previous invocation to {@link #setLocale}. If this method returns non
      * <code>null</code>, this <code>Locale</code> must be used for all localization needs in the implementation. The
      * <code>Locale</code> must not be cached to allow for applications that change <code>Locale</code> dynamically.
@@ -229,8 +234,7 @@ public abstract class ELContext {
      */
 
     public Locale getLocale() {
-
-        return this.locale;
+        return locale;
     }
 
     /**
@@ -244,7 +248,6 @@ public abstract class ELContext {
      * @param locale the locale for this instance
      */
     public void setLocale(Locale locale) {
-
         this.locale = locale;
     }
 
@@ -266,6 +269,7 @@ public abstract class ELContext {
         if (listeners == null) {
             listeners = new ArrayList<EvaluationListener>();
         }
+
         listeners.add(listener);
     }
 
@@ -286,8 +290,10 @@ public abstract class ELContext {
      * @param expr The EL expression string to be evaluated
      */
     public void notifyBeforeEvaluation(String expr) {
-        if (getEvaluationListeners() == null)
+        if (getEvaluationListeners() == null) {
             return;
+        }
+
         for (EvaluationListener listener : getEvaluationListeners()) {
             listener.beforeEvaluation(this, expr);
         }
@@ -299,8 +305,10 @@ public abstract class ELContext {
      * @param expr The EL expression string that has been evaluated
      */
     public void notifyAfterEvaluation(String expr) {
-        if (getEvaluationListeners() == null)
+        if (getEvaluationListeners() == null) {
             return;
+        }
+
         for (EvaluationListener listener : getEvaluationListeners()) {
             listener.afterEvaluation(this, expr);
         }
@@ -313,8 +321,10 @@ public abstract class ELContext {
      * @param property The property Object
      */
     public void notifyPropertyResolved(Object base, Object property) {
-        if (getEvaluationListeners() == null)
+        if (getEvaluationListeners() == null) {
             return;
+        }
+
         for (EvaluationListener listener : getEvaluationListeners()) {
             listener.propertyResolved(this, base, property);
         }
@@ -337,6 +347,7 @@ public abstract class ELContext {
                 return true;
             }
         }
+
         return false;
     }
 
@@ -361,6 +372,7 @@ public abstract class ELContext {
                 return v;
             }
         }
+
         return null;
     }
 
@@ -375,6 +387,7 @@ public abstract class ELContext {
         if (lambdaArgs == null) {
             lambdaArgs = new Stack<Map<String, Object>>();
         }
+
         lambdaArgs.push(args);
     }
 
@@ -426,12 +439,8 @@ public abstract class ELContext {
         if (exprFactory == null) {
             exprFactory = ELUtil.getExpressionFactory();
         }
+
         return exprFactory.coerceToType(obj, targetType);
     }
 
-    private boolean resolved;
-    private HashMap<Class<?>, Object> map = new HashMap<Class<?>, Object>();
-    private transient List<EvaluationListener> listeners = null;
-    private Stack<Map<String, Object>> lambdaArgs;
-    private ImportHandler importHandler;
 }

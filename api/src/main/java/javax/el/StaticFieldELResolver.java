@@ -16,6 +16,10 @@
 
 package javax.el;
 
+import static java.lang.reflect.Modifier.isPublic;
+import static java.lang.reflect.Modifier.isStatic;
+import static javax.el.ELUtil.getExceptionMessageString;
+
 import java.beans.FeatureDescriptor;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
@@ -62,7 +66,6 @@ public class StaticFieldELResolver extends ELResolver {
      */
     @Override
     public Object getValue(ELContext context, Object base, Object property) {
-
         if (context == null) {
             throw new NullPointerException();
         }
@@ -73,6 +76,7 @@ public class StaticFieldELResolver extends ELResolver {
             try {
                 context.setPropertyResolved(base, property);
                 Field field = klass.getField(fieldName);
+
                 int mod = field.getModifiers();
                 if (Modifier.isPublic(mod) && Modifier.isStatic(mod)) {
                     return field.get(null);
@@ -80,8 +84,10 @@ public class StaticFieldELResolver extends ELResolver {
             } catch (NoSuchFieldException ex) {
             } catch (IllegalAccessException ex) {
             }
+
             throw new PropertyNotFoundException(ELUtil.getExceptionMessageString(context, "staticFieldReadError", new Object[] { klass.getName(), fieldName }));
         }
+
         return null;
     }
 
@@ -106,11 +112,12 @@ public class StaticFieldELResolver extends ELResolver {
         if (context == null) {
             throw new NullPointerException();
         }
+
         if (base instanceof ELClass && property instanceof String) {
             Class<?> klass = ((ELClass) base).getKlass();
             String fieldName = (String) property;
             throw new PropertyNotWritableException(
-                    ELUtil.getExceptionMessageString(context, "staticFieldWriteError", new Object[] { klass.getName(), fieldName }));
+                    getExceptionMessageString(context, "staticFieldWriteError", new Object[] { klass.getName(), fieldName }));
         }
     }
 
@@ -133,7 +140,7 @@ public class StaticFieldELResolver extends ELResolver {
      * As a special case, if the name of the method is "&lt;init&gt;", the constructor for the class will be invoked.
      *
      * @param base An <code>ELClass</code>
-     * @param method When coerced to a <code>String</code>, the simple name of the method.
+     * @param methodName When coerced to a <code>String</code>, the simple name of the method.
      * @param paramTypes An array of Class objects identifying the method's formal parameter types, in declared order. Use
      * an empty array if the method has no parameters. Can be <code>null</code>, in which case the method's formal parameter
      * types are assumed to be unknown.
@@ -146,28 +153,28 @@ public class StaticFieldELResolver extends ELResolver {
      * constructor.
      */
     @Override
-    public Object invoke(ELContext context, Object base, Object method, Class<?>[] paramTypes, Object[] params) {
-
+    public Object invoke(ELContext context, Object base, Object methodName, Class<?>[] paramTypes, Object[] params) {
         if (context == null) {
             throw new NullPointerException();
         }
 
-        if (!(base instanceof ELClass && method instanceof String)) {
+        if (!(base instanceof ELClass && methodName instanceof String)) {
             return null;
         }
 
         Class<?> klass = ((ELClass) base).getKlass();
-        String name = (String) method;
+        String name = (String) methodName;
 
         Object ret;
         if ("<init>".equals(name)) {
             Constructor<?> constructor = ELUtil.findConstructor(klass, paramTypes, params);
             ret = ELUtil.invokeConstructor(context, constructor, params);
         } else {
-            Method meth = ELUtil.findMethod(klass, name, paramTypes, params, true);
-            ret = ELUtil.invokeMethod(context, meth, null, params);
+            Method method = ELUtil.findMethod(klass, name, paramTypes, params, true);
+            ret = ELUtil.invokeMethod(context, method, null, params);
         }
-        context.setPropertyResolved(base, method);
+        context.setPropertyResolved(base, methodName);
+
         return ret;
     }
 
@@ -194,7 +201,6 @@ public class StaticFieldELResolver extends ELResolver {
      */
     @Override
     public Class<?> getType(ELContext context, Object base, Object property) {
-
         if (context == null) {
             throw new NullPointerException();
         }
@@ -205,14 +211,16 @@ public class StaticFieldELResolver extends ELResolver {
             try {
                 context.setPropertyResolved(true);
                 Field field = klass.getField(fieldName);
+
                 int mod = field.getModifiers();
-                if (Modifier.isPublic(mod) && Modifier.isStatic(mod)) {
+                if (isPublic(mod) && isStatic(mod)) {
                     return field.getType();
                 }
             } catch (NoSuchFieldException ex) {
             }
-            throw new PropertyNotFoundException(ELUtil.getExceptionMessageString(context, "staticFieldReadError", new Object[] { klass.getName(), fieldName }));
+            throw new PropertyNotFoundException(getExceptionMessageString(context, "staticFieldReadError", new Object[] { klass.getName(), fieldName }));
         }
+
         return null;
     }
 
@@ -244,9 +252,10 @@ public class StaticFieldELResolver extends ELResolver {
         }
 
         if (base instanceof ELClass && property instanceof String) {
-            Class<?> klass = ((ELClass) base).getKlass();
+            ((ELClass) base).getKlass();
             context.setPropertyResolved(true);
         }
+
         return true;
     }
 

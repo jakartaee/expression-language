@@ -41,7 +41,8 @@ import java.io.Serializable;
  * @since JSP 2.1
  */
 public abstract class Expression implements Serializable {
-    // Debugging
+
+    private static final long serialVersionUID = -6663767980471823812L;
 
     /**
      * Returns the original String used to create this <code>Expression</code>, unmodified.

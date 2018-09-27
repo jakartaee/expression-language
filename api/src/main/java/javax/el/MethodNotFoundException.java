@@ -25,6 +25,8 @@ package javax.el;
  */
 public class MethodNotFoundException extends ELException {
 
+    private static final long serialVersionUID = 7727548537051164640L;
+
     /**
      * Creates a <code>MethodNotFoundException</code> with no detail message.
      */

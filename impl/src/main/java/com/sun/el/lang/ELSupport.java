@@ -371,8 +371,9 @@ public class ELSupport {
         }
 
         if (obj instanceof String) {
-            if ("".equals(obj))
+            if ("".equals(obj)) {
                 return null;
+            }
             PropertyEditor editor = PropertyEditorManager.findEditor(type);
             if (editor != null) {
                 editor.setAsText((String) obj);

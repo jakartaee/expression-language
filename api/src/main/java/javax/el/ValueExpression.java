@@ -59,6 +59,8 @@ package javax.el;
  */
 public abstract class ValueExpression extends Expression {
 
+    private static final long serialVersionUID = -8466802188968516519L;
+
     /**
      * Evaluates the expression relative to the provided context, and returns the resulting value.
      *

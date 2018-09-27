@@ -38,7 +38,7 @@ public class FunctionMapperFactory extends FunctionMapper {
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see javax.el.FunctionMapper#resolveFunction(java.lang.String, java.lang.String)
      */
     @Override

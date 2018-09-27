@@ -34,8 +34,9 @@ public class AstMethodArguments extends SimpleNode {
 
     public Object[] getParameters(EvaluationContext ctx) throws ELException {
 
-        if (this.children == null)
+        if (this.children == null) {
             return new Object[] {};
+        }
 
         Object[] obj = new Object[this.children.length];
         for (int i = 0; i < obj.length; i++) {

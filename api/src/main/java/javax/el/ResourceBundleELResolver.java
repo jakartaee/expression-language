@@ -17,6 +17,8 @@
 
 package javax.el;
 
+import static java.lang.Boolean.TRUE;
+
 import java.beans.FeatureDescriptor;
 import java.util.ArrayList;
 import java.util.Enumeration;
@@ -87,6 +89,7 @@ public class ResourceBundleELResolver extends ELResolver {
                 }
             }
         }
+
         return null;
     }
 
@@ -116,6 +119,7 @@ public class ResourceBundleELResolver extends ELResolver {
         if (base instanceof ResourceBundle) {
             context.setPropertyResolved(true);
         }
+
         return null;
     }
 
@@ -156,10 +160,12 @@ public class ResourceBundleELResolver extends ELResolver {
         if (context == null) {
             throw new NullPointerException();
         }
+
         if (base instanceof ResourceBundle) {
             context.setPropertyResolved(true);
             return true;
         }
+
         return false;
     }
 
@@ -199,6 +205,7 @@ public class ResourceBundleELResolver extends ELResolver {
             List<FeatureDescriptor> features = new ArrayList<FeatureDescriptor>();
             String key = null;
             FeatureDescriptor desc = null;
+
             for (Enumeration<String> e = bundle.getKeys(); e.hasMoreElements();) {
                 key = e.nextElement();
                 desc = new FeatureDescriptor();
@@ -208,11 +215,13 @@ public class ResourceBundleELResolver extends ELResolver {
                 desc.setName(key);
                 desc.setPreferred(true);
                 desc.setValue(TYPE, String.class);
-                desc.setValue(RESOLVABLE_AT_DESIGN_TIME, Boolean.TRUE);
+                desc.setValue(RESOLVABLE_AT_DESIGN_TIME, TRUE);
                 features.add(desc);
             }
+
             return features.iterator();
         }
+
         return null;
     }
 
@@ -232,6 +241,7 @@ public class ResourceBundleELResolver extends ELResolver {
         if (base instanceof ResourceBundle) {
             return String.class;
         }
+
         return null;
     }
 }

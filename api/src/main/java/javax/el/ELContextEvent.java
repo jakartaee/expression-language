@@ -17,6 +17,8 @@
 
 package javax.el;
 
+import java.util.EventObject;
+
 /**
  * An event which indicates that an {@link ELContext} has been created. The source object is the ELContext that was
  * created.
@@ -25,7 +27,9 @@ package javax.el;
  * @see ELContextListener
  * @since JSP 2.1
  */
-public class ELContextEvent extends java.util.EventObject {
+public class ELContextEvent extends EventObject {
+
+    private static final long serialVersionUID = 1255131906285426769L;
 
     /**
      * Constructs an ELContextEvent object to indicate that an <code>ELContext</code> has been created.
