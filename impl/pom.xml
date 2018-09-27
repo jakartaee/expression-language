@@ -113,6 +113,7 @@
                 <version>1.4.3</version>
                 <configuration>
                     <instructions>
+                        <Automatic-Module-Name>java.el.impl</Automatic-Module-Name>
                         <Bundle-SymbolicName>${bundle.symbolicName}</Bundle-SymbolicName>
                         <Bundle-Description>
                             Expression Language ${spec.version} Implementation
@@ -123,6 +124,7 @@
                         <Specification-Vendor>${vendorName}</Specification-Vendor>
                         <Implementation-Version>${project.version}</Implementation-Version>
                         <Implementation-Vendor>${vendorName}</Implementation-Vendor>
+                        <Export-Package>com.sun.el</Export-Package>
                     </instructions>
                 </configuration>
                 <executions>
