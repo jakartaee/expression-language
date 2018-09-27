@@ -16,25 +16,28 @@
 
 package javax.el;
 
-import java.util.Iterator;
 import java.beans.FeatureDescriptor;
+import java.util.Iterator;
 
 /**
  * A convenient class for writing an ELResolver to do custom type conversions.
  *
  * <p>For example, to convert a String to an instance of MyDate, one can write
- * <blockquote><pre>
+ *
+ * <pre>
+ * <code>
  *     ELProcessor elp = new ELProcessor();
  *     elp.getELManager().addELResolver(new TypeConverter() {
- *         Object convertToType(ELContext context, Object obj, Class<?> type) {
- *             if ((obj instanceof String) && type == MyDate.class) {
+ *         Object convertToType(ELContext context, Object obj, Class&lt;?&gt; type) {
+ *             if ((obj instanceof String) &amp;&amp; type == MyDate.class) {
  *                 context.setPropertyResolved(obj, type);
  *                 return (obj == null)? null: new MyDate(obj.toString());
  *             }
  *             return null;
  *         }
  *      };
- * </pre></blockquote>
+ * </code>
+ * </pre>
  *
  * @since EL 3.0
  */

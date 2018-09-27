@@ -80,7 +80,7 @@ public class ELManager {
      * Can be called multiple times.  The new ELResolver is
      * placed ahead of the default ELResolvers.  The list of the ELResolvers
      * added this way are ordered chronologically.
-     * 
+     *
      * @param elr The ELResolver to be added to the list of ELResolvers in
      *     ELContext.
      * @see StandardELContext#addELResolver
@@ -92,14 +92,14 @@ public class ELManager {
     /**
      * Maps a static method to an EL function.
      * @param prefix The namespace of the functions, can be "".
-     * @param function The name of the function.  
+     * @param function The name of the function.
      * @param meth The static method to be invoked when the function is used.
      */
     public void mapFunction(String prefix, String function, Method meth) {
         getELContext().getFunctionMapper().mapFunction(prefix, function, meth);
     }
 
-    /** 
+    /**
      * Assign a ValueExpression to an EL variable, replacing
      * any previous assignment to the same variable.
      * The assignment for the variable is removed if
@@ -149,6 +149,7 @@ public class ELManager {
      * @param name The name of the bean
      * @param bean The bean instance to be defined.  If null, the definition
      *        of the bean is removed.
+     * @return the previous bean (if any) mapped to <code>name</code>
      */
     public Object defineBean(String name, Object bean) {
         Object ret = getELContext().getBeans().get(name);

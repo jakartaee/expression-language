@@ -21,7 +21,6 @@ import java.beans.PropertyEditorManager;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
-import javax.el.ELContext;
 import javax.el.ELException;
 import javax.el.PropertyNotFoundException;
 
@@ -29,7 +28,7 @@ import com.sun.el.util.MessageFactory;
 
 /**
  * A helper class that implements the EL Specification
- * 
+ *
  * @author Jacob Hookom [jacob@hookom.net]
  * @author Kin-man Chung
  * @version $Change: 181177 $$DateTime: 2001/06/26 08:45:09 $$Author: kchung $
@@ -53,7 +52,7 @@ public class ELSupport {
      * @param obj0 First object to be compared
      * @param obj1 Second object to be compared
      * @return The result (an int with values -1, 0, or 1) of the comparison
-     * @throws EvaluationException
+     * @throws ELException when something goes wrong
      */
     public final static int compare(final Object obj0, final Object obj1)
             throws ELException {
@@ -102,7 +101,7 @@ public class ELSupport {
      * @param obj0 Fisrt object to be compared
      * @param obj1 Second object to be compared
      * @return true if the objects compared equal
-     * @throws EvaluationException
+     * @throws ELException when something goes wrong
      */
     public final static boolean equals(final Object obj0, final Object obj1)
             throws ELException {
@@ -389,7 +388,7 @@ public class ELSupport {
         }
 
         if (obj == null) {
-            return null; 
+            return null;
         }
 
         if (obj instanceof String) {
@@ -496,7 +495,7 @@ public class ELSupport {
     }
 
     /**
-     * 
+     *
      */
     public ELSupport() {
         super();

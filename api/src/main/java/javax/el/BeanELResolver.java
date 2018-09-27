@@ -17,19 +17,19 @@
 
 package javax.el;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.lang.ref.SoftReference;
-import java.lang.ref.ReferenceQueue;
-import java.beans.FeatureDescriptor;
 import java.beans.BeanInfo;
+import java.beans.FeatureDescriptor;
+import java.beans.IntrospectionException;
 import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
-import java.beans.IntrospectionException;
-import java.util.Iterator;
+import java.lang.ref.ReferenceQueue;
+import java.lang.ref.SoftReference;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.Map;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -50,14 +50,14 @@ import java.util.concurrent.ConcurrentHashMap;
  * specified to identify the method.  If the parameter types are not
  * specified, the parameter objects are used in the method resolution.
  * </p>
- * 
+ *
  * <p>This resolver can be constructed in read-only mode, which means that
- * {@link #isReadOnly} will always return <code>true</code> and 
+ * {@link #isReadOnly} will always return <code>true</code> and
  * {@link #setValue} will always throw
  * <code>PropertyNotWritableException</code>.</p>
  *
- * <p><code>ELResolver</code>s are combined together using 
- * {@link CompositeELResolver}s, to define rich semantics for evaluating 
+ * <p><code>ELResolver</code>s are combined together using
+ * {@link CompositeELResolver}s, to define rich semantics for evaluating
  * an expression. See the javadocs for {@link ELResolver} for details.</p>
  *
  * <p>Because this resolver handles base objects of any type, it should
@@ -142,31 +142,31 @@ public class BeanELResolver extends ELResolver {
         private Method readMethod;
         private Method writeMethod;
         private PropertyDescriptor descriptor;
-                                                                                
+
         public BeanProperty(Class<?> baseClass,
                             PropertyDescriptor descriptor) {
             this.descriptor = descriptor;
             readMethod = ELUtil.getMethod(baseClass, descriptor.getReadMethod());
             writeMethod = ELUtil.getMethod(baseClass, descriptor.getWriteMethod());
         }
-                                                                                
+
         public Class getPropertyType() {
             return descriptor.getPropertyType();
         }
-                                                                                
+
         public boolean isReadOnly() {
             return getWriteMethod() == null;
         }
-                                                                                
+
         public Method getReadMethod() {
             return readMethod;
         }
-                                                                                
+
         public Method getWriteMethod() {
             return writeMethod;
         }
     }
-                                                                                
+
     /*
      * Defines the properties for a bean.
      */
@@ -174,7 +174,7 @@ public class BeanELResolver extends ELResolver {
 
         private final Map<String, BeanProperty> propertyMap =
             new HashMap<String, BeanProperty>();
-                                                                                
+
         public BeanProperties(Class<?> baseClass) {
             PropertyDescriptor[] descriptors;
             try {
@@ -188,7 +188,7 @@ public class BeanELResolver extends ELResolver {
                                 new BeanProperty(baseClass, pd));
             }
         }
-                                                                                
+
         public BeanProperty getBeanProperty(String property) {
             return propertyMap.get(property);
         }
@@ -213,13 +213,13 @@ public class BeanELResolver extends ELResolver {
     }
 
     /**
-     * If the base object is not <code>null</code>, returns the most 
+     * If the base object is not <code>null</code>, returns the most
      * general acceptable type that can be set on this bean property.
      *
-     * <p>If the base is not <code>null</code>, the 
+     * <p>If the base is not <code>null</code>, the
      * <code>propertyResolved</code> property of the <code>ELContext</code>
      * object must be set to <code>true</code> by this resolver, before
-     * returning. If this property is not <code>true</code> after this 
+     * returning. If this property is not <code>true</code> after this
      * method is called, the caller should ignore the return value.</p>
      *
      * <p>The provided property will first be coerced to a <code>String</code>.
@@ -232,7 +232,7 @@ public class BeanELResolver extends ELResolver {
      * @param base The bean to analyze.
      * @param property The name of the property to analyze. Will be coerced to
      *     a <code>String</code>.
-     * @return If the <code>propertyResolved</code> property of 
+     * @return If the <code>propertyResolved</code> property of
      *     <code>ELContext</code> was set to <code>true</code>, then
      *     the most general acceptable type; otherwise undefined.
      * @throws NullPointerException if context is <code>null</code>
@@ -244,6 +244,7 @@ public class BeanELResolver extends ELResolver {
      *     must be included as the cause property of this exception, if
      *     available.
      */
+    @Override
     public Class<?> getType(ELContext context,
                          Object base,
                          Object property) {
@@ -265,24 +266,24 @@ public class BeanELResolver extends ELResolver {
      * If the base object is not <code>null</code>, returns the current
      * value of the given property on this bean.
      *
-     * <p>If the base is not <code>null</code>, the 
+     * <p>If the base is not <code>null</code>, the
      * <code>propertyResolved</code> property of the <code>ELContext</code>
      * object must be set to <code>true</code> by this resolver, before
-     * returning. If this property is not <code>true</code> after this 
+     * returning. If this property is not <code>true</code> after this
      * method is called, the caller should ignore the return value.</p>
      *
      * <p>The provided property name will first be coerced to a
-     * <code>String</code>. If the property is a readable property of the 
-     * base object, as per the JavaBeans specification, then return the 
-     * result of the getter call. If the getter throws an exception, 
-     * it is propagated to the caller. If the property is not found or is 
+     * <code>String</code>. If the property is a readable property of the
+     * base object, as per the JavaBeans specification, then return the
+     * result of the getter call. If the getter throws an exception,
+     * it is propagated to the caller. If the property is not found or is
      * not readable, a <code>PropertyNotFoundException</code> is thrown.</p>
      *
      * @param context The context of this evaluation.
      * @param base The bean on which to get the property.
      * @param property The name of the property to get. Will be coerced to
      *     a <code>String</code>.
-     * @return If the <code>propertyResolved</code> property of 
+     * @return If the <code>propertyResolved</code> property of
      *     <code>ELContext</code> was set to <code>true</code>, then
      *     the value of the given property. Otherwise, undefined.
      * @throws NullPointerException if context is <code>null</code>.
@@ -294,6 +295,7 @@ public class BeanELResolver extends ELResolver {
      *     must be included as the cause property of this exception, if
      *     available.
      */
+    @Override
     public Object getValue(ELContext context,
                            Object base,
                            Object property) {
@@ -334,18 +336,18 @@ public class BeanELResolver extends ELResolver {
      * If the base object is not <code>null</code>, attempts to set the
      * value of the given property on this bean.
      *
-     * <p>If the base is not <code>null</code>, the 
+     * <p>If the base is not <code>null</code>, the
      * <code>propertyResolved</code> property of the <code>ELContext</code>
      * object must be set to <code>true</code> by this resolver, before
-     * returning. If this property is not <code>true</code> after this 
+     * returning. If this property is not <code>true</code> after this
      * method is called, the caller can safely assume no value was set.</p>
      *
      * <p>If this resolver was constructed in read-only mode, this method will
      * always throw <code>PropertyNotWritableException</code>.</p>
      *
      * <p>The provided property name will first be coerced to a
-     * <code>String</code>. If property is a writable property of 
-     * <code>base</code> (as per the JavaBeans Specification), the setter 
+     * <code>String</code>. If property is a writable property of
+     * <code>base</code> (as per the JavaBeans Specification), the setter
      * method is called (passing <code>value</code>). If the property exists
      * but does not have a setter, then a
      * <code>PropertyNotFoundException</code> is thrown. If the property
@@ -366,6 +368,7 @@ public class BeanELResolver extends ELResolver {
      *     must be included as the cause property of this exception, if
      *     available.
      */
+    @Override
     public void setValue(ELContext context,
                          Object base,
                          Object property,
@@ -384,7 +387,7 @@ public class BeanELResolver extends ELResolver {
                         ELUtil.getExceptionMessageString(context,
                             "resolverNotwritable",
                             new Object[] { base.getClass().getName() }));
-        } 
+        }
 
         BeanProperty bp = getBeanProperty(context, base, property);
         Method method = bp.getWriteMethod();
@@ -427,7 +430,7 @@ public class BeanELResolver extends ELResolver {
      * method is called, the caller should ignore the return value.</p>
      *
      * <p>The provided method object will first be coerced to a
-     * <code>String</code>.  The methods in the bean is then examined and 
+     * <code>String</code>.  The methods in the bean is then examined and
      * an attempt will be made to select one for invocation.  If no suitable
      * can be found, a <code>MethodNotFoundException</code> is thrown.
      *
@@ -473,6 +476,7 @@ public class BeanELResolver extends ELResolver {
      * @since EL 2.2
      */
 
+    @Override
     public Object invoke(ELContext context,
                          Object base,
                          Object method,
@@ -500,17 +504,17 @@ public class BeanELResolver extends ELResolver {
      * If the base object is not <code>null</code>, returns whether a call
      * to {@link #setValue} will always fail.
      *
-     * <p>If the base is not <code>null</code>, the 
+     * <p>If the base is not <code>null</code>, the
      * <code>propertyResolved</code> property of the <code>ELContext</code>
      * object must be set to <code>true</code> by this resolver, before
-     * returning. If this property is not <code>true</code> after this 
+     * returning. If this property is not <code>true</code> after this
      * method is called, the caller can safely assume no value was set.</p>
      *
      * <p>If this resolver was constructed in read-only mode, this method will
      * always return <code>true</code>.</p>
      *
      * <p>The provided property name will first be coerced to a
-     * <code>String</code>. If property is a writable property of 
+     * <code>String</code>. If property is a writable property of
      * <code>base</code>, <code>false</code> is returned. If the property is
      * found but is not writable, <code>true</code> is returned. If the
      * property is not found, a <code>PropertyNotFoundException</code>
@@ -520,7 +524,7 @@ public class BeanELResolver extends ELResolver {
      * @param base The bean to analyze.
      * @param property The name of the property to analyzed. Will be coerced to
      *     a <code>String</code>.
-     * @return If the <code>propertyResolved</code> property of 
+     * @return If the <code>propertyResolved</code> property of
      *     <code>ELContext</code> was set to <code>true</code>, then
      *     <code>true</code> if calling the <code>setValue</code> method
      *     will always fail or <code>false</code> if it is possible that
@@ -533,6 +537,7 @@ public class BeanELResolver extends ELResolver {
      *     must be included as the cause property of this exception, if
      *     available.
      */
+    @Override
     public boolean isReadOnly(ELContext context,
                               Object base,
                               Object property) {
@@ -559,28 +564,29 @@ public class BeanELResolver extends ELResolver {
      * <code>Iterator</code> containing the set of JavaBeans properties
      * available on the given object. Otherwise, returns <code>null</code>.
      *
-     * <p>The <code>Iterator</code> returned must contain zero or more 
-     * instances of {@link java.beans.FeatureDescriptor}. Each info object 
+     * <p>The <code>Iterator</code> returned must contain zero or more
+     * instances of {@link java.beans.FeatureDescriptor}. Each info object
      * contains information about a property in the bean, as obtained by
      * calling the <code>BeanInfo.getPropertyDescriptors</code> method.
      * The <code>FeatureDescriptor</code> is initialized using the same
      * fields as are present in the <code>PropertyDescriptor</code>,
-     * with the additional required named attributes "<code>type</code>" and 
+     * with the additional required named attributes "<code>type</code>" and
      * "<code>resolvableAtDesignTime</code>" set as follows:
-     * <dl>
+     * <ul>
      *     <li>{@link ELResolver#TYPE} - The runtime type of the property, from
      *         <code>PropertyDescriptor.getPropertyType()</code>.</li>
      *     <li>{@link ELResolver#RESOLVABLE_AT_DESIGN_TIME} - <code>true</code>.</li>
-     * </dl>
-     * </p>
-     * 
+     * </ul>
+     *
+     *
      * @param context The context of this evaluation.
      * @param base The bean to analyze.
-     * @return An <code>Iterator</code> containing zero or more 
+     * @return An <code>Iterator</code> containing zero or more
      *     <code>FeatureDescriptor</code> objects, each representing a property
      *     on this bean, or <code>null</code> if the <code>base</code>
      *     object is <code>null</code>.
      */
+    @Override
     public Iterator<FeatureDescriptor> getFeatureDescriptors(
                                           ELContext context,
                                           Object base) {
@@ -607,8 +613,8 @@ public class BeanELResolver extends ELResolver {
     }
 
     /**
-     * If the base object is not <code>null</code>, returns the most 
-     * general type that this resolver accepts for the 
+     * If the base object is not <code>null</code>, returns the most
+     * general type that this resolver accepts for the
      * <code>property</code> argument. Otherwise, returns <code>null</code>.
      *
      * <p>Assuming the base is not <code>null</code>, this method will always
@@ -620,6 +626,7 @@ public class BeanELResolver extends ELResolver {
      * @return <code>null</code> if base is <code>null</code>; otherwise
      *     <code>Object.class</code>.
      */
+    @Override
     public Class<?> getCommonPropertyType(ELContext context,
                                                Object base) {
         if (base == null){

@@ -16,22 +16,26 @@
 
 package javax.el;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.HashMap;
-import java.util.ArrayList;
 
 /**
- * <p>Encapsulates a parameterized {@link ValueExpression}.</p>
+ * Encapsulates a parameterized {@link ValueExpression}.
  *
  * <p>A <code>LambdaExpression</code> is a representation of the EL Lambda
  * expression syntax.  It consists of a list of the formal parameters and a
  * body, represented by a {@link ValueExpression}.
  * The body can be any valid <code>Expression</code>, including another
- * <code>LambdaExpression</code>.</p>
+ * <code>LambdaExpression</code>.
+ *
+ * <p>
  * A <code>LambdaExpression</code> is created when an EL expression containing
- * a Lambda expression is evaluated.</p>
- * <p>A <code>LambdaExpression</code> can be invoked by calling
+ * a Lambda expression is evaluated.
+ *
+ * <p>
+ * A <code>LambdaExpression</code> can be invoked by calling
  * {@link LambdaExpression#invoke}, with
  * an {@link javax.el.ELContext} and a list of the actual arguments.
  * Alternately, a <code>LambdaExpression</code> can be invoked without passing
@@ -40,7 +44,8 @@ import java.util.ArrayList;
  * The evaluation of the <code>ValueExpression</code> in the body uses the
  * {@link ELContext} to resolve references to the parameters, and to evaluate
  * the lambda expression.
- * The result of the evaluation is returned.</p>
+ * The result of the evaluation is returned.
+ *
  * @see ELContext#getLambdaArgument
  * @see ELContext#enterLambdaScope
  * @see ELContext#exitLambdaScope
@@ -99,7 +104,7 @@ public class LambdaExpression {
      * @throws ELException if not enough arguments are provided
      * @throws NullPointerException is elContext is null
      */
-    public Object invoke(ELContext elContext, Object... args) 
+    public Object invoke(ELContext elContext, Object... args)
             throws ELException {
         int i = 0;
         Map<String, Object> lambdaArgs = new HashMap<String, Object>();

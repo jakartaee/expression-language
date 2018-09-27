@@ -17,12 +17,12 @@
 
 package javax.el;
 
-import java.util.Map;
-import java.util.Stack;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.ArrayList;
 import java.util.Locale;
+import java.util.Map;
+import java.util.Stack;
 
 /**
  * Context information for expression parsing and evaluation.
@@ -36,7 +36,7 @@ import java.util.Locale;
  *       to resolve EL Variables.  This is used only in parsing.</li>
  *   <li>a reference to the base {@link ELResolver} that will be consulted
  *       to resolve model objects and their properties</li>
- *   <li>a collection of all the relevant context objects for use by 
+ *   <li>a collection of all the relevant context objects for use by
  *       <code>ELResolver</code>s</li>
  *   <li>state information during the evaluation of an expression, such as
  *       whether a property has been resolved yet</li>
@@ -44,30 +44,34 @@ import java.util.Locale;
  *       resolve classes that have been imported</li>
  *   <li>a reference to the arguments for the active {@link LambdaExpression}s</li>
  *   <li>a reference to the list of registered evaluation listeners</li>
- * </ul></p>
+ * </ul>
  *
- * <p>The collection of context objects is necessary because each 
+ * <p>
+ * The collection of context objects is necessary because each
  * <code>ELResolver</code> may need access to a different context object.
- * For example, JSP and Faces resolvers need access to a 
+ * For example, JSP and Faces resolvers need access to a
  * {@link javax.servlet.jsp.JspContext} and a
- * {@link javax.faces.context.FacesContext}, respectively.</p>
+ * {@link javax.faces.context.FacesContext}, respectively.
  *
- * <p>When used in a web container, the creation of
- * <code>ELContext</code> objects is controlled through 
+ * <p>
+ * When used in a web container, the creation of
+ * <code>ELContext</code> objects is controlled through
  * the underlying technology.  For example, in JSP the
  * <code>JspContext.getELContext()</code> factory method is used.
  * Some technologies provide the ability to add an {@link ELContextListener}
  * so that applications and frameworks can ensure their own context objects
- * are attached to any newly created <code>ELContext</code>.</p>
+ * are attached to any newly created <code>ELContext</code>.
  *
- * <p>When used in a stand-alone environment, {@link StandardELContext}
+ * <p>
+ * When used in a stand-alone environment, {@link StandardELContext}
  * provides a default <code>ELContext</code>, which is managed and modified
  * by {@link ELManager}.
  *
- * <p>Because it stores state during expression evaluation, an 
+ * <p>
+ * Because it stores state during expression evaluation, an
  * <code>ELContext</code> object is not thread-safe.  Care should be taken
- * to never share an <code>ELContext</code> instance between two or more 
- * threads.</p>
+ * to never share an <code>ELContext</code> instance between two or more
+ * threads.
  *
  * @see ELContextListener
  * @see ELContextEvent
@@ -165,8 +169,8 @@ public abstract class ELContext {
      * are used by <code>ELResolver</code>s.  This method is used to
      * retrieve the context with the given key from the collection.</p>
      *
-     * <p>By convention, the object returned will be of the type specified by 
-     * the <code>key</code>.  However, this is not required and the key is 
+     * <p>By convention, the object returned will be of the type specified by
+     * the <code>key</code>.  However, this is not required and the key is
      * used strictly as a unique identifier.</p>
      *
      * @param key The unique identifier that was used to associate the
@@ -181,11 +185,11 @@ public abstract class ELContext {
         }
         return map.get(key);
     }
-                      
+
     /**
      * Retrieves the <code>ELResolver</code> associated with this context.
      *
-     * <p>The <code>ELContext</code> maintains a reference to the 
+     * <p>The <code>ELContext</code> maintains a reference to the
      * <code>ELResolver</code> that will be consulted to resolve variables
      * and properties during an expression evaluation.  This method
      * retrieves the reference to the resolver.</p>
@@ -197,7 +201,7 @@ public abstract class ELContext {
      *     property resolution during expression evaluation.
      */
     public abstract ELResolver getELResolver();
-    
+
     /**
      * Retrieves the <code>ImportHandler</code> associated with this
      * <code>ELContext</code>.
@@ -213,23 +217,23 @@ public abstract class ELContext {
     }
 
     /**
-     * Retrieves the <code>FunctionMapper</code> associated with this 
+     * Retrieves the <code>FunctionMapper</code> associated with this
      * <code>ELContext</code>.
      *
      * @return The function mapper to be consulted for the resolution of
      * EL functions.
      */
     public abstract FunctionMapper getFunctionMapper();
-    
+
     /**
      * Holds value of property locale.
      */
     private Locale locale;
-    
+
     /**
-     * Get the <code>Locale</code> stored by a previous invocation to 
+     * Get the <code>Locale</code> stored by a previous invocation to
      * {@link #setLocale}.  If this method returns non <code>null</code>,
-     * this <code>Locale</code> must be used for all localization needs 
+     * this <code>Locale</code> must be used for all localization needs
      * in the implementation.  The <code>Locale</code> must not be cached
      * to allow for applications that change <code>Locale</code> dynamically.
      *
@@ -243,20 +247,25 @@ public abstract class ELContext {
     }
 
     /**
-     * Sets the <code>Locale</code> for this instance.  This method may be 
+     * Sets the <code>Locale</code> for this instance.
+     *
+     * <p>
+     * This method may be
      * called by the party creating the instance, such as JavaServer
      * Faces or JSP, to enable the EL implementation to provide localized
      * messages to the user.  If no <code>Locale</code> is set, the implementation
      * must use the locale returned by <code>Locale.getDefault( )</code>.
+     *
+     * @param locale the locale for this instance
      */
     public void setLocale(Locale locale) {
 
         this.locale = locale;
-    }    
-        
-    
+    }
+
+
     /**
-     * Retrieves the <code>VariableMapper</code> associated with this 
+     * Retrieves the <code>VariableMapper</code> associated with this
      * <code>ELContext</code>.
      *
      * @return The variable mapper to be consulted for the resolution of
@@ -352,7 +361,7 @@ public abstract class ELContext {
      * then searched, and so on.
      *
      * @param arg The formal parameter for the Lambda argument
-     * @return The object associated with formal parameter.  Null if 
+     * @return The object associated with formal parameter.  Null if
      *      no object has been associated with the parameter.
      * @since EL 3.0
      */
@@ -402,10 +411,11 @@ public abstract class ELContext {
      * the standard coercions is applied.
      *
      * <p>An <code>ELException</code> is thrown if an error occurs during
-     * the conversion.</p>
+     * the conversion.
      *
      * @param obj The object to convert.
      * @param targetType The target type for the conversion.
+     * @return object converted to <code>targetType</code>
      * @throws ELException thrown if errors occur.
      *
      * @since EL 3.0

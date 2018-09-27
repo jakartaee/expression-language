@@ -17,28 +17,28 @@
 
 package javax.el;
 
-import java.util.Iterator;
 import java.beans.FeatureDescriptor;
+import java.util.Iterator;
 
 /**
  * Enables customization of variable, property, method call, and type
  * conversion resolution behavior for EL expression evaluation.
  *
  * <p>While evaluating an expression, the <code>ELResolver</code> associated
- * with the {@link ELContext} is consulted to do the initial resolution of 
- * the first variable of an expression. It is also consulted when a 
+ * with the {@link ELContext} is consulted to do the initial resolution of
+ * the first variable of an expression. It is also consulted when a
  * <code>.</code> or <code>[]</code> operator is encountered.
  *
- * <p>For example, in the EL expression <code>${employee.lastName}</code>, 
+ * <p>For example, in the EL expression <code>${employee.lastName}</code>,
  * the <code>ELResolver</code> determines what object <code>employee</code>
- * refers to, and what it means to get the <code>lastName</code> property on 
+ * refers to, and what it means to get the <code>lastName</code> property on
  * that object.</p>
  *
- * <p>Most methods in this class accept a <code>base</code> 
+ * <p>Most methods in this class accept a <code>base</code>
  * and <code>property</code> parameter. In the case of variable resolution
- * (e.g. determining what <code>employee</code> refers to in 
- * <code>${employee.lastName}</code>), the <code>base</code> parameter will 
- * be <code>null</code> and the <code>property</code> parameter will always 
+ * (e.g. determining what <code>employee</code> refers to in
+ * <code>${employee.lastName}</code>), the <code>base</code> parameter will
+ * be <code>null</code> and the <code>property</code> parameter will always
  * be of type <code>String</code>. In this case, if the <code>property</code>
  * is not a <code>String</code>, the behavior of the <code>ELResolver</code>
  * is undefined.</p>
@@ -77,7 +77,7 @@ import java.beans.FeatureDescriptor;
  * most resolvers will only handle a <code>base</code> of a single type.
  * To indicate that a resolver has successfully resolved a particular
  * (base, property) pair, it must set the <code>propertyResolved</code>
- * property of the <code>ELContext</code> to <code>true</code>. If it could 
+ * property of the <code>ELContext</code> to <code>true</code>. If it could
  * not handle the given pair, it must leave this property alone. The caller
  * must ignore the return value of the method if <code>propertyResolved</code>
  * is <code>false</code>.</p>
@@ -86,11 +86,11 @@ import java.beans.FeatureDescriptor;
  * <code>ELResolver</code>
  * must set the <code>propertyResolved</code> to <code>true</code> to indicate
  * that it handles the conversion of the object to the target type.</p>
- * 
+ *
  * <p>The {@link #getFeatureDescriptors} and {@link #getCommonPropertyType}
  * methods are primarily designed for design-time tool support, but must
- * handle invocation at runtime as well. The 
- * {@link java.beans.Beans#isDesignTime} method can be used to determine 
+ * handle invocation at runtime as well. The
+ * {@link java.beans.Beans#isDesignTime} method can be used to determine
  * if the resolver is being consulted at design-time or runtime.</p>
  *
  * @see CompositeELResolver
@@ -98,7 +98,7 @@ import java.beans.FeatureDescriptor;
  * @since JSP 2.1
  */
 public abstract class ELResolver {
-    
+
     // --------------------------------------------------------- Constants
 
     /**
@@ -121,18 +121,18 @@ public abstract class ELResolver {
      * Attempts to resolve the given <code>property</code> object on the given
      * <code>base</code> object.
      *
-     * <p>If this resolver handles the given (base, property) pair, 
-     * the <code>propertyResolved</code> property of the 
+     * <p>If this resolver handles the given (base, property) pair,
+     * the <code>propertyResolved</code> property of the
      * <code>ELContext</code> object must be set to <code>true</code>
-     * by the resolver, before returning. If this property is not 
-     * <code>true</code> after this method is called, the caller should ignore 
+     * by the resolver, before returning. If this property is not
+     * <code>true</code> after this method is called, the caller should ignore
      * the return value.</p>
      *
      * @param context The context of this evaluation.
      * @param base The base object whose property value is to be returned,
      *     or <code>null</code> to resolve a top-level variable.
      * @param property The property or variable to be resolved.
-     * @return If the <code>propertyResolved</code> property of 
+     * @return If the <code>propertyResolved</code> property of
      *     <code>ELContext</code> was set to <code>true</code>, then
      *     the result of the variable or property resolution; otherwise
      *     undefined.
@@ -171,7 +171,7 @@ public abstract class ELResolver {
      *     method's formal parameter types, in declared order.
      *     Use an empty array if the method has no parameters.
      *     Can be <code>null</code>, in which case the method's formal
-     *     parameter types are assumed to be unknown. 
+     *     parameter types are assumed to be unknown.
      * @param params The parameters to pass to the method, or
      *     <code>null</code> if no parameters.
      * @return The result of the method invocation (<code>null</code> if
@@ -197,29 +197,29 @@ public abstract class ELResolver {
 
     /**
      * For a given <code>base</code> and <code>property</code>, attempts to
-     * identify the most general type that is acceptable for an object to be 
-     * passed as the <code>value</code> parameter in a future call 
+     * identify the most general type that is acceptable for an object to be
+     * passed as the <code>value</code> parameter in a future call
      * to the {@link #setValue} method.
      *
-     * <p>If this resolver handles the given (base, property) pair, 
-     * the <code>propertyResolved</code> property of the 
+     * <p>If this resolver handles the given (base, property) pair,
+     * the <code>propertyResolved</code> property of the
      * <code>ELContext</code> object must be set to <code>true</code>
-     * by the resolver, before returning. If this property is not 
-     * <code>true</code> after this method is called, the caller should ignore 
+     * by the resolver, before returning. If this property is not
+     * <code>true</code> after this method is called, the caller should ignore
      * the return value.</p>
      *
      * <p>This is not always the same as <code>getValue().getClass()</code>.
      * For example, in the case of an {@link ArrayELResolver}, the
-     * <code>getType</code> method will return the element type of the 
-     * array, which might be a superclass of the type of the actual 
+     * <code>getType</code> method will return the element type of the
+     * array, which might be a superclass of the type of the actual
      * element that is currently in the specified array element.</p>
      *
      * @param context The context of this evaluation.
      * @param base The base object whose property value is to be analyzed,
      *     or <code>null</code> to analyze a top-level variable.
-     * @param property The property or variable to return the acceptable 
+     * @param property The property or variable to return the acceptable
      *     type for.
-     * @return If the <code>propertyResolved</code> property of 
+     * @return If the <code>propertyResolved</code> property of
      *     <code>ELContext</code> was set to <code>true</code>, then
      *     the most general acceptable type; otherwise undefined.
      * @throws PropertyNotFoundException if the given (base, property) pair
@@ -235,13 +235,13 @@ public abstract class ELResolver {
                                   Object property);
 
     /**
-     * Attempts to set the value of the given <code>property</code> 
+     * Attempts to set the value of the given <code>property</code>
      * object on the given <code>base</code> object.
      *
-     * <p>If this resolver handles the given (base, property) pair, 
-     * the <code>propertyResolved</code> property of the 
+     * <p>If this resolver handles the given (base, property) pair,
+     * the <code>propertyResolved</code> property of the
      * <code>ELContext</code> object must be set to <code>true</code>
-     * by the resolver, before returning. If this property is not 
+     * by the resolver, before returning. If this property is not
      * <code>true</code> after this method is called, the caller can
      * safely assume no value has been set.</p>
      *
@@ -272,11 +272,11 @@ public abstract class ELResolver {
      * For a given <code>base</code> and <code>property</code>, attempts to
      * determine whether a call to {@link #setValue} will always fail.
      *
-     * <p>If this resolver handles the given (base, property) pair, 
-     * the <code>propertyResolved</code> property of the 
+     * <p>If this resolver handles the given (base, property) pair,
+     * the <code>propertyResolved</code> property of the
      * <code>ELContext</code> object must be set to <code>true</code>
-     * by the resolver, before returning. If this property is not 
-     * <code>true</code> after this method is called, the caller should ignore 
+     * by the resolver, before returning. If this property is not
+     * <code>true</code> after this method is called, the caller should ignore
      * the return value.</p>
      *
      * @param context The context of this evaluation.
@@ -284,7 +284,7 @@ public abstract class ELResolver {
      *     or <code>null</code> to analyze a top-level variable.
      * @param property The property or variable to return the read-only status
      *     for.
-     * @return If the <code>propertyResolved</code> property of 
+     * @return If the <code>propertyResolved</code> property of
      *     <code>ELContext</code> was set to <code>true</code>, then
      *     <code>true</code> if the property is read-only or
      *     <code>false</code> if not; otherwise undefined.
@@ -302,22 +302,22 @@ public abstract class ELResolver {
                                        Object property);
 
     /**
-     * Returns information about the set of variables or properties that 
+     * Returns information about the set of variables or properties that
      * can be resolved for the given <code>base</code> object. One use for
      * this method is to assist tools in auto-completion.
      *
-     * <p>If the <code>base</code> parameter is <code>null</code>, the 
-     * resolver must enumerate the list of top-level variables it can 
+     * <p>If the <code>base</code> parameter is <code>null</code>, the
+     * resolver must enumerate the list of top-level variables it can
      * resolve.</p>
      *
-     * <p>The <code>Iterator</code> returned must contain zero or more 
-     * instances of {@link java.beans.FeatureDescriptor}, in no guaranteed 
-     * order. In the case of primitive types such as <code>int</code>, the 
-     * value <code>null</code> must be returned. This is to prevent the 
-     * useless iteration through all possible primitive values. A 
-     * return value of <code>null</code> indicates that this resolver does 
-     * not handle the given <code>base</code> object or that the results 
-     * are too complex to represent with this method and the 
+     * <p>The <code>Iterator</code> returned must contain zero or more
+     * instances of {@link java.beans.FeatureDescriptor}, in no guaranteed
+     * order. In the case of primitive types such as <code>int</code>, the
+     * value <code>null</code> must be returned. This is to prevent the
+     * useless iteration through all possible primitive values. A
+     * return value of <code>null</code> indicates that this resolver does
+     * not handle the given <code>base</code> object or that the results
+     * are too complex to represent with this method and the
      * {@link #getCommonPropertyType} method should be used instead.</p>
      *
      * <p>Each <code>FeatureDescriptor</code> will contain information about
@@ -325,43 +325,43 @@ public abstract class ELResolver {
      * properties, the <code>FeatureDescriptor</code> must have two
      * named attributes (as set by the <code>setValue</code> method):
      * <ul>
-     *   <li>{@link #TYPE} - The value of this named attribute must be 
-     *       an instance of <code>java.lang.Class</code> and specify the 
+     *   <li>{@link #TYPE} - The value of this named attribute must be
+     *       an instance of <code>java.lang.Class</code> and specify the
      *       runtime type of the variable or property.</li>
-     *   <li>{@link #RESOLVABLE_AT_DESIGN_TIME} - The value of this 
-     *       named attribute must be an instance of 
-     *       <code>java.lang.Boolean</code> and indicates whether it is safe 
-     *       to attempt to resolve this property at design-time. For 
-     *       instance, it may be unsafe to attempt a resolution at design 
-     *       time if the <code>ELResolver</code> needs access to a resource 
-     *       that is only available at runtime and no acceptable simulated 
+     *   <li>{@link #RESOLVABLE_AT_DESIGN_TIME} - The value of this
+     *       named attribute must be an instance of
+     *       <code>java.lang.Boolean</code> and indicates whether it is safe
+     *       to attempt to resolve this property at design-time. For
+     *       instance, it may be unsafe to attempt a resolution at design
+     *       time if the <code>ELResolver</code> needs access to a resource
+     *       that is only available at runtime and no acceptable simulated
      *       value can be provided.</li>
-     * </ul></p>
+     * </ul>
      *
-     * <p>The caller should be aware that the <code>Iterator</code> 
-     * returned might iterate through a very large or even infinitely large 
-     * set of properties. Care should be taken by the caller to not get 
-     * stuck in an infinite loop.</p>
+     * <p>The caller should be aware that the <code>Iterator</code>
+     * returned might iterate through a very large or even infinitely large
+     * set of properties. Care should be taken by the caller to not get
+     * stuck in an infinite loop.
      *
      * <p>This is a "best-effort" list.  Not all <code>ELResolver</code>s
      * will return completely accurate results, but all must be callable
      * at both design-time and runtime (i.e. whether or not
      * <code>Beans.isDesignTime()</code> returns <code>true</code>),
-     * without causing errors.</p>
+     * without causing errors.
      *
-     * <p>The <code>propertyResolved</code> property of the 
+     * <p>The <code>propertyResolved</code> property of the
      * <code>ELContext</code> is not relevant to this method.
      * The results of all <code>ELResolver</code>s are concatenated
-     * in the case of composite resolvers.</p>
-     * 
+     * in the case of composite resolvers.
+     *
      * @param context The context of this evaluation.
      * @param base The base object whose set of valid properties is to
      *     be enumerated, or <code>null</code> to enumerate the set of
      *     top-level variables that this resolver can evaluate.
      * @return An <code>Iterator</code> containing zero or more (possibly
-     *     infinitely more) <code>FeatureDescriptor</code> objects, or 
-     *     <code>null</code> if this resolver does not handle the given 
-     *     <code>base</code> object or that the results are too complex to 
+     *     infinitely more) <code>FeatureDescriptor</code> objects, or
+     *     <code>null</code> if this resolver does not handle the given
+     *     <code>base</code> object or that the results are too complex to
      *     represent with this method
      * @see java.beans.FeatureDescriptor
      */
@@ -374,11 +374,11 @@ public abstract class ELResolver {
      * <code>property</code> argument, given a <code>base</code> object.
      * One use for this method is to assist tools in auto-completion.
      *
-     * <p>This assists tools in auto-completion and also provides a 
-     * way to express that the resolver accepts a primitive value, 
-     * such as an integer index into an array. For example, the 
-     * {@link ArrayELResolver} will accept any <code>int</code> as a 
-     * <code>property</code>, so the return value would be 
+     * <p>This assists tools in auto-completion and also provides a
+     * way to express that the resolver accepts a primitive value,
+     * such as an integer index into an array. For example, the
+     * {@link ArrayELResolver} will accept any <code>int</code> as a
+     * <code>property</code>, so the return value would be
      * <code>Integer.class</code>.</p>
      *
      * @param context The context of this evaluation.
@@ -402,7 +402,8 @@ public abstract class ELResolver {
      *
      * @param context The context of this evaluation.
      * @param obj The object to convert.
-     * @param targetType The target type for the convertion.
+     * @param targetType The target type for the conversion.
+     * @return object converted to <code>targetType</code>
      * @throws ELException thrown if errors occur.
      */
     public Object convertToType(ELContext context,

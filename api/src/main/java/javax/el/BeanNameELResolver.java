@@ -16,16 +16,17 @@
 
 package javax.el;
 
-import java.util.Iterator;
 import java.beans.FeatureDescriptor;
+import java.util.Iterator;
 
 /**
  * <p>An <code>ELResolver</code> for resolving user or container managed beans.</p>
  * <p>A {@link BeanNameResolver} is required for its proper operation.
- * The following example creates an <code>ELResolver</code> that 
+ * The following example creates an <code>ELResolver</code> that
  * resolves the name "bean" to an instance of MyBean.
- * <blockquote>
+ *
  * <pre>
+ * <code>
  * ELResovler elr = new BeanNameELResolver(new BeanNameResolver {
  *    public boolean isNameResolved(String beanName) {
  *       return "bean".equals(beanName);
@@ -34,9 +35,9 @@ import java.beans.FeatureDescriptor;
  *       return "bean".equals(beanName)? new MyBean(): null;
  *    }
  * });
+ * </code>
  * </pre>
- * </blockquote>
- * </p>
+ *
  * @since EL 3.0
  */
 public class BeanNameELResolver extends ELResolver {
@@ -209,12 +210,13 @@ public class BeanNameELResolver extends ELResolver {
     }
 
     /**
-     * Always returns <code>null</code>, since there is no reason to 
+     * Always returns <code>null</code>, since there is no reason to
      * iterate through a list of one element: bean name.
      * @param context The context of this evaluation.
      * @param base <code>null</code>.
      * @return <code>null</code>.
      */
+    @Override
     public Iterator<FeatureDescriptor> getFeatureDescriptors(
                                    ELContext context, Object base) {
         return null;

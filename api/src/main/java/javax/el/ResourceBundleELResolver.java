@@ -28,25 +28,25 @@ import java.util.ResourceBundle;
 /**
  * Defines property resolution behavior on instances of
  * {@link java.util.ResourceBundle}.
- * 
+ *
  * <p>
  * This resolver handles base objects of type
  * <code>java.util.ResourceBundle</code>. It accepts any object as a property
  * and coerces it to a <code>java.lang.String</code> for invoking
  * {@link java.util.ResourceBundle#getObject(java.lang.String)}.
  * </p>
- * 
+ *
  * <p>
  * This resolver is read only and will throw a
  * {@link PropertyNotWritableException} if <code>setValue</code> is called.
  * </p>
- * 
+ *
  * <p>
  * <code>ELResolver</code>s are combined together using
  * {@link CompositeELResolver}s, to define rich semantics for evaluating an
  * expression. See the javadocs for {@link ELResolver} for details.
  * </p>
- * 
+ *
  * @see CompositeELResolver
  * @see ELResolver
  * @see java.util.ResourceBundle
@@ -59,13 +59,14 @@ public class ResourceBundleELResolver extends ELResolver {
      * the provided property will first be coerced to a <code>String</code>.
      * The <code>Object</code> returned by <code>getObject</code> on
      * the base <code>ResourceBundle</code> will be returned.
-     * </p>
+     *
+     * <p>
      * If the base is <code>ResourceBundle</code>, the
      * <code>propertyResolved</code> property of the <code>ELContext</code>
      * object must be set to <code>true</code> by this resolver, before
      * returning. If this property is not <code>true</code> after this method
      * is called, the caller should ignore the return value.
-     * </p>
+     *
      * @param context
      *            The context of this evaluation.
      * @param base
@@ -79,7 +80,7 @@ public class ResourceBundleELResolver extends ELResolver {
      *         otherwise the <code>Object</code> for the given key
      *         (property coerced to <code>String</code>) from the
      *         <code>ResourceBundle</code>.
-     *         If no object for the given key can be found, then the 
+     *         If no object for the given key can be found, then the
      *         <code>String</code> "???" + key + "???".
      * @throws NullPointerException
      *             if context is <code>null</code>
@@ -88,6 +89,7 @@ public class ResourceBundleELResolver extends ELResolver {
      *             variable resolution. The thrown exception must be included as
      *             the cause property of this exception, if available.
      */
+    @Override
     public Object getValue(ELContext context, Object base, Object property) {
         if (context == null) {
             throw new NullPointerException();
@@ -110,7 +112,7 @@ public class ResourceBundleELResolver extends ELResolver {
     /**
      * If the base object is an instance of <code>ResourceBundle</code>,
      * return <code>null</code>, since the resolver is read only.
-     * 
+     *
      * <p>
      * If the base is <code>ResourceBundle</code>, the
      * <code>propertyResolved</code> property of the <code>ELContext</code>
@@ -118,7 +120,7 @@ public class ResourceBundleELResolver extends ELResolver {
      * returning. If this property is not <code>true</code> after this method
      * is called, the caller should ignore the return value.
      * </p>
-     * 
+     *
      * @param context
      *            The context of this evaluation.
      * @param base
@@ -131,6 +133,7 @@ public class ResourceBundleELResolver extends ELResolver {
      * @throws NullPointerException
      *             if context is <code>null</code>
      */
+    @Override
     public Class<?> getType(ELContext context, Object base, Object property) {
         if (context == null) {
             throw new NullPointerException();
@@ -145,7 +148,7 @@ public class ResourceBundleELResolver extends ELResolver {
     /**
      * If the base object is a ResourceBundle, throw a
      * {@link PropertyNotWritableException}.
-     * 
+     *
      * @param context
      *            The context of this evaluation.
      * @param base
@@ -160,6 +163,7 @@ public class ResourceBundleELResolver extends ELResolver {
      * @throws PropertyNotWritableException
      *             Always thrown if base is an instance of ReasourceBundle.
      */
+    @Override
     public void setValue(ELContext context, Object base, Object property,
             Object value) {
         if (context == null) {
@@ -174,9 +178,9 @@ public class ResourceBundleELResolver extends ELResolver {
     }
 
     /**
-     * If the base object is not null and an instanceof {@link ResourceBundle},
+     * If the base object is not null and an <code>instanceof</code> {@link ResourceBundle},
      * return <code>true</code>.
-     * 
+     *
      * @param context
      *            The context of this evaluation.
      * @param base
@@ -190,6 +194,7 @@ public class ResourceBundleELResolver extends ELResolver {
      * @throws NullPointerException
      *             if context is <code>null</code>
      */
+    @Override
     public boolean isReadOnly(ELContext context, Object base, Object property) {
         if (context == null) {
             throw new NullPointerException();
@@ -205,28 +210,29 @@ public class ResourceBundleELResolver extends ELResolver {
      * If the base object is a ResourceBundle, returns an <code>Iterator</code>
      * containing the set of keys available in the <code>ResourceBundle</code>.
      * Otherwise, returns <code>null</code>.
-     * 
+     *
      * <p>
      * The <code>Iterator</code> returned must contain zero or more instances
      * of {@link java.beans.FeatureDescriptor}. Each info object contains
      * information about a key in the ResourceBundle, and is initialized as
      * follows:
-     * <dl>
+     * <ul>
      * <li>displayName - The <code>String</code> key
      * <li>name - Same as displayName property.</li>
      * <li>shortDescription - Empty string</li>
      * <li>expert - <code>false</code></li>
      * <li>hidden - <code>false</code></li>
      * <li>preferred - <code>true</code></li>
-     * </dl>
+     * </ul>
+     *
      * In addition, the following named attributes must be set in the returned
      * <code>FeatureDescriptor</code>s:
-     * <dl>
+     * <ul>
      * <li>{@link ELResolver#TYPE} - <code>String.class</code></li>
      * <li>{@link ELResolver#RESOLVABLE_AT_DESIGN_TIME} - <code>true</code></li>
-     * </dl>
-     * </p>
-     * 
+     * </ul>
+     *
+     *
      * @param context
      *            The context of this evaluation.
      * @param base
@@ -238,6 +244,7 @@ public class ResourceBundleELResolver extends ELResolver {
      *         representing a key in this bundle, or <code>null</code> if the
      *         base object is not a ResourceBundle.
      */
+    @Override
     public Iterator<FeatureDescriptor> getFeatureDescriptors(ELContext context, Object base) {
         if (base instanceof ResourceBundle) {
             ResourceBundle bundle = (ResourceBundle) base;
@@ -265,11 +272,11 @@ public class ResourceBundleELResolver extends ELResolver {
      * If the base object is a ResourceBundle, returns the most general type
      * that this resolver accepts for the <code>property</code> argument.
      * Otherwise, returns <code>null</code>.
-     * 
+     *
      * <p>
      * Assuming the base is a <code>ResourceBundle</code>, this method will
      * always return <code>String.class</code>.
-     * 
+     *
      * @param context
      *            The context of this evaluation.
      * @param base
@@ -278,6 +285,7 @@ public class ResourceBundleELResolver extends ELResolver {
      * @return <code>null</code> if base is not a <code>ResourceBundle</code>;
      *         otherwise <code>String.class</code>.
      */
+    @Override
     public Class<?> getCommonPropertyType(ELContext context, Object base) {
         if (base instanceof ResourceBundle) {
             return String.class;

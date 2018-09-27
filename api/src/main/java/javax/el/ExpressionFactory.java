@@ -17,17 +17,18 @@
 
 package javax.el;
 
-import java.util.Map;
 import java.lang.reflect.Method;
-
+import java.util.Map;
 import java.util.Properties;
 
 /**
  * Provides an implementation for creating and evaluating EL expressions.
  *
- * <p>Classes that implement the EL expression language expose their
+ * <p>
+ * Classes that implement the EL expression language expose their
  * functionality via this abstract class.  An implementation supports the
  * following functionalities.
+ *
  * <ul>
  *   <li>
  *     Parses a <code>String</code> into a {@link ValueExpression} or
@@ -36,21 +37,21 @@ import java.util.Properties;
  *   <li>Implements an <code>ELResolver</code> for query operators</li>
  *   <li>Provides a default type coercion</li>
  * </ul>
- * </p>
+ *
  * <p>The {@link #newInstance} method can be used to obtain an
  * instance of the implementation.
  * Technologies such as
  * JavaServer Pages and JavaServer Faces provide access to an
- * implementation via factory methods.</p>
+ * implementation via factory methods.
  *
  * <p>The {@link #createValueExpression} method is used to parse expressions
  * that evaluate to values (both l-values and r-values are supported).
  * The {@link #createMethodExpression} method is used to parse expressions
- * that evaluate to a reference to a method on an object.</p>
+ * that evaluate to a reference to a method on an object.
  *
  * <p>Resolution of model objects is performed at evaluation time, via the
  * {@link ELResolver} associated with the {@link ELContext} passed to
- * the <code>ValueExpression</code> or <code>MethodExpression</code>.</p>
+ * the <code>ValueExpression</code> or <code>MethodExpression</code>.
  *
  * <p>The ELContext object also provides access to the {@link FunctionMapper}
  * and {@link VariableMapper} to be used when parsing the expression.
@@ -60,7 +61,7 @@ import java.util.Properties;
  * {@link FunctionMapper},
  * and {@link VariableMapper}
  * are not stored for future use and do not have to be
- * <code>Serializable</code>.</p>
+ * <code>Serializable</code>.
  *
  * <p>The <code>createValueExpression</code> and
  * <code>createMethodExpression</code> methods must be thread-safe. That is,
@@ -69,7 +70,7 @@ import java.util.Properties;
  * should synchronize access if they depend on transient state.
  * Implementations should not, however, assume that only one object of
  * each <code>ExpressionFactory</code> type will be instantiated; global
- * caching should therefore be static.</p>
+ * caching should therefore be static.
  *
  * <p>The <code>ExpressionFactory</code> must be able to handle the following
  * types of input for the <code>expression</code> parameter:
@@ -85,7 +86,7 @@ import java.util.Properties;
  *       <code>"#{employee.firstName}#{employee.lastName}"</code>).</li>
  *   <li>Mixed literal text and expressions using the same delimiter (e.g.
  *       <code>"Name: ${employee.firstName} ${employee.lastName}"</code>).</li>
- * </ul></p>
+ * </ul>
  *
  * <p>The following types of input are illegal and must cause an
  * {@link ELException} to be thrown:
@@ -94,17 +95,17 @@ import java.util.Properties;
  *       <code>"${employee.firstName}#{employee.lastName}"</code>).</li>
  *   <li>Mixed literal text and expressions using different delimiters(e.g.
  *       <code>"Name: ${employee.firstName} #{employee.lastName}"</code>).</li>
- * </ul></p>
+ * </ul>
  *
  * @since JSP 2.1
  */
-
 public abstract class ExpressionFactory {
-    
+
     /**
      * Creates a new instance of a <code>ExpressionFactory</code>.
      * This method uses the following ordered lookup procedure to determine
      * the <code>ExpressionFactory</code> implementation class to load:
+     *
      * <ul>
      * <li>Use the Services API (as detailed in the JAR specification).
      * If a resource with the name of
@@ -122,35 +123,43 @@ public abstract class ExpressionFactory {
      * used as the name of the implementation class.</li>
      * <li>Use a platform default implementation.</li>
      * </ul>
+     *
+     * @return a new <code>ExpressionFactory</code> instance
      */
     public static ExpressionFactory newInstance() {
         return ExpressionFactory.newInstance(null);
     }
 
     /**
-     * <p>Create a new instance of a <code>ExpressionFactory</code>, with
+     * Create a new instance of a <code>ExpressionFactory</code>, with
      * optional properties.
+     *
+     * <p>
      * This method uses the same lookup procedure as the one used in
      * <code>newInstance()</code>.
-     * </p>
+     *
      * <p>
      * If the argument <code>properties</code> is not null, and if the
      * implementation contains a constructor with a single parameter of
      * type <code>java.util.Properties</code>, then the constructor is used
      * to create the instance.
-     * </p>
+     *
      * <p>
      * Properties are optional and can be ignored by an implementation.
-     * </p>
-     * <p>The name of a property should start with "javax.el."</p>
+     *
+     * <p>
+     * The name of a property should start with "javax.el."
+     *
      * <p>
      * The following are some suggested names for properties.
      * <ul>
      * <li>javax.el.cacheSize</li>
-     * </ul></p>
+     * </ul>
      *
      * @param properties Properties passed to the implementation.
      *     If null, then no properties.
+     *
+     * @return a new <code>ExpressionFactory</code> instance
      */
     public static ExpressionFactory newInstance(Properties properties) {
         return (ExpressionFactory) FactoryFinder.find(
@@ -175,18 +184,17 @@ public abstract class ExpressionFactory {
      *     functions or variables are not supported for this expression.
      *     The object
      *     returned must invoke the same functions and access the same
-     *     variable mappings 
+     *     variable mappings
      *     regardless of whether
      *     the mappings in the provided <code>FunctionMapper</code>
      *     and <code>VariableMapper</code> instances
      *     change between calling
      *     <code>ExpressionFactory.createValueExpression()</code> and any
      *     method on <code>ValueExpression</code>.
-     *     <p>
-     *     Note that within the EL, the ${} and #{} syntaxes are treated identically.  
-     *     This includes the use of VariableMapper and FunctionMapper at expression creation 
-     *     time. Each is invoked if not null, independent 
-     *     of whether the #{} or ${} syntax is used for the expression.</p>
+     *     Note that within the EL, the ${} and #{} syntaxes are treated identically.
+     *     This includes the use of VariableMapper and FunctionMapper at expression creation
+     *     time. Each is invoked if not null, independent
+     *     of whether the #{} or ${} syntax is used for the expression.
      * @param expression The expression to parse
      * @param expectedType The type the result of the expression
      *     will be coerced to after evaluation.
@@ -199,18 +207,23 @@ public abstract class ExpressionFactory {
             ELContext context,
             String expression,
             Class<?> expectedType);
-    
+
     /**
-     * Creates a ValueExpression that wraps an object instance.  This
+     * Creates a ValueExpression that wraps an object instance.
+     *
+     * <p>
+     * This
      * method can be used to pass any object as a ValueExpression.  The
      * wrapper ValueExpression is read only, and returns the wrapped
      * object via its <code>getValue()</code> method, optionally coerced.
+     * </p>
      *
      * @param instance The object instance to be wrapped.
      * @param expectedType The type the result of the expression
      *     will be coerced to after evaluation.  There will be no
      *     coercion if it is Object.class,
      * @throws NullPointerException Thrown if expectedType is null.
+     * @return a ValueExpression that wraps an object instance
      */
     public abstract ValueExpression createValueExpression(
             Object instance,
@@ -227,10 +240,10 @@ public abstract class ExpressionFactory {
      * expectedReturnType is void or if the coercion of the String literal
      * to the expectedReturnType yields an error (see Section "1.16 Type
      * Conversion").
-     * </p>
+     *
      * <p>This method should perform syntactic validation of the expression.
      * If in doing so it detects errors, it should raise an
-     * <code>ELException</code>.</p>
+     * <code>ELException</code>.
      *
      * @param context The EL context used to parse the expression.
      *     The <code>FunctionMapper</code> and <code>VariableMapper</code>
@@ -247,12 +260,10 @@ public abstract class ExpressionFactory {
      *     change between calling
      *     <code>ExpressionFactory.createMethodExpression()</code> and any
      *     method on <code>MethodExpression</code>.
-     *     <p>
-     *     Note that within the EL, the ${} and #{} syntaxes are treated identically.  
-     *     This includes the use of VariableMapper and FunctionMapper at expression creation 
-     *     time. Each is invoked if not null, independent 
-     *     of whether the #{} or ${} syntax is used for the expression.</p>
-     *
+     *     Note that within the EL, the ${} and #{} syntaxes are treated identically.
+     *     This includes the use of VariableMapper and FunctionMapper at expression creation
+     *     time. Each is invoked if not null, independent
+     *     of whether the #{} or ${} syntax is used for the expression.
      * @param expression The expression to parse
      * @param expectedReturnType The expected return type for the method
      *     to be found. After evaluating the expression, the
@@ -263,7 +274,7 @@ public abstract class ExpressionFactory {
      * @param expectedParamTypes The expected parameter types for the method to
      *     be found. Must be an array with no elements if there are
      *     no parameters expected. It is illegal to pass <code>null</code>,
-     *     unless the method is specified with arugments in the EL
+     *     unless the method is specified with arguments in the EL
      *     expression, in which case these arguments are used for method
      *     selection, and this parameter is ignored.
      * @return The parsed expression
@@ -276,7 +287,7 @@ public abstract class ExpressionFactory {
             String expression,
             Class<?> expectedReturnType,
             Class<?>[] expectedParamTypes);
-    
+
     /**
      * Coerces an object to a specific type according to the
      * EL type conversion rules.  The custom type conversions in the
@@ -284,26 +295,27 @@ public abstract class ExpressionFactory {
      *
      * <p>An <code>ELException</code> is thrown if an error results from
      * applying the conversion rules.
-     * </p>
      *
      * @param obj The object to coerce.
      * @param targetType The target type for the coercion.
+     * @return an object coerced to <code>targetType</code>
      * @throws ELException thrown if an error results from applying the
      *     conversion rules.
      */
     public abstract Object coerceToType(
             Object obj,
             Class<?> targetType);
-    
+
     /**
      * Retrieves an ELResolver that implements the operations in collections.
      *
-     * <p>This ELResolver resolves the method invocation on the pair
+     * <p>
+     * This ELResolver resolves the method invocation on the pair
      * (<code>base</code>, <code>property</code>) when <code>base</code> is
      * a <code>Collection</code> or a <code>Map</code>, and
      * <code>property</code> is the name of the operation.
      * <p>See EL.2 for detailed descriptions of these operators, their
-     * arguments, and return values.</p>
+     * arguments, and return values.
      *
      * @return The <code>ELResolver</code> that implements the Query Operators.
      *

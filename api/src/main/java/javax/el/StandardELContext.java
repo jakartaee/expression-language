@@ -16,15 +16,15 @@
 
 package javax.el;
 
-import java.util.Map;
-import java.util.HashMap;
 import java.lang.reflect.Method;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * A standard ELContext suitable for use in a stand alone environment.
  * This class provides a default implementation of an ELResolver that contains
  * a number of useful ELResolvers.  It also provides local repositories for
- * the FunctionMapper, VariableMapper, and BeanNameResolver.  
+ * the FunctionMapper, VariableMapper, and BeanNameResolver.
  *
  * @since EL 3.0
  */
@@ -68,7 +68,7 @@ public class StandardELContext extends ELContext {
      * easy way to get its private context map, therefore delegation is needed.
      */
     private ELContext delegate = null;
- 
+
     /**
      * A bean repository local to this context
      */
@@ -76,7 +76,7 @@ public class StandardELContext extends ELContext {
 
     /**
      * Construct a default ELContext for a stand-alone environment.
-     * @param factory The ExpressionFactory 
+     * @param factory The ExpressionFactory
      */
     public StandardELContext(ExpressionFactory factory) {
         this.streamELResolver = factory.getStreamELResolver();
@@ -122,9 +122,12 @@ public class StandardELContext extends ELContext {
 
     /**
      * Construct (if needed) and return a default ELResolver.
-     * <p>Retrieves the <code>ELResolver</code> associated with this context.
+     *
+     * <p>
+     * Retrieves the <code>ELResolver</code> associated with this context.
      * This is a <code>CompositeELResover</code> consists of an ordered list of
      * <code>ELResolver</code>s.
+     *
      * <ol>
      * <li>A {@link BeanNameELResolver} for beans defined locally</li>
      * <li>Any custom <code>ELResolver</code>s</li>
@@ -136,7 +139,7 @@ public class StandardELContext extends ELContext {
      * <li>An {@link ArrayELResolver} for resolving array properties</li>
      * <li>A {@link BeanELResolver} for resolving bean properties</li>
      * </ol>
-     * </p>
+     *
      * @return The ELResolver for this context.
      */
     @Override
@@ -177,7 +180,7 @@ public class StandardELContext extends ELContext {
      */
     Map<String, Object> getBeans() {
         return beans;
-    } 
+    }
 
     /**
      * Construct (if needed) and return a default FunctionMapper.
@@ -218,7 +221,7 @@ public class StandardELContext extends ELContext {
             return functions.get(prefix + ":" + localName);
         }
 
-    
+
         @Override
         public void mapFunction(String prefix, String localName, Method meth){
             functions.put(prefix + ":" + localName, meth);
@@ -281,4 +284,4 @@ public class StandardELContext extends ELContext {
         }
     }
 }
-  
+
