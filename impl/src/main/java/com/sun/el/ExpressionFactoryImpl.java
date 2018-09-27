@@ -65,40 +65,33 @@ public class ExpressionFactoryImpl extends ExpressionFactory {
         return ret;
     }
 
-    public MethodExpression createMethodExpression(ELContext context,
-            String expression, Class expectedReturnType,
-            Class[] expectedParamTypes) {
+    public MethodExpression createMethodExpression(ELContext context, String expression, Class expectedReturnType, Class[] expectedParamTypes) {
         ExpressionBuilder builder = new ExpressionBuilder(expression, context);
-        MethodExpression me = builder.createMethodExpression(expectedReturnType,
-                expectedParamTypes);
+        MethodExpression me = builder.createMethodExpression(expectedReturnType, expectedParamTypes);
         if (expectedParamTypes == null && !me.isParametersProvided()) {
-            throw new NullPointerException(MessageFactory
-                    .get("error.method.nullParms"));
+            throw new NullPointerException(MessageFactory.get("error.method.nullParms"));
         }
         return me;
     }
 
-    public ValueExpression createValueExpression(ELContext context,
-            String expression, Class expectedType) {
+    public ValueExpression createValueExpression(ELContext context, String expression, Class expectedType) {
         if (expectedType == null) {
-            throw new NullPointerException(MessageFactory
-                    .get("error.value.expectedType"));
+            throw new NullPointerException(MessageFactory.get("error.value.expectedType"));
         }
         ExpressionBuilder builder = new ExpressionBuilder(expression, context);
         return builder.createValueExpression(expectedType);
     }
 
-    public ValueExpression createValueExpression(Object instance,
-            Class expectedType) {
+    public ValueExpression createValueExpression(Object instance, Class expectedType) {
         if (expectedType == null) {
-            throw new NullPointerException(MessageFactory
-                    .get("error.value.expectedType"));
+            throw new NullPointerException(MessageFactory.get("error.value.expectedType"));
         }
         return new ValueExpressionLiteral(instance, expectedType);
     }
 
     public String getProperty(String key) {
-        if (properties == null) return null;
+        if (properties == null)
+            return null;
         return properties.getProperty(key);
     }
 

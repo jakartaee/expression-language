@@ -18,8 +18,8 @@
 package javax.el;
 
 /**
- * An event which indicates that an {@link ELContext} has been created.
- * The source object is the ELContext that was created.
+ * An event which indicates that an {@link ELContext} has been created. The source object is the ELContext that was
+ * created.
  *
  * @see ELContext
  * @see ELContextListener
@@ -28,8 +28,7 @@ package javax.el;
 public class ELContextEvent extends java.util.EventObject {
 
     /**
-     * Constructs an ELContextEvent object to indicate that an 
-     * <code>ELContext</code> has been created.
+     * Constructs an ELContextEvent object to indicate that an <code>ELContext</code> has been created.
      *
      * @param source the <code>ELContext</code> that was created.
      */
@@ -38,8 +37,7 @@ public class ELContextEvent extends java.util.EventObject {
     }
 
     /**
-     * Returns the <code>ELContext</code> that was created.
-     * This is a type-safe equivalent of the {@link #getSource} method.
+     * Returns the <code>ELContext</code> that was created. This is a type-safe equivalent of the {@link #getSource} method.
      *
      * @return the ELContext that was created.
      */

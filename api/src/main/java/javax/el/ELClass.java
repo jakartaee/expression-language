@@ -17,11 +17,13 @@
 package javax.el;
 
 /**
- * <p>A runtime representation of a Class in the EL expressions.
- * It encapsulates the java.lang.Class instance.</p>
+ * <p>
+ * A runtime representation of a Class in the EL expressions. It encapsulates the java.lang.Class instance.
+ * </p>
  * 
- * <p>This class is used only in {@link StaticFieldELResolver} and will
- * probably only be of interest to EL implementors, and not EL users.
+ * <p>
+ * This class is used only in {@link StaticFieldELResolver} and will probably only be of interest to EL implementors,
+ * and not EL users.
  *
  * @since EL 3.0
  */
@@ -32,6 +34,7 @@ public class ELClass {
 
     /**
      * Constructor
+     * 
      * @param klass The Class instance
      */
     public ELClass(Class<?> klass) {
@@ -40,6 +43,7 @@ public class ELClass {
 
     /**
      * Returns the Class instance
+     * 
      * @return The Class instance
      */
     public Class<?> getKlass() {

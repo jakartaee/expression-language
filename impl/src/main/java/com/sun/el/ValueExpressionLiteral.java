@@ -31,8 +31,7 @@ import com.sun.el.lang.ELSupport;
 import com.sun.el.util.MessageFactory;
 import com.sun.el.util.ReflectionUtil;
 
-public final class ValueExpressionLiteral extends ValueExpression implements
-        Externalizable {
+public final class ValueExpressionLiteral extends ValueExpression implements Externalizable {
 
     private static final long serialVersionUID = 1L;
 
@@ -43,7 +42,7 @@ public final class ValueExpressionLiteral extends ValueExpression implements
     public ValueExpressionLiteral() {
         super();
     }
-    
+
     public ValueExpressionLiteral(Object value, Class expectedType) {
         this.value = value;
         this.expectedType = expectedType;
@@ -61,8 +60,7 @@ public final class ValueExpressionLiteral extends ValueExpression implements
     }
 
     public void setValue(ELContext context, Object value) {
-        throw new PropertyNotWritableException(MessageFactory.get(
-                "error.value.literal.write", this.value));
+        throw new PropertyNotWritableException(MessageFactory.get("error.value.literal.write", this.value));
     }
 
     public boolean isReadOnly(ELContext context) {
@@ -82,13 +80,11 @@ public final class ValueExpressionLiteral extends ValueExpression implements
     }
 
     public boolean equals(Object obj) {
-        return (obj instanceof ValueExpressionLiteral && this
-                .equals((ValueExpressionLiteral) obj));
+        return (obj instanceof ValueExpressionLiteral && this.equals((ValueExpressionLiteral) obj));
     }
 
     public boolean equals(ValueExpressionLiteral ve) {
-        return (ve != null && (this.value != null && ve.value != null && (this.value == ve.value || this.value
-                .equals(ve.value))));
+        return (ve != null && (this.value != null && ve.value != null && (this.value == ve.value || this.value.equals(ve.value))));
     }
 
     public int hashCode() {
@@ -101,12 +97,10 @@ public final class ValueExpressionLiteral extends ValueExpression implements
 
     public void writeExternal(ObjectOutput out) throws IOException {
         out.writeObject(this.value);
-        out.writeUTF((this.expectedType != null) ? this.expectedType.getName()
-                : "");
+        out.writeUTF((this.expectedType != null) ? this.expectedType.getName() : "");
     }
 
-    public void readExternal(ObjectInput in) throws IOException,
-            ClassNotFoundException {
+    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
         this.value = in.readObject();
         String type = in.readUTF();
         if (!"".equals(type)) {

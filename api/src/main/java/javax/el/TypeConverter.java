@@ -22,7 +22,8 @@ import java.util.Iterator;
 /**
  * A convenient class for writing an ELResolver to do custom type conversions.
  *
- * <p>For example, to convert a String to an instance of MyDate, one can write
+ * <p>
+ * For example, to convert a String to an instance of MyDate, one can write
  *
  * <pre>
  * <code>
@@ -45,51 +46,40 @@ import java.util.Iterator;
 public abstract class TypeConverter extends ELResolver {
 
     @Override
-    public Object getValue(ELContext context,
-                           Object base,
-                           Object property) {
+    public Object getValue(ELContext context, Object base, Object property) {
         return null;
     }
 
     @Override
-    public Class<?> getType(ELContext context,
-                            Object base,
-                            Object property) {
+    public Class<?> getType(ELContext context, Object base, Object property) {
         return null;
     }
 
     @Override
-    public void setValue(ELContext context,
-                         Object base,
-                         Object property,
-                         Object value) {
+    public void setValue(ELContext context, Object base, Object property, Object value) {
     }
 
     @Override
-    public boolean isReadOnly(ELContext context,
-                              Object base,
-                              Object property){
+    public boolean isReadOnly(ELContext context, Object base, Object property) {
         return false;
     }
 
     @Override
-    public Iterator<FeatureDescriptor> getFeatureDescriptors(
-                                                   ELContext context,
-                                                   Object base) {
+    public Iterator<FeatureDescriptor> getFeatureDescriptors(ELContext context, Object base) {
         return null;
     }
 
     @Override
-    public Class<?> getCommonPropertyType(ELContext context,
-                                          Object base) {
+    public Class<?> getCommonPropertyType(ELContext context, Object base) {
         return null;
     }
 
     /**
      * Converts an object to a specific type.
      *
-     * <p>An <code>ELException</code> is thrown if an error occurs during
-     * the conversion.</p>
+     * <p>
+     * An <code>ELException</code> is thrown if an error occurs during the conversion.
+     * </p>
      *
      * @param context The context of this evaluation.
      * @param obj The object to convert.
@@ -97,7 +87,5 @@ public abstract class TypeConverter extends ELResolver {
      * @throws ELException thrown if errors occur.
      */
     @Override
-    abstract public Object convertToType(ELContext context,
-                                Object obj,
-                                Class<?> targetType);
+    abstract public Object convertToType(ELContext context, Object obj, Class<?> targetType);
 }

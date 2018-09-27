@@ -21,10 +21,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * A standard ELContext suitable for use in a stand alone environment.
- * This class provides a default implementation of an ELResolver that contains
- * a number of useful ELResolvers.  It also provides local repositories for
- * the FunctionMapper, VariableMapper, and BeanNameResolver.
+ * A standard ELContext suitable for use in a stand alone environment. This class provides a default implementation of
+ * an ELResolver that contains a number of useful ELResolvers. It also provides local repositories for the
+ * FunctionMapper, VariableMapper, and BeanNameResolver.
  *
  * @since EL 3.0
  */
@@ -37,8 +36,8 @@ public class StandardELContext extends ELContext {
     private ELResolver elResolver;
 
     /*
-     * The list of the custom ELResolvers added to the ELResolvers.
-     * An ELResolver is added to the list when addELResolver is called.
+     * The list of the custom ELResolvers added to the ELResolvers. An ELResolver is added to the list when addELResolver is
+     * called.
      */
     private CompositeELResolver customResolvers;
 
@@ -63,9 +62,8 @@ public class StandardELContext extends ELContext {
     private VariableMapper variableMapper;
 
     /*
-     * If non-null, indicates the presence of a delegate ELContext.
-     * When a Standard is constructed from another ELContext, there is no
-     * easy way to get its private context map, therefore delegation is needed.
+     * If non-null, indicates the presence of a delegate ELContext. When a Standard is constructed from another ELContext,
+     * there is no easy way to get its private context map, therefore delegation is needed.
      */
     private ELContext delegate = null;
 
@@ -76,6 +74,7 @@ public class StandardELContext extends ELContext {
 
     /**
      * Construct a default ELContext for a stand-alone environment.
+     * 
      * @param factory The ExpressionFactory
      */
     public StandardELContext(ExpressionFactory factory) {
@@ -85,6 +84,7 @@ public class StandardELContext extends ELContext {
 
     /**
      * Construct a StandardELContext from another ELContext.
+     * 
      * @param context The ELContext that acts as a delegate in most cases
      */
     public StandardELContext(ELContext context) {
@@ -104,7 +104,7 @@ public class StandardELContext extends ELContext {
 
     @Override
     public void putContext(Class key, Object contextObject) {
-        if (delegate !=null) {
+        if (delegate != null) {
             delegate.putContext(key, contextObject);
         } else {
             super.putContext(key, contextObject);
@@ -113,7 +113,7 @@ public class StandardELContext extends ELContext {
 
     @Override
     public Object getContext(Class key) {
-        if (delegate !=null) {
+        if (delegate != null) {
             return delegate.getContext(key);
         } else {
             return super.getContext(key);
@@ -124,9 +124,8 @@ public class StandardELContext extends ELContext {
      * Construct (if needed) and return a default ELResolver.
      *
      * <p>
-     * Retrieves the <code>ELResolver</code> associated with this context.
-     * This is a <code>CompositeELResover</code> consists of an ordered list of
-     * <code>ELResolver</code>s.
+     * Retrieves the <code>ELResolver</code> associated with this context. This is a <code>CompositeELResover</code>
+     * consists of an ordered list of <code>ELResolver</code>s.
      *
      * <ol>
      * <li>A {@link BeanNameELResolver} for beans defined locally</li>
@@ -164,18 +163,19 @@ public class StandardELContext extends ELContext {
     }
 
     /**
-     * Add a custom ELResolver to the context.  The list of the custom
-     * ELResolvers will be accessed in the order they are added.
-     * A custom ELResolver added to the context cannot be removed.
+     * Add a custom ELResolver to the context. The list of the custom ELResolvers will be accessed in the order they are
+     * added. A custom ELResolver added to the context cannot be removed.
+     * 
      * @param cELResolver The new ELResolver to be added to the context
      */
     public void addELResolver(ELResolver cELResolver) {
-        getELResolver();  // make sure elResolver is constructed
+        getELResolver(); // make sure elResolver is constructed
         customResolvers.add(cELResolver);
     }
 
     /**
      * Get the local bean repository
+     * 
      * @return the bean repository
      */
     Map<String, Object> getBeans() {
@@ -184,6 +184,7 @@ public class StandardELContext extends ELContext {
 
     /**
      * Construct (if needed) and return a default FunctionMapper.
+     * 
      * @return The default FunctionMapper
      */
     @Override
@@ -196,6 +197,7 @@ public class StandardELContext extends ELContext {
 
     /**
      * Construct (if needed) and return a default VariableMapper() {
+     * 
      * @return The default Variable
      */
     @Override
@@ -210,10 +212,8 @@ public class StandardELContext extends ELContext {
 
         private Map<String, Method> functions = null;
 
-        DefaultFunctionMapper(Map<String, Method> initMap){
-            functions = (initMap == null)?
-                               new HashMap<String, Method>():
-                               new HashMap<String, Method>(initMap);
+        DefaultFunctionMapper(Map<String, Method> initMap) {
+            functions = (initMap == null) ? new HashMap<String, Method>() : new HashMap<String, Method>(initMap);
         }
 
         @Override
@@ -221,9 +221,8 @@ public class StandardELContext extends ELContext {
             return functions.get(prefix + ":" + localName);
         }
 
-
         @Override
-        public void mapFunction(String prefix, String localName, Method meth){
+        public void mapFunction(String prefix, String localName, Method meth) {
             functions.put(prefix + ":" + localName, meth);
         }
     }
@@ -233,7 +232,7 @@ public class StandardELContext extends ELContext {
         private Map<String, ValueExpression> variables = null;
 
         @Override
-        public ValueExpression resolveVariable (String variable) {
+        public ValueExpression resolveVariable(String variable) {
             if (variables == null) {
                 return null;
             }
@@ -241,8 +240,7 @@ public class StandardELContext extends ELContext {
         }
 
         @Override
-        public ValueExpression setVariable(String variable,
-                                           ValueExpression expression) {
+        public ValueExpression setVariable(String variable, ValueExpression expression) {
             if (variables == null) {
                 variables = new HashMap<String, ValueExpression>();
             }
@@ -284,4 +282,3 @@ public class StandardELContext extends ELContext {
         }
     }
 }
-

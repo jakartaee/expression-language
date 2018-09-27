@@ -18,16 +18,14 @@
 package javax.el;
 
 /**
- * Holds information about a method that a {@link MethodExpression} 
- * evaluated to.
+ * Holds information about a method that a {@link MethodExpression} evaluated to.
  *
  * @since JSP 2.1
  */
 public class MethodInfo {
-    
-    /** 
-     * Creates a new instance of <code>MethodInfo</code> with the given
-     * information.
+
+    /**
+     * Creates a new instance of <code>MethodInfo</code> with the given information.
      *
      * @param name The name of the method
      * @param returnType The return type of the method
@@ -47,7 +45,7 @@ public class MethodInfo {
     public String getName() {
         return this.name;
     }
-    
+
     /**
      * Returns the return type of the method
      *
@@ -56,7 +54,7 @@ public class MethodInfo {
     public Class<?> getReturnType() {
         return this.returnType;
     }
-    
+
     /**
      * Returns the parameter types of the method
      *
@@ -65,7 +63,7 @@ public class MethodInfo {
     public Class<?>[] getParamTypes() {
         return this.paramTypes;
     }
-    
+
     private String name;
     private Class<?> returnType;
     private Class<?>[] paramTypes;

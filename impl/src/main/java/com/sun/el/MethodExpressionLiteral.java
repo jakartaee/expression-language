@@ -34,13 +34,13 @@ public class MethodExpressionLiteral extends MethodExpression implements Externa
     private Class expectedType;
 
     private String expr;
-    
+
     private Class[] paramTypes;
-    
+
     public MethodExpressionLiteral() {
         // do nothing
     }
-    
+
     public MethodExpressionLiteral(String expr, Class expectedType, Class[] paramTypes) {
         this.expr = expr;
         this.expectedType = expectedType;
@@ -59,7 +59,7 @@ public class MethodExpressionLiteral extends MethodExpression implements Externa
         try {
             return context.convertToType(this.expr, this.expectedType);
         } catch (Exception ex) {
-            throw new ELException (ex);
+            throw new ELException(ex);
         }
     }
 
@@ -85,14 +85,12 @@ public class MethodExpressionLiteral extends MethodExpression implements Externa
         if (!"".equals(type)) {
             this.expectedType = ReflectionUtil.forName(type);
         }
-        this.paramTypes = ReflectionUtil.toTypeArray(((String[]) in
-                .readObject()));
+        this.paramTypes = ReflectionUtil.toTypeArray(((String[]) in.readObject()));
     }
 
     public void writeExternal(ObjectOutput out) throws IOException {
         out.writeUTF(this.expr);
-        out.writeUTF((this.expectedType != null) ? this.expectedType.getName()
-                : "");
+        out.writeUTF((this.expectedType != null) ? this.expectedType.getName() : "");
         out.writeObject(ReflectionUtil.toTypeNameArray(this.paramTypes));
     }
 }
