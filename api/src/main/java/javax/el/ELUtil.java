@@ -72,6 +72,7 @@ class ELUtil {
      * </p>
      */
     private static ThreadLocal<Map<String, ResourceBundle>> instance = new ThreadLocal<Map<String, ResourceBundle>>() {
+        @Override
         protected Map<String, ResourceBundle> initialValue() {
             return (null);
         }
@@ -154,7 +155,7 @@ class ELUtil {
         if (null != locale) {
             Map<String, ResourceBundle> threadMap = getCurrentInstance();
             ResourceBundle rb = null;
-            if (null == (rb = (ResourceBundle) threadMap.get(locale.toString()))) {
+            if (null == (rb = threadMap.get(locale.toString()))) {
                 rb = ResourceBundle.getBundle("javax.el.PrivateMessages", locale);
                 threadMap.put(locale.toString(), rb);
             }
@@ -469,9 +470,9 @@ class ELUtil {
             if (elSpecific) {
                 /*
                  * Number will be treated as more specific
-                 * 
+                 *
                  * ASTInteger only return Long or BigInteger, no Byte / Short / Integer. ASTFloatingPoint also.
-                 * 
+                 *
                  */
                 if (matchingType != null && Number.class.isAssignableFrom(matchingType)) {
                     boolean b1 = Number.class.isAssignableFrom(type1) || type1.isPrimitive();
@@ -606,11 +607,11 @@ class ELUtil {
 
     /*
      * This method duplicates code in com.sun.el.util.ReflectionUtil. When making changes keep the code in sync.
-     * 
+     *
      * Get a public method form a public class or interface of a given method. Note that if a PropertyDescriptor is obtained
      * for a non-public class that implements a public interface, the read/write methods will be for the class, and
      * therefore inaccessible. To correct this, a version of the same method must be found in a superclass or interface.
-     * 
+     *
      */
     static Method getMethod(Class<?> type, Method m) {
         if (m == null || Modifier.isPublic(type.getModifiers())) {

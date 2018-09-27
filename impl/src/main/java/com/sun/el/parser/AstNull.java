@@ -29,13 +29,13 @@ public final class AstNull extends SimpleNode {
         super(id);
     }
 
-    public Class getType(EvaluationContext ctx)
-            throws ELException {
+    @Override
+    public Class getType(EvaluationContext ctx) throws ELException {
         return null;
     }
 
-    public Object getValue(EvaluationContext ctx)
-            throws ELException {
+    @Override
+    public Object getValue(EvaluationContext ctx) throws ELException {
         return null;
     }
 }

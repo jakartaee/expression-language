@@ -16,26 +16,26 @@
 
 package com.sun.el;
 
-import java.util.Map;
-import java.util.HashMap;
-import java.util.Properties;
 import java.lang.reflect.Method;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Properties;
 
 import javax.el.ELContext;
 import javax.el.ELException;
+import javax.el.ELResolver;
 import javax.el.ExpressionFactory;
 import javax.el.MethodExpression;
 import javax.el.ValueExpression;
-import javax.el.ELResolver;
 
-import com.sun.el.lang.ExpressionBuilder;
 import com.sun.el.lang.ELSupport;
-import com.sun.el.util.MessageFactory;
+import com.sun.el.lang.ExpressionBuilder;
 import com.sun.el.stream.StreamELResolver;
+import com.sun.el.util.MessageFactory;
 
 /**
  * @see javax.el.ExpressionFactory
- * 
+ *
  * @author Jacob Hookom [jacob@hookom.net]
  * @author Kin-man Chung
  * @version $Change: 181177 $$DateTime: 2001/06/26 08:45:09 $$Author: kchung $
@@ -43,7 +43,7 @@ import com.sun.el.stream.StreamELResolver;
 public class ExpressionFactoryImpl extends ExpressionFactory {
 
     /**
-     * 
+     *
      */
     public ExpressionFactoryImpl() {
         super();
@@ -55,6 +55,7 @@ public class ExpressionFactoryImpl extends ExpressionFactory {
         this.isBackwardCompatible22 = "true".equals(getProperty("javax.el.bc2.2"));
     }
 
+    @Override
     public Object coerceToType(Object obj, Class type) {
         Object ret;
         try {
@@ -65,6 +66,7 @@ public class ExpressionFactoryImpl extends ExpressionFactory {
         return ret;
     }
 
+    @Override
     public MethodExpression createMethodExpression(ELContext context, String expression, Class expectedReturnType, Class[] expectedParamTypes) {
         ExpressionBuilder builder = new ExpressionBuilder(expression, context);
         MethodExpression me = builder.createMethodExpression(expectedReturnType, expectedParamTypes);
@@ -74,6 +76,7 @@ public class ExpressionFactoryImpl extends ExpressionFactory {
         return me;
     }
 
+    @Override
     public ValueExpression createValueExpression(ELContext context, String expression, Class expectedType) {
         if (expectedType == null) {
             throw new NullPointerException(MessageFactory.get("error.value.expectedType"));
@@ -82,6 +85,7 @@ public class ExpressionFactoryImpl extends ExpressionFactory {
         return builder.createValueExpression(expectedType);
     }
 
+    @Override
     public ValueExpression createValueExpression(Object instance, Class expectedType) {
         if (expectedType == null) {
             throw new NullPointerException(MessageFactory.get("error.value.expectedType"));

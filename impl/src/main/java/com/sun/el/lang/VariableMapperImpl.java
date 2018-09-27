@@ -29,29 +29,31 @@ import javax.el.VariableMapper;
 public class VariableMapperImpl extends VariableMapper implements Externalizable {
 
     private static final long serialVersionUID = 1L;
-    
-    private Map<String, ValueExpression> vars =
-            new HashMap<String, ValueExpression>();
+
+    private Map<String, ValueExpression> vars = new HashMap<String, ValueExpression>();
 
     public VariableMapperImpl() {
         super();
     }
 
+    @Override
     public ValueExpression resolveVariable(String variable) {
         return this.vars.get(variable);
     }
 
-    public ValueExpression setVariable(String variable,
-            ValueExpression expression) {
+    @Override
+    public ValueExpression setVariable(String variable, ValueExpression expression) {
         return this.vars.put(variable, expression);
     }
 
     // Safe cast.
+    @Override
     @SuppressWarnings("unchecked")
     public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
         this.vars = (Map<String, ValueExpression>) in.readObject();
     }
 
+    @Override
     public void writeExternal(ObjectOutput out) throws IOException {
         out.writeObject(this.vars);
     }

@@ -271,7 +271,7 @@ public abstract class ELContext {
 
     /**
      * Returns the list of registered evaluation listeners.
-     * 
+     *
      * @return The list of registered evaluation listeners.
      *
      * @since EL 3.0
@@ -282,7 +282,7 @@ public abstract class ELContext {
 
     /**
      * Notifies the listeners before an EL expression is evaluated
-     * 
+     *
      * @param expr The EL expression string to be evaluated
      */
     public void notifyBeforeEvaluation(String expr) {
@@ -295,7 +295,7 @@ public abstract class ELContext {
 
     /**
      * Notifies the listeners after an EL expression is evaluated
-     * 
+     *
      * @param expr The EL expression string that has been evaluated
      */
     public void notifyAfterEvaluation(String expr) {
@@ -308,7 +308,7 @@ public abstract class ELContext {
 
     /**
      * Notifies the listeners when the (base, property) pair is resolved
-     * 
+     *
      * @param base The base object
      * @param property The property Object
      */
@@ -322,7 +322,7 @@ public abstract class ELContext {
 
     /**
      * Inquires if the name is a LambdaArgument
-     * 
+     *
      * @param arg A possible Lambda formal parameter name
      * @return true if arg is a LambdaArgument, false otherwise.
      */
@@ -367,7 +367,7 @@ public abstract class ELContext {
     /**
      * Installs a Lambda argument map, in preparation for the evaluation of a Lambda expression. The arguments in the map
      * will be in scope during the evaluation of the Lambda expression.
-     * 
+     *
      * @param args The Lambda arguments map
      * @since EL 3.0
      */
@@ -380,7 +380,7 @@ public abstract class ELContext {
 
     /**
      * Exits the Lambda expression evaluation. The Lambda argument map that was previously installed is removed.
-     * 
+     *
      * @since EL 3.0
      */
     public void exitLambdaScope() {

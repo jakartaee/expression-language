@@ -16,15 +16,14 @@
 
 package com.sun.el.parser;
 
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Kin-man Chung
  */
 
-public
-class AstLambdaParameters extends SimpleNode {
+public class AstLambdaParameters extends SimpleNode {
     public AstLambdaParameters(int id) {
         super(id);
     }
@@ -32,7 +31,7 @@ class AstLambdaParameters extends SimpleNode {
     List<String> getParameters() {
         List<String> parameters = new ArrayList<String>();
         if (children != null) {
-            for (Node child: children) {
+            for (Node child : children) {
                 parameters.add(child.getImage());
             }
         }

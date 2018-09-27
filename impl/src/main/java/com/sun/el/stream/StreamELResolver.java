@@ -17,30 +17,22 @@
 package com.sun.el.stream;
 
 import java.beans.FeatureDescriptor;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Iterator;
-import java.util.List;
 import java.lang.reflect.Array;
+import java.util.Collection;
+import java.util.Iterator;
 
 import javax.el.ELContext;
-import javax.el.ELException;
 import javax.el.ELResolver;
-import javax.el.LambdaExpression;
 
 /*
  * This ELResolver intercepts method calls to a Collections, to provide
- * support for collection operations. 
+ * support for collection operations.
  */
 
 public class StreamELResolver extends ELResolver {
 
-    public Object invoke(final ELContext context,
-                         final Object base,
-                         final Object method,
-                         final Class<?>[] paramTypes,
-                         final Object[] params) {
+    @Override
+    public Object invoke(final ELContext context, final Object base, final Object method, final Class<?>[] paramTypes, final Object[] params) {
 
         if (context == null) {
             throw new NullPointerException();
@@ -48,7 +40,7 @@ public class StreamELResolver extends ELResolver {
 
         if (base instanceof Collection) {
             @SuppressWarnings("unchecked")
-            Collection<Object> c = (Collection<Object>)base;
+            Collection<Object> c = (Collection<Object>) base;
             if ("stream".equals(method) && params.length == 0) {
                 context.setPropertyResolved(true);
                 return new Stream(c.iterator());
@@ -91,38 +83,37 @@ public class StreamELResolver extends ELResolver {
             }
         };
     }
-            
-/*
-    private LambdaExpression getLambda(Object obj, String method) {
-        if (obj == null || ! (obj instanceof LambdaExpression)) {
-            throw new ELException ("When calling " + method + ", expecting an " +
-                "EL lambda expression, but found " + obj);
-        }
-        return (LambdaExpression) obj;
-    }
-*/
+
+    /*
+     * private LambdaExpression getLambda(Object obj, String method) { if (obj == null || ! (obj instanceof
+     * LambdaExpression)) { throw new ELException ("When calling " + method + ", expecting an " +
+     * "EL lambda expression, but found " + obj); } return (LambdaExpression) obj; }
+     */
+    @Override
     public Object getValue(ELContext context, Object base, Object property) {
         return null;
     }
 
+    @Override
     public Class<?> getType(ELContext context, Object base, Object property) {
         return null;
     }
 
-    public void setValue(ELContext context, Object base, Object property,
-                                  Object value) {
+    @Override
+    public void setValue(ELContext context, Object base, Object property, Object value) {
     }
 
+    @Override
     public boolean isReadOnly(ELContext context, Object base, Object property) {
         return false;
     }
 
-    public Iterator<FeatureDescriptor> getFeatureDescriptors(
-                                            ELContext context,
-                                            Object base) {
+    @Override
+    public Iterator<FeatureDescriptor> getFeatureDescriptors(ELContext context, Object base) {
         return null;
     }
 
+    @Override
     public Class<?> getCommonPropertyType(ELContext context, Object base) {
         return String.class;
     }

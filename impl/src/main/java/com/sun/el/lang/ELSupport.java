@@ -37,14 +37,11 @@ public class ELSupport {
 
     private final static Long ZERO = Long.valueOf(0L);
 
-    public final static void throwUnhandled(Object base, Object property)
-            throws ELException {
+    public final static void throwUnhandled(Object base, Object property) throws ELException {
         if (base == null) {
-            throw new PropertyNotFoundException(MessageFactory.get(
-                    "error.resolver.unhandled.null", property));
+            throw new PropertyNotFoundException(MessageFactory.get("error.resolver.unhandled.null", property));
         } else {
-            throw new PropertyNotFoundException(MessageFactory.get(
-                    "error.resolver.unhandled", base.getClass(), property));
+            throw new PropertyNotFoundException(MessageFactory.get("error.resolver.unhandled", base.getClass(), property));
         }
     }
 
@@ -54,8 +51,7 @@ public class ELSupport {
      * @return The result (an int with values -1, 0, or 1) of the comparison
      * @throws ELException when something goes wrong
      */
-    public final static int compare(final Object obj0, final Object obj1)
-            throws ELException {
+    public final static int compare(final Object obj0, final Object obj1) throws ELException {
         if (obj0 == obj1 || equals(obj0, obj1)) {
             return 0;
         }
@@ -103,8 +99,7 @@ public class ELSupport {
      * @return true if the objects compared equal
      * @throws ELException when something goes wrong
      */
-    public final static boolean equals(final Object obj0, final Object obj1)
-            throws ELException {
+    public final static boolean equals(final Object obj0, final Object obj1) throws ELException {
         if (obj0 == obj1) {
             return true;
         }
@@ -151,8 +146,7 @@ public class ELSupport {
      * @param obj Object to be coerced
      * @return The result of coercion
      */
-    public final static Boolean coerceToBoolean(final Object obj)
-            throws IllegalArgumentException {
+    public final static Boolean coerceToBoolean(final Object obj) throws IllegalArgumentException {
         if (obj == null || "".equals(obj)) {
             return Boolean.FALSE;
         }
@@ -163,11 +157,10 @@ public class ELSupport {
             return Boolean.valueOf((String) obj);
         }
 
-        throw new IllegalArgumentException(MessageFactory.get("error.convert",
-                obj, obj.getClass(), Boolean.class));
+        throw new IllegalArgumentException(MessageFactory.get("error.convert", obj, obj.getClass(), Boolean.class));
     }
 
-    // Enum types are hard construct.   We can declare this as
+    // Enum types are hard construct. We can declare this as
     // <T extends Enum<T>> T coerceToEnum(Object, Class<T> type)
     // but this makes it harder to get the calls right.
     @SuppressWarnings("unchecked")
@@ -176,13 +169,12 @@ public class ELSupport {
             return null;
         }
         if (obj.getClass().isEnum()) {
-            return (Enum)obj;
+            return (Enum) obj;
         }
         return Enum.valueOf(type, obj.toString());
     }
 
-    public final static Character coerceToCharacter(final Object obj)
-            throws IllegalArgumentException {
+    public final static Character coerceToCharacter(final Object obj) throws IllegalArgumentException {
         if (obj == null || "".equals(obj)) {
             return Character.valueOf((char) 0);
         }
@@ -197,8 +189,7 @@ public class ELSupport {
             return (Character) obj;
         }
 
-        throw new IllegalArgumentException(MessageFactory.get("error.convert",
-                obj, objType, Character.class));
+        throw new IllegalArgumentException(MessageFactory.get("error.convert", obj, objType, Character.class));
     }
 
     public final static Number coerceToNumber(final Object obj) {
@@ -216,8 +207,7 @@ public class ELSupport {
         }
     }
 
-    protected final static Number coerceToNumber(final Number number,
-            final Class type) throws IllegalArgumentException {
+    protected final static Number coerceToNumber(final Number number, final Class type) throws IllegalArgumentException {
         if (Long.TYPE == type || Long.class.equals(type)) {
             return Long.valueOf(number.longValue());
         }
@@ -258,12 +248,10 @@ public class ELSupport {
             return Float.valueOf(number.floatValue());
         }
 
-        throw new IllegalArgumentException(MessageFactory.get("error.convert",
-                number, number.getClass(), type));
+        throw new IllegalArgumentException(MessageFactory.get("error.convert", number, number.getClass(), type));
     }
 
-    public final static Number coerceToNumber(final Object obj, final Class type)
-            throws IllegalArgumentException {
+    public final static Number coerceToNumber(final Object obj, final Class type) throws IllegalArgumentException {
         if (obj == null || "".equals(obj)) {
             return coerceToNumber(ZERO, type);
         }
@@ -278,16 +266,13 @@ public class ELSupport {
         }
 
         if (obj instanceof Character) {
-            return coerceToNumber(Short.valueOf((short) ((Character) obj)
-                    .charValue()), type);
+            return coerceToNumber(Short.valueOf((short) ((Character) obj).charValue()), type);
         }
 
-        throw new IllegalArgumentException(MessageFactory.get("error.convert",
-                obj, obj.getClass(), type));
+        throw new IllegalArgumentException(MessageFactory.get("error.convert", obj, obj.getClass(), type));
     }
 
-    protected final static Number coerceToNumber(final String val,
-            final Class type) throws IllegalArgumentException {
+    protected final static Number coerceToNumber(final String val, final Class type) throws IllegalArgumentException {
         if (Long.TYPE == type || Long.class.equals(type)) {
             return Long.valueOf(val);
         }
@@ -313,8 +298,7 @@ public class ELSupport {
             return Float.valueOf(val);
         }
 
-        throw new IllegalArgumentException(MessageFactory.get("error.convert",
-                val, String.class, type));
+        throw new IllegalArgumentException(MessageFactory.get("error.convert", val, String.class, type));
     }
 
     /**
@@ -333,8 +317,7 @@ public class ELSupport {
         }
     }
 
-    public final static void checkType(final Object obj, final Class<?> type)
-        throws IllegalArgumentException {
+    public final static void checkType(final Object obj, final Class<?> type) throws IllegalArgumentException {
         if (String.class.equals(type)) {
             coerceToString(obj);
         }
@@ -352,17 +335,13 @@ public class ELSupport {
         }
     }
 
-    public final static Object coerceToType(final Object obj, final Class<?> type)
-            throws IllegalArgumentException {
+    public final static Object coerceToType(final Object obj, final Class<?> type) throws IllegalArgumentException {
         return coerceToType(obj, type, false);
     }
 
-    public final static Object coerceToType(final Object obj, final Class<?> type,
-                                            boolean isEL22Compatible)
-            throws IllegalArgumentException {
+    public final static Object coerceToType(final Object obj, final Class<?> type, boolean isEL22Compatible) throws IllegalArgumentException {
 
-        if (type == null || Object.class.equals(type) ||
-                (obj != null && type.isAssignableFrom(obj.getClass()))) {
+        if (type == null || Object.class.equals(type) || (obj != null && type.isAssignableFrom(obj.getClass()))) {
             return obj;
         }
 
@@ -400,8 +379,7 @@ public class ELSupport {
                 return editor.getValue();
             }
         }
-        throw new IllegalArgumentException(MessageFactory.get("error.convert",
-                obj, obj.getClass(), type));
+        throw new IllegalArgumentException(MessageFactory.get("error.convert", obj, obj.getClass(), type));
     }
 
     /**
@@ -417,40 +395,25 @@ public class ELSupport {
         return false;
     }
 
-    public final static boolean isBigDecimalOp(final Object obj0,
-            final Object obj1) {
+    public final static boolean isBigDecimalOp(final Object obj0, final Object obj1) {
         return (obj0 instanceof BigDecimal || obj1 instanceof BigDecimal);
     }
 
-    public final static boolean isBigIntegerOp(final Object obj0,
-            final Object obj1) {
+    public final static boolean isBigIntegerOp(final Object obj0, final Object obj1) {
         return (obj0 instanceof BigInteger || obj1 instanceof BigInteger);
     }
 
     public final static boolean isDoubleOp(final Object obj0, final Object obj1) {
-        return (obj0 instanceof Double
-                || obj1 instanceof Double
-                || obj0 instanceof Float
-                || obj1 instanceof Float);
+        return (obj0 instanceof Double || obj1 instanceof Double || obj0 instanceof Float || obj1 instanceof Float);
     }
 
-    public final static boolean isDoubleStringOp(final Object obj0,
-            final Object obj1) {
-        return (isDoubleOp(obj0, obj1)
-                || (obj0 instanceof String && isStringFloat((String) obj0)) || (obj1 instanceof String && isStringFloat((String) obj1)));
+    public final static boolean isDoubleStringOp(final Object obj0, final Object obj1) {
+        return (isDoubleOp(obj0, obj1) || (obj0 instanceof String && isStringFloat((String) obj0)) || (obj1 instanceof String && isStringFloat((String) obj1)));
     }
 
     public final static boolean isLongOp(final Object obj0, final Object obj1) {
-        return (obj0 instanceof Long
-                || obj1 instanceof Long
-                || obj0 instanceof Integer
-                || obj1 instanceof Integer
-                || obj0 instanceof Character
-                || obj1 instanceof Character
-                || obj0 instanceof Short
-                || obj1 instanceof Short
-                || obj0 instanceof Byte
-                || obj1 instanceof Byte);
+        return (obj0 instanceof Long || obj1 instanceof Long || obj0 instanceof Integer || obj1 instanceof Integer || obj0 instanceof Character
+                || obj1 instanceof Character || obj0 instanceof Short || obj1 instanceof Short || obj0 instanceof Byte || obj1 instanceof Byte);
     }
 
     public final static boolean isStringFloat(final String str) {

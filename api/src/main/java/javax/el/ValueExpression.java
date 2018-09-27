@@ -137,7 +137,7 @@ public abstract class ValueExpression extends Expression {
 
     /**
      * Returns a {@link ValueReference} for this expression instance.
-     * 
+     *
      * @param context the context of this evaluation
      * @return the <code>ValueReference</code> for this <code>ValueExpression</code>, or <code>null</code> if this
      * <code>ValueExpression</code> is not a reference to a base (null or non-null) and a property. If the base is null, and

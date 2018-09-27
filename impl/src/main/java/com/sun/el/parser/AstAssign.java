@@ -17,22 +17,19 @@
 package com.sun.el.parser;
 
 import javax.el.ELException;
-import javax.el.VariableMapper;
-import com.sun.el.ValueExpressionImpl;
+
 import com.sun.el.lang.EvaluationContext;
 
-public
-class AstAssign extends SimpleNode {
+public class AstAssign extends SimpleNode {
     public AstAssign(int id) {
         super(id);
     }
 
-    public Object getValue(EvaluationContext ctx)
-            throws ELException {
+    @Override
+    public Object getValue(EvaluationContext ctx) throws ELException {
 
         Object value = children[1].getValue(ctx);
         children[0].setValue(ctx, value);
         return value;
     }
 }
-

@@ -74,7 +74,7 @@ public class StandardELContext extends ELContext {
 
     /**
      * Construct a default ELContext for a stand-alone environment.
-     * 
+     *
      * @param factory The ExpressionFactory
      */
     public StandardELContext(ExpressionFactory factory) {
@@ -84,7 +84,7 @@ public class StandardELContext extends ELContext {
 
     /**
      * Construct a StandardELContext from another ELContext.
-     * 
+     *
      * @param context The ELContext that acts as a delegate in most cases
      */
     public StandardELContext(ELContext context) {
@@ -165,7 +165,7 @@ public class StandardELContext extends ELContext {
     /**
      * Add a custom ELResolver to the context. The list of the custom ELResolvers will be accessed in the order they are
      * added. A custom ELResolver added to the context cannot be removed.
-     * 
+     *
      * @param cELResolver The new ELResolver to be added to the context
      */
     public void addELResolver(ELResolver cELResolver) {
@@ -175,7 +175,7 @@ public class StandardELContext extends ELContext {
 
     /**
      * Get the local bean repository
-     * 
+     *
      * @return the bean repository
      */
     Map<String, Object> getBeans() {
@@ -184,7 +184,7 @@ public class StandardELContext extends ELContext {
 
     /**
      * Construct (if needed) and return a default FunctionMapper.
-     * 
+     *
      * @return The default FunctionMapper
      */
     @Override
@@ -197,7 +197,7 @@ public class StandardELContext extends ELContext {
 
     /**
      * Construct (if needed) and return a default VariableMapper() {
-     * 
+     *
      * @return The default Variable
      */
     @Override

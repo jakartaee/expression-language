@@ -17,10 +17,9 @@
 
 package javax.el;
 
-import java.lang.reflect.Array;
-import java.util.List;
-import java.util.Iterator;
 import java.beans.FeatureDescriptor;
+import java.lang.reflect.Array;
+import java.util.Iterator;
 
 /**
  * Defines property resolution behavior on arrays.
@@ -88,6 +87,7 @@ public class ArrayELResolver extends ELResolver {
      * @throws ELException if an exception was thrown while performing the property or variable resolution. The thrown
      * exception must be included as the cause property of this exception, if available.
      */
+    @Override
     public Class<?> getType(ELContext context, Object base, Object property) {
 
         if (context == null) {
@@ -126,6 +126,7 @@ public class ArrayELResolver extends ELResolver {
      * @throws ELException if an exception was thrown while performing the property or variable resolution. The thrown
      * exception must be included as the cause property of this exception, if available.
      */
+    @Override
     public Object getValue(ELContext context, Object base, Object property) {
 
         if (context == null) {
@@ -172,6 +173,7 @@ public class ArrayELResolver extends ELResolver {
      * @throws ELException if an exception was thrown while performing the property or variable resolution. The thrown
      * exception must be included as the cause property of this exception, if available.
      */
+    @Override
     public void setValue(ELContext context, Object base, Object property, Object val) {
 
         if (context == null) {
@@ -221,6 +223,7 @@ public class ArrayELResolver extends ELResolver {
      * @throws ELException if an exception was thrown while performing the property or variable resolution. The thrown
      * exception must be included as the cause property of this exception, if available.
      */
+    @Override
     public boolean isReadOnly(ELContext context, Object base, Object property) {
 
         if (context == null) {
@@ -248,6 +251,7 @@ public class ArrayELResolver extends ELResolver {
      * @param base The array to analyze. Only bases that are a Java language array are handled by this resolver.
      * @return <code>null</code>.
      */
+    @Override
     public Iterator<FeatureDescriptor> getFeatureDescriptors(ELContext context, Object base) {
         return null;
     }
@@ -265,6 +269,7 @@ public class ArrayELResolver extends ELResolver {
      * @param base The array to analyze. Only bases that are a Java language array are handled by this resolver.
      * @return <code>null</code> if base is not a Java language array; otherwise <code>Integer.class</code>.
      */
+    @Override
     public Class<?> getCommonPropertyType(ELContext context, Object base) {
 
         if (base != null && base.getClass().isArray()) {

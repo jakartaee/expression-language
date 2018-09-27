@@ -17,21 +17,19 @@
 package com.sun.el.parser;
 
 import javax.el.ELException;
+
 import com.sun.el.lang.EvaluationContext;
 
 /**
  * @author Kin-man Chung
  */
-public final
-class AstConcat extends SimpleNode {
+public final class AstConcat extends SimpleNode {
     public AstConcat(int id) {
         super(id);
     }
 
-    public Object getValue(EvaluationContext ctx)
-            throws ELException {
-        return children[0].getValue(ctx).toString() +
-               children[1].getValue(ctx).toString();
+    @Override
+    public Object getValue(EvaluationContext ctx) throws ELException {
+        return children[0].getValue(ctx).toString() + children[1].getValue(ctx).toString();
     }
 }
-

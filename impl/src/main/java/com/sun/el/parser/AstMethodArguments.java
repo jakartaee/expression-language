@@ -17,18 +17,18 @@
 package com.sun.el.parser;
 
 import javax.el.ELException;
+
 import com.sun.el.lang.EvaluationContext;
 
 /**
  * @author Kin-man Chung
  */
-public
-class AstMethodArguments extends SimpleNode {
+public class AstMethodArguments extends SimpleNode {
     public AstMethodArguments(int id) {
-      super(id);
+        super(id);
     }
 
-    Class<?>[] getParamTypes () {
+    Class<?>[] getParamTypes() {
         return null;
     }
 
@@ -45,7 +45,7 @@ class AstMethodArguments extends SimpleNode {
     }
 
     public int getParameterCount() {
-        return this.children == null? 0: this.children.length;
+        return this.children == null ? 0 : this.children.length;
     }
 
     @Override

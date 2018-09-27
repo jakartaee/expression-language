@@ -83,6 +83,7 @@ public abstract class Expression implements Serializable {
      * @see java.util.Hashtable
      * @see java.lang.Object#equals(java.lang.Object)
      */
+    @Override
     public abstract boolean equals(Object obj);
 
     /**
@@ -100,6 +101,7 @@ public abstract class Expression implements Serializable {
      * @see java.util.Hashtable
      * @see java.lang.Object#hashCode()
      */
+    @Override
     public abstract int hashCode();
 
     /**

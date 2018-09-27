@@ -50,7 +50,7 @@ public class StaticFieldELResolver extends ELResolver {
      *
      * If the property is a public static field of class specified in <code>ELClass</code>, return the value of the static
      * field. An Enum constant is a public static field of an Enum object, and is a special case of this.
-     * 
+     *
      * @param context The context of this evaluation.
      * @param base An <code>ELClass</code>.
      * @param property A static field name.
@@ -92,7 +92,7 @@ public class StaticFieldELResolver extends ELResolver {
      * <p>
      * If the base object is an instance of <code>ELClass</code>and the property is String, a
      * <code>PropertyNotWritableException</code> will always be thrown, because writing to a static field is not allowed.
-     * 
+     *
      * @param context The context of this evaluation.
      * @param base An <code>ELClass</code>
      * @param property The name of the field
@@ -230,7 +230,7 @@ public class StaticFieldELResolver extends ELResolver {
      * <p>
      * Always returns a <code>true</code> because writing to a static field is not allowed.
      * </p>
-     * 
+     *
      * @param context The context of this evaluation.
      * @param base An <code>ELClass</code>.
      * @param property The name of the bean.
@@ -253,7 +253,7 @@ public class StaticFieldELResolver extends ELResolver {
     /**
      * Returns the properties that can be resolved. Always returns <code>null</code>, since there is no reason to iterate
      * through a list of one element: field name.
-     * 
+     *
      * @param context The context of this evaluation.
      * @param base An <code>ELClass</code>.
      * @return <code>null</code>.
@@ -265,7 +265,7 @@ public class StaticFieldELResolver extends ELResolver {
 
     /**
      * Returns the type of the property. Always returns <code>String.class</code>, since a field name is a String.
-     * 
+     *
      * @param context The context of this evaluation.
      * @param base An <code>ELClass</code>.
      * @return <code>String.class</code>.

@@ -23,7 +23,7 @@ import java.lang.reflect.Modifier;
  * <p>
  * Provides an API for using EL in a stand-alone environment.
  * </p>
- * 
+ *
  * <p>
  * This class provides a direct and simple interface for
  * <ul>
@@ -33,12 +33,12 @@ import java.lang.reflect.Modifier;
  * <li>Defining a static method as an EL function.</li>
  * <li>Defining an object instance as an EL name.
  * </ul>
- * 
+ *
  * <p>
  * This API is not a replacement for the APIs in EL 2.2. Containers that maintains EL environments can continue to do
  * so, without using this API.
  * </p>
- * 
+ *
  * <p>
  * For EL users who want to manipulate EL environments, like adding custom {@link ELResolver}s, {@link ELManager} can be
  * used.
@@ -63,15 +63,15 @@ import java.lang.reflect.Modifier;
  *
  * <h3>Example</h3> The following code snippet illustrates the use of ELProcessor to define a bean and evaluate its
  * property. <blockquote>
- * 
+ *
  * <pre>
  * ELProcessor elp = new ELProcessor();
  * elp.defineBean("employee", new Employee("Charlie Brown"));
  * String name = elp.eval("employee.name");
  * </pre>
- * 
+ *
  * </blockquote>
- * 
+ *
  * @since EL 3.0
  */
 
@@ -82,7 +82,7 @@ public class ELProcessor {
 
     /**
      * Return the ELManager used for EL processing.
-     * 
+     *
      * @return The ELManager used for EL processing.
      */
     public ELManager getELManager() {
@@ -91,7 +91,7 @@ public class ELProcessor {
 
     /**
      * Evaluates an EL expression.
-     * 
+     *
      * @param expression The EL expression to be evaluated.
      * @return The result of the expression evaluation.
      */
@@ -101,7 +101,7 @@ public class ELProcessor {
 
     /**
      * Evaluates an EL expression, and coerces the result to the specified type.
-     * 
+     *
      * @param expression The EL expression to be evaluated.
      * @param expectedType Specifies the type that the resultant evaluation will be coerced to.
      * @return The result of the expression evaluation.
@@ -133,7 +133,7 @@ public class ELProcessor {
      * Assign an EL expression to an EL variable. The expression is parsed, but not evaluated, and the parsed expression is
      * mapped to the EL variable in the local variable map. Any previously assigned expression to the same variable will be
      * replaced. If the expression is <code>null</code>, the variable will be removed.
-     * 
+     *
      * @param var The name of the variable.
      * @param expression The EL expression to be assigned to the variable.
      */
@@ -144,7 +144,7 @@ public class ELProcessor {
 
     /**
      * Define an EL function in the local function mapper.
-     * 
+     *
      * @param prefix The namespace for the function or "" for no namesapce.
      * @param function The name of the function. If empty (""), the method name is used as the function name.
      * @param className The full Java class name that implements the function.
@@ -152,7 +152,7 @@ public class ELProcessor {
      * method that implements the function. If the name (e.g. "sum") is given, the first declared method in class that
      * matches the name is selected. If the signature (e.g. "int sum(int, int)" ) is given, then the declared method with
      * the signature is selected.
-     * 
+     *
      * @throws NullPointerException if any of the arguments is null.
      * @throws ClassNotFoundException if the specified class does not exists.
      * @throws NoSuchMethodException if the method (with or without the signature) is not a declared method of the class, or
@@ -211,7 +211,7 @@ public class ELProcessor {
 
     /**
      * Define an EL function in the local function mapper.
-     * 
+     *
      * @param prefix The namespace for the function or "" for no namesapce.
      * @param function The name of the function. If empty (""), the method name is used as the function name.
      * @param method The <code>java.lang.reflect.Method</code> instance of the method that implements the function.
@@ -233,7 +233,7 @@ public class ELProcessor {
 
     /**
      * Define a bean in a local bean repository, hiding other beans of the same name.
-     * 
+     *
      * @param name The name of the bean
      * @param bean The bean instance to be defined. If <code>null</code>, the name will be removed from the local bean
      * repository.

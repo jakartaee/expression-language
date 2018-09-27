@@ -16,22 +16,19 @@
 
 package com.sun.el.lang;
 
-import java.util.EventListener;
 import java.util.List;
 import java.util.Map;
 
 import javax.el.ELContext;
 import javax.el.ELResolver;
-import javax.el.FunctionMapper;
-import javax.el.VariableMapper;
-import javax.el.TypeConverter;
-import javax.el.ImportHandler;
 import javax.el.EvaluationListener;
+import javax.el.FunctionMapper;
+import javax.el.ImportHandler;
+import javax.el.VariableMapper;
 
 /**
- * The context for EL expression evaluation.  This wrapper ELContext captures
- * the function mapper and the variable mapper at the point when the epxression
- * is parsed, and only for those functions and variable used in the expression.
+ * The context for EL expression evaluation. This wrapper ELContext captures the function mapper and the variable mapper
+ * at the point when the epxression is parsed, and only for those functions and variable used in the expression.
  */
 public final class EvaluationContext extends ELContext {
 
@@ -41,8 +38,7 @@ public final class EvaluationContext extends ELContext {
 
     private final VariableMapper varMapper;
 
-    public EvaluationContext(ELContext elContext, FunctionMapper fnMapper,
-            VariableMapper varMapper) {
+    public EvaluationContext(ELContext elContext, FunctionMapper fnMapper, VariableMapper varMapper) {
         this.elContext = elContext;
         this.fnMapper = fnMapper;
         this.varMapper = varMapper;
@@ -128,7 +124,7 @@ public final class EvaluationContext extends ELContext {
     }
 
     @Override
-    public void enterLambdaScope(Map<String,Object> args) {
+    public void enterLambdaScope(Map<String, Object> args) {
         this.elContext.enterLambdaScope(args);
     }
 

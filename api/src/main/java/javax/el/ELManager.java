@@ -32,7 +32,7 @@ public class ELManager {
 
     /**
      * Return the ExpressionFactory instance used for EL evaluations.
-     * 
+     *
      * @return The ExpressionFactory
      */
     public static ExpressionFactory getExpressionFactory() {
@@ -55,7 +55,7 @@ public class ELManager {
     /**
      * Set the ELContext used for parsing and evaluating EL expressions. The supplied ELContext will not be modified, except
      * for the context object map.
-     * 
+     *
      * @param context The new ELContext.
      * @return The previous ELContext, null if none.
      */
@@ -68,7 +68,7 @@ public class ELManager {
     /**
      * Register a BeanNameResolver. Construct a BeanNameELResolver with the BeanNameResolver and add it to the list of
      * ELResolvers. Once registered, the BeanNameResolver cannot be removed.
-     * 
+     *
      * @param bnr The BeanNameResolver to be registered.
      */
     public void addBeanNameResolver(BeanNameResolver bnr) {
@@ -88,7 +88,7 @@ public class ELManager {
 
     /**
      * Maps a static method to an EL function.
-     * 
+     *
      * @param prefix The namespace of the functions, can be "".
      * @param function The name of the function.
      * @param meth The static method to be invoked when the function is used.
@@ -111,7 +111,7 @@ public class ELManager {
     /**
      * Import a static field or method. The class of the static member must be loadable from the classloader, at class
      * resolution time.
-     * 
+     *
      * @param staticMemberName The full class name of the class to be imported
      * @throws ELException if the name is not a full class name.
      */
@@ -121,7 +121,7 @@ public class ELManager {
 
     /**
      * Import a class. The imported class must be loadable from the classloader at the expression evaluation time.
-     * 
+     *
      * @param className The full class name of the class to be imported
      * @throws ELException if the name is not a full class name.
      */
@@ -132,7 +132,7 @@ public class ELManager {
     /**
      * Import a package. At the expression evaluation time, the imported package name will be used to construct the full
      * class name, which will then be used to load the class. Inherently, this is less efficient than importing a class.
-     * 
+     *
      * @param packageName The package name to be imported
      */
     public void importPackage(String packageName) {
@@ -141,7 +141,7 @@ public class ELManager {
 
     /**
      * Define a bean in the local bean repository
-     * 
+     *
      * @param name The name of the bean
      * @param bean The bean instance to be defined. If null, the definition of the bean is removed.
      * @return the previous bean (if any) mapped to <code>name</code>

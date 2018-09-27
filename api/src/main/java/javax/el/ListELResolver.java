@@ -17,11 +17,11 @@
 
 package javax.el;
 
-import java.util.List;
-import java.util.Iterator;
-import java.util.Collections;
-import java.util.ArrayList;
 import java.beans.FeatureDescriptor;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * Defines property resolution behavior on instances of {@link java.util.List}.
@@ -89,6 +89,7 @@ public class ListELResolver extends ELResolver {
      * @throws ELException if an exception was thrown while performing the property or variable resolution. The thrown
      * exception must be included as the cause property of this exception, if available.
      */
+    @Override
     public Class<?> getType(ELContext context, Object base, Object property) {
 
         if (context == null) {
@@ -128,6 +129,7 @@ public class ListELResolver extends ELResolver {
      * @throws ELException if an exception was thrown while performing the property or variable resolution. The thrown
      * exception must be included as the cause property of this exception, if available.
      */
+    @Override
     public Object getValue(ELContext context, Object base, Object property) {
 
         if (context == null) {
@@ -185,6 +187,7 @@ public class ListELResolver extends ELResolver {
      * @throws ELException if an exception was thrown while performing the property or variable resolution. The thrown
      * exception must be included as the cause property of this exception, if available.
      */
+    @Override
     public void setValue(ELContext context, Object base, Object property, Object val) {
 
         if (context == null) {
@@ -250,6 +253,7 @@ public class ListELResolver extends ELResolver {
      * @throws ELException if an exception was thrown while performing the property or variable resolution. The thrown
      * exception must be included as the cause property of this exception, if available.
      */
+    @Override
     public boolean isReadOnly(ELContext context, Object base, Object property) {
 
         if (context == null) {
@@ -279,6 +283,7 @@ public class ListELResolver extends ELResolver {
      * @param base The list. Only bases of type <code>List</code> are handled by this resolver.
      * @return <code>null</code>.
      */
+    @Override
     public Iterator<FeatureDescriptor> getFeatureDescriptors(ELContext context, Object base) {
         return null;
     }
@@ -296,6 +301,7 @@ public class ListELResolver extends ELResolver {
      * @param base The list to analyze. Only bases of type <code>List</code> are handled by this resolver.
      * @return <code>null</code> if base is not a <code>List</code>; otherwise <code>Integer.class</code>.
      */
+    @Override
     public Class<?> getCommonPropertyType(ELContext context, Object base) {
         if (base != null && base instanceof List) {
             return Integer.class;

@@ -109,7 +109,7 @@ public abstract class MethodExpression extends Expression {
 
     /**
      * Use isParametersProvided instead.
-     * 
+     *
      * @return <code>true</code> if the MethodExpression was created with parameters, <code>false</code> otherwise.
      */
     @Deprecated

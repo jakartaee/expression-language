@@ -55,7 +55,7 @@ public class LambdaExpression {
 
     /**
      * Creates a new LambdaExpression.
-     * 
+     *
      * @param formalParameters The list of String representing the formal parameters.
      * @param expression The <code>ValueExpression</code> representing the body.
      */
@@ -68,7 +68,7 @@ public class LambdaExpression {
     /**
      * Set the ELContext to use in evaluating the LambdaExpression. The ELContext must to be set prior to the invocation of
      * the LambdaExpression, unless it is supplied with {@link LambdaExpression#invoke}.
-     * 
+     *
      * @param context The ELContext to use in evaluating the LambdaExpression.
      */
     public void setELContext(ELContext context) {

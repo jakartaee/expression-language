@@ -48,7 +48,7 @@ public class BeanNameELResolver extends ELResolver {
 
     /**
      * Constructor
-     * 
+     *
      * @param beanNameResolver The {@link BeanNameResolver} that resolves a bean name.
      */
     public BeanNameELResolver(BeanNameResolver beanNameResolver) {
@@ -193,7 +193,7 @@ public class BeanNameELResolver extends ELResolver {
 
     /**
      * Always returns <code>null</code>, since there is no reason to iterate through a list of one element: bean name.
-     * 
+     *
      * @param context The context of this evaluation.
      * @param base <code>null</code>.
      * @return <code>null</code>.
@@ -205,7 +205,7 @@ public class BeanNameELResolver extends ELResolver {
 
     /**
      * Always returns <code>String.class</code>, since a bean name is a String.
-     * 
+     *
      * @param context The context of this evaluation.
      * @param base <code>null</code>.
      * @return <code>String.class</code>.

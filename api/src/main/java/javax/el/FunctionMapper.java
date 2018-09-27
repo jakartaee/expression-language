@@ -37,7 +37,7 @@ public abstract class FunctionMapper {
      * <p>
      * Returns <code>null</code> if no function could be found that matches the given prefix and local name.
      * </p>
-     * 
+     *
      * @param prefix the prefix of the function, or "" if no prefix. For example, <code>"fn"</code> in
      * <code>${fn:method()}</code>, or <code>""</code> in <code>${method()}</code>.
      * @param localName the short name of the function. For example, <code>"method"</code> in <code>${fn:method()}</code>.
@@ -47,7 +47,7 @@ public abstract class FunctionMapper {
 
     /**
      * Adds a static method that can be used as a function.
-     * 
+     *
      * @param prefix the prefix of the function, or "" if no prefix. For example, <code>"fn"</code> in
      * <code>${fn:method()}</code>, or <code>""</code> in <code>${method()}</code>.
      * @param localName the short name of the function. For example, <code>"method"</code> in <code>${fn:method()}</code>.

@@ -21,9 +21,9 @@ import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
 import java.lang.reflect.Array;
 import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
@@ -38,7 +38,7 @@ import com.sun.el.lang.ELSupport;
 
 /**
  * Utilities for Managing Serialization and Reflection
- * 
+ *
  * @author Jacob Hookom [jacob@hookom.net]
  * @version $Change: 181177 $$DateTime: 2001/06/26 08:45:09 $$Author: kchung $
  */
@@ -46,15 +46,13 @@ public class ReflectionUtil {
 
     protected static final String[] EMPTY_STRING = new String[0];
 
-    protected static final String[] PRIMITIVE_NAMES = new String[] { "boolean",
-            "byte", "char", "double", "float", "int", "long", "short", "void" };
+    protected static final String[] PRIMITIVE_NAMES = new String[] { "boolean", "byte", "char", "double", "float", "int", "long", "short", "void" };
 
-    protected static final Class[] PRIMITIVES = new Class[] { boolean.class,
-            byte.class, char.class, double.class, float.class, int.class,
-            long.class, short.class, Void.TYPE };
+    protected static final Class[] PRIMITIVES = new Class[] { boolean.class, byte.class, char.class, double.class, float.class, int.class, long.class,
+            short.class, Void.TYPE };
 
     /**
-     * 
+     *
      */
     private ReflectionUtil() {
         super();
@@ -89,6 +87,7 @@ public class ReflectionUtil {
 
     /**
      * Converts an array of Class names to Class types
+     * 
      * @param s
      * @return The array of Classes
      * @throws ClassNotFoundException
@@ -105,6 +104,7 @@ public class ReflectionUtil {
 
     /**
      * Converts an array of Class types to Class names
+     * 
      * @param c
      * @return The array of Classes
      */
@@ -125,13 +125,11 @@ public class ReflectionUtil {
      * @throws ELException
      * @throws PropertyNotFoundException
      */
-    public static PropertyDescriptor getPropertyDescriptor(Object base,
-            Object property) throws ELException, PropertyNotFoundException {
+    public static PropertyDescriptor getPropertyDescriptor(Object base, Object property) throws ELException, PropertyNotFoundException {
         String name = ELSupport.coerceToString(property);
         PropertyDescriptor p = null;
         try {
-            PropertyDescriptor[] desc = Introspector.getBeanInfo(
-                    base.getClass()).getPropertyDescriptors();
+            PropertyDescriptor[] desc = Introspector.getBeanInfo(base.getClass()).getPropertyDescriptors();
             for (int i = 0; i < desc.length; i++) {
                 if (desc[i].getName().equals(name)) {
                     return desc[i];
@@ -140,19 +138,15 @@ public class ReflectionUtil {
         } catch (IntrospectionException ie) {
             throw new ELException(ie);
         }
-        throw new PropertyNotFoundException(MessageFactory.get(
-                "error.property.notfound", base, name));
+        throw new PropertyNotFoundException(MessageFactory.get("error.property.notfound", base, name));
     }
 
     /*
-     * This method duplicates code in javax.el.ELUtil. When
-     * making changes keep the code in sync.
+     * This method duplicates code in javax.el.ELUtil. When making changes keep the code in sync.
      */
-    public static Object invokeMethod(ELContext context,
-                               Method m, Object base, Object[] params) {
+    public static Object invokeMethod(ELContext context, Method m, Object base, Object[] params) {
 
-        Object[] parameters = buildParameters(
-                context, m.getParameterTypes(), m.isVarArgs(), params);
+        Object[] parameters = buildParameters(context, m.getParameterTypes(), m.isVarArgs(), params);
         try {
             return m.invoke(base, parameters);
         } catch (IllegalAccessException iae) {
@@ -163,17 +157,14 @@ public class ReflectionUtil {
             throw new ELException(ite.getCause());
         }
     }
-    
+
     /*
-     * This method duplicates code in javax.el.ELUtil. When
-     * making changes keep the code in sync.
+     * This method duplicates code in javax.el.ELUtil. When making changes keep the code in sync.
      */
-    public static Method findMethod(Class<?> clazz, String methodName,
-            Class<?>[] paramTypes, Object[] paramValues) {
+    public static Method findMethod(Class<?> clazz, String methodName, Class<?>[] paramTypes, Object[] paramValues) {
 
         if (clazz == null || methodName == null) {
-            throw new MethodNotFoundException(MessageFactory.get(
-                    "error.method.notfound", clazz, methodName, paramString(paramTypes)));
+            throw new MethodNotFoundException(MessageFactory.get("error.method.notfound", clazz, methodName, paramString(paramTypes)));
         }
 
         if (paramTypes == null) {
@@ -184,8 +175,7 @@ public class ReflectionUtil {
 
         List<Wrapper> wrappers = Wrapper.wrap(methods, methodName);
 
-        Wrapper result = findWrapper(
-                clazz, wrappers, methodName, paramTypes, paramValues);
+        Wrapper result = findWrapper(clazz, wrappers, methodName, paramTypes, paramValues);
 
         if (result == null) {
             return null;
@@ -194,11 +184,9 @@ public class ReflectionUtil {
     }
 
     /*
-     * This method duplicates code in javax.el.ELUtil. When
-     * making changes keep the code in sync.
+     * This method duplicates code in javax.el.ELUtil. When making changes keep the code in sync.
      */
-    private static Wrapper findWrapper(Class<?> clazz, List<Wrapper> wrappers,
-            String name, Class<?>[] paramTypes, Object[] paramValues) {
+    private static Wrapper findWrapper(Class<?> clazz, List<Wrapper> wrappers, String name, Class<?>[] paramTypes, Object[] paramValues) {
 
         List<Wrapper> assignableCandidates = new ArrayList<Wrapper>();
         List<Wrapper> coercibleCandidates = new ArrayList<Wrapper>();
@@ -221,8 +209,7 @@ public class ReflectionUtil {
             }
 
             // Check the number of parameters
-            if (!(paramCount == mParamCount ||
-                    (w.isVarArgs() && paramCount >= mParamCount - 1))) {
+            if (!(paramCount == mParamCount || (w.isVarArgs() && paramCount >= mParamCount - 1))) {
                 // Method has wrong number of parameters
                 continue;
             }
@@ -241,11 +228,11 @@ public class ReflectionUtil {
                             continue;
                         }
                     }
-                    
+
                     // unwrap the array's component type
                     Class<?> varType = mParamTypes[i].getComponentType();
                     for (int j = i; j < paramCount; j++) {
-                        if (!isAssignableFrom(paramTypes[j], varType) 
+                        if (!isAssignableFrom(paramTypes[j], varType)
                                 && !(paramValues != null && j < paramValues.length && isCoercibleFrom(paramValues[j], varType))) {
                             noMatch = true;
                             break;
@@ -255,7 +242,7 @@ public class ReflectionUtil {
                 } else if (isAssignableFrom(paramTypes[i], mParamTypes[i])) {
                     assignable = true;
                 } else {
-                    if (paramValues == null  || i >= paramValues.length) {
+                    if (paramValues == null || i >= paramValues.length) {
                         noMatch = true;
                         break;
                     } else {
@@ -271,7 +258,7 @@ public class ReflectionUtil {
             if (noMatch) {
                 continue;
             }
-            
+
             if (varArgs) {
                 varArgsCandidates.add(w);
             } else if (coercible) {
@@ -283,11 +270,10 @@ public class ReflectionUtil {
                 // return it
                 return w;
             }
-            
+
         }
-        
-        String errorMsg = MessageFactory.get(
-                "error.method.ambiguous", clazz, name, paramString(paramTypes));
+
+        String errorMsg = MessageFactory.get("error.method.ambiguous", clazz, name, paramString(paramTypes));
         if (!assignableCandidates.isEmpty()) {
             return findMostSpecificWrapper(assignableCandidates, paramTypes, false, errorMsg);
         } else if (!coercibleCandidates.isEmpty()) {
@@ -295,24 +281,21 @@ public class ReflectionUtil {
         } else if (!varArgsCandidates.isEmpty()) {
             return findMostSpecificWrapper(varArgsCandidates, paramTypes, true, errorMsg);
         } else {
-            throw new MethodNotFoundException(MessageFactory.get(
-                    "error.method.notfound", clazz, name, paramString(paramTypes)));
+            throw new MethodNotFoundException(MessageFactory.get("error.method.notfound", clazz, name, paramString(paramTypes)));
         }
 
     }
-    
+
     /*
-     * This method duplicates code in javax.el.ELUtil. When
-     * making changes keep the code in sync.
+     * This method duplicates code in javax.el.ELUtil. When making changes keep the code in sync.
      */
-    private static Wrapper findMostSpecificWrapper(List<Wrapper> candidates, 
-            Class<?>[] matchingTypes, boolean elSpecific, String errorMsg) {
+    private static Wrapper findMostSpecificWrapper(List<Wrapper> candidates, Class<?>[] matchingTypes, boolean elSpecific, String errorMsg) {
         List<Wrapper> ambiguouses = new ArrayList<Wrapper>();
         for (Wrapper candidate : candidates) {
             boolean lessSpecific = false;
-            
+
             Iterator<Wrapper> it = ambiguouses.iterator();
-            while(it.hasNext()) {
+            while (it.hasNext()) {
                 int result = isMoreSpecific(candidate, it.next(), matchingTypes, elSpecific);
                 if (result == 1) {
                     it.remove();
@@ -320,41 +303,39 @@ public class ReflectionUtil {
                     lessSpecific = true;
                 }
             }
-            
+
             if (!lessSpecific) {
                 ambiguouses.add(candidate);
             }
         }
-        
+
         if (ambiguouses.size() > 1) {
             throw new MethodNotFoundException(errorMsg);
         }
-        
+
         return ambiguouses.get(0);
     }
-    
+
     /*
-     * This method duplicates code in javax.el.ELUtil. When
-     * making changes keep the code in sync.
+     * This method duplicates code in javax.el.ELUtil. When making changes keep the code in sync.
      */
-    private static int isMoreSpecific(Wrapper wrapper1, Wrapper wrapper2, 
-            Class<?>[] matchingTypes, boolean elSpecific) {
+    private static int isMoreSpecific(Wrapper wrapper1, Wrapper wrapper2, Class<?>[] matchingTypes, boolean elSpecific) {
         Class<?>[] paramTypes1 = wrapper1.getParameterTypes();
         Class<?>[] paramTypes2 = wrapper2.getParameterTypes();
-        
+
         if (wrapper1.isVarArgs()) {
-            //JLS8 15.12.2.5 Choosing the Most Specific Method
-            int length =  Math.max(Math.max(paramTypes1.length, paramTypes2.length), matchingTypes.length);
+            // JLS8 15.12.2.5 Choosing the Most Specific Method
+            int length = Math.max(Math.max(paramTypes1.length, paramTypes2.length), matchingTypes.length);
             paramTypes1 = getComparingParamTypesForVarArgsMethod(paramTypes1, length);
             paramTypes2 = getComparingParamTypesForVarArgsMethod(paramTypes2, length);
-            
+
             if (length > matchingTypes.length) {
                 Class<?>[] matchingTypes2 = new Class<?>[length];
                 System.arraycopy(matchingTypes, 0, matchingTypes2, 0, matchingTypes.length);
                 matchingTypes = matchingTypes2;
             }
         }
-        
+
         int result = 0;
         for (int i = 0; i < paramTypes1.length; i++) {
             if (paramTypes1[i] != paramTypes2[i]) {
@@ -374,7 +355,7 @@ public class ReflectionUtil {
                 }
             }
         }
-        
+
         if (result == 0) {
             // The nature of bridge methods is such that it actually
             // doesn't matter which one we pick as long as we pick
@@ -382,13 +363,12 @@ public class ReflectionUtil {
             // one) anyway.
             result = Boolean.compare(wrapper1.isBridge(), wrapper2.isBridge());
         }
-        
+
         return result;
     }
-    
+
     /*
-     * This method duplicates code in javax.el.ELUtil. When
-     * making changes keep the code in sync.
+     * This method duplicates code in javax.el.ELUtil. When making changes keep the code in sync.
      */
     private static int isMoreSpecific(Class<?> type1, Class<?> type2, Class<?> matchingType, boolean elSpecific) {
         type1 = getBoxingTypeIfPrimitive(type1);
@@ -399,12 +379,11 @@ public class ReflectionUtil {
             return -1;
         } else {
             if (elSpecific) {
-                /* 
+                /*
                  * Number will be treated as more specific
-                 * 
-                 * ASTInteger only return Long or BigInteger, no Byte / Short / Integer.
-                 * ASTFloatingPoint also.
-                 * 
+                 *
+                 * ASTInteger only return Long or BigInteger, no Byte / Short / Integer. ASTFloatingPoint also.
+                 *
                  */
                 if (matchingType != null && Number.class.isAssignableFrom(matchingType)) {
                     boolean b1 = Number.class.isAssignableFrom(type1) || type1.isPrimitive();
@@ -417,17 +396,16 @@ public class ReflectionUtil {
                         return 0;
                     }
                 }
-                
+
                 return 0;
             } else {
                 return 0;
             }
         }
     }
-    
+
     /*
-     * This method duplicates code in javax.el.ELUtil. When
-     * making changes keep the code in sync.
+     * This method duplicates code in javax.el.ELUtil. When making changes keep the code in sync.
      */
     private static Class<?> getBoxingTypeIfPrimitive(Class<?> clazz) {
         if (clazz.isPrimitive()) {
@@ -451,12 +429,11 @@ public class ReflectionUtil {
         } else {
             return clazz;
         }
-        
+
     }
-    
+
     /*
-     * This method duplicates code in javax.el.ELUtil. When
-     * making changes keep the code in sync.
+     * This method duplicates code in javax.el.ELUtil. When making changes keep the code in sync.
      */
     private static Class<?>[] getComparingParamTypesForVarArgsMethod(Class<?>[] paramTypes, int length) {
         Class<?>[] result = new Class<?>[length];
@@ -465,13 +442,12 @@ public class ReflectionUtil {
         for (int i = paramTypes.length - 1; i < length; i++) {
             result[i] = type;
         }
-        
+
         return result;
     }
 
     /*
-     * This method duplicates code in javax.el.ELUtil. When
-     * making changes keep the code in sync.
+     * This method duplicates code in javax.el.ELUtil. When making changes keep the code in sync.
      */
     private static final String paramString(Class<?>[] types) {
         if (types != null) {
@@ -492,8 +468,7 @@ public class ReflectionUtil {
     }
 
     /*
-     * This method duplicates code in javax.el.ELUtil. When
-     * making changes keep the code in sync.
+     * This method duplicates code in javax.el.ELUtil. When making changes keep the code in sync.
      */
     static boolean isAssignableFrom(Class<?> src, Class<?> target) {
         // src will always be an object
@@ -502,20 +477,18 @@ public class ReflectionUtil {
         if (src == null) {
             return true;
         }
-        
+
         target = getBoxingTypeIfPrimitive(target);
 
         return target.isAssignableFrom(src);
     }
 
-
     /*
-     * This method duplicates code in javax.el.ELUtil. When
-     * making changes keep the code in sync.
+     * This method duplicates code in javax.el.ELUtil. When making changes keep the code in sync.
      */
     private static boolean isCoercibleFrom(Object src, Class<?> target) {
         // TODO: This isn't pretty but it works. Significant refactoring would
-        //       be required to avoid the exception.
+        // be required to avoid the exception.
         try {
             ELSupport.coerceToType(src, target);
         } catch (Exception e) {
@@ -525,8 +498,7 @@ public class ReflectionUtil {
     }
 
     /*
-     * This method duplicates code in javax.el.ELUtil. When
-     * making changes keep the code in sync.
+     * This method duplicates code in javax.el.ELUtil. When making changes keep the code in sync.
      */
     private static Class<?>[] getTypesFromValues(Object[] values) {
         if (values == null) {
@@ -544,17 +516,13 @@ public class ReflectionUtil {
         return result;
     }
 
-
     /*
-     * This method duplicates code in javax.el.ELUtil. When
-     * making changes keep the code in sync.
-     * 
-     * Get a public method form a public class or interface of a given method.
-     * Note that if a PropertyDescriptor is obtained for a non-public class that
-     * implements a public interface, the read/write methods will be for the
-     * class, and therefore inaccessible.  To correct this, a version of the
-     * same method must be found in a superclass or interface.
-     * 
+     * This method duplicates code in javax.el.ELUtil. When making changes keep the code in sync.
+     *
+     * Get a public method form a public class or interface of a given method. Note that if a PropertyDescriptor is obtained
+     * for a non-public class that implements a public interface, the read/write methods will be for the class, and
+     * therefore inaccessible. To correct this, a version of the same method must be found in a superclass or interface.
+     *
      */
     static Method getMethod(Class<?> type, Method m) {
         if (m == null || Modifier.isPublic(type.getModifiers())) {
@@ -587,10 +555,9 @@ public class ReflectionUtil {
         }
         return null;
     }
-    
+
     /*
-     * This method duplicates code in javax.el.ELUtil. When
-     * making changes keep the code in sync.
+     * This method duplicates code in javax.el.ELUtil. When making changes keep the code in sync.
      */
     static Constructor<?> getConstructor(Class<?> type, Constructor<?> c) {
         if (c == null || Modifier.isPublic(type.getModifiers())) {
@@ -611,13 +578,11 @@ public class ReflectionUtil {
         }
         return null;
     }
-    
+
     /*
-     * This method duplicates code in javax.el.ELUtil. When
-     * making changes keep the code in sync.
+     * This method duplicates code in javax.el.ELUtil. When making changes keep the code in sync.
      */
-    static Object[] buildParameters(ELContext context, Class<?>[] parameterTypes,
-            boolean isVarArgs,Object[] params) {
+    static Object[] buildParameters(ELContext context, Class<?>[] parameterTypes, boolean isVarArgs, Object[] params) {
         Object[] parameters = null;
         if (parameterTypes.length > 0) {
             parameters = new Object[parameterTypes.length];
@@ -626,41 +591,33 @@ public class ReflectionUtil {
                 int varArgIndex = parameterTypes.length - 1;
                 // First argCount-1 parameters are standard
                 for (int i = 0; (i < varArgIndex && i < paramCount); i++) {
-                    parameters[i] = context.convertToType(params[i],
-                            parameterTypes[i]);
+                    parameters[i] = context.convertToType(params[i], parameterTypes[i]);
                 }
                 // Last parameter is the varargs
-                if (parameterTypes.length == paramCount 
-                        && parameterTypes[varArgIndex] == params[varArgIndex].getClass()) {
+                if (parameterTypes.length == paramCount && parameterTypes[varArgIndex] == params[varArgIndex].getClass()) {
                     parameters[varArgIndex] = params[varArgIndex];
                 } else {
-                    Class<?> varArgClass =
-                            parameterTypes[varArgIndex].getComponentType();
-                    final Object varargs = Array.newInstance(
-                            varArgClass,
-                            (paramCount - varArgIndex));
+                    Class<?> varArgClass = parameterTypes[varArgIndex].getComponentType();
+                    final Object varargs = Array.newInstance(varArgClass, (paramCount - varArgIndex));
                     for (int i = (varArgIndex); i < paramCount; i++) {
-                        Array.set(varargs, i - varArgIndex,
-                                context.convertToType(params[i], varArgClass));
+                        Array.set(varargs, i - varArgIndex, context.convertToType(params[i], varArgClass));
                     }
                     parameters[varArgIndex] = varargs;
                 }
             } else {
                 for (int i = 0; i < parameterTypes.length && i < paramCount; i++) {
-                    parameters[i] = context.convertToType(params[i],
-                            parameterTypes[i]);
+                    parameters[i] = context.convertToType(params[i], parameterTypes[i]);
                 }
             }
         }
         return parameters;
     }
-    
+
     /*
-     * This method duplicates code in javax.el.ELUtil. When
-     * making changes keep the code in sync.
+     * This method duplicates code in javax.el.ELUtil. When making changes keep the code in sync.
      */
     private abstract static class Wrapper {
-        
+
         public static List<Wrapper> wrap(Method[] methods, String name) {
             List<Wrapper> result = new ArrayList<>();
             for (Method method : methods) {
@@ -670,7 +627,7 @@ public class ReflectionUtil {
             }
             return result;
         }
-        
+
         public static List<Wrapper> wrap(Constructor<?>[] constructors) {
             List<Wrapper> result = new ArrayList<>();
             for (Constructor<?> constructor : constructors) {
@@ -678,71 +635,72 @@ public class ReflectionUtil {
             }
             return result;
         }
-        
+
         public abstract Object unWrap();
+
         public abstract Class<?>[] getParameterTypes();
+
         public abstract boolean isVarArgs();
+
         public abstract boolean isBridge();
     }
-    
+
     /*
-     * This method duplicates code in javax.el.ELUtil. When
-     * making changes keep the code in sync.
+     * This method duplicates code in javax.el.ELUtil. When making changes keep the code in sync.
      */
     private static class MethodWrapper extends Wrapper {
         private final Method m;
-        
+
         public MethodWrapper(Method m) {
             this.m = m;
         }
-        
+
         @Override
         public Object unWrap() {
             return m;
         }
-        
+
         @Override
         public Class<?>[] getParameterTypes() {
             return m.getParameterTypes();
         }
-        
+
         @Override
         public boolean isVarArgs() {
             return m.isVarArgs();
         }
-        
+
         @Override
         public boolean isBridge() {
             return m.isBridge();
         }
     }
-    
+
     /*
-     * This method duplicates code in javax.el.ELUtil. When
-     * making changes keep the code in sync.
+     * This method duplicates code in javax.el.ELUtil. When making changes keep the code in sync.
      */
     private static class ConstructorWrapper extends Wrapper {
         private final Constructor<?> c;
-        
+
         public ConstructorWrapper(Constructor<?> c) {
             this.c = c;
         }
-        
+
         @Override
         public Object unWrap() {
             return c;
         }
-        
+
         @Override
         public Class<?>[] getParameterTypes() {
             return c.getParameterTypes();
         }
-        
+
         @Override
         public boolean isVarArgs() {
             return c.isVarArgs();
         }
-        
+
         @Override
         public boolean isBridge() {
             return false;

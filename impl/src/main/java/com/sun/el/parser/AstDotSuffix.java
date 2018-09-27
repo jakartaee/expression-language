@@ -29,8 +29,8 @@ public final class AstDotSuffix extends SimpleNode {
         super(id);
     }
 
-    public Object getValue(EvaluationContext ctx)
-            throws ELException {
+    @Override
+    public Object getValue(EvaluationContext ctx) throws ELException {
         return this.image;
     }
 }

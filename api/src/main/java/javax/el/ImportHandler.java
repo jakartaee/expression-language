@@ -16,12 +16,12 @@
 
 package javax.el;
 
-import java.util.Map;
-import java.util.List;
-import java.util.HashMap;
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.lang.reflect.Modifier;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Handles imports of class names and package names. An imported package name implicitly imports all the classes in the
@@ -42,7 +42,7 @@ public class ImportHandler {
 
     /**
      * Import a static field or method.
-     * 
+     *
      * @param name The static member name, including the full class name, to be imported
      * @throws ELException if the name does not include a ".".
      */
@@ -58,7 +58,7 @@ public class ImportHandler {
 
     /**
      * Import a class.
-     * 
+     *
      * @param name The full class name of the class to be imported
      * @throws ELException if the name does not include a ".".
      */
@@ -73,7 +73,7 @@ public class ImportHandler {
 
     /**
      * Import all the classes in a package.
-     * 
+     *
      * @param packageName The package name to be imported
      */
     public void importPackage(String packageName) {

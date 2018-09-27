@@ -19,7 +19,7 @@ package javax.el;
 /**
  * Resolves a bean by its known name. This class can be extended to return a bean object given its name, to set a value
  * to an existing bean, or to create a bean with the value.
- * 
+ *
  * @see BeanNameELResolver
  *
  * @since EL 3.0
@@ -37,10 +37,10 @@ public abstract class BeanNameResolver {
 
     /**
      * Returns the bean known by its name.
-     * 
+     *
      * @param beanName The name of the bean.
      * @return The bean with the given name. Can be <code>null</code>.
-     * 
+     *
      */
     public Object getBean(String beanName) {
         return null;
@@ -49,7 +49,7 @@ public abstract class BeanNameResolver {
     /**
      * Sets a value to a bean of the given name. If the bean of the given name does not exist and if {@link #canCreateBean}
      * is <code>true</code>, one is created with the given value.
-     * 
+     *
      * @param beanName The name of the bean
      * @param value The value to set the bean to. Can be <code>null</code>.
      * @throws PropertyNotWritableException if the bean cannot be modified or created.
@@ -60,7 +60,7 @@ public abstract class BeanNameResolver {
 
     /**
      * Indicates if the bean of the given name is read-only or writable
-     * 
+     *
      * @param beanName The name of the bean
      * @return <code>true</code> if the bean can be set to a new value. <code>false</code> otherwise.
      */
@@ -70,7 +70,7 @@ public abstract class BeanNameResolver {
 
     /**
      * Allow creating a bean of the given name if it does not exist.
-     * 
+     *
      * @param beanName The name of the bean
      * @return <code>true</code> if bean creation is supported <code>false</code> otherwise.
      */

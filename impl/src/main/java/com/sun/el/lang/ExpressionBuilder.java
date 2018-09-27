@@ -17,13 +17,9 @@
 package com.sun.el.lang;
 
 import java.io.StringReader;
-import java.lang.reflect.Method;
-import java.lang.ref.Reference;
-import java.lang.ref.SoftReference;
 import java.lang.ref.ReferenceQueue;
-import java.util.Map;
-import java.util.Collections;
-import java.util.concurrent.ConcurrentMap;
+import java.lang.ref.SoftReference;
+import java.lang.reflect.Method;
 import java.util.concurrent.ConcurrentHashMap;
 
 import javax.el.ELContext;
@@ -59,24 +55,23 @@ public final class ExpressionBuilder implements NodeVisitor {
 
     static private class NodeSoftReference extends SoftReference<Node> {
         final String key;
+
         NodeSoftReference(String key, Node node, ReferenceQueue<Node> refQ) {
             super(node, refQ);
             this.key = key;
         }
     }
 
-    static private class SoftConcurrentHashMap extends
-                ConcurrentHashMap<String, Node> {
+    static private class SoftConcurrentHashMap extends ConcurrentHashMap<String, Node> {
 
         private static final int CACHE_INIT_SIZE = 256;
-        private ConcurrentHashMap<String, NodeSoftReference> map =
-            new ConcurrentHashMap<String, NodeSoftReference>(CACHE_INIT_SIZE);
+        private ConcurrentHashMap<String, NodeSoftReference> map = new ConcurrentHashMap<String, NodeSoftReference>(CACHE_INIT_SIZE);
         private ReferenceQueue<Node> refQ = new ReferenceQueue<Node>();
 
         // Remove map entries that have been placed on the queue by GC.
         private void cleanup() {
             NodeSoftReference nodeRef = null;
-            while ((nodeRef = (NodeSoftReference)refQ.poll()) != null) {
+            while ((nodeRef = (NodeSoftReference) refQ.poll()) != null) {
                 map.remove(nodeRef.key);
             }
         }
@@ -84,17 +79,15 @@ public final class ExpressionBuilder implements NodeVisitor {
         @Override
         public Node put(String key, Node value) {
             cleanup();
-            NodeSoftReference prev =
-                map.put(key, new NodeSoftReference(key, value, refQ));
-            return prev == null? null: prev.get();
+            NodeSoftReference prev = map.put(key, new NodeSoftReference(key, value, refQ));
+            return prev == null ? null : prev.get();
         }
 
         @Override
         public Node putIfAbsent(String key, Node value) {
             cleanup();
-            NodeSoftReference prev =
-                map.putIfAbsent(key, new NodeSoftReference(key, value, refQ));
-            return prev == null? null: prev.get();
+            NodeSoftReference prev = map.putIfAbsent(key, new NodeSoftReference(key, value, refQ));
+            return prev == null ? null : prev.get();
         }
 
         @Override
@@ -113,17 +106,15 @@ public final class ExpressionBuilder implements NodeVisitor {
         }
     }
 
-    private static final SoftConcurrentHashMap cache = 
-                new SoftConcurrentHashMap();
+    private static final SoftConcurrentHashMap cache = new SoftConcurrentHashMap();
     private FunctionMapper fnMapper;
     private VariableMapper varMapper;
     private String expression;
 
     /**
-     * 
+     *
      */
-    public ExpressionBuilder(String expression, ELContext ctx)
-            throws ELException {
+    public ExpressionBuilder(String expression, ELContext ctx) throws ELException {
         this.expression = expression;
 
         FunctionMapper ctxFn = ctx.getFunctionMapper();
@@ -142,8 +133,7 @@ public final class ExpressionBuilder implements NodeVisitor {
         return n;
     }
 
-    private final static Node createNodeInternal(String expr)
-            throws ELException {
+    private final static Node createNodeInternal(String expr) throws ELException {
         if (expr == null) {
             throw new ELException(MessageFactory.get("error.null"));
         }
@@ -152,10 +142,8 @@ public final class ExpressionBuilder implements NodeVisitor {
         if (n == null) {
             try {
                 n = (new ELParser(
-                        new com.sun.el.parser.ELParserTokenManager(
-                            new com.sun.el.parser.SimpleCharStream(
-                                new StringReader(expr),1, 1, expr.length()+1))))
-                        .CompositeExpression();
+                        new com.sun.el.parser.ELParserTokenManager(new com.sun.el.parser.SimpleCharStream(new StringReader(expr), 1, 1, expr.length() + 1))))
+                                .CompositeExpression();
 
                 // validate composite expression
                 if (n instanceof AstCompositeExpression) {
@@ -173,15 +161,13 @@ public final class ExpressionBuilder implements NodeVisitor {
                                 type = child.getClass();
                             else {
                                 if (!type.equals(child.getClass())) {
-                                    throw new ELException(MessageFactory.get(
-                                            "error.mixed", expr));
+                                    throw new ELException(MessageFactory.get("error.mixed", expr));
                                 }
                             }
                         }
                     }
                 }
-                if (n instanceof AstDeferredExpression
-                        || n instanceof AstDynamicExpression) {
+                if (n instanceof AstDeferredExpression || n instanceof AstDynamicExpression) {
                     n = n.jjtGetChild(0);
                 }
                 cache.putIfAbsent(expr, n);
@@ -193,11 +179,9 @@ public final class ExpressionBuilder implements NodeVisitor {
     }
 
     /**
-     * Scan the expression nodes and captures the functions and variables used
-     * in this expression.  This ensures that any changes to the functions or
-     * variables mappings during the expression will not affect the evaluation
-     * of this expression, as the functions and variables are bound and
-     * resolved at parse time, as specified in the spec.
+     * Scan the expression nodes and captures the functions and variables used in this expression. This ensures that any
+     * changes to the functions or variables mappings during the expression will not affect the evaluation of this
+     * expression, as the functions and variables are bound and resolved at parse time, as specified in the spec.
      */
     private void prepare(Node node) throws ELException {
         node.accept(this);
@@ -212,8 +196,7 @@ public final class ExpressionBuilder implements NodeVisitor {
     private Node build() throws ELException {
         Node n = createNodeInternal(this.expression);
         this.prepare(n);
-        if (n instanceof AstDeferredExpression
-                || n instanceof AstDynamicExpression) {
+        if (n instanceof AstDeferredExpression || n instanceof AstDynamicExpression) {
             n = n.jjtGetChild(0);
         }
         return n;
@@ -221,20 +204,19 @@ public final class ExpressionBuilder implements NodeVisitor {
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see com.sun.el.parser.NodeVisitor#visit(com.sun.el.parser.Node)
      */
+    @Override
     public void visit(Node node) throws ELException {
         if (node instanceof AstFunction) {
             AstFunction funcNode = (AstFunction) node;
-            if ((funcNode.getPrefix().length() == 0) &&
-                (this.fnMapper == null || fnMapper.resolveFunction(
-                                              funcNode.getPrefix(),
-                                              funcNode.getLocalName()) == null)) {
-                // This can be a call to a LambdaExpression.  The target
-                // of the call is a bean or an EL variable.  Capture
+            if ((funcNode.getPrefix().length() == 0)
+                    && (this.fnMapper == null || fnMapper.resolveFunction(funcNode.getPrefix(), funcNode.getLocalName()) == null)) {
+                // This can be a call to a LambdaExpression. The target
+                // of the call is a bean or an EL variable. Capture
                 // the variable name in the variable mapper if it is an
-                // variable.  The decision to invoke the static method or
+                // variable. The decision to invoke the static method or
                 // the LambdaExpression will be made at runtime.
                 if (this.varMapper != null) {
                     this.varMapper.resolveVariable(funcNode.getLocalName());
@@ -245,18 +227,14 @@ public final class ExpressionBuilder implements NodeVisitor {
             if (this.fnMapper == null) {
                 throw new ELException(MessageFactory.get("error.fnMapper.null"));
             }
-            Method m = fnMapper.resolveFunction(funcNode.getPrefix(), funcNode
-                    .getLocalName());
+            Method m = fnMapper.resolveFunction(funcNode.getPrefix(), funcNode.getLocalName());
             if (m == null) {
-                throw new ELException(MessageFactory.get(
-                        "error.fnMapper.method", funcNode.getOutputName()));
+                throw new ELException(MessageFactory.get("error.fnMapper.method", funcNode.getOutputName()));
             }
             int pcnt = m.getParameterTypes().length;
-            int acnt = ((AstMethodArguments)node.jjtGetChild(0)).getParameterCount();
+            int acnt = ((AstMethodArguments) node.jjtGetChild(0)).getParameterCount();
             if (acnt != pcnt) {
-                throw new ELException(MessageFactory.get(
-                        "error.fnMapper.paramcount", funcNode.getOutputName(),
-                        "" + pcnt, "" + acnt));
+                throw new ELException(MessageFactory.get("error.fnMapper.paramcount", funcNode.getOutputName(), "" + pcnt, "" + acnt));
             }
         } else if (node instanceof AstIdentifier && this.varMapper != null) {
             String variable = ((AstIdentifier) node).getImage();
@@ -266,26 +244,19 @@ public final class ExpressionBuilder implements NodeVisitor {
         }
     }
 
-    public ValueExpression createValueExpression(Class expectedType)
-            throws ELException {
+    public ValueExpression createValueExpression(Class expectedType) throws ELException {
         Node n = this.build();
-        return new ValueExpressionImpl(this.expression, n, this.fnMapper,
-                this.varMapper, expectedType);
+        return new ValueExpressionImpl(this.expression, n, this.fnMapper, this.varMapper, expectedType);
     }
 
-    public MethodExpression createMethodExpression(Class expectedReturnType,
-            Class[] expectedParamTypes) throws ELException {
+    public MethodExpression createMethodExpression(Class expectedReturnType, Class[] expectedParamTypes) throws ELException {
         Node n = this.build();
         if (n instanceof AstValue || n instanceof AstIdentifier) {
-            return new MethodExpressionImpl(expression, n,
-                    this.fnMapper, this.varMapper,
-                    expectedReturnType, expectedParamTypes);
+            return new MethodExpressionImpl(expression, n, this.fnMapper, this.varMapper, expectedReturnType, expectedParamTypes);
         } else if (n instanceof AstLiteralExpression) {
-            return new MethodExpressionLiteral(expression, expectedReturnType,
-                    expectedParamTypes);
+            return new MethodExpressionLiteral(expression, expectedReturnType, expectedParamTypes);
         } else {
-            throw new ELException("Not a Valid Method Expression: "
-                    + expression);
+            throw new ELException("Not a Valid Method Expression: " + expression);
         }
     }
 }

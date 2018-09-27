@@ -29,42 +29,39 @@ public final class AstChoice extends SimpleNode {
         super(id);
     }
 
-    public Class getType(EvaluationContext ctx)
-            throws ELException {
+    @Override
+    public Class getType(EvaluationContext ctx) throws ELException {
         Object obj0 = this.children[0].getValue(ctx);
         Boolean b0 = coerceToBoolean(obj0);
         return this.children[((b0.booleanValue() ? 1 : 2))].getType(ctx);
     }
 
-    public Object getValue(EvaluationContext ctx)
-            throws ELException {
+    @Override
+    public Object getValue(EvaluationContext ctx) throws ELException {
         Object obj0 = this.children[0].getValue(ctx);
         Boolean b0 = coerceToBoolean(obj0);
         return this.children[((b0.booleanValue() ? 1 : 2))].getValue(ctx);
     }
 
-    public boolean isReadOnly(EvaluationContext ctx)
-            throws ELException {
+    @Override
+    public boolean isReadOnly(EvaluationContext ctx) throws ELException {
         Object obj0 = this.children[0].getValue(ctx);
         Boolean b0 = coerceToBoolean(obj0);
         return this.children[((b0.booleanValue() ? 1 : 2))].isReadOnly(ctx);
     }
 
-    public void setValue(EvaluationContext ctx, Object value)
-            throws ELException {
+    @Override
+    public void setValue(EvaluationContext ctx, Object value) throws ELException {
         Object obj0 = this.children[0].getValue(ctx);
         Boolean b0 = coerceToBoolean(obj0);
-        this.children[((b0.booleanValue()? 1: 2))].setValue(ctx, value);
+        this.children[((b0.booleanValue() ? 1 : 2))].setValue(ctx, value);
     }
 
-    public Object invoke(EvaluationContext ctx,
-                         Class[] paramTypes,
-                         Object[] paramValues)
-            throws ELException {
+    @Override
+    public Object invoke(EvaluationContext ctx, Class[] paramTypes, Object[] paramValues) throws ELException {
         Object obj0 = this.children[0].getValue(ctx);
         Boolean b0 = coerceToBoolean(obj0);
-        return this.children[((b0.booleanValue() ? 1 : 2))]
-            .invoke(ctx, paramTypes, paramValues);
+        return this.children[((b0.booleanValue() ? 1 : 2))].invoke(ctx, paramTypes, paramValues);
     }
 
 }

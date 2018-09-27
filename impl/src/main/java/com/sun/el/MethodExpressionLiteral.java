@@ -26,7 +26,6 @@ import javax.el.ELException;
 import javax.el.MethodExpression;
 import javax.el.MethodInfo;
 
-import com.sun.el.lang.ELSupport;
 import com.sun.el.util.ReflectionUtil;
 
 public class MethodExpressionLiteral extends MethodExpression implements Externalizable {
@@ -47,10 +46,12 @@ public class MethodExpressionLiteral extends MethodExpression implements Externa
         this.paramTypes = paramTypes;
     }
 
+    @Override
     public MethodInfo getMethodInfo(ELContext context) throws ELException {
         return new MethodInfo(this.expr, this.expectedType, this.paramTypes);
     }
 
+    @Override
     public Object invoke(ELContext context, Object[] params) throws ELException {
         if (this.expectedType == null) {
             return this.expr;
@@ -63,22 +64,27 @@ public class MethodExpressionLiteral extends MethodExpression implements Externa
         }
     }
 
+    @Override
     public String getExpressionString() {
         return this.expr;
     }
 
+    @Override
     public boolean equals(Object obj) {
         return (obj instanceof MethodExpressionLiteral && this.hashCode() == obj.hashCode());
     }
 
+    @Override
     public int hashCode() {
         return this.expr.hashCode();
     }
 
+    @Override
     public boolean isLiteralText() {
         return true;
     }
 
+    @Override
     public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
         this.expr = in.readUTF();
         String type = in.readUTF();
@@ -88,6 +94,7 @@ public class MethodExpressionLiteral extends MethodExpression implements Externa
         this.paramTypes = ReflectionUtil.toTypeArray(((String[]) in.readObject()));
     }
 
+    @Override
     public void writeExternal(ObjectOutput out) throws IOException {
         out.writeUTF(this.expr);
         out.writeUTF((this.expectedType != null) ? this.expectedType.getName() : "");
