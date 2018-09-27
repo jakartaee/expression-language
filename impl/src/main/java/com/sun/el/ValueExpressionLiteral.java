@@ -16,6 +16,8 @@
 
 package com.sun.el;
 
+import static com.sun.el.util.ReflectionUtil.forName;
+
 import java.io.Externalizable;
 import java.io.IOException;
 import java.io.ObjectInput;
@@ -27,40 +29,39 @@ import javax.el.PropertyNotWritableException;
 import javax.el.ValueExpression;
 
 import com.sun.el.util.MessageFactory;
-import com.sun.el.util.ReflectionUtil;
 
 public final class ValueExpressionLiteral extends ValueExpression implements Externalizable {
 
     private static final long serialVersionUID = 1L;
 
     private Object value;
-
-    private Class expectedType;
+    private Class<?> expectedType;
 
     public ValueExpressionLiteral() {
         super();
     }
 
-    public ValueExpressionLiteral(Object value, Class expectedType) {
+    public ValueExpressionLiteral(Object value, Class<?> expectedType) {
         this.value = value;
         this.expectedType = expectedType;
     }
 
     @Override
     public Object getValue(ELContext context) {
-        if (this.expectedType != null) {
+        if (expectedType != null) {
             try {
-                return context.convertToType(this.value, this.expectedType);
+                return context.convertToType(value, expectedType);
             } catch (IllegalArgumentException ex) {
                 throw new ELException(ex);
             }
         }
-        return this.value;
+
+        return value;
     }
 
     @Override
     public void setValue(ELContext context, Object value) {
-        throw new PropertyNotWritableException(MessageFactory.get("error.value.literal.write", this.value));
+        throw new PropertyNotWritableException(MessageFactory.get("error.value.literal.write", value));
     }
 
     @Override
@@ -69,23 +70,23 @@ public final class ValueExpressionLiteral extends ValueExpression implements Ext
     }
 
     @Override
-    public Class getType(ELContext context) {
-        return (this.value != null) ? this.value.getClass() : null;
+    public Class<?> getType(ELContext context) {
+        return value != null ? value.getClass() : null;
     }
 
     @Override
-    public Class getExpectedType() {
-        return this.expectedType;
+    public Class<?> getExpectedType() {
+        return expectedType;
     }
 
     @Override
     public String getExpressionString() {
-        return (this.value != null) ? this.value.toString() : null;
+        return value != null ? value.toString() : null;
     }
 
     @Override
     public boolean equals(Object obj) {
-        return (obj instanceof ValueExpressionLiteral && this.equals((ValueExpressionLiteral) obj));
+        return obj instanceof ValueExpressionLiteral && this.equals((ValueExpressionLiteral) obj);
     }
 
     public boolean equals(ValueExpressionLiteral ve) {
@@ -94,7 +95,7 @@ public final class ValueExpressionLiteral extends ValueExpression implements Ext
 
     @Override
     public int hashCode() {
-        return (this.value != null) ? this.value.hashCode() : 0;
+        return value != null ? value.hashCode() : 0;
     }
 
     @Override
@@ -104,16 +105,16 @@ public final class ValueExpressionLiteral extends ValueExpression implements Ext
 
     @Override
     public void writeExternal(ObjectOutput out) throws IOException {
-        out.writeObject(this.value);
-        out.writeUTF((this.expectedType != null) ? this.expectedType.getName() : "");
+        out.writeObject(value);
+        out.writeUTF(expectedType != null ? expectedType.getName() : "");
     }
 
     @Override
     public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
-        this.value = in.readObject();
+        value = in.readObject();
         String type = in.readUTF();
         if (!"".equals(type)) {
-            this.expectedType = ReflectionUtil.forName(type);
+            expectedType = forName(type);
         }
     }
 }

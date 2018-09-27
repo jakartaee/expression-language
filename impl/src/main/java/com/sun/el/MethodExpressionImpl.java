@@ -16,6 +16,10 @@
 
 package com.sun.el;
 
+import static com.sun.el.util.ReflectionUtil.forName;
+import static com.sun.el.util.ReflectionUtil.toTypeArray;
+import static com.sun.el.util.ReflectionUtil.toTypeNameArray;
+
 import java.io.Externalizable;
 import java.io.IOException;
 import java.io.ObjectInput;
@@ -36,7 +40,6 @@ import javax.el.VariableMapper;
 import com.sun.el.lang.EvaluationContext;
 import com.sun.el.lang.ExpressionBuilder;
 import com.sun.el.parser.Node;
-import com.sun.el.util.ReflectionUtil;
 
 /**
  * An <code>Expression</code> that refers to a method on an object.
@@ -73,21 +76,14 @@ import com.sun.el.util.ReflectionUtil;
  */
 public final class MethodExpressionImpl extends MethodExpression implements Externalizable {
 
-    private Class expectedType;
-
+    private Class<?> expectedType;
     private String expr;
-
     private FunctionMapper fnMapper;
-
     private VariableMapper varMapper;
+    private Class<?>[] paramTypes;
 
     private transient Node node;
 
-    private Class[] paramTypes;
-
-    /**
-     *
-     */
     public MethodExpressionImpl() {
         super();
     }
@@ -100,7 +96,7 @@ public final class MethodExpressionImpl extends MethodExpression implements Exte
      * @param expectedType expected return type of method
      * @param paramTypes the method parameters
      */
-    public MethodExpressionImpl(String expr, Node node, FunctionMapper fnMapper, VariableMapper varMapper, Class expectedType, Class[] paramTypes) {
+    public MethodExpressionImpl(String expr, Node node, FunctionMapper fnMapper, VariableMapper varMapper, Class<?> expectedType, Class<?>[] paramTypes) {
         super();
         this.expr = expr;
         this.node = node;
@@ -133,9 +129,10 @@ public final class MethodExpressionImpl extends MethodExpression implements Exte
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof MethodExpressionImpl) {
-            MethodExpressionImpl me = (MethodExpressionImpl) obj;
-            return getNode().equals(me.getNode());
+            MethodExpressionImpl methodExpressionImpl = (MethodExpressionImpl) obj;
+            return getNode().equals(methodExpressionImpl.getNode());
         }
+
         return false;
     }
 
@@ -159,7 +156,7 @@ public final class MethodExpressionImpl extends MethodExpression implements Exte
      */
     @Override
     public String getExpressionString() {
-        return this.expr;
+        return expr;
     }
 
     /**
@@ -179,9 +176,7 @@ public final class MethodExpressionImpl extends MethodExpression implements Exte
      */
     @Override
     public MethodInfo getMethodInfo(ELContext context) throws PropertyNotFoundException, MethodNotFoundException, ELException {
-        Node n = this.getNode();
-        EvaluationContext ctx = new EvaluationContext(context, this.fnMapper, this.varMapper);
-        return n.getMethodInfo(ctx, this.paramTypes);
+        return getNode().getMethodInfo(new EvaluationContext(context, fnMapper, varMapper), paramTypes);
     }
 
     /**
@@ -189,10 +184,11 @@ public final class MethodExpressionImpl extends MethodExpression implements Exte
      * @throws ELException
      */
     private Node getNode() throws ELException {
-        if (this.node == null) {
-            this.node = ExpressionBuilder.createNode(this.expr);
+        if (node == null) {
+            node = ExpressionBuilder.createNode(expr);
         }
-        return this.node;
+
+        return node;
     }
 
     /**
@@ -235,10 +231,12 @@ public final class MethodExpressionImpl extends MethodExpression implements Exte
      */
     @Override
     public Object invoke(ELContext context, Object[] params) throws PropertyNotFoundException, MethodNotFoundException, ELException {
-        EvaluationContext ctx = new EvaluationContext(context, this.fnMapper, this.varMapper);
-        ctx.notifyBeforeEvaluation(this.expr);
-        Object obj = this.getNode().invoke(ctx, this.paramTypes, params);
-        ctx.notifyAfterEvaluation(this.expr);
+        EvaluationContext ctx = new EvaluationContext(context, fnMapper, varMapper);
+        ctx.notifyBeforeEvaluation(expr);
+
+        Object obj = getNode().invoke(ctx, paramTypes, params);
+
+        ctx.notifyAfterEvaluation(expr);
         return obj;
     }
 
@@ -249,14 +247,16 @@ public final class MethodExpressionImpl extends MethodExpression implements Exte
      */
     @Override
     public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
-        this.expr = in.readUTF();
+        expr = in.readUTF();
         String type = in.readUTF();
+
         if (!"".equals(type)) {
-            this.expectedType = ReflectionUtil.forName(type);
+            expectedType = forName(type);
         }
-        this.paramTypes = ReflectionUtil.toTypeArray(((String[]) in.readObject()));
-        this.fnMapper = (FunctionMapper) in.readObject();
-        this.varMapper = (VariableMapper) in.readObject();
+
+        paramTypes = toTypeArray(((String[]) in.readObject()));
+        fnMapper = (FunctionMapper) in.readObject();
+        varMapper = (VariableMapper) in.readObject();
     }
 
     /*
@@ -266,11 +266,11 @@ public final class MethodExpressionImpl extends MethodExpression implements Exte
      */
     @Override
     public void writeExternal(ObjectOutput out) throws IOException {
-        out.writeUTF(this.expr);
-        out.writeUTF((this.expectedType != null) ? this.expectedType.getName() : "");
-        out.writeObject(ReflectionUtil.toTypeNameArray(this.paramTypes));
-        out.writeObject(this.fnMapper);
-        out.writeObject(this.varMapper);
+        out.writeUTF(expr);
+        out.writeUTF(expectedType != null ? expectedType.getName() : "");
+        out.writeObject(toTypeNameArray(paramTypes));
+        out.writeObject(fnMapper);
+        out.writeObject(varMapper);
     }
 
     @Override
@@ -280,6 +280,6 @@ public final class MethodExpressionImpl extends MethodExpression implements Exte
 
     @Override
     public boolean isParametersProvided() {
-        return this.getNode().isParametersProvided();
+        return getNode().isParametersProvided();
     }
 }
