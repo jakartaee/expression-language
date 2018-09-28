@@ -18,51 +18,51 @@
 package javax.el;
 
 /**
- * Represents any of the exception conditions that can arise during
- * expression evaluation.
+ * Represents any of the exception conditions that can arise during expression evaluation.
  *
  * @since JSP 2.1
  */
 public class ELException extends RuntimeException {
 
-    //-------------------------------------
+    private static final long serialVersionUID = -2161386187282690885L;
+
+    // -------------------------------------
     /**
      * Creates an <code>ELException</code> with no detail message.
      */
-    public ELException () {
-        super ();
+    public ELException() {
+        super();
     }
 
-    //-------------------------------------
+    // -------------------------------------
     /**
      * Creates an <code>ELException</code> with the provided detail message.
      *
      * @param pMessage the detail message
      */
-    public ELException (String pMessage) {
-        super (pMessage);
+    public ELException(String pMessage) {
+        super(pMessage);
     }
 
-    //-------------------------------------
+    // -------------------------------------
     /**
      * Creates an <code>ELException</code> with the given cause.
      *
      * @param pRootCause the originating cause of this exception
      */
-    public ELException (Throwable pRootCause) {
-        super( pRootCause );
+    public ELException(Throwable pRootCause) {
+        super(pRootCause);
     }
 
-    //-------------------------------------
+    // -------------------------------------
     /**
      * Creates an ELException with the given detail message and root cause.
      *
      * @param pMessage the detail message
      * @param pRootCause the originating cause of this exception
      */
-    public ELException (String pMessage,
-                        Throwable pRootCause) {
-        super (pMessage, pRootCause);
+    public ELException(String pMessage, Throwable pRootCause) {
+        super(pMessage, pRootCause);
     }
 
 }

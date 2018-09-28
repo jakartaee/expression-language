@@ -32,19 +32,18 @@ import com.sun.el.util.ReflectionUtil;
  * @author Jacob Hookom [jacob@hookom.net]
  * @version $Change: 181177 $$DateTime: 2001/06/26 08:45:09 $$Author: kchung $
  */
-public class FunctionMapperImpl extends FunctionMapper implements
-        Externalizable {
+public class FunctionMapperImpl extends FunctionMapper implements Externalizable {
 
     private static final long serialVersionUID = 1L;
-    
+
     protected Map<String, Function> functions = null;
 
     /*
      * (non-Javadoc)
-     * 
-     * @see javax.el.FunctionMapper#resolveFunction(java.lang.String,
-     *      java.lang.String)
+     *
+     * @see javax.el.FunctionMapper#resolveFunction(java.lang.String, java.lang.String)
      */
+    @Override
     public Method resolveFunction(String prefix, String localName) {
         if (this.functions != null) {
             Function f = this.functions.get(prefix + ":" + localName);
@@ -59,42 +58,43 @@ public class FunctionMapperImpl extends FunctionMapper implements
         }
         Function f = new Function(prefix, localName, m);
         synchronized (this) {
-            this.functions.put(prefix+":"+localName, f);
+            this.functions.put(prefix + ":" + localName, f);
         }
     }
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see java.io.Externalizable#writeExternal(java.io.ObjectOutput)
      */
+    @Override
     public void writeExternal(ObjectOutput out) throws IOException {
         out.writeObject(this.functions);
     }
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see java.io.Externalizable#readExternal(java.io.ObjectInput)
      */
     // Safe cast
+    @Override
     @SuppressWarnings("unchecked")
-    public void readExternal(ObjectInput in) throws IOException,
-            ClassNotFoundException {
+    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
         this.functions = (Map<String, Function>) in.readObject();
     }
-    
+
     public static class Function implements Externalizable {
-    
+
         protected transient Method m;
         protected String owner;
         protected String name;
         protected String[] types;
         protected String prefix;
         protected String localName;
-    
+
         /**
-         * 
+         *
          */
         public Function(String prefix, String localName, Method m) {
             if (localName == null) {
@@ -107,21 +107,22 @@ public class FunctionMapperImpl extends FunctionMapper implements
             this.localName = localName;
             this.m = m;
         }
-        
+
         public Function() {
             // for serialization
         }
-    
+
         /*
          * (non-Javadoc)
-         * 
+         *
          * @see java.io.Externalizable#writeExternal(java.io.ObjectOutput)
          */
+        @Override
         public void writeExternal(ObjectOutput out) throws IOException {
-            
+
             out.writeUTF((this.prefix != null) ? this.prefix : "");
             out.writeUTF(this.localName);
-            
+
             if (this.owner != null) {
                 out.writeUTF(this.owner);
             } else {
@@ -138,28 +139,29 @@ public class FunctionMapperImpl extends FunctionMapper implements
                 out.writeObject(ReflectionUtil.toTypeNameArray(this.m.getParameterTypes()));
             }
         }
-    
+
         /*
          * (non-Javadoc)
-         * 
+         *
          * @see java.io.Externalizable#readExternal(java.io.ObjectInput)
          */
-        public void readExternal(ObjectInput in) throws IOException,
-                ClassNotFoundException {
-            
+        @Override
+        public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
+
             this.prefix = in.readUTF();
-            if ("".equals(this.prefix)) this.prefix = null;
+            if ("".equals(this.prefix)) {
+                this.prefix = null;
+            }
             this.localName = in.readUTF();
             this.owner = in.readUTF();
             this.name = in.readUTF();
             this.types = (String[]) in.readObject();
         }
-    
+
         public Method getMethod() {
             if (this.m == null) {
                 try {
-                    Class<?> t = Class.forName(this.owner, false,
-                                Thread.currentThread().getContextClassLoader());
+                    Class<?> t = Class.forName(this.owner, false, Thread.currentThread().getContextClassLoader());
                     Class[] p = ReflectionUtil.toTypeArray(this.types);
                     this.m = t.getMethod(this.name, p);
                 } catch (Exception e) {
@@ -168,28 +170,38 @@ public class FunctionMapperImpl extends FunctionMapper implements
             }
             return this.m;
         }
-        
+
         public boolean matches(String prefix, String localName) {
             if (this.prefix != null) {
-                if (prefix == null) return false;
-                if (!this.prefix.equals(prefix)) return false;
+                if (prefix == null) {
+                    return false;
+                }
+                if (!this.prefix.equals(prefix)) {
+                    return false;
+                }
             }
             return this.localName.equals(localName);
         }
-    
-        /* (non-Javadoc)
+
+        /*
+         * (non-Javadoc)
+         *
          * @see java.lang.Object#equals(java.lang.Object)
          */
+        @Override
         public boolean equals(Object obj) {
             if (obj instanceof Function) {
                 return this.hashCode() == obj.hashCode();
             }
             return false;
         }
-        
-        /* (non-Javadoc)
+
+        /*
+         * (non-Javadoc)
+         *
          * @see java.lang.Object#hashCode()
          */
+        @Override
         public int hashCode() {
             return (this.prefix + this.localName).hashCode();
         }

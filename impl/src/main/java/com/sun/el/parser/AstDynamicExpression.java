@@ -29,23 +29,23 @@ public final class AstDynamicExpression extends SimpleNode {
         super(id);
     }
 
-    public Class getType(EvaluationContext ctx)
-            throws ELException {
+    @Override
+    public Class getType(EvaluationContext ctx) throws ELException {
         return this.children[0].getType(ctx);
     }
 
-    public Object getValue(EvaluationContext ctx)
-            throws ELException {
+    @Override
+    public Object getValue(EvaluationContext ctx) throws ELException {
         return this.children[0].getValue(ctx);
     }
 
-    public boolean isReadOnly(EvaluationContext ctx)
-            throws ELException {
+    @Override
+    public boolean isReadOnly(EvaluationContext ctx) throws ELException {
         return this.children[0].isReadOnly(ctx);
     }
 
-    public void setValue(EvaluationContext ctx, Object value)
-            throws ELException {
+    @Override
+    public void setValue(EvaluationContext ctx, Object value) throws ELException {
         this.children[0].setValue(ctx, value);
     }
 }

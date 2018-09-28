@@ -16,20 +16,22 @@
 
 package com.sun.el.parser;
 
-import java.util.HashSet;
 import java.util.HashMap;
+import java.util.HashSet;
+
 import javax.el.ELException;
+
 import com.sun.el.lang.EvaluationContext;
 
 /**
  * @author Kin-man Chung
  */
-public
-class AstMapData extends SimpleNode {
+public class AstMapData extends SimpleNode {
     public AstMapData(int id) {
         super(id);
     }
 
+    @Override
     public Object getValue(EvaluationContext ctx) {
         HashSet<Object> set = new HashSet<Object>();
         HashMap<Object, Object> map = new HashMap<Object, Object>();

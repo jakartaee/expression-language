@@ -18,34 +18,42 @@
 -->
 
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-    
+
     <parent>
         <groupId>org.eclipse.ee4j</groupId>
         <artifactId>project</artifactId>
-        <version>1.0.1</version>
-        <relativePath />
+        <version>1.0</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
-    <groupId>jakarta.el</groupId>
-    <artifactId>jakarta.el-api</artifactId>
+    <groupId>org.glassfish</groupId>
+    <artifactId>javax.el.impl</artifactId>
+    <version>3.0.1-b11-SNAPSHOT</version>
     <packaging>jar</packaging>
-    <version>3.0.1-b07-SNAPSHOT</version>
-    <name>Expression Language 3.0 API</name>
+    <name>Expression Language 3.0 Implementation</name>
 
     <properties>
-        <!-- Make sure the two versions are in sync with the maven version -->
-        <spec.version>3.0</spec.version>
+        <!-- the bundle build number must be the same as the maven number -->
         <bundle.version>3.0.0</bundle.version>
-        <extensionName>jakarta.el</extensionName>
-        <bundle.symbolicName>javax.el-api</bundle.symbolicName>
+        <!-- The most current api version -->
+        <spec.version>3.0</spec.version>
+        <extensionName>javax.el.impl</extensionName>
+        <bundle.symbolicName>com.sun.el.javax.el</bundle.symbolicName>
         <vendorName>Oracle Corporation</vendorName>
-        <findbugs.version>2.4.0</findbugs.version>
-        <findbugs.exclude />
+        <findbugs.version>2.5.2</findbugs.version>
+        <findbugs.exclude>${project.basedir}/exclude.xml</findbugs.exclude>
         <findbugs.threshold>High</findbugs.threshold>
+        <tlda-license.url>http://hudson-sca.us.oracle.com/job/tlda-license/lastSuccessfulBuild/artifact</tlda-license.url>
     </properties>
 
+    <description>Expression Language (JSR 341) Reference Implementation</description>
     <url>https://projects.eclipse.org/projects/ee4j.el</url>
+
+
+    <issueManagement>
+        <system>github</system>
+        <url>https://github.com/eclipse-ee4j/el-ri/issues</url>
+    </issueManagement>
 
     <licenses>
         <license>
@@ -59,10 +67,7 @@
             <distribution>repo</distribution>
         </license>
     </licenses>
-    <issueManagement>
-        <system>github</system>
-        <url>https://github.com/eclipse-ee4j/el-ri/issues</url>
-    </issueManagement>
+    
     <mailingLists>
         <mailingList>
             <name>EL mailing list</name>
@@ -72,6 +77,7 @@
             <archive>https://dev.eclipse.org/mhonarc/lists/el-dev</archive>
         </mailingList>
     </mailingLists>
+
     <scm>
         <connection>scm:git:https://github.com/eclipse-ee4j/el-ri.git</connection>
         <developerConnection>
@@ -98,25 +104,27 @@
 
     <build>
         <plugins>
+            <!-- Configure maven-bundle-plugin to generate OSGi manifest. Please note: we use the manifest goal only and not the bundle goal. 
+                The bundle goal can lead to very surprising results if the package names are not correctly specified. So, we use the jar plugin to generate the 
+                jar. -->
             <plugin>
                 <groupId>org.apache.felix</groupId>
                 <artifactId>maven-bundle-plugin</artifactId>
                 <version>1.4.3</version>
                 <configuration>
-                    <supportedProjectTypes>
-                        <supportedProjectType>jar</supportedProjectType>
-                    </supportedProjectTypes>
                     <instructions>
-                        <Automatic-Module-Name>java.el</Automatic-Module-Name>
-                        <Bundle-Description>Expression Language ${spec.version} API</Bundle-Description>
+                        <Automatic-Module-Name>java.el.impl</Automatic-Module-Name>
                         <Bundle-SymbolicName>${bundle.symbolicName}</Bundle-SymbolicName>
+                        <Bundle-Description>
+                            Expression Language ${spec.version} Implementation
+                        </Bundle-Description>
                         <Bundle-Version>${bundle.version}</Bundle-Version>
                         <Extension-Name>${extensionName}</Extension-Name>
                         <Specification-Version>${spec.version}</Specification-Version>
                         <Specification-Vendor>${vendorName}</Specification-Vendor>
                         <Implementation-Version>${project.version}</Implementation-Version>
                         <Implementation-Vendor>${vendorName}</Implementation-Vendor>
-                        <Export-Package>javax.el</Export-Package>
+                        <Export-Package>com.sun.el</Export-Package>
                     </instructions>
                 </configuration>
                 <executions>
@@ -137,9 +145,6 @@
                     <archive>
                         <manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
                     </archive>
-                    <excludes>
-                        <exclude>**/*.java</exclude>
-                    </excludes>
                 </configuration>
             </plugin>
             
@@ -153,11 +158,11 @@
                     <compilerArgument>-Xlint:unchecked</compilerArgument>
                 </configuration>
             </plugin>
-            
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
-                <version> 2.1 </version>
+                <version> 2.2.1 </version>
                 <configuration>
                     <includePom>true</includePom>
                 </configuration>
@@ -170,11 +175,11 @@
                     </execution>
                 </executions>
             </plugin>
-            
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <version>2.8.1</version>
+                <version>3.0.1</version>
                 <executions>
                     <execution>
                         <id>attach-javadocs</id>
@@ -182,28 +187,22 @@
                             <goal>jar</goal>
                         </goals>
                         <configuration>
-                            <links>
-                                <link>https://javaee.github.io/javaee-spec/javadocs/</link>
-                            </links>
                             <additionalJOption>-Xdoclint:none</additionalJOption>
                             <groups>
                                 <group>
-                                    <title>Expresion Language API Documentation</title>
-                                    <packages>javax.el</packages>
+                                    <title>Expresion Language 3.0 Implementation</title>
+                                    <packages>com.sun.el</packages>
                                 </group>
                             </groups>
-                            <bottom>
-<![CDATA[Copyright &#169; 2013,
-    <a href="http://www.oracle.com">Oracle</a>
-    and/or its affiliates. All Rights Reserved.
-    Use is subject to
-  <a href="{@docRoot}/doc-files/final-spec-license.html" target="_top">license terms</a>.
-]]>
-                            </bottom>
+                            <bottom> Copyright (c) 2013 Oracle and/or its affiliates. All Rights Reserved. Use is subject to license terms. </bottom>
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
+            
+            <!-- Use ant to manually invoke javacc, as this required is very infrequently <plugin> <groupId>org.codehaus.mojo</groupId> <artifactId>javacc-maven-plugin</artifactId> 
+                <version>2.6</version> <executions> <execution> <id>jjtree-javacc</id> <goals> <goal>jjtree-javacc</goal> </goals> <configuration> <sourceDirectory>src/main/java/com/sun/el/parser</sourceDirectory> 
+                <outputDirectory>src/main/java/com/sun/el/parser</outputDirectory> </configuration> </execution> </executions> </plugin> -->
             
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
@@ -228,6 +227,28 @@
             </plugin>
             
             <plugin>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.7.1</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.apache.maven.surefire</groupId>
+                        <artifactId>surefire-junit47</artifactId>
+                        <version>2.7.1</version>
+                    </dependency>
+                </dependencies>
+                <configuration>
+                    <forkMode>never</forkMode>
+                    <!-- <parallel>classes</parallel> -->
+                </configuration>
+            </plugin>
+            
+            <plugin>
+                <groupId>org.glassfish.copyright</groupId>
+                <artifactId>glassfish-copyright-maven-plugin</artifactId>
+                <version>1.32</version>
+            </plugin>
+            
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-remote-resources-plugin</artifactId>
                 <version>1.2.1</version>
@@ -246,15 +267,18 @@
             </plugin>
         </plugins>
         
+        
         <resources>
             <resource>
                 <directory>src/main/java</directory>
                 <includes>
                     <include>**/*.properties</include>
+                    <include>**/*.xml</include>
                 </includes>
             </resource>
         </resources>
     </build>
+
 
     <reporting>
         <plugins>
@@ -269,4 +293,74 @@
             </plugin>
         </plugins>
     </reporting>
+
+    <dependencies>
+        <dependency>
+            <groupId>jakarta.el</groupId>
+            <artifactId>jakarta.el-api</artifactId>
+            <version>3.0.1-b07-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+    
+
+    <profiles>
+        <profile>
+            <id>licensee</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>wagon-maven-plugin</artifactId>
+                        <version>1.0-beta-4</version>
+                        <inherited>false</inherited>
+                        <executions>
+                            <execution>
+                                <id>get-license</id>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>download-single</goal>
+                                </goals>
+                                <configuration>
+                                    <url>${tlda-license.url}</url>
+                                    <fromFile>
+                                        TLDA_SCSL_Licensees_License_Notice.txt
+                                    </fromFile>
+                                    <toDir>${project.build.directory}/license</toDir>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-assembly-plugin</artifactId>
+                        <version>2.4</version>
+                        <inherited>false</inherited>
+                        <executions>
+                            <execution>
+                                <id>make-licensee-src-assembly</id>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>single</goal>
+                                </goals>
+                                <configuration>
+                                    <finalName>el-${project.version}-src</finalName>
+                                    <attach>false</attach>
+                                    <appendAssemblyId>false</appendAssemblyId>
+                                    <descriptors>
+                                        <descriptor>src/assembly/assembly.xml</descriptor>
+                                    </descriptors>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>

@@ -18,17 +18,17 @@ package com.sun.el.parser;
 
 import java.lang.reflect.Method;
 
+import javax.el.ELClass;
 import javax.el.ELException;
 import javax.el.ELResolver;
+import javax.el.ImportHandler;
 import javax.el.MethodInfo;
-import javax.el.ValueReference;
-import javax.el.ELClass;
 import javax.el.PropertyNotFoundException;
 import javax.el.PropertyNotWritableException;
-import javax.el.ImportHandler;
+import javax.el.ValueReference;
 
-import com.sun.el.lang.EvaluationContext;
 import com.sun.el.lang.ELSupport;
+import com.sun.el.lang.EvaluationContext;
 import com.sun.el.util.MessageFactory;
 import com.sun.el.util.ReflectionUtil;
 
@@ -57,6 +57,7 @@ public final class AstValue extends SimpleNode {
         super(id);
     }
 
+    @Override
     public Class getType(EvaluationContext ctx) throws ELException {
         Target t = getTarget(ctx);
         if (t.isMethodCall()) {
@@ -65,14 +66,14 @@ public final class AstValue extends SimpleNode {
         Object property = t.suffixNode.getValue(ctx);
         ctx.setPropertyResolved(false);
         Class ret = ctx.getELResolver().getType(ctx, t.base, property);
-        if (! ctx.isPropertyResolved()) {
+        if (!ctx.isPropertyResolved()) {
             ELSupport.throwUnhandled(t.base, property);
         }
         return ret;
     }
 
-    public ValueReference getValueReference(EvaluationContext ctx)
-            throws ELException {
+    @Override
+    public ValueReference getValueReference(EvaluationContext ctx) throws ELException {
         Target t = getTarget(ctx);
         if (t.isMethodCall()) {
             return null;
@@ -90,9 +91,8 @@ public final class AstValue extends SimpleNode {
         }
         return null;
     }
-            
-    private Object getValue(Object base, Node child, EvaluationContext ctx)
-            throws ELException {
+
+    private Object getValue(Object base, Node child, EvaluationContext ctx) throws ELException {
 
         Object value = null;
         ELResolver resolver = ctx.getELResolver();
@@ -100,9 +100,8 @@ public final class AstValue extends SimpleNode {
         AstMethodArguments args = getArguments(child);
         if (args != null) {
             // This is a method call
-            if (! (property instanceof String)) {
-                throw new ELException(MessageFactory.get(
-                    "error.method.name", property));
+            if (!(property instanceof String)) {
+                throw new ELException(MessageFactory.get("error.method.name", property));
             }
             Class<?>[] paramTypes = args.getParamTypes();
             Object[] params = args.getParameters(ctx);
@@ -113,7 +112,7 @@ public final class AstValue extends SimpleNode {
             if (property != null) {
                 ctx.setPropertyResolved(false);
                 value = resolver.getValue(ctx, base, property);
-                if (! ctx.isPropertyResolved()) {
+                if (!ctx.isPropertyResolved()) {
                     ELSupport.throwUnhandled(base, property);
                 }
             }
@@ -121,7 +120,7 @@ public final class AstValue extends SimpleNode {
         return value;
     }
 
-    private final Object getBase(EvaluationContext ctx) {
+    private Object getBase(EvaluationContext ctx) {
         try {
             return this.children[0].getValue(ctx);
         } catch (PropertyNotFoundException ex) {
@@ -140,14 +139,13 @@ public final class AstValue extends SimpleNode {
         }
     }
 
-    private final Target getTarget(EvaluationContext ctx) throws ELException {
+    private Target getTarget(EvaluationContext ctx) throws ELException {
         // evaluate expr-a to value-a
         Object base = getBase(ctx);
 
         // if our base is null (we know there are more properites to evaluate)
         if (base == null) {
-            throw new PropertyNotFoundException(MessageFactory.get(
-                    "error.unreachable.base", this.children[0].getImage()));
+            throw new PropertyNotFoundException(MessageFactory.get("error.unreachable.base", this.children[0].getImage()));
         }
 
         // set up our start/end
@@ -164,13 +162,13 @@ public final class AstValue extends SimpleNode {
             // if we are in this block, we have more properties to resolve,
             // but our base was null
             if (base == null) {
-                throw new PropertyNotFoundException(MessageFactory.get(
-                        "error.unreachable.property", property));
+                throw new PropertyNotFoundException(MessageFactory.get("error.unreachable.property", property));
             }
         }
         return new Target(base, this.children[propCount]);
     }
 
+    @Override
     public Object getValue(EvaluationContext ctx) throws ELException {
         Object base = getBase(ctx);
         int propCount = this.jjtGetNumChildren();
@@ -182,6 +180,7 @@ public final class AstValue extends SimpleNode {
         return base;
     }
 
+    @Override
     public boolean isReadOnly(EvaluationContext ctx) throws ELException {
         Target t = getTarget(ctx);
         if (t.isMethodCall()) {
@@ -190,26 +189,24 @@ public final class AstValue extends SimpleNode {
         Object property = t.suffixNode.getValue(ctx);
         ctx.setPropertyResolved(false);
         boolean ret = ctx.getELResolver().isReadOnly(ctx, t.base, property);
-        if (! ctx.isPropertyResolved()) {
+        if (!ctx.isPropertyResolved()) {
             ELSupport.throwUnhandled(t.base, property);
         }
         return ret;
     }
 
-    public void setValue(EvaluationContext ctx, Object value)
-            throws ELException {
+    @Override
+    public void setValue(EvaluationContext ctx, Object value) throws ELException {
         Target t = getTarget(ctx);
         if (t.isMethodCall()) {
-            throw new PropertyNotWritableException(
-                        MessageFactory.get("error.syntax.set"));
+            throw new PropertyNotWritableException(MessageFactory.get("error.syntax.set"));
         }
         Object property = t.suffixNode.getValue(ctx);
         ELResolver elResolver = ctx.getELResolver();
 
-        /* Note by kchung 10/2013
-         * The spec does not say if the value should be cocerced to the target
-         * type before setting the value to the target. The conversion is kept
-         * here to be backward compatible.
+        /*
+         * Note by kchung 10/2013 The spec does not say if the value should be cocerced to the target type before setting the
+         * value to the target. The conversion is kept here to be backward compatible.
          */
         ctx.setPropertyResolved(false);
         Class<?> targetType = elResolver.getType(ctx, t.base, property);
@@ -228,25 +225,24 @@ public final class AstValue extends SimpleNode {
 
         ctx.setPropertyResolved(false);
         elResolver.setValue(ctx, t.base, property, value);
-        if (! ctx.isPropertyResolved()) {
+        if (!ctx.isPropertyResolved()) {
             ELSupport.throwUnhandled(t.base, property);
         }
     }
 
-    public MethodInfo getMethodInfo(EvaluationContext ctx, Class[] paramTypes)
-            throws ELException {
+    @Override
+    public MethodInfo getMethodInfo(EvaluationContext ctx, Class[] paramTypes) throws ELException {
         Target t = getTarget(ctx);
         if (t.isMethodCall()) {
             return null;
         }
         Object property = t.suffixNode.getValue(ctx);
         Method m = ReflectionUtil.findMethod(t.base.getClass(), property.toString(), paramTypes, null);
-        return new MethodInfo(m.getName(), m.getReturnType(), m
-                .getParameterTypes());
+        return new MethodInfo(m.getName(), m.getReturnType(), m.getParameterTypes());
     }
 
-    public Object invoke(EvaluationContext ctx, Class[] paramTypes,
-            Object[] paramValues) throws ELException {
+    @Override
+    public Object invoke(EvaluationContext ctx, Class[] paramTypes, Object[] paramValues) throws ELException {
         Target t = getTarget(ctx);
         if (t.isMethodCall()) {
             AstMethodArguments args = getArguments(t.suffixNode);
@@ -267,6 +263,6 @@ public final class AstValue extends SimpleNode {
 
     @Override
     public boolean isParametersProvided() {
-        return getArguments(this.children[this.jjtGetNumChildren()-1]) != null;
+        return getArguments(this.children[this.jjtGetNumChildren() - 1]) != null;
     }
 }

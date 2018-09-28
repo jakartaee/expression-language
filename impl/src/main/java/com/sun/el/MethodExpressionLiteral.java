@@ -16,6 +16,9 @@
 
 package com.sun.el;
 
+import static com.sun.el.util.ReflectionUtil.toTypeArray;
+import static com.sun.el.util.ReflectionUtil.toTypeNameArray;
+
 import java.io.Externalizable;
 import java.io.IOException;
 import java.io.ObjectInput;
@@ -26,73 +29,78 @@ import javax.el.ELException;
 import javax.el.MethodExpression;
 import javax.el.MethodInfo;
 
-import com.sun.el.lang.ELSupport;
 import com.sun.el.util.ReflectionUtil;
 
 public class MethodExpressionLiteral extends MethodExpression implements Externalizable {
 
-    private Class expectedType;
-
+    private Class<?> expectedType;
     private String expr;
-    
-    private Class[] paramTypes;
-    
+    private Class<?>[] paramTypes;
+
     public MethodExpressionLiteral() {
         // do nothing
     }
-    
-    public MethodExpressionLiteral(String expr, Class expectedType, Class[] paramTypes) {
+
+    public MethodExpressionLiteral(String expr, Class<?> expectedType, Class<?>[] paramTypes) {
         this.expr = expr;
         this.expectedType = expectedType;
         this.paramTypes = paramTypes;
     }
 
+    @Override
     public MethodInfo getMethodInfo(ELContext context) throws ELException {
-        return new MethodInfo(this.expr, this.expectedType, this.paramTypes);
+        return new MethodInfo(expr, expectedType, paramTypes);
     }
 
+    @Override
     public Object invoke(ELContext context, Object[] params) throws ELException {
-        if (this.expectedType == null) {
-            return this.expr;
+        if (expectedType == null) {
+            return expr;
         }
 
         try {
-            return context.convertToType(this.expr, this.expectedType);
+            return context.convertToType(expr, expectedType);
         } catch (Exception ex) {
-            throw new ELException (ex);
+            throw new ELException(ex);
         }
     }
 
+    @Override
     public String getExpressionString() {
-        return this.expr;
+        return expr;
     }
 
+    @Override
     public boolean equals(Object obj) {
-        return (obj instanceof MethodExpressionLiteral && this.hashCode() == obj.hashCode());
+        return obj instanceof MethodExpressionLiteral && this.hashCode() == obj.hashCode();
     }
 
+    @Override
     public int hashCode() {
-        return this.expr.hashCode();
+        return expr.hashCode();
     }
 
+    @Override
     public boolean isLiteralText() {
         return true;
     }
 
+    @Override
     public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
-        this.expr = in.readUTF();
+        expr = in.readUTF();
         String type = in.readUTF();
+
         if (!"".equals(type)) {
-            this.expectedType = ReflectionUtil.forName(type);
+            expectedType = ReflectionUtil.forName(type);
         }
-        this.paramTypes = ReflectionUtil.toTypeArray(((String[]) in
-                .readObject()));
+
+        paramTypes = toTypeArray(((String[]) in.readObject()));
     }
 
+    @Override
     public void writeExternal(ObjectOutput out) throws IOException {
-        out.writeUTF(this.expr);
-        out.writeUTF((this.expectedType != null) ? this.expectedType.getName()
-                : "");
-        out.writeObject(ReflectionUtil.toTypeNameArray(this.paramTypes));
+        out.writeUTF(expr);
+        out.writeUTF(expectedType != null ? expectedType.getName() : "");
+        out.writeObject(toTypeNameArray(paramTypes));
     }
 }

@@ -33,8 +33,8 @@ public class ArithmeticNode extends SimpleNode {
         super(i);
     }
 
-    public Class getType(EvaluationContext ctx)
-            throws ELException {
+    @Override
+    public Class getType(EvaluationContext ctx) throws ELException {
         return Number.class;
     }
 }

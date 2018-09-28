@@ -34,110 +34,98 @@ import java.util.ResourceBundle;
 
 /**
  *
- * <p>Utility methods for this portion of the EL implementation</p>
+ * <p>
+ * Utility methods for this portion of the EL implementation
+ * </p>
  *
- * <p>Methods on this class use a Map instance stored in ThreadLocal storage
- * to minimize the performance impact on operations that take place multiple
- * times on a single Thread.  The keys and values of the Map
- * are implementation private.</p>
+ * <p>
+ * Methods on this class use a Map instance stored in ThreadLocal storage to minimize the performance impact on
+ * operations that take place multiple times on a single Thread. The keys and values of the Map are implementation
+ * private.
+ * </p>
  *
  * @author edburns
  * @author Kin-man Chung
  * @author Dongbin Nie
  */
 class ELUtil {
-    
-    /**
-     * <p>This class may not be constructed.</p>
-     */
-    
-    private ELUtil() {
-    }
-    
-/*  For testing Backward Compatibility option
-    static java.util.Properties properties = new java.util.Properties();
-    static {
-        properties.setProperty("javax.el.bc2.2", "true");
-    }
-*/
-    public static ExpressionFactory exprFactory =
-        ExpressionFactory.newInstance(/*properties*/);
 
     /**
-     * <p>The <code>ThreadLocal</code> variable used to record the
-     * {@link javax.faces.context.FacesContext} instance for each
-     * processing thread.</p>
+     * <p>
+     * This class may not be constructed.
+     * </p>
      */
-    private static ThreadLocal<Map<String, ResourceBundle>> instance =
-                new ThreadLocal<Map<String, ResourceBundle>>() {
-            protected Map<String, ResourceBundle> initialValue() {
-                return (null);
-            }
-        };
-        
+    private ELUtil() {
+    }
+
+    /*
+     * For testing Backward Compatibility option static java.util.Properties properties = new java.util.Properties(); static
+     * { properties.setProperty("javax.el.bc2.2", "true"); }
+     */
+    public static ExpressionFactory exprFactory = ExpressionFactory.newInstance(/* properties */);
+
     /**
-     * @return a Map stored in ThreadLocal storage.  This may
-     * be used by methods of this class to minimize the performance
-     * impact for operations that may take place multiple times on a given
-     * Thread instance.
+     * <p>
+     * The <code>ThreadLocal</code> variable used to record the {@link javax.faces.context.FacesContext} instance for each
+     * processing thread.
+     * </p>
+     */
+    private static ThreadLocal<Map<String, ResourceBundle>> instance = new ThreadLocal<Map<String, ResourceBundle>>() {
+        @Override
+        protected Map<String, ResourceBundle> initialValue() {
+            return (null);
+        }
+    };
+
+    /**
+     * @return a Map stored in ThreadLocal storage. This may be used by methods of this class to minimize the performance
+     * impact for operations that may take place multiple times on a given Thread instance.
      */
 
     private static Map<String, ResourceBundle> getCurrentInstance() {
         Map<String, ResourceBundle> result = instance.get();
-        if (null == result) {
+        if (result == null) {
             result = new HashMap<String, ResourceBundle>();
             setCurrentInstance(result);
         }
+
         return result;
 
     }
-    
+
     /**
-     * <p>Replace the Map with the argument context.</p>
+     * Replace the Map with the argument context.
      *
      * @param context the Map to be stored in ThreadLocal storage.
      */
-
     private static void setCurrentInstance(Map<String, ResourceBundle> context) {
-
         instance.set(context);
-
     }
-    
-    /*
-     * <p>Convenience method, calls through to 
-     * {@link #getExceptionMessageString(javax.el.ELContext,java.lang.String,Object []).
-     * </p>
+
+    /**
+     * Convenience method, calls through to getExceptionMessageString(javax.el.ELContext,java.lang.String,Object
+     * []).
      *
-     * @param context the ELContext from which the Locale for this message
-     * is extracted.
-     *
+     * @param context the ELContext from which the Locale for this message is extracted.
      * @param messageId the messageId String in the ResourceBundle
      *
      * @return a localized String for the argument messageId
      */
-    
     public static String getExceptionMessageString(ELContext context, String messageId) {
         return getExceptionMessageString(context, messageId, null);
-    }    
-    
+    }
+
     /*
-     * <p>Return a Localized message String suitable for use as an Exception message.
-     * Examine the argument <code>context</code> for a <code>Locale</code>.  If
-     * not present, use <code>Locale.getDefault()</code>.  Load the 
-     * <code>ResourceBundle</code> "javax.el.Messages" using that locale.  Get
-     * the message string for argument <code>messageId</code>.  If not found
-     * return "Missing Resource in EL implementation ??? messageId ???" 
-     * with messageId substituted with the runtime
-     * value of argument <code>messageId</code>.  If found, and argument
-     * <code>params</code> is non-null, format the message using the 
-     * params.  If formatting fails, return a sensible message including 
-     * the <code>messageId</code>.  If argument <code>params</code> is 
-     * <code>null</code>, skip formatting and return the message directly, otherwise
-     * return the formatted message.</p>
+     * <p>Return a Localized message String suitable for use as an Exception message. Examine the argument
+     * <code>context</code> for a <code>Locale</code>. If not present, use <code>Locale.getDefault()</code>. Load the
+     * <code>ResourceBundle</code> "javax.el.Messages" using that locale. Get the message string for argument
+     * <code>messageId</code>. If not found return "Missing Resource in EL implementation ??? messageId ???" with messageId
+     * substituted with the runtime value of argument <code>messageId</code>. If found, and argument <code>params</code> is
+     * non-null, format the message using the params. If formatting fails, return a sensible message including the
+     * <code>messageId</code>. If argument <code>params</code> is <code>null</code>, skip formatting and return the message
+     * directly, otherwise return the formatted message.</p>
      *
-     * @param context the ELContext from which the Locale for this message
-     * is extracted.
+     * @param context the ELContext from which the Locale for this message is extracted.
      *
      * @param messageId the messageId String in the ResourceBundle
      *
@@ -145,32 +133,29 @@ class ELUtil {
      *
      * @return a localized String for the argument messageId
      */
-    
-    public static String getExceptionMessageString(ELContext context,
-            String messageId, 
-            Object [] params) {
+    public static String getExceptionMessageString(ELContext context, String messageId, Object[] params) {
         String result = "";
         Locale locale = null;
-        
+
         if (null == context || null == messageId) {
             return result;
         }
-        
+
         if (null == (locale = context.getLocale())) {
             locale = Locale.getDefault();
         }
-        if (null != locale) {
+
+        if (locale != null) {
             Map<String, ResourceBundle> threadMap = getCurrentInstance();
-            ResourceBundle rb = null;
-            if (null == (rb = (ResourceBundle)
-                    threadMap.get(locale.toString()))) {
-                rb = ResourceBundle.getBundle("javax.el.PrivateMessages",
-                                              locale);
-                threadMap.put(locale.toString(), rb);
+            ResourceBundle resourceBundle = null;
+            if (null == (resourceBundle = threadMap.get(locale.toString()))) {
+                resourceBundle = ResourceBundle.getBundle("javax.el.PrivateMessages", locale);
+                threadMap.put(locale.toString(), resourceBundle);
             }
-            if (null != rb) {
+
+            if (null != resourceBundle) {
                 try {
-                    result = rb.getString(messageId);
+                    result = resourceBundle.getString(messageId);
                     if (null != params) {
                         result = MessageFormat.format(result, params);
                     }
@@ -183,22 +168,19 @@ class ELUtil {
                 }
             }
         }
-        
+
         return result;
     }
 
     static ExpressionFactory getExpressionFactory() {
         return exprFactory;
     }
-        
-    static Constructor<?> findConstructor(Class<?> klass,
-                                  Class<?>[] paramTypes,
-                                  Object[] params) {
+
+    static Constructor<?> findConstructor(Class<?> klass, Class<?>[] paramTypes, Object[] params) {
         String methodName = "<init>";
 
         if (klass == null) {
-            throw new MethodNotFoundException("Method not found: "
-                    + klass + "." + methodName + "(" + paramString(paramTypes) + ")");
+            throw new MethodNotFoundException("Method not found: " + klass + "." + methodName + "(" + paramString(paramTypes) + ")");
         }
 
         if (paramTypes == null) {
@@ -209,58 +191,48 @@ class ELUtil {
 
         List<Wrapper> wrappers = Wrapper.wrap(constructors);
 
-        Wrapper result = findWrapper(
-                klass, wrappers, methodName, paramTypes, params);
+        Wrapper result = findWrapper(klass, wrappers, methodName, paramTypes, params);
 
         if (result == null) {
             return null;
         }
+
         return getConstructor(klass, (Constructor<?>) result.unWrap());
     }
 
-    static Object invokeConstructor(ELContext context,
-                                    Constructor<?> c,
-                                    Object[] params) {
-        Object[] parameters = buildParameters(
-                context, c.getParameterTypes(), c.isVarArgs(), params);;
+    static Object invokeConstructor(ELContext context, Constructor<?> constructor, Object[] params) {
+        Object[] parameters = buildParameters(context, constructor.getParameterTypes(), constructor.isVarArgs(), params);
+        ;
         try {
-            return c.newInstance(parameters);
+            return constructor.newInstance(parameters);
         } catch (IllegalAccessException iae) {
             throw new ELException(iae);
         } catch (IllegalArgumentException iae) {
             throw new ELException(iae);
-        }  catch (InvocationTargetException ite) {
+        } catch (InvocationTargetException ite) {
             throw new ELException(ite.getCause());
         } catch (InstantiationException ie) {
             throw new ELException(ie.getCause());
         }
     }
 
-    static Method findMethod(Class<?> klass,
-                             String method,
-                             Class<?>[] paramTypes,
-                             Object[] params,
-                             boolean staticOnly) {
-        Method m = findMethod(klass, method, paramTypes, params);
-        if (staticOnly && !Modifier.isStatic(m.getModifiers())) {
-            throw new MethodNotFoundException("Method " + method + "for class "
-                    + klass + " not found or accessible");
+    static Method findMethod(Class<?> klass, String methodName, Class<?>[] paramTypes, Object[] params, boolean staticOnly) {
+        Method method = findMethod(klass, methodName, paramTypes, params);
+        if (staticOnly && !Modifier.isStatic(method.getModifiers())) {
+            throw new MethodNotFoundException("Method " + methodName + "for class " + klass + " not found or accessible");
         }
 
-        return m;
+        return method;
     }
 
     /*
-     * This method duplicates code in com.sun.el.util.ReflectionUtil. When
-     * making changes keep the code in sync.
+     * This method duplicates code in com.sun.el.util.ReflectionUtil. When making changes keep the code in sync.
      */
-    static Object invokeMethod(ELContext context,
-                               Method m, Object base, Object[] params) {
+    static Object invokeMethod(ELContext context, Method method, Object base, Object[] params) {
 
-        Object[] parameters = buildParameters(
-                context, m.getParameterTypes(), m.isVarArgs(), params);
+        Object[] parameters = buildParameters(context, method.getParameterTypes(), method.isVarArgs(), params);
         try {
-            return m.invoke(base, parameters);
+            return method.invoke(base, parameters);
         } catch (IllegalAccessException iae) {
             throw new ELException(iae);
         } catch (IllegalArgumentException iae) {
@@ -269,17 +241,13 @@ class ELUtil {
             throw new ELException(ite.getCause());
         }
     }
-    
-    /*
-     * This method duplicates code in com.sun.el.util.ReflectionUtil. When
-     * making changes keep the code in sync.
-     */
-    static Method findMethod(Class<?> clazz, String methodName,
-            Class<?>[] paramTypes, Object[] paramValues) {
 
+    /*
+     * This method duplicates code in com.sun.el.util.ReflectionUtil. When making changes keep the code in sync.
+     */
+    static Method findMethod(Class<?> clazz, String methodName, Class<?>[] paramTypes, Object[] paramValues) {
         if (clazz == null || methodName == null) {
-            throw new MethodNotFoundException("Method not found: " + 
-                    clazz + "." + methodName + "(" + paramString(paramTypes) + ")");
+            throw new MethodNotFoundException("Method not found: " + clazz + "." + methodName + "(" + paramString(paramTypes) + ")");
         }
 
         if (paramTypes == null) {
@@ -290,22 +258,19 @@ class ELUtil {
 
         List<Wrapper> wrappers = Wrapper.wrap(methods, methodName);
 
-        Wrapper result = findWrapper(
-                clazz, wrappers, methodName, paramTypes, paramValues);
+        Wrapper result = findWrapper(clazz, wrappers, methodName, paramTypes, paramValues);
 
         if (result == null) {
             return null;
         }
+
         return getMethod(clazz, (Method) result.unWrap());
     }
 
     /*
-     * This method duplicates code in com.sun.el.util.ReflectionUtil. When
-     * making changes keep the code in sync.
+     * This method duplicates code in com.sun.el.util.ReflectionUtil. When making changes keep the code in sync.
      */
-    private static Wrapper findWrapper(Class<?> clazz, List<Wrapper> wrappers,
-            String name, Class<?>[] paramTypes, Object[] paramValues) {
-
+    private static Wrapper findWrapper(Class<?> clazz, List<Wrapper> wrappers, String name, Class<?>[] paramTypes, Object[] paramValues) {
         List<Wrapper> assignableCandidates = new ArrayList<Wrapper>();
         List<Wrapper> coercibleCandidates = new ArrayList<Wrapper>();
         List<Wrapper> varArgsCandidates = new ArrayList<Wrapper>();
@@ -327,8 +292,7 @@ class ELUtil {
             }
 
             // Check the number of parameters
-            if (!(paramCount == mParamCount ||
-                    (w.isVarArgs() && paramCount >= mParamCount - 1))) {
+            if (!(paramCount == mParamCount || (w.isVarArgs() && paramCount >= mParamCount - 1))) {
                 // Method has wrong number of parameters
                 continue;
             }
@@ -347,11 +311,11 @@ class ELUtil {
                             continue;
                         }
                     }
-                    
+
                     // unwrap the array's component type
                     Class<?> varType = mParamTypes[i].getComponentType();
                     for (int j = i; j < paramCount; j++) {
-                        if (!isAssignableFrom(paramTypes[j], varType) 
+                        if (!isAssignableFrom(paramTypes[j], varType)
                                 && !(paramValues != null && j < paramValues.length && isCoercibleFrom(paramValues[j], varType))) {
                             noMatch = true;
                             break;
@@ -377,7 +341,7 @@ class ELUtil {
             if (noMatch) {
                 continue;
             }
-            
+
             if (varArgs) {
                 varArgsCandidates.add(w);
             } else if (coercible) {
@@ -389,11 +353,10 @@ class ELUtil {
                 // return it
                 return w;
             }
-            
+
         }
-        
-        String errorMsg = "Unable to find unambiguous method: " + 
-                clazz + "." + name + "(" + paramString(paramTypes) + ")";
+
+        String errorMsg = "Unable to find unambiguous method: " + clazz + "." + name + "(" + paramString(paramTypes) + ")";
         if (!assignableCandidates.isEmpty()) {
             return findMostSpecificWrapper(assignableCandidates, paramTypes, false, errorMsg);
         } else if (!coercibleCandidates.isEmpty()) {
@@ -401,24 +364,21 @@ class ELUtil {
         } else if (!varArgsCandidates.isEmpty()) {
             return findMostSpecificWrapper(varArgsCandidates, paramTypes, true, errorMsg);
         } else {
-            throw new MethodNotFoundException("Method not found: " + 
-                    clazz + "." + name + "(" + paramString(paramTypes) + ")");
+            throw new MethodNotFoundException("Method not found: " + clazz + "." + name + "(" + paramString(paramTypes) + ")");
         }
 
     }
-    
+
     /*
-     * This method duplicates code in com.sun.el.util.ReflectionUtil. When
-     * making changes keep the code in sync.
+     * This method duplicates code in com.sun.el.util.ReflectionUtil. When making changes keep the code in sync.
      */
-    private static Wrapper findMostSpecificWrapper(List<Wrapper> candidates, 
-            Class<?>[] matchingTypes, boolean elSpecific, String errorMsg) {
+    private static Wrapper findMostSpecificWrapper(List<Wrapper> candidates, Class<?>[] matchingTypes, boolean elSpecific, String errorMsg) {
         List<Wrapper> ambiguouses = new ArrayList<Wrapper>();
         for (Wrapper candidate : candidates) {
             boolean lessSpecific = false;
-            
+
             Iterator<Wrapper> it = ambiguouses.iterator();
-            while(it.hasNext()) {
+            while (it.hasNext()) {
                 int result = isMoreSpecific(candidate, it.next(), matchingTypes, elSpecific);
                 if (result == 1) {
                     it.remove();
@@ -426,41 +386,39 @@ class ELUtil {
                     lessSpecific = true;
                 }
             }
-            
+
             if (!lessSpecific) {
                 ambiguouses.add(candidate);
             }
         }
-        
+
         if (ambiguouses.size() > 1) {
             throw new MethodNotFoundException(errorMsg);
         }
-        
+
         return ambiguouses.get(0);
     }
-    
+
     /*
-     * This method duplicates code in com.sun.el.util.ReflectionUtil. When
-     * making changes keep the code in sync.
+     * This method duplicates code in com.sun.el.util.ReflectionUtil. When making changes keep the code in sync.
      */
-    private static int isMoreSpecific(Wrapper wrapper1, Wrapper wrapper2, 
-            Class<?>[] matchingTypes, boolean elSpecific) {
+    private static int isMoreSpecific(Wrapper wrapper1, Wrapper wrapper2, Class<?>[] matchingTypes, boolean elSpecific) {
         Class<?>[] paramTypes1 = wrapper1.getParameterTypes();
         Class<?>[] paramTypes2 = wrapper2.getParameterTypes();
-        
+
         if (wrapper1.isVarArgs()) {
-            //JLS8 15.12.2.5 Choosing the Most Specific Method
-            int length =  Math.max(Math.max(paramTypes1.length, paramTypes2.length), matchingTypes.length);
+            // JLS8 15.12.2.5 Choosing the Most Specific Method
+            int length = Math.max(Math.max(paramTypes1.length, paramTypes2.length), matchingTypes.length);
             paramTypes1 = getComparingParamTypesForVarArgsMethod(paramTypes1, length);
             paramTypes2 = getComparingParamTypesForVarArgsMethod(paramTypes2, length);
-            
+
             if (length > matchingTypes.length) {
                 Class<?>[] matchingTypes2 = new Class<?>[length];
                 System.arraycopy(matchingTypes, 0, matchingTypes2, 0, matchingTypes.length);
                 matchingTypes = matchingTypes2;
             }
         }
-        
+
         int result = 0;
         for (int i = 0; i < paramTypes1.length; i++) {
             if (paramTypes1[i] != paramTypes2[i]) {
@@ -480,7 +438,7 @@ class ELUtil {
                 }
             }
         }
-        
+
         if (result == 0) {
             // The nature of bridge methods is such that it actually
             // doesn't matter which one we pick as long as we pick
@@ -488,13 +446,12 @@ class ELUtil {
             // one) anyway.
             result = Boolean.compare(wrapper1.isBridge(), wrapper2.isBridge());
         }
-        
+
         return result;
     }
-    
+
     /*
-     * This method duplicates code in com.sun.el.util.ReflectionUtil. When
-     * making changes keep the code in sync.
+     * This method duplicates code in com.sun.el.util.ReflectionUtil. When making changes keep the code in sync.
      */
     private static int isMoreSpecific(Class<?> type1, Class<?> type2, Class<?> matchingType, boolean elSpecific) {
         type1 = getBoxingTypeIfPrimitive(type1);
@@ -505,12 +462,11 @@ class ELUtil {
             return -1;
         } else {
             if (elSpecific) {
-                /* 
+                /*
                  * Number will be treated as more specific
-                 * 
-                 * ASTInteger only return Long or BigInteger, no Byte / Short / Integer.
-                 * ASTFloatingPoint also.
-                 * 
+                 *
+                 * ASTInteger only return Long or BigInteger, no Byte / Short / Integer. ASTFloatingPoint also.
+                 *
                  */
                 if (matchingType != null && Number.class.isAssignableFrom(matchingType)) {
                     boolean b1 = Number.class.isAssignableFrom(type1) || type1.isPrimitive();
@@ -523,46 +479,49 @@ class ELUtil {
                         return 0;
                     }
                 }
-                
+
                 return 0;
             } else {
                 return 0;
             }
         }
     }
-    
+
     /*
-     * This method duplicates code in com.sun.el.util.ReflectionUtil. When
-     * making changes keep the code in sync.
+     * This method duplicates code in com.sun.el.util.ReflectionUtil. When making changes keep the code in sync.
      */
     private static Class<?> getBoxingTypeIfPrimitive(Class<?> clazz) {
         if (clazz.isPrimitive()) {
             if (clazz == Boolean.TYPE) {
                 return Boolean.class;
-            } else if (clazz == Character.TYPE) {
-                return Character.class;
-            } else if (clazz == Byte.TYPE) {
-                return Byte.class;
-            } else if (clazz == Short.TYPE) {
-                return Short.class;
-            } else if (clazz == Integer.TYPE) {
-                return Integer.class;
-            } else if (clazz == Long.TYPE) {
-                return Long.class;
-            } else if (clazz == Float.TYPE) {
-                return Float.class;
-            } else {
-                return Double.class;
             }
+            if (clazz == Character.TYPE) {
+                return Character.class;
+            }
+            if (clazz == Byte.TYPE) {
+                return Byte.class;
+            }
+            if (clazz == Short.TYPE) {
+                return Short.class;
+            }
+            if (clazz == Integer.TYPE) {
+                return Integer.class;
+            }
+            if (clazz == Long.TYPE) {
+                return Long.class;
+            }
+            if (clazz == Float.TYPE) {
+                return Float.class;
+            }
+
+            return Double.class;
         } else {
             return clazz;
         }
-        
     }
-    
+
     /*
-     * This method duplicates code in com.sun.el.util.ReflectionUtil. When
-     * making changes keep the code in sync.
+     * This method duplicates code in com.sun.el.util.ReflectionUtil. When making changes keep the code in sync.
      */
     private static Class<?>[] getComparingParamTypesForVarArgsMethod(Class<?>[] paramTypes, int length) {
         Class<?>[] result = new Class<?>[length];
@@ -571,13 +530,12 @@ class ELUtil {
         for (int i = paramTypes.length - 1; i < length; i++) {
             result[i] = type;
         }
-        
+
         return result;
     }
 
     /*
-     * This method duplicates code in com.sun.el.util.ReflectionUtil. When
-     * making changes keep the code in sync.
+     * This method duplicates code in com.sun.el.util.ReflectionUtil. When making changes keep the code in sync.
      */
     private static final String paramString(Class<?>[] types) {
         if (types != null) {
@@ -598,8 +556,7 @@ class ELUtil {
     }
 
     /*
-     * This method duplicates code in com.sun.el.util.ReflectionUtil. When
-     * making changes keep the code in sync.
+     * This method duplicates code in com.sun.el.util.ReflectionUtil. When making changes keep the code in sync.
      */
     static boolean isAssignableFrom(Class<?> src, Class<?> target) {
         // src will always be an object
@@ -608,31 +565,29 @@ class ELUtil {
         if (src == null) {
             return true;
         }
-        
+
         target = getBoxingTypeIfPrimitive(target);
 
         return target.isAssignableFrom(src);
     }
 
-
     /*
-     * This method duplicates code in com.sun.el.util.ReflectionUtil. When
-     * making changes keep the code in sync.
+     * This method duplicates code in com.sun.el.util.ReflectionUtil. When making changes keep the code in sync.
      */
     private static boolean isCoercibleFrom(Object src, Class<?> target) {
         // TODO: This isn't pretty but it works. Significant refactoring would
-        //       be required to avoid the exception.
+        // be required to avoid the exception.
         try {
             getExpressionFactory().coerceToType(src, target);
         } catch (Exception e) {
             return false;
         }
+
         return true;
     }
 
     /*
-     * This method duplicates code in com.sun.el.util.ReflectionUtil. When
-     * making changes keep the code in sync.
+     * This method duplicates code in com.sun.el.util.ReflectionUtil. When making changes keep the code in sync.
      */
     private static Class<?>[] getTypesFromValues(Object[] values) {
         if (values == null) {
@@ -647,20 +602,17 @@ class ELUtil {
                 result[i] = values[i].getClass();
             }
         }
+
         return result;
     }
 
-
     /*
-     * This method duplicates code in com.sun.el.util.ReflectionUtil. When
-     * making changes keep the code in sync.
-     * 
-     * Get a public method form a public class or interface of a given method.
-     * Note that if a PropertyDescriptor is obtained for a non-public class that
-     * implements a public interface, the read/write methods will be for the
-     * class, and therefore inaccessible.  To correct this, a version of the
-     * same method must be found in a superclass or interface.
-     * 
+     * This method duplicates code in com.sun.el.util.ReflectionUtil. When making changes keep the code in sync.
+     *
+     * Get a public method form a public class or interface of a given method. Note that if a PropertyDescriptor is obtained
+     * for a non-public class that implements a public interface, the read/write methods will be for the class, and
+     * therefore inaccessible. To correct this, a version of the same method must be found in a superclass or interface.
+     *
      */
     static Method getMethod(Class<?> type, Method m) {
         if (m == null || Modifier.isPublic(type.getModifiers())) {
@@ -693,10 +645,9 @@ class ELUtil {
         }
         return null;
     }
-    
+
     /*
-     * This method duplicates code in com.sun.el.util.ReflectionUtil. When
-     * making changes keep the code in sync.
+     * This method duplicates code in com.sun.el.util.ReflectionUtil. When making changes keep the code in sync.
      */
     static Constructor<?> getConstructor(Class<?> type, Constructor<?> c) {
         if (c == null || Modifier.isPublic(type.getModifiers())) {
@@ -717,13 +668,11 @@ class ELUtil {
         }
         return null;
     }
-    
+
     /*
-     * This method duplicates code in com.sun.el.util.ReflectionUtil. When
-     * making changes keep the code in sync.
+     * This method duplicates code in com.sun.el.util.ReflectionUtil. When making changes keep the code in sync.
      */
-    static Object[] buildParameters(ELContext context, Class<?>[] parameterTypes,
-            boolean isVarArgs,Object[] params) {
+    static Object[] buildParameters(ELContext context, Class<?>[] parameterTypes, boolean isVarArgs, Object[] params) {
         Object[] parameters = null;
         if (parameterTypes.length > 0) {
             parameters = new Object[parameterTypes.length];
@@ -732,41 +681,33 @@ class ELUtil {
                 int varArgIndex = parameterTypes.length - 1;
                 // First argCount-1 parameters are standard
                 for (int i = 0; (i < varArgIndex && i < paramCount); i++) {
-                    parameters[i] = context.convertToType(params[i],
-                            parameterTypes[i]);
+                    parameters[i] = context.convertToType(params[i], parameterTypes[i]);
                 }
                 // Last parameter is the varargs
-                if (parameterTypes.length == paramCount 
-                        && parameterTypes[varArgIndex] == params[varArgIndex].getClass()) {
+                if (parameterTypes.length == paramCount && parameterTypes[varArgIndex] == params[varArgIndex].getClass()) {
                     parameters[varArgIndex] = params[varArgIndex];
                 } else {
-                    Class<?> varArgClass =
-                            parameterTypes[varArgIndex].getComponentType();
-                    final Object varargs = Array.newInstance(
-                            varArgClass,
-                            (paramCount - varArgIndex));
+                    Class<?> varArgClass = parameterTypes[varArgIndex].getComponentType();
+                    final Object varargs = Array.newInstance(varArgClass, (paramCount - varArgIndex));
                     for (int i = (varArgIndex); i < paramCount; i++) {
-                        Array.set(varargs, i - varArgIndex,
-                                context.convertToType(params[i], varArgClass));
+                        Array.set(varargs, i - varArgIndex, context.convertToType(params[i], varArgClass));
                     }
                     parameters[varArgIndex] = varargs;
                 }
             } else {
                 for (int i = 0; i < parameterTypes.length && i < paramCount; i++) {
-                    parameters[i] = context.convertToType(params[i],
-                            parameterTypes[i]);
+                    parameters[i] = context.convertToType(params[i], parameterTypes[i]);
                 }
             }
         }
         return parameters;
     }
-    
+
     /*
-     * This method duplicates code in com.sun.el.util.ReflectionUtil. When
-     * making changes keep the code in sync.
+     * This method duplicates code in com.sun.el.util.ReflectionUtil. When making changes keep the code in sync.
      */
     private abstract static class Wrapper {
-        
+
         public static List<Wrapper> wrap(Method[] methods, String name) {
             List<Wrapper> result = new ArrayList<>();
             for (Method method : methods) {
@@ -776,7 +717,7 @@ class ELUtil {
             }
             return result;
         }
-        
+
         public static List<Wrapper> wrap(Constructor<?>[] constructors) {
             List<Wrapper> result = new ArrayList<>();
             for (Constructor<?> constructor : constructors) {
@@ -784,75 +725,76 @@ class ELUtil {
             }
             return result;
         }
-        
+
         public abstract Object unWrap();
+
         public abstract Class<?>[] getParameterTypes();
+
         public abstract boolean isVarArgs();
+
         public abstract boolean isBridge();
     }
-    
+
     /*
-     * This method duplicates code in com.sun.el.util.ReflectionUtil. When
-     * making changes keep the code in sync.
+     * This method duplicates code in com.sun.el.util.ReflectionUtil. When making changes keep the code in sync.
      */
     private static class MethodWrapper extends Wrapper {
         private final Method m;
-        
+
         public MethodWrapper(Method m) {
             this.m = m;
         }
-        
+
         @Override
         public Object unWrap() {
             return m;
         }
-        
+
         @Override
         public Class<?>[] getParameterTypes() {
             return m.getParameterTypes();
         }
-        
+
         @Override
         public boolean isVarArgs() {
             return m.isVarArgs();
         }
-        
+
         @Override
         public boolean isBridge() {
             return m.isBridge();
         }
     }
-    
+
     /*
-     * This method duplicates code in com.sun.el.util.ReflectionUtil. When
-     * making changes keep the code in sync.
+     * This method duplicates code in com.sun.el.util.ReflectionUtil. When making changes keep the code in sync.
      */
     private static class ConstructorWrapper extends Wrapper {
         private final Constructor<?> c;
-        
+
         public ConstructorWrapper(Constructor<?> c) {
             this.c = c;
         }
-        
+
         @Override
         public Object unWrap() {
             return c;
         }
-        
+
         @Override
         public Class<?>[] getParameterTypes() {
             return c.getParameterTypes();
         }
-        
+
         @Override
         public boolean isVarArgs() {
             return c.isVarArgs();
         }
-        
+
         @Override
         public boolean isBridge() {
             return false;
         }
     }
-    
+
 }
