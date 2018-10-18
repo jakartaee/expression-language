@@ -18,49 +18,47 @@
 package javax.el;
 
 /**
- * Thrown when a method could not be found while evaluating a
- * {@link MethodExpression}.
+ * Thrown when a method could not be found while evaluating a {@link MethodExpression}.
  *
  * @see MethodExpression
  * @since JSP 2.1
  */
 public class MethodNotFoundException extends ELException {
 
+    private static final long serialVersionUID = 7727548537051164640L;
+
     /**
      * Creates a <code>MethodNotFoundException</code> with no detail message.
      */
     public MethodNotFoundException() {
-        super ();
+        super();
     }
 
     /**
-     * Creates a <code>MethodNotFoundException</code> with the provided 
-     * detail message.
+     * Creates a <code>MethodNotFoundException</code> with the provided detail message.
      *
      * @param message the detail message
      */
     public MethodNotFoundException(String message) {
-        super (message);
+        super(message);
     }
 
     /**
-     * Creates a <code>MethodNotFoundException</code> with the given root 
-     * cause.
+     * Creates a <code>MethodNotFoundException</code> with the given root cause.
      *
      * @param exception the originating cause of this exception
      */
     public MethodNotFoundException(Throwable exception) {
-        super (exception);
+        super(exception);
     }
 
     /**
-     * Creates a <code>MethodNotFoundException</code> with the given detail
-     * message and root cause.
+     * Creates a <code>MethodNotFoundException</code> with the given detail message and root cause.
      *
      * @param pMessage the detail message
      * @param pRootCause the originating cause of this exception
      */
     public MethodNotFoundException(String pMessage, Throwable pRootCause) {
-        super (pMessage, pRootCause);
+        super(pMessage, pRootCause);
     }
 }

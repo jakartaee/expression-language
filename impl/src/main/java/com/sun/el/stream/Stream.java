@@ -16,24 +16,18 @@
 
 package com.sun.el.stream;
 
-import com.sun.el.lang.ELSupport;
-import com.sun.el.lang.ELArithmetic;
-
-import java.lang.reflect.Array;
-import java.util.List;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Comparator;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.Map;
 import java.util.PriorityQueue;
 import java.util.Set;
 
 import javax.el.ELException;
 import javax.el.LambdaExpression;
 
+import com.sun.el.lang.ELArithmetic;
+import com.sun.el.lang.ELSupport;
 
 /*
  */
@@ -90,14 +84,14 @@ public class Stream {
             }
         });
     }
-        
+
     public Stream peek(final LambdaExpression comsumer) {
         return new Stream(this, new Operator() {
             @Override
             public Iterator<Object> iterator(final Iterator<Object> up) {
-               return new Iterator2(up) {
+                return new Iterator2(up) {
                     @Override
-                    void doItem(Object item){
+                    void doItem(Object item) {
                         comsumer.invoke(item);
                         yield(item);
                     }
@@ -105,7 +99,7 @@ public class Stream {
             }
         });
     }
- 
+
     public Stream limit(final long n) {
         if (n < 0) {
             throw new IllegalArgumentException("limit must be non-negative");
@@ -115,10 +109,12 @@ public class Stream {
             public Iterator<Object> iterator(final Iterator<Object> up) {
                 return new Iterator0() {
                     long limit = n;
+
                     @Override
                     public boolean hasNext() {
-                        return (limit > 0)? up.hasNext(): false;
+                        return (limit > 0) ? up.hasNext() : false;
                     }
+
                     @Override
                     public Object next() {
                         limit--;
@@ -128,13 +124,14 @@ public class Stream {
             }
         });
     }
- 
+
     public Stream substream(final long startIndex) {
         if (startIndex < 0) {
             throw new IllegalArgumentException("substream index must be non-negative");
         }
         return new Stream(this, new Operator() {
             long skip = startIndex;
+
             @Override
             public Iterator<Object> iterator(final Iterator<Object> up) {
                 while (skip > 0 && up.hasNext()) {
@@ -147,15 +144,16 @@ public class Stream {
     }
 
     public Stream substream(long startIndex, long endIndex) {
-        return substream(startIndex).limit(endIndex-startIndex);
+        return substream(startIndex).limit(endIndex - startIndex);
     }
-    
-    public Stream distinct () {
+
+    public Stream distinct() {
         return new Stream(this, new Operator() {
             @Override
             public Iterator<Object> iterator(final Iterator<Object> up) {
                 return new Iterator2(up) {
                     private Set<Object> set = new HashSet<Object>();
+
                     @Override
                     public void doItem(Object item) {
                         if (set.add(item)) {
@@ -175,15 +173,14 @@ public class Stream {
             @Override
             public Iterator<Object> iterator(final Iterator<Object> up) {
                 if (queue == null) {
-                    queue = new PriorityQueue<Object>(16,
-                        new Comparator<Object>() {
-                            @Override
-                            public int compare(Object o1, Object o2) {
-                                return ((Comparable)o1).compareTo(o2);
-                            }
-                        });
+                    queue = new PriorityQueue<Object>(16, new Comparator<Object>() {
+                        @Override
+                        public int compare(Object o1, Object o2) {
+                            return ((Comparable) o1).compareTo(o2);
+                        }
+                    });
 
-                    while(up.hasNext()) {
+                    while (up.hasNext()) {
                         queue.add(up.next());
                     }
                 }
@@ -193,9 +190,10 @@ public class Stream {
                     public boolean hasNext() {
                         return !queue.isEmpty();
                     }
+
                     @Override
                     public Object next() {
-                         return queue.remove();
+                        return queue.remove();
                     }
                 };
             }
@@ -210,17 +208,14 @@ public class Stream {
             @Override
             public Iterator<Object> iterator(final Iterator<Object> up) {
                 if (queue == null) {
-                    queue = new PriorityQueue<Object>(16,
-                        new Comparator<Object>() {
-                            @Override
-                            public int compare(Object o1, Object o2) {
-                                return (Integer) ELSupport.coerceToType(
-                                    comparator.invoke(o1, o2),
-                                    Integer.class);
-                            }
-                        });
+                    queue = new PriorityQueue<Object>(16, new Comparator<Object>() {
+                        @Override
+                        public int compare(Object o1, Object o2) {
+                            return (Integer) ELSupport.coerceToType(comparator.invoke(o1, o2), Integer.class);
+                        }
+                    });
 
-                    while(up.hasNext()) {
+                    while (up.hasNext()) {
                         queue.add(up.next());
                     }
                 }
@@ -229,10 +224,11 @@ public class Stream {
                     @Override
                     public boolean hasNext() {
                         return !queue.isEmpty();
-                    }                   
+                    }
+
                     @Override
                     public Object next() {
-                         return queue.remove();
+                        return queue.remove();
                     }
                 };
             }
@@ -245,6 +241,7 @@ public class Stream {
             public Iterator<Object> iterator(final Iterator<Object> upstream) {
                 return new Iterator0() {
                     Iterator<Object> iter = null;
+
                     @Override
                     public boolean hasNext() {
                         while (true) {
@@ -253,13 +250,11 @@ public class Stream {
                                     return false;
                                 }
                                 Object mapped = mapper.invoke(upstream.next());
-                                if (! (mapped instanceof Stream)) {
-                                   throw new ELException("Expecting a Stream " +
-                                           "from flatMap's mapper function.");
+                                if (!(mapped instanceof Stream)) {
+                                    throw new ELException("Expecting a Stream " + "from flatMap's mapper function.");
                                 }
-                                iter = ((Stream)mapped).iterator();
-                            }
-                            else {
+                                iter = ((Stream) mapped).iterator();
+                            } else {
                                 if (iter.hasNext()) {
                                     return true;
                                 }
@@ -267,6 +262,7 @@ public class Stream {
                             }
                         }
                     }
+
                     @Override
                     public Object next() {
                         if (iter == null) {
@@ -286,7 +282,7 @@ public class Stream {
         }
         return base;
     }
-    
+
     public Optional reduce(LambdaExpression op) {
         Iterator<Object> iter = iterator();
         if (iter.hasNext()) {
@@ -298,25 +294,13 @@ public class Stream {
         }
         return new Optional();
     }
-    
-/*
-    public Map<Object,Object> reduceBy(LambdaExpression classifier,
-                                       LambdaExpression seed,
-                                       LambdaExpression reducer) {
-        Map<Object,Object> map = new HashMap<Object,Object>();
-        Iterator<Object> iter = iterator();
-        while (iter.hasNext()) {
-            Object item = iter.next();
-            Object key = classifier.invoke(item);
-            Object value = map.get(key);
-            if (value == null) {
-                value = seed.invoke();
-            }
-            map.put(key, reducer.invoke(value, item));
-        }
-        return map;
-    }
-*/
+
+    /*
+     * public Map<Object,Object> reduceBy(LambdaExpression classifier, LambdaExpression seed, LambdaExpression reducer) {
+     * Map<Object,Object> map = new HashMap<Object,Object>(); Iterator<Object> iter = iterator(); while (iter.hasNext()) {
+     * Object item = iter.next(); Object key = classifier.invoke(item); Object value = map.get(key); if (value == null) {
+     * value = seed.invoke(); } map.put(key, reducer.invoke(value, item)); } return map; }
+     */
 
     public void forEach(LambdaExpression comsumer) {
         Iterator<Object> iter = iterator();
@@ -325,27 +309,13 @@ public class Stream {
         }
     }
 
-/*
-    public Map<Object,Collection<Object>> groupBy(LambdaExpression classifier) {
-        Map<Object, Collection<Object>> map =
-                        new HashMap<Object, Collection<Object>>();
-        Iterator<Object> iter = iterator();
-        while (iter.hasNext()) {
-            Object item = iter.next();
-            Object key = classifier.invoke(item);
-            if (key == null) {
-                throw new ELException("null key");
-            }
-            Collection<Object> c = map.get(key);
-            if (c == null) {
-                c = new ArrayList<Object>();
-                map.put(key, c);
-            }
-            c.add(item);
-        }
-        return map;
-    }
-*/   
+    /*
+     * public Map<Object,Collection<Object>> groupBy(LambdaExpression classifier) { Map<Object, Collection<Object>> map =
+     * new HashMap<Object, Collection<Object>>(); Iterator<Object> iter = iterator(); while (iter.hasNext()) { Object item =
+     * iter.next(); Object key = classifier.invoke(item); if (key == null) { throw new ELException("null key"); }
+     * Collection<Object> c = map.get(key); if (c == null) { c = new ArrayList<Object>(); map.put(key, c); } c.add(item); }
+     * return map; }
+     */
     public boolean anyMatch(LambdaExpression predicate) {
         Iterator<Object> iter = iterator();
         while (iter.hasNext()) {
@@ -359,7 +329,7 @@ public class Stream {
     public boolean allMatch(LambdaExpression predicate) {
         Iterator<Object> iter = iterator();
         while (iter.hasNext()) {
-            if (! (Boolean) predicate.invoke(iter.next())) {
+            if (!(Boolean) predicate.invoke(iter.next())) {
                 return false;
             }
         }
@@ -384,7 +354,7 @@ public class Stream {
         }
         return al.toArray();
     }
-    
+
     public Object toList() {
         Iterator<Object> iter = iterator();
         ArrayList<Object> al = new ArrayList<Object>();
@@ -394,19 +364,12 @@ public class Stream {
         return al;
     }
 
-/*
-    public Object into(Object target) {
-        if (! (target instanceof Collection)) {
-            throw new ELException("The argument type for into operation mush be a Collection");
-        }
-        Collection<Object> c = (Collection<Object>) target;
-        Iterator<Object> iter = iterator();
-        while (iter.hasNext()) {
-            c.add(iter.next());
-        }
-        return c;
-    }
-*/
+    /*
+     * public Object into(Object target) { if (! (target instanceof Collection)) { throw new
+     * ELException("The argument type for into operation mush be a Collection"); } Collection<Object> c =
+     * (Collection<Object>) target; Iterator<Object> iter = iterator(); while (iter.hasNext()) { c.add(iter.next()); }
+     * return c; }
+     */
 
     public Optional findFirst() {
         Iterator<Object> iter = iterator();
@@ -465,14 +428,13 @@ public class Stream {
         }
         return new Optional(max);
     }
-    
+
     public Optional min(final LambdaExpression comparator) {
         Object min = null;
         Iterator<Object> iter = iterator();
         while (iter.hasNext()) {
             Object item = iter.next();
-            if (min == null ||
-                    ELSupport.compare(comparator.invoke(item, min), Long.valueOf(0)) < 0) {
+            if (min == null || ELSupport.compare(comparator.invoke(item, min), Long.valueOf(0)) < 0) {
                 min = item;
             }
         }
@@ -481,14 +443,13 @@ public class Stream {
         }
         return new Optional(min);
     }
-    
+
     public Optional max(final LambdaExpression comparator) {
         Object max = null;
         Iterator<Object> iter = iterator();
         while (iter.hasNext()) {
             Object item = iter.next();
-            if (max == null ||
-                    ELSupport.compare(comparator.invoke(max, item), Long.valueOf(0)) < 0) {
+            if (max == null || ELSupport.compare(comparator.invoke(max, item), Long.valueOf(0)) < 0) {
                 max = item;
             }
         }
@@ -518,10 +479,11 @@ public class Stream {
             throw new UnsupportedOperationException();
         }
     }
-    
+
     abstract class Iterator1 extends Iterator0 {
 
         Iterator iter;
+
         Iterator1(Iterator iter) {
             this.iter = iter;
         }
@@ -531,16 +493,16 @@ public class Stream {
             return iter.hasNext();
         }
     }
-    
+
     abstract class Iterator2 extends Iterator1 {
         private Object current;
         private boolean yielded;
-        
+
         Iterator2(Iterator upstream) {
             super(upstream);
         }
-        
-       @Override
+
+        @Override
         public Object next() {
             yielded = false;
             return current;
@@ -558,7 +520,7 @@ public class Stream {
             this.current = current;
             yielded = true;
         }
-        
+
         abstract void doItem(Object item);
     }
 }

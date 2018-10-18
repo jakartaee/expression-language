@@ -25,15 +25,15 @@ import java.util.ResourceBundle;
  */
 public final class MessageFactory {
 
-    protected final static ResourceBundle bundle = ResourceBundle
-            .getBundle("com.sun.el.Messages");
+    protected final static ResourceBundle bundle = ResourceBundle.getBundle("com.sun.el.Messages");
+
     /**
-     * 
+     *
      */
     public MessageFactory() {
         super();
     }
-    
+
     public static String get(final String key) {
         return bundle.getString(key);
     }
@@ -42,24 +42,19 @@ public final class MessageFactory {
         return getArray(key, new Object[] { obj0 });
     }
 
-    public static String get(final String key, final Object obj0,
-            final Object obj1) {
+    public static String get(final String key, final Object obj0, final Object obj1) {
         return getArray(key, new Object[] { obj0, obj1 });
     }
 
-    public static String get(final String key, final Object obj0,
-            final Object obj1, final Object obj2) {
+    public static String get(final String key, final Object obj0, final Object obj1, final Object obj2) {
         return getArray(key, new Object[] { obj0, obj1, obj2 });
     }
 
-    public static String get(final String key, final Object obj0,
-            final Object obj1, final Object obj2, final Object obj3) {
+    public static String get(final String key, final Object obj0, final Object obj1, final Object obj2, final Object obj3) {
         return getArray(key, new Object[] { obj0, obj1, obj2, obj3 });
     }
 
-    public static String get(final String key, final Object obj0,
-            final Object obj1, final Object obj2, final Object obj3,
-            final Object obj4) {
+    public static String get(final String key, final Object obj0, final Object obj1, final Object obj2, final Object obj3, final Object obj4) {
         return getArray(key, new Object[] { obj0, obj1, obj2, obj3, obj4 });
     }
 

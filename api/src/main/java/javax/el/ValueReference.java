@@ -23,14 +23,14 @@ import java.io.Serializable;
  *
  * @since EL 2.2
  */
-
 public class ValueReference implements Serializable {
+
+    private static final long serialVersionUID = -4076659531951367109L;
 
     private Object base;
     private Object property;
 
     public ValueReference(Object base, Object property) {
-
         this.base = base;
         this.property = property;
     }

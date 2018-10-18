@@ -16,21 +16,20 @@
 
 package com.sun.el.parser;
 
+import javax.el.ELClass;
 import javax.el.ELException;
 import javax.el.ELResolver;
 import javax.el.MethodExpression;
 import javax.el.MethodInfo;
 import javax.el.MethodNotFoundException;
-import javax.el.ValueExpression;
-import javax.el.VariableMapper;
-import javax.el.ValueReference;
 import javax.el.PropertyNotWritableException;
-import javax.el.ELClass;
+import javax.el.ValueExpression;
+import javax.el.ValueReference;
+import javax.el.VariableMapper;
 
-import com.sun.el.lang.EvaluationContext;
 import com.sun.el.lang.ELSupport;
+import com.sun.el.lang.EvaluationContext;
 import com.sun.el.util.MessageFactory;
-
 
 /**
  * @author Jacob Hookom [jacob@hookom.net]
@@ -57,14 +56,14 @@ public final class AstIdentifier extends SimpleNode {
         }
         ctx.setPropertyResolved(false);
         Class ret = ctx.getELResolver().getType(ctx, null, this.image);
-        if (! ctx.isPropertyResolved()) {
+        if (!ctx.isPropertyResolved()) {
             ELSupport.throwUnhandled(null, this.image);
         }
         return ret;
     }
 
-    public ValueReference getValueReference(EvaluationContext ctx)
-            throws ELException {
+    @Override
+    public ValueReference getValueReference(EvaluationContext ctx) throws ELException {
         VariableMapper varMapper = ctx.getVariableMapper();
         if (varMapper != null) {
             ValueExpression expr = varMapper.resolveVariable(this.image);
@@ -90,13 +89,12 @@ public final class AstIdentifier extends SimpleNode {
         }
         ctx.setPropertyResolved(false);
         Object ret = ctx.getELResolver().getValue(ctx, null, this.image);
-        if (! ctx.isPropertyResolved()) {
+        if (!ctx.isPropertyResolved()) {
             // Check if this is an imported static field
             if (ctx.getImportHandler() != null) {
                 Class<?> c = ctx.getImportHandler().resolveStatic(this.image);
                 if (c != null) {
-                    return ctx.getELResolver().getValue(ctx, new ELClass(c),
-                                this.image);
+                    return ctx.getELResolver().getValue(ctx, new ELClass(c), this.image);
                 }
             }
             ELSupport.throwUnhandled(null, this.image);
@@ -104,6 +102,7 @@ public final class AstIdentifier extends SimpleNode {
         return ret;
     }
 
+    @Override
     public boolean isReadOnly(EvaluationContext ctx) throws ELException {
         // Lambda arguments are read only.
         if (ctx.isLambdaArgument(this.image)) {
@@ -118,19 +117,17 @@ public final class AstIdentifier extends SimpleNode {
         }
         ctx.setPropertyResolved(false);
         boolean ret = ctx.getELResolver().isReadOnly(ctx, null, this.image);
-        if (! ctx.isPropertyResolved()) {
+        if (!ctx.isPropertyResolved()) {
             ELSupport.throwUnhandled(null, this.image);
         }
         return ret;
     }
 
-    public void setValue(EvaluationContext ctx, Object value)
-            throws ELException {
+    @Override
+    public void setValue(EvaluationContext ctx, Object value) throws ELException {
         // First check if this is a lambda argument
         if (ctx.isLambdaArgument(this.image)) {
-            throw new PropertyNotWritableException(
-                    MessageFactory.get("error.lambda.parameter.readonly",
-                        this.image));
+            throw new PropertyNotWritableException(MessageFactory.get("error.lambda.parameter.readonly", this.image));
         }
         VariableMapper varMapper = ctx.getVariableMapper();
         if (varMapper != null) {
@@ -143,41 +140,34 @@ public final class AstIdentifier extends SimpleNode {
         ctx.setPropertyResolved(false);
         ELResolver elResolver = ctx.getELResolver();
         elResolver.setValue(ctx, null, this.image, value);
-        if (! ctx.isPropertyResolved()) {
+        if (!ctx.isPropertyResolved()) {
             ELSupport.throwUnhandled(null, this.image);
         }
     }
 
-    private final Object invokeTarget(EvaluationContext ctx, Object target,
-            Object[] paramValues) throws ELException {
+    private Object invokeTarget(EvaluationContext ctx, Object target, Object[] paramValues) throws ELException {
         if (target instanceof MethodExpression) {
             MethodExpression me = (MethodExpression) target;
             return me.invoke(ctx.getELContext(), paramValues);
         } else if (target == null) {
-            throw new MethodNotFoundException("Identity '" + this.image
-                    + "' was null and was unable to invoke");
+            throw new MethodNotFoundException("Identity '" + this.image + "' was null and was unable to invoke");
         } else {
             throw new ELException(
-                    "Identity '"
-                            + this.image
-                            + "' does not reference a MethodExpression instance, returned type: "
-                            + target.getClass().getName());
+                    "Identity '" + this.image + "' does not reference a MethodExpression instance, returned type: " + target.getClass().getName());
         }
     }
 
-    public Object invoke(EvaluationContext ctx, Class[] paramTypes,
-            Object[] paramValues) throws ELException {
+    @Override
+    public Object invoke(EvaluationContext ctx, Class[] paramTypes, Object[] paramValues) throws ELException {
         return this.getMethodExpression(ctx).invoke(ctx.getELContext(), paramValues);
     }
-    
 
-    public MethodInfo getMethodInfo(EvaluationContext ctx, Class[] paramTypes)
-            throws ELException {
+    @Override
+    public MethodInfo getMethodInfo(EvaluationContext ctx, Class[] paramTypes) throws ELException {
         return this.getMethodExpression(ctx).getMethodInfo(ctx.getELContext());
     }
 
-    private final MethodExpression getMethodExpression(EvaluationContext ctx)
-            throws ELException {
+    private MethodExpression getMethodExpression(EvaluationContext ctx) throws ELException {
         Object obj = null;
 
         // case A: ValueExpression exists, getValue which must
@@ -202,14 +192,9 @@ public final class AstIdentifier extends SimpleNode {
         if (obj instanceof MethodExpression) {
             return (MethodExpression) obj;
         } else if (obj == null) {
-            throw new MethodNotFoundException("Identity '" + this.image
-                    + "' was null and was unable to invoke");
+            throw new MethodNotFoundException("Identity '" + this.image + "' was null and was unable to invoke");
         } else {
-            throw new ELException(
-                    "Identity '"
-                            + this.image
-                            + "' does not reference a MethodExpression instance, returned type: "
-                            + obj.getClass().getName());
+            throw new ELException("Identity '" + this.image + "' does not reference a MethodExpression instance, returned type: " + obj.getClass().getName());
         }
     }
 }

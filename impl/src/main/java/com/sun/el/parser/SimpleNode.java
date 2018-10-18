@@ -18,8 +18,8 @@ package com.sun.el.parser;
 
 import javax.el.ELException;
 import javax.el.MethodInfo;
-import javax.el.ValueReference;
 import javax.el.PropertyNotWritableException;
+import javax.el.ValueReference;
 
 import com.sun.el.lang.ELSupport;
 import com.sun.el.lang.EvaluationContext;
@@ -42,20 +42,25 @@ public abstract class SimpleNode extends ELSupport implements Node {
         id = i;
     }
 
+    @Override
     public void jjtOpen() {
     }
 
+    @Override
     public void jjtClose() {
     }
 
+    @Override
     public void jjtSetParent(Node n) {
         parent = n;
     }
 
+    @Override
     public Node jjtGetParent() {
         return parent;
     }
 
+    @Override
     public void jjtAddChild(Node n, int i) {
         if (children == null) {
             children = new Node[i + 1];
@@ -67,25 +72,26 @@ public abstract class SimpleNode extends ELSupport implements Node {
         children[i] = n;
     }
 
+    @Override
     public Node jjtGetChild(int i) {
         return children[i];
     }
 
+    @Override
     public int jjtGetNumChildren() {
         return (children == null) ? 0 : children.length;
     }
 
     /*
-     * You can override these two methods in subclasses of SimpleNode to
-     * customize the way the node appears when the tree is dumped. If your
-     * output uses more than one line you should override toString(String),
-     * otherwise overriding toString() is probably all you need to do.
+     * You can override these two methods in subclasses of SimpleNode to customize the way the node appears when the tree is
+     * dumped. If your output uses more than one line you should override toString(String), otherwise overriding toString()
+     * is probably all you need to do.
      */
 
+    @Override
     public String toString() {
         if (this.image != null) {
-            return ELParserTreeConstants.jjtNodeName[id] + "[" + this.image
-                    + "]";
+            return ELParserTreeConstants.jjtNodeName[id] + "[" + this.image + "]";
         }
         return ELParserTreeConstants.jjtNodeName[id];
     }
@@ -95,8 +101,7 @@ public abstract class SimpleNode extends ELSupport implements Node {
     }
 
     /*
-     * Override this method if you want to customize how the node dumps out its
-     * children.
+     * Override this method if you want to customize how the node dumps out its children.
      */
 
     public void dump(String prefix) {
@@ -111,6 +116,7 @@ public abstract class SimpleNode extends ELSupport implements Node {
         }
     }
 
+    @Override
     public String getImage() {
         return image;
     }
@@ -119,31 +125,32 @@ public abstract class SimpleNode extends ELSupport implements Node {
         this.image = image;
     }
 
-    public Class getType(EvaluationContext ctx)
-            throws ELException {
+    @Override
+    public Class getType(EvaluationContext ctx) throws ELException {
         throw new UnsupportedOperationException();
     }
 
-    public Object getValue(EvaluationContext ctx)
-            throws ELException {
+    @Override
+    public Object getValue(EvaluationContext ctx) throws ELException {
         throw new UnsupportedOperationException();
     }
 
-    public ValueReference getValueReference(EvaluationContext ctx)
-            throws ELException {
+    @Override
+    public ValueReference getValueReference(EvaluationContext ctx) throws ELException {
         return null;
     }
 
-    public boolean isReadOnly(EvaluationContext ctx)
-            throws ELException {
+    @Override
+    public boolean isReadOnly(EvaluationContext ctx) throws ELException {
         return true;
     }
 
-    public void setValue(EvaluationContext ctx, Object value)
-            throws ELException {
+    @Override
+    public void setValue(EvaluationContext ctx, Object value) throws ELException {
         throw new PropertyNotWritableException(MessageFactory.get("error.syntax.set"));
     }
 
+    @Override
     public void accept(NodeVisitor visitor) throws ELException {
         visitor.visit(this);
         if (this.children != null && this.children.length > 0) {
@@ -153,17 +160,19 @@ public abstract class SimpleNode extends ELSupport implements Node {
         }
     }
 
+    @Override
     public Object invoke(EvaluationContext ctx, Class[] paramTypes, Object[] paramValues) throws ELException {
         throw new UnsupportedOperationException();
     }
 
+    @Override
     public MethodInfo getMethodInfo(EvaluationContext ctx, Class[] paramTypes) throws ELException {
         throw new UnsupportedOperationException();
     }
 
     @Override
     public boolean equals(Object node) {
-        if (! (node instanceof SimpleNode)) {
+        if (!(node instanceof SimpleNode)) {
             return false;
         }
         SimpleNode n = (SimpleNode) node;
@@ -190,7 +199,7 @@ public abstract class SimpleNode extends ELSupport implements Node {
             return this.image.equals(n.image);
         }
         for (int i = 0; i < this.children.length; i++) {
-            if (! this.children[i].equals(n.children[i])) {
+            if (!this.children[i].equals(n.children[i])) {
                 return false;
             }
         }
@@ -211,7 +220,7 @@ public abstract class SimpleNode extends ELSupport implements Node {
             return this.id;
         }
         int h = 0;
-        for (int i = this.children.length - 1; i >=0; i--) {
+        for (int i = this.children.length - 1; i >= 0; i--) {
             h = h + h + h + this.children[i].hashCode();
         }
         h = h + h + h + id;

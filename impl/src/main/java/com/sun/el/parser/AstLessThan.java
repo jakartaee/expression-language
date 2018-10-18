@@ -29,8 +29,8 @@ public final class AstLessThan extends BooleanNode {
         super(id);
     }
 
-    public Object getValue(EvaluationContext ctx)
-            throws ELException {
+    @Override
+    public Object getValue(EvaluationContext ctx) throws ELException {
         Object obj0 = this.children[0].getValue(ctx);
         if (obj0 == null) {
             return Boolean.FALSE;

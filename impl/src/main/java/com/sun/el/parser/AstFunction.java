@@ -19,12 +19,12 @@ package com.sun.el.parser;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
+import javax.el.ELClass;
 import javax.el.ELException;
 import javax.el.FunctionMapper;
 import javax.el.LambdaExpression;
 import javax.el.ValueExpression;
 import javax.el.VariableMapper;
-import javax.el.ELClass;
 
 import com.sun.el.lang.EvaluationContext;
 import com.sun.el.util.MessageFactory;
@@ -60,26 +60,23 @@ public final class AstFunction extends SimpleNode {
     }
 
     @Override
-    public Class getType(EvaluationContext ctx)
-            throws ELException {
-        
+    public Class getType(EvaluationContext ctx) throws ELException {
+
         FunctionMapper fnMapper = ctx.getFunctionMapper();
-        
+
         // quickly validate again for this request
         if (fnMapper == null) {
             throw new ELException(MessageFactory.get("error.fnMapper.null"));
         }
         Method m = fnMapper.resolveFunction(this.prefix, this.localName);
         if (m == null) {
-            throw new ELException(MessageFactory.get("error.fnMapper.method",
-                    this.getOutputName()));
+            throw new ELException(MessageFactory.get("error.fnMapper.method", this.getOutputName()));
         }
         return m.getReturnType();
     }
 
     /*
-     * Find the object associated with the given name.  Return null if the
-     * there is no such object.
+     * Find the object associated with the given name. Return null if the there is no such object.
      */
     private Object findValue(EvaluationContext ctx, String name) {
         Object value;
@@ -87,7 +84,7 @@ public final class AstFunction extends SimpleNode {
         if (ctx.isLambdaArgument(name)) {
             return ctx.getLambdaArgument(name);
         }
-        
+
         // Next check if this an EL variable
         VariableMapper varMapper = ctx.getVariableMapper();
         if (varMapper != null) {
@@ -106,11 +103,10 @@ public final class AstFunction extends SimpleNode {
     }
 
     @Override
-    public Object getValue(EvaluationContext ctx)
-            throws ELException {
+    public Object getValue(EvaluationContext ctx) throws ELException {
 
         // Check to see if a function is a bean that is a Lambdaexpression.
-        // If so, invoke it.  Also allow for the case that a Lambda expression
+        // If so, invoke it. Also allow for the case that a Lambda expression
         // can return another Lambda expression.
         if (prefix.length() == 0) {
             Object val = findValue(ctx, this.localName);
@@ -118,27 +114,26 @@ public final class AstFunction extends SimpleNode {
 
             if ((val != null) && (val instanceof LambdaExpression)) {
                 for (int i = 0; i < this.children.length; i++) {
-                    Object[] params = ((AstMethodArguments)this.children[i]).
-                                                             getParameters(ctx);
-                    if (! (val instanceof LambdaExpression)) {
-                        throw new ELException(MessageFactory.get(
-                            "error.function.syntax", getOutputName()));
+                    Object[] params = ((AstMethodArguments) this.children[i]).getParameters(ctx);
+                    if (!(val instanceof LambdaExpression)) {
+                        throw new ELException(MessageFactory.get("error.function.syntax", getOutputName()));
                     }
-                    val = ((LambdaExpression)val).invoke(ctx, params);
+                    val = ((LambdaExpression) val).invoke(ctx, params);
                 }
                 return val;
             }
         }
 
         FunctionMapper fnMapper = ctx.getFunctionMapper();
-        
+
         Method m = null;
         if (fnMapper != null) {
             m = fnMapper.resolveFunction(this.prefix, this.localName);
         }
         if (m == null) {
             if (this.prefix.length() == 0 && ctx.getImportHandler() != null) {
-                Class<?> c = null;;
+                Class<?> c = null;
+                ;
                 // Check if this is a constructor call for an imported class
                 c = ctx.getImportHandler().resolveClass(this.localName);
                 String methodName = null;
@@ -147,45 +142,39 @@ public final class AstFunction extends SimpleNode {
                 } else {
                     // Check if this is a imported static method
                     c = ctx.getImportHandler().resolveStatic(this.localName);
-                    methodName = this.localName;;
+                    methodName = this.localName;
+                    ;
                 }
                 if (c != null) {
                     // Use StaticFieldELResolver to invoke the constructor or the
                     // static method.
-                    Object[] params =
-                        ((AstMethodArguments)this.children[0]).getParameters(ctx);
-                    return ctx.getELResolver().invoke(ctx, new ELClass(c),
-                                   methodName, null, params);
+                    Object[] params = ((AstMethodArguments) this.children[0]).getParameters(ctx);
+                    return ctx.getELResolver().invoke(ctx, new ELClass(c), methodName, null, params);
                 }
             }
             // quickly validate for this request
             if (fnMapper == null) {
                 throw new ELException(MessageFactory.get("error.fnMapper.null"));
             }
-            throw new ELException(MessageFactory.get("error.fnMapper.method",
-                    this.getOutputName()));
+            throw new ELException(MessageFactory.get("error.fnMapper.method", this.getOutputName()));
         }
 
         Class[] paramTypes = m.getParameterTypes();
-        Object[] params =
-            ((AstMethodArguments)this.children[0]).getParameters(ctx);
+        Object[] params = ((AstMethodArguments) this.children[0]).getParameters(ctx);
         Object result = null;
         for (int i = 0; i < params.length; i++) {
             try {
                 params[i] = ctx.convertToType(params[i], paramTypes[i]);
             } catch (ELException ele) {
-                throw new ELException(MessageFactory.get("error.function", this
-                        .getOutputName()), ele);
+                throw new ELException(MessageFactory.get("error.function", this.getOutputName()), ele);
             }
         }
         try {
             result = m.invoke(null, params);
         } catch (IllegalAccessException iae) {
-            throw new ELException(MessageFactory.get("error.function", this
-                    .getOutputName()), iae);
+            throw new ELException(MessageFactory.get("error.function", this.getOutputName()), iae);
         } catch (InvocationTargetException ite) {
-            throw new ELException(MessageFactory.get("error.function", this
-                    .getOutputName()), ite.getCause());
+            throw new ELException(MessageFactory.get("error.function", this.getOutputName()), ite.getCause());
         }
         return result;
     }
@@ -197,10 +186,9 @@ public final class AstFunction extends SimpleNode {
     public void setPrefix(String prefix) {
         this.prefix = prefix;
     }
-    
+
     @Override
-    public String toString()
-    {
+    public String toString() {
         return ELParserTreeConstants.jjtNodeName[id] + "[" + this.getOutputName() + "]";
     }
 }

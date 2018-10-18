@@ -16,10 +16,6 @@
 
 package com.sun.el.stream;
 
-import java.util.Iterator;
-import java.util.Comparator;
-
-import javax.el.ELContext;
 import javax.el.LambdaExpression;
 
 public class Optional {
@@ -56,10 +52,10 @@ public class Optional {
     }
 
     public Object orElse(Object other) {
-        return value != null? value: other;
+        return value != null ? value : other;
     }
 
     public Object orElseGet(LambdaExpression other) {
-        return value != null? value: other.invoke();
+        return value != null ? value : other.invoke();
     }
 }

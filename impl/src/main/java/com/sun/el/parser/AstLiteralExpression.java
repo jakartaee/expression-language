@@ -29,14 +29,17 @@ public final class AstLiteralExpression extends SimpleNode {
         super(id);
     }
 
+    @Override
     public Class getType(EvaluationContext ctx) throws ELException {
         return String.class;
     }
 
+    @Override
     public Object getValue(EvaluationContext ctx) throws ELException {
         return this.image;
     }
 
+    @Override
     public void setImage(String image) {
         if (image.indexOf('\\') == -1) {
             this.image = image;
@@ -48,8 +51,7 @@ public final class AstLiteralExpression extends SimpleNode {
             char c = image.charAt(i);
             if (c == '\\' && i + 1 < size) {
                 char c1 = image.charAt(i + 1);
-                if (c1 == '\\' || c1 == '"' || c1 == '\'' || c1 == '#'
-                        || c1 == '$') {
+                if (c1 == '\\' || c1 == '"' || c1 == '\'' || c1 == '#' || c1 == '$') {
                     c = c1;
                     i++;
                 }

@@ -44,13 +44,13 @@ public final class AstInteger extends SimpleNode {
         return number;
     }
 
-    public Class getType(EvaluationContext ctx)
-            throws ELException {
+    @Override
+    public Class getType(EvaluationContext ctx) throws ELException {
         return this.getInteger().getClass();
     }
 
-    public Object getValue(EvaluationContext ctx)
-            throws ELException {
+    @Override
+    public Object getValue(EvaluationContext ctx) throws ELException {
         return this.getInteger();
     }
 }

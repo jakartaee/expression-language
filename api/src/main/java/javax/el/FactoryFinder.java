@@ -17,27 +17,24 @@
 
 package javax.el;
 
-import java.lang.reflect.Constructor;
-import java.io.InputStream;
+import static java.io.File.separator;
+
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
-import java.util.Properties;
-import java.io.BufferedReader;
+import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.lang.reflect.Constructor;
+import java.util.Properties;
 
 class FactoryFinder {
 
     /**
-     * Creates an instance of the specified class using the specified 
-     * <code>ClassLoader</code> object.
+     * Creates an instance of the specified class using the specified <code>ClassLoader</code> object.
      *
-     * @exception ELException if the given class could not be found
-     *            or could not be instantiated
+     * @exception ELException if the given class could not be found or could not be instantiated
      */
-    private static Object newInstance(String className,
-                                      ClassLoader classLoader,
-                                      Properties properties)
-    {
+    private static Object newInstance(String className, ClassLoader classLoader, Properties properties) {
         try {
             Class<?> spiClass;
             if (classLoader == null) {
@@ -45,50 +42,41 @@ class FactoryFinder {
             } else {
                 spiClass = classLoader.loadClass(className);
             }
+
             if (properties != null) {
-                Constructor constr = null;
+                Constructor<?> constr = null;
                 try {
                     constr = spiClass.getConstructor(Properties.class);
                 } catch (Exception ex) {
                 }
+
                 if (constr != null) {
                     return constr.newInstance(properties);
                 }
             }
             return spiClass.newInstance();
         } catch (ClassNotFoundException x) {
-            throw new ELException(
-                "Provider " + className + " not found", x);
+            throw new ELException("Provider " + className + " not found", x);
         } catch (Exception x) {
-            throw new ELException(
-                "Provider " + className + " could not be instantiated: " + x,
-                x);
+            throw new ELException("Provider " + className + " could not be instantiated: " + x, x);
         }
     }
 
     /**
-     * Finds the implementation <code>Class</code> object for the given
-     * factory name, or if that fails, finds the <code>Class</code> object
-     * for the given fallback class name. The arguments supplied must be
-     * used in order. If using the first argument is successful, the second
-     * one will not be used.
+     * Finds the implementation <code>Class</code> object for the given factory name, or if that fails, finds the
+     * <code>Class</code> object for the given fallback class name. The arguments supplied must be used in order. If using
+     * the first argument is successful, the second one will not be used.
      * <P>
      * This method is package private so that this code can be shared.
      *
-     * @return the <code>Class</code> object of the specified message factory;
-     *         may not be <code>null</code>
+     * @return the <code>Class</code> object of the specified message factory; may not be <code>null</code>
      *
-     * @param factoryId             the name of the factory to find, which is
-     *                              a system property
-     * @param fallbackClassName     the implementation class name, which is
-     *                              to be used only if nothing else
-     *                              is found; <code>null</code> to indicate that
-     *                              there is no fallback class name
+     * @param factoryId the name of the factory to find, which is a system property
+     * @param fallbackClassName the implementation class name, which is to be used only if nothing else is found;
+     * <code>null</code> to indicate that there is no fallback class name
      * @exception ELException if there is an error
      */
-    static Object find(String factoryId, String fallbackClassName,
-                       Properties properties)
-    {
+    static Object find(String factoryId, String fallbackClassName, Properties properties) {
         ClassLoader classLoader;
         try {
             classLoader = Thread.currentThread().getContextClassLoader();
@@ -97,63 +85,58 @@ class FactoryFinder {
         }
 
         String serviceId = "META-INF/services/" + factoryId;
+
         // try to find services in CLASSPATH
         try {
-            InputStream is=null;
+            InputStream is = null;
             if (classLoader == null) {
-                is=ClassLoader.getSystemResourceAsStream(serviceId);
+                is = ClassLoader.getSystemResourceAsStream(serviceId);
             } else {
-                is=classLoader.getResourceAsStream(serviceId);
+                is = classLoader.getResourceAsStream(serviceId);
             }
-        
-            if( is!=null ) {
-                BufferedReader rd =
-                    new BufferedReader(new InputStreamReader(is, "UTF-8"));
-        
-                String factoryClassName = rd.readLine();
-                rd.close();
 
-                if (factoryClassName != null &&
-                    ! "".equals(factoryClassName)) {
+            if (is != null) {
+                BufferedReader reader = new BufferedReader(new InputStreamReader(is, "UTF-8"));
+
+                String factoryClassName = reader.readLine();
+                reader.close();
+
+                if (factoryClassName != null && !"".equals(factoryClassName)) {
                     return newInstance(factoryClassName, classLoader, properties);
                 }
             }
-        } catch( Exception ex ) {
+        } catch (Exception ex) {
         }
-        
 
-        // try to read from $java.home/lib/el.properties
+        // Try to read from $java.home/lib/el.properties
         try {
-            String javah=System.getProperty( "java.home" );
-            String configFile = javah + File.separator +
-                "lib" + File.separator + "el.properties";
-            File f=new File( configFile );
-            if( f.exists()) {
-                Properties props=new Properties();
-                props.load( new FileInputStream(f));
+            String javah = System.getProperty("java.home");
+            String configFileName = javah + separator + "lib" + separator + "el.properties";
+
+            File configFile = new File(configFileName);
+            if (configFile.exists()) {
+                Properties props = new Properties();
+                props.load(new FileInputStream(configFile));
                 String factoryClassName = props.getProperty(factoryId);
+
                 return newInstance(factoryClassName, classLoader, properties);
             }
-        } catch(Exception ex ) {
+        } catch (Exception ex) {
         }
-
 
         // Use the system property
         try {
-            String systemProp =
-                System.getProperty( factoryId );
-            if( systemProp!=null) {
+            String systemProp = System.getProperty(factoryId);
+            if (systemProp != null) {
                 return newInstance(systemProp, classLoader, properties);
             }
         } catch (SecurityException se) {
         }
 
         if (fallbackClassName == null) {
-            throw new ELException(
-                "Provider for " + factoryId + " cannot be found", null);
+            throw new ELException("Provider for " + factoryId + " cannot be found", null);
         }
 
         return newInstance(fallbackClassName, classLoader, properties);
     }
 }
-

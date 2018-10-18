@@ -16,35 +16,35 @@
 
 package com.sun.el;
 
-import java.util.Map;
-import java.util.HashMap;
-import java.util.Properties;
 import java.lang.reflect.Method;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Properties;
 
 import javax.el.ELContext;
 import javax.el.ELException;
+import javax.el.ELResolver;
 import javax.el.ExpressionFactory;
 import javax.el.MethodExpression;
 import javax.el.ValueExpression;
-import javax.el.ELResolver;
 
-import com.sun.el.lang.ExpressionBuilder;
 import com.sun.el.lang.ELSupport;
-import com.sun.el.util.MessageFactory;
+import com.sun.el.lang.ExpressionBuilder;
 import com.sun.el.stream.StreamELResolver;
+import com.sun.el.util.MessageFactory;
 
 /**
  * @see javax.el.ExpressionFactory
- * 
+ *
  * @author Jacob Hookom [jacob@hookom.net]
  * @author Kin-man Chung
  * @version $Change: 181177 $$DateTime: 2001/06/26 08:45:09 $$Author: kchung $
  */
 public class ExpressionFactoryImpl extends ExpressionFactory {
 
-    /**
-     * 
-     */
+    private Properties properties;
+    private boolean isBackwardCompatible22;
+
     public ExpressionFactoryImpl() {
         super();
     }
@@ -55,50 +55,51 @@ public class ExpressionFactoryImpl extends ExpressionFactory {
         this.isBackwardCompatible22 = "true".equals(getProperty("javax.el.bc2.2"));
     }
 
-    public Object coerceToType(Object obj, Class type) {
-        Object ret;
+    @Override
+    public Object coerceToType(Object obj, Class<?> type) {
         try {
-            ret = ELSupport.coerceToType(obj, type, isBackwardCompatible22);
+            return ELSupport.coerceToType(obj, type, isBackwardCompatible22);
         } catch (IllegalArgumentException ex) {
             throw new ELException(ex);
         }
-        return ret;
     }
 
-    public MethodExpression createMethodExpression(ELContext context,
-            String expression, Class expectedReturnType,
-            Class[] expectedParamTypes) {
-        ExpressionBuilder builder = new ExpressionBuilder(expression, context);
-        MethodExpression me = builder.createMethodExpression(expectedReturnType,
-                expectedParamTypes);
-        if (expectedParamTypes == null && !me.isParametersProvided()) {
-            throw new NullPointerException(MessageFactory
-                    .get("error.method.nullParms"));
+    @Override
+    public MethodExpression createMethodExpression(ELContext context, String expression, Class<?> expectedReturnType, Class<?>[] expectedParamTypes) {
+        MethodExpression methodExpression =
+                new ExpressionBuilder(expression, context)
+                    .createMethodExpression(expectedReturnType, expectedParamTypes);
+
+        if (expectedParamTypes == null && !methodExpression.isParametersProvided()) {
+            throw new NullPointerException(MessageFactory.get("error.method.nullParms"));
         }
-        return me;
+
+        return methodExpression;
     }
 
-    public ValueExpression createValueExpression(ELContext context,
-            String expression, Class expectedType) {
+    @Override
+    public ValueExpression createValueExpression(ELContext context, String expression, Class<?> expectedType) {
         if (expectedType == null) {
-            throw new NullPointerException(MessageFactory
-                    .get("error.value.expectedType"));
+            throw new NullPointerException(MessageFactory.get("error.value.expectedType"));
         }
-        ExpressionBuilder builder = new ExpressionBuilder(expression, context);
-        return builder.createValueExpression(expectedType);
+
+        return new ExpressionBuilder(expression, context).createValueExpression(expectedType);
     }
 
-    public ValueExpression createValueExpression(Object instance,
-            Class expectedType) {
+    @Override
+    public ValueExpression createValueExpression(Object instance, Class<?> expectedType) {
         if (expectedType == null) {
-            throw new NullPointerException(MessageFactory
-                    .get("error.value.expectedType"));
+            throw new NullPointerException(MessageFactory.get("error.value.expectedType"));
         }
+
         return new ValueExpressionLiteral(instance, expectedType);
     }
 
     public String getProperty(String key) {
-        if (properties == null) return null;
+        if (properties == null) {
+            return null;
+        }
+
         return properties.getProperty(key);
     }
 
@@ -109,10 +110,6 @@ public class ExpressionFactoryImpl extends ExpressionFactory {
 
     @Override
     public Map<String, Method> getInitFunctionMap() {
-        Map<String, Method> funcs = new HashMap<String, Method>();
-        return funcs;
+        return new HashMap<String, Method>();
     }
-
-    private Properties properties;
-    private boolean isBackwardCompatible22;
 }
