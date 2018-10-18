@@ -107,7 +107,6 @@
                         <supportedProjectType>jar</supportedProjectType>
                     </supportedProjectTypes>
                     <instructions>
-                        <Automatic-Module-Name>java.el</Automatic-Module-Name>
                         <Bundle-Description>Expression Language ${spec.version} API</Bundle-Description>
                         <Bundle-SymbolicName>${bundle.symbolicName}</Bundle-SymbolicName>
                         <Bundle-Version>${bundle.version}</Bundle-Version>
