@@ -37,7 +37,7 @@
         <!-- Make sure the two versions are in sync with the maven version -->
         <spec.version>3.0</spec.version>
         <bundle.version>3.0.0</bundle.version>
-        <extensionName>jakarta.el</extensionName>
+        <extensionName>javax.el</extensionName>
         <bundle.symbolicName>javax.el-api</bundle.symbolicName>
         <vendorName>Oracle Corporation</vendorName>
         <findbugs.version>2.4.0</findbugs.version>
