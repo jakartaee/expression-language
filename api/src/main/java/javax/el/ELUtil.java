@@ -67,8 +67,8 @@ class ELUtil {
 
     /**
      * <p>
-     * The <code>ThreadLocal</code> variable used to record the <code>javax.faces.context.FacesContext</code> instance for each
-     * processing thread.
+     * The <code>ThreadLocal</code> variable used to record the <code>javax.faces.context.FacesContext</code> instance for
+     * each processing thread.
      * </p>
      */
     private static ThreadLocal<Map<String, ResourceBundle>> instance = new ThreadLocal<Map<String, ResourceBundle>>() {
@@ -104,8 +104,7 @@ class ELUtil {
     }
 
     /**
-     * Convenience method, calls through to getExceptionMessageString(javax.el.ELContext,java.lang.String,Object
-     * []).
+     * Convenience method, calls through to getExceptionMessageString(javax.el.ELContext,java.lang.String,Object []).
      *
      * @param context the ELContext from which the Locale for this message is extracted.
      * @param messageId the messageId String in the ResourceBundle

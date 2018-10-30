@@ -248,7 +248,7 @@ public class MapELResolver extends ELResolver {
 
         if (base != null && base instanceof Map) {
             context.setPropertyResolved(true);
-            Map<?,?> map = (Map<?,?>) base;
+            Map<?, ?> map = (Map<?, ?>) base;
             return isReadOnly || map.getClass() == theUnmodifiableMapClass;
         }
 
@@ -289,7 +289,7 @@ public class MapELResolver extends ELResolver {
     @Override
     public Iterator<FeatureDescriptor> getFeatureDescriptors(ELContext context, Object base) {
         if (base != null && base instanceof Map) {
-            Map<?,?> map = (Map<?,?>) base;
+            Map<?, ?> map = (Map<?, ?>) base;
             Iterator<?> iter = map.keySet().iterator();
             List<FeatureDescriptor> list = new ArrayList<>();
 
