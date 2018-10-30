@@ -203,7 +203,6 @@ class ELUtil {
 
     static Object invokeConstructor(ELContext context, Constructor<?> constructor, Object[] params) {
         Object[] parameters = buildParameters(context, constructor.getParameterTypes(), constructor.isVarArgs(), params);
-        ;
         try {
             return constructor.newInstance(parameters);
         } catch (IllegalAccessException iae) {
