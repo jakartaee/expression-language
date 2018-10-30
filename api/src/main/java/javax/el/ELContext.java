@@ -47,8 +47,8 @@ import java.util.Stack;
  *
  * <p>
  * The collection of context objects is necessary because each <code>ELResolver</code> may need access to a different
- * context object. For example, JSP and Faces resolvers need access to a {@link javax.servlet.jsp.JspContext} and a
- * {@link javax.faces.context.FacesContext}, respectively.
+ * context object. For example, JSP and Faces resolvers need access to a <code>javax.servlet.jsp.JspContext</code> and a
+ * <code>javax.faces.context.FacesContext</code>, respectively.
  *
  * <p>
  * When used in a web container, the creation of <code>ELContext</code> objects is controlled through the underlying
@@ -72,7 +72,6 @@ import java.util.Stack;
  * @see ImportHandler
  * @see LambdaExpression
  * @see StandardELContext
- * @see javax.servlet.jsp.JspContext
  * @since EL 2.1 and EL 3.0
  */
 public abstract class ELContext {
