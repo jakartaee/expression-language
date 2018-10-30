@@ -270,6 +270,7 @@ class ELUtil {
     /*
      * This method duplicates code in com.sun.el.util.ReflectionUtil. When making changes keep the code in sync.
      */
+    @SuppressWarnings("null")
     private static Wrapper findWrapper(Class<?> clazz, List<Wrapper> wrappers, String name, Class<?>[] paramTypes, Object[] paramValues) {
         List<Wrapper> assignableCandidates = new ArrayList<>();
         List<Wrapper> coercibleCandidates = new ArrayList<>();
@@ -672,6 +673,7 @@ class ELUtil {
     /*
      * This method duplicates code in com.sun.el.util.ReflectionUtil. When making changes keep the code in sync.
      */
+    @SuppressWarnings("null")
     static Object[] buildParameters(ELContext context, Class<?>[] parameterTypes, boolean isVarArgs, Object[] params) {
         Object[] parameters = null;
         if (parameterTypes.length > 0) {
