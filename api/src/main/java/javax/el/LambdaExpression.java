@@ -45,7 +45,6 @@ import java.util.Map;
  * @see ELContext#enterLambdaScope
  * @see ELContext#exitLambdaScope
  */
-
 public class LambdaExpression {
 
     private List<String> formalParameters = new ArrayList<>();

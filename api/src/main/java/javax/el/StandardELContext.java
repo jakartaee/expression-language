@@ -28,7 +28,6 @@ import java.util.Map;
  *
  * @since EL 3.0
  */
-
 public class StandardELContext extends ELContext {
 
     /*

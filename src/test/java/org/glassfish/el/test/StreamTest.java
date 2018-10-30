@@ -60,7 +60,6 @@ public class StreamTest {
      *     The array element should equal the elements in the array, list or
      *     Iterable, when enumerated.
      */
-
     void testStream(String name, String query, String[] expected) {
         p("=== Testing " + name + " ===");
         p(query);

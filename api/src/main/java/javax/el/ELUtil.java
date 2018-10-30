@@ -82,7 +82,6 @@ class ELUtil {
      * @return a Map stored in ThreadLocal storage. This may be used by methods of this class to minimize the performance
      * impact for operations that may take place multiple times on a given Thread instance.
      */
-
     private static Map<String, ResourceBundle> getCurrentInstance() {
         Map<String, ResourceBundle> result = instance.get();
         if (result == null) {

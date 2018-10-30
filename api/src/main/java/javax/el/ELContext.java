@@ -232,7 +232,6 @@ public abstract class ELContext {
      *
      * @return The <code>Locale</code> in which this instance is operating. Used primarily for message localization.
      */
-
     public Locale getLocale() {
         return locale;
     }
