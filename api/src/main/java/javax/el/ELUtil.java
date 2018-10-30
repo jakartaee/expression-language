@@ -86,7 +86,7 @@ class ELUtil {
     private static Map<String, ResourceBundle> getCurrentInstance() {
         Map<String, ResourceBundle> result = instance.get();
         if (result == null) {
-            result = new HashMap<String, ResourceBundle>();
+            result = new HashMap<>();
             setCurrentInstance(result);
         }
 
@@ -272,9 +272,9 @@ class ELUtil {
      * This method duplicates code in com.sun.el.util.ReflectionUtil. When making changes keep the code in sync.
      */
     private static Wrapper findWrapper(Class<?> clazz, List<Wrapper> wrappers, String name, Class<?>[] paramTypes, Object[] paramValues) {
-        List<Wrapper> assignableCandidates = new ArrayList<Wrapper>();
-        List<Wrapper> coercibleCandidates = new ArrayList<Wrapper>();
-        List<Wrapper> varArgsCandidates = new ArrayList<Wrapper>();
+        List<Wrapper> assignableCandidates = new ArrayList<>();
+        List<Wrapper> coercibleCandidates = new ArrayList<>();
+        List<Wrapper> varArgsCandidates = new ArrayList<>();
 
         int paramCount;
         if (paramTypes == null) {
@@ -374,7 +374,7 @@ class ELUtil {
      * This method duplicates code in com.sun.el.util.ReflectionUtil. When making changes keep the code in sync.
      */
     private static Wrapper findMostSpecificWrapper(List<Wrapper> candidates, Class<?>[] matchingTypes, boolean elSpecific, String errorMsg) {
-        List<Wrapper> ambiguouses = new ArrayList<Wrapper>();
+        List<Wrapper> ambiguouses = new ArrayList<>();
         for (Wrapper candidate : candidates) {
             boolean lessSpecific = false;
 

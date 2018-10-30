@@ -71,7 +71,7 @@ public class StandardELContext extends ELContext {
     /**
      * A bean repository local to this context
      */
-    private Map<String, Object> beans = new HashMap<String, Object>();
+    private Map<String, Object> beans = new HashMap<>();
 
     /**
      * Construct a default ELContext for a stand-alone environment.
@@ -219,7 +219,7 @@ public class StandardELContext extends ELContext {
         private Map<String, Method> functions;
 
         DefaultFunctionMapper(Map<String, Method> initMap) {
-            functions = (initMap == null) ? new HashMap<String, Method>() : new HashMap<String, Method>(initMap);
+            functions = (initMap == null) ? new HashMap<String, Method>() : new HashMap<>(initMap);
         }
 
         @Override
@@ -249,7 +249,7 @@ public class StandardELContext extends ELContext {
         @Override
         public ValueExpression setVariable(String variable, ValueExpression expression) {
             if (variables == null) {
-                variables = new HashMap<String, ValueExpression>();
+                variables = new HashMap<>();
             }
 
             ValueExpression prev = null;

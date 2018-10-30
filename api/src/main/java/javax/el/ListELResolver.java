@@ -49,7 +49,7 @@ import java.util.List;
  */
 public class ListELResolver extends ELResolver {
 
-    static private Class<?> theUnmodifiableListClass = Collections.unmodifiableList(new ArrayList<Object>()).getClass();
+    static private Class<?> theUnmodifiableListClass = Collections.unmodifiableList(new ArrayList<>()).getClass();
     private boolean isReadOnly;
 
     /**

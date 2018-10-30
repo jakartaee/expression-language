@@ -78,7 +78,7 @@ import java.util.Stack;
 public abstract class ELContext {
 
     private boolean resolved;
-    private HashMap<Class<?>, Object> map = new HashMap<Class<?>, Object>();
+    private HashMap<Class<?>, Object> map = new HashMap<>();
     private transient List<EvaluationListener> listeners;
     private Stack<Map<String, Object>> lambdaArgs;
     private ImportHandler importHandler;
@@ -268,7 +268,7 @@ public abstract class ELContext {
      */
     public void addEvaluationListener(EvaluationListener listener) {
         if (listeners == null) {
-            listeners = new ArrayList<EvaluationListener>();
+            listeners = new ArrayList<>();
         }
 
         listeners.add(listener);
@@ -386,7 +386,7 @@ public abstract class ELContext {
      */
     public void enterLambdaScope(Map<String, Object> args) {
         if (lambdaArgs == null) {
-            lambdaArgs = new Stack<Map<String, Object>>();
+            lambdaArgs = new Stack<>();
         }
 
         lambdaArgs.push(args);
