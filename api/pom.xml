@@ -23,7 +23,7 @@
     <parent>
         <groupId>org.eclipse.ee4j</groupId>
         <artifactId>project</artifactId>
-        <version>1.0.2</version>
+        <version>1.0.5</version>
         <relativePath/>
     </parent>
 
@@ -196,26 +196,7 @@
                     <arguments>${release.arguments}</arguments>
                 </configuration>
             </plugin>
-            
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-remote-resources-plugin</artifactId>
-                <version>1.2.1</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>process</goal>
-                        </goals>
-                        <configuration>
-                            <resourceBundles>
-                                <resourceBundle>org.glassfish:legal:1.1</resourceBundle>
-                            </resourceBundles>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-        
+                    
         <resources>
             <resource>
                 <directory>src/main/java</directory>

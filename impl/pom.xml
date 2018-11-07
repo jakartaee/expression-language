@@ -23,12 +23,12 @@
     <parent>
         <groupId>org.eclipse.ee4j</groupId>
         <artifactId>project</artifactId>
-        <version>1.0.2</version>
+        <version>1.0.5</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.glassfish</groupId>
-    <artifactId>javax.el.impl</artifactId>
+    <artifactId>jakarta.el.impl</artifactId>
     <version>3.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>Expression Language 3.0 Implementation</name>
@@ -161,23 +161,6 @@
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-source-plugin</artifactId>
-                <version> 2.2.1 </version>
-                <configuration>
-                    <includePom>true</includePom>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>attach-sources</id>
-                        <goals>
-                            <goal>jar-no-fork</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
                 <version>3.0.1</version>
                 <executions>
@@ -242,32 +225,6 @@
                 </configuration>
             </plugin>
             
-            <plugin>
-                <groupId>org.glassfish.copyright</groupId>
-                <artifactId>glassfish-copyright-maven-plugin</artifactId>
-                <version>1.32</version>
-            </plugin>
-            
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-remote-resources-plugin</artifactId>
-                <version>1.2.1</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>process</goal>
-                        </goals>
-                        <configuration>
-                            <resourceBundles>
-                                <resourceBundle>org.glassfish:legal:1.1</resourceBundle>
-                            </resourceBundles>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-        
-        
         <resources>
             <resource>
                 <directory>src/main/java</directory>
