@@ -67,8 +67,8 @@ class ELUtil {
 
     /**
      * <p>
-     * The <code>ThreadLocal</code> variable used to record the {@link javax.faces.context.FacesContext} instance for each
-     * processing thread.
+     * The <code>ThreadLocal</code> variable used to record the <code>javax.faces.context.FacesContext</code> instance for
+     * each processing thread.
      * </p>
      */
     private static ThreadLocal<Map<String, ResourceBundle>> instance = new ThreadLocal<Map<String, ResourceBundle>>() {
@@ -82,11 +82,10 @@ class ELUtil {
      * @return a Map stored in ThreadLocal storage. This may be used by methods of this class to minimize the performance
      * impact for operations that may take place multiple times on a given Thread instance.
      */
-
     private static Map<String, ResourceBundle> getCurrentInstance() {
         Map<String, ResourceBundle> result = instance.get();
         if (result == null) {
-            result = new HashMap<String, ResourceBundle>();
+            result = new HashMap<>();
             setCurrentInstance(result);
         }
 
@@ -104,8 +103,7 @@ class ELUtil {
     }
 
     /**
-     * Convenience method, calls through to getExceptionMessageString(javax.el.ELContext,java.lang.String,Object
-     * []).
+     * Convenience method, calls through to getExceptionMessageString(javax.el.ELContext,java.lang.String,Object []).
      *
      * @param context the ELContext from which the Locale for this message is extracted.
      * @param messageId the messageId String in the ResourceBundle
@@ -203,7 +201,6 @@ class ELUtil {
 
     static Object invokeConstructor(ELContext context, Constructor<?> constructor, Object[] params) {
         Object[] parameters = buildParameters(context, constructor.getParameterTypes(), constructor.isVarArgs(), params);
-        ;
         try {
             return constructor.newInstance(parameters);
         } catch (IllegalAccessException iae) {
@@ -271,10 +268,11 @@ class ELUtil {
     /*
      * This method duplicates code in com.sun.el.util.ReflectionUtil. When making changes keep the code in sync.
      */
+    @SuppressWarnings("null")
     private static Wrapper findWrapper(Class<?> clazz, List<Wrapper> wrappers, String name, Class<?>[] paramTypes, Object[] paramValues) {
-        List<Wrapper> assignableCandidates = new ArrayList<Wrapper>();
-        List<Wrapper> coercibleCandidates = new ArrayList<Wrapper>();
-        List<Wrapper> varArgsCandidates = new ArrayList<Wrapper>();
+        List<Wrapper> assignableCandidates = new ArrayList<>();
+        List<Wrapper> coercibleCandidates = new ArrayList<>();
+        List<Wrapper> varArgsCandidates = new ArrayList<>();
 
         int paramCount;
         if (paramTypes == null) {
@@ -374,7 +372,7 @@ class ELUtil {
      * This method duplicates code in com.sun.el.util.ReflectionUtil. When making changes keep the code in sync.
      */
     private static Wrapper findMostSpecificWrapper(List<Wrapper> candidates, Class<?>[] matchingTypes, boolean elSpecific, String errorMsg) {
-        List<Wrapper> ambiguouses = new ArrayList<Wrapper>();
+        List<Wrapper> ambiguouses = new ArrayList<>();
         for (Wrapper candidate : candidates) {
             boolean lessSpecific = false;
 
@@ -673,6 +671,7 @@ class ELUtil {
     /*
      * This method duplicates code in com.sun.el.util.ReflectionUtil. When making changes keep the code in sync.
      */
+    @SuppressWarnings("null")
     static Object[] buildParameters(ELContext context, Class<?>[] parameterTypes, boolean isVarArgs, Object[] params) {
         Object[] parameters = null;
         if (parameterTypes.length > 0) {

@@ -43,7 +43,6 @@ import java.util.Iterator;
  *
  * @since EL 3.0
  */
-
 public abstract class TypeConverter extends ELResolver {
 
     @Override

@@ -89,8 +89,8 @@ public class BeanELResolver extends ELResolver {
 
         private static final long serialVersionUID = -178867497897782229L;
         private static final int CACHE_INIT_SIZE = 1024;
-        private ConcurrentHashMap<Class<?>, BPSoftReference> map = new ConcurrentHashMap<Class<?>, BPSoftReference>(CACHE_INIT_SIZE);
-        private ReferenceQueue<BeanProperties> refQ = new ReferenceQueue<BeanProperties>();
+        private ConcurrentHashMap<Class<?>, BPSoftReference> map = new ConcurrentHashMap<>(CACHE_INIT_SIZE);
+        private ReferenceQueue<BeanProperties> refQ = new ReferenceQueue<>();
 
         // Remove map entries that have been placed on the queue by GC.
         private void cleanup() {
@@ -171,7 +171,7 @@ public class BeanELResolver extends ELResolver {
      */
     final static class BeanProperties {
 
-        private final Map<String, BeanProperty> propertyMap = new HashMap<String, BeanProperty>();
+        private final Map<String, BeanProperty> propertyMap = new HashMap<>();
 
         public BeanProperties(Class<?> baseClass) {
             PropertyDescriptor[] descriptors;
@@ -528,7 +528,7 @@ public class BeanELResolver extends ELResolver {
             return null;
         }
 
-        ArrayList<FeatureDescriptor> featureDescriptors = new ArrayList<FeatureDescriptor>(info.getPropertyDescriptors().length);
+        ArrayList<FeatureDescriptor> featureDescriptors = new ArrayList<>(info.getPropertyDescriptors().length);
         for (PropertyDescriptor propertyDescriptor : info.getPropertyDescriptors()) {
             propertyDescriptor.setValue("type", propertyDescriptor.getPropertyType());
             propertyDescriptor.setValue("resolvableAtDesignTime", TRUE);

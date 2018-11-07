@@ -47,8 +47,8 @@ import java.util.Stack;
  *
  * <p>
  * The collection of context objects is necessary because each <code>ELResolver</code> may need access to a different
- * context object. For example, JSP and Faces resolvers need access to a {@link javax.servlet.jsp.JspContext} and a
- * {@link javax.faces.context.FacesContext}, respectively.
+ * context object. For example, JSP and Faces resolvers need access to a <code>javax.servlet.jsp.JspContext</code> and a
+ * <code>javax.faces.context.FacesContext</code>, respectively.
  *
  * <p>
  * When used in a web container, the creation of <code>ELContext</code> objects is controlled through the underlying
@@ -72,13 +72,12 @@ import java.util.Stack;
  * @see ImportHandler
  * @see LambdaExpression
  * @see StandardELContext
- * @see javax.servlet.jsp.JspContext
  * @since EL 2.1 and EL 3.0
  */
 public abstract class ELContext {
 
     private boolean resolved;
-    private HashMap<Class<?>, Object> map = new HashMap<Class<?>, Object>();
+    private HashMap<Class<?>, Object> map = new HashMap<>();
     private transient List<EvaluationListener> listeners;
     private Stack<Map<String, Object>> lambdaArgs;
     private ImportHandler importHandler;
@@ -154,7 +153,7 @@ public abstract class ELContext {
      * @param contextObject The context object to add to the collection.
      * @throws NullPointerException if key is null or contextObject is null.
      */
-    public void putContext(Class key, Object contextObject) {
+    public void putContext(Class<?> key, Object contextObject) {
         if (key == null || contextObject == null) {
             throw new NullPointerException();
         }
@@ -180,7 +179,7 @@ public abstract class ELContext {
      * @return The context object associated with the given key, or null if no such context was found.
      * @throws NullPointerException if key is null.
      */
-    public Object getContext(Class key) {
+    public Object getContext(Class<?> key) {
         if (key == null) {
             throw new NullPointerException();
         }
@@ -233,7 +232,6 @@ public abstract class ELContext {
      *
      * @return The <code>Locale</code> in which this instance is operating. Used primarily for message localization.
      */
-
     public Locale getLocale() {
         return locale;
     }
@@ -268,7 +266,7 @@ public abstract class ELContext {
      */
     public void addEvaluationListener(EvaluationListener listener) {
         if (listeners == null) {
-            listeners = new ArrayList<EvaluationListener>();
+            listeners = new ArrayList<>();
         }
 
         listeners.add(listener);
@@ -386,7 +384,7 @@ public abstract class ELContext {
      */
     public void enterLambdaScope(Map<String, Object> args) {
         if (lambdaArgs == null) {
-            lambdaArgs = new Stack<Map<String, Object>>();
+            lambdaArgs = new Stack<>();
         }
 
         lambdaArgs.push(args);

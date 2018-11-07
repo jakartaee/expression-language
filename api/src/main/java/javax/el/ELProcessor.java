@@ -76,7 +76,6 @@ import java.lang.reflect.Modifier;
  *
  * @since EL 3.0
  */
-
 public class ELProcessor {
 
     private ELManager elManager = new ELManager();

@@ -45,10 +45,9 @@ import java.util.Map;
  * @see ELContext#enterLambdaScope
  * @see ELContext#exitLambdaScope
  */
-
 public class LambdaExpression {
 
-    private List<String> formalParameters = new ArrayList<String>();
+    private List<String> formalParameters = new ArrayList<>();
     private ValueExpression expression;
     private ELContext context;
     // Arguments from nesting lambdas, when the body is another lambda
@@ -63,7 +62,7 @@ public class LambdaExpression {
     public LambdaExpression(List<String> formalParameters, ValueExpression expression) {
         this.formalParameters = formalParameters;
         this.expression = expression;
-        this.envirArgs = new HashMap<String, Object>();
+        this.envirArgs = new HashMap<>();
     }
 
     /**
@@ -99,7 +98,7 @@ public class LambdaExpression {
      */
     public Object invoke(ELContext elContext, Object... args) throws ELException {
         int i = 0;
-        Map<String, Object> lambdaArgs = new HashMap<String, Object>();
+        Map<String, Object> lambdaArgs = new HashMap<>();
 
         // First get arguments injected from the outter lambda, if any
         lambdaArgs.putAll(envirArgs);

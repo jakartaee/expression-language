@@ -53,7 +53,7 @@ import java.util.Map;
  */
 public class MapELResolver extends ELResolver {
 
-    static private Class<?> theUnmodifiableMapClass = Collections.unmodifiableMap(new HashMap<Object, Object>()).getClass();
+    static private Class<?> theUnmodifiableMapClass = Collections.unmodifiableMap(new HashMap<>()).getClass();
     private boolean isReadOnly;
 
     /**
@@ -248,7 +248,7 @@ public class MapELResolver extends ELResolver {
 
         if (base != null && base instanceof Map) {
             context.setPropertyResolved(true);
-            Map<?,?> map = (Map<?,?>) base;
+            Map<?, ?> map = (Map<?, ?>) base;
             return isReadOnly || map.getClass() == theUnmodifiableMapClass;
         }
 
@@ -289,9 +289,9 @@ public class MapELResolver extends ELResolver {
     @Override
     public Iterator<FeatureDescriptor> getFeatureDescriptors(ELContext context, Object base) {
         if (base != null && base instanceof Map) {
-            Map<?,?> map = (Map<?,?>) base;
+            Map<?, ?> map = (Map<?, ?>) base;
             Iterator<?> iter = map.keySet().iterator();
-            List<FeatureDescriptor> list = new ArrayList<FeatureDescriptor>();
+            List<FeatureDescriptor> list = new ArrayList<>();
 
             while (iter.hasNext()) {
                 Object key = iter.next();

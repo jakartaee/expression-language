@@ -23,7 +23,6 @@ package javax.el;
  *
  * @since JSP 2.1
  */
-
 public abstract class VariableMapper {
 
     /**

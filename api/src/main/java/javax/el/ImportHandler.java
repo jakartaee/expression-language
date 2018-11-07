@@ -34,11 +34,11 @@ import java.util.Map;
  */
 public class ImportHandler {
 
-    private Map<String, String> classNameMap = new HashMap<String, String>();
-    private Map<String, Class<?>> classMap = new HashMap<String, Class<?>>();
-    private Map<String, String> staticNameMap = new HashMap<String, String>();
-    private HashSet<String> notAClass = new HashSet<String>();
-    private List<String> packages = new ArrayList<String>();
+    private Map<String, String> classNameMap = new HashMap<>();
+    private Map<String, Class<?>> classMap = new HashMap<>();
+    private Map<String, String> staticNameMap = new HashMap<>();
+    private HashSet<String> notAClass = new HashSet<>();
+    private List<String> packages = new ArrayList<>();
 
     {
         importPackage("java.lang");

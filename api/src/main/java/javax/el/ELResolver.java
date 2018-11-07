@@ -104,7 +104,6 @@ public abstract class ELResolver {
      * the variable or property.
      * </p>
      */
-
     public static final String TYPE = "type";
 
     /**
@@ -113,7 +112,6 @@ public abstract class ELResolver {
      * or property can be resolved at runtime.
      * </p>
      */
-
     public static final String RESOLVABLE_AT_DESIGN_TIME = "resolvableAtDesignTime";
 
     /**
