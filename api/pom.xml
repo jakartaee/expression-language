@@ -196,6 +196,7 @@
                     <arguments>${release.arguments}</arguments>
                 </configuration>
             </plugin>
+        </plugins>
                     
         <resources>
             <resource>
