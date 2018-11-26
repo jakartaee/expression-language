@@ -29,13 +29,13 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.glassfish</groupId>
     <artifactId>jakarta.el</artifactId>
-    <version>3.0.1-SNAPSHOT</version>
+    <version>3.0.2-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>Expression Language 3.0</name>
 
     <properties>
         <!-- the bundle build number must be the same as the maven number -->
-        <bundle.version>3.0.0</bundle.version>
+        <bundle.version>3.0.2</bundle.version>
         <!-- The most current api version -->
         <spec.version>3.0</spec.version>
         <extensionName>javax.el</extensionName>
@@ -104,6 +104,31 @@
     </contributors>
 
     <build>
+        <resources>
+            <resource>
+                <directory>api/src/main/java</directory>
+                <includes>
+                    <include>**/*.properties</include>
+                    <include>**/*.xml</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>impl/src/main/java</directory>
+                <includes>
+                    <include>**/*.properties</include>
+                    <include>**/*.xml</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>${project.basedir}</directory>
+                <includes>
+                    <include>LICENSE.md</include>
+                    <include>NOTICE.md</include>
+                </includes>
+                <targetPath>META-INF</targetPath>
+            </resource>
+        </resources>
+    
         <plugins>
             <!-- Use this to include both the api and impl sources -->
             <plugin>
@@ -240,16 +265,6 @@
             </plugin>
             
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-release-plugin</artifactId>
-                <configuration>
-                    <mavenExecutorId>forked-path</mavenExecutorId>
-                    <useReleaseProfile>false</useReleaseProfile>
-                    <arguments>${release.arguments}</arguments>
-                </configuration>
-            </plugin>
-            
-            <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.7.1</version>
                 <dependencies>
@@ -270,43 +285,8 @@
                 <artifactId>glassfish-copyright-maven-plugin</artifactId>
                 <version>1.32</version>
             </plugin>
-            
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-remote-resources-plugin</artifactId>
-                <version>1.2.1</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>process</goal>
-                        </goals>
-                        <configuration>
-                            <resourceBundles>
-                                <resourceBundle>org.glassfish:legal:1.1</resourceBundle>
-                            </resourceBundles>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
         </plugins>
-        
-        
-        <resources>
-            <resource>
-                <directory>api/src/main/java</directory>
-                <includes>
-                    <include>**/*.properties</include>
-                    <include>**/*.xml</include>
-                </includes>
-            </resource>
-            <resource>
-                <directory>impl/src/main/java</directory>
-                <includes>
-                    <include>**/*.properties</include>
-                    <include>**/*.xml</include>
-                </includes>
-            </resource>
-        </resources>
+     
     </build>
     
     

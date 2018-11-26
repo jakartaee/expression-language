@@ -20,22 +20,24 @@
 
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
+	<modelVersion>4.0.0</modelVersion>
+
     <parent>
         <groupId>org.eclipse.ee4j</groupId>
         <artifactId>project</artifactId>
         <version>1.0.5</version>
+        <relativePath/>
     </parent>
-
-    <modelVersion>4.0.0</modelVersion>
+    
     <groupId>org.glassfish</groupId>
     <artifactId>jakarta.el.impl</artifactId>
-    <version>3.0.1-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <version>3.0.2-SNAPSHOT</version>
+
     <name>Expression Language 3.0 Implementation</name>
 
     <properties>
         <!-- the bundle build number must be the same as the maven number -->
-        <bundle.version>3.0.0</bundle.version>
+        <bundle.version>3.0.2</bundle.version>
         <!-- The most current api version -->
         <spec.version>3.0</spec.version>
         <extensionName>javax.el.impl</extensionName>
@@ -49,7 +51,6 @@
 
     <description>Expression Language (JSR 341) Reference Implementation</description>
     <url>https://projects.eclipse.org/projects/ee4j.el</url>
-
 
     <issueManagement>
         <system>github</system>
@@ -104,6 +105,25 @@
     </contributors>
 
     <build>
+        <resources>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.properties</include>
+                    <include>**/*.xml</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>${project.basedir}/..</directory>
+                <includes>
+                    <include>LICENSE.md</include>
+                    <include>NOTICE.md</include>
+                </includes>
+                <targetPath>META-INF</targetPath>
+            </resource>
+        </resources>
+    
+    
         <plugins>
             <!-- Configure maven-bundle-plugin to generate OSGi manifest. Please note: we use the manifest goal only and not the bundle goal. 
                 The bundle goal can lead to very surprising results if the package names are not correctly specified. So, we use the jar plugin to generate the 
@@ -224,16 +244,7 @@
                     <!-- <parallel>classes</parallel> -->
                 </configuration>
             </plugin>
-            
-        <resources>
-            <resource>
-                <directory>src/main/java</directory>
-                <includes>
-                    <include>**/*.properties</include>
-                    <include>**/*.xml</include>
-                </includes>
-            </resource>
-        </resources>
+       
     </build>
 
 
@@ -255,7 +266,7 @@
         <dependency>
             <groupId>jakarta.el</groupId>
             <artifactId>jakarta.el-api</artifactId>
-            <version>3.0.1-b07-SNAPSHOT</version>
+            <version>$project.version}</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
