@@ -29,8 +29,8 @@
         <relativePath/>
     </parent>
     
-    <groupId>org.glassfish</groupId>
-    <artifactId>jakarta.el.impl</artifactId>
+    <groupId>com.sun.el</groupId>
+    <artifactId>el-ri</artifactId>
     <version>3.0.2-SNAPSHOT</version>
 
     <name>Expression Language 3.0 Implementation</name>
@@ -266,7 +266,7 @@
         <dependency>
             <groupId>jakarta.el</groupId>
             <artifactId>jakarta.el-api</artifactId>
-            <version>3.0.2</version>
+            <version>${bundle.version}</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
