@@ -244,7 +244,7 @@
                     <!-- <parallel>classes</parallel> -->
                 </configuration>
             </plugin>
-       
+	</plugins>
     </build>
 
 
@@ -266,7 +266,7 @@
         <dependency>
             <groupId>jakarta.el</groupId>
             <artifactId>jakarta.el-api</artifactId>
-            <version>$project.version}</version>
+            <version>3.0.2</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
