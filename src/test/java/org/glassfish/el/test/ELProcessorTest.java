@@ -93,6 +93,13 @@ public class ELProcessorTest {
     }
     
     @Test
+    public void testParenthesis() {
+        elp.setVariable("xx", "1");
+        Object result = elp.eval("((xx)) + 1");
+        assertEquals(result, 2L);
+    }
+    
+    @Test
     public void defineFuncTest() {
         Class c = MyBean.class;
         Method meth = null;

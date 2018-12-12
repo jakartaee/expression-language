@@ -113,8 +113,8 @@ void SemiColon() : {}
  */
 void Assignment() : {}
 {
-        LOOKAHEAD(3) LambdaExpression() |
-        Choice() (<ASSIGN> Assignment() #Assign(2) )?
+        LOOKAHEAD(4) LambdaExpression() | // Do not mistake ((i)) with Lambdaexp check until the arrow
+        Choice() ( LOOKAHEAD(2) <ASSIGN> Assignment() #Assign(2) )* // avoid failure of expr ${x = 10}
 }
 
 /*
@@ -323,7 +323,7 @@ void LambdaExpressionOrCall() #LambdaExpression : {}
  */
 void NonLiteral() : {}
 {
-        LOOKAHEAD(4) LambdaExpressionOrCall()
+        LOOKAHEAD(5) LambdaExpressionOrCall() // check beyond the arrow 
  	| <LPAREN> Expression() <RPAREN>
  	| LOOKAHEAD(4) Function()
 	| Identifier()
