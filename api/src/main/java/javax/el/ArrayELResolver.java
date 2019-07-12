@@ -42,7 +42,8 @@ import java.util.Iterator;
  *
  * @see CompositeELResolver
  * @see ELResolver
- * @since JSP 2.1
+ * 
+ * @since Jakarta Server Pages 2.1
  */
 public class ArrayELResolver extends ELResolver {
 

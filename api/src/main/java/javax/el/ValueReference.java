@@ -22,7 +22,7 @@ import java.io.Serializable;
 /**
  * This encapsulates a base model object and one of its properties.
  *
- * @since EL 2.2
+ * @since Jakarta Expression Language 2.2
  */
 public class ValueReference implements Serializable {
 

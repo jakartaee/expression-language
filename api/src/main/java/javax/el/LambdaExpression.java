@@ -26,12 +26,13 @@ import java.util.Map;
  * Encapsulates a parameterized {@link ValueExpression}.
  *
  * <p>
- * A <code>LambdaExpression</code> is a representation of the EL Lambda expression syntax. It consists of a list of the
- * formal parameters and a body, represented by a {@link ValueExpression}. The body can be any valid
- * <code>Expression</code>, including another <code>LambdaExpression</code>.
+ * A <code>LambdaExpression</code> is a representation of the Jakarta Expression Language Lambda expression syntax. It
+ * consists of a list of the formal parameters and a body, represented by a {@link ValueExpression}. The body can be any
+ * valid <code>Expression</code>, including another <code>LambdaExpression</code>.
  *
  * <p>
- * A <code>LambdaExpression</code> is created when an EL expression containing a Lambda expression is evaluated.
+ * A <code>LambdaExpression</code> is created when an Jakarta Expression Language expression containing a Lambda
+ * expression is evaluated.
  *
  * <p>
  * A <code>LambdaExpression</code> can be invoked by calling {@link LambdaExpression#invoke}, with an

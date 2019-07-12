@@ -35,21 +35,19 @@ import java.util.ResourceBundle;
  * This resolver handles base objects of type <code>java.util.ResourceBundle</code>. It accepts any object as a property
  * and coerces it to a <code>java.lang.String</code> for invoking
  * {@link java.util.ResourceBundle#getObject(java.lang.String)}.
- * </p>
  *
  * <p>
  * This resolver is read only and will throw a {@link PropertyNotWritableException} if <code>setValue</code> is called.
- * </p>
  *
  * <p>
  * <code>ELResolver</code>s are combined together using {@link CompositeELResolver}s, to define rich semantics for
  * evaluating an expression. See the javadocs for {@link ELResolver} for details.
- * </p>
  *
  * @see CompositeELResolver
  * @see ELResolver
  * @see java.util.ResourceBundle
- * @since JSP 2.1
+ * 
+ * @since Jakarta Server Pages 2.1
  */
 public class ResourceBundleELResolver extends ELResolver {
 

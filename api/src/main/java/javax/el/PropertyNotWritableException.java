@@ -25,7 +25,7 @@ package javax.el;
  * For example, this could be triggered by trying to set a map value on an unmodifiable map.
  * </p>
  *
- * @since JSP 2.1
+ * @since Jakarta Server Pages 2.1
  */
 public class PropertyNotWritableException extends ELException {
 

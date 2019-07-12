@@ -46,7 +46,7 @@ package javax.el;
  * @see ELResolver
  * @see Expression
  * @see ExpressionFactory
- * @since JSP 2.1
+ * @since Jakarta Server Pages 2.1
  */
 public abstract class MethodExpression extends Expression {
 
@@ -73,7 +73,7 @@ public abstract class MethodExpression extends Expression {
      * If a String literal is specified as the expression, returns the String literal coerced to the expected return type of
      * the method signature. An <code>ELException</code> is thrown if <code>expectedReturnType</code> is void or if the
      * coercion of the String literal to the <code>expectedReturnType</code> yields an error (see Section "1.18 Type
-     * Conversion" of the EL specification).
+     * Conversion" of the Jakarta Expression Language specification).
      *
      * If not a String literal, evaluates the expression relative to the provided context, invokes the method that was found
      * using the supplied parameters, and returns the result of the method invocation.
@@ -102,10 +102,10 @@ public abstract class MethodExpression extends Expression {
      * <p>
      * This method must return <code>true</code> if and only if parameters are specified in the EL, using the
      * expr-a.expr-b(...) syntax.
-     * </p>
      *
      * @return <code>true</code> if the MethodExpression was created with parameters, <code>false</code> otherwise.
-     * @since EL 2.2
+     * 
+     * @since Jakarta Expression Language 2.2
      */
     public boolean isParametersProvided() {
         return false;

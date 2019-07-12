@@ -20,19 +20,17 @@ package javax.el;
 import java.lang.reflect.Method;
 
 /**
- * <p>
- * Manages EL parsing and evaluation environment. The ELManager maintains an instance of ExpressionFactory and
- * StandardELContext, for parsing and evaluating EL expressions.
- * </p>
+ * Manages Jakarta Expression Language parsing and evaluation environment. The ELManager maintains an instance of
+ * ExpressionFactory and StandardELContext, for parsing and evaluating Jakarta Expression Language expressions.
  *
- * @since EL 3.0
+ * @since Jakarta Expression Language 3.0
  */
 public class ELManager {
 
     private StandardELContext elContext;
 
     /**
-     * Return the ExpressionFactory instance used for EL evaluations.
+     * Return the ExpressionFactory instance used for Jakarta Expression Language evaluations.
      *
      * @return The ExpressionFactory
      */
@@ -41,10 +39,10 @@ public class ELManager {
     }
 
     /**
-     * Return the ELContext used for parsing and evaluating EL expressions. If there is currently no ELContext, a default
-     * instance of StandardELContext is returned.
+     * Return the ELContext used for parsing and evaluating Jakarta Expression Language expressions. If there is currently
+     * no ELContext, a default instance of StandardELContext is returned.
      *
-     * @return The ELContext used for parsing and evaluating EL expressions..
+     * @return The ELContext used for parsing and evaluating Jakarta Expression Language expressions..
      */
     public StandardELContext getELContext() {
         if (elContext == null) {
@@ -55,8 +53,8 @@ public class ELManager {
     }
 
     /**
-     * Set the ELContext used for parsing and evaluating EL expressions. The supplied ELContext will not be modified, except
-     * for the context object map.
+     * Set the ELContext used for parsing and evaluating Jakarta Expression Language expressions. The supplied ELContext
+     * will not be modified, except for the context object map.
      *
      * @param context The new ELContext.
      * @return The previous ELContext, null if none.
@@ -89,7 +87,7 @@ public class ELManager {
     }
 
     /**
-     * Maps a static method to an EL function.
+     * Maps a static method to Jakarta Expression Language function.
      *
      * @param prefix The namespace of the functions, can be "".
      * @param function The name of the function.
@@ -100,8 +98,8 @@ public class ELManager {
     }
 
     /**
-     * Assign a ValueExpression to an EL variable, replacing any previous assignment to the same variable. The assignment
-     * for the variable is removed if the expression is <code>null</code>.
+     * Assign a ValueExpression to a Jakarta Expression Language variable, replacing any previous assignment to the same
+     * variable. The assignment for the variable is removed if the expression is <code>null</code>.
      *
      * @param variable The variable name
      * @param expression The ValueExpression to be assigned to the variable.

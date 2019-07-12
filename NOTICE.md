@@ -1,13 +1,12 @@
-# Notices for Eclipse Project for Expression Language
+# Notices for Jakarta Expression Language
 
-This content is produced and maintained by the Eclipse Project for Expression
-Language project.
+This content is produced and maintained by the Jakarta Expression Language project.
 
 * Project home: https://projects.eclipse.org/projects/ee4j.el
 
 ## Trademarks
 
-Eclipse Project for Expression Language is a trademark of the Eclipse
+Jakarta Expression Language is a trademark of the Eclipse
 Foundation.
 
 ## Copyright

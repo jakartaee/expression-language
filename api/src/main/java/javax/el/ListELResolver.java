@@ -45,7 +45,7 @@ import java.util.List;
  * @see CompositeELResolver
  * @see ELResolver
  * @see java.util.List
- * @since JSP 2.1
+ * @since Jakarta Server Pages 2.1
  */
 public class ListELResolver extends ELResolver {
 

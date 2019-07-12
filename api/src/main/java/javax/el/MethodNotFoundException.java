@@ -22,7 +22,7 @@ package javax.el;
  * Thrown when a method could not be found while evaluating a {@link MethodExpression}.
  *
  * @see MethodExpression
- * @since JSP 2.1
+ * @since Jakarta Server Pages 2.1
  */
 public class MethodNotFoundException extends ELException {
 

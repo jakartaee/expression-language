@@ -21,7 +21,7 @@ package javax.el;
 /**
  * Represents any of the exception conditions that can arise during expression evaluation.
  *
- * @since JSP 2.1
+ * @since Jakarta Server Pages 2.1
  */
 public class ELException extends RuntimeException {
 

@@ -26,7 +26,7 @@ import java.util.Map;
  * an ELResolver that contains a number of useful ELResolvers. It also provides local repositories for the
  * FunctionMapper, VariableMapper, and BeanNameResolver.
  *
- * @since EL 3.0
+ * @since Jakarta Expression Language 3.0
  */
 public class StandardELContext extends ELContext {
 

@@ -1,15 +1,16 @@
-# Contributing to Eclipse Project for Expression Language
+# Contributing to Jakarta Expression Language
 
 Thanks for your interest in this project.
 
 ## Project description
 
-Expression Language (also referred to as the EL) provides an important mechanism
+Jakarta Expression Language provides an important mechanism
 for enabling the presentation layer (web pages) to communicate with the
-application logic (managed beans). The EL is used by several JavaEE
-technologies, such as JavaServer Faces technology, JavaServer Pages (JSP)
-technology, and Contexts and Dependency Injection for Java EE (CDI). The EL can
-also be used in stand-alone environments.
+application logic (managed beans). Jakarta Expression Language is used by several Jakarta EE
+technologies, such as Jakarta Faces, Jakarta Server Pages, Jakarta Security and Contexts and
+Dependency Injection for Jakarta EE (CDI). 
+
+Jakarta Expression Language can also be used in stand-alone environments.
 
 * https://projects.eclipse.org/projects/ee4j.el
 

@@ -23,22 +23,22 @@ import java.util.Map;
 import java.util.Properties;
 
 /**
- * Provides an implementation for creating and evaluating EL expressions.
+ * Provides an implementation for creating and evaluating Jakarta Expression Language expressions.
  *
  * <p>
- * Classes that implement the EL expression language expose their functionality via this abstract class. An
- * implementation supports the following functionalities.
+ * Classes that implement the Jakarta Expression Language expression language expose their functionality via this
+ * abstract class. An implementation supports the following functionalities.
  *
  * <ul>
- * <li>Parses a <code>String</code> into a {@link ValueExpression} or {@link MethodExpression} instance for later
- * evaluation.</li>
- * <li>Implements an <code>ELResolver</code> for query operators</li>
- * <li>Provides a default type coercion</li>
+ *   <li>Parses a <code>String</code> into a {@link ValueExpression} or {@link MethodExpression} instance for later
+ *   evaluation.</li>
+ *   <li>Implements an <code>ELResolver</code> for query operators</li>
+ *   <li>Provides a default type coercion</li>
  * </ul>
  *
  * <p>
  * The {@link #newInstance} method can be used to obtain an instance of the implementation. Technologies such as
- * JavaServer Pages and JavaServer Faces provide access to an implementation via factory methods.
+ * Jakarta Server Pages and Jakarta Faces provide access to an implementation via factory methods.
  *
  * <p>
  * The {@link #createValueExpression} method is used to parse expressions that evaluate to values (both l-values and
@@ -51,9 +51,9 @@ import java.util.Properties;
  *
  * <p>
  * The ELContext object also provides access to the {@link FunctionMapper} and {@link VariableMapper} to be used when
- * parsing the expression. EL function and variable mapping is performed at parse-time, and the results are bound to the
- * expression. Therefore, the {@link ELContext}, {@link FunctionMapper}, and {@link VariableMapper} are not stored for
- * future use and do not have to be <code>Serializable</code>.
+ * parsing the expression. Jakarta Expression Language function and variable mapping is performed at parse-time, and the
+ * results are bound to the expression. Therefore, the {@link ELContext}, {@link FunctionMapper}, and
+ * {@link VariableMapper} are not stored for future use and do not have to be <code>Serializable</code>.
  *
  * <p>
  * The <code>createValueExpression</code> and <code>createMethodExpression</code> methods must be thread-safe. That is,
@@ -66,25 +66,25 @@ import java.util.Properties;
  * The <code>ExpressionFactory</code> must be able to handle the following types of input for the
  * <code>expression</code> parameter:
  * <ul>
- * <li>Single expressions using the <code>${}</code> delimiter (e.g. <code>"${employee.lastName}"</code>).</li>
- * <li>Single expressions using the <code>#{}</code> delimiter (e.g. <code>"#{employee.lastName}"</code>).</li>
- * <li>Literal text containing no <code>${}</code> or <code>#{}</code> delimiters (e.g. <code>"John Doe"</code>).</li>
- * <li>Multiple expressions using the same delimiter (e.g. <code>"${employee.firstName}${employee.lastName}"</code> or
- * <code>"#{employee.firstName}#{employee.lastName}"</code>).</li>
- * <li>Mixed literal text and expressions using the same delimiter (e.g.
- * <code>"Name: ${employee.firstName} ${employee.lastName}"</code>).</li>
+ *   <li>Single expressions using the <code>${}</code> delimiter (e.g. <code>"${employee.lastName}"</code>).</li>
+ *   <li>Single expressions using the <code>#{}</code> delimiter (e.g. <code>"#{employee.lastName}"</code>).</li>
+ *   <li>Literal text containing no <code>${}</code> or <code>#{}</code> delimiters (e.g. <code>"John Doe"</code>).</li>
+ *   <li>Multiple expressions using the same delimiter (e.g. <code>"${employee.firstName}${employee.lastName}"</code> or
+ *   <code>"#{employee.firstName}#{employee.lastName}"</code>).</li>
+ *   <li>Mixed literal text and expressions using the same delimiter (e.g.
+ *   <code>"Name: ${employee.firstName} ${employee.lastName}"</code>).</li>
  * </ul>
  *
  * <p>
  * The following types of input are illegal and must cause an {@link ELException} to be thrown:
  * <ul>
- * <li>Multiple expressions using different delimiters (e.g.
- * <code>"${employee.firstName}#{employee.lastName}"</code>).</li>
- * <li>Mixed literal text and expressions using different delimiters(e.g.
- * <code>"Name: ${employee.firstName} #{employee.lastName}"</code>).</li>
+ *   <li>Multiple expressions using different delimiters (e.g.
+ *   <code>"${employee.firstName}#{employee.lastName}"</code>).</li>
+ *   <li>Mixed literal text and expressions using different delimiters(e.g.
+ *   <code>"Name: ${employee.firstName} #{employee.lastName}"</code>).</li>
  * </ul>
  *
- * @since JSP 2.1
+ * @since Jakarta Server Pages 2.1
  */
 public abstract class ExpressionFactory {
 
@@ -147,20 +147,21 @@ public abstract class ExpressionFactory {
      * <p>
      * This method should perform syntactic validation of the expression. If in doing so it detects errors, it should raise
      * an <code>ELException</code>.
-     * </p>
      *
-     * @param context The EL context used to parse the expression. The <code>FunctionMapper</code> and
-     * <code>VariableMapper</code> stored in the ELContext are used to resolve functions and variables found in the
+     * @param context The Jakarta Expression Language context used to parse the expression. The <code>FunctionMapper</code>
+     * and <code>VariableMapper</code> stored in the ELContext are used to resolve functions and variables found in the
      * expression. They can be <code>null</code>, in which case functions or variables are not supported for this
      * expression. The object returned must invoke the same functions and access the same variable mappings regardless of
      * whether the mappings in the provided <code>FunctionMapper</code> and <code>VariableMapper</code> instances change
      * between calling <code>ExpressionFactory.createValueExpression()</code> and any method on
-     * <code>ValueExpression</code>. Note that within the EL, the ${} and #{} syntaxes are treated identically. This
-     * includes the use of VariableMapper and FunctionMapper at expression creation time. Each is invoked if not null,
-     * independent of whether the #{} or ${} syntax is used for the expression.
+     * <code>ValueExpression</code>. Note that within Jakarta Expression Language, the ${} and #{} syntaxes are treated
+     * identically. This includes the use of VariableMapper and FunctionMapper at expression creation time. Each is invoked
+     * if not null, independent of whether the #{} or ${} syntax is used for the expression.
      * @param expression The expression to parse
      * @param expectedType The type the result of the expression will be coerced to after evaluation.
+     * 
      * @return The parsed expression
+     * 
      * @throws NullPointerException Thrown if expectedType is null.
      * @throws ELException Thrown if there are syntactical errors in the provided expression.
      */
@@ -196,8 +197,8 @@ public abstract class ExpressionFactory {
      * This method should perform syntactic validation of the expression. If in doing so it detects errors, it should raise
      * an <code>ELException</code>.
      *
-     * @param context The EL context used to parse the expression. The <code>FunctionMapper</code> and
-     * <code>VariableMapper</code> stored in the ELContext are used to resolve functions and variables found in the
+     * @param context The Jakarta Expression Language context used to parse the expression. The <code>FunctionMapper</code>
+     * and <code>VariableMapper</code> stored in the ELContext are used to resolve functions and variables found in the
      * expression. They can be <code>null</code>, in which case functions or variables are not supported for this
      * expression. The object returned must invoke the same functions and access the same variable mappings regardless of
      * whether the mappings in the provided <code>FunctionMapper</code> and <code>VariableMapper</code> instances change
@@ -211,24 +212,28 @@ public abstract class ExpressionFactory {
      * value of <code>null</code> indicates the caller does not care what the return type is, and the check is disabled.
      * @param expectedParamTypes The expected parameter types for the method to be found. Must be an array with no elements
      * if there are no parameters expected. It is illegal to pass <code>null</code>, unless the method is specified with
-     * arguments in the EL expression, in which case these arguments are used for method selection, and this parameter is
-     * ignored.
+     * arguments in the Jakarta Expression Language expression, in which case these arguments are used for method selection,
+     * and this parameter is ignored.
+     * 
      * @return The parsed expression
+     * 
      * @throws ELException Thrown if there are syntactical errors in the provided expression.
      * @throws NullPointerException if paramTypes is <code>null</code>.
      */
     public abstract MethodExpression createMethodExpression(ELContext context, String expression, Class<?> expectedReturnType, Class<?>[] expectedParamTypes);
 
     /**
-     * Coerces an object to a specific type according to the EL type conversion rules. The custom type conversions in the
-     * <code>ELResolver</code>s are not considered.
+     * Coerces an object to a specific type according to the Jakarta Expression Language type conversion rules. The custom
+     * type conversions in the <code>ELResolver</code>s are not considered.
      *
      * <p>
      * An <code>ELException</code> is thrown if an error results from applying the conversion rules.
      *
      * @param obj The object to coerce.
      * @param targetType The target type for the coercion.
+     * 
      * @return an object coerced to <code>targetType</code>
+     * 
      * @throws ELException thrown if an error results from applying the conversion rules.
      */
     public abstract Object coerceToType(Object obj, Class<?> targetType);
@@ -240,12 +245,13 @@ public abstract class ExpressionFactory {
      * This ELResolver resolves the method invocation on the pair (<code>base</code>, <code>property</code>) when
      * <code>base</code> is a <code>Collection</code> or a <code>Map</code>, and <code>property</code> is the name of the
      * operation.
+     * 
      * <p>
-     * See EL.2 for detailed descriptions of these operators, their arguments, and return values.
+     * See the specification document for detailed descriptions of these operators, their arguments, and return values.
      *
      * @return The <code>ELResolver</code> that implements the Query Operators.
      *
-     * @since EL 3.0
+     * @since Jakarta Expression Language 3.0
      */
     public ELResolver getStreamELResolver() {
         return null;
@@ -256,7 +262,7 @@ public abstract class ExpressionFactory {
      *
      * @return A initial map for functions, null if there is none.
      *
-     * @since EL 3.0
+     * @since Jakarta Expression Language 3.0
      */
     public Map<String, Method> getInitFunctionMap() {
         return null;

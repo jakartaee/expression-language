@@ -23,7 +23,7 @@ package javax.el;
  *
  * @see BeanNameELResolver
  *
- * @since EL 3.0
+ * @since Jakarta Expression Language 3.0
  */
 public abstract class BeanNameResolver {
 
