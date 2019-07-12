@@ -20,24 +20,25 @@
 
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     
+    <modelVersion>4.0.0</modelVersion>
+    
     <parent>
         <groupId>org.eclipse.ee4j</groupId>
         <artifactId>project</artifactId>
         <version>1.0.5</version>
         <relativePath/>
     </parent>
-
-    <modelVersion>4.0.0</modelVersion>
+    
     <groupId>jakarta.el</groupId>
     <artifactId>jakarta.el-api</artifactId>
-    <packaging>jar</packaging>
     <version>3.0.2-SNAPSHOT</version>
+    
     <name>Expression Language 3.0 API</name>
 
     <properties>
         <!-- Make sure the two versions are in sync with the maven version -->
         <spec.version>3.0</spec.version>
-        <bundle.version>3.0.0</bundle.version>
+        <bundle.version>3.0.2</bundle.version>
         <extensionName>javax.el</extensionName>
         <bundle.symbolicName>javax.el-api</bundle.symbolicName>
         <vendorName>Oracle Corporation</vendorName>
@@ -60,10 +61,12 @@
             <distribution>repo</distribution>
         </license>
     </licenses>
+    
     <issueManagement>
         <system>github</system>
         <url>https://github.com/eclipse-ee4j/el-ri/issues</url>
     </issueManagement>
+    
     <mailingLists>
         <mailingList>
             <name>EL mailing list</name>
@@ -73,11 +76,10 @@
             <archive>https://dev.eclipse.org/mhonarc/lists/el-dev</archive>
         </mailingList>
     </mailingLists>
+    
     <scm>
         <connection>scm:git:https://github.com/eclipse-ee4j/el-ri.git</connection>
-        <developerConnection>
-            scm:git:git@github.com:eclipse-ee4j/el-ri.git
-        </developerConnection>
+        <developerConnection>scm:git:git@github.com:eclipse-ee4j/el-ri.git</developerConnection>
         <url>https://github.com/eclipse-ee4j/el-ri</url>
         <tag>HEAD</tag>
     </scm>
@@ -98,6 +100,23 @@
     </contributors>
 
     <build>
+        <resources>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.properties</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>${project.basedir}/..</directory>
+                <includes>
+                    <include>LICENSE.md</include>
+                    <include>NOTICE.md</include>
+                </includes>
+                <targetPath>META-INF</targetPath>
+            </resource>
+        </resources>
+    
         <plugins>
             <plugin>
                 <groupId>org.apache.felix</groupId>
@@ -108,7 +127,6 @@
                         <supportedProjectType>jar</supportedProjectType>
                     </supportedProjectTypes>
                     <instructions>
-                        <Automatic-Module-Name>java.el</Automatic-Module-Name>
                         <Bundle-Description>Expression Language ${spec.version} API</Bundle-Description>
                         <Bundle-SymbolicName>${bundle.symbolicName}</Bundle-SymbolicName>
                         <Bundle-Version>${bundle.version}</Bundle-Version>
@@ -198,15 +216,6 @@
                 </configuration>
             </plugin>
         </plugins>
-
-        <resources>
-            <resource>
-                <directory>src/main/java</directory>
-                <includes>
-                    <include>**/*.properties</include>
-                </includes>
-            </resource>
-        </resources>
     </build>
 
     <reporting>
