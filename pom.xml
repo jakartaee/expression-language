@@ -250,6 +250,7 @@
                             <goal>jar</goal>
                         </goals>
                         <configuration>
+                            <source>1.7</source>
                             <sourcepath>api/src;impl/src</sourcepath>
                             <additionalJOption>-Xdoclint:none</additionalJOption>
                             <links>
