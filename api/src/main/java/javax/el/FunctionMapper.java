@@ -21,14 +21,13 @@ package javax.el;
 import java.lang.reflect.Method;
 
 /**
- * The interface to a map between EL function names and methods.
+ * The interface to a map between Jakarta Expression Language function names and methods.
  *
  * <p>
  * A <code>FunctionMapper</code> maps <code>${prefix:name()}</code> style functions to a static method that can execute
  * that function.
- * </p>
  *
- * @since JSP 2.1
+ * @since Jakarta Server Pages 2.1
  */
 public abstract class FunctionMapper {
 
@@ -55,7 +54,7 @@ public abstract class FunctionMapper {
      * @param meth The static method that is to be invoked, when the function is referenced. The null value causes the
      * function to be removed from the map.
      *
-     * @since EL 3.0
+     * @since Jakarta Expression Language 3.0
      */
     public void mapFunction(String prefix, String localName, Method meth) {
     }

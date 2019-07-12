@@ -18,15 +18,14 @@
 package javax.el;
 
 /**
- * <p>
- * A runtime representation of a Class in the EL expressions. It encapsulates the java.lang.Class instance.
- * </p>
+ * A runtime representation of a Class in the Jakarta Expression Language expressions. It encapsulates the
+ * java.lang.Class instance.
  *
  * <p>
- * This class is used only in {@link StaticFieldELResolver} and will probably only be of interest to EL implementors,
- * and not EL users.
+ * This class is used only in {@link StaticFieldELResolver} and will probably only be of interest to Jakarta Expression
+ * Language implementors, and not Jakarta Expression Language users.
  *
- * @since EL 3.0
+ * @since Jakarta Expression Language 3.0
  */
 public class ELClass {
 

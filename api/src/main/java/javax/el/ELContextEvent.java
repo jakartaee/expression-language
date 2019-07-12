@@ -26,7 +26,8 @@ import java.util.EventObject;
  *
  * @see ELContext
  * @see ELContextListener
- * @since JSP 2.1
+ * 
+ * @since Jakarta Server Pages 2.1
  */
 public class ELContextEvent extends EventObject {
 

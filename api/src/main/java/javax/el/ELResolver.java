@@ -22,8 +22,8 @@ import java.beans.FeatureDescriptor;
 import java.util.Iterator;
 
 /**
- * Enables customization of variable, property, method call, and type conversion resolution behavior for EL expression
- * evaluation.
+ * Enables customization of variable, property, method call, and type conversion resolution behavior for Jakarta
+ * Expression Language expression evaluation.
  *
  * <p>
  * While evaluating an expression, the <code>ELResolver</code> associated with the {@link ELContext} is consulted to do
@@ -31,9 +31,9 @@ import java.util.Iterator;
  * <code>[]</code> operator is encountered.
  *
  * <p>
- * For example, in the EL expression <code>${employee.lastName}</code>, the <code>ELResolver</code> determines what
- * object <code>employee</code> refers to, and what it means to get the <code>lastName</code> property on that object.
- * </p>
+ * For example, in the Jakarta Expression Language expression <code>${employee.lastName}</code>, the
+ * <code>ELResolver</code> determines what object <code>employee</code> refers to, and what it means to get the
+ * <code>lastName</code> property on that object.
  *
  * <p>
  * Most methods in this class accept a <code>base</code> and <code>property</code> parameter. In the case of variable
@@ -41,7 +41,6 @@ import java.util.Iterator;
  * <code>base</code> parameter will be <code>null</code> and the <code>property</code> parameter will always be of type
  * <code>String</code>. In this case, if the <code>property</code> is not a <code>String</code>, the behavior of the
  * <code>ELResolver</code> is undefined.
- * </p>
  *
  * <p>
  * In the case of property resolution, the <code>base</code> parameter identifies the base object and the
@@ -50,7 +49,6 @@ import java.util.Iterator;
  * <code>employee</code> and <code>property</code> is the string <code>"lastName"</code>. In the expression
  * <code>${y[x]}</code>, <code>base</code> is the result of the variable resolution for <code>y</code> and
  * <code>property</code> is the result of the variable resolution for <code>x</code>.
- * </p>
  *
  * <p>
  * In the case of method call resolution, the <code>base</code> parameter identifies the base object and the
@@ -76,41 +74,34 @@ import java.util.Iterator;
  * particular (base, property) pair, it must set the <code>propertyResolved</code> property of the
  * <code>ELContext</code> to <code>true</code>. If it could not handle the given pair, it must leave this property
  * alone. The caller must ignore the return value of the method if <code>propertyResolved</code> is <code>false</code>.
- * </p>
  *
  * <p>
  * Similarly, for the {@link #convertToType} method an <code>ELResolver</code> must set the
  * <code>propertyResolved</code> to <code>true</code> to indicate that it handles the conversion of the object to the
  * target type.
- * </p>
  *
  * <p>
  * The {@link #getFeatureDescriptors} and {@link #getCommonPropertyType} methods are primarily designed for design-time
  * tool support, but must handle invocation at runtime as well. The {@link java.beans.Beans#isDesignTime} method can be
  * used to determine if the resolver is being consulted at design-time or runtime.
- * </p>
  *
  * @see CompositeELResolver
  * @see ELContext#getELResolver
- * @since JSP 2.1
+ * @since Jakarta Server Pages 2.1
  */
 public abstract class ELResolver {
 
     // --------------------------------------------------------- Constants
 
     /**
-     * <p>
      * The attribute name of the named attribute in the <code>FeatureDescriptor</code> that specifies the runtime type of
      * the variable or property.
-     * </p>
      */
     public static final String TYPE = "type";
 
     /**
-     * <p>
      * The attribute name of the named attribute in the <code>FeatureDescriptor</code> that specifies whether the variable
      * or property can be resolved at runtime.
-     * </p>
      */
     public static final String RESOLVABLE_AT_DESIGN_TIME = "resolvableAtDesignTime";
 
@@ -127,8 +118,10 @@ public abstract class ELResolver {
      * @param base The base object whose property value is to be returned, or <code>null</code> to resolve a top-level
      * variable.
      * @param property The property or variable to be resolved.
+     * 
      * @return If the <code>propertyResolved</code> property of <code>ELContext</code> was set to <code>true</code>, then
      * the result of the variable or property resolution; otherwise undefined.
+     * 
      * @throws NullPointerException if context is <code>null</code>
      * @throws PropertyNotFoundException if the given (base, property) pair is handled by this <code>ELResolver</code> but
      * the specified variable or property does not exist or is not readable.
@@ -144,12 +137,10 @@ public abstract class ELResolver {
      * If this resolver handles the given (base, method) pair, the <code>propertyResolved</code> property of the
      * <code>ELContext</code> object must be set to <code>true</code> by the resolver, before returning. If this property is
      * not <code>true</code> after this method is called, the caller should ignore the return value.
-     * </p>
      *
      * <p>
      * A default implementation is provided that returns null so that existing classes that extend ELResolver can continue
      * to function.
-     * </p>
      *
      * @param context The context of this evaluation.
      * @param base The bean on which to invoke the method
@@ -158,13 +149,16 @@ public abstract class ELResolver {
      * an empty array if the method has no parameters. Can be <code>null</code>, in which case the method's formal parameter
      * types are assumed to be unknown.
      * @param params The parameters to pass to the method, or <code>null</code> if no parameters.
+     * 
      * @return The result of the method invocation (<code>null</code> if the method has a <code>void</code> return type).
+     * 
      * @throws MethodNotFoundException if no suitable method can be found.
      * @throws ELException if an exception was thrown while performing (base, method) resolution. The thrown exception must
      * be included as the cause property of this exception, if available. If the exception thrown is an
      * <code>InvocationTargetException</code>, extract its <code>cause</code> and pass it to the <code>ELException</code>
      * constructor.
-     * @since EL 2.2
+     * 
+     * @since Jakarta Expression Language 2.2
      */
     public Object invoke(ELContext context, Object base, Object method, Class<?>[] paramTypes, Object[] params) {
         return null;

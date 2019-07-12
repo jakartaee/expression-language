@@ -49,7 +49,7 @@ import java.util.Map;
  * @see CompositeELResolver
  * @see ELResolver
  * @see java.util.Map
- * @since JSP 2.1
+ * @since Jakarta Server Pages 2.1
  */
 public class MapELResolver extends ELResolver {
 

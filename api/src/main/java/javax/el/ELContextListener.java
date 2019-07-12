@@ -23,7 +23,8 @@ package javax.el;
  *
  * @see ELContext
  * @see ELContextEvent
- * @since JSP 2.1
+ * 
+ * @since Jakarta Server Pages 2.1
  */
 public interface ELContextListener extends java.util.EventListener {
 

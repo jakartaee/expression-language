@@ -33,8 +33,10 @@
     <artifactId>el-ri</artifactId>
     <version>3.0.2-SNAPSHOT</version>
 
-    <name>Expression Language 3.0 Implementation</name>
-
+    <name>Jakarta Expression Language 3.0 Implementation</name>
+    <description>Jakarta Expression Language Implementation</description>
+    <url>https://projects.eclipse.org/projects/ee4j.el</url>
+    
     <properties>
         <!-- the bundle build number must be the same as the maven number -->
         <bundle.version>3.0.2</bundle.version>
@@ -48,9 +50,6 @@
         <findbugs.threshold>High</findbugs.threshold>
         <tlda-license.url>http://hudson-sca.us.oracle.com/job/tlda-license/lastSuccessfulBuild/artifact</tlda-license.url>
     </properties>
-
-    <description>Expression Language (JSR 341) Reference Implementation</description>
-    <url>https://projects.eclipse.org/projects/ee4j.el</url>
 
     <issueManagement>
         <system>github</system>
@@ -136,7 +135,7 @@
                     <instructions>
                         <Bundle-SymbolicName>${bundle.symbolicName}</Bundle-SymbolicName>
                         <Bundle-Description>
-                            Expression Language ${spec.version} Implementation
+                            Jakarta Expression Language ${spec.version} Implementation
                         </Bundle-Description>
                         <Bundle-Version>${bundle.version}</Bundle-Version>
                         <Extension-Name>${extensionName}</Extension-Name>
@@ -193,7 +192,7 @@
                             <additionalJOption>-Xdoclint:none</additionalJOption>
                             <groups>
                                 <group>
-                                    <title>Expresion Language 3.0 Implementation</title>
+                                    <title>Jakarta Expression Language 3.0 Implementation</title>
                                     <packages>com.sun.el</packages>
                                 </group>
                             </groups>
@@ -241,12 +240,10 @@
                 </dependencies>
                 <configuration>
                     <forkMode>never</forkMode>
-                    <!-- <parallel>classes</parallel> -->
                 </configuration>
             </plugin>
 	</plugins>
     </build>
-
 
     <reporting>
         <plugins>
@@ -275,60 +272,5 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-    
-
-    <profiles>
-        <profile>
-            <id>licensee</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.codehaus.mojo</groupId>
-                        <artifactId>wagon-maven-plugin</artifactId>
-                        <version>1.0-beta-4</version>
-                        <inherited>false</inherited>
-                        <executions>
-                            <execution>
-                                <id>get-license</id>
-                                <phase>package</phase>
-                                <goals>
-                                    <goal>download-single</goal>
-                                </goals>
-                                <configuration>
-                                    <url>${tlda-license.url}</url>
-                                    <fromFile>
-                                        TLDA_SCSL_Licensees_License_Notice.txt
-                                    </fromFile>
-                                    <toDir>${project.build.directory}/license</toDir>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-assembly-plugin</artifactId>
-                        <version>2.4</version>
-                        <inherited>false</inherited>
-                        <executions>
-                            <execution>
-                                <id>make-licensee-src-assembly</id>
-                                <phase>package</phase>
-                                <goals>
-                                    <goal>single</goal>
-                                </goals>
-                                <configuration>
-                                    <finalName>el-${project.version}-src</finalName>
-                                    <attach>false</attach>
-                                    <appendAssemblyId>false</appendAssemblyId>
-                                    <descriptors>
-                                        <descriptor>src/assembly/assembly.xml</descriptor>
-                                    </descriptors>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
+   
 </project>

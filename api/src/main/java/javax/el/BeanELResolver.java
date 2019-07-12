@@ -72,7 +72,8 @@ import java.util.concurrent.ConcurrentHashMap;
  *
  * @see CompositeELResolver
  * @see ELResolver
- * @since JSP 2.1
+ * 
+ * @since Jakarta Server Pages 2.1
  */
 public class BeanELResolver extends ELResolver {
 
@@ -418,7 +419,7 @@ public class BeanELResolver extends ELResolver {
      * be included as the cause property of this exception, if available. If the exception thrown is an
      * <code>InvocationTargetException</code>, extract its <code>cause</code> and pass it to the <code>ELException</code>
      * constructor.
-     * @since EL 2.2
+     * @since Jakarta Expression Language 2.2
      */
     @Override
     public Object invoke(ELContext context, Object base, Object methodName, Class<?>[] paramTypes, Object[] params) {

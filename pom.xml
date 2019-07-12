@@ -18,7 +18,7 @@
 
 -->
 
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd"> <modelVersion>4.0.0</modelVersion>
 
     <parent>
         <groupId>org.eclipse.ee4j</groupId>
@@ -26,12 +26,16 @@
         <version>1.0.5</version>
     </parent>
 
-    <modelVersion>4.0.0</modelVersion>
     <groupId>org.glassfish</groupId>
     <artifactId>jakarta.el</artifactId>
     <version>3.0.2-SNAPSHOT</version>
-    <packaging>jar</packaging>
-    <name>Expression Language 3.0</name>
+    
+    <name>Jakarta Expression Language 3.0</name>
+    <description>
+        Jakarta Expression Language provides a specification document, API, reference implementation and TCK 
+        that describes an expression language for Java applications.
+    </description>
+    <url>https://projects.eclipse.org/projects/ee4j.el</url>
 
     <properties>
         <!-- the bundle build number must be the same as the maven number -->
@@ -44,12 +48,22 @@
         <findbugs.version>2.5.2</findbugs.version>
         <findbugs.exclude>${project.basedir}/exclude.xml</findbugs.exclude>
         <findbugs.threshold>High</findbugs.threshold>
-        <tlda-license.url>http://hudson-sca.us.oracle.com/job/tlda-license/lastSuccessfulBuild/artifact</tlda-license.url>
     </properties>
+    
+    <developers>
+        <developer>
+            <id>yaminikb</id>
+            <name>Yamini K B</name>
+            <organization>Oracle Corporation</organization>
+            <organizationUrl>http://www.oracle.com/</organizationUrl>
+        </developer>
+    </developers>
 
-    <description>Expression Language (JSR 341) Reference Implementation</description>
-    <url>https://projects.eclipse.org/projects/ee4j.el</url>
-
+    <contributors>
+        <contributor>
+            <name>Kin-man Chung</name>
+        </contributor>
+    </contributors>
 
     <issueManagement>
         <system>github</system>
@@ -71,7 +85,7 @@
     
     <mailingLists>
         <mailingList>
-            <name>EL mailing list</name>
+            <name>Jakarta Expression Language mailing list</name>
             <post>el-dev@eclipse.org</post>
             <subscribe>https://dev.eclipse.org/mailman/listinfo/el-dev</subscribe>
             <unsubscribe>https://dev.eclipse.org/mailman/listinfo/el-dev</unsubscribe>
@@ -87,21 +101,15 @@
         <url>https://github.com/eclipse-ee4j/el-ri</url>
         <tag>HEAD</tag>
     </scm>
-
-    <developers>
-        <developer>
-            <id>yaminikb</id>
-            <name>Yamini K B</name>
-            <organization>Oracle Corporation</organization>
-            <organizationUrl>http://www.oracle.com/</organizationUrl>
-        </developer>
-    </developers>
-
-    <contributors>
-        <contributor>
-            <name>Kin-man Chung</name>
-        </contributor>
-    </contributors>
+    
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
 
     <build>
         <resources>
@@ -152,9 +160,13 @@
                 </executions>
             </plugin>
             
-            <!-- Configure maven-bundle-plugin to generate OSGi manifest. Please note: we use the manifest goal only and not the bundle goal. 
-                The bundle goal can lead to very surprising results if the package names are not correctly specified. So, we use the jar plugin to generate the 
-                jar. -->
+            <!-- 
+                Configure maven-bundle-plugin to generate OSGi manifest. 
+                
+                Please note: we use the manifest goal only and not the bundle goal. 
+                The bundle goal can lead to very surprising results if the package names are not correctly specified. 
+                So, we use the jar plugin to generate the jar. 
+            -->
             <plugin>
                 <groupId>org.apache.felix</groupId>
                 <artifactId>maven-bundle-plugin</artifactId>
@@ -184,6 +196,8 @@
                     </execution>
                 </executions>
             </plugin>
+            
+            <!-- Adds the manifest file created by the org.apache.felix:maven-bundle-plugin -->
             <plugin>
                 <artifactId>maven-jar-plugin</artifactId>
                 <version>2.4</version>
@@ -193,6 +207,8 @@
                     </archive>
                 </configuration>
             </plugin>
+            
+            <!-- Restricts the Java version to 1.7 -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -204,6 +220,7 @@
                 </configuration>
             </plugin>
 
+            <!-- Creates the source jar -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
@@ -221,6 +238,7 @@
                 </executions>
             </plugin>
 
+            <!-- Creates the javadoc jar -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
@@ -239,7 +257,7 @@
                             </links>
                             <groups>
                                 <group>
-                                    <title>Expresion Language 3.0 API and Implementation</title>
+                                    <title>Jakarta Expression Language 3.0 API and Implementation</title>
                                     <packages>com.sun.el</packages>
                                 </group>
                             </groups>
@@ -276,19 +294,10 @@
                 </dependencies>
                 <configuration>
                     <forkMode>never</forkMode>
-                    <!-- <parallel>classes</parallel> -->
                 </configuration>
             </plugin>
-            
-            <plugin>
-                <groupId>org.glassfish.copyright</groupId>
-                <artifactId>glassfish-copyright-maven-plugin</artifactId>
-                <version>1.32</version>
-            </plugin>
         </plugins>
-     
     </build>
-    
     
     <reporting>
         <plugins>
@@ -314,68 +323,5 @@
             </plugin>
         </plugins>
     </reporting>
-
-    <dependencies>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.12</version>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
-
-    <profiles>
-        <profile>
-            <id>licensee</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.codehaus.mojo</groupId>
-                        <artifactId>wagon-maven-plugin</artifactId>
-                        <version>1.0-beta-4</version>
-                        <inherited>false</inherited>
-                        <executions>
-                            <execution>
-                                <id>get-license</id>
-                                <phase>package</phase>
-                                <goals>
-                                    <goal>download-single</goal>
-                                </goals>
-                                <configuration>
-                                    <url>${tlda-license.url}</url>
-                                    <fromFile>
-                                        TLDA_SCSL_Licensees_License_Notice.txt
-                                    </fromFile>
-                                    <toDir>${project.build.directory}/license</toDir>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-assembly-plugin</artifactId>
-                        <version>2.4</version>
-                        <inherited>false</inherited>
-                        <executions>
-                            <execution>
-                                <id>make-licensee-src-assembly</id>
-                                <phase>package</phase>
-                                <goals>
-                                    <goal>single</goal>
-                                </goals>
-                                <configuration>
-                                    <finalName>el-${project.version}-src</finalName>
-                                    <attach>false</attach>
-                                    <appendAssemblyId>false</appendAssemblyId>
-                                    <descriptors>
-                                        <descriptor>src/assembly/assembly.xml</descriptor>
-                                    </descriptors>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
+   
 </project>

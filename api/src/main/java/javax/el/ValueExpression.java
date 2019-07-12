@@ -56,7 +56,8 @@ package javax.el;
  * @see ELResolver
  * @see Expression
  * @see ExpressionFactory
- * @since JSP 2.1
+ * 
+ * @since Jakarta Server Pages 2.1
  */
 public abstract class ValueExpression extends Expression {
 
@@ -68,10 +69,11 @@ public abstract class ValueExpression extends Expression {
      * <p>
      * The resulting value is automatically coerced to the type returned by <code>getExpectedType()</code>, which was
      * provided to the <code>ExpressionFactory</code> when this expression was created.
-     * </p>
      *
      * @param context The context of this evaluation.
+     * 
      * @return The result of the expression evaluation.
+     * 
      * @throws NullPointerException if context is <code>null</code>.
      * @throws PropertyNotFoundException if one of the property resolutions failed because a specified variable or property
      * does not exist or is not readable.
@@ -85,6 +87,7 @@ public abstract class ValueExpression extends Expression {
      *
      * @param context The context of this evaluation.
      * @param value The new value to be set.
+     * 
      * @throws NullPointerException if context is <code>null</code>.
      * @throws PropertyNotFoundException if one of the property resolutions failed because a specified variable or property
      * does not exist or is not readable.
@@ -100,7 +103,9 @@ public abstract class ValueExpression extends Expression {
      * {@link #setValue} will always fail.
      *
      * @param context The context of this evaluation.
+     * 
      * @return <code>true</code> if the expression is read-only or <code>false</code> if not.
+     * 
      * @throws NullPointerException if context is <code>null</code>.
      * @throws PropertyNotFoundException if one of the property resolutions failed because a specified variable or property
      * does not exist or is not readable.
@@ -118,10 +123,11 @@ public abstract class ValueExpression extends Expression {
      * This is not always the same as <code>getValue().getClass()</code>. For example, in the case of an expression that
      * references an array element, the <code>getType</code> method will return the element type of the array, which might
      * be a superclass of the type of the actual element that is currently in the specified array element.
-     * </p>
      *
      * @param context The context of this evaluation.
+     * 
      * @return the most general acceptable type; otherwise undefined.
+     * 
      * @throws NullPointerException if context is <code>null</code>.
      * @throws PropertyNotFoundException if one of the property resolutions failed because a specified variable or property
      * does not exist or is not readable.
@@ -142,12 +148,13 @@ public abstract class ValueExpression extends Expression {
      * Returns a {@link ValueReference} for this expression instance.
      *
      * @param context the context of this evaluation
+     * 
      * @return the <code>ValueReference</code> for this <code>ValueExpression</code>, or <code>null</code> if this
      * <code>ValueExpression</code> is not a reference to a base (null or non-null) and a property. If the base is null, and
-     * the property is a EL variable, return the <code>ValueReference</code> for the <code>ValueExpression</code> associated
-     * with this EL variable.
+     * the property is a Jakarta Expression Language variable, return the <code>ValueReference</code> for the 
+     * <code>ValueExpression</code> associated with this Jakarta Expression Language variable.
      *
-     * @since EL 2.2
+     * @since Jakarta Expression Language 2.2
      */
     public ValueReference getValueReference(ELContext context) {
         return null;

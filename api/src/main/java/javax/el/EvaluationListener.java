@@ -18,26 +18,26 @@
 package javax.el;
 
 /**
- * The listener interface for receiving notification when an EL expression is evaluated.
+ * The listener interface for receiving notification when a Jakarta Expression Language expression is evaluated.
  *
- * @since EL 3.0
+ * @since Jakarta Expression Language 3.0
  */
 public abstract class EvaluationListener {
 
     /**
-     * Receives notification before an EL expression is evaluated
+     * Receives notification before a Jakarta Expression Language expression is evaluated
      *
      * @param context The ELContext
-     * @param expression The EL expression string to be evaluated
+     * @param expression The Jakarta Expression Language expression string to be evaluated
      */
     public void beforeEvaluation(ELContext context, String expression) {
     }
 
     /**
-     * Receives notification after an EL expression is evaluated
+     * Receives notification after a Jakarta Expression Language expression is evaluated
      *
      * @param context The ELContext
-     * @param expression The EL expression string to be evaluated
+     * @param expression The Jakarta Expression Language expression string to be evaluated
      */
     public void afterEvaluation(ELContext context, String expression) {
     }

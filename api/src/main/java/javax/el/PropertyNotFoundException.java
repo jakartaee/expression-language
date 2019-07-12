@@ -26,7 +26,7 @@ package javax.el;
  * property while getting the value of a JavaBeans property.
  * </p>
  *
- * @since JSP 2.1
+ * @since Jakarta Server Pages 2.1
  */
 public class PropertyNotFoundException extends ELException {
 

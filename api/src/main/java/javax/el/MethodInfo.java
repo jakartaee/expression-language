@@ -21,7 +21,7 @@ package javax.el;
 /**
  * Holds information about a method that a {@link MethodExpression} evaluated to.
  *
- * @since JSP 2.1
+ * @since Jakarta Server Pages 2.1
  */
 public class MethodInfo {
 

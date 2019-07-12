@@ -34,16 +34,12 @@ import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 
 /**
- *
- * <p>
- * Utility methods for this portion of the EL implementation
- * </p>
+ * Utility methods for this portion of the Jakarta Expression Language implementation
  *
  * <p>
  * Methods on this class use a Map instance stored in ThreadLocal storage to minimize the performance impact on
  * operations that take place multiple times on a single Thread. The keys and values of the Map are implementation
  * private.
- * </p>
  *
  * @author edburns
  * @author Kin-man Chung
@@ -52,9 +48,7 @@ import java.util.ResourceBundle;
 class ELUtil {
 
     /**
-     * <p>
      * This class may not be constructed.
-     * </p>
      */
     private ELUtil() {
     }
@@ -118,7 +112,7 @@ class ELUtil {
      * <p>Return a Localized message String suitable for use as an Exception message. Examine the argument
      * <code>context</code> for a <code>Locale</code>. If not present, use <code>Locale.getDefault()</code>. Load the
      * <code>ResourceBundle</code> "javax.el.Messages" using that locale. Get the message string for argument
-     * <code>messageId</code>. If not found return "Missing Resource in EL implementation ??? messageId ???" with messageId
+     * <code>messageId</code>. If not found return "Missing Resource in Jakarta Expression Language implementation ??? messageId ???" with messageId
      * substituted with the runtime value of argument <code>messageId</code>. If found, and argument <code>params</code> is
      * non-null, format the message using the params. If formatting fails, return a sensible message including the
      * <code>messageId</code>. If argument <code>params</code> is <code>null</code>, skip formatting and return the message
@@ -161,9 +155,9 @@ class ELUtil {
                 } catch (IllegalArgumentException iae) {
                     result = "Can't get localized message: parameters to message appear to be incorrect.  Message to format: " + messageId;
                 } catch (MissingResourceException mre) {
-                    result = "Missing Resource in EL implementation: ???" + messageId + "???";
+                    result = "Missing Resource in Jakarta Expression Language implementation: ???" + messageId + "???";
                 } catch (Exception e) {
-                    result = "Exception resolving message in EL implementation: ???" + messageId + "???";
+                    result = "Exception resolving message in Jakarta Expression Language implementation: ???" + messageId + "???";
                 }
             }
         }
@@ -559,7 +553,7 @@ class ELUtil {
      */
     static boolean isAssignableFrom(Class<?> src, Class<?> target) {
         // src will always be an object
-        // Short-cut. null is always assignable to an object and in EL null
+        // Short-cut. null is always assignable to an object and in Jakarta Expression Language null
         // can always be coerced to a valid value for a primitive
         if (src == null) {
             return true;

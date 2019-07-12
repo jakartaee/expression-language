@@ -22,41 +22,37 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 
 /**
- * <p>
- * Provides an API for using EL in a stand-alone environment.
- * </p>
+ * Provides an API for using Jakarta Expression Language in a stand-alone environment.
  *
  * <p>
  * This class provides a direct and simple interface for
  * <ul>
- * <li>Evaluating EL expressions.</li>
+ * <li>Evaluating Jakarta Expression Language expressions.</li>
  * <li>Assigning values to beans or setting a bean property.</li>
- * <li>Setting a {@link ValueExpression} to a EL variable.</li>
- * <li>Defining a static method as an EL function.</li>
- * <li>Defining an object instance as an EL name.
+ * <li>Setting a {@link ValueExpression} to a Jakarta Expression Language variable.</li>
+ * <li>Defining a static method as Jakarta Expression Language function.</li>
+ * <li>Defining an object instance as Jakarta Expression Language name.
  * </ul>
  *
  * <p>
- * This API is not a replacement for the APIs in EL 2.2. Containers that maintains EL environments can continue to do
- * so, without using this API.
- * </p>
+ * This API is not a replacement for the APIs in Jakarta Expression Language 2.2. Containers that maintain Jakarta
+ * Expression Language environments can continue to do so, without using this API.
  *
  * <p>
- * For EL users who want to manipulate EL environments, like adding custom {@link ELResolver}s, {@link ELManager} can be
- * used.
- * </p>
+ * For Jakarta Expression Language users who want to manipulate Jakarta Expression Language environments, like adding
+ * custom {@link ELResolver}s, {@link ELManager} can be used.
  *
  * <h3>Scope and Life Cycle</h3>
  * <p>
- * Since it maintains the state of the EL environments, <code>ELProcessor</code> is not thread safe. In the simplest
- * case, an instance can be created and destroyed before and after evaluating EL expressions. A more general usage is to
- * use an instance of <code>ELProcessor</code> for a session, so that the user can configure the EL evaluation
- * environment for that session.
+ * Since it maintains the state of the Jakarta Expression Language environments, <code>ELProcessor</code> is not thread
+ * safe. In the simplest case, an instance can be created and destroyed before and after evaluating Jakarta Expression
+ * Language expressions. A more general usage is to use an instance of <code>ELProcessor</code> for a session, so that
+ * the user can configure the Jakarta Expression Language evaluation environment for that session.
  * </p>
  *
  * <h3>Automatic Bracketing of Expressions</h3>
  * <p>
- * A note about the EL expressions strings used in the class. The strings allowed in the methods
+ * A note about the Jakarta Expression Language expressions strings used in the class. The strings allowed in the methods
  * {@link ELProcessor#getValue}, {@link ELProcessor#setValue}, and {@link ELProcessor#setVariable} are limited to
  * non-composite expressions, i.e. expressions of the form ${...} or #{...} only. Also, it is not necessary (in fact not
  * allowed) to bracket the expression strings with ${ or #{ and } in these methods: they will be automatically
@@ -74,7 +70,7 @@ import java.lang.reflect.Modifier;
  *
  * </blockquote>
  *
- * @since EL 3.0
+ * @since Jakarta Expression Language 3.0
  */
 public class ELProcessor {
 
@@ -82,18 +78,18 @@ public class ELProcessor {
     private ExpressionFactory factory = ELManager.getExpressionFactory();
 
     /**
-     * Return the ELManager used for EL processing.
+     * Return the ELManager used for Jakarta Expression Language processing.
      *
-     * @return The ELManager used for EL processing.
+     * @return The ELManager used for Jakarta Expression Language processing.
      */
     public ELManager getELManager() {
         return elManager;
     }
 
     /**
-     * Evaluates an EL expression.
+     * Evaluates an Jakarta Expression Language expression.
      *
-     * @param expression The EL expression to be evaluated.
+     * @param expression The Jakarta Expression Language expression to be evaluated.
      * @return The result of the expression evaluation.
      */
     public Object eval(String expression) {
@@ -101,9 +97,9 @@ public class ELProcessor {
     }
 
     /**
-     * Evaluates an EL expression, and coerces the result to the specified type.
+     * Evaluates an Jakarta Expression Language expression, and coerces the result to the specified type.
      *
-     * @param expression The EL expression to be evaluated.
+     * @param expression The Jakarta Expression Language expression to be evaluated.
      * @param expectedType Specifies the type that the resultant evaluation will be coerced to.
      * @return The result of the expression evaluation.
      */
@@ -118,6 +114,7 @@ public class ELProcessor {
      *
      * @param expression The target expression
      * @param value The new value to set.
+     * 
      * @throws PropertyNotFoundException if one of the property resolutions failed because a specified variable or property
      * does not exist or is not readable.
      * @throws PropertyNotWritableException if the final variable or property resolution failed because the specified
@@ -131,12 +128,13 @@ public class ELProcessor {
     }
 
     /**
-     * Assign an EL expression to an EL variable. The expression is parsed, but not evaluated, and the parsed expression is
-     * mapped to the EL variable in the local variable map. Any previously assigned expression to the same variable will be
-     * replaced. If the expression is <code>null</code>, the variable will be removed.
+     * Assign a Jakarta Expression Language expression to a Jakarta Expression Language variable. The expression is parsed,
+     * but not evaluated, and the parsed expression is mapped to the Jakarta Expression Language variable in the local
+     * variable map. Any previously assigned expression to the same variable will be replaced. If the expression is
+     * <code>null</code>, the variable will be removed.
      *
      * @param var The name of the variable.
-     * @param expression The EL expression to be assigned to the variable.
+     * @param expression The Jakarta Expression Language expression to be assigned to the variable.
      */
     public void setVariable(String var, String expression) {
         ValueExpression exp = factory.createValueExpression(elManager.getELContext(), bracket(expression), Object.class);
@@ -144,7 +142,7 @@ public class ELProcessor {
     }
 
     /**
-     * Define an EL function in the local function mapper.
+     * Define a Jakarta Expression Language function in the local function mapper.
      *
      * @param prefix The namespace for the function or "" for no namesapce.
      * @param function The name of the function. If empty (""), the method name is used as the function name.
@@ -216,11 +214,12 @@ public class ELProcessor {
     }
 
     /**
-     * Define an EL function in the local function mapper.
+     * Define a Jakarta Expression Language function in the local function mapper.
      *
      * @param prefix The namespace for the function or "" for no namesapce.
      * @param function The name of the function. If empty (""), the method name is used as the function name.
      * @param method The <code>java.lang.reflect.Method</code> instance of the method that implements the function.
+     * 
      * @throws NullPointerException if any of the arguments is null.
      * @throws NoSuchMethodException if the method is not a static method
      */

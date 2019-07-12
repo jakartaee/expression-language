@@ -39,7 +39,7 @@ import java.io.Serializable;
  * re-parse them each time they are evaluated.
  * </p>
  *
- * @since JSP 2.1
+ * @since Jakarta Server Pages 2.1
  */
 public abstract class Expression implements Serializable {
 
@@ -111,8 +111,7 @@ public abstract class Expression implements Serializable {
      *
      * <p>
      * This method must return <code>true</code> if and only if the expression string this expression was created from
-     * contained no unescaped EL delimeters (<code>${...}</code> or <code>#{...}</code>).
-     * </p>
+     * contained no unescaped Jakarta Expression Language delimeters (<code>${...}</code> or <code>#{...}</code>).
      *
      * @return <code>true</code> if this expression was created from only literal text; <code>false</code> otherwise.
      */
