@@ -85,7 +85,7 @@ public final class AstFunction extends SimpleNode {
             return ctx.getLambdaArgument(name);
         }
 
-        // Next check if this an EL variable
+        // Next check if this an Jakarta Expression variable
         VariableMapper varMapper = ctx.getVariableMapper();
         if (varMapper != null) {
             ValueExpression expr = varMapper.resolveVariable(name);

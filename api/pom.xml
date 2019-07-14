@@ -33,7 +33,7 @@
     <artifactId>jakarta.el-api</artifactId>
     <version>3.0.2-SNAPSHOT</version>
     
-    <name>Expression Language 3.0 API</name>
+    <name>Jakarta Expression Language 3.0 API</name>
 
     <properties>
         <!-- Make sure the two versions are in sync with the maven version -->
@@ -69,7 +69,7 @@
     
     <mailingLists>
         <mailingList>
-            <name>EL mailing list</name>
+            <name>Jakarta Expression Language mailing list</name>
             <post>el-dev@eclipse.org</post>
             <subscribe>https://dev.eclipse.org/mailman/listinfo/el-dev</subscribe>
             <unsubscribe>https://dev.eclipse.org/mailman/listinfo/el-dev</unsubscribe>
@@ -118,6 +118,20 @@
         </resources>
     
         <plugins>
+             <!-- Restricts the Java version to 1.8 -->
+             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.0</version>
+                <configuration>
+                    <source>1.7</source>
+                    <target>1.7</target>
+                    <compilerArgument>-Xlint:unchecked</compilerArgument>
+                </configuration>
+            </plugin>
+        
+        
+            <!-- Creates the OSGi MANIFEST.MF file -->        
             <plugin>
                 <groupId>org.apache.felix</groupId>
                 <artifactId>maven-bundle-plugin</artifactId>
@@ -127,7 +141,7 @@
                         <supportedProjectType>jar</supportedProjectType>
                     </supportedProjectTypes>
                     <instructions>
-                        <Bundle-Description>Expression Language ${spec.version} API</Bundle-Description>
+                        <Bundle-Description>Jakarta Expression Language ${spec.version}</Bundle-Description>
                         <Bundle-SymbolicName>${bundle.symbolicName}</Bundle-SymbolicName>
                         <Bundle-Version>${bundle.version}</Bundle-Version>
                         <Extension-Name>${extensionName}</Extension-Name>
@@ -149,6 +163,7 @@
                 </executions>
             </plugin>
             
+            <!-- Adds the manifest file created by the org.apache.felix:maven-bundle-plugin -->
             <plugin>
                 <artifactId>maven-jar-plugin</artifactId>
                 <version>2.4</version>
@@ -162,21 +177,22 @@
                 </configuration>
             </plugin>
             
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.0</version>
-                <configuration>
-                    <source>1.7</source>
-                    <target>1.7</target>
-                    <compilerArgument>-Xlint:unchecked</compilerArgument>
-                </configuration>
-            </plugin>
-            
+            <!-- Creates the source jar -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
                 <version>3.0.1</version>
+                <configuration>
+                    <includePom>true</includePom>
+                </configuration>
+                <executions>
+                    <execution>
+                       <id>attach-sources</id>
+                       <goals>
+                           <goal>jar-no-fork</goal> 
+                       </goals>
+                    </execution>
+                </executions>
             </plugin>
             
             <plugin>
@@ -184,16 +200,7 @@
                 <artifactId>maven-javadoc-plugin</artifactId>
                 <version>3.0.1</version>
             </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-enforcer-plugin</artifactId>
-                <version>3.0.0-M2</version>
-            </plugin>               
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-gpg-plugin</artifactId>
-                <version>1.6</version>          
-            </plugin>
+            
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>findbugs-maven-plugin</artifactId>
@@ -205,7 +212,6 @@
                     <findbugsXmlWithMessages>true</findbugsXmlWithMessages>
                 </configuration>
             </plugin>
-            
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-release-plugin</artifactId>
@@ -214,6 +220,17 @@
                     <useReleaseProfile>false</useReleaseProfile>
                     <arguments>${release.arguments}</arguments>
                 </configuration>
+            </plugin>
+            
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-enforcer-plugin</artifactId>
+                <version>3.0.0-M2</version>
+            </plugin>               
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>1.6</version>          
             </plugin>
         </plugins>
     </build>

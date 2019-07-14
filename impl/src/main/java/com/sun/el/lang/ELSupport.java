@@ -27,7 +27,7 @@ import javax.el.PropertyNotFoundException;
 import com.sun.el.util.MessageFactory;
 
 /**
- * A helper class that implements the EL Specification
+ * A helper class that implements the Jakarta Expression Specification
  *
  * @author Jacob Hookom [jacob@hookom.net]
  * @author Kin-man Chung
@@ -345,7 +345,7 @@ public class ELSupport {
             return obj;
         }
 
-        // new to EL 3.0
+        // New in 3.0
         if (!isEL22Compatible && obj == null && !type.isPrimitive() && !String.class.equals(type)) {
             return null;
         }

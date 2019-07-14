@@ -222,7 +222,7 @@ public class ELParser/* @bgen(jjtree) */ implements ELParserTreeConstants, ELPar
     }
 
     /*
-     * Expression EL Expression Language Root
+     * Jakarta Expression Root
      */
     final public void Expression() throws ParseException {
         SemiColon();

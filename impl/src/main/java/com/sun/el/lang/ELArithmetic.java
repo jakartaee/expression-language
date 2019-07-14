@@ -24,7 +24,7 @@ import java.math.BigInteger;
 import com.sun.el.util.MessageFactory;
 
 /**
- * A helper class of Arithmetic defined by the EL Specification
+ * A helper class of Arithmetic defined by the Jakarta Expression Specification
  *
  * @author Jacob Hookom [jacob@hookom.net]
  * @version $Change: 181177 $$DateTime: 2001/06/26 08:45:09 $$Author: kchung $
