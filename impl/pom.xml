@@ -71,7 +71,7 @@
     
     <mailingLists>
         <mailingList>
-            <name>EL mailing list</name>
+            <name>Jakarta Expression Language 3.0 mailing list</name>
             <post>el-dev@eclipse.org</post>
             <subscribe>https://dev.eclipse.org/mailman/listinfo/el-dev</subscribe>
             <unsubscribe>https://dev.eclipse.org/mailman/listinfo/el-dev</unsubscribe>

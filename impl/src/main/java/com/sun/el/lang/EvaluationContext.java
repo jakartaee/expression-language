@@ -27,8 +27,9 @@ import javax.el.ImportHandler;
 import javax.el.VariableMapper;
 
 /**
- * The context for EL expression evaluation. This wrapper ELContext captures the function mapper and the variable mapper
- * at the point when the expression is parsed, and only for those functions and variable used in the expression.
+ * The context for Jakarta Expression expression evaluation. This wrapper ELContext captures the function mapper and the
+ * variable mapper at the point when the expression is parsed, and only for those functions and variable used in the
+ * expression.
  */
 public final class EvaluationContext extends ELContext {
 
