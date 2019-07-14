@@ -34,6 +34,10 @@
     <version>3.0.2-SNAPSHOT</version>
     
     <name>Jakarta Expression Language 3.0 API</name>
+    <description>
+        Jakarta Expression Language defines an expression language for Java applications
+    </description>
+    <url>https://projects.eclipse.org/projects/ee4j.el</url>
 
     <properties>
         <!-- Make sure the two versions are in sync with the maven version -->
@@ -46,8 +50,6 @@
         <findbugs.exclude />
         <findbugs.threshold>High</findbugs.threshold>
     </properties>
-
-    <url>https://projects.eclipse.org/projects/ee4j.el</url>
 
     <licenses>
         <license>
@@ -118,7 +120,7 @@
         </resources>
     
         <plugins>
-             <!-- Restricts the Java version to 1.8 -->
+             <!-- Restricts the Java version to 1.7 -->
              <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
