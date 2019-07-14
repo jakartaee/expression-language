@@ -31,7 +31,7 @@
     
     <groupId>com.sun.el</groupId>
     <artifactId>el-ri</artifactId>
-    <version>3.0.2-SNAPSHOT</version>
+    <version>3.0.3-SNAPSHOT</version>
 
     <name>Jakarta Expression Language 3.0 Implementation</name>
     <description>Jakarta Expression Language Implementation</description>
