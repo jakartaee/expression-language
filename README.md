@@ -1,9 +1,24 @@
-# Prerequisites
+# Jakarta Expression Language
 
-Oracle JDK 1.7
+This repository contains the code for Jakarta Expression Language.
 
-Apache Maven 3.3.9 or later in order to build and run the tests.
+[Online JavaDoc](https://javadoc.io/doc/jakarta.el/jakarta.el-api/)
 
-# Licenses
+Building
+--------
 
-Applicable licenses for this project are documented in LICENSE.md available at the root of this repository.
+Jakarta Authentication can be built by executing the following from the project root:
+
+``mvn clean package``
+
+The API jar can then be found in /target.
+
+Making Changes
+--------------
+
+To make changes, fork this repository, make your changes, and submit a pull request.
+
+About Jakarta Expression Language
+-------------
+
+Jakarta Expression Language defines an expression language for Java applications.
