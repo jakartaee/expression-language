@@ -152,7 +152,7 @@ public abstract class ELContext {
      * @param contextObject The context object to add to the collection.
      * @throws NullPointerException if key is null or contextObject is null.
      */
-    public void putContext(Class<?> key, Object contextObject) {
+    public void putContext(Class key, Object contextObject) {
         if (key == null || contextObject == null) {
             throw new NullPointerException();
         }
@@ -178,7 +178,7 @@ public abstract class ELContext {
      * @return The context object associated with the given key, or null if no such context was found.
      * @throws NullPointerException if key is null.
      */
-    public Object getContext(Class<?> key) {
+    public Object getContext(Class key) {
         if (key == null) {
             throw new NullPointerException();
         }

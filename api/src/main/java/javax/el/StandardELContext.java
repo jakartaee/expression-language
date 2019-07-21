@@ -105,7 +105,7 @@ public class StandardELContext extends ELContext {
     }
 
     @Override
-    public void putContext(Class<?> key, Object contextObject) {
+    public void putContext(Class key, Object contextObject) {
         if (delegate != null) {
             delegate.putContext(key, contextObject);
         } else {
@@ -114,7 +114,7 @@ public class StandardELContext extends ELContext {
     }
 
     @Override
-    public Object getContext(Class<?> key) {
+    public Object getContext(Class key) {
         if (delegate == null) {
             return super.getContext(key);
         }
