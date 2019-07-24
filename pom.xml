@@ -39,7 +39,7 @@
 
     <properties>
         <!-- the bundle build number must be the same as the maven number -->
-        <bundle.version>3.0.2</bundle.version>
+        <bundle.version>3.0.3</bundle.version>
         <!-- The most current api version -->
         <spec.version>3.0</spec.version>
         <extensionName>javax.el</extensionName>
