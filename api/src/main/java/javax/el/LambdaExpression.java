@@ -112,20 +112,24 @@ public class LambdaExpression {
         }
 
         elContext.enterLambdaScope(lambdaArgs);
-        Object ret = expression.getValue(elContext);
+        try {
+            Object ret = expression.getValue(elContext);
 
-        // If the result of evaluating the body is another LambdaExpression,
-        // whose body has not been evaluated yet. (A LambdaExpression is
-        // evaluated iff when its invoke method is called.) The current lambda
-        // arguments may be needed in that body when it is evaluated later,
-        // after the current lambda exits. To make these arguments available
-        // then, they are injected into it.
-        if (ret instanceof LambdaExpression) {
-            ((LambdaExpression) ret).envirArgs.putAll(lambdaArgs);
+            // If the result of evaluating the body is another LambdaExpression,
+            // whose body has not been evaluated yet. (A LambdaExpression is
+            // evaluated iff when its invoke method is called.) The current lambda
+            // arguments may be needed in that body when it is evaluated later,
+            // after the current lambda exits. To make these arguments available
+            // then, they are injected into it.
+            if (ret instanceof LambdaExpression) {
+                ((LambdaExpression) ret).envirArgs.putAll(lambdaArgs);
+            }
+            return ret;
+        } finally {
+            elContext.exitLambdaScope();
         }
-        elContext.exitLambdaScope();
 
-        return ret;
+
     }
 
     /**
