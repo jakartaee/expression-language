@@ -185,7 +185,7 @@ public class ELProcessor {
             // First get the method name, ignore the return type
             int p = method.indexOf(' ');
             if (p < 0) {
-                throw new NoSuchMethodException("Bad method singnature: " + method);
+                throw new NoSuchMethodException("Bad method signature: " + method);
             }
 
             String methodName = method.substring(p + 1, j).trim();
@@ -193,7 +193,7 @@ public class ELProcessor {
             // Extract parameter types
             p = method.indexOf(')', j + 1);
             if (p < 0) {
-                throw new NoSuchMethodException("Bad method singnature: " + method);
+                throw new NoSuchMethodException("Bad method signature: " + method);
             }
             String[] params = method.substring(j + 1, p).split(",");
             Class<?>[] paramTypes = new Class<?>[params.length];
