@@ -197,10 +197,43 @@
                 </executions>
             </plugin>
             
+             <!-- 
+               Create Javadoc for API jar
+             -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <version>3.0.1</version>
+                <version>3.1.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-api-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                        <configuration>
+                            <source>1.8</source>
+                            <additionalJOption>-Xdoclint:none</additionalJOption>
+                            <description>Jakarta Expression Language API documentation</description>
+                            <doctitle>Jakarta Expression Language API documentation</doctitle>
+                            <windowtitle>Jakarta Expression Language API documentation</windowtitle>
+                            <header><![CDATA[<br>Jakarta Expression Language API v${project.version}]]></header>
+                            <bottom><![CDATA[
+Comments to: <a href="mailto:el-dev@eclipse.org">el-dev@eclipse.org</a>.<br>
+Copyright &#169; 2019 Eclipse Foundation. All rights reserved.<br>
+Use is subject to <a href="{@docRoot}/doc-files/speclicense.html" target="_top">license terms</a>.]]>
+                            </bottom>
+                            <docfilessubdirs>true</docfilessubdirs>
+                            <groups>
+                                <group>
+                                    <title>Jakarta Expression Language API Documentation</title>
+                                    <packages>
+                                        javax.el.*
+                                    </packages>
+                                </group>
+                            </groups>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
             
             <plugin>
