@@ -1,3 +1,0 @@
-== Specification Scope
-
-Jakarta Expression Language provides a specification document, API, reference implementation and TCK that describes an expression language for Java applications.
