@@ -31,7 +31,7 @@
     
     <groupId>jakarta.el</groupId>
     <artifactId>jakarta.el-api</artifactId>
-    <version>3.0.3-SNAPSHOT</version>
+    <version>3.0.3</version>
     
     <name>Jakarta Expression Language 3.0 API</name>
     <description>
