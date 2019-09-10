@@ -28,7 +28,7 @@
 
     <groupId>org.glassfish</groupId>
     <artifactId>jakarta.el</artifactId>
-    <version>3.0.3-SNAPSHOT</version>
+    <version>3.0.4</version>
     
     <name>Jakarta Expression Language 3.0</name>
     <description>
