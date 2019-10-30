@@ -153,7 +153,12 @@ public class ImportHandler {
         if (!notAClass.contains(className)) {
             try {
                 return Class.forName(className, false, Thread.currentThread().getContextClassLoader());
-            } catch (ClassNotFoundException ex) {
+                // Some operating systems have case sensitive path names. An example is Windows if className is
+                // attempting to be resolved from a wildcard import a java.lang.NoClassDefFoundError may be thrown as
+                // the case for the type likely doesn't match. See https://bugs.java.com/bugdatabase/view_bug.do?bug_id=8024775
+                // and https://bugs.openjdk.java.net/browse/JDK-8133522.
+            } catch (ClassNotFoundException | NoClassDefFoundError ex) {
+
                 notAClass.add(className);
             }
         }
