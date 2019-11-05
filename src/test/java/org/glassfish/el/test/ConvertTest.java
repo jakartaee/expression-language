@@ -16,6 +16,9 @@
 
 package org.glassfish.el.test;
 
+import jakarta.el.ELContext;
+import jakarta.el.ELProcessor;
+import jakarta.el.TypeConverter;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -23,7 +26,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-import javax.el.*;
+import jakarta.el.*;
 
 /**
  *

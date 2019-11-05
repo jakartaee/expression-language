@@ -22,11 +22,11 @@ import org.junit.BeforeClass;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-import javax.el.ELProcessor;
-import javax.el.ELManager;
-import javax.el.ExpressionFactory;
-import javax.el.MethodExpression;
-import javax.el.ELContext;
+import jakarta.el.ELProcessor;
+import jakarta.el.ELManager;
+import jakarta.el.ExpressionFactory;
+import jakarta.el.MethodExpression;
+import jakarta.el.ELContext;
 import java.lang.reflect.Method;
 
 public class ELProcessorTest {

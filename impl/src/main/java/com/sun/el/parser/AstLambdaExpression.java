@@ -18,9 +18,9 @@ package com.sun.el.parser;
 
 import java.util.List;
 
-import javax.el.ELException;
-import javax.el.LambdaExpression;
-import javax.el.ValueExpression;
+import jakarta.el.ELException;
+import jakarta.el.LambdaExpression;
+import jakarta.el.ValueExpression;
 
 import com.sun.el.ValueExpressionImpl;
 import com.sun.el.lang.EvaluationContext;

@@ -24,7 +24,7 @@ import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.el.FunctionMapper;
+import jakarta.el.FunctionMapper;
 
 import com.sun.el.util.ReflectionUtil;
 
@@ -41,7 +41,7 @@ public class FunctionMapperImpl extends FunctionMapper implements Externalizable
     /*
      * (non-Javadoc)
      *
-     * @see javax.el.FunctionMapper#resolveFunction(java.lang.String, java.lang.String)
+     * @see FunctionMapper#resolveFunction(java.lang.String, java.lang.String)
      */
     @Override
     public Method resolveFunction(String prefix, String localName) {

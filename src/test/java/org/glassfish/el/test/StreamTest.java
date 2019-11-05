@@ -18,7 +18,6 @@ package org.glassfish.el.test;
 
 import java.lang.reflect.Array;
 import java.util.List;
-import java.util.Map;
 import java.util.Iterator;
 
 import org.junit.Test;
@@ -27,8 +26,8 @@ import org.junit.BeforeClass;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-import javax.el.ELProcessor;
-import javax.el.ELException;
+import jakarta.el.ELProcessor;
+import jakarta.el.ELException;
 
 public class StreamTest {
 

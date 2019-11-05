@@ -16,13 +16,19 @@
 
 package org.glassfish.el.test;
 
+import jakarta.el.ELContext;
+import jakarta.el.ELException;
+import jakarta.el.ELProcessor;
+import jakarta.el.ExpressionFactory;
+import jakarta.el.MethodExpression;
+import jakarta.el.MethodNotFoundException;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-import javax.el.*;
+import jakarta.el.*;
 
 /**
  *

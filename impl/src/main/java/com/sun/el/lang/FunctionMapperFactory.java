@@ -18,7 +18,7 @@ package com.sun.el.lang;
 
 import java.lang.reflect.Method;
 
-import javax.el.FunctionMapper;
+import jakarta.el.FunctionMapper;
 
 /**
  * @author Jacob Hookom [jacob@hookom.net]
@@ -39,7 +39,7 @@ public class FunctionMapperFactory extends FunctionMapper {
     /*
      * (non-Javadoc)
      *
-     * @see javax.el.FunctionMapper#resolveFunction(java.lang.String, java.lang.String)
+     * @see FunctionMapper#resolveFunction(java.lang.String, java.lang.String)
      */
     @Override
     public Method resolveFunction(String prefix, String localName) {

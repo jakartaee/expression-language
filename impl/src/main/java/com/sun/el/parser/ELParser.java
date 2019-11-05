@@ -19,7 +19,7 @@ package com.sun.el.parser;
 
 import java.io.StringReader;
 
-import javax.el.ELException;
+import jakarta.el.ELException;
 
 public class ELParser/* @bgen(jjtree) */ implements ELParserTreeConstants, ELParserConstants {/* @bgen(jjtree) */
     protected JJTELParserState jjtree = new JJTELParserState();
