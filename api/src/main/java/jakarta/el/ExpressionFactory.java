@@ -123,14 +123,13 @@ public abstract class ExpressionFactory {
      * <p>
      * Properties are optional and can be ignored by an implementation.
      *
-     * TODO: determine if javax.el should change to jakarta.el
      * <p>
-     * The name of a property should start with "javax.el."
+     * The name of a property should start with "jakarta.el."
      *
      * <p>
      * The following are some suggested names for properties.
      * <ul>
-     * <li>javax.el.cacheSize</li>
+     * <li>jakarta.el.cacheSize</li>
      * </ul>
      *
      * @param properties Properties passed to the implementation. If null, then no properties.

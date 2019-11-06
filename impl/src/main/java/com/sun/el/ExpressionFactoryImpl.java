@@ -52,9 +52,16 @@ public class ExpressionFactoryImpl extends ExpressionFactory {
     public ExpressionFactoryImpl(Properties properties) {
         super();
         this.properties = properties;
-        this.isBackwardCompatible22 = "true".equals(getProperty("javax.el.bc2.2"));
+        this.isBackwardCompatible22 = "true".equals(getProperty("jakarta.el.bc2.2"));
     }
 
+    /**
+     * Coerces an object to a specific type according to the Jakarta Expression Language type conversion rules. The custom
+     * type conversions in the <code>ELResolver</code>s are not considered.
+     *
+     * Jakarta Expression Language version 2.2 backward compatibility conversion rules apply if ExpressionFactoryImpl was created with property
+     * "jakarta.el.bc2.2" set to true.
+     */
     @Override
     public Object coerceToType(Object obj, Class<?> type) {
         try {
