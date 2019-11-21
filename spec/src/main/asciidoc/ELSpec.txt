@@ -1,0 +1,4629 @@
+= Contents
+
+[#50532355_pgfId-1016467]##Specification: JSR-341 Expression Language
+
+[#50532355_pgfId-1016583]##Version: 3.0
+
+[#50532355_pgfId-1016469]##Status: Final Release
+
+[#50532355_pgfId-1016688]##Release: April 29, 2013
+
+[#50532355_pgfId-1016471]## 
+
+[#50532355_pgfId-1016472]##Copyright 2013 Oracle America, Inc.
+
+[#50532355_pgfId-1016473]##500 Oracle Parkway, Redwood City, California
+94065, U.S.A.
+
+[#50532355_pgfId-1016982]## 
+
+[#50532355_pgfId-1016983]##All rights reserved.
+
+======= [#50532354_pgfId-108319]##
+
+image:ELSpec-1.gif[image]
+
+Contents
+
+image:ELSpec-2.gif[image]
+
+======= [#50532354_pgfId-1052585]##link:ELSpec.htm#50532361_pgfId-2090[Preface xvii]
+
+{empty}[#50532354_pgfId-1052587]##link:ELSpec.htm#50532361_pgfId-3690[Historical
+Note xvii]
+
+{empty}[#50532354_pgfId-1052589]##link:ELSpec.htm#50532361_pgfId-3430[Typographical
+Conventions xviii]
+
+{empty}[#50532354_pgfId-1052591]##link:ELSpec.htm#50532361_pgfId-2845[Comments
+xviii]
+
+======= [#50532354_pgfId-1052593]##link:ELSpec.htm#50532363_pgfId-5529[Language Syntax and Semantics 1]
+
+{empty}[#50532354_pgfId-1052595]##link:ELSpec.htm#50532363_pgfId-1006174[1.1
+Overview 1]
+
+{empty}[#50532354_pgfId-1052597]##link:ELSpec.htm#50532363_pgfId-1003812[1.1.1
+EL in a nutshell 2]
+
+{empty}[#50532354_pgfId-1052599]##link:ELSpec.htm#50532363_pgfId-1002409[1.2
+EL Expressions 2]
+
+{empty}[#50532354_pgfId-1052601]##link:ELSpec.htm#50532363_pgfId-1003526[1.2.1
+Eval-expression 3]
+
+{empty}[#50532354_pgfId-1052603]##link:ELSpec.htm#50532363_pgfId-1005675[1.2.1.1
+Eval-expressions as value expressions 3]
+
+{empty}[#50532354_pgfId-1052605]##link:ELSpec.htm#50532363_pgfId-1005612[1.2.1.2
+Eval-expressions as method expressions 5]
+
+{empty}[#50532354_pgfId-1052607]##link:ELSpec.htm#50532363_pgfId-1004004[1.2.2
+Literal-expression 5]
+
+{empty}[#50532354_pgfId-1052609]##link:ELSpec.htm#50532363_pgfId-1006602[1.2.3
+Composite expressions 6]
+
+{empty}[#50532354_pgfId-1052611]##link:ELSpec.htm#50532363_pgfId-1004121[1.2.4
+Syntax restrictions 7]
+
+{empty}[#50532354_pgfId-1052613]##link:ELSpec.htm#50532363_pgfId-999365[1.3
+Literals 7]
+
+{empty}[#50532354_pgfId-1052615]##link:ELSpec.htm#50532363_pgfId-1006662[1.4
+Errors, Warnings, Default Values 8]
+
+{empty}[#50532354_pgfId-1052617]##link:ELSpec.htm#50532363_pgfId-1004982[1.5
+Resolution of Model Objects and their Properties or Methods 8]
+
+{empty}[#50532354_pgfId-1052619]##link:ELSpec.htm#50532363_pgfId-1016027[1.5.1
+Evaluating Identifiers 9]
+
+{empty}[#50532354_pgfId-1052621]##link:ELSpec.htm#50532363_pgfId-1016086[1.5.2
+Evaluating functions 9]
+
+{empty}[#50532354_pgfId-1052623]##link:ELSpec.htm#50532363_pgfId-1016018[1.5.3
+Evaluating objects with properties 10]
+
+{empty}[#50532354_pgfId-1052625]##link:ELSpec.htm#50532363_pgfId-1016673[1.5.4
+Invoking method expressions 10]
+
+[#50532354_pgfId-1052627]##link:ELSpec.htm#50532363_pgfId-999425[1.6
+Operators] _[]_ and _._ 10
+
+{empty}[#50532354_pgfId-1052629]##link:ELSpec.htm#50532363_pgfId-999423[1.7
+Arithmetic Operators 12]
+
+[#50532354_pgfId-1052631]##link:ELSpec.htm#50532363_pgfId-999694[1.7.1
+Binary operators -] _A \{+,-,*} B_ 13
+
+[#50532354_pgfId-1052633]##link:ELSpec.htm#50532363_pgfId-999709[1.7.2
+Binary operator -] _A \{/,div} B_ 13
+
+[#50532354_pgfId-1052635]##link:ELSpec.htm#50532363_pgfId-999714[1.7.3
+Binary operator -] _A \{%,mod} B_ 14
+
+[#50532354_pgfId-1052637]##link:ELSpec.htm#50532363_pgfId-999720[1.7.4
+Unary minus operator -] _-A_ 14
+
+{empty}[#50532354_pgfId-1052639]##link:ELSpec.htm#50532363_pgfId-1014344[1.8
+String Concatenation Operator - A += B 14]
+
+{empty}[#50532354_pgfId-1052641]##link:ELSpec.htm#50532363_pgfId-999731[1.9
+Relational Operators 14]
+
+{empty}[#50532354_pgfId-1052643]##link:ELSpec.htm#50532363_pgfId-1012924[1.9.1
+A \{<,>,<=,>=,lt,gt,le,ge} B 15]
+
+{empty}[#50532354_pgfId-1052645]##link:ELSpec.htm#50532363_pgfId-1012938[1.9.2
+A \{==,!=,eq,ne} B 15]
+
+{empty}[#50532354_pgfId-1052647]##link:ELSpec.htm#50532363_pgfId-1000010[1.10
+Logical Operators 16]
+
+[#50532354_pgfId-1052649]##link:ELSpec.htm#50532363_pgfId-1000016[1.10.1
+Binary operator -] _A \{&&,||,and,or} B_ 16
+
+[#50532354_pgfId-1052651]##link:ELSpec.htm#50532363_pgfId-1012436[1.10.2
+Unary not operator -] _\{!,not} A_ 16
+
+[#50532354_pgfId-1052653]##link:ELSpec.htm#50532363_pgfId-1000021[1.11
+Empty Operator -] _empty A_ 17
+
+[#50532354_pgfId-1052655]##link:ELSpec.htm#50532363_pgfId-1000030[1.12
+Conditional Operator -] _A ? B : C_ 17
+
+{empty}[#50532354_pgfId-1052657]##link:ELSpec.htm#50532363_pgfId-1012724[1.13
+Assignment Operator - A = B 17]
+
+{empty}[#50532354_pgfId-1052659]##link:ELSpec.htm#50532363_pgfId-1015387[1.14
+Semicolon Operator - A ; B 18]
+
+{empty}[#50532354_pgfId-1052661]##link:ELSpec.htm#50532363_pgfId-1000035[1.15
+Parentheses 18]
+
+{empty}[#50532354_pgfId-1052663]##link:ELSpec.htm#50532363_pgfId-1000037[1.16
+Operator Precedence 18]
+
+{empty}[#50532354_pgfId-1052665]##link:ELSpec.htm#50532363_pgfId-1000049[1.17
+Reserved Words 19]
+
+{empty}[#50532354_pgfId-1052667]##link:ELSpec.htm#50532363_pgfId-1008786[1.18
+Functions 20]
+
+{empty}[#50532354_pgfId-1052669]##link:ELSpec.htm#50532363_pgfId-1006296[1.19
+Variables 20]
+
+{empty}[#50532354_pgfId-1052671]##link:ELSpec.htm#50532363_pgfId-1012952[1.20
+Lambda Expressions 20]
+
+{empty}[#50532354_pgfId-1052673]##link:ELSpec.htm#50532363_pgfId-1015658[1.21
+Enums 22]
+
+{empty}[#50532354_pgfId-1052675]##link:ELSpec.htm#50532363_pgfId-1006294[1.22
+Static Field and Method Reference 22]
+
+{empty}[#50532354_pgfId-1052677]##link:ELSpec.htm#50532363_pgfId-1013369[1.22.1
+Access Restrictions and Imports 22]
+
+{empty}[#50532354_pgfId-1052679]##link:ELSpec.htm#50532363_pgfId-1013452[1.22.2
+Imports of Packages, Classes, and Static Fields 23]
+
+{empty}[#50532354_pgfId-1052681]##link:ELSpec.htm#50532363_pgfId-1015778[1.22.3
+Constructor Reference 23]
+
+{empty}[#50532354_pgfId-1052683]##link:ELSpec.htm#50532363_pgfId-1000107[1.23
+Type Conversion 23]
+
+{empty}[#50532354_pgfId-1052685]##link:ELSpec.htm#50532363_pgfId-1015663[1.23.1
+To Coerce a Value X to Type Y 24]
+
+{empty}[#50532354_pgfId-1052687]##link:ELSpec.htm#50532363_pgfId-1015710[1.23.2
+Coerce A to String 24]
+
+{empty}[#50532354_pgfId-1052689]##link:ELSpec.htm#50532363_pgfId-1000128[1.23.3
+Coerce A to Number type N 24]
+
+{empty}[#50532354_pgfId-1052691]##link:ELSpec.htm#50532363_pgfId-1000157[1.23.4
+Coerce A to Character or char 25]
+
+{empty}[#50532354_pgfId-1052693]##link:ELSpec.htm#50532363_pgfId-1000164[1.23.5
+Coerce A to Boolean or boolean 25]
+
+{empty}[#50532354_pgfId-1052695]##link:ELSpec.htm#50532363_pgfId-1011531[1.23.6
+Coerce A to an Enum Type T 26]
+
+{empty}[#50532354_pgfId-1052697]##link:ELSpec.htm#50532363_pgfId-1000170[1.23.7
+Coerce A to Any Other Type T 26]
+
+{empty}[#50532354_pgfId-1052699]##link:ELSpec.htm#50532363_pgfId-1000182[1.24
+Collected Syntax 26]
+
+======= [#50532354_pgfId-1052701]##link:ELSpec.htm#50532366_pgfId-1017415[Operations on Collection Objects 43]
+
+{empty}[#50532354_pgfId-1052703]##link:ELSpec.htm#50532366_pgfId-1013003[2.1
+Overview 43]
+
+{empty}[#50532354_pgfId-1052705]##link:ELSpec.htm#50532366_pgfId-1002483[2.2
+Construction of Collection Objects 44]
+
+{empty}[#50532354_pgfId-1052707]##link:ELSpec.htm#50532366_pgfId-1002500[2.2.1
+Set Construction 44]
+
+{empty}[#50532354_pgfId-1052709]##link:ELSpec.htm#50532366_pgfId-1002510[2.2.1.1
+Syntax 44]
+
+{empty}[#50532354_pgfId-1052711]##link:ELSpec.htm#50532366_pgfId-1002561[2.2.1.2
+Example 44]
+
+{empty}[#50532354_pgfId-1052713]##link:ELSpec.htm#50532366_pgfId-1002584[2.2.2
+List Construction 44]
+
+{empty}[#50532354_pgfId-1052715]##link:ELSpec.htm#50532366_pgfId-1002604[2.2.2.1
+Syntax 45]
+
+{empty}[#50532354_pgfId-1052717]##link:ELSpec.htm#50532366_pgfId-1002673[2.2.2.2
+Example 45]
+
+{empty}[#50532354_pgfId-1052719]##link:ELSpec.htm#50532366_pgfId-1002699[2.2.3
+Map Construction 45]
+
+{empty}[#50532354_pgfId-1052721]##link:ELSpec.htm#50532366_pgfId-1002721[2.2.3.1
+Syntax 45]
+
+{empty}[#50532354_pgfId-1052723]##link:ELSpec.htm#50532366_pgfId-1002762[2.2.3.2
+Example 45]
+
+{empty}[#50532354_pgfId-1052725]##link:ELSpec.htm#50532366_pgfId-1002794[2.3
+Collection Operations 45]
+
+{empty}[#50532354_pgfId-1052727]##link:ELSpec.htm#50532366_pgfId-1013102[2.3.1
+Stream and Pipeline 45]
+
+{empty}[#50532354_pgfId-1052729]##link:ELSpec.htm#50532366_pgfId-1003589[2.3.2
+Operation Syntax Description 46]
+
+{empty}[#50532354_pgfId-1052731]##link:ELSpec.htm#50532366_pgfId-1014558[2.3.3
+Implementation Classes 47]
+
+{empty}[#50532354_pgfId-1052733]##link:ELSpec.htm#50532366_pgfId-1014581[2.3.3.1
+Stream 48]
+
+{empty}[#50532354_pgfId-1052735]##link:ELSpec.htm#50532366_pgfId-1014606[2.3.3.2
+Optional 48]
+
+{empty}[#50532354_pgfId-1052737]##link:ELSpec.htm#50532366_pgfId-1014896[2.3.4
+Functions 48]
+
+{empty}[#50532354_pgfId-1052739]##link:ELSpec.htm#50532366_pgfId-1014778[2.3.4.1
+predicate 49]
+
+{empty}[#50532354_pgfId-1052741]##link:ELSpec.htm#50532366_pgfId-1014938[2.3.4.2
+mapper 49]
+
+{empty}[#50532354_pgfId-1052743]##link:ELSpec.htm#50532366_pgfId-1014958[2.3.4.3
+comparator 49]
+
+{empty}[#50532354_pgfId-1052745]##link:ELSpec.htm#50532366_pgfId-1014968[2.3.4.4
+consumer 49]
+
+{empty}[#50532354_pgfId-1052747]##link:ELSpec.htm#50532366_pgfId-1014978[2.3.4.5
+binaryOperator 49]
+
+{empty}[#50532354_pgfId-1052749]##link:ELSpec.htm#50532366_pgfId-1014625[2.3.5
+filter 50]
+
+{empty}[#50532354_pgfId-1052751]##link:ELSpec.htm#50532366_pgfId-1013423[2.3.5.1
+Syntax 50]
+
+{empty}[#50532354_pgfId-1052753]##link:ELSpec.htm#50532366_pgfId-1013394[2.3.5.2
+Description 50]
+
+{empty}[#50532354_pgfId-1052755]##link:ELSpec.htm#50532366_pgfId-1016623[2.3.5.3
+See 50]
+
+{empty}[#50532354_pgfId-1052757]##link:ELSpec.htm#50532366_pgfId-1003882[2.3.5.4
+Example 50]
+
+{empty}[#50532354_pgfId-1052759]##link:ELSpec.htm#50532366_pgfId-1003947[2.3.6
+map 50]
+
+{empty}[#50532354_pgfId-1052761]##link:ELSpec.htm#50532366_pgfId-1003987[2.3.6.1
+Syntax 50]
+
+{empty}[#50532354_pgfId-1052763]##link:ELSpec.htm#50532366_pgfId-1004073[2.3.6.2
+Description 50]
+
+{empty}[#50532354_pgfId-1052765]##link:ELSpec.htm#50532366_pgfId-1016647[2.3.6.3
+See 51]
+
+{empty}[#50532354_pgfId-1052767]##link:ELSpec.htm#50532366_pgfId-1013486[2.3.6.4
+Examples 51]
+
+{empty}[#50532354_pgfId-1052769]##link:ELSpec.htm#50532366_pgfId-1004239[2.3.7
+flatMap 51]
+
+{empty}[#50532354_pgfId-1052771]##link:ELSpec.htm#50532366_pgfId-1004271[2.3.7.1
+Syntax 51]
+
+{empty}[#50532354_pgfId-1052773]##link:ELSpec.htm#50532366_pgfId-1004320[2.3.7.2
+Description 51]
+
+{empty}[#50532354_pgfId-1052775]##link:ELSpec.htm#50532366_pgfId-1016681[2.3.7.3
+See 51]
+
+{empty}[#50532354_pgfId-1052777]##link:ELSpec.htm#50532366_pgfId-1013555[2.3.7.4
+Examples 51]
+
+{empty}[#50532354_pgfId-1052779]##link:ELSpec.htm#50532366_pgfId-1004878[2.3.8
+distinct 52]
+
+{empty}[#50532354_pgfId-1052781]##link:ELSpec.htm#50532366_pgfId-1013592[2.3.8.1
+Syntax 52]
+
+{empty}[#50532354_pgfId-1052783]##link:ELSpec.htm#50532366_pgfId-1013595[2.3.8.2
+Description 52]
+
+{empty}[#50532354_pgfId-1052785]##link:ELSpec.htm#50532366_pgfId-1013640[2.3.8.3
+Example 52]
+
+{empty}[#50532354_pgfId-1052787]##link:ELSpec.htm#50532366_pgfId-1013690[2.3.9
+sorted 52]
+
+{empty}[#50532354_pgfId-1052789]##link:ELSpec.htm#50532366_pgfId-1013692[2.3.9.1
+Syntax 52]
+
+{empty}[#50532354_pgfId-1052791]##link:ELSpec.htm#50532366_pgfId-1013694[2.3.9.2
+Description 52]
+
+{empty}[#50532354_pgfId-1052793]##link:ELSpec.htm#50532366_pgfId-1015154[2.3.9.3
+See 53]
+
+{empty}[#50532354_pgfId-1052795]##link:ELSpec.htm#50532366_pgfId-1013696[2.3.9.4
+Examples 53]
+
+{empty}[#50532354_pgfId-1052797]##link:ELSpec.htm#50532366_pgfId-1013733[2.3.10
+forEach 53]
+
+{empty}[#50532354_pgfId-1052799]##link:ELSpec.htm#50532366_pgfId-1013735[2.3.10.1
+Syntax 53]
+
+{empty}[#50532354_pgfId-1052801]##link:ELSpec.htm#50532366_pgfId-1013738[2.3.10.2
+Description 53]
+
+{empty}[#50532354_pgfId-1052803]##link:ELSpec.htm#50532366_pgfId-1015177[2.3.10.3
+See 54]
+
+{empty}[#50532354_pgfId-1052805]##link:ELSpec.htm#50532366_pgfId-1015871[2.3.10.4
+Example 54]
+
+{empty}[#50532354_pgfId-1052807]##link:ELSpec.htm#50532366_pgfId-1013845[2.3.11
+peek 54]
+
+{empty}[#50532354_pgfId-1052809]##link:ELSpec.htm#50532366_pgfId-1013847[2.3.11.1
+Syntax 54]
+
+{empty}[#50532354_pgfId-1052811]##link:ELSpec.htm#50532366_pgfId-1013849[2.3.11.2
+Description 54]
+
+{empty}[#50532354_pgfId-1052813]##link:ELSpec.htm#50532366_pgfId-1015202[2.3.11.3
+See 54]
+
+{empty}[#50532354_pgfId-1052815]##link:ELSpec.htm#50532366_pgfId-1015898[2.3.11.4
+Example 54]
+
+{empty}[#50532354_pgfId-1052817]##link:ELSpec.htm#50532366_pgfId-1016806[2.3.12
+iterator 55]
+
+{empty}[#50532354_pgfId-1052819]##link:ELSpec.htm#50532366_pgfId-1016823[2.3.12.1
+Syntax 55]
+
+{empty}[#50532354_pgfId-1052821]##link:ELSpec.htm#50532366_pgfId-1016843[2.3.12.2
+Description 55]
+
+{empty}[#50532354_pgfId-1052823]##link:ELSpec.htm#50532366_pgfId-1013632[2.3.13
+limit 55]
+
+{empty}[#50532354_pgfId-1052825]##link:ELSpec.htm#50532366_pgfId-1004624[2.3.13.1
+Syntax 55]
+
+{empty}[#50532354_pgfId-1052827]##link:ELSpec.htm#50532366_pgfId-1004668[2.3.13.2
+Description 55]
+
+{empty}[#50532354_pgfId-1052829]##link:ELSpec.htm#50532366_pgfId-1015226[2.3.13.3
+Example 55]
+
+{empty}[#50532354_pgfId-1052831]##link:ELSpec.htm#50532366_pgfId-1004991[2.3.14
+substream 56]
+
+{empty}[#50532354_pgfId-1052833]##link:ELSpec.htm#50532366_pgfId-1005012[2.3.14.1
+Syntax 56]
+
+{empty}[#50532354_pgfId-1052835]##link:ELSpec.htm#50532366_pgfId-1005070[2.3.14.2
+Description 56]
+
+{empty}[#50532354_pgfId-1052837]##link:ELSpec.htm#50532366_pgfId-1015948[2.3.14.3
+Example 56]
+
+{empty}[#50532354_pgfId-1052839]##link:ELSpec.htm#50532366_pgfId-1014027[2.3.15
+toArray 56]
+
+{empty}[#50532354_pgfId-1052841]##link:ELSpec.htm#50532366_pgfId-1014029[2.3.15.1
+Syntax 56]
+
+{empty}[#50532354_pgfId-1052843]##link:ELSpec.htm#50532366_pgfId-1014031[2.3.15.2
+Description 56]
+
+{empty}[#50532354_pgfId-1052845]##link:ELSpec.htm#50532366_pgfId-1016454[2.3.16
+toList 57]
+
+{empty}[#50532354_pgfId-1052847]##link:ELSpec.htm#50532366_pgfId-1016455[2.3.16.1
+Syntax 57]
+
+{empty}[#50532354_pgfId-1052849]##link:ELSpec.htm#50532366_pgfId-1016457[2.3.16.2
+Description 57]
+
+{empty}[#50532354_pgfId-1052851]##link:ELSpec.htm#50532366_pgfId-1005095[2.3.17
+reduce 57]
+
+{empty}[#50532354_pgfId-1052853]##link:ELSpec.htm#50532366_pgfId-1005127[2.3.17.1
+Syntax 57]
+
+{empty}[#50532354_pgfId-1052855]##link:ELSpec.htm#50532366_pgfId-1005160[2.3.17.2
+Description 57]
+
+{empty}[#50532354_pgfId-1052857]##link:ELSpec.htm#50532366_pgfId-1015240[2.3.17.3
+See 57]
+
+{empty}[#50532354_pgfId-1052859]##link:ELSpec.htm#50532366_pgfId-1015994[2.3.17.4
+Example 58]
+
+{empty}[#50532354_pgfId-1052861]##link:ELSpec.htm#50532366_pgfId-1014191[2.3.18
+max 58]
+
+{empty}[#50532354_pgfId-1052863]##link:ELSpec.htm#50532366_pgfId-1014193[2.3.18.1
+Syntax 58]
+
+{empty}[#50532354_pgfId-1052865]##link:ELSpec.htm#50532366_pgfId-1014196[2.3.18.2
+Description 58]
+
+{empty}[#50532354_pgfId-1052867]##link:ELSpec.htm#50532366_pgfId-1015275[2.3.18.3
+See 58]
+
+{empty}[#50532354_pgfId-1052869]##link:ELSpec.htm#50532366_pgfId-1016171[2.3.18.4
+Examples 58]
+
+{empty}[#50532354_pgfId-1052871]##link:ELSpec.htm#50532366_pgfId-1014256[2.3.19
+min 59]
+
+{empty}[#50532354_pgfId-1052873]##link:ELSpec.htm#50532366_pgfId-1014257[2.3.19.1
+Syntax 59]
+
+{empty}[#50532354_pgfId-1052875]##link:ELSpec.htm#50532366_pgfId-1014260[2.3.19.2
+Description 59]
+
+{empty}[#50532354_pgfId-1052877]##link:ELSpec.htm#50532366_pgfId-1015295[2.3.19.3
+See 59]
+
+{empty}[#50532354_pgfId-1052879]##link:ELSpec.htm#50532366_pgfId-1014294[2.3.20
+average 59]
+
+{empty}[#50532354_pgfId-1052881]##link:ELSpec.htm#50532366_pgfId-1014296[2.3.20.1
+Syntax 59]
+
+{empty}[#50532354_pgfId-1052883]##link:ELSpec.htm#50532366_pgfId-1014299[2.3.20.2
+Description 59]
+
+{empty}[#50532354_pgfId-1052885]##link:ELSpec.htm#50532366_pgfId-1014354[2.3.21
+sum 60]
+
+{empty}[#50532354_pgfId-1052887]##link:ELSpec.htm#50532366_pgfId-1014355[2.3.21.1
+Syntax 60]
+
+{empty}[#50532354_pgfId-1052889]##link:ELSpec.htm#50532366_pgfId-1014357[2.3.21.2
+Description 60]
+
+{empty}[#50532354_pgfId-1052891]##link:ELSpec.htm#50532366_pgfId-1017431[2.3.22
+count 60]
+
+{empty}[#50532354_pgfId-1052893]##link:ELSpec.htm#50532366_pgfId-1017448[2.3.22.1
+Syntax 60]
+
+{empty}[#50532354_pgfId-1052895]##link:ELSpec.htm#50532366_pgfId-1017471[2.3.22.2
+Description 60]
+
+{empty}[#50532354_pgfId-1052897]##link:ELSpec.htm#50532366_pgfId-1014388[2.3.23
+anyMatch 60]
+
+{empty}[#50532354_pgfId-1052899]##link:ELSpec.htm#50532366_pgfId-1014390[2.3.23.1
+Syntax 60]
+
+{empty}[#50532354_pgfId-1052901]##link:ELSpec.htm#50532366_pgfId-1014393[2.3.23.2
+Description 60]
+
+{empty}[#50532354_pgfId-1052903]##link:ELSpec.htm#50532366_pgfId-1015315[2.3.23.3
+See 61]
+
+{empty}[#50532354_pgfId-1052905]##link:ELSpec.htm#50532366_pgfId-1016226[2.3.23.4
+Example 61]
+
+{empty}[#50532354_pgfId-1052907]##link:ELSpec.htm#50532366_pgfId-1014438[2.3.24
+allMatch 61]
+
+{empty}[#50532354_pgfId-1052909]##link:ELSpec.htm#50532366_pgfId-1014439[2.3.24.1
+Syntax 61]
+
+{empty}[#50532354_pgfId-1052911]##link:ELSpec.htm#50532366_pgfId-1014441[2.3.24.2
+Description 61]
+
+{empty}[#50532354_pgfId-1052913]##link:ELSpec.htm#50532366_pgfId-1015344[2.3.24.3
+See 61]
+
+{empty}[#50532354_pgfId-1052915]##link:ELSpec.htm#50532366_pgfId-1014454[2.3.25
+noneMatch 61]
+
+{empty}[#50532354_pgfId-1052917]##link:ELSpec.htm#50532366_pgfId-1014455[2.3.25.1
+Syntax 61]
+
+{empty}[#50532354_pgfId-1052919]##link:ELSpec.htm#50532366_pgfId-1014457[2.3.25.2
+Description 62]
+
+{empty}[#50532354_pgfId-1052921]##link:ELSpec.htm#50532366_pgfId-1015377[2.3.25.3
+See 62]
+
+{empty}[#50532354_pgfId-1052923]##link:ELSpec.htm#50532366_pgfId-1005918[2.3.26
+findFirst 62]
+
+{empty}[#50532354_pgfId-1052925]##link:ELSpec.htm#50532366_pgfId-1005941[2.3.26.1
+Syntax 62]
+
+{empty}[#50532354_pgfId-1052927]##link:ELSpec.htm#50532366_pgfId-1005978[2.3.26.2
+Description 62]
+
+{empty}[#50532354_pgfId-1052929]##link:ELSpec.htm#50532366_pgfId-1006070[2.3.26.3
+See 62]
+
+======= [#50532354_pgfId-1052931]##link:ELSpec.htm#50532367_pgfId-10196[Changes 63]
+
+{empty}[#50532354_pgfId-1052933]##link:ELSpec.htm#50532367_pgfId-997018[A.1
+Changes between 3.0 Final Release and Proposed Final Draft 63]
+
+{empty}[#50532354_pgfId-1052935]##link:ELSpec.htm#50532367_pgfId-11585[A.2
+Changes between 3.0 Proposed Final Draft and 3.0 EDR 63]
+
+{empty}[#50532354_pgfId-1052937]##link:ELSpec.htm#50532367_pgfId-996857[A.3
+New in 3.0 EDR 63]
+
+{empty}[#50532354_pgfId-1052939]##link:ELSpec.htm#50532367_pgfId-11840[A.4
+Incompatibilities between EL 3.0 and EL 2.2 64]
+
+{empty}[#50532354_pgfId-1052941]##link:ELSpec.htm#50532367_pgfId-11720[A.5
+Changes between Maintenance 1 and Maintenance Release 2 64]
+
+{empty}[#50532354_pgfId-1052943]##link:ELSpec.htm#50532367_pgfId-11579[A.6
+Changes between 1.0 Final Release and Maintenance Release 1 65]
+
+{empty}[#50532354_pgfId-1052945]##link:ELSpec.htm#50532367_pgfId-11649[A.7
+Changes between Final Release and Proposed Final Draft 2 66]
+
+{empty}[#50532354_pgfId-1052947]##link:ELSpec.htm#50532367_pgfId-11283[A.8
+Changes between Public Review and Proposed Final Draft 66]
+
+{empty}[#50532354_pgfId-1052949]##link:ELSpec.htm#50532367_pgfId-10407[A.9
+Changes between Early Draft Release and Public Review 67]
+
+======= [#50532361_pgfId-2090]##
+
+image:ELSpec-3.gif[image]
+
+Preface
+
+image:ELSpec-4.gif[image]
+
+[#50532361_pgfId-2096]##This is the Expression Language specification
+version 3.0, developed by the JSR-341 (EL 3.0) expert groups under the
+Java Community Process. See http://www.jcp.org.
+
+======= [#50532361_pgfId-3690]##
+
+image:ELSpec-5.gif[image]
+
+Historical Note
+
+[#50532361_pgfId-3756]##The EL was originally inspired by both
+ECMAScript and the XPath expression languages. During its inception, the
+experts involved were very reluctant to design yet another expression
+language and tried to use each of these languages, but they fell short
+in different areas.
+
+[#50532361_pgfId-3702]##The JSP Standard Tag Library (JSTL) version 1.0
+(based on JSP 1.2) was therefore first to introduce an Expression
+Language (EL) to make it easy for page authors to access and manipulate
+application data without having to master the complexity associated with
+programming languages such as Java and JavaScript.
+
+[#50532361_pgfId-3703]##Given its success, the EL was subsequently moved
+into the JSP specification (JSP 2.0/JSTL 1.1), making it generally
+available within JSP pages (not just for attributes of JSTL tag
+libraries).
+
+[#50532361_pgfId-3704]##JavaServer Faces 1.0 defined a standard
+framework for building User Interface components, and was built on top
+of JSP 1.2 technology. Because JSP 1.2 technology did not have an
+integrated expression language and because the JSP 2.0 EL did not meet
+all of the needs of Faces, an EL variant was developed for Faces 1.0.
+The Faces expert group (EG) attempted to make the language as compatible
+with JSP 2.0 as possible but some differences were necessary.
+
+[#50532361_pgfId-3705]##It was obviously desirable to have a single,
+unified expression language that meets the needs of the various web-tier
+technologies. The Faces and JSP EGs therefore worked together on the
+specification of a unified expression language, defined in JSR 245, and
+which took effect for the JSP 2.1 and Faces 1.2 releases.
+
+[#50532361_pgfId-3706]##The JSP/JSTL/Faces expert groups also
+acknowledged that the Expression Language(EL) is useful beyond their own
+specifications. This specification is the first JSR that defines the
+Expression Language as an independent specification, with no
+dependencies on other technologies.
+
+======= [#50532361_pgfId-3430]##
+
+image:ELSpec-5.gif[image]
+
+Typographical Conventions
+
+[#50532361_pgfId-3559]## 
+
+[width="100%",cols="50%,50%",options="header",]
+|===
+|[#50532361_pgfId-3510]##Font Style |[#50532361_pgfId-3512]##Uses
+|[#50532361_pgfId-3514]##Italic |[#50532361_pgfId-3516]##Emphasis,
+definition of term.
+
+|[#50532361_pgfId-3518]## _Monospace_ |[#50532361_pgfId-3520]##Syntax,
+code examples, attribute names, Java language types, API, enumerated
+attribute values.
+|===
+
+======= [#50532361_pgfId-2845]##
+
+image:ELSpec-5.gif[image]
+
+Comments
+
+[#50532361_pgfId-2025]##We are interested in improving this
+specification and welcome your comments and suggestions. We have a
+java.net project with an issue tracker and a mailing list for comments
+and discussions about this specification.
+
+[#50532361_pgfId-4022]##Project:
+
+[#50532361_pgfId-3784]##http://java.net/projects/el-spec
+
+[#50532361_pgfId-4033]##Mail alias for comments:
+
+[#50532361_pgfId-4053]## users@el-spec.java.net
+
+== [#50532363_pgfId-874]## 
+
+==== [#50532363_pgfId-5529]##
+
+image:ELSpec-6.gif[image]
+
+Language Syntax and Semantics
+
+image:ELSpec-7.gif[image]
+
+[#50532363_pgfId-1006172]##The syntax and semantics of the Expression
+Language (EL) are described in this chapter.
+
+====== [#50532363_pgfId-1006174]##
+
+image:ELSpec-8.gif[image]
+
+Overview
+
+[#50532363_pgfId-1002369]##The EL was originally designed as a simple
+language to meet the needs of the presentation layer in web
+applications. It features:
+
+[#50532363_pgfId-1002370]##A simple syntax restricted to the evaluation
+of expressions
+
+[#50532363_pgfId-1002553]##Variables and nested properties
+
+[#50532363_pgfId-1003788]##Relational, logical, arithmetic, conditional,
+and empty operators
+
+[#50532363_pgfId-1003789]##Functions implemented as static methods on
+Java classes
+
+[#50532363_pgfId-1016666]##Lenient semantics where appropriate default
+values and type conversions are provided to minimize exposing errors to
+end users
+
+[#50532363_pgfId-1016667]##as well as
+
+[#50532363_pgfId-1016668]##A pluggable API for resolving variable
+references into Java objects and for resolving the properties applied to
+these Java objects
+
+[#50532363_pgfId-1005487]##An API for deferred evaluation of expressions
+that refer to either values or methods on an object
+
+[#50532363_pgfId-1003782]##Support for lvalue expressions (expressions a
+value can be assigned to)
+
+[#50532363_pgfId-1003799]##These last three features are key additions
+to the JSP 2.0 EL resulting from the EL alignment work done in the JSP
+2.1 and Faces 1.2 specifications.
+
+[#50532363_pgfId-1012618]##EL 3.0 adds features to enable EL to be used
+as a stand-alone tool. It introduces APIs for direct evaluation of EL
+expressions and manipulation of EL environments. It also adds some
+powerful features to the language, such as the support of operations for
+collection objects.
+
+======= [#50532363_pgfId-1003812]##EL in a nutshell
+
+[#50532363_pgfId-1012437]##The syntax is quite simple. Model objects are
+accessed by name. A generalized _[]_ operator can be used to access
+maps, lists, arrays of objects and properties of a JavaBeans object, and
+to invoke methods in a JavaBeans object; the operator can be nested
+arbitrarily. The _._ operator can be used as a convenient shorthand for
+property access when the property name follows the conventions of Java
+identifiers, but the _[]_ operator allows for more generalized access.
+Similarly, . operator can also be used to invoke methods, when the
+method name is known, but the [] operator can be used to invoke methods
+dynamically.
+
+[#50532363_pgfId-1002997]##Relational comparisons are allowed using the
+standard Java relational operators. Comparisons may be made against
+other values, or against boolean (for equality comparisons only),
+string, integer, or floating point literals. Arithmetic operators can be
+used to compute integer and floating point values. Logical operators are
+available.
+
+[#50532363_pgfId-1006390]##The EL features a flexible architecture where
+the resolution of model objects (and their associated properties and
+methods), functions, and variables are all performed through a pluggable
+API, making the EL easily adaptable to various environments.
+
+====== [#50532363_pgfId-1002409]##
+
+image:ELSpec-8.gif[image]
+
+EL Expressions
+
+[#50532363_pgfId-1003523]##An EL expression is specified either as an
+_eval-expression_ , or as a _literal-expression_ . The EL also supports
+_composite expressions_ , where multiple EL expressions
+(eval-expressions and literal-expressions) are grouped together.
+
+[#50532363_pgfId-1005662]##An EL expression is parsed as either a value
+expression or a method expression. A value expression refers to a value,
+whereas a method expression refers to a method on an object. Once
+parsed, the expression can optionally be evaluated one or more times.
+
+[#50532363_pgfId-1005535]##Each type of expression (eval-expression,
+literal-expression, and composite expression) is described in its own
+section below.
+
+======= [#50532363_pgfId-1003526]##[#50532363_93299]##Eval-expression
+
+[#50532363_pgfId-1005631]##An eval-expression is formed by using the
+constructs _$\{expr}_ or _#\{expr}_ . Both constructs are parsed and
+evaluated in exactly the same way by the EL, even though they might
+carry different meanings in the technology that is using the EL.
+
+[#50532363_pgfId-1009077]##For instance, by convention the JavaEE web
+tier specifications use the _$\{expr}_ construct for immediate
+evaluation and the _#\{expr}_ construct for deferred evaluation. This
+difference in delimiters points out the semantic differences between the
+two expression types in the JavaEE web tier. Expressions delimited by
+“#\{}” are said to use “deferred evaluation” because the expression is
+not evaluated until its value is needed by the system. Expressions
+delimited by “$\{}" are said to use “immediate evaluation” because the
+expression is compiled when the JSP page is compiled and it is executed
+when the JSP page is executed. More on this in
+link:ELSpec.htm#50532363_72283[See Syntax restrictions].
+
+[#50532363_pgfId-1009094]##Other technologies may choose to use the same
+convention. It is up to each technology to enforce its own restrictions
+on where each construct can be used.
+
+[#50532363_pgfId-1012643]##In some EL APIs, especially those introduced
+in EL 3.0 to support stand-alone use, the EL expressions are specified
+without $\{} or #\{} delimiters.
+
+[#50532363_pgfId-1005824]##Nested eval-expressions, such as
+_$\{item[$\{i}]}_ , are illegal.
+
+======= [#50532363_pgfId-1005675]##Eval-expressions as value expressions
+
+[#50532363_pgfId-1005696]##When parsed as a value expression, an
+eval-expression can be evaluated as either an rvalue or an lvalue. An
+rvalue is an expression that would typically appear on the right side of
+the assignment operator. An lvalue would typically appear on the left
+side.
+
+[#50532363_pgfId-1005585]##For instance, all EL expressions in JSP 2.0
+are evaluated by the JSP engine immediately when the page response is
+rendered. They all yield rvalues.
+
+[#50532363_pgfId-1005123]##In the following JSTL action
+
+[#50532363_pgfId-1005124]## <c:out value="$\{customer.name}"/>
+
+[#50532363_pgfId-1005125]##the expression _$\{customer.name}_ is
+evaluated by the JSP engine and the returned value is fed to the tag
+handler and converted to the type associated with the attribute (
+_String_ in this case).
+
+[#50532363_pgfId-1005126]##Faces, on the other hand, supports a full UI
+component model that requires expressions to represent more than just
+rvalues. It needs expressions to represent references to data structures
+whose value could be assigned, as well as to represent methods that
+could be invoked.
+
+[#50532363_pgfId-1005136]##For example, in the following Faces code
+sample:
+
+[width="100%",cols="100%",]
+|===
+a|
+[#50532363_pgfId-1005129]##<h:form>
+
+[#50532363_pgfId-1005130]## <h:inputText
+
+[#50532363_pgfId-1005131]## id="email"
+
+[#50532363_pgfId-1005132]## value="#\{checkOutFormBean.email}"
+
+[#50532363_pgfId-1005133]## size="25" maxlength="125"
+
+[#50532363_pgfId-1005134]##
+validator="#\{checkOutFormBean.validateEmail}"/>
+
+[#50532363_pgfId-1005135]##</h:form>
+
+|===
+
+[#50532363_pgfId-1005137]##when the form is submitted, the “apply
+request values” phase of Faces evaluates the EL expression
+_#\{checkOutFormBean.email}_ as a reference to a data structure whose
+value is set with the input parameter it is associated with in the form.
+The result of the expression therefore represents a reference to a data
+structure, or an _lvalue_ , the left hand side of an assignment
+operation.
+
+[#50532363_pgfId-1005138]##When that same expression is evaluated during
+the rendering phase, it yields the specific value associated with the
+object (rvalue), just as would be the case with JSP.
+
+[#50532363_pgfId-1005139]##The valid syntax for an lvalue is a subset of
+the valid syntax for an rvalue. In particular, an lvalue can only
+consist of either a single variable (e.g. _$\{name}_ ) or a property
+resolution on some object, via the _._ or _[]_ operator (e.g.
+_$\{employee.name}_ ). Of course, an EL function or method that returns
+either an object or a name can be part of an lvalue.
+
+[#50532363_pgfId-1008729]##When parsing a value expression, an expected
+type is provided. In the case of an rvalue, the expected type is what
+the result of the expression evaluation is coerced to. In the case of
+lvalues, the expected type is ignored and the provided value is coerced
+to the actual type of the property the expression points to, before that
+property is set. The EL type conversion rules are defined in
+link:ELSpec.htm#50532363_39918[See Type Conversion]. A few sample
+eval-expressions are shown in link:ELSpec.htm#50532363_45799[See Sample
+eval-expressions].
+
+[#50532363_pgfId-1008736]## 
+
+[width="100%",cols="34%,33%,33%",options="header",]
+|===
+|[#50532363_pgfId-1005748]##Expression
+|[#50532363_pgfId-1005750]##Expected Type
+|[#50532363_pgfId-1005752]##Result
+|[#50532363_pgfId-1005754]##$\{customer.name}
+|[#50532363_pgfId-1005756]## _String_ a|
+[#50532363_pgfId-1005758]## _Guy Lafleur_
+
+[#50532363_pgfId-1005759]## _Expression evaluates to a String. No
+conversion necessary._
+
+|[#50532363_pgfId-1005761]## _$_ \{book} |[#50532363_pgfId-1005763]##
+_String_ a|
+[#50532363_pgfId-1005765]## _Wonders of the World_
+
+[#50532363_pgfId-1005766]## _Expression evaluates to a Book object (e.g.
+com.example.Book). Conversion rules result in the evaluation of
+book.toString(), which could for example yield the book title._
+
+|===
+
+======= [#50532363_pgfId-1005783]##Sample [#50532363_45799]##eval-expressions
+
+======= [#50532363_pgfId-1005612]##Eval-expressions as method expressions
+
+[#50532363_pgfId-1005697]##In some cases, it is desirable for an EL
+expression to refer to a method instead of a model object.
+
+[#50532363_pgfId-1005140]##For instance, in JSF, a component tag also
+has a set of attributes for referencing methods that can perform certain
+functions for the component associated with the tag. To support these
+types of expressions, the EL defines method expressions (EL class
+_MethodExpression)_ .
+
+[#50532363_pgfId-1005141]##In the above example, the validator attribute
+uses an expression that is associated with type _MethodExpression_ .
+Just as with _ValueExpression_ s, the evaluation of the expression
+(calling the method) is deferred and can be processed by the underlying
+technology at the appropriate moment within its life cycle.
+
+[#50532363_pgfId-1005836]##A method expression shares the same syntax as
+an lvalue. That is, it can only consist of either a single variable
+(e.g. _$\{name}_ ) or a property resolution on some object, via the _._
+or _[]_ operator (e.g. _$\{employee.name}_ ). Information about the
+expected return type and parameter types is provided at the time the
+method is parsed.
+
+[#50532363_pgfId-1008743]##A method expression is evaluated by invoking
+its referenced method or by retrieving information about the referenced
+method. Upon evaluation, if the expected signature is provided at parse
+time, the EL API verifies that the method conforms to the expected
+signature, and there is therefore no coercion performed. If the expected
+signature is not provided at parse time, then at evaluation, the method
+is identified with the information of the parameters in the expression,
+and the parameters are coerced to the respective formal types.
+
+======= [#50532363_pgfId-1004004]##Literal-expression
+
+[#50532363_pgfId-1004828]##A literal-expression does not use the
+_$\{expr}_ or _#\{expr}_ constructs, and simply evaluates to the text of
+the expression, of type _String_ . Upon evaluation, an expected type of
+something other than _String_ can be provided. Sample
+literal-expressions are shown in link:ELSpec.htm#50532363_38255[See
+Sample literal-expressions].
+
+[#50532363_pgfId-1006580]## 
+
+[width="100%",cols="34%,33%,33%",options="header",]
+|===
+|[#50532363_pgfId-1004857]##Expression
+|[#50532363_pgfId-1004859]##Expected Type
+|[#50532363_pgfId-1004861]##Result
+|[#50532363_pgfId-1004863]##Aloha! |[#50532363_pgfId-1004865]## _String_
+|[#50532363_pgfId-1004867]## _Aloha!_
+
+|[#50532363_pgfId-1004869]##true |[#50532363_pgfId-1004871]## _Boolean_
+|[#50532363_pgfId-1004873]##Boolean.TRUE
+|===
+
+======= [#50532363_pgfId-1004848]##Sample [#50532363_38255]##literal-expressions
+
+[#50532363_pgfId-1004849]##To generate literal values that include the
+character sequence “ _$\{_ " or “ _#\{_ “, the developer can choose to
+use a composite expression as shown here:
+
+[#50532363_pgfId-1004292]## _$\{'$\{'}exprA}_
+
+[#50532363_pgfId-1008754]## _#\{'#\{'}exprB}_ The resulting values would
+then be the strings _$\{exprA}_ and _#\{exprB}_ .
+
+[#50532363_pgfId-1005861]##Alternatively, the escape characters _\$_ and
+_\#_ can be used to escape what would otherwise be treated as an
+eval-expression. Given the literal-expressions:
+
+[#50532363_pgfId-1005869]## _\$\{exprA}_
+
+[#50532363_pgfId-1005870]## _\#\{exprB}_
+
+[#50532363_pgfId-1005862]##The resulting values would again be the
+strings _$\{exprA}_ and _#\{exprB}_ .
+
+[#50532363_pgfId-1006265]##A literal-expression can be used anywhere a
+value expression can be used. A literal-expression can also be used as a
+method expression that returns a non-void return value. The standard EL
+coercion rules (see link:ELSpec.htm#50532363_39918[See Type Conversion])
+then apply if the return type of the method expression is not
+java.lang.String.
+
+======= [#50532363_pgfId-1006602]##Composite expressions
+
+[#50532363_pgfId-1003176]##The EL also supports _composite expressions_
+, where multiple EL expressions are grouped together. With composite
+expressions, eval-expressions are evaluated from left to right, coerced
+to _String_ s (according to the EL type conversion rules), and
+concatenated with any intervening literal-expressions.
+
+[#50532363_pgfId-1005899]##For example, the composite expression “
+_$\{firstName} $\{lastName}_ ” is composed of three EL expressions:
+eval-expression “ _$\{firstName}_ ”, literal-expression “ __ “, and
+eval-expression “ _$\{lastName}_ ”.
+
+[#50532363_pgfId-1005897]##Once evaluated, the resulting _String_ is
+then coerced to the expected type, according to the EL type conversion
+rules. A sample composite expression is shown in
+link:ELSpec.htm#50532363_69319[See Sample composite expression]. +
+
+[width="100%",cols="34%,33%,33%",options="header",]
+|===
+|[#50532363_pgfId-1004578]##Expression
+|[#50532363_pgfId-1004580]##Expected Type
+|[#50532363_pgfId-1004582]##Result
+|[#50532363_pgfId-1004584]##Welcome $\{customer.name} to our site
+|[#50532363_pgfId-1004586]## _String_ a|
+[#50532363_pgfId-1004588]##Welcome Guy Lafleur to our site
+
+[#50532363_pgfId-1004622]##$\{customer.name} evaluates to a String which
+is then concatenated with the literal-expressions. _No conversion
+necessary._
+
+|===
+
+======= [#50532363_pgfId-1004598]##[#50532363_69319]##Sample composite expression
+
+[#50532363_pgfId-1004215]##It is illegal to mix _$\{}_ and _#\{}_
+constructs in a composite expression. This restriction is imposed to
+avoid ambiguities should a user think that using _$\{expr}_ or
+_#\{expr}_ dictates how an expression is evaluated. For instance, as was
+mentioned previously, the convention in the J2EE web tier specifications
+is for _$\{}_ to mean immediate evaluation and for _#\{}_ to mean
+deferred evaluation. This means that in EL expressions in the J2EE web
+tier, a developer cannot force immediate evaluation of some parts of a
+composite expression and deferred evaluation of other parts. This
+restriction may be lifted in future versions to allow for more advanced
+EL usage patterns.
+
+[#50532363_pgfId-1005568]##For APIs prior to EL 3.0, a composite
+expression can be used anywhere an EL expression can be used except for
+when parsing a method expression. Only a single eval-expression can be
+used to parse a method expression.
+
+[#50532363_pgfId-1012678]##Some APIs in EL 3.0 use only single
+eval-expressions, and not the composite expressions. However, there is
+no lost in functionality, since a composite expression can be specified
+with a single eval-expressions, by using the string concatenation
+operators, introduced in EL 3.0. For instance, the composite expression
+
+[#50532363_pgfId-1013162]##Welcome $\{customer.name} to our site
+
+[#50532363_pgfId-1013172]##can be written as
+
+[#50532363_pgfId-1013182]##$\{‘Welcome ‘ += customer.name += ‘ to our
+site’}.
+
+======= [#50532363_pgfId-1004121]##[#50532363_72283]##Syntax restrictions
+
+[#50532363_pgfId-1004122]##While _$\{}_ and _#\{}_ eval-expressions are
+parsed and evaluated in exactly the same way by the EL, the underlying
+technology is free to impose restrictions on which syntax can be used
+according to where the expression appears.
+
+[#50532363_pgfId-1003734]##For instance, in JSP 2.1, _#\{}_ expressions
+are only allowed for tag attributes that accept deferred expressions.
+_#\{expr}_ will generate an error if used anywhere else.
+
+====== [#50532363_pgfId-999365]##
+
+image:ELSpec-8.gif[image]
+
+Literals
+
+[#50532363_pgfId-996879]##There are literals for boolean, integer,
+floating point, string, and null in an eval-expression.
+
+[#50532363_pgfId-999509]##Boolean - _true_ and _false_
+
+{empty}[#50532363_pgfId-999513]##Integer - As defined by the
+_IntegerLiteral_ construct in link:ELSpec.htm#50532363_33185[See
+Collected Syntax]
+
+{empty}[#50532363_pgfId-999514]##Floating point - As defined by the
+_FloatingPointLiteral_ construct in link:ELSpec.htm#50532363_33185[See
+Collected Syntax]
+
+[#50532363_pgfId-999518]##String - With single and double quotes - _"_
+is escaped as _\"_ , _'_ is escaped as _\'_ , and _\_ is escaped as _\\_
+. Quotes only need to be escaped in a string value enclosed in the same
+type of quote
+
+[#50532363_pgfId-1006659]##Null - _null_
+
+====== [#50532363_pgfId-1006662]##
+
+image:ELSpec-8.gif[image]
+
+Errors, Warnings, Default Values
+
+[#50532363_pgfId-999528]##The Expression Language has been designed with
+the presentation layer of web applications in mind. In that usage,
+experience suggests that it is most important to be able to provide as
+good a presentation as possible, even when there are simple errors in
+the page. To meet this requirement, the EL does not provide warnings,
+just default values and errors. Default values are type-correct values
+that are assigned to a subexpression when there is some problem. An
+error is an exception thrown (to be handled by the environment where the
+EL is used).
+
+====== [#50532363_pgfId-1004982]##
+
+image:ELSpec-8.gif[image]
+
+Resolution of Model Objects and their Properties or Methods
+
+[#50532363_pgfId-1004983]##A core concept in the EL is the evaluation of
+a model object name into an object, and the resolution of properties or
+methods applied to objects in an expression (operators _._ and _[]_ ).
+
+[#50532363_pgfId-1004984]##The EL API provides a generalized mechanism,
+an _ELResolver_ , implemented by the underlying technology and which
+defines the rules that govern the resolution of model object names and
+their associated properties.
+
+[#50532363_pgfId-1015876]##The resolution of names and properties is
+further affected by the presence of
+
+[#50532363_pgfId-1015883]##Functions. See
+link:ELSpec.htm#50532363_46734[See Functions].
+
+[#50532363_pgfId-1015897]##Variables. See
+link:ELSpec.htm#50532363_66083[See Variables].
+
+[#50532363_pgfId-1015911]##Imported names (classes, fields, and
+methods). See link:ELSpec.htm#50532363_40113[See Static Field and Method
+Reference].
+
+[#50532363_pgfId-1015923]##Lambda expressions and arguments. See
+link:ELSpec.htm#50532363_21722[See Lambda Expressions].
+
+[#50532363_pgfId-1016026]##The rules described below are used in
+resolving names and properties when evaluating identifiers, function
+calls, and object properties and method calls.
+
+======= [#50532363_pgfId-1016027]##[#50532363_80163]##Evaluating Identifiers
+
+[#50532363_pgfId-1016028]##The steps are used for evaluating an
+identifier.
+
+[#50532363_pgfId-1015962]##If the identifier is a lambda argument passed
+to a lambda expression invocation, its value is returned.
+
+[#50532363_pgfId-1015974]##Else if the identifier is a variable, the
+associated expression is evaluated and returned.
+
+[#50532363_pgfId-1015981]##Else if the identifier is resolved by the
+ELResolvers, the value returned from the ELResolvers is returned.
+
+[#50532363_pgfId-1015988]##Else if the identifier is an imported static
+field, its value is returned.
+
+[#50532363_pgfId-1015995]##Else return not resolved.
+
+[#50532363_pgfId-1016002]##One implication of the explicit search order
+of the identifiers is that an identifier hides other identifiers (of the
+same name) that come after it in the list.
+
+======= [#50532363_pgfId-1016086]##Evaluating functions
+
+[#50532363_pgfId-1016099]##The expression with the syntax
+func(args...)(args...)... can mean any of the following.
+
+[#50532363_pgfId-1016473]##A call to an EL fucntion with empty
+namespace.
+
+[#50532363_pgfId-1016483]##A call to a lambda expression.
+
+[#50532363_pgfId-1016490]##A call to the constructor of an imported
+class.
+
+[#50532363_pgfId-1016519]##A call to a static method that has been
+imported statically.
+
+[#50532363_pgfId-1016497]##Note the above syntax allows the invocation
+of a lambda expression that returns another lambda expression, which is
+then invoked.
+
+[#50532363_pgfId-1016510]##The following steps are used to evaluate the
+above expression.
+
+[#50532363_pgfId-1016466]##Evaluate the name of the function as an
+identifier.
+
+[#50532363_pgfId-1016122]##If the identifier is a lambda argument passed
+to a lambda expression invocation, its value is returned.
+
+[#50532363_pgfId-1016144]##Else if the identifier is a variable, the
+associated expression is evaluated and returned.
+
+[#50532363_pgfId-1016170]##Else if the identifier is resolved by the
+ELResolvers, the value returned from the ELResolvers is returned.
+
+[#50532363_pgfId-1016193]##If the result of evaluating the function name
+is a LambdaExpression, the LambdaExpression is invoked with the supplied
+arguments. If the result of evaluating the LambdaExpression is another
+LambdaExpression, and the syntax contains repeated function invocations,
+such as func()()..., then the resultant LambdaExpression is in turn
+evaluated, and so on.
+
+[#50532363_pgfId-1016203]##Else if the function has been mapped
+previously in a FunctionMapper, the mapped method is invoked with the
+supplied arguments.
+
+[#50532363_pgfId-1016210]##Else if the function name is the name of an
+imported class, the constructor for this class is invoked with the
+supplied arguments.
+
+[#50532363_pgfId-1016217]##Else if the function name is the name of an
+imported static method, the method is invoked with the supplied
+arguments.
+
+[#50532363_pgfId-1016224]##Else error.
+
+======= [#50532363_pgfId-1016018]##Evaluating objects with properties
+
+[#50532363_pgfId-1016033]##The steps for evaluating an expression with
+[] or . operators (property reference and method call) are described in
+link:ELSpec.htm#50532363_39320[See Operators [] and .]. However, the
+syntax for . operator is also used to reference a static field, or to
+invoke a static method. Therefore if the expression with a . operator is
+not resolved by the ELResolvers, and if the identifier for the base
+object is the name of an imported class, the expression becomes a
+reference to a static field, or an invocation of a static method, of the
+imported class.
+
+======= [#50532363_pgfId-1016673]##[#50532363_78915]##Invoking method expressions
+
+[#50532363_pgfId-1016683]##A method expression can consist of either a
+single variable (e.g. _$\{name}_ ) or a property resolution on some
+object, via the _._ or _[]_ operator (e.g. _$\{employee.getName}_ ).
+link:ELSpec.htm#50532363_39320[See Operators [] and .] describes how to
+invoke a method of an object. This form of method expressions allows
+arguments to the method to be specified in the EL expression (e.g.
+_$\{employee.getName())._
+
+[#50532363_pgfId-1016714]##To invoke a method expression of a single
+variable, the identifier is first evaluated, as decribed in
+link:ELSpec.htm#50532363_80163[See Evaluating Identifiers]. If the
+identifier evaluates to a javax.el.MethodExpression, the method
+expression is invoked and the result returned, otherwise an error is
+raised. This form of method expression does not allow arguments to be
+specified in the EL expression.
+
+====== [#50532363_pgfId-999425]##
+
+image:ELSpec-8.gif[image]
+
+[#50532363_39320]##Operators _[]_ and _._
+
+[#50532363_pgfId-999578]##The EL follows ECMAScript in unifying the
+treatment of the _._ and _[]_ operators.
+
+[#50532363_pgfId-999579]## _expr-a.identifier-b_ is equivalent to
+_expr-a[“identifier-b”]_ ; that is, the identifier _identifier-b_ is
+used to construct a literal whose value is the identifier, and then the
+_[]_ operator is used with that value.
+
+[#50532363_pgfId-1012442]##Similarly, _expr-a.identifier-b(params)_ is
+equivalent to _expr-a["identifier-b"](params)._
+
+[#50532363_pgfId-1012451]##The expression
+_expr-a["identifier-b"](params)_ denotes a parametered method
+invocation, where _params_ is a comma-separated list of expressions
+denoting the parameters for the method call.
+
+[#50532363_pgfId-1005981]##To evaluate _expr-a[expr-b] or
+expr-a[expr-b](params)_ :
+
+[#50532363_pgfId-1005982]##Evaluate _expr-a_ into _value-a_ .
+
+[#50532363_pgfId-1005983]##If _value-a_ is _null_ :
+
+[#50532363_pgfId-1005994]##If _expr-a[expr-b]_ is the last property
+being resolved:
+
+[#50532363_pgfId-1005996]##If the expression is a value expression and
+_ValueExpression.getValue(context)_ was called to initiate this
+expression evaluation, return _null_ .
+
+{empty}[#50532363_pgfId-1006150]##Otherwise, throw
+_PropertyNotFoundException_ . +
+[trying to de-reference null for an lvalue]
+
+[#50532363_pgfId-1005995]##Otherwise, return _null_ .
+
+[#50532363_pgfId-999583]##Evaluate _expr-b_ into _value-b_ .
+
+[#50532363_pgfId-999584]##If _value-b_ is _null_ :
+
+[#50532363_pgfId-1006000]##If _expr-a[expr-b]_ is the last property
+being resolved:
+
+[#50532363_pgfId-1006002]##If the expression is a value expression and
+_ValueExpression.getValue(context)_ was called to initiate this
+expression evaluation, return _null_ .
+
+{empty}[#50532363_pgfId-1006003]##Otherwise, throw
+_PropertyNotFoundException_ . +
+[trying to de-reference null for an lvalue]
+
+[#50532363_pgfId-1006001]##Otherwise, return _null_ .
+
+[#50532363_pgfId-1004973]##If the expression is a value expression:
+
+[#50532363_pgfId-1005925]##If _expr-a[expr-b]_ is the last property
+being resolved:
+
+[#50532363_pgfId-1012481]##If _ValueExpression.getValue(context)_ was
+called to initiate this expression evaluation.
+
+[#50532363_pgfId-1012482]##If the expression is a parametered method
+call, evaluate _params_ into _param-values_ , and invoke
+_elResolver.invoke(context, value-a, value-b, null, param-values)._
+
+[#50532363_pgfId-1005927]## _Otherwise, invoke
+elResolver.getValue(value-a, value-b)._
+
+[#50532363_pgfId-1012488]##If _ValueExpression.getType(context)_ was
+called, invoke _elResolver.getType(context, value-a, value-b)_ .
+
+[#50532363_pgfId-1005949]##If _ValueExpression.isReadOnly(context)_ was
+called, invoke _elResolver.isReadOnly(context, value-a, value-b)_ .
+
+[#50532363_pgfId-1005953]##If _ValueExpression.setValue(context, val)_
+was called, invoke _elResolver.setValue(context, value-a, value-b, val)_
+.
+
+[#50532363_pgfId-1005926]##Otherwise:
+
+[#50532363_pgfId-1005932]##If the expression is a parametered method
+call, evaluate _params_ into _param-values_ , and invoke
+_elResolver.invoke(context, value-a, value-b, null, params)._
+
+[#50532363_pgfId-1012479]## _Otherwise, invoke
+elResolver.getValue(value-a, value-b)._
+
+[#50532363_pgfId-1005924]##Otherwise, the expression is a method
+expression:
+
+[#50532363_pgfId-1005969]##If _expr-a[expr-b]_ is the last property
+being resolved:
+
+[#50532363_pgfId-1005974]##Coerce _value-b_ to _String_ .
+
+[#50532363_pgfId-1012517]##If the expression is not a parametered method
+call, find the method on object _value-a_ with name _value-b_ and with
+the set of expected parameter types provided at parse time. If the
+method does not exist, or the return type does not match the expected
+return type provided at parse time, throw _MethodNotFoundException_ .
+
+[#50532363_pgfId-1006007]##If _MethodExpression.invoke(context, params)_
+was called:
+
+[#50532363_pgfId-1012530]##If the expression is a parametered method
+call, evaluate _params_ into _param-values_ , and invoke
+_elResolver.invoke(context, value-a, value-b, paramTypes, param-values),
+where paramTypes is the parameter types, if provided at parse time, and
+is null otherwise._
+
+[#50532363_pgfId-1012535]##Otherwise, invoke the found method with the
+parameters passed to the invoke method.
+
+[#50532363_pgfId-1006006]##If _MethodExpression.getMethodInfo(context)_
+was called, construct and return a new _MethodInfo_ object.
+
+[#50532363_pgfId-1005967]##Otherwise:
+
+[#50532363_pgfId-1012545]##If the expression is a parametered method
+call, evaluate _params_ into _param-values_ , and invoke
+_elResolver.invoke(context, value-a, value-b, null, params)._
+
+[#50532363_pgfId-1005980]## _Otherwise, i_ nvoke
+_elResolver.getValue(value-a, value-b)_ .
+
+[#50532363_pgfId-1006718]## 
+
+====== [#50532363_pgfId-999423]##
+
+image:ELSpec-8.gif[image]
+
+Arithmetic Operators
+
+[#50532363_pgfId-999686]##Arithmetic is provided to act on integer (
+_BigInteger_ and _Long_ ) and floating point ( _BigDecimal_ and _Double_
+) values. There are 5 operators:
+
+[#50532363_pgfId-999687]##Addition: _+_
+
+[#50532363_pgfId-999688]##Substraction: _-_
+
+[#50532363_pgfId-999689]##Multiplication: _*_
+
+[#50532363_pgfId-999690]##Division: _/_ and _div_
+
+[#50532363_pgfId-999691]##Remainder (modulo): _%_ and _mod_
+
+[#50532363_pgfId-999692]##The last two operators are available in both
+syntaxes to be consistent with XPath and ECMAScript.
+
+[#50532363_pgfId-999693]##The evaluation of arithmetic operators is
+described in the following sections. _A_ and _B_ are the evaluation of
+subexpressions
+
+======= [#50532363_pgfId-999694]##Binary operators - _A \{+,-,*} B_
+
+[#50532363_pgfId-1013240]##If _A_ and _B_ are null, return _(Long)0_
+
+[#50532363_pgfId-999696]##If _A_ or _B_ is a _BigDecimal_ , coerce both
+to _BigDecimal_ and then:
+
+[#50532363_pgfId-999697]##If operator is _+_ , return _A.add(B)_
+
+[#50532363_pgfId-999698]##If operator is _-_ , return _A.subtract(B)_
+
+[#50532363_pgfId-999699]##If operator is _*_ , return _A.multiply(B)_
+
+[#50532363_pgfId-999700]##If _A_ or _B_ is a _Float_ , _Double_ , or
+_String_ containing _._ , _e_ , or _E_ :
+
+[#50532363_pgfId-999701]##If _A_ or _B_ is _BigInteger_ , coerce both
+_A_ and _B_ to _BigDecimal_ and apply operator.
+
+[#50532363_pgfId-999702]##Otherwise, coerce both _A_ and _B_ to _Double_
+and apply operator
+
+[#50532363_pgfId-999703]##If _A_ or _B_ is _BigInteger_ , coerce both to
+_BigInteger_ and then:
+
+[#50532363_pgfId-999704]##If operator is _+_ , return _A.add(B)_
+
+[#50532363_pgfId-999705]##If operator is _-_ , return _A.subtract(B)_
+
+[#50532363_pgfId-999706]##If operator is _*_ , return _A.multiply(B)_
+
+[#50532363_pgfId-999707]##Otherwise coerce both _A_ and _B_ to _Long_
+and apply operator
+
+[#50532363_pgfId-999708]##If operator results in exception, error
+
+======= [#50532363_pgfId-999709]##Binary operator - _A \{/,div} B_
+
+[#50532363_pgfId-999710]##If _A_ and _B_ are null, return _(Long)0_
+
+[#50532363_pgfId-999711]##If _A_ or _B_ is a _BigDecimal_ or a
+_BigInteger_ , coerce both to _BigDecimal_ and return _A.divide(B,
+BigDecimal.ROUND_HALF_UP)_
+
+[#50532363_pgfId-999712]##Otherwise, coerce both _A_ and _B_ to _Double_
+and apply operator
+
+[#50532363_pgfId-999713]##If operator results in exception, error
+
+======= [#50532363_pgfId-999714]##Binary operator - _A \{%,mod} B_
+
+[#50532363_pgfId-999715]##If _A_ and _B_ are null, return _(Long)0_
+
+[#50532363_pgfId-999716]##If _A_ or _B_ is a _BigDecimal_ , _Float_ ,
+_Double_ , or _String_ containing _._ , _e_ , or _E_ , coerce both _A_
+and _B_ to _Double_ and apply operator
+
+[#50532363_pgfId-999717]##If _A_ or _B_ is a _BigInteger_ , coerce both
+to _BigInteger_ and return _A.remainder(B)_ .
+
+[#50532363_pgfId-999718]##Otherwise coerce both _A_ and _B_ to _Long_
+and apply operator
+
+[#50532363_pgfId-999719]##If operator results in exception, error
+
+======= [#50532363_pgfId-999720]##Unary minus operator - _-A_
+
+[#50532363_pgfId-999721]##If _A_ is null, return _(Long)0_
+
+[#50532363_pgfId-999722]##If _A_ is a _BigDecimal_ or _BigInteger_ ,
+return _A.negate()_ .
+
+[#50532363_pgfId-999723]##If _A_ is a _String_ :
+
+[#50532363_pgfId-999724]##If _A_ contains _._ , _e_ , or _E_ , coerce to
+a _Double_ and apply operator
+
+[#50532363_pgfId-999725]##Otherwise, coerce to a _Long_ and apply
+operator
+
+[#50532363_pgfId-999726]##If operator results in exception, error
+
+[#50532363_pgfId-999727]##If _A_ is _Byte_ , _Short_ , _Integer_ ,
+_Long_ , _Float_ , _Double_
+
+[#50532363_pgfId-999728]##Retain type, apply operator
+
+[#50532363_pgfId-999729]##If operator results in exception, error
+
+[#50532363_pgfId-1014342]##Otherwise, error
+
+====== [#50532363_pgfId-1014344]##
+
+image:ELSpec-8.gif[image]
+
+[#50532363_String Concatenation Operator]##String Concatenation Operator
+- A += B
+
+[#50532363_pgfId-1012700]##To evaluate A += B
+
+[#50532363_pgfId-1012707]##Coerce A and B to String.
+
+[#50532363_pgfId-1012717]##Return the concatenated string of A and B.
+
+====== [#50532363_pgfId-999731]##
+
+image:ELSpec-8.gif[image]
+
+Relational Operators
+
+[#50532363_pgfId-999732]##The relational operators are:
+
+[#50532363_pgfId-999733]## _==_ and _eq_
+
+[#50532363_pgfId-999734]## _!=_ and _ne_
+
+[#50532363_pgfId-999735]## _<_ and _lt_
+
+[#50532363_pgfId-999736]## _>_ and _gt_
+
+[#50532363_pgfId-999737]## _<=_ and _le_
+
+[#50532363_pgfId-999738]## _>=_ and _ge_
+
+[#50532363_pgfId-999739]##The second versions of the last 4 operators
+are made available to avoid having to use entity references in XML
+syntax and have the exact same behavior, i.e. _<_ behaves the same as
+_lt_ and so on.
+
+[#50532363_pgfId-999740]##The evaluation of relational operators is
+described in the following sections.
+
+======= [#50532363_pgfId-1012924]##A \{<,>,<=,>=,lt,gt,le,ge} B
+
+[#50532363_pgfId-999742]##If _A==B_ , if operator is _<=_ , _le_ , _>=_
+, or _ge_ return _true_ .
+
+[#50532363_pgfId-999743]##If _A_ is null or _B_ is null, return _false_
+
+[#50532363_pgfId-999744]##If _A_ or _B_ is _BigDecimal_ , coerce both
+_A_ and _B_ to _BigDecimal_ and use the return value of _A.compareTo(B)_
+.
+
+[#50532363_pgfId-999745]##If _A_ or _B_ is _Float_ or _Double_ coerce
+both _A_ and _B_ to _Double_ apply operator
+
+[#50532363_pgfId-999746]##If _A_ or _B_ is _BigInteger_ , coerce both
+_A_ and _B_ to _BigInteger_ and use the return value of _A.compareTo(B)_
+.
+
+[#50532363_pgfId-999747]##If _A_ or _B_ is _Byte_ , _Short_ ,
+_Character_ , _Integer_ , or _Long_ coerce both _A_ and _B_ to _Long_
+and apply operator
+
+[#50532363_pgfId-999748]##If _A_ or _B_ is _String_ coerce both _A_ and
+_B_ to _String_ , compare lexically
+
+[#50532363_pgfId-999749]##If _A_ is _Comparable_ , then:
+
+[#50532363_pgfId-999750]##If _A.compareTo(B)_ throws exception, error.
+
+[#50532363_pgfId-999751]##Otherwise use result of _A.compareTo(B)_
+
+[#50532363_pgfId-999752]##If _B_ is _Comparable_ , then:
+
+[#50532363_pgfId-999753]##If _B.compareTo(A)_ throws exception, error.
+
+[#50532363_pgfId-999754]##Otherwise use result of _B.compareTo(A)_
+
+[#50532363_pgfId-999755]##Otherwise, error
+
+======= [#50532363_pgfId-1012938]##A \{==,!=,eq,ne} B
+
+[#50532363_pgfId-999757]##If _A==B_ , apply operator
+
+[#50532363_pgfId-999758]##If _A_ is null or _B_ is null return _false_
+for _==_ or _eq_ , _true_ for _!=_ or _ne_ .
+
+[#50532363_pgfId-999759]##If _A_ or _B_ is _BigDecimal_ , coerce both
+_A_ and _B_ to _BigDecimal_ and then:
+
+[#50532363_pgfId-999760]##If operator is _==_ or _eq_ , return
+_A.equals(B)_
+
+[#50532363_pgfId-999761]##If operator is _!=_ or _ne_ , return
+_!A.equals(B)_
+
+[#50532363_pgfId-999762]##If _A_ or _B_ is _Float_ or _Double_ coerce
+both _A_ and _B_ to _Double_ , apply operator
+
+[#50532363_pgfId-999763]##If _A_ or _B_ is _BigInteger_ , coerce both
+_A_ and _B_ to _BigInteger_ and then:
+
+[#50532363_pgfId-999764]##If operator is _==_ or _eq_ , return
+_A.equals(B)_
+
+[#50532363_pgfId-999985]##If operator is _!=_ or _ne_ , return
+_!A.equals(B)_
+
+[#50532363_pgfId-999994]##If _A_ or _B_ is _Byte_ , _Short_ ,
+_Character_ , _Integer_ , or _Long_ coerce both _A_ and _B_ to _Long_ ,
+apply operator
+
+[#50532363_pgfId-999767]##If _A_ or _B_ is _Boolean_ coerce both _A_ and
+_B_ to _Boolean_ , apply operator
+
+[#50532363_pgfId-1011494]##If A or B is an enum, coerce both A and B to
+enum, apply operator
+
+[#50532363_pgfId-999768]##If _A_ or _B_ is _String_ coerce both _A_ and
+_B_ to _String_ , compare lexically
+
+[#50532363_pgfId-999769]##Otherwise if an error occurs while calling
+_A.equals(B)_ , error
+
+[#50532363_pgfId-999770]##Otherwise, apply operator to result of
+_A.equals(B)_
+
+====== [#50532363_pgfId-1000010]##
+
+image:ELSpec-8.gif[image]
+
+Logical Operators
+
+[#50532363_pgfId-1000011]##The logical operators are:
+
+[#50532363_pgfId-1000012]## _&&_ and _and_
+
+[#50532363_pgfId-1000013]## _||_ and _or_
+
+[#50532363_pgfId-1000014]## _!_ and _not_
+
+[#50532363_pgfId-1000015]##The evaluation of logical operators is
+described in the following sections.
+
+======= [#50532363_pgfId-1000016]##Binary operator - _A \{&&,||,and,or} B_
+
+[#50532363_pgfId-1000017]##Coerce both _A_ and _B_ to _Boolean_ , apply
+operator
+
+[#50532363_pgfId-1006801]##The operator stops as soon as the expression
+can be determined, i.e., _A and B and C and D_ – if _B_ is false, then
+only _A and B_ is evaluated.
+
+======= [#50532363_pgfId-1012436]##Unary not operator - _\{!,not} A_
+
+[#50532363_pgfId-1000020]##Coerce _A_ to _Boolean_ , apply operator.
+
+[#50532363_pgfId-1006809]## 
+
+====== [#50532363_pgfId-1000021]##
+
+image:ELSpec-8.gif[image]
+
+Empty Operator - _empty A_
+
+[#50532363_pgfId-1000022]##The _empty_ operator is a prefix operator
+that can be used to determine if a value is null or empty.
+
+[#50532363_pgfId-1000023]##To evaluate _empty A_
+
+[#50532363_pgfId-1001997]##If _A_ is null, return _true_
+
+[#50532363_pgfId-1001998]##Otherwise, if _A_ is the empty string, then
+return _true_
+
+[#50532363_pgfId-1001999]##Otherwise, if _A_ is an empty array, then
+return _true_
+
+[#50532363_pgfId-1000027]##Otherwise, if _A_ is an empty _Map_ , return
+_true_
+
+[#50532363_pgfId-1000028]##Otherwise, if _A_ is an empty _Collection_ ,
+return _true_
+
+[#50532363_pgfId-1000029]##Otherwise return _false_
+
+====== [#50532363_pgfId-1000030]##
+
+image:ELSpec-8.gif[image]
+
+Conditional Operator - _A ? B : C_
+
+[#50532363_pgfId-1000031]##Evaluate _B_ or _C_ , depending on the result
+of the evaluation of _A_ .
+
+[#50532363_pgfId-1000032]##Coerce _A_ to _Boolean_ :
+
+[#50532363_pgfId-1000033]##If _A_ is _true_ , evaluate and return _B_
+
+[#50532363_pgfId-1000034]##If _A_ is _false_ , evaluate and return _C_
+
+====== [#50532363_pgfId-1012724]##
+
+image:ELSpec-8.gif[image]
+
+[#50532363_82843]##Assignment Operator - A = B
+
+[#50532363_pgfId-1012734]##Assign the value of B to A. A must be a
+lvalue, otherwise, a PropertyNotWritableException will be thrown.
+
+[#50532363_pgfId-1012883]##The assignment operator is right-associative.
+For instance, A=B=C is the same as A= (B=C).
+
+[#50532363_pgfId-1012769]##To evaluate expr-a = expr-b,
+
+[#50532363_pgfId-1013866]##Evaluate expr-a, up to the last property
+resolution, to (base-a, prop-a)
+
+[#50532363_pgfId-1015376]##If base-a is null, and prop-a is a String,
+
+[#50532363_pgfId-1015396]##If prop-a is a Lambda parameter, throw a
+PropertyNotWritableException
+
+[#50532363_pgfId-1015406]##If prop-a is an EL variable (see
+link:ELSpec.htm#50532363_66083[See Variables]), evaluate the
+ValueExpression the variable was set to, to obtain the new (base-a,
+prop-a)
+
+[#50532363_pgfId-1013856]##Evaluate expr-b, to value-b
+
+[#50532363_pgfId-1012804]##Invoke ELResolver.setValue(base-a, prop-a,
+value-b)
+
+[#50532363_pgfId-1015385]##Return value-b
+
+[#50532363_pgfId-1015444]##The behavior of the assignment operator is
+determined by the ELResolver. For instance, in a stand-alone
+environment, the class StandardELContext contains a default ELResolver
+that allows the assignment of an expression to a non-existing name,
+resulting in the creation of a bean with the given name in the local
+bean repository. A JSP container may use the ScopeAttributeELResolver to
+assign values to scope attributes, or to create attributes in the page
+scope.
+
+====== [#50532363_pgfId-1015387]##
+
+image:ELSpec-8.gif[image]
+
+[#50532363_47348]##Semicolon Operator - A ; B
+
+[#50532363_pgfId-1015388]##The semicolon operator behaves like the comma
+operator in C.
+
+[#50532363_pgfId-1012867]##To evaluate A;B, A is first evaluated, and
+its value is discarded. B is then evaluated and its value is returned.
+
+====== [#50532363_pgfId-1000035]##
+
+image:ELSpec-8.gif[image]
+
+Parentheses
+
+[#50532363_pgfId-1000036]##Parentheses can be used to change precedence,
+as in: _$\{(a*(b+c))}_
+
+====== [#50532363_pgfId-1000037]##
+
+image:ELSpec-8.gif[image]
+
+[#50532363_92539]##Operator Precedence
+
+[#50532363_pgfId-1000038]##Highest to lowest, left-to-right.
+
+[#50532363_pgfId-1000039]## _[] ._
+
+[#50532363_pgfId-1000040]## _()_
+
+[#50532363_pgfId-1000041]## _-_ (unary) _not ! empty_
+
+[#50532363_pgfId-1000042]## _* / div % mod_
+
+[#50532363_pgfId-1000043]## _+ - (binary)_
+
+[#50532363_pgfId-1012910]##+=
+
+[#50532363_pgfId-1000044]## _< > <= >= lt gt le ge_
+
+[#50532363_pgfId-1000045]## _== != eq ne_
+
+[#50532363_pgfId-1000046]## _&& and_
+
+[#50532363_pgfId-1010843]## _|| or_
+
+[#50532363_pgfId-1010861]## _? :_
+
+[#50532363_pgfId-1013775]##-> (Lambda Expression)
+
+[#50532363_pgfId-1012896]##=
+
+[#50532363_pgfId-1012903]##;
+
+[#50532363_pgfId-1010871]## 
+
+[#50532363_pgfId-1010869]##Qualified functions with a namespace prefix
+have precedence over the operators. Thus the expression _$\{c?b:f()}_ is
+illegal because _b:f()_ is being parsed as a qualified function instead
+of part of a conditional expression. As usual, _()_ can be used to make
+the precedence explicit, e.g _$\{c?b:(f())}._
+
+[#50532363_pgfId-1013782]##The symbol -> in a Lambda Expression behaves
+like an operator for the purpose of ordering the operator precedence,
+and it has a higher precedence than the assignment and semicolon
+operators. The following examples illustrates when () is and is not
+needed.
+
+[#50532363_pgfId-1013789]## v = x->x+1
+
+[#50532363_pgfId-1013799]## x-> (a=x)
+
+[#50532363_pgfId-1013806]## x-> c?x+1:x+2
+
+[#50532363_pgfId-1014002]##All operators are left associative except for
+the ?:, =, and -> operators, which are right associative. For instance,
+a=b=c is the parsed as a=(b=c), and x->y->x+y is parsed as x->(y->x+y).
+
+====== [#50532363_pgfId-1000049]##
+
+image:ELSpec-8.gif[image]
+
+[#50532363_97958]##Reserved Words
+
+[#50532363_pgfId-1000050]##The following words are reserved for the
+language and must not be used as identifiers.
+
+[#50532363_pgfId-1000051]## and eq gt true instanceof +
+or ne le false empty +
+not lt ge null div
+
+[#50532363_pgfId-1013204]## mod
+
+[#50532363_pgfId-1008785]##Note that many of these words are not in the
+language now, but they may be in the future, so developers must avoid
+using these words.
+
+====== [#50532363_pgfId-1008786]##
+
+image:ELSpec-8.gif[image]
+
+[#50532363_46734]##Functions
+
+[#50532363_pgfId-1000066]##The EL has qualified functions, reusing the
+notion of qualification from XML namespaces (and attributes), XSL
+functions, and JSP custom actions. Functions are mapped to public static
+methods in Java classes.
+
+[#50532363_pgfId-1000068]##The full syntax is that of qualified n-ary
+functions:
+
+[#50532363_pgfId-1000069]## _[ns:]f([a1[,a2[,...[,an]]]])_
+
+[#50532363_pgfId-1000071]##Where _ns_ is the namespace prefix, _f_ is
+the name of the function, and _a_ is an argument.
+
+[#50532363_pgfId-1006026]##EL functions are mapped, resolved and bound
+at parse time. It is the responsibility of the _FunctionMapper_ class to
+provide the mapping of namespace-qualified functions to static methods
+of specific classes when expressions are created. If no _FunctionMapper_
+is provided (by passing in _null_ ), functions are disabled.
+
+====== [#50532363_pgfId-1006296]##
+
+image:ELSpec-8.gif[image]
+
+[#50532363_66083]##Variables
+
+[#50532363_pgfId-1006305]##Just like _FunctionMapper_ provides a
+flexible mechanism to add functions to the EL, _VariableMapper_ provides
+a flexible mechanism to support the notion of EL variables. An EL
+variable does not directly refer to a model object that can then be
+resolved by an _ELResolver_ . Instead, an EL variable refers to an EL
+expression. The evaluation of that EL expression yields the value
+associated with the EL variable.
+
+[#50532363_pgfId-1006334]##EL variables are mapped, resolved and bound
+at parse time. It is the responsibility of the _VariableMapper_ class to
+provide the mapping of EL variables to _ValueExpression_ s when
+expressions are created. If no _VariableMapper_ is provided (by passing
+in _null_ ), variable mapping is disabled.
+
+[#50532363_pgfId-1006297]##See the _javax.el_ package description for
+more details.
+
+====== [#50532363_pgfId-1012952]##
+
+image:ELSpec-8.gif[image]
+
+[#50532363_21722]##Lambda Expressions
+
+[#50532363_pgfId-1012962]##A lambda expression is a ValueExpression with
+parameters. The syntax is similar to the lambda expression in the Java
+Language, except that in EL, the body of the lambda expression is an EL
+expression. These are some examples:
+
+[#50532363_pgfId-1012969]##x->x+1
+
+[#50532363_pgfId-1012979]##(x,y)->x+y
+
+[#50532363_pgfId-1015504]##()->64
+
+[#50532363_pgfId-1012992]##The identifiers to the left of -> are lambda
+parameters. The parenthesis is optional if and only if there is one
+parameter.
+
+[#50532363_pgfId-1013002]##A lambda expression behaves like a function.
+It can be invoked immediately,
+
+[#50532363_pgfId-1013990]##((x,y)->x+y)(3,4) evaluates to 7.
+
+[#50532363_pgfId-1013991]##When a lambda expression is assigned, it can
+be referenced and invoked indirectly,
+
+[#50532363_pgfId-1013992]##v = (x,y)->x+y; v(3,4) evaluates to 7
+
+[#50532363_pgfId-1013951]##fact = n -> n==0? 1: n*fact(n-1); fact(5)
+evaluates to 120
+
+[#50532363_pgfId-1013081]##It can also be passed as an argument to a
+method, and be invoked in the method, by invoking
+javax.el.LambdaExpression.invoke(), such as
+
+[#50532363_pgfId-1013073]##employees.where(e->e.firstName == ‘Bob’)
+
+[#50532363_pgfId-1013109]##When a lambda expression is invoked, the
+expression in the body is evaluated, with its formal parameters replaced
+by the arguments supplied at the invocation. The number of arguments
+must be equal to or more than the number the formal parameters. Any
+extra arguments are ignored.
+
+[#50532363_pgfId-1013213]##A lambda expression can be nested within
+another lambda expression, like
+
+[#50532363_pgfId-1013837]##customers.select(c->[c.name,
+c.orders.sum(o->o.total)])
+
+[#50532363_pgfId-1013121]##The scope of a lambda argument is the body of
+the lambda expression. A lambda argument hides other EL variables,
+identifiers or arguments of the nesting lambda expressions, of the same
+name.
+
+[#50532363_pgfId-1015543]##Note that in the case of nested lambda
+expressions where the body of the inner lambda expression contains
+references to parameters of outer lambda expressions, such as
+
+[#50532363_pgfId-1015550]##x->y->x+y
+
+[#50532363_pgfId-1015657]##the scope of the outer lambda parameters
+extends to cover the inner body. For instance, with the above example,
+the argument x must be in scope when x+y is evaluated, even though the
+body of the outer lambda expression has already been executed.
+
+====== [#50532363_pgfId-1015658]##
+
+image:ELSpec-8.gif[image]
+
+Enums
+
+[#50532363_pgfId-1011498]##The Unified EL supports Java SE 5 enumerated
+types. Coercion rules for dealing with enumerated types are included in
+the following section. Also, when referring to values that are instances
+of an enumerated type from within an EL expression, use the literal
+string value to cause coercion to happen via the below rules. For
+example, Let’s say we have an enum called Suit that has members Heart,
+Diamond, Club, and Spade. Furthermore, let’s say we have a reference in
+the EL, mySuit, that is a Spade. If you want to test for equality with
+the Spade enum, you would say $\{mySuit == ’Spade’}. The type of the
+mySuit will trigger the invocation of Enum.valueOf(Suit.class, ’Spade’).
+
+====== [#50532363_pgfId-1006294]##
+
+image:ELSpec-8.gif[image]
+
+[#50532363_40113]##Static Field and Method Reference
+
+[#50532363_pgfId-1013271]##A static field or static method of a Java
+class can be referenced with the syntax classname.field, such as
+
+[#50532363_pgfId-1013314]## Boolean.TRUE
+
+[#50532363_pgfId-1013352]##the classname is the name of a class, without
+the package name.
+
+[#50532363_pgfId-1015619]##An enum constant is a public static field, so
+the same syntax can be used to refer to an enum constant, like the
+following:
+
+[#50532363_pgfId-1013359]## RoundingMode.FLOOR
+
+======= [#50532363_pgfId-1013369]##Access Restrictions and Imports
+
+[#50532363_pgfId-1013379]##For security, the following restrictions are
+enforced.
+
+======= [#50532363_pgfId-1013386]##Only the public static fields and methods can be referenced.
+
+[#50532363_pgfId-1013396]##Static fields cannot be modified.
+
+[#50532363_pgfId-1013425]##Except for classes with java.lang.* package
+names, a class has to be explicitly imported before its static fields or
+methods can be referenced.
+
+======= [#50532363_pgfId-1013452]##Imports of Packages, Classes, and Static Fields
+
+[#50532363_pgfId-1013462]##Either a class or a package can be explicitly
+imported into the EL evaluation environment. Importing a package imports
+all the classes in the package. The classes that can be imported are
+restricted to the classes that can be loaded by the current class
+loader.
+
+[#50532363_pgfId-1014272]##By default, the following packages are
+imported by the EL environment.
+
+[#50532363_pgfId-1014273]## java.lang.*
+
+[#50532363_pgfId-1014274]##A static field can also be imported
+statically. A statically imported static field can be referenced by the
+field name, without the classname.
+
+[#50532363_pgfId-1015785]##The imports of packages, classes, and static
+fields are handled by the ImportHandler in the ELContext.
+
+======= [#50532363_pgfId-1015778]##Constructor Reference
+
+[#50532363_pgfId-1015779]##A class name reference, followed by arguments
+in parenthesis, such as
+
+[#50532363_pgfId-1015780]## Boolean(true)
+
+[#50532363_pgfId-1014323]##denotes the invocation of the constructor of
+the class with the supplied arguments. The same restrictions (the class
+must be public and has already been imported) for static methods apply
+to the constructor calls.
+
+====== [#50532363_pgfId-1000107]##
+
+image:ELSpec-8.gif[image]
+
+[#50532363_39918]##Type Conversion
+
+[#50532363_pgfId-1000108]##Every expression is evaluated in the context
+of an expected type. The result of the expression evaluation may not
+match the expected type exactly, so the rules described in the following
+sections are applied.
+
+[#50532363_pgfId-1014190]##Custom type conversions can be specified in
+an ELResolver by implementing the method convertToType. More than one
+ELResolvers can be specified for performing custom conversions, and they
+are selected and applied in the order of their positions in the
+ELResolver chain, as usual.
+
+[#50532363_pgfId-1014199]##During expression evaluations, the custom
+type converters are first selected and applied. If there is no custom
+type converter for the conversion, the default conversions specified in
+the following sections are used.
+
+======= [#50532363_pgfId-1015663]##To Coerce a Value X to Type Y
+
+[#50532363_pgfId-1015670]##If X is null and Y is not a primitive type
+and also not a String, return null.
+
+[#50532363_pgfId-1016632]##If _X_ is of a primitive type, Let _X’_ be
+the equivalent “boxed form” of _X_ . +
+Otherwise, Let _X’_ be the same as _X_ .
+
+[#50532363_pgfId-1016633]##If _Y_ is of a primitive type, Let _Y’_ be
+the equivalent “boxed form” of _Y_ . +
+Otherwise, Let _Y’_ be the same as _Y_ .
+
+[#50532363_pgfId-1000118]##Apply the rules in Sections
+link:ELSpec.htm#50532363_41876[See Coerce A to
+String]-link:ELSpec.htm#50532363_22490[See Coerce A to Any Other Type T]
+for coercing _X’_ to _Y’_ .
+
+[#50532363_pgfId-1000119]##If _Y_ is a primitive type, then the result
+is found by “unboxing” the result of the coercion. If the result of the
+coercion is null, then error.
+
+[#50532363_pgfId-1000120]##If _Y_ is not a primitive type, then the
+result is the result of the coercion.
+
+[#50532363_pgfId-1000121]##For example, if coercing an _int_ to a
+_String_ , “box” the _int_ into an _Integer_ and apply the rule for
+coercing an _Integer_ to a _String_ . Or if coercing a _String_ to a
+_double_ , apply the rule for coercing a _String_ to a _Double_ , then
+_“_ unbox _”_ the resulting _Double_ , making sure the resulting
+_Double_ isn’t actually _null_ .
+
+======= [#50532363_pgfId-1015710]##[#50532363_41876]##Coerce A to String
+
+[#50532363_pgfId-1015718]##If _A_ is _null_ : return _“”_
+
+[#50532363_pgfId-1015711]##Otherwise, if _A_ is _String_ : return _A_
+
+[#50532363_pgfId-1015712]##Otherwise, if A is Enum, return A.name()
+
+[#50532363_pgfId-1000126]##Otherwise, if _A.toString()_ throws an
+exception, error
+
+[#50532363_pgfId-1000127]##Otherwise, return _A.toString()_
+
+======= [#50532363_pgfId-1000128]##[#50532363_91898]##Coerce A to Number type N
+
+[#50532363_pgfId-1000129]##If _A_ is _null_ and N is not a primitive
+type, return null.
+
+[#50532363_pgfId-1014056]##If _A_ is _null_ or _""_ , return 0.
+
+[#50532363_pgfId-1000130]##If _A_ is _Character_ , convert _A_ to _new
+Short((short)a.charValue())_ , and apply the following rules.
+
+[#50532363_pgfId-1000131]##If _A_ is _Boolean_ , then error.
+
+[#50532363_pgfId-1000132]##If _A_ is _Number_ type _N_ , return A
+
+[#50532363_pgfId-1000133]##If _A_ is _Number_ , coerce quietly to type
+_N_ using the following algorithm:
+
+[#50532363_pgfId-1000134]##If _N_ is _BigInteger_
+
+[#50532363_pgfId-1000135]##If _A_ is a _BigDecimal_ , return
+_A.toBigInteger()_
+
+[#50532363_pgfId-1000136]##Otherwise, return
+_BigInteger.valueOf(A.longValue())_
+
+[#50532363_pgfId-1000137]##If _N_ is _BigDecimal_ ,
+
+[#50532363_pgfId-1000138]##If _A_ is a _BigInteger_ , return _new
+BigDecimal(A)_
+
+[#50532363_pgfId-1000139]##Otherwise, return _new
+BigDecimal(A.doubleValue())_
+
+[#50532363_pgfId-1000140]##If _N_ is _Byte_ , return _new
+Byte(A.byteValue())_
+
+[#50532363_pgfId-1000141]##If _N_ is _Short_ , return _new
+Short(A.shortValue())_
+
+[#50532363_pgfId-1000142]##If _N_ is _Integer_ , return _new
+Integer(A.intValue())_
+
+[#50532363_pgfId-1000143]##If _N_ is _Long_ , return _new
+Long(A.longValue())_
+
+[#50532363_pgfId-1000144]##If _N_ is _Float_ , return _new
+Float(A.floatValue())_
+
+[#50532363_pgfId-1000145]##If _N_ is _Double_ , return _new
+Double(A.doubleValue())_
+
+[#50532363_pgfId-1000146]##Otherwise, error.
+
+[#50532363_pgfId-1000147]##If _A_ is _String_ , then:
+
+[#50532363_pgfId-1000148]##If _N_ is _BigDecimal_ then:
+
+[#50532363_pgfId-1000149]##If _new BigDecimal(A)_ throws an exception
+then error.
+
+[#50532363_pgfId-1000150]##Otherwise, return _new BigDecimal(A)_ .
+
+[#50532363_pgfId-1000151]##If _N_ is _BigInteger_ then:
+
+[#50532363_pgfId-1000152]##If _new BigInteger(A)_ throws an exception
+then error.
+
+[#50532363_pgfId-1000153]##Otherwise, return _new BigInteger(A)_ .
+
+[#50532363_pgfId-1000154]##If _N.valueOf(A)_ throws an exception, then
+error.
+
+[#50532363_pgfId-1000155]##Otherwise, return _N.valueOf(A)_ .
+
+[#50532363_pgfId-1000156]##Otherwise, error.
+
+======= [#50532363_pgfId-1000157]##Coerce A to Character or char
+
+[#50532363_pgfId-1014085]##If A is null and the target type is not the
+primitive type char, return null
+
+[#50532363_pgfId-1000158]##If _A_ is _null_ or _""_ , return _(char)0_
+
+[#50532363_pgfId-1000159]##If _A_ is _Character_ , return _A_
+
+[#50532363_pgfId-1000160]##If _A_ is _Boolean_ , error
+
+[#50532363_pgfId-1000161]##If _A_ is _Number_ , coerce quietly to type
+_Short_ , then return a _Character_ whose numeric value is equivalent to
+that of a _Short_ .
+
+[#50532363_pgfId-1000162]##If _A_ is _String_ , return _A.charAt (0)_
+
+[#50532363_pgfId-1000163]##Otherwise, error
+
+[#50532363_pgfId-1006931]## 
+
+======= [#50532363_pgfId-1000164]##Coerce A to Boolean or boolean
+
+[#50532363_pgfId-1014116]##If A is null and the target type is not the
+primitive type boolean, return null
+
+[#50532363_pgfId-1000165]##If _A_ is _null_ or _""_ , return _false_
+
+[#50532363_pgfId-1000166]##Otherwise, if _A_ is a _Boolean_ , return A
+
+[#50532363_pgfId-1000167]##Otherwise, if _A_ is a _String_ , and
+_Boolean.valueOf(A)_ does not throw an exception, return it
+
+[#50532363_pgfId-1012559]##Otherwise, error
+
+======= [#50532363_pgfId-1011531]## Coerce A to an Enum Type T
+
+[#50532363_pgfId-1011534]##If A is null, return null
+
+[#50532363_pgfId-1011536]##If A is assignable to T, coerce quietly
+
+[#50532363_pgfId-1011538]##If A is "", return null.
+
+[#50532363_pgfId-1012566]##If A is a String call
+Enum.valueOf(T.getClass(), A) and return the result.
+
+======= [#50532363_pgfId-1000170]## [#50532363_22490]##Coerce A to Any Other Type T
+
+[#50532363_pgfId-1000171]##If _A_ is _null_ , return _null_
+
+[#50532363_pgfId-1000172]##If _A_ is assignable to _T_ , coerce quietly
+
+[#50532363_pgfId-1000173]##If _A_ is a _String_ , and _T_ has no
+_PropertyEditor:_
+
+[#50532363_pgfId-1000174]##If _A_ is _""_ , return _null_
+
+[#50532363_pgfId-1000175]##Otherwise error
+
+[#50532363_pgfId-1000176]##If _A_ is a _String_ and _T_ 's
+_PropertyEditor_ throws an exception:
+
+[#50532363_pgfId-1000177]##If _A_ is _""_ , return _null_
+
+[#50532363_pgfId-1000178]##Otherwise, error
+
+[#50532363_pgfId-1000179]##Otherwise, apply _T_ 's _PropertyEditor_
+
+[#50532363_pgfId-1000180]##Otherwise, error
+
+[#50532363_pgfId-1009024]## 
+
+====== [#50532363_pgfId-1000182]##
+
+image:ELSpec-8.gif[image]
+
+[#50532363_33185]##Collected Syntax
+
+[#50532363_pgfId-1006037]##The following is a javaCC grammar with syntax
+tree generation. It is meant to be used as a guide and reference only.
+
+[#50532363_pgfId-1015359]## 
+
+[#50532363_pgfId-1014381]##/* == Option Declaration == */
+
+[#50532363_pgfId-1014382]##options
+
+[#50532363_pgfId-1014383]##\{
+
+[#50532363_pgfId-1014384]## STATIC=false;
+
+[#50532363_pgfId-1014385]## NODE_PREFIX="Ast";
+
+[#50532363_pgfId-1014386]## VISITOR_EXCEPTION="javax.el.ELException";
+
+[#50532363_pgfId-1014387]## VISITOR=false;
+
+[#50532363_pgfId-1014388]## MULTI=true;
+
+[#50532363_pgfId-1014389]## NODE_DEFAULT_VOID=true;
+
+[#50532363_pgfId-1014390]## JAVA_UNICODE_ESCAPE=false;
+
+[#50532363_pgfId-1014391]## UNICODE_INPUT=true;
+
+[#50532363_pgfId-1014392]## BUILD_NODE_FILES=true;
+
+[#50532363_pgfId-1014393]##}
+
+[#50532363_pgfId-1014395]##/* == Parser Declaration == */
+
+[#50532363_pgfId-1014396]##PARSER_BEGIN( ELParser )
+
+[#50532363_pgfId-1014397]##package com.sun.el.parser;
+
+[#50532363_pgfId-1014398]##import java.io.StringReader;
+
+[#50532363_pgfId-1014399]##import javax.el.ELException;
+
+[#50532363_pgfId-1014400]##public class ELParser
+
+[#50532363_pgfId-1014401]##\{
+
+[#50532363_pgfId-1014402]## public static Node parse(String ref) throws
+ELException
+
+[#50532363_pgfId-1014403]## \{
+
+[#50532363_pgfId-1014404]## try \{
+
+[#50532363_pgfId-1014405]## return (new ELParser(new
+StringReader(ref))).CompositeExpression();
+
+[#50532363_pgfId-1014406]## } catch (ParseException pe) \{
+
+[#50532363_pgfId-1014407]## throw new ELException(pe.getMessage());
+
+[#50532363_pgfId-1014408]## }
+
+[#50532363_pgfId-1014409]## }
+
+[#50532363_pgfId-1014410]##}
+
+[#50532363_pgfId-1014411]##PARSER_END( ELParser )
+
+[#50532363_pgfId-1014448]##/*
+
+[#50532363_pgfId-1014449]## * CompositeExpression
+
+[#50532363_pgfId-1014450]## * Allow most flexible parsing, restrict by
+examining
+
+[#50532363_pgfId-1014451]## * type of returned node
+
+[#50532363_pgfId-1014452]## */
+
+[#50532363_pgfId-1014453]##AstCompositeExpression CompositeExpression()
+#CompositeExpression : \{}
+
+[#50532363_pgfId-1014454]##\{
+
+[#50532363_pgfId-1014455]## (DeferredExpression() |
+
+[#50532363_pgfId-1014502]## DynamicExpression() |
+
+[#50532363_pgfId-1014495]## LiteralExpression())* <EOF> \{ return
+jjtThis; }
+
+[#50532363_pgfId-1014456]##}
+
+[#50532363_pgfId-1014457]## 
+
+[#50532363_pgfId-1014458]##/*
+
+[#50532363_pgfId-1014459]## * LiteralExpression
+
+[#50532363_pgfId-1014460]## * Non-EL Expression blocks
+
+[#50532363_pgfId-1014461]## */
+
+[#50532363_pgfId-1014462]##void LiteralExpression() #LiteralExpression :
+\{ Token t = null; }
+
+[#50532363_pgfId-1014463]##\{
+
+[#50532363_pgfId-1014464]## t=<LITERAL_EXPRESSION> \{
+jjtThis.setImage(t.image); }
+
+[#50532363_pgfId-1014465]##}
+
+[#50532363_pgfId-1014466]## 
+
+[#50532363_pgfId-1014467]##/*
+
+[#50532363_pgfId-1014468]## * DeferredExpression
+
+[#50532363_pgfId-1014469]## * #\{..} Expressions
+
+[#50532363_pgfId-1014470]## */
+
+[#50532363_pgfId-1014471]##void DeferredExpression() #DeferredExpression
+: \{}
+
+[#50532363_pgfId-1014472]##\{
+
+[#50532363_pgfId-1014473]## <START_DEFERRED_EXPRESSION> Expression()
+<RCURL>
+
+[#50532363_pgfId-1014474]##}
+
+[#50532363_pgfId-1014475]## 
+
+[#50532363_pgfId-1014476]##/*
+
+[#50532363_pgfId-1014477]## * DynamicExpression
+
+[#50532363_pgfId-1014478]## * $\{..} Expressions
+
+[#50532363_pgfId-1014479]## */
+
+[#50532363_pgfId-1014480]##void DynamicExpression() #DynamicExpression :
+\{}
+
+[#50532363_pgfId-1014481]##\{
+
+[#50532363_pgfId-1014482]## <START_DYNAMIC_EXPRESSION> Expression()
+<RCURL>
+
+[#50532363_pgfId-1014483]##}
+
+[#50532363_pgfId-1014510]##/*
+
+[#50532363_pgfId-1014511]## * Expression
+
+[#50532363_pgfId-1014512]## * EL Expression Language Root
+
+[#50532363_pgfId-1014513]## */
+
+[#50532363_pgfId-1014514]##void Expression() : \{}
+
+[#50532363_pgfId-1014515]##\{
+
+[#50532363_pgfId-1014516]## SemiColon()
+
+[#50532363_pgfId-1014517]##}
+
+[#50532363_pgfId-1014518]## 
+
+[#50532363_pgfId-1014519]##/*
+
+[#50532363_pgfId-1014520]## * SemiColon
+
+[#50532363_pgfId-1014521]## */
+
+[#50532363_pgfId-1014522]##void SemiColon() : \{}
+
+[#50532363_pgfId-1014523]##\{
+
+[#50532363_pgfId-1014524]## Assignment() (<SEMICOLON> Assignment()
+#SemiColon(2) )*
+
+[#50532363_pgfId-1014525]##}
+
+[#50532363_pgfId-1014526]## 
+
+[#50532363_pgfId-1014527]##/*
+
+[#50532363_pgfId-1014528]## * Assignment
+
+[#50532363_pgfId-1014529]## * For '=', right associatve, then
+LambdaExpression or Choice or Assignment
+
+[#50532363_pgfId-1014530]## */
+
+[#50532363_pgfId-1014531]##void Assignment() : \{}
+
+[#50532363_pgfId-1014532]##\{
+
+[#50532363_pgfId-1014533]## LOOKAHEAD(3) LambdaExpression() |
+
+[#50532363_pgfId-1014534]## Choice() (<ASSIGN> Assignment() #Assign(2)
+)?
+
+[#50532363_pgfId-1014535]##}
+
+[#50532363_pgfId-1014536]## 
+
+[#50532363_pgfId-1014537]##/*
+
+[#50532363_pgfId-1014538]## * LambdaExpression
+
+[#50532363_pgfId-1014539]## */
+
+[#50532363_pgfId-1014540]##void LambdaExpression() #LambdaExpression :
+\{}
+
+[#50532363_pgfId-1014541]##\{
+
+[#50532363_pgfId-1014542]## LambdaParameters() <ARROW>
+
+[#50532363_pgfId-1014543]## (LOOKAHEAD(3) LambdaExpression() | Choice()
+)
+
+[#50532363_pgfId-1014544]##}
+
+[#50532363_pgfId-1014557]## 
+
+[#50532363_pgfId-1014558]##void LambdaParameters() #LambdaParameters:
+\{}
+
+[#50532363_pgfId-1014559]##\{
+
+[#50532363_pgfId-1014560]## Identifier()
+
+[#50532363_pgfId-1014561]## | <LPAREN (Identifier() (<COMMA>
+Identifier())*)? <RPAREN>
+
+[#50532363_pgfId-1014564]##}
+
+[#50532363_pgfId-1014565]## 
+
+[#50532363_pgfId-1014566]##/*
+
+[#50532363_pgfId-1014567]## * Choice
+
+[#50532363_pgfId-1014568]## * For Choice markup a ? b : c, right
+associative
+
+[#50532363_pgfId-1014569]## */
+
+[#50532363_pgfId-1014570]##void Choice() : \{}
+
+[#50532363_pgfId-1014571]##\{
+
+[#50532363_pgfId-1014572]## Or() (<QUESTIONMARK> Choice() <COLON>
+Choice() #Choice(3))?
+
+[#50532363_pgfId-1014573]##}
+
+[#50532363_pgfId-1014574]## 
+
+[#50532363_pgfId-1014575]##/*
+
+[#50532363_pgfId-1014576]## * Or
+
+[#50532363_pgfId-1014577]## * For 'or' '||', then And
+
+[#50532363_pgfId-1014578]## */
+
+[#50532363_pgfId-1014579]##void Or() : \{}
+
+[#50532363_pgfId-1014580]##\{
+
+[#50532363_pgfId-1014581]## And() ((<OR0>|<OR1>) And() #Or(2))*
+
+[#50532363_pgfId-1014582]##}
+
+[#50532363_pgfId-1014583]## 
+
+[#50532363_pgfId-1014584]##/*
+
+[#50532363_pgfId-1014585]## * And
+
+[#50532363_pgfId-1014586]## * For 'and' '&&', then Equality
+
+[#50532363_pgfId-1014587]## */
+
+[#50532363_pgfId-1014588]##void And() : \{}
+
+[#50532363_pgfId-1014589]##\{
+
+[#50532363_pgfId-1014590]## Equality() ((<AND0>|<AND1>) Equality()
+#And(2))*
+
+[#50532363_pgfId-1014591]##}
+
+[#50532363_pgfId-1014615]##/*
+
+[#50532363_pgfId-1014616]## * Equality
+
+[#50532363_pgfId-1014617]## * For '==' 'eq' '!=' 'ne', then Compare
+
+[#50532363_pgfId-1014618]## */
+
+[#50532363_pgfId-1014619]##void Equality() : \{}
+
+[#50532363_pgfId-1014620]##\{
+
+[#50532363_pgfId-1014621]## Compare()
+
+[#50532363_pgfId-1014622]## (
+
+[#50532363_pgfId-1014623]## ((<EQ0>|<EQ1>) Compare() #Equal(2))
+
+[#50532363_pgfId-1014624]## |
+
+[#50532363_pgfId-1014625]## ((<NE0>|<NE1>) Compare() #NotEqual(2))
+
+[#50532363_pgfId-1014626]## )*
+
+[#50532363_pgfId-1014627]##}
+
+[#50532363_pgfId-1014628]## 
+
+[#50532363_pgfId-1014629]##/*
+
+[#50532363_pgfId-1014630]## * Compare
+
+[#50532363_pgfId-1014631]## * For a bunch of them, then Math
+
+[#50532363_pgfId-1014632]## */
+
+[#50532363_pgfId-1014633]##void Compare() : \{}
+
+[#50532363_pgfId-1014634]##\{
+
+[#50532363_pgfId-1014635]## Concatenation()
+
+[#50532363_pgfId-1014636]## (
+
+[#50532363_pgfId-1014637]## ((<LT0>|<LT1>) Concatenation() #LessThan(2))
+
+[#50532363_pgfId-1014638]## |
+
+[#50532363_pgfId-1014639]## ((<GT0>|<GT1>) Concatenation()
+#GreaterThan(2))
+
+[#50532363_pgfId-1014640]## |
+
+[#50532363_pgfId-1014641]## ((<LE0>|<LE1>) Concatenation()
+#LessThanEqual(2))
+
+[#50532363_pgfId-1014642]## |
+
+[#50532363_pgfId-1014643]## ((<GE0>|<GE1>) Concatenation()
+#GreaterThanEqual(2))
+
+[#50532363_pgfId-1014644]## )*
+
+[#50532363_pgfId-1014645]##}
+
+[#50532363_pgfId-1014665]##/*
+
+[#50532363_pgfId-1014666]## * Concatenation
+
+[#50532363_pgfId-1014667]## * For 'cat', then Math()
+
+[#50532363_pgfId-1014668]## */
+
+[#50532363_pgfId-1014669]##void Concatenation() : \{}
+
+[#50532363_pgfId-1014670]##\{
+
+[#50532363_pgfId-1014671]## Math() ( <CONCAT> Math() #Concat(2) )*
+
+[#50532363_pgfId-1014672]##}
+
+[#50532363_pgfId-1014673]## 
+
+[#50532363_pgfId-1014674]##/*
+
+[#50532363_pgfId-1014675]## * Math
+
+[#50532363_pgfId-1014676]## * For '+' '-', then Multiplication
+
+[#50532363_pgfId-1014677]## */
+
+[#50532363_pgfId-1014678]##void Math() : \{}
+
+[#50532363_pgfId-1014679]##\{
+
+[#50532363_pgfId-1014680]## Multiplication()
+
+[#50532363_pgfId-1014681]## (
+
+[#50532363_pgfId-1014682]## (<PLUS> Multiplication() #Plus(2))
+
+[#50532363_pgfId-1014683]## |
+
+[#50532363_pgfId-1014684]## (<MINUS> Multiplication() #Minus(2))
+
+[#50532363_pgfId-1014685]## )*
+
+[#50532363_pgfId-1014686]##}
+
+[#50532363_pgfId-1014699]##/*
+
+[#50532363_pgfId-1014700]## * Multiplication
+
+[#50532363_pgfId-1014701]## * For a bunch of them, then Unary
+
+[#50532363_pgfId-1014702]## */
+
+[#50532363_pgfId-1014703]##void Multiplication() : \{}
+
+[#50532363_pgfId-1014704]##\{
+
+[#50532363_pgfId-1014705]## Unary()
+
+[#50532363_pgfId-1014706]## (
+
+[#50532363_pgfId-1014707]## (<MULT> Unary() #Mult(2))
+
+[#50532363_pgfId-1014708]## |
+
+[#50532363_pgfId-1014709]## ((<DIV0>|<DIV1>) Unary() #Div(2))
+
+[#50532363_pgfId-1014710]## |
+
+[#50532363_pgfId-1014711]## ((<MOD0>|<MOD1>) Unary() #Mod(2))
+
+[#50532363_pgfId-1014712]## )*
+
+[#50532363_pgfId-1014713]##}
+
+[#50532363_pgfId-1014714]## 
+
+[#50532363_pgfId-1014715]##/*
+
+[#50532363_pgfId-1014716]## * Unary
+
+[#50532363_pgfId-1014717]## * For '-' '!' 'not' 'empty', then Value
+
+[#50532363_pgfId-1014718]## */
+
+[#50532363_pgfId-1014719]##void Unary() : \{}
+
+[#50532363_pgfId-1014720]##\{
+
+[#50532363_pgfId-1014721]## <MINUS> Unary() #Negative
+
+[#50532363_pgfId-1014722]## |
+
+[#50532363_pgfId-1014723]## (<NOT0>|<NOT1>) Unary() #Not
+
+[#50532363_pgfId-1014724]## |
+
+[#50532363_pgfId-1014725]## <EMPTY> Unary() #Empty
+
+[#50532363_pgfId-1014726]## |
+
+[#50532363_pgfId-1014727]## Value()
+
+[#50532363_pgfId-1014728]##}
+
+[#50532363_pgfId-1014748]##/*
+
+[#50532363_pgfId-1014749]## * Value
+
+[#50532363_pgfId-1014750]## * Defines Prefix plus zero or more Suffixes
+
+[#50532363_pgfId-1014751]## */
+
+[#50532363_pgfId-1014752]##void Value() : \{}
+
+[#50532363_pgfId-1014753]##\{
+
+[#50532363_pgfId-1014754]## (ValuePrefix() (ValueSuffix())*) #Value(>1)
+
+[#50532363_pgfId-1014755]##}
+
+[#50532363_pgfId-1014756]## 
+
+[#50532363_pgfId-1014757]##/*
+
+[#50532363_pgfId-1014758]## * ValuePrefix
+
+[#50532363_pgfId-1014759]## * For Literals, Variables, and Functions
+
+[#50532363_pgfId-1014760]## */
+
+[#50532363_pgfId-1014761]##void ValuePrefix() : \{}
+
+[#50532363_pgfId-1014762]##\{
+
+[#50532363_pgfId-1014763]## Literal() | NonLiteral()
+
+[#50532363_pgfId-1014765]##}
+
+[#50532363_pgfId-1014766]## 
+
+[#50532363_pgfId-1014767]##/*
+
+[#50532363_pgfId-1014768]## * ValueSuffix
+
+[#50532363_pgfId-1014769]## * Either dot or bracket notation
+
+[#50532363_pgfId-1014770]## */
+
+[#50532363_pgfId-1014771]##void ValueSuffix() : \{}
+
+[#50532363_pgfId-1014772]##\{
+
+[#50532363_pgfId-1014773]## DotSuffix() | BracketSuffix()
+
+[#50532363_pgfId-1014774]##}
+
+[#50532363_pgfId-1014775]## 
+
+[#50532363_pgfId-1014776]##/*
+
+[#50532363_pgfId-1014777]## * DotSuffix
+
+[#50532363_pgfId-1014778]## * Dot Property and Dot Method
+
+[#50532363_pgfId-1014779]## */
+
+[#50532363_pgfId-1014780]##void DotSuffix() #DotSuffix : \{ Token t =
+null; }
+
+[#50532363_pgfId-1014781]##\{
+
+[#50532363_pgfId-1014782]## <DOT> t=<IDENTIFIER> \{
+jjtThis.setImage(t.image); }
+
+[#50532363_pgfId-1014783]## (MethodArguments())?
+
+[#50532363_pgfId-1014784]##}
+
+[#50532363_pgfId-1014806]##/*
+
+[#50532363_pgfId-1014807]## * BracketSuffix
+
+[#50532363_pgfId-1014808]## * Sub Expression Suffix
+
+[#50532363_pgfId-1014809]## */
+
+[#50532363_pgfId-1014810]##void BracketSuffix() #BracketSuffix : \{}
+
+[#50532363_pgfId-1014811]##\{
+
+[#50532363_pgfId-1014812]## <LBRACK> Expression() <RBRACK>
+
+[#50532363_pgfId-1014813]## (MethodArguments())?
+
+[#50532363_pgfId-1014814]##}
+
+[#50532363_pgfId-1014817]##/*
+
+[#50532363_pgfId-1014818]## * MethodArguments
+
+[#50532363_pgfId-1014819]## */
+
+[#50532363_pgfId-1014820]##void MethodArguments() #MethodArguments : \{}
+
+[#50532363_pgfId-1014821]##\{
+
+[#50532363_pgfId-1014822]## <LPAREN> (Expression() (<COMMA>
+Expression())*)? <RPAREN>
+
+[#50532363_pgfId-1014823]##}
+
+[#50532363_pgfId-1014824]## 
+
+[#50532363_pgfId-1014825]##/*
+
+[#50532363_pgfId-1014826]## * Parenthesized Lambda Expression, with
+optional invokation
+
+[#50532363_pgfId-1014827]## */
+
+[#50532363_pgfId-1014828]##void LambdaExpressionOrCall()
+#LambdaExpression : \{}
+
+[#50532363_pgfId-1014829]## 
+
+[#50532363_pgfId-1014830]##\{
+
+[#50532363_pgfId-1014831]## <LPAREN>
+
+[#50532363_pgfId-1014832]## LambdaParameters() <ARROW>
+
+[#50532363_pgfId-1014833]## (LOOKAHEAD(3) LambdaExpression() | Choice()
+)
+
+[#50532363_pgfId-1014834]## <RPAREN>
+
+[#50532363_pgfId-1014835]## (MethodArguments())*
+
+[#50532363_pgfId-1014836]##}
+
+[#50532363_pgfId-1014861]##/*
+
+[#50532363_pgfId-1014862]## * NonLiteral
+
+[#50532363_pgfId-1014863]## * For Grouped Operations, Identifiers, and
+Functions
+
+[#50532363_pgfId-1014864]## */
+
+[#50532363_pgfId-1014865]##void NonLiteral() : \{}
+
+[#50532363_pgfId-1014866]##\{
+
+[#50532363_pgfId-1014867]## LOOKAHEAD(4) LambdaExpressionOrCall()
+
+[#50532363_pgfId-1014868]## | <LPAREN> Expression() <RPAREN>
+
+[#50532363_pgfId-1014869]## | LOOKAHEAD(4) Function()
+
+[#50532363_pgfId-1014870]## | Identifier()
+
+[#50532363_pgfId-1014872]## | MapData()
+
+[#50532363_pgfId-1014873]## | ListData()
+
+[#50532363_pgfId-1014874]##}
+
+[#50532363_pgfId-1014875]## 
+
+[#50532363_pgfId-1014876]##void MapData() #MapData: \{}
+
+[#50532363_pgfId-1014877]##\{
+
+[#50532363_pgfId-1014878]## <START_MAP>
+
+[#50532363_pgfId-1014879]## ( MapEntry() ( <COMMA> MapEntry() )* )?
+
+[#50532363_pgfId-1014880]## <RCURL>
+
+[#50532363_pgfId-1014881]##}
+
+[#50532363_pgfId-1014882]## 
+
+[#50532363_pgfId-1014883]##void MapEntry() #MapEntry: \{}
+
+[#50532363_pgfId-1014884]##\{
+
+[#50532363_pgfId-1014885]## Expression() (<COLON> Expression())?
+
+[#50532363_pgfId-1014886]##}
+
+[#50532363_pgfId-1014887]## 
+
+[#50532363_pgfId-1014888]##void ListData() #ListData: \{}
+
+[#50532363_pgfId-1014889]##\{
+
+[#50532363_pgfId-1014890]## <LBRACK>
+
+[#50532363_pgfId-1014891]## ( Expression() ( <COMMA> Expression() )* )?
+
+[#50532363_pgfId-1014892]## <RBRACK>
+
+[#50532363_pgfId-1014893]##}
+
+[#50532363_pgfId-1015747]## 
+
+[#50532363_pgfId-1014925]##/*
+
+[#50532363_pgfId-1014926]## * Identifier
+
+[#50532363_pgfId-1014927]## * Java Language Identifier
+
+[#50532363_pgfId-1014928]## */
+
+[#50532363_pgfId-1014929]##void Identifier() #Identifier : \{ Token t =
+null; }
+
+[#50532363_pgfId-1014930]##\{
+
+[#50532363_pgfId-1014931]## t=<IDENTIFIER> \{ jjtThis.setImage(t.image);
+}
+
+[#50532363_pgfId-1014932]##}
+
+[#50532363_pgfId-1014934]##/*
+
+[#50532363_pgfId-1014935]## * Function
+
+[#50532363_pgfId-1014936]## * Namespace:Name(a,b,c)
+
+[#50532363_pgfId-1014937]## */
+
+[#50532363_pgfId-1014938]##void Function() #Function :
+
+[#50532363_pgfId-1014939]##\{
+
+[#50532363_pgfId-1014940]## Token t0 = null;
+
+[#50532363_pgfId-1014941]## Token t1 = null;
+
+[#50532363_pgfId-1014942]##}
+
+[#50532363_pgfId-1014966]##\{
+
+[#50532363_pgfId-1014967]## t0=<IDENTIFIER> (<COLON> t1=<IDENTIFIER>)?
+
+[#50532363_pgfId-1014968]## \{
+
+[#50532363_pgfId-1014969]## if (t1 != null) \{
+
+[#50532363_pgfId-1014970]## jjtThis.setPrefix(t0.image);
+
+[#50532363_pgfId-1014971]## jjtThis.setLocalName(t1.image);
+
+[#50532363_pgfId-1014972]## } else \{
+
+[#50532363_pgfId-1014973]## jjtThis.setLocalName(t0.image);
+
+[#50532363_pgfId-1014974]## }
+
+[#50532363_pgfId-1014975]## }
+
+[#50532363_pgfId-1014976]## (MethodArguments())+
+
+[#50532363_pgfId-1015022]##}
+
+[#50532363_pgfId-1014980]##/*
+
+[#50532363_pgfId-1014981]## * Literal
+
+[#50532363_pgfId-1014982]## * Reserved Keywords
+
+[#50532363_pgfId-1014983]## */
+
+[#50532363_pgfId-1014984]##void Literal() : \{}
+
+[#50532363_pgfId-1014985]##\{
+
+[#50532363_pgfId-1014986]## Boolean()
+
+[#50532363_pgfId-1014987]## | FloatingPoint()
+
+[#50532363_pgfId-1014988]## | Integer()
+
+[#50532363_pgfId-1014989]## | String()
+
+[#50532363_pgfId-1014990]## | Null()
+
+[#50532363_pgfId-1014991]##}
+
+[#50532363_pgfId-1014993]##/*
+
+[#50532363_pgfId-1014994]## * Boolean
+
+[#50532363_pgfId-1014995]## * For 'true' 'false'
+
+[#50532363_pgfId-1014996]## */
+
+[#50532363_pgfId-1014997]##void Boolean() : \{}
+
+[#50532363_pgfId-1014998]##\{
+
+[#50532363_pgfId-1014999]## <TRUE> #True
+
+[#50532363_pgfId-1015000]## | <FALSE> #False
+
+[#50532363_pgfId-1015001]##}
+
+[#50532363_pgfId-1015037]##/*
+
+[#50532363_pgfId-1015038]## * FloatinPoint
+
+[#50532363_pgfId-1015039]## * For Decimal and Floating Point Literals
+
+[#50532363_pgfId-1015040]## */
+
+[#50532363_pgfId-1015041]##void FloatingPoint() #FloatingPoint : \{
+Token t = null; }
+
+[#50532363_pgfId-1015042]##\{
+
+[#50532363_pgfId-1015043]## t=<FLOATING_POINT_LITERAL> \{
+jjtThis.setImage(t.image); }
+
+[#50532363_pgfId-1015044]##}
+
+[#50532363_pgfId-1015046]##/*
+
+[#50532363_pgfId-1015047]## * Integer
+
+[#50532363_pgfId-1015048]## * For Simple Numeric Literals
+
+[#50532363_pgfId-1015049]## */
+
+[#50532363_pgfId-1015050]##void Integer() #Integer : \{ Token t = null;
+}
+
+[#50532363_pgfId-1015051]##\{
+
+[#50532363_pgfId-1015052]## t=<INTEGER_LITERAL> \{
+jjtThis.setImage(t.image); }
+
+[#50532363_pgfId-1015053]##}
+
+[#50532363_pgfId-1015055]##/*
+
+[#50532363_pgfId-1015056]## * String
+
+[#50532363_pgfId-1015057]## * For Quoted Literals
+
+[#50532363_pgfId-1015058]## */
+
+[#50532363_pgfId-1015059]##void String() #String : \{ Token t = null; }
+
+[#50532363_pgfId-1015060]##\{
+
+[#50532363_pgfId-1015061]## t=<STRING_LITERAL> \{
+jjtThis.setImage(t.image); }
+
+[#50532363_pgfId-1015062]##}
+
+[#50532363_pgfId-1015064]##/*
+
+[#50532363_pgfId-1015065]## * Null
+
+[#50532363_pgfId-1015066]## * For 'null'
+
+[#50532363_pgfId-1015067]## */
+
+[#50532363_pgfId-1015068]##void Null() #Null : \{}
+
+[#50532363_pgfId-1015069]##\{
+
+[#50532363_pgfId-1015070]## <NULL>
+
+[#50532363_pgfId-1014440]##}
+
+[#50532363_pgfId-1015096]##/*
+==========================================================================
+*/TOKEN_MGR_DECLS:
+
+[#50532363_pgfId-1015097]##\{
+
+[#50532363_pgfId-1015098]## java.util.Stack<Integer> stack = new
+java.util.Stack<Integer>();
+
+[#50532363_pgfId-1015099]##}
+
+[#50532363_pgfId-1015100]## 
+
+[#50532363_pgfId-1015101]##<DEFAULT> TOKEN :
+
+[#50532363_pgfId-1015102]##\{
+
+[#50532363_pgfId-1015103]## < LITERAL_EXPRESSION:
+
+[#50532363_pgfId-1015104]## ((~["\\", "$", "#"])
+
+[#50532363_pgfId-1015105]## | ("\\" ("\\" | "$" | "#"))
+
+[#50532363_pgfId-1015106]## | ("$" ~["\{", "$"])
+
+[#50532363_pgfId-1015107]## | ("#" ~["\{", "#"])
+
+[#50532363_pgfId-1015108]## )+
+
+[#50532363_pgfId-1015109]## | "$"
+
+[#50532363_pgfId-1015110]## | "#"
+
+[#50532363_pgfId-1015111]## >
+
+[#50532363_pgfId-1015112]##|
+
+[#50532363_pgfId-1015113]## < START_DYNAMIC_EXPRESSION: "$\{" >
+\{stack.push(DEFAULT);}: IN_EXPRESSION
+
+[#50532363_pgfId-1015114]##|
+
+[#50532363_pgfId-1015115]## < START_DEFERRED_EXPRESSION: "#\{" >
+\{stack.push(DEFAULT);}: IN_EXPRESSION
+
+[#50532363_pgfId-1015116]##}
+
+[#50532363_pgfId-1015117]## 
+
+[#50532363_pgfId-1015118]##<DEFAULT> SKIP : \{ "\\" }
+
+[#50532363_pgfId-1015119]## 
+
+[#50532363_pgfId-1015120]##<IN_EXPRESSION, IN_MAP> SKIP:
+
+[#50532363_pgfId-1015121]##\{ " " | "\t" | "\n" | "\r" }
+
+[#50532363_pgfId-1015122]## 
+
+[#50532363_pgfId-1015142]##<IN_EXPRESSION, IN_MAP> TOKEN :
+
+[#50532363_pgfId-1015143]##\{
+
+[#50532363_pgfId-1015144]## < START_MAP : "\{" >
+\{stack.push(curLexState);}: IN_MAP
+
+[#50532363_pgfId-1015145]##| < RCURL: "}" > \{SwitchTo(stack.pop());}
+
+[#50532363_pgfId-1015146]##| < INTEGER_LITERAL: ["0"-"9"] (["0"-"9"])* >
+
+[#50532363_pgfId-1015147]##| < FLOATING_POINT_LITERAL: (["0"-"9"])+ "."
+(["0"-"9"])* (<EXPONENT>)?
+
+[#50532363_pgfId-1015148]## | "." (["0"-"9"])+ (<EXPONENT>)?
+
+[#50532363_pgfId-1015149]## | (["0"-"9"])+ <EXPONENT>
+
+[#50532363_pgfId-1015150]## >
+
+[#50532363_pgfId-1015151]##| < #EXPONENT: ["e","E"] (["+","-"])?
+(["0"-"9"])+ >
+
+[#50532363_pgfId-1015152]##| < STRING_LITERAL: ("\"" ((~["\"","\\"])
+
+[#50532363_pgfId-1015153]## | ("\\" ( ["\\","\""] )))* "\"")
+
+[#50532363_pgfId-1015154]## | ("\'" ((~["\'","\\"])
+
+[#50532363_pgfId-1015155]## | ("\\" ( ["\\","\'"] )))* "\'")
+
+[#50532363_pgfId-1015156]## >
+
+[#50532363_pgfId-1015157]##| < BADLY_ESCAPED_STRING_LITERAL: ("\""
+(~["\"","\\"])* ("\\" ( ~["\\","\""] )))
+
+[#50532363_pgfId-1015158]## | ("\'" (~["\'","\\"])* ("\\" ( ~["\\","\'"]
+)))
+
+[#50532363_pgfId-1015159]## >
+
+[#50532363_pgfId-1015160]##| < TRUE : "true" >
+
+[#50532363_pgfId-1015161]##| < FALSE : "false" >
+
+[#50532363_pgfId-1015162]##| < NULL : "null" >
+
+[#50532363_pgfId-1015163]##| < DOT : "." >
+
+[#50532363_pgfId-1015164]##| < LPAREN : "(" >
+
+[#50532363_pgfId-1015165]##| < RPAREN : ")" >
+
+[#50532363_pgfId-1015166]##| < LBRACK : "[" >
+
+[#50532363_pgfId-1015167]##| < RBRACK : "]" >
+
+[#50532363_pgfId-1015168]##| < COLON : ":" >
+
+[#50532363_pgfId-1015169]##| < COMMA : "," >
+
+[#50532363_pgfId-1015170]##| < SEMICOLON : ";" >
+
+[#50532363_pgfId-1015171]##| < GT0 : ">" >
+
+[#50532363_pgfId-1015191]##| < GT1 : "gt" >
+
+[#50532363_pgfId-1015192]##| < LT0 : "<" >
+
+[#50532363_pgfId-1015193]##| < LT1 : "lt" >
+
+[#50532363_pgfId-1015194]##| < GE0 : ">=" >
+
+[#50532363_pgfId-1015195]##| < GE1 : "ge" >
+
+[#50532363_pgfId-1015196]##| < LE0 : "<=" >
+
+[#50532363_pgfId-1015197]##| < LE1 : "le" >
+
+[#50532363_pgfId-1015198]##| < EQ0 : "==" >
+
+[#50532363_pgfId-1015199]##| < EQ1 : "eq" >
+
+[#50532363_pgfId-1015200]##| < NE0 : "!=" >
+
+[#50532363_pgfId-1015201]##| < NE1 : "ne" >
+
+[#50532363_pgfId-1015202]##| < NOT0 : "!" >
+
+[#50532363_pgfId-1015203]##| < NOT1 : "not" >
+
+[#50532363_pgfId-1015204]##| < AND0 : "&&" >
+
+[#50532363_pgfId-1015205]##| < AND1 : "and" >
+
+[#50532363_pgfId-1015206]##| < OR0 : "||" >
+
+[#50532363_pgfId-1015207]##| < OR1 : "or" >
+
+[#50532363_pgfId-1015208]##| < EMPTY : "empty" >
+
+[#50532363_pgfId-1015209]##| < INSTANCEOF : "instanceof" >
+
+[#50532363_pgfId-1015210]##| < MULT : "*" >
+
+[#50532363_pgfId-1015211]##| < PLUS : "+" >
+
+[#50532363_pgfId-1015212]##| < MINUS : "-" >
+
+[#50532363_pgfId-1015213]##| < QUESTIONMARK : "?" >
+
+[#50532363_pgfId-1015214]##| < DIV0 : "/" >
+
+[#50532363_pgfId-1015215]##| < DIV1 : "div" >
+
+[#50532363_pgfId-1015216]##| < MOD0 : "%" >
+
+[#50532363_pgfId-1015217]##| < MOD1 : "mod" >
+
+[#50532363_pgfId-1015218]##| < CONCAT : "+=" >
+
+[#50532363_pgfId-1015219]##| < ASSIGN : "=" >
+
+[#50532363_pgfId-1015221]##| < ARROW : "->" >
+
+[#50532363_pgfId-1015222]##| < IDENTIFIER : (<LETTER>|<IMPL_OBJ_START>)
+(<LETTER>|<DIGIT>)* >
+
+[#50532363_pgfId-1015297]##| < #IMPL_OBJ_START: "#" >
+
+[#50532363_pgfId-1015298]##| < #LETTER:
+
+[#50532363_pgfId-1015305]## [
+
+[#50532363_pgfId-1015306]## "\u0024",
+
+[#50532363_pgfId-1015307]## "\u0041"-"\u005a",
+
+[#50532363_pgfId-1015308]## "\u005f",
+
+[#50532363_pgfId-1015309]## "\u0061"-"\u007a",
+
+[#50532363_pgfId-1015310]## "\u00c0"-"\u00d6",
+
+[#50532363_pgfId-1015311]## "\u00d8"-"\u00f6",
+
+[#50532363_pgfId-1015312]## "\u00f8"-"\u00ff",
+
+[#50532363_pgfId-1015313]## "\u0100"-"\u1fff",
+
+[#50532363_pgfId-1015314]## "\u3040"-"\u318f",
+
+[#50532363_pgfId-1015315]## "\u3300"-"\u337f",
+
+[#50532363_pgfId-1015316]## "\u3400"-"\u3d2d",
+
+[#50532363_pgfId-1015317]## "\u4e00"-"\u9fff",
+
+[#50532363_pgfId-1015318]## "\uf900"-"\ufaff"
+
+{empty}[#50532363_pgfId-1015319]## ]
+
+[#50532363_pgfId-1015320]## >
+
+[#50532363_pgfId-1015321]##| < #DIGIT:
+
+[#50532363_pgfId-1015322]## [
+
+[#50532363_pgfId-1015323]## "\u0030"-"\u0039",
+
+[#50532363_pgfId-1015324]## "\u0660"-"\u0669",
+
+[#50532363_pgfId-1015325]## "\u06f0"-"\u06f9",
+
+[#50532363_pgfId-1015326]## "\u0966"-"\u096f",
+
+[#50532363_pgfId-1015327]## "\u09e6"-"\u09ef",
+
+[#50532363_pgfId-1015328]## "\u0a66"-"\u0a6f",
+
+[#50532363_pgfId-1015329]## "\u0ae6"-"\u0aef",
+
+[#50532363_pgfId-1015330]## "\u0b66"-"\u0b6f",
+
+[#50532363_pgfId-1015331]## "\u0be7"-"\u0bef",
+
+[#50532363_pgfId-1015332]## "\u0c66"-"\u0c6f",
+
+[#50532363_pgfId-1015333]## "\u0ce6"-"\u0cef",
+
+[#50532363_pgfId-1015334]## "\u0d66"-"\u0d6f",
+
+[#50532363_pgfId-1015335]## "\u0e50"-"\u0e59",
+
+[#50532363_pgfId-1015336]## "\u0ed0"-"\u0ed9",
+
+[#50532363_pgfId-1015337]## "\u1040"-"\u1049"
+
+{empty}[#50532363_pgfId-1015338]## ]
+
+[#50532363_pgfId-1015339]## >
+
+[#50532363_pgfId-1015340]##| < ILLEGAL_CHARACTER: (~[]) >
+
+[#50532363_pgfId-1015341]##}
+
+[#50532363_pgfId-1015299]## 
+
+======= [#50532363_pgfId-1000203]## 
+
+[#50532363_pgfId-1014373]##Notes
+
+[#50532363_pgfId-1000204]##* = 0 or more, + = 1 or more, ? = 0 or 1.
+
+[#50532363_pgfId-1006099]##An identifier is constrained to be a Java
+identifier - e.g., no _-_ , no _/_ , etc.
+
+[#50532363_pgfId-1000205]##A _String_ only recognizes a limited set of
+escape sequences, and _\_ may not appear unescaped.
+
+[#50532363_pgfId-1000206]##The relational operator for equality is _==_
+(double equals).
+
+[#50532363_pgfId-1000207]##The value of an _IntegerLiteral_ ranges from
+_Long.MIN_VALUE_ to _Long.MAX_VALUE_
+
+[#50532363_pgfId-1000208]##The value of a _FloatingPointLiteral_ ranges
+from _Double.MIN_VALUE_ to _Double.MAX_VALUE_
+
+[#50532363_pgfId-1006125]##It is illegal to nest _$\{_ or _#\{_ inside
+an outer _$\{_ or _#\{_ .
+
+== [#50532366_pgfId-1017414]##[#50532366_76288]## 
+
+==== [#50532366_pgfId-1017415]##
+
+image:ELSpec-9.gif[image]
+
+Operations on Collection Objects
+
+image:ELSpec-10.gif[image]
+
+[#50532366_pgfId-1002053]##This chapter describes how collection objects
+and literals can be constructed in the EL expression, and how collection
+objects can be manipulated and processed by applying operations in a
+pipeline.
+
+====== [#50532366_pgfId-1013003]##
+
+image:ELSpec-11.gif[image]
+
+Overview
+
+[#50532366_pgfId-1002449]##To provide support for collection objects, EL
+includes syntaxes for constructing sets, lists, and maps dynamically.
+Any EL expressions, not just literals, can be used in the construction.
+
+[#50532366_pgfId-1013023]##EL also includes a set of operations that can
+be applied on collections. By design, the methods supporting these
+operations have names and semantics very similar to those in Java SE 8
+libraries. Since EL and Java have different syntaxes and capabilities,
+they are not identical, but they are similar enough that users should
+have no problem switching from one to the other.
+
+[#50532366_pgfId-1013030]##Since the methods supporting the collection
+operations do not exist in Java SE 7, they are implemented in the
+Expression Language with ELResolvers. In an EL expression, collection
+operations are carried out by invoking methods, and no special syntaxes
+are introduced for them. Strictly speaking, these operations are not
+part of the expression language, and can be taken as examples of what
+can be achieved with the expression language. The specification
+specifies the syntaxes and behaviors of a standard set of collection
+operations. However, an user can easily add, extend and modify the
+behavior of the operations by providing customized ELResolvers.
+
+[#50532366_pgfId-1012888]##Compared to Java SE 8, the collection support
+in EL has a much smaller and simpler scope. Although EL does not
+disallow collections of infinite size, it works best when the collection
+objects are created in memory, with known sizes. It also does not
+address the performance issue in a multi-threaded environment, and does
+not provide explicit controls for evaluating collection operations in
+parallel. The future version of EL will likely include functionalities
+from Java SE 8, when it is released.
+
+[#50532366_pgfId-1002476]##Central to the implementation is the use of
+lambda expressions, now supported in EL. A lambda expression in the Java
+language is used to specify a method in an anonymous implementation of a
+functional interface. The concept of a lambda expression in EL is much
+simpler: it is just an anonymous function that can be passed as an
+argument to a method, to be evaluated in the method when needed. In the
+collection operations, lambda expressions are specified as arguments to
+the methods supporting the operations. Usually when the lambda
+expressions are invoked, an element from stream of the collection is
+passed as an argument to the lambda expression. For instance, the
+argument to the filter method is a lambda expression which acts as a
+predicate function to determine if an element should be included in the
+resulting stream.
+
+====== [#50532366_pgfId-1002483]##
+
+image:ELSpec-11.gif[image]
+
+[#50532366_51788]##Construction of Collection Objects
+
+[#50532366_pgfId-1002493]##EL allows the construction of sets, lists,
+and maps dynamically. Any EL expressions, including nested collection
+constructions, can be used in the construction. These expressions are
+evaluated at the time of the construction.
+
+======= [#50532366_pgfId-1002500]##Set Construction
+
+[#50532366_pgfId-1002530]##Construct an instance of
+java.lang.util.Set<Object>.
+
+======= [#50532366_pgfId-1002510]##Syntax
+
+[#50532366_pgfId-1002520]##SetData := ‘\{‘ DataList ‘}’
+
+[#50532366_pgfId-1002539]##DataList := (expression (‘,’ expression)* )?
+
+======= [#50532366_pgfId-1002561]##Example
+
+[#50532366_pgfId-1002571]##\{1, 2, 3}
+
+======= [#50532366_pgfId-1002584]##List Construction
+
+[#50532366_pgfId-1002594]##Construct an instance of
+java.lang.util.List<Object>.
+
+======= [#50532366_pgfId-1002604]##Syntax
+
+[#50532366_pgfId-1002620]##ListData := ‘[‘ DataList ‘]’
+
+[#50532366_pgfId-1002630]##DataList := (expression (‘,’ expression)* )?
+
+======= [#50532366_pgfId-1002673]##Example
+
+{empty}[#50532366_pgfId-1002683]##[1, "two", [foo, bar]]
+
+======= [#50532366_pgfId-1002699]##Map Construction
+
+[#50532366_pgfId-1002711]##Construct an instance of
+java.lang.util.Map<Object>.
+
+======= [#50532366_pgfId-1002721]##Syntax
+
+[#50532366_pgfId-1002749]##Map := '\{' MapEntries '}'
+
+[#50532366_pgfId-1002750]##MapEntries := (MapEntry (',' MapEntry)* )?
+
+[#50532366_pgfId-1002738]##MapEntry := expression ':' expression
+
+======= [#50532366_pgfId-1002762]##Example
+
+[#50532366_pgfId-1002772]##\{"one":1, "two":2, "three":3}
+
+====== [#50532366_pgfId-1002794]##
+
+image:ELSpec-11.gif[image]
+
+Collection Operations
+
+======= [#50532366_pgfId-1013102]##Stream and Pipeline
+
+[#50532366_pgfId-1002804]##The operations on a collection object are
+realized as method calls to the stream of elements derived from the
+collection. The method stream can be used to obtain a Stream from a
+java.util.Collection or a Java array.
+
+[#50532366_pgfId-1002842]##To obtain a Stream from a Map, the collection
+view of a Map, such as MapEntry can be used as the source of Stream.
+
+[#50532366_pgfId-1013149]##Some operations return another Stream, which
+allows other operations. Therefore the operations can be chained
+together to form a pipeline. For example, to get a list of titles of
+history books, one can write in EL:
+
+[#50532366_pgfId-1013156]## 
+
+[#50532366_pgfId-1013166]## books.stream().filter(b->b.category ==
+‘history’)
+
+[#50532366_pgfId-1013173]## .map(b->b.title)
+
+[#50532366_pgfId-1013180]## .toList()
+
+[#50532366_pgfId-1013211]##A stream pipeline consists of
+
+[#50532366_pgfId-1013229]##The source,
+
+[#50532366_pgfId-1013239]##Intermediate operations, and
+
+[#50532366_pgfId-1013246]##A terminal operation.
+
+[#50532366_pgfId-1013255]##The source of a pipeline is the Stream
+object.
+
+[#50532366_pgfId-1013271]##An intermediate operation is a method in
+Stream that returns a Stream. A pipeline may contain zero or more
+intermediate operations.
+
+[#50532366_pgfId-1013278]##A pipeline ends in a terminal operation. A
+terminal operation is a method in Stream that does not return a Stream.
+
+[#50532366_pgfId-1016751]##The execution of a pipeline only begins when
+the terminal operation starts its execution. Most of the intermediate
+operations are evaluated lazily: they only yield as many elements in the
+stream as are required by the downstream operations. Because of this,
+they need not keep intermediate results of the operations. For instance,
+the filter operation does not keep a collection of the filtered
+elements.
+
+[#50532366_pgfId-1016762]##A notable exception is the sorted operation,
+since all elements are needed for sorting.
+
+[#50532366_pgfId-1013285]##The specification specifies the behavior of
+the operations in a pipeline, and does not specify the implementation of
+a pipeline. The operations must not modify the source collection. The
+user must also make sure that the source collection is not modified
+externally during the execution of the pipeline, otherwise the behavior
+of the collection operations will be undefined.
+
+[#50532366_pgfId-1013305]##The behavior of the operations are undefined
+if the collection contains null elements. Null elements in a collection
+should be removed by a filter to obtain consistent results.
+
+[#50532366_pgfId-1016787]##The source stream in a pipeline that has
+already started its execution cannot be used in another pipeline,
+otherwise the behavior is undefined.
+
+======= [#50532366_pgfId-1003589]##Operation Syntax Description
+
+[#50532366_pgfId-1003599]##The implementation of Stream that contains
+the methods supporting the operations are not part of the API. The
+syntax and the behavior of the operations are described in this chapter.
+
+[#50532366_pgfId-1013320]##For documentation purposes, pseudo method
+declarations are used in this chapter for the operations. A method
+includes
+
+[#50532366_pgfId-1003606]##The return type
+
+[#50532366_pgfId-1003616]##The type of the source stream
+
+[#50532366_pgfId-1003630]##The method name
+
+[#50532366_pgfId-1003637]##The method parameters
+
+[#50532366_pgfId-1003644]##A typical method declaration would looks like
+
+[#50532366_pgfId-1003661]##returnT Stream<T>.method(T1 arg1, T2 arg2)
+
+[#50532366_pgfId-1003654]##Some methods have optional parameters. The
+declarations of the methods with all possible combinations of the
+parameters are listed in the syntax sections, as if they are overloaded.
+Any null parameter will result in a NullPointerException at run-time.
+
+[#50532366_pgfId-1003706]##Some of the parameters are lambda
+expressions, also known as functions. A lambda expression can have its
+own parameters and can return a value. To describe the parameter types
+and the return type of a lambda expression, the following is an example
+of the notation that is used.
+
+[#50532366_pgfId-1003671]## (p1,p2)->returnT
+
+[#50532366_pgfId-1003681]##For instance, the declaration for the
+operation filter is
+
+[#50532366_pgfId-1013412]## Stream<S> Stream<S>.filter((S->boolean)
+predicate)
+
+[#50532366_pgfId-1003726]##From this we know that the source object is a
+Stream of S, and the return object is also a Stream, of the same type.
+The operator takes a predicate function (lambda expression) as an
+argument. The argument of the function is an element of the source, and
+the function returns a boolean.
+
+[#50532366_pgfId-1013416]##The generic types in the declaration are used
+only to help the readers to identify the type relationships among
+various parts of the declaration, and do not have the same meaning as
+used in the Java language. At runtime, EL deals with Objects, and does
+not track generic types.
+
+======= [#50532366_pgfId-1014558]##Implementation Classes
+
+[#50532366_pgfId-1014574]##The specification makes references to some
+implementation classes that are not in the API. They contains methods
+whose behaviors are specified in this section.
+
+======= [#50532366_pgfId-1014581]##Stream
+
+[#50532366_pgfId-1014591]##An instant of Stream is obtained by calling
+the method stream() of a java.util.Collection object or a Java array.
+The methods in this class support the stream operations and are
+described in link:ELSpec.htm#50532366_77071[See filter] to
+link:ELSpec.htm#50532366_55544[See findFirst].
+
+======= [#50532366_pgfId-1014606]##[#50532366_32719]##Optional
+
+[#50532366_pgfId-1014616]##An Optional is used to represent a value that
+may not exist. Instead of using null as a default value, the use of
+Optional allows the user to specify a default.
+
+[#50532366_pgfId-1014635]##A non-existing or empty value is represented
+by an empty Optional.
+
+[#50532366_pgfId-1014642]##An Optional is usually the result of a
+computation over the elements of a Stream, where an empty Stream results
+in an empty Optional. See for example,
+link:ELSpec.htm#50532366_47935[See max].
+
+[#50532366_pgfId-1014665]##The following are methods in Optional<T>.
+
+[#50532366_pgfId-1014655]##T get()
+
+[#50532366_pgfId-1014672]##Returns the value held by the Optional, or
+throws an ELException if the Optional is empty.
+
+[#50532366_pgfId-1016862]##void ifPresent((x)->void)consumer)
+
+[#50532366_pgfId-1016876]##The value held by the Optional is processed
+by the function consumer if it is not empty. See also
+link:ELSpec.htm#50532366_80150[See consumer].
+
+[#50532366_pgfId-1014679]##T orElse(T other)
+
+[#50532366_pgfId-1014689]##Returns the value held by the Optional, or
+the value other if the Optional is empty.
+
+[#50532366_pgfId-1014699]##T orElseGet((()->T) other)
+
+[#50532366_pgfId-1014709]##Returns the value held by the Optional, or
+the value returned by the lambda expression other if the Optional is
+empty.
+
+======= [#50532366_pgfId-1014896]##[#50532366_28607]##Functions
+
+[#50532366_pgfId-1014910]##Some operations takes functions (lambda
+expressions) as parameters. Again, we used the notion
+
+[#50532366_pgfId-1014919]## (arg1Type, ...)->returnType
+
+[#50532366_pgfId-1014926]##to describe the argument types and the return
+type of a function.
+
+======= [#50532366_pgfId-1014778]##[#50532366_46734]##predicate
+
+[#50532366_pgfId-1014988]##S -> boolean
+
+[#50532366_pgfId-1015002]##This function takes the input argument,
+usually the element of the source stream, and determines if it satisfies
+some criteria.
+
+======= [#50532366_pgfId-1014938]##[#50532366_91728]##[#50532366_49336]##mapper
+
+[#50532366_pgfId-1015009]##S -> R
+
+[#50532366_pgfId-1015019]##This function maps, or transforms the input
+argument, usually the element of the source stream, to the result.
+
+======= [#50532366_pgfId-1014958]##[#50532366_14885]##comparator
+
+[#50532366_pgfId-1015050]##(S, S) -> int
+
+[#50532366_pgfId-1015060]##This function compares two arguments, usually
+the elements of the source stream, and returns a negative integer, zero,
+or a positive integer, if the first argument is respectively less than,
+equal to, or greater than the second argument.
+
+======= [#50532366_pgfId-1014968]##[#50532366_80150]##consumer
+
+[#50532366_pgfId-1015082]##S -> void
+
+[#50532366_pgfId-1015099]##This function processes the input argument,
+usually the element of the source stream, and returns nothing.
+
+======= [#50532366_pgfId-1014978]##[#50532366_40532]##binaryOperator
+
+[#50532366_pgfId-1015106]##(S, S) -> S
+
+[#50532366_pgfId-1015116]##This function applies a binary operation to
+the input arguments, and returns the result. The first argument is
+usually an internal accumulator value, and the second argument is
+usually the element of the source stream.
+
+[#50532366_pgfId-1016011]##The arguments and the result are of the same
+type.
+
+======= [#50532366_pgfId-1014625]##[#50532366_77071]##filter
+
+======= [#50532366_pgfId-1013423]##Syntax
+
+[#50532366_pgfId-1003790]##Stream<S> Stream<S>.filter((S->boolean)
+predicate)
+
+======= [#50532366_pgfId-1013394]##Description
+
+[#50532366_pgfId-1013395]##This method produces a stream containing the
+source stream elements for which the predicate function returns true.
+The argument of predicate function represents the element to test.
+
+======= [#50532366_pgfId-1016623]##See
+
+{empty}[#50532366_pgfId-1016637]##link:ELSpec.htm#50532366_46734[See
+predicate]
+
+======= [#50532366_pgfId-1003882]##Example
+
+[#50532366_pgfId-1003925]##To find the products whose price is greater
+than or equal to 10:
+
+[#50532366_pgfId-1003909]## products.stream().filter(p->p.unitPrice >=
+10).toList()
+
+======= [#50532366_pgfId-1003947]##map
+
+======= [#50532366_pgfId-1003987]##Syntax
+
+[#50532366_pgfId-1004008]##Stream<R> Stream<S>.map((S->R) mapper)
+
+======= [#50532366_pgfId-1004073]##Description
+
+[#50532366_pgfId-1004180]##This method produces a stream by applying the
+mapper function to the elements of the source stream. The argument of
+mapper function represents the element to process, and the result of the
+mapper function represents the element of the resulting Stream.
+
+======= [#50532366_pgfId-1016647]##See
+
+{empty}[#50532366_pgfId-1016657]##link:ELSpec.htm#50532366_49336[See
+mapper]
+
+======= [#50532366_pgfId-1013486]##Examples
+
+[#50532366_pgfId-1004213]##To get the list of the names of all products:
+
+[#50532366_pgfId-1004187]## products.stream().map(p->p.name).toList()
+
+[#50532366_pgfId-1004436]##To creates a list of product names and prices
+for products with a price greater than or equal to 10:
+
+[#50532366_pgfId-1004476]## products.stream().filter(p->p.unitPrice >=
+10).
+
+[#50532366_pgfId-1004477]## .map(p->[p.name, p.unitPrice])
+
+[#50532366_pgfId-1015457]## .toList()
+
+======= [#50532366_pgfId-1004239]##[#50532366_68081]##flatMap
+
+======= [#50532366_pgfId-1004271]##Syntax
+
+[#50532366_pgfId-1004293]##Stream<R> Stream<S>.flatMap((S->Stream<R>)
+mapper)
+
+======= [#50532366_pgfId-1004320]##Description
+
+[#50532366_pgfId-1016680]##This method produces a stream by mapping each
+of the source elements to another stream and then concatenating the
+mapped streams. If the mapper function does not return a Stream, the
+behavior is undefined.
+
+======= [#50532366_pgfId-1016681]##See
+
+{empty}[#50532366_pgfId-1016689]##link:ELSpec.htm#50532366_49336[See
+mapper]
+
+======= [#50532366_pgfId-1013555]##Examples
+
+[#50532366_pgfId-1016347]##To list all orders of US customers:
+
+[#50532366_pgfId-1004506]## customers.stream().filter(c->c.country ==
+'USA')
+
+[#50532366_pgfId-1004507]## .flatMap(c->c.orders.stream())
+
+[#50532366_pgfId-1013578]## .toList()
+
+[#50532366_pgfId-1017087]##To obtain a list of alphabets used in a list
+of words:
+
+[#50532366_pgfId-1017101]##
+words.stream().flatMap(w->w.toCharArray().stream())
+
+[#50532366_pgfId-1017111]## .sorted()
+
+[#50532366_pgfId-1017118]## .distinct()
+
+[#50532366_pgfId-1017125]## .toList()
+
+======= [#50532366_pgfId-1004878]##distinct
+
+======= [#50532366_pgfId-1013592]##Syntax
+
+[#50532366_pgfId-1013593]##Stream<S> Stream<S>.distinct()
+
+======= [#50532366_pgfId-1013595]##Description
+
+[#50532366_pgfId-1013596]##This method produces a stream containing the
+elements of the source stream that are distinct, according to
+Object.equals.
+
+======= [#50532366_pgfId-1013640]##Example
+
+[#50532366_pgfId-1013641]##To remove the duplicate element b:
+
+[#50532366_pgfId-1013642]##['a', 'b', 'b',
+'c'].stream().distinct().toArray()
+
+======= [#50532366_pgfId-1013690]##sorted
+
+======= [#50532366_pgfId-1013692]##Syntax
+
+[#50532366_pgfId-1013693]##Stream<S> Stream<S>.sorted()
+
+[#50532366_pgfId-1013711]##Stream<S> Stream<S>.sorted(((p,q)->int)
+comparator)
+
+======= [#50532366_pgfId-1013694]##Description
+
+[#50532366_pgfId-1013695]##This method produces a stream containing the
+elements of the source stream in sorted order. If no comparator is
+specified, the elements are sorted in natural order. The behavior is
+undefined if no comparator is specified, and the elements do not
+implement java.lang.Comparable. If a comparator is specified, the
+elements are sorted with the provided comparator.
+
+[#50532366_pgfId-1013722]##The source collection is unaffected by this
+operation.
+
+======= [#50532366_pgfId-1015154]##See
+
+{empty}[#50532366_pgfId-1015164]##link:ELSpec.htm#50532366_14885[See
+comparator]
+
+======= [#50532366_pgfId-1013696]##Examples
+
+[#50532366_pgfId-1015664]##To sort a list of integers
+
+[#50532366_pgfId-1015674]## [1,3,2,4].stream().sorted().toList()
+
+[#50532366_pgfId-1015684]##To sort a list of integers in reversed order
+
+[#50532366_pgfId-1015694]## [1,3,2,4].stream().sorted((i,j)->j-i).List()
+
+[#50532366_pgfId-1015704]##To sort a list of words in the order of word
+length; and then for words of the same length, in alphabetical order:
+
+[#50532366_pgfId-1015714]## words.stream().sorted(
+
+[#50532366_pgfId-1015731]## (s,t)->(s.length()==t.length()?
+s.compareTo(t)
+
+[#50532366_pgfId-1015738]## : s.length() - t.length()))
+
+[#50532366_pgfId-1016699]## .toLst()
+
+[#50532366_pgfId-1015745]##To sort the products by name:
+
+[#50532366_pgfId-1015814]## products.stream().sorted(
+
+[#50532366_pgfId-1015827]## (p,q)->p.name.compareTo(p.name)).toList()
+
+[#50532366_pgfId-1015834]##Or by defining a comparing function, this can
+be rewritten as:
+
+[#50532366_pgfId-1015766]## comparing =
+map->(x,y)->map(x).compareTo(map(y));
+
+[#50532366_pgfId-1015784]##
+products.stream().sorted(comparing(p->p.name)).toList()
+
+======= [#50532366_pgfId-1013733]##forEach
+
+======= [#50532366_pgfId-1013735]##Syntax
+
+[#50532366_pgfId-1013736]##Object stream<S>.forEach(((S)->void)consumer)
+
+======= [#50532366_pgfId-1013738]##Description
+
+[#50532366_pgfId-1013739]##This method invokes the consumer function for
+each element in the source stream.
+
+[#50532366_pgfId-1013804]##This method always returns null.
+
+======= [#50532366_pgfId-1015177]##See
+
+{empty}[#50532366_pgfId-1015187]##link:ELSpec.htm#50532366_80150[See
+consumer]
+
+======= [#50532366_pgfId-1015871]##Example
+
+[#50532366_pgfId-1015881]##To print a list of customer names:
+
+[#50532366_pgfId-1015888]##
+customers.stream().forEach(c->printer.print(c.name))
+
+======= [#50532366_pgfId-1013845]##peek
+
+======= [#50532366_pgfId-1013847]##Syntax
+
+[#50532366_pgfId-1013848]##Stream<S> Stream<S>.peek(((S)->void)consumer)
+
+======= [#50532366_pgfId-1013849]##Description
+
+[#50532366_pgfId-1013850]##This method produces a stream containing the
+elements of the source stream, and invokes the consumer function for
+each element in the stream. The primary purpose of this method is for
+debugging, where one can take a peek at the elements in the stream at
+the place where this method is inserted.
+
+======= [#50532366_pgfId-1015202]##See
+
+{empty}[#50532366_pgfId-1015212]##link:ELSpec.htm#50532366_80150[See
+consumer]
+
+======= [#50532366_pgfId-1015898]##Example
+
+[#50532366_pgfId-1015908]##To print the a list of integer before and
+after a filter:
+
+[#50532366_pgfId-1015915]## [1,2,3,4,5].stream().peek(i->print(i))
+
+[#50532366_pgfId-1015925]## .filter(i-> i%2 == 0)
+
+[#50532366_pgfId-1015932]## .peek(i->print(i))
+
+[#50532366_pgfId-1017132]## .toList()
+
+======= [#50532366_pgfId-1016806]##iterator
+
+======= [#50532366_pgfId-1016823]##Syntax
+
+[#50532366_pgfId-1016833]##Iterator<S> Stream<S>.iterator()
+
+======= [#50532366_pgfId-1016843]##Description
+
+[#50532366_pgfId-1016853]##This method returns an iterator for the
+source stream, suitable for use in Java codes.
+
+======= [#50532366_pgfId-1013632]##limit
+
+======= [#50532366_pgfId-1004624]##Syntax
+
+[#50532366_pgfId-1004634]##Stream<S> Stream<S>.limit(Number count)
+
+======= [#50532366_pgfId-1004668]##Description
+
+[#50532366_pgfId-1004678]##This method produces a stream containing the
+first count number of elements of the source stream.
+
+[#50532366_pgfId-1013934]##If count is greater than the number of source
+elements, all the elements are included in the returned stream. If the
+count is less than or equal to zero, an empty stream is returned.
+
+======= [#50532366_pgfId-1015226]##Example
+
+[#50532366_pgfId-1004945]##To list the 3 most expensive products:
+
+[#50532366_pgfId-1004917]## products.stream().sorted(p->p.unitPrice)
+
+[#50532366_pgfId-1004918]## .limit(3)
+
+[#50532366_pgfId-1015941]## .toList()
+
+======= [#50532366_pgfId-1004991]##substream
+
+======= [#50532366_pgfId-1005012]##Syntax
+
+[#50532366_pgfId-1005048]##Stream<S> Stream<S>.substream(Number start)
+
+[#50532366_pgfId-1013894]##Stream<S> Stream<S>.substream(Number start,
+Number end)
+
+======= [#50532366_pgfId-1005070]##Description
+
+[#50532366_pgfId-1005022]##This method produces a stream containing the
+source elements, skipping the first start elements, and including the
+rest of the elements in the stream if end is not specified, or the next
+(end - start) elements in the stream if end is specified.
+
+[#50532366_pgfId-1013927]##If the elements in the source stream has
+fewer than start elements, nothing is included. If start is less than or
+equal to zero, no elements are skipped.
+
+======= [#50532366_pgfId-1015948]##Example
+
+[#50532366_pgfId-1015962]##The example
+
+[#50532366_pgfId-1015969]##
+[1,2,3,4,5].stream().substream(2,4).toArray()
+
+[#50532366_pgfId-1015979]##produces the array [3,4].
+
+======= [#50532366_pgfId-1014027]##toArray
+
+======= [#50532366_pgfId-1014029]##Syntax
+
+[#50532366_pgfId-1014030]##S[] Stream<S>.toArray()
+
+======= [#50532366_pgfId-1014031]##Description
+
+[#50532366_pgfId-1014032]##This method returns an array containing the
+elements of the source stream.
+
+======= [#50532366_pgfId-1016454]##toList
+
+======= [#50532366_pgfId-1016455]##Syntax
+
+[#50532366_pgfId-1016456]##List Stream<S>.toList()
+
+======= [#50532366_pgfId-1016457]##Description
+
+[#50532366_pgfId-1016458]##This method returns a List containing the
+elements of the source stream.
+
+[#50532366_pgfId-1016446]## 
+
+======= [#50532366_pgfId-1005095]##reduce
+
+======= [#50532366_pgfId-1005127]##Syntax
+
+[#50532366_pgfId-1005148]##Optional<S> Stream<S>.reduce(((S,S)->S)
+binaryOperator)
+
+[#50532366_pgfId-1005137]##S Stream<S>.reduce(S seed, ((S,S)->S)
+binaryOperator))
+
+======= [#50532366_pgfId-1005160]##Description
+
+[#50532366_pgfId-1005170]##The method with a seed value starts by
+assigning the seed value to an internal accumulator. Then for each of
+the elements in the source stream, the next accumulator value is
+computed, by invoking the binaryOperator function, with the current
+accumulator value as the first argument and the current element as the
+second argument. The final accumulator value is returned.
+
+[#50532366_pgfId-1014147]##The method without a seed value uses the
+first element of the source elements as the seed value. If the source
+stream is empty, an empty Optional is returned, otherwise an Optional
+with the final accumulator value is returned.
+
+======= [#50532366_pgfId-1015240]##See
+
+{empty}[#50532366_pgfId-1015253]##link:ELSpec.htm#50532366_32719[See
+Optional]
+
+{empty}[#50532366_pgfId-1015264]##link:ELSpec.htm#50532366_40532[See
+binaryOperator]
+
+======= [#50532366_pgfId-1015994]##Example
+
+[#50532366_pgfId-1016004]##To find tallest student in a class:
+
+[#50532366_pgfId-1016161]##
+students.stream().reduce((p,q)->(p.height>q.height? p: q).get()
+
+======= [#50532366_pgfId-1014191]##[#50532366_47935]##max
+
+======= [#50532366_pgfId-1014193]##Syntax
+
+[#50532366_pgfId-1014194]##Optional<S> Stream<S>.max()
+
+[#50532366_pgfId-1014195]##Optional<S> Stream<S>.max(((p,q)->int)
+comparator)
+
+======= [#50532366_pgfId-1014196]##Description
+
+[#50532366_pgfId-1014197]##This method computes the maximum of the
+elements in the source stream. If the comparator function is specified,
+it is used for comparisons. If no comparator function is specified, the
+elements themselves are compared, and must implement Comparable,
+otherwise an ELException is thrown.
+
+[#50532366_pgfId-1016718]##This method returns an empty Optional for an
+empty stream.
+
+======= [#50532366_pgfId-1015275]##See
+
+{empty}[#50532366_pgfId-1015285]##link:ELSpec.htm#50532366_14885[See
+comparator]
+
+======= [#50532366_pgfId-1016171]##Examples
+
+[#50532366_pgfId-1016206]##To find tallest student in a class:
+
+[#50532366_pgfId-1016198]##
+students.stream().max((p,q)->p.height-q.height)
+
+[#50532366_pgfId-1016181]##To find the maximum height of the students in
+a class:
+
+[#50532366_pgfId-1016188]## students.stream().map(s->s.height).max()
+
+======= [#50532366_pgfId-1014256]##min
+
+======= [#50532366_pgfId-1014257]##Syntax
+
+[#50532366_pgfId-1014258]##Optional<S> Stream<S>.min()
+
+[#50532366_pgfId-1014259]##Optional<S> Stream<S>.min(((p,q)->int)
+comparator)
+
+======= [#50532366_pgfId-1014260]##Description
+
+[#50532366_pgfId-1014261]##This method computes the minimum of the
+elements in the source stream. If the comparator function is specified,
+it is used for comparisons. If no comparator function is specified, the
+elements themselves are compared, and must implement Comparable,
+otherwise an ELException is thrown.
+
+[#50532366_pgfId-1016729]##This method returns an empty Optional for an
+empty stream.
+
+======= [#50532366_pgfId-1015295]##See
+
+{empty}[#50532366_pgfId-1015305]##link:ELSpec.htm#50532366_14885[See
+comparator]
+
+======= [#50532366_pgfId-1014294]##average
+
+======= [#50532366_pgfId-1014296]##Syntax
+
+[#50532366_pgfId-1014297]##Optional<S> Stream<S>.average()
+
+======= [#50532366_pgfId-1014299]##Description
+
+[#50532366_pgfId-1014301]##This method computes the average of all
+elements in the source stream by first computes the sum of the elements
+and then divides the sum by the number of elements. The elements are
+coerced to Number types according to link:ELSpec.htm#50532363_91898[See
+Coerce A to Number type N] during the computation.
+
+[#50532366_pgfId-1014322]##This method returns an empty Optional for an
+empty stream.
+
+======= [#50532366_pgfId-1014354]##sum
+
+======= [#50532366_pgfId-1014355]##Syntax
+
+[#50532366_pgfId-1014356]##Number Stream<S>.sum()
+
+======= [#50532366_pgfId-1014357]##Description
+
+[#50532366_pgfId-1014358]##This method computes the sum of all elements
+in the source stream. The elements are coerced to Number types according
+to link:ELSpec.htm#50532363_91898[See Coerce A to Number type N] during
+the computation.
+
+[#50532366_pgfId-1014362]##This method returns zero for an empty stream.
+
+======= [#50532366_pgfId-1017431]##[#50532366_57986]##count
+
+======= [#50532366_pgfId-1017448]##Syntax
+
+[#50532366_pgfId-1017461]##Long Stream<S>.count()
+
+======= [#50532366_pgfId-1017471]##Description
+
+[#50532366_pgfId-1017481]##This method returns the count of elements in
+the source stream.
+
+======= [#50532366_pgfId-1014388]##anyMatch
+
+======= [#50532366_pgfId-1014390]##Syntax
+
+[#50532366_pgfId-1014391]##Optional<boolean>
+Stream<S>.anyMatch((S->boolean) predicate)
+
+======= [#50532366_pgfId-1014393]##Description
+
+[#50532366_pgfId-1014394]##This method returns an Optional of true if
+any element in the source stream satisfies the test given by the
+predicate. It returns an empty Optional if the stream is empty.
+
+======= [#50532366_pgfId-1015315]##See
+
+{empty}[#50532366_pgfId-1015325]##link:ELSpec.htm#50532366_46734[See
+predicate]
+
+======= [#50532366_pgfId-1016226]##Example
+
+[#50532366_pgfId-1016236]##To determine if the list of integers contains
+any negative numbers:
+
+[#50532366_pgfId-1016243]##
+integers.stream().anyMatch(i->i<0).orElse(false)
+
+[#50532366_pgfId-1016257]##Note the use of orElse to set a default value
+for the empty list.
+
+======= [#50532366_pgfId-1014438]##allMatch
+
+======= [#50532366_pgfId-1014439]##Syntax
+
+[#50532366_pgfId-1014440]##Optional<boolean>
+Stream<S>.allMatch((S->boolean) predicate)
+
+======= [#50532366_pgfId-1014441]##Description
+
+[#50532366_pgfId-1014442]##This method returns an Optional of true if
+all elements in the source stream satisfy the test given by the
+predicate. It returns an empty Optional if the stream is empty.
+
+======= [#50532366_pgfId-1015344]##See
+
+{empty}[#50532366_pgfId-1015348]##link:ELSpec.htm#50532366_46734[See
+predicate]
+
+======= [#50532366_pgfId-1014454]##noneMatch
+
+======= [#50532366_pgfId-1014455]##Syntax
+
+[#50532366_pgfId-1014456]##Optional<boolean>
+Stream<S>.noneMatch((S->boolean) predicate)
+
+======= [#50532366_pgfId-1014457]##Description
+
+[#50532366_pgfId-1015362]##This method returns an Optional of true if
+none of the elements in the source stream satisfies the test given by
+the predicate. It returns an empty Optional if the stream is empty.
+
+======= [#50532366_pgfId-1015377]##See
+
+{empty}[#50532366_pgfId-1015366]##link:ELSpec.htm#50532366_46734[See
+predicate]
+
+[#50532366_pgfId-1014458]## 
+
+======= [#50532366_pgfId-1005918]##[#50532366_55544]##findFirst
+
+======= [#50532366_pgfId-1005941]##Syntax
+
+[#50532366_pgfId-1005956]##Optional<S> Stream<S>.findFirst()
+
+======= [#50532366_pgfId-1005978]##Description
+
+[#50532366_pgfId-1005928]##This method returns an Optional containing
+the first element in the stream, or an empty Optional if the stream is
+empty.
+
+======= [#50532366_pgfId-1006070]##See
+
+{empty}[#50532366_pgfId-1015396]##link:ELSpec.htm#50532366_32719[See
+Optional]
+
+[#50532366_pgfId-1016270]## 
+
+=== [#50532367_pgfId-10304]## [#50532367_32725]##
+
+======= [#50532367_pgfId-10196]##
+
+image:ELSpec-12.gif[image]
+
+[#50532367_42159]##Changes
+
+image:ELSpec-13.gif[image]
+
+[#50532367_pgfId-10381]##[#50532367_32559]##This appendix lists the
+changes in the EL specification. This appendix is non-normative.
+
+[#50532367_pgfId-997018]##
+
+image:ELSpec-14.gif[image]
+
+Changes between 3.0 Final Release and Proposed Final Draft
+
+[#50532367_pgfId-997028]##Added link:ELSpec.htm#50532363_78915[See
+Invoking method expressions].
+
+[#50532367_pgfId-997041]##Added link:ELSpec.htm#50532366_57986[See
+count].
+
+[#50532367_pgfId-11585]##
+
+image:ELSpec-14.gif[image]
+
+Changes between 3.0 Proposed Final Draft and 3.0 EDR
+
+[#50532367_pgfId-996864]##Complete rewrite of Chapter 2, to align with
+Java SE 8 libraries.
+
+[#50532367_pgfId-996874]##Replace “+” and “cat” with “+=” as the String
+concatenation operator.
+
+[#50532367_pgfId-996894]##Removed T(...) syntax as a type specifier.
+
+[#50532367_pgfId-996857]##
+
+image:ELSpec-14.gif[image]
+
+New in 3.0 EDR
+
+[#50532367_pgfId-11727]##Removed API from the specification document,
+since they are included in the javadocs.
+
+[#50532367_pgfId-996836]##Added link:ELSpec.htm#50532366_76288[See]
+Operations on Collection Objects”.
+
+[#50532367_pgfId-11767]##Added
+link:ELSpec.htm#50532363_String%20Concatenation%20Operator[See String
+Concatenation Operator - A += B], String concatenation operator.
+
+[#50532367_pgfId-11739]##Added link:ELSpec.htm#50532363_82843[See
+Assignment Operator - A = B], Assignment operator.
+
+[#50532367_pgfId-11746]##Added link:ELSpec.htm#50532363_47348[See
+Semicolon Operator - A ; B], Semi-colon operator.
+
+[#50532367_pgfId-11753]##Added link:ELSpec.htm#50532363_21722[See Lambda
+Expressions] Lambda Expression.
+
+[#50532367_pgfId-11774]##Added link:ELSpec.htm#50532363_40113[See Static
+Field and Method Reference] Static Field and Methods.
+
+[#50532367_pgfId-11781]##Added T and cat to
+link:ELSpec.htm#50532363_97958[See Reserved Words] Reserved words.
+
+[#50532367_pgfId-11788]##Modified link:ELSpec.htm#50532363_92539[See
+Operator Precedence] Operator precedence.
+
+[#50532367_pgfId-11905]##Modified coercion rule from nulls to
+non-primitive types.
+
+[#50532367_pgfId-11806]##Many changes to the javadoc API.
+
+[#50532367_pgfId-11840]##
+
+image:ELSpec-14.gif[image]
+
+Incompatibilities between EL 3.0 and EL 2.2
+
+[#50532367_pgfId-11856]##EL 3.0 introduces many new features, and
+although we take care to keep it backward compatible, there are a few
+areas that cannot be made backward compatible, either because the new
+features requires it, or because the feature in EL 2.2 is a bug that
+needs to be fixed. An implementation can provide an option to revert to
+the 2.2 behavior, if desired.
+
+[#50532367_pgfId-11892]##The default coercion for nulls to non-primitive
+types (except String) returns nulls. For instance, a null coerced to
+Boolean now returns a null, while a null coerced to boolean returns
+false.
+
+[#50532367_pgfId-11720]##
+
+image:ELSpec-14.gif[image]
+
+Changes between Maintenance 1 and Maintenance Release 2
+
+[#50532367_pgfId-11669]##The main change in this release is the addition
+of method invocations with parameters in the EL, such as
+#\{trader.buy(“JAVA”)}.
+
+[#50532367_pgfId-11633]##Added one method in javax.el.ELResolver:
+
+[#50532367_pgfId-11634]##Object invoke(ELContext context, Object base,
+Object method, Class<?>[] paramTypes, Object[] params).
+
+[#50532367_pgfId-11637]##Added one method in javax.el.BeanELResolver:
+
+[#50532367_pgfId-11635]##Object invoke(ELContext context, Object base,
+Object method, Class<?>[] paramTypes, Object[] params).
+
+[#50532367_pgfId-11643]##Added one method in
+javax.el.CompositeELResolver:
+
+[#50532367_pgfId-11641]##Object invoke(ELContext context, Object base,
+Object method, Class<?>[] paramTypes, Object[] params).
+
+[#50532367_pgfId-11592]##Section 1.1.1. Added to the first paragraph:
+
+[#50532367_pgfId-11593]##Simlarly, . operator can also be used to invoke
+methods, when the method name is known, but the [] operator can be used
+to invoke methods dynamically
+
+[#50532367_pgfId-11588]##Section 1.2.1. Change the last part of the last
+paragraph from
+
+[#50532367_pgfId-11604]##Upon evaluation, the EL API verifies that the
+method conforms to the expected signature provided at parse time. There
+is therefore no coercion performed.
+
+[#50532367_pgfId-11609]##to
+
+[#50532367_pgfId-11610]##Upon evaluation, if the expected signature is
+provided at parse time, the EL API verifies that the method conforms to
+the expected signature, and there is therefore no coercion performed. If
+the expected signature is not provided at parse time, then at
+evaluation, the method is identified with the information of the
+parameters in the expression and the parameters are coerced to the
+respective formal types.
+
+[#50532367_pgfId-11630]##Section 1.6
+
+[#50532367_pgfId-11631]##Added syntax for method invocation with
+parameters.
+
+[#50532367_pgfId-11632]##The steps for evaluation of the expression was
+modified to handle the method invocations with parameters.
+
+[#50532367_pgfId-11647]##Section 1.19
+
+[#50532367_pgfId-11648]##Production of ValueSuffix includes the optional
+parameters.
+
+[#50532367_pgfId-11579]##
+
+image:ELSpec-14.gif[image]
+
+Changes between 1.0 Final Release and Maintenance Release 1
+
+[#50532367_pgfId-11660]##Added two methods in
+javax.el.ExpressionFactory:
+
+[#50532367_pgfId-11661]##newInstance()
+
+[#50532367_pgfId-11662]##newInstance(Properties)
+
+[#50532367_pgfId-11649]##
+
+image:ELSpec-14.gif[image]
+
+Changes between Final Release and Proposed Final Draft 2
+
+[#50532367_pgfId-11580]##Added support for enumerated data types.
+Coercions and comparisons were updated to include enumerated type types.
+
+[#50532367_pgfId-11283]##
+
+image:ELSpec-14.gif[image]
+
+Changes between Public Review and Proposed Final Draft
+
+[#50532367_pgfId-11355]##New constructor for derived exception classes
+
+[#50532367_pgfId-11306]##Exception classes that extend _ELException_ (
+_PropertyNotFoundException_ , _PropertyNotWritableException_ ,
+_MethodNotFoundException_ ) did not have a constructor with both '
+_message_ ' and ' _rootCause_ ' as arguments (as it exists in
+_ELException_ ). The constructor has been added to these classes.
+
+[#50532367_pgfId-11378]## _javax.el.ELContext_ API changes
+
+[#50532367_pgfId-11380]##removed the _ELContext_ constructor +
+_protected ELContext(javax.el.ELResolver resolver)_
+
+[#50532367_pgfId-11382]##added the following abstract method in
+_ELContext +
+public abstract javax.el.ELResolver getELResolver();_
+
+[#50532367_pgfId-11413]##Section 1.8.1 - A \{<,>,<=,>=,lt,gt,le,ge} B
+
+[#50532367_pgfId-11445]##If the first condition (A==B) is false, simply
+fall through to the next step (do not return false). See See issue 129
+at jsp-spec-public.dev.java.net.
+
+[#50532367_pgfId-11484]## _javax.el.ResourceBundleELResolver_
+
+[#50532367_pgfId-11485]##New _ELResolver_ class added to support easy
+access to localized messages.
+
+[#50532367_pgfId-11524]##Generics
+
+[#50532367_pgfId-11525]##Since JSP 2.1 requires J2SE 5.0, we’ve modified
+the APIs that can take advantage of generics. These include:
+_ExpressionFactory:createValueExpression(),
+ExpressionFactory:createMethodExpression(),
+ExpressionFactory:coerceToType(), ELResolver:getType(),
+ELResolver:getCommonPropertyType(), MethodInfo:MethodInfo(),
+MethodInfo.getReturnType(), MethodInfo:getParamTypes()_
+
+[#50532367_pgfId-10407]##
+
+image:ELSpec-14.gif[image]
+
+Changes between Early Draft Release and Public Review
+
+[#50532367_pgfId-11079]##New concept: EL Variables
+
+[#50532367_pgfId-11086]##The EL now supports the concept of EL Variables
+to properly support code structures such as <c:forEach> where a nested
+action accesses a deferred expression that includes a reference to an
+iteration variable.
+
+[#50532367_pgfId-11190]##Resulting API changes are:
+
+[#50532367_pgfId-11222]## _The javax.el_ package description describes
+the motivation behind EL variables.
+
+[#50532367_pgfId-11080]## _ElContext_ has two additional methods to
+provide access to _FunctionMapper_ and _VariableMapper_ .
+
+[#50532367_pgfId-11081]## _ExpressionFactory_ creation methods now take
+an _ELContext_ parameter. _FunctionMapper_ has been removed as a
+parameter to these methods.
+
+[#50532367_pgfId-11125]##Added new class _VariableMapper_
+
+[#50532367_pgfId-11196]##At a few locations in the spec, the term
+"variable" has been replaced with "model object" to avoid confusion
+between model objects and the newly introduced EL variables.
+
+[#50532367_pgfId-11214]##Added new section “Variables” after section
+1.15 to introduce the concept of EL Variables.
+
+[#50532367_pgfId-11226]##EL in a nutshell (section 1.1.1)
+
+[#50532367_pgfId-11227]##Added a paragraph commenting on the flexibility
+of the EL, thanks to its pluggable API for the resolution of model
+objects, functions, and variables.
+
+[#50532367_pgfId-10493]##javax.el.ELException
+
+[#50532367_pgfId-10494]## _ElException_ now extends _RuntimeException_
+instead of _Exception_ .
+
+[#50532367_pgfId-10692]##Method _getRootCause()_ has been removed in
+favor of _Throwable.getCause()._
+
+[#50532367_pgfId-11255]##javax.el.ExpressionFactory
+
+[#50532367_pgfId-11052]##Creation methods now use _ELContex_ t instead
+of _FunctionMapper_ (see EL Variables above).
+
+[#50532367_pgfId-11161]##Added method _coerceToType()._ See issue 132 at
+jsp-spec-public.dev.java.net.
+
+[#50532367_pgfId-10761]##javax.el.MethodExpression
+
+[#50532367_pgfId-10769]## _invoke()_ must unwrap an
+_InvocationTargetExceptions_ before re-throwing as an _ELException_ .
+
+[#50532367_pgfId-10411]##Section 1.6 - Operators [] and .
+
+[#50532367_pgfId-10480]## _PropertyNotFoundException_ is now thrown
+instead of _NullPointerException_ when this is the last property being
+resolved and we’re dealing with an lvalue that is null.
+
+[#50532367_pgfId-10788]##Section 1.13 - Operator Precedence
+
+[#50532367_pgfId-10797]##Clarified the fact that qualified functions
+with a namespace prefix have precedence over the operators.
+
+[#50532367_pgfId-10874]##Faces Action Attribute and MethodExpression
+
+[#50532367_pgfId-10936]##In Faces, the _action_ attribute accepts both a
+String literal or a _MethodExpression_ . When migrating to JSF 1.2, if
+the attribute's type is set as _MethodExpression_ , an error would be
+reported if a String literal is specified because a String literal
+cannot evaluate to a valid _javax.el.MethodExpression_ .
+
+[#50532367_pgfId-10943]##To solve this issue, the specification of
+MethodExpression has been expanded to also support String
+literal-expressions. Changes have been made to:
+
+[#50532367_pgfId-10950]##Section 1.2.2
+
+[#50532367_pgfId-10956]## _ExpressionFactory.createMethodExpression()_
+
+[#50532367_pgfId-10961]## _javax.el.MethodExpression:invoke()_
