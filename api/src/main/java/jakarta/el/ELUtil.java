@@ -61,7 +61,7 @@ class ELUtil {
 
     /**
      * <p>
-     * The <code>ThreadLocal</code> variable used to record the <code>javax.faces.context.FacesContext</code> instance for
+     * The <code>ThreadLocal</code> variable used to record the <code>jakarta.faces.context.FacesContext</code> instance for
      * each processing thread.
      * </p>
      */

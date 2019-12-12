@@ -48,7 +48,7 @@ import java.util.Stack;
  * <p>
  * The collection of context objects is necessary because each <code>ELResolver</code> may need access to a different
  * context object. For example, Jakarta Server Pages and Jakarta Faces resolvers need access to a
- * <code>javax.servlet.jsp.JspContext</code> and a <code>javax.faces.context.FacesContext</code>, respectively.
+ * <code>jakarta.servlet.jsp.JspContext</code> and a <code>jakarta.faces.context.FacesContext</code>, respectively.
  *
  * <p>
  * When used in a web container, the creation of <code>ELContext</code> objects is controlled through the underlying
