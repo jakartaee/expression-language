@@ -681,7 +681,7 @@ _$\{employee.getName())._
 To invoke a method expression of a single
 variable, the identifier is first evaluated, as decribed in
 link:ELSpec.html#a146[See Evaluating Identifiers]. If the
-identifier evaluates to a javax.el.MethodExpression, the method
+identifier evaluates to a jakarta.el.MethodExpression, the method
 expression is invoked and the result returned, otherwise an error is
 raised. This form of method expression does not allow arguments to be
 specified in the EL expression.
@@ -1326,7 +1326,7 @@ provide the mapping of EL variables to _ValueExpression_ s when
 expressions are created. If no _VariableMapper_ is provided (by passing
 in _null_ ), variable mapping is disabled.
 
-See the _javax.el_ package description for
+See the _jakarta.el_ package description for
 more details.
 
 === 
@@ -1365,7 +1365,7 @@ evaluates to 120
 
 It can also be passed as an argument to a
 method, and be invoked in the method, by invoking
-javax.el.LambdaExpression.invoke(), such as
+jakarta.el.LambdaExpression.invoke(), such as
 
 employees.where(e->e.firstName == ‘Bob’)
 
@@ -1715,7 +1715,7 @@ options
 
  NODE_PREFIX="Ast";
 
- VISITOR_EXCEPTION="javax.el.ELException";
+ VISITOR_EXCEPTION="jakarta.el.ELException";
 
  VISITOR=false;
 
@@ -1739,7 +1739,7 @@ package com.sun.el.parser;
 
 import java.io.StringReader;
 
-import javax.el.ELException;
+import jakarta.el.ELException;
 
 public class ELParser
 
