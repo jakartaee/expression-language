@@ -183,11 +183,11 @@ constructs `$\{expr}` or `#\{expr}`. Both constructs are parsed and
 evaluated in exactly the same way by the EL, even though they might
 carry different meanings in the technology that is using the EL.
 
-For instance, by convention the JavaEE web
+For instance, by convention the Jakarta EE web
 tier specifications use the `$\{expr}` construct for immediate
 evaluation and the `\#{expr}` construct for deferred evaluation. This
 difference in delimiters points out the semantic differences between the
-two expression types in the JavaEE web tier. Expressions delimited by
+two expression types in the Jakarta EE web tier. Expressions delimited by
 `#{}` are said to use “deferred evaluation” because the expression is
 not evaluated until its value is needed by the system. Expressions
 delimited by `$\{}` are said to use “immediate evaluation” because the
@@ -424,9 +424,9 @@ It is illegal to mix _$\{}_ and _#\{}_
 constructs in a composite expression. This restriction is imposed to
 avoid ambiguities should a user think that using _$\{expr}_ or
 _#\{expr}_ dictates how an expression is evaluated. For instance, as was
-mentioned previously, the convention in the J2EE web tier specifications
+mentioned previously, the convention in the Jakarta EE web tier specifications
 is for _$\{}_ to mean immediate evaluation and for _#\{}_ to mean
-deferred evaluation. This means that in EL expressions in the J2EE web
+deferred evaluation. This means that in EL expressions in the Jakarta EE web
 tier, a developer cannot force immediate evaluation of some parts of a
 composite expression and deferred evaluation of other parts. This
 restriction may be lifted in future versions to allow for more advanced
