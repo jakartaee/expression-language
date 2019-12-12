@@ -6,26 +6,22 @@ All rights reserved.
 
 Eclipse is a registered trademark of the Eclipse Foundation. Jakarta
 is a trademark of the Eclipse Foundation. Oracle and Java are
-registered trademarks of Oracle and/or its  affiliates. Other names
+registered trademarks of Oracle and/or its affiliates. Other names
 may be trademarks of their respective owners. 
 
-=== 
+The Jakarta Expression Language Team TBD, 2020
 
-image:ELSpec-3.png[image]
+Comments to: el-dev@eclipse.org
 
-Preface
+:sectnums!:
 
-image:ELSpec-4.png[image]
+== Preface
 
 This is the Expression Language specification
 version 4.0, developed by the JSR-341 (EL 4.0) expert groups under the
 Java Community Process. See http://www.jcp.org.
 
-=== 
-
-image:ELSpec-5.png[image]
-
-Historical Note
+=== Historical Note
 
 The EL was originally inspired by both
 ECMAScript and the XPath expression languages. During its inception, the
@@ -60,66 +56,45 @@ which took effect for the JSP 2.1 and Faces 1.2 releases.
 
 The JSP/JSTL/Faces expert groups also
 acknowledged that the Expression Language(EL) is useful beyond their own
-specifications. This specification is the first JSR that defines the
+specifications. The 3.0 specification was the first JSR that defined the
 Expression Language as an independent specification, with no
 dependencies on other technologies.
 
-=== 
+This specification is now developed under the rules of the Eclipse
+Foundation Specification Process. Together with the Test Compatibility
+Kit (TCK) which tests that a given implementation meets the requirements
+of the specification, and Compatible Implementations (CIs) that
+implement this specification and which pass the TCK, this specification
+defines the Jakarta standard for Expression Language.
 
-image:ELSpec-5.png[image]
-
-Typographical Conventions
-
-
+=== Typographical Conventions
 
 [width="100%",cols="50%,50%",options="header",]
 |===
 |Font Style |Uses
-|Italic |Emphasis,
-definition of term.
-
-| _Monospace_ |Syntax,
-code examples, attribute names, Java language types, API, enumerated
-attribute values.
+| _Italic_ | _Emphasis, definition of term._
+| `Monospace` | `Syntax, code examples, attribute names, Java language
+types, API, enumerated attribute values.`
 |===
 
-=== 
-
-image:ELSpec-5.png[image]
-
-Comments
+=== Comments
 
 We are interested in improving this
 specification and welcome your comments and suggestions. We have a
-java.net project with an issue tracker and a mailing list for comments
+GitHub project with an issue tracker and a mailing list for comments
 and discussions about this specification.
 
-Project:
+Project: https://github.com/eclipse-ee4j/el-ri
 
-http://java.net/projects/el-spec
+Mail alias for comments: el-dev@eclipse.org
 
-Mail alias for comments:
-
- users@el-spec.java.net
-
-=== 
-
-=== 
-
-image:ELSpec-6.png[image]
-
-Language Syntax and Semantics
-
-image:ELSpec-7.png[image]
+:sectnums:
+== Language Syntax and Semantics
 
 The syntax and semantics of the Expression
 Language (EL) are described in this chapter.
 
-=== 
-
-image:ELSpec-8.png[image]
-
-Overview
+=== Overview
 
 The EL was originally designed as a simple
 language to meet the needs of the presentation layer in web
