@@ -1,5 +1,5 @@
 :sectnums:
-= Jakarta Expression Language, Version 3.0
+= Jakarta Expression Language, Version 4.0
 
 Copyright (c) 2013, 2019 Oracle and/or its affiliates. All rights reserved.
 
@@ -15,7 +15,7 @@ Preface
 image:ELSpec-4.png[image]
 
 This is the Expression Language specification
-version 3.0, developed by the JSR-341 (EL 3.0) expert groups under the
+version 4.0, developed by the JSR-341 (EL 4.0) expert groups under the
 Java Community Process. See http://www.jcp.org.
 
 === 
