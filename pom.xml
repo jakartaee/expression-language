@@ -28,9 +28,9 @@
 
     <groupId>org.glassfish</groupId>
     <artifactId>jakarta.el</artifactId>
-    <version>3.0.4</version>
+    <version>4.0.0</version>
     
-    <name>Jakarta Expression Language 3.0</name>
+    <name>Jakarta Expression Language 4.0</name>
     <description>
         Jakarta Expression Language provides a specification document, API, reference implementation and TCK 
         that describes an expression language for Java applications.
@@ -39,9 +39,9 @@
 
     <properties>
         <!-- the bundle build number must be the same as the maven number -->
-        <bundle.version>3.0.3</bundle.version>
+        <bundle.version>4.0.0</bundle.version>
         <!-- The most current api version -->
-        <spec.version>3.0</spec.version>
+        <spec.version>4.0</spec.version>
         <extensionName>jakarta.el</extensionName>
         <bundle.symbolicName>com.sun.el.jakarta.el</bundle.symbolicName>
         <vendorName>Oracle Corporation</vendorName>
