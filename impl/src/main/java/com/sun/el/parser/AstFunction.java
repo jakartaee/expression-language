@@ -19,12 +19,12 @@ package com.sun.el.parser;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-import javax.el.ELClass;
-import javax.el.ELException;
-import javax.el.FunctionMapper;
-import javax.el.LambdaExpression;
-import javax.el.ValueExpression;
-import javax.el.VariableMapper;
+import jakarta.el.ELClass;
+import jakarta.el.ELException;
+import jakarta.el.FunctionMapper;
+import jakarta.el.LambdaExpression;
+import jakarta.el.ValueExpression;
+import jakarta.el.VariableMapper;
 
 import com.sun.el.lang.EvaluationContext;
 import com.sun.el.util.MessageFactory;

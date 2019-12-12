@@ -21,11 +21,11 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import javax.el.ELProcessor;
-import javax.el.ELManager;
-import javax.el.ExpressionFactory;
-import javax.el.ValueExpression;
-import javax.el.MethodExpression;
+import jakarta.el.ELProcessor;
+import jakarta.el.ELManager;
+import jakarta.el.ExpressionFactory;
+import jakarta.el.ValueExpression;
+import jakarta.el.MethodExpression;
 
 /**
  *

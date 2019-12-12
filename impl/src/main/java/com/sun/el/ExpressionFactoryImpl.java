@@ -21,12 +21,12 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
-import javax.el.ELContext;
-import javax.el.ELException;
-import javax.el.ELResolver;
-import javax.el.ExpressionFactory;
-import javax.el.MethodExpression;
-import javax.el.ValueExpression;
+import jakarta.el.ELContext;
+import jakarta.el.ELException;
+import jakarta.el.ELResolver;
+import jakarta.el.ExpressionFactory;
+import jakarta.el.MethodExpression;
+import jakarta.el.ValueExpression;
 
 import com.sun.el.lang.ELSupport;
 import com.sun.el.lang.ExpressionBuilder;
@@ -34,7 +34,7 @@ import com.sun.el.stream.StreamELResolver;
 import com.sun.el.util.MessageFactory;
 
 /**
- * @see javax.el.ExpressionFactory
+ * @see jakarta.el.ExpressionFactory
  *
  * @author Jacob Hookom [jacob@hookom.net]
  * @author Kin-man Chung
@@ -52,7 +52,7 @@ public class ExpressionFactoryImpl extends ExpressionFactory {
     public ExpressionFactoryImpl(Properties properties) {
         super();
         this.properties = properties;
-        this.isBackwardCompatible22 = "true".equals(getProperty("javax.el.bc2.2"));
+        this.isBackwardCompatible22 = "true".equals(getProperty("jakarta.el.bc2.2"));
     }
 
     @Override

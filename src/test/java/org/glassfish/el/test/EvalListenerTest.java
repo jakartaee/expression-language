@@ -17,10 +17,10 @@
 package org.glassfish.el.test;
 
 import java.util.ArrayList;
-import javax.el.ELManager;
-import javax.el.ELContext;
-import javax.el.ELProcessor;
-import javax.el.EvaluationListener;
+import jakarta.el.ELManager;
+import jakarta.el.ELContext;
+import jakarta.el.ELProcessor;
+import jakarta.el.EvaluationListener;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

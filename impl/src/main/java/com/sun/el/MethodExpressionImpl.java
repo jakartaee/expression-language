@@ -25,17 +25,17 @@ import java.io.IOException;
 import java.io.ObjectInput;
 import java.io.ObjectOutput;
 
-import javax.el.ELContext;
-import javax.el.ELException;
-import javax.el.ELResolver;
-import javax.el.Expression;
-import javax.el.ExpressionFactory;
-import javax.el.FunctionMapper;
-import javax.el.MethodExpression;
-import javax.el.MethodInfo;
-import javax.el.MethodNotFoundException;
-import javax.el.PropertyNotFoundException;
-import javax.el.VariableMapper;
+import jakarta.el.ELContext;
+import jakarta.el.ELException;
+import jakarta.el.ELResolver;
+import jakarta.el.Expression;
+import jakarta.el.ExpressionFactory;
+import jakarta.el.FunctionMapper;
+import jakarta.el.MethodExpression;
+import jakarta.el.MethodInfo;
+import jakarta.el.MethodNotFoundException;
+import jakarta.el.PropertyNotFoundException;
+import jakarta.el.VariableMapper;
 
 import com.sun.el.lang.EvaluationContext;
 import com.sun.el.lang.ExpressionBuilder;
@@ -66,10 +66,10 @@ import com.sun.el.parser.Node;
  * <p>
  * See the notes about comparison, serialization and immutability in the {@link Expression} javadocs.
  *
- * @see javax.el.ELResolver
- * @see javax.el.Expression
- * @see javax.el.ExpressionFactory
- * @see javax.el.MethodExpression
+ * @see jakarta.el.ELResolver
+ * @see jakarta.el.Expression
+ * @see jakarta.el.ExpressionFactory
+ * @see jakarta.el.MethodExpression
  *
  * @author Jacob Hookom [jacob@hookom.net]
  * @version $Change: 181177 $$DateTime: 2001/06/26 08:45:09 $$Author: kchung $
@@ -152,7 +152,7 @@ public final class MethodExpressionImpl extends MethodExpression implements Exte
      *
      * @return The original expression String.
      *
-     * @see javax.el.Expression#getExpressionString()
+     * @see jakarta.el.Expression#getExpressionString()
      */
     @Override
     public String getExpressionString() {
@@ -172,7 +172,7 @@ public final class MethodExpressionImpl extends MethodExpression implements Exte
      * @throws MethodNotFoundException if no suitable method can be found.
      * @throws ELException if an exception was thrown while performing property or variable resolution. The thrown exception
      * must be included as the cause property of this exception, if available.
-     * @see javax.el.MethodExpression#getMethodInfo(javax.el.ELContext)
+     * @see jakarta.el.MethodExpression#getMethodInfo(jakarta.el.ELContext)
      */
     @Override
     public MethodInfo getMethodInfo(ELContext context) throws PropertyNotFoundException, MethodNotFoundException, ELException {
@@ -227,7 +227,7 @@ public final class MethodExpressionImpl extends MethodExpression implements Exte
      * must be included as the cause property of this exception, if available. If the exception thrown is an
      * <code>InvocationTargetException</code>, extract its <code>cause</code> and pass it to the <code>ELException</code>
      * constructor.
-     * @see javax.el.MethodExpression#invoke(javax.el.ELContext, java.lang.Object[])
+     * @see jakarta.el.MethodExpression#invoke(jakarta.el.ELContext, java.lang.Object[])
      */
     @Override
     public Object invoke(ELContext context, Object[] params) throws PropertyNotFoundException, MethodNotFoundException, ELException {

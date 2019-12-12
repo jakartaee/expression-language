@@ -42,8 +42,8 @@
         <bundle.version>3.0.3</bundle.version>
         <!-- The most current api version -->
         <spec.version>3.0</spec.version>
-        <extensionName>javax.el</extensionName>
-        <bundle.symbolicName>com.sun.el.javax.el</bundle.symbolicName>
+        <extensionName>jakarta.el</extensionName>
+        <bundle.symbolicName>com.sun.el.jakarta.el</bundle.symbolicName>
         <vendorName>Oracle Corporation</vendorName>
         <findbugs.version>2.5.2</findbugs.version>
         <findbugs.exclude>${project.basedir}/exclude.xml</findbugs.exclude>

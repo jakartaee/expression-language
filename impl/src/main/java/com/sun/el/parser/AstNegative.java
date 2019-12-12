@@ -19,7 +19,7 @@ package com.sun.el.parser;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
-import javax.el.ELException;
+import jakarta.el.ELException;
 
 import com.sun.el.lang.EvaluationContext;
 

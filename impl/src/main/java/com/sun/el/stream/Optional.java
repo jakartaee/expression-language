@@ -16,7 +16,7 @@
 
 package com.sun.el.stream;
 
-import javax.el.LambdaExpression;
+import jakarta.el.LambdaExpression;
 
 public class Optional {
 
