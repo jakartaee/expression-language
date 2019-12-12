@@ -138,14 +138,14 @@ EL 4.0 implements the transition from the `javax` namespace to the
 ==== EL in a nutshell
 
 The syntax is quite simple. Model objects are
-accessed by name. A generalized _[]_ operator can be used to access
+accessed by name. A generalized `[]` operator can be used to access
 maps, lists, arrays of objects and properties of a JavaBeans object, and
 to invoke methods in a JavaBeans object; the operator can be nested
-arbitrarily. The _._ operator can be used as a convenient shorthand for
+arbitrarily. The `.` operator can be used as a convenient shorthand for
 property access when the property name follows the conventions of Java
-identifiers, but the _[]_ operator allows for more generalized access.
-Similarly, . operator can also be used to invoke methods, when the
-method name is known, but the [] operator can be used to invoke methods
+identifiers, but the `[]` operator allows for more generalized access.
+Similarly, `.` operator can also be used to invoke methods, when the
+method name is known, but the `[]` operator can be used to invoke methods
 dynamically.
 
 Relational comparisons are allowed using the
@@ -190,7 +190,7 @@ difference in delimiters points out the semantic differences between the
 two expression types in the Jakarta EE web tier. Expressions delimited by
 `#{}` are said to use “deferred evaluation” because the expression is
 not evaluated until its value is needed by the system. Expressions
-delimited by `$\{}` are said to use “immediate evaluation” because the
+delimited by `${}` are said to use “immediate evaluation” because the
 expression is compiled when the JSP page is compiled and it is executed
 when the JSP page is executed. More on this in
 link:ELSpec.html#a125[See Syntax restrictions].
@@ -201,7 +201,7 @@ on where each construct can be used.
 
 In some EL APIs, especially those introduced
 in EL 3.0 to support stand-alone use, the EL expressions are specified
-without `$\{}` or `#\{}` delimiters.
+without `${}` or `#{}` delimiters.
 
 *Nested eval-expressions, such as `${item[$\{i}]}`, are illegal.*
 
@@ -250,12 +250,12 @@ request values” phase of Faces evaluates the EL expression
 `#{checkOutFormBean.email}` as a reference to a data structure whose
 value is set with the input parameter it is associated with in the form.
 The result of the expression therefore represents a reference to a data
-structure, or an `lvalue`, the left hand side of an assignment
+structure, or an lvalue, the left hand side of an assignment
 operation.
 
 When that same expression is evaluated during
 the rendering phase, it yields the specific value associated with the
-object (`rvalue`), just as would be the case with JSP.
+object (rvalue), just as would be the case with JSP.
 
 The valid syntax for an lvalue is a subset of
 the valid syntax for an rvalue. In particular, an lvalue can only
@@ -336,9 +336,9 @@ and the parameters are coerced to the respective formal types.
 ==== Literal-expression
 
 A literal-expression does not use the
-_$\{expr}_ or _#\{expr}_ constructs, and simply evaluates to the text of
-the expression, of type _String_ . Upon evaluation, an expected type of
-something other than _String_ can be provided. Sample
+`$\{expr}` or `#{expr}` constructs, and simply evaluates to the text of
+the expression, of type `String`. Upon evaluation, an expected type of
+something other than `String` can be provided. Sample
 literal-expressions are shown in link:ELSpec.html#a98[See
 Sample literal-expressions].
 
@@ -349,34 +349,36 @@ Sample literal-expressions].
 |Expression
 |Expected Type
 |Result
-|Aloha! | _String_
-| _Aloha!_
-
-|true | _Boolean_
-|Boolean.TRUE
+|`Aloha!`
+|`String`
+|`Aloha!`
+|`true`
+|`Boolean`
+|`Boolean.TRUE`
 |===
-
-=== Sample [[a98]]literal-expressions
+Sample [[a98]]literal-expressions
 
 To generate literal values that include the
-character sequence “ _$\{_ " or “ _#\{_ “, the developer can choose to
+character sequence \"``${``" or \"``#{``", the developer can choose to
 use a composite expression as shown here:
 
- _$\{'$\{'}exprA}_
+`${'${'}exprA}`
 
- _#\{'#\{'}exprB}_ The resulting values would
-then be the strings _$\{exprA}_ and _#\{exprB}_ .
+`\#{'#{'}exprB}`
+ 
+The resulting values would
+then be the strings `${exprA}` and `#\{exprB}`.
 
-Alternatively, the escape characters _\$_ and
-_\#_ can be used to escape what would otherwise be treated as an
+Alternatively, the escape characters `\$` and
+`\#` can be used to escape what would otherwise be treated as an
 eval-expression. Given the literal-expressions:
 
- _\$\{exprA}_
+`\${exprA}`
 
- _\#\{exprB}_
+`\#{exprB}`
 
 The resulting values would again be the
-strings _$\{exprA}_ and _#\{exprB}_ .
+strings `$\{exprA}` and `#\{exprB}`.
 
 A literal-expression can be used anywhere a
 value expression can be used. A literal-expression can also be used as a
@@ -385,20 +387,20 @@ coercion rules (see link:ELSpec.html#a443[See Type Conversion])
 then apply if the return type of the method expression is not
 java.lang.String.
 
-=== Composite expressions
+==== Composite expressions
 
 The EL also supports _composite expressions_
 , where multiple EL expressions are grouped together. With composite
 expressions, eval-expressions are evaluated from left to right, coerced
-to _String_ s (according to the EL type conversion rules), and
+to ``String``s (according to the EL type conversion rules), and
 concatenated with any intervening literal-expressions.
 
-For example, the composite expression “
-_$\{firstName} $\{lastName}_ ” is composed of three EL expressions:
-eval-expression “ _$\{firstName}_ ”, literal-expression “ __ “, and
-eval-expression “ _$\{lastName}_ ”.
+For example, the composite expression
+\"``$\{firstName} $\{lastName}``" is composed of three EL expressions:
+eval-expression \"``$\{firstName}``", literal-expression \"`` ``", and
+eval-expression \"``$\{lastName}``".
 
-Once evaluated, the resulting _String_ is
+Once evaluated, the resulting `String` is
 then coerced to the expected type, according to the EL type conversion
 rules. A sample composite expression is shown in
 link:ELSpec.html#a118[See Sample composite expression]. +
@@ -408,24 +410,23 @@ link:ELSpec.html#a118[See Sample composite expression]. +
 |Expression
 |Expected Type
 |Result
-|Welcome $\{customer.name} to our site
-| _String_ a|
-Welcome Guy Lafleur to our site
+|`Welcome ${customer.name} to our site`
+|`String`
+|Welcome Guy Lafleur to our site
 
-$\{customer.name} evaluates to a String which
-is then concatenated with the literal-expressions. _No conversion
+_``${customer.name}`` evaluates to a `String` which
+is then concatenated with the literal-expressions. No conversion
 necessary._
 
 |===
+Sample composite expression
 
-=== [[a118]]Sample composite expression
-
-It is illegal to mix _$\{}_ and _#\{}_
+It is illegal to mix `${}` and `\#{}`
 constructs in a composite expression. This restriction is imposed to
-avoid ambiguities should a user think that using _$\{expr}_ or
-_#\{expr}_ dictates how an expression is evaluated. For instance, as was
+avoid ambiguities should a user think that using `${expr}` or
+`#{expr}` dictates how an expression is evaluated. For instance, as was
 mentioned previously, the convention in the Jakarta EE web tier specifications
-is for _$\{}_ to mean immediate evaluation and for _#\{}_ to mean
+is for `${}` to mean immediate evaluation and for `#{}` to mean
 deferred evaluation. This means that in EL expressions in the Jakarta EE web
 tier, a developer cannot force immediate evaluation of some parts of a
 composite expression and deferred evaluation of other parts. This
@@ -443,55 +444,46 @@ no lost in functionality, since a composite expression can be specified
 with a single eval-expressions, by using the string concatenation
 operators, introduced in EL 3.0. For instance, the composite expression
 
-Welcome $\{customer.name} to our site
+`Welcome ${customer.name} to our site`
 
 can be written as
 
-$\{‘Welcome ‘ += customer.name += ‘ to our
-site’}.
+`${'Welcome ' += customer.name += ' to our site'}`.
 
-=== [[a125]]Syntax restrictions
+==== Syntax restrictions
 
-While _$\{}_ and _#\{}_ eval-expressions are
+While `${}` and `#{}` eval-expressions are
 parsed and evaluated in exactly the same way by the EL, the underlying
 technology is free to impose restrictions on which syntax can be used
 according to where the expression appears.
 
-For instance, in JSP 2.1, _#\{}_ expressions
+For instance, in JSP 2.1, `\#{}` expressions
 are only allowed for tag attributes that accept deferred expressions.
-_#\{expr}_ will generate an error if used anywhere else.
+`#{expr}` will generate an error if used anywhere else.
 
-=== 
-
-image:ELSpec-8.png[image]
-
-Literals
+=== Literals
 
 There are literals for boolean, integer,
 floating point, string, and null in an eval-expression.
 
-Boolean - _true_ and _false_
+* Boolean - `true` and `false`
 
-{empty}Integer - As defined by the
-_IntegerLiteral_ construct in link:ELSpec.html#a524[See
+* Integer - As defined by the
+`IntegerLiteral` construct in link:ELSpec.html#a524[See
 Collected Syntax]
 
-{empty}Floating point - As defined by the
-_FloatingPointLiteral_ construct in link:ELSpec.html#a524[See
+* Floating point - As defined by the
+`FloatingPointLiteral` construct in link:ELSpec.html#a524[See
 Collected Syntax]
 
-String - With single and double quotes - _"_
-is escaped as _\"_ , _'_ is escaped as _\'_ , and _\_ is escaped as _\\_
-. Quotes only need to be escaped in a string value enclosed in the same
+* String - With single and double quotes - `"`
+is escaped as `\"`, `'` is escaped as `\'`, and `\` is escaped as `\\`.
+Quotes only need to be escaped in a string value enclosed in the same
 type of quote
 
-Null - _null_
+* Null - `null`
 
-=== 
-
-image:ELSpec-8.png[image]
-
-Errors, Warnings, Default Values
+=== Errors, Warnings, Default Values
 
 The Expression Language has been designed with
 the presentation layer of web applications in mind. In that usage,
@@ -503,79 +495,72 @@ that are assigned to a subexpression when there is some problem. An
 error is an exception thrown (to be handled by the environment where the
 EL is used).
 
-=== 
-
-image:ELSpec-8.png[image]
-
-Resolution of Model Objects and their Properties or Methods
+=== Resolution of Model Objects and their Properties or Methods
 
 A core concept in the EL is the evaluation of
 a model object name into an object, and the resolution of properties or
-methods applied to objects in an expression (operators _._ and _[]_ ).
+methods applied to objects in an expression (operators `.` and `[]` ).
 
 The EL API provides a generalized mechanism,
-an _ELResolver_ , implemented by the underlying technology and which
+an `ELResolver`, implemented by the underlying technology and which
 defines the rules that govern the resolution of model object names and
 their associated properties.
 
 The resolution of names and properties is
 further affected by the presence of
 
-Functions. See
+* Functions. See
 link:ELSpec.html#a386[See Functions].
 
-Variables. See
+* Variables. See
 link:ELSpec.html#a393[See Variables].
 
-Imported names (classes, fields, and
+* Imported names (classes, fields, and
 methods). See link:ELSpec.html#a421[See Static Field and Method
 Reference].
 
-Lambda expressions and arguments. See
+* Lambda expressions and arguments. See
 link:ELSpec.html#a398[See Lambda Expressions].
 
 The rules described below are used in
 resolving names and properties when evaluating identifiers, function
 calls, and object properties and method calls.
 
-=== [[a146]]Evaluating Identifiers
+==== Evaluating Identifiers
 
 The steps are used for evaluating an
 identifier.
 
-If the identifier is a lambda argument passed
+* If the identifier is a lambda argument passed
 to a lambda expression invocation, its value is returned.
 
-Else if the identifier is a variable, the
+* Else if the identifier is a variable, the
 associated expression is evaluated and returned.
 
-Else if the identifier is resolved by the
-ELResolvers, the value returned from the ELResolvers is returned.
+* Else if the identifier is resolved by the
+``ELResolver``s, the value returned from the ``ELResolver``s is returned.
 
-Else if the identifier is an imported static
+* Else if the identifier is an imported static
 field, its value is returned.
 
-Else return not resolved.
+* Else return not resolved.
 
 One implication of the explicit search order
 of the identifiers is that an identifier hides other identifiers (of the
 same name) that come after it in the list.
 
-=== Evaluating functions
+==== Evaluating functions
 
 The expression with the syntax
-func(args...)(args...)... can mean any of the following.
+_func(args...)(args...)..._ can mean any of the following.
 
-A call to an EL fucntion with empty
-namespace.
+* A call to an EL fucntion with empty namespace.
 
-A call to a lambda expression.
+* A call to a lambda expression.
 
-A call to the constructor of an imported
-class.
+* A call to the constructor of an imported class.
 
-A call to a static method that has been
-imported statically.
+* A call to a static method that has been imported statically.
 
 Note the above syntax allows the invocation
 of a lambda expression that returns another lambda expression, which is
@@ -584,669 +569,582 @@ then invoked.
 The following steps are used to evaluate the
 above expression.
 
-Evaluate the name of the function as an
-identifier.
+* Evaluate the name of the function as an identifier.
 
-If the identifier is a lambda argument passed
+** If the identifier is a lambda argument passed
 to a lambda expression invocation, its value is returned.
 
-Else if the identifier is a variable, the
+** Else if the identifier is a variable, the
 associated expression is evaluated and returned.
 
-Else if the identifier is resolved by the
-ELResolvers, the value returned from the ELResolvers is returned.
+** Else if the identifier is resolved by the ``ELResolver``s,
+the value returned from the ``ELResolver``s is returned.
 
-If the result of evaluating the function name
-is a LambdaExpression, the LambdaExpression is invoked with the supplied
-arguments. If the result of evaluating the LambdaExpression is another
-LambdaExpression, and the syntax contains repeated function invocations,
-such as func()()..., then the resultant LambdaExpression is in turn
+* If the result of evaluating the function name is a `LambdaExpression`,
+the `LambdaExpression` is invoked with the supplied
+arguments. If the result of evaluating the `LambdaExpression` is another
+`LambdaExpression`, and the syntax contains repeated function invocations,
+such as _func()()..._, then the resultant `LambdaExpression` is in turn
 evaluated, and so on.
 
-Else if the function has been mapped
-previously in a FunctionMapper, the mapped method is invoked with the
+* Else if the function has been mapped
+previously in a `FunctionMapper`, the mapped method is invoked with the
 supplied arguments.
 
-Else if the function name is the name of an
+* Else if the function name is the name of an
 imported class, the constructor for this class is invoked with the
 supplied arguments.
 
-Else if the function name is the name of an
+* Else if the function name is the name of an
 imported static method, the method is invoked with the supplied
 arguments.
 
-Else error.
+* Else error.
 
-=== Evaluating objects with properties
+==== Evaluating objects with properties
 
 The steps for evaluating an expression with
-[] or . operators (property reference and method call) are described in
+`[]` or `.` operators (property reference and method call) are described in
 link:ELSpec.html#a177[See Operators [] and .]. However, the
-syntax for . operator is also used to reference a static field, or to
-invoke a static method. Therefore if the expression with a . operator is
-not resolved by the ELResolvers, and if the identifier for the base
+syntax for `.` operator is also used to reference a static field, or to
+invoke a static method. Therefore if the expression with a `.` operator is
+not resolved by the ``ELResolver``s, and if the identifier for the base
 object is the name of an imported class, the expression becomes a
 reference to a static field, or an invocation of a static method, of the
 imported class.
 
-=== [[a173]]Invoking method expressions
+==== Invoking method expressions
 
 A method expression can consist of either a
-single variable (e.g. _$\{name}_ ) or a property resolution on some
-object, via the _._ or _[]_ operator (e.g. _$\{employee.getName}_ ).
+single variable (e.g. `${name}` ) or a property resolution on some
+object, via the `.` or `[]` operator (e.g. `${employee.getName}` ).
 link:ELSpec.html#a177[See Operators [] and .] describes how to
 invoke a method of an object. This form of method expressions allows
 arguments to the method to be specified in the EL expression (e.g.
-_$\{employee.getName())._
+`${employee.getName()}`.
 
 To invoke a method expression of a single
 variable, the identifier is first evaluated, as decribed in
 link:ELSpec.html#a146[See Evaluating Identifiers]. If the
-identifier evaluates to a jakarta.el.MethodExpression, the method
+identifier evaluates to a `jakarta.el.MethodExpression`, the method
 expression is invoked and the result returned, otherwise an error is
 raised. This form of method expression does not allow arguments to be
 specified in the EL expression.
 
-=== 
-
-image:ELSpec-8.png[image]
-
-[[a177]]Operators _[]_ and _._
+=== Operators `[]` and `.`
 
 The EL follows ECMAScript in unifying the
-treatment of the _._ and _[]_ operators.
+treatment of the `.` and `[]` operators.
 
- _expr-a.identifier-b_ is equivalent to
-_expr-a[“identifier-b”]_ ; that is, the identifier _identifier-b_ is
+`expr-a.identifier-b` is equivalent to
+`expr-a["identifier-b"]` ; that is, the identifier `identifier-b` is
 used to construct a literal whose value is the identifier, and then the
-_[]_ operator is used with that value.
+`[]` operator is used with that value.
 
-Similarly, _expr-a.identifier-b(params)_ is
-equivalent to _expr-a["identifier-b"](params)._
+Similarly, `expr-a.identifier-b(params)` is
+equivalent to `expr-a["identifier-b"](params).`
 
 The expression
-_expr-a["identifier-b"](params)_ denotes a parametered method
-invocation, where _params_ is a comma-separated list of expressions
+`expr-a["identifier-b"](params)` denotes a parametered method
+invocation, where `params` is a comma-separated list of expressions
 denoting the parameters for the method call.
 
-To evaluate _expr-a[expr-b] or
-expr-a[expr-b](params)_ :
+To evaluate `expr-a[expr-b] or expr-a[expr-b](params)`:
 
-Evaluate _expr-a_ into _value-a_ .
+* Evaluate `expr-a` into `value-a` .
 
-If _value-a_ is _null_ :
+* If `value-a` is `null`:
 
-If _expr-a[expr-b]_ is the last property
-being resolved:
+** If `expr-a[expr-b]` is the last property being resolved:
 
-If the expression is a value expression and
-_ValueExpression.getValue(context)_ was called to initiate this
-expression evaluation, return _null_ .
+*** If the expression is a value expression and
+`ValueExpression.getValue(context)` was called to initiate this
+expression evaluation, return `null`.
 
-{empty}Otherwise, throw
-_PropertyNotFoundException_ . +
-[trying to de-reference null for an lvalue]
+*** Otherwise, throw `PropertyNotFoundException`. +
+_trying to de-reference null for an lvalue_
 
-Otherwise, return _null_ .
+** Otherwise, return `null` .
 
-Evaluate _expr-b_ into _value-b_ .
+* Evaluate `expr-b` into `value-b`.
 
-If _value-b_ is _null_ :
+* If `value-b` is `null`:
 
-If _expr-a[expr-b]_ is the last property
-being resolved:
+** If `expr-a[expr-b]` is the last property being resolved:
 
-If the expression is a value expression and
-_ValueExpression.getValue(context)_ was called to initiate this
-expression evaluation, return _null_ .
+*** If the expression is a value expression and
+`ValueExpression.getValue(context)` was called to initiate this
+expression evaluation, return `null` .
 
-{empty}Otherwise, throw
-_PropertyNotFoundException_ . +
-[trying to de-reference null for an lvalue]
+*** Otherwise, throw `PropertyNotFoundException`. +
+_trying to de-reference null for an lvalue_
 
-Otherwise, return _null_ .
+** Otherwise, return `null` .
 
-If the expression is a value expression:
+* If the expression is a value expression:
 
-If _expr-a[expr-b]_ is the last property
-being resolved:
+** If `expr-a[expr-b]` is the last property being resolved:
 
-If _ValueExpression.getValue(context)_ was
+*** If `ValueExpression.getValue(context)` was
 called to initiate this expression evaluation.
 
-If the expression is a parametered method
-call, evaluate _params_ into _param-values_ , and invoke
-_elResolver.invoke(context, value-a, value-b, null, param-values)._
+**** If the expression is a parametered method
+call, evaluate `params` into `param-values`, and invoke
+`elResolver.invoke(context, value-a, value-b, null, param-values)`.
 
- _Otherwise, invoke
-elResolver.getValue(value-a, value-b)._
+**** Otherwise, invoke `elResolver.getValue(value-a, value-b)`.
 
-If _ValueExpression.getType(context)_ was
-called, invoke _elResolver.getType(context, value-a, value-b)_ .
+*** If `ValueExpression.getType(context)` was
+called, invoke `elResolver.getType(context, value-a, value-b)`.
 
-If _ValueExpression.isReadOnly(context)_ was
-called, invoke _elResolver.isReadOnly(context, value-a, value-b)_ .
+*** If `ValueExpression.isReadOnly(context)` was
+called, invoke `elResolver.isReadOnly(context, value-a, value-b)`.
 
-If _ValueExpression.setValue(context, val)_
-was called, invoke _elResolver.setValue(context, value-a, value-b, val)_
-.
+*** If `ValueExpression.setValue(context, val)` was called,
+invoke `elResolver.setValue(context, value-a, value-b, val)`.
 
-Otherwise:
+** Otherwise:
 
-If the expression is a parametered method
-call, evaluate _params_ into _param-values_ , and invoke
-_elResolver.invoke(context, value-a, value-b, null, params)._
+*** If the expression is a parametered method
+call, evaluate `params` into `param-values`, and invoke
+`elResolver.invoke(context, value-a, value-b, null, params)`.
 
- _Otherwise, invoke
-elResolver.getValue(value-a, value-b)._
+*** Otherwise, invoke `elResolver.getValue(value-a, value-b)`.
 
-Otherwise, the expression is a method
-expression:
+* Otherwise, the expression is a method expression:
 
-If _expr-a[expr-b]_ is the last property
-being resolved:
+** If `expr-a[expr-b]` is the last property being resolved:
 
-Coerce _value-b_ to _String_ .
+*** Coerce `value-b` to `String`.
 
-If the expression is not a parametered method
-call, find the method on object _value-a_ with name _value-b_ and with
+*** If the expression is not a parametered method
+call, find the method on object `value-a` with name `value-b` and with
 the set of expected parameter types provided at parse time. If the
 method does not exist, or the return type does not match the expected
-return type provided at parse time, throw _MethodNotFoundException_ .
+return type provided at parse time, throw `MethodNotFoundException`.
 
-If _MethodExpression.invoke(context, params)_
-was called:
+*** If `MethodExpression.invoke(context, params)` was called:
 
-If the expression is a parametered method
-call, evaluate _params_ into _param-values_ , and invoke
-_elResolver.invoke(context, value-a, value-b, paramTypes, param-values),
-where paramTypes is the parameter types, if provided at parse time, and
-is null otherwise._
+**** If the expression is a parametered method
+call, evaluate `params` into `param-values`, and invoke
+`elResolver.invoke(context, value-a, value-b, paramTypes, param-values)`
+where `paramTypes` is the parameter types, if provided at parse time, and
+is `null` otherwise.
 
-Otherwise, invoke the found method with the
-parameters passed to the invoke method.
+**** Otherwise, invoke the found method with the parameters passed to
+the invoke method.
 
-If _MethodExpression.getMethodInfo(context)_
-was called, construct and return a new _MethodInfo_ object.
+*** If `MethodExpression.getMethodInfo(context)`
+was called, construct and return a new `MethodInfo` object.
 
-Otherwise:
+** Otherwise:
 
-If the expression is a parametered method
-call, evaluate _params_ into _param-values_ , and invoke
-_elResolver.invoke(context, value-a, value-b, null, params)._
+*** If the expression is a parametered method call, evaluate `params`
+into `param-values`, and invoke
+`elResolver.invoke(context, value-a, value-b, null, params)`.
 
- _Otherwise, i_ nvoke
-_elResolver.getValue(value-a, value-b)_ .
+*** Otherwise, invoke `elResolver.getValue(value-a, value-b)`.
 
 
 
-=== 
+=== Arithmetic Operators
 
-image:ELSpec-8.png[image]
+Arithmetic is provided to act on integer (`BigInteger` and `Long`) and
+floating point (`BigDecimal` and `Double`) values. There are 5 operators:
 
-Arithmetic Operators
+* Addition: `+`
 
-Arithmetic is provided to act on integer (
-_BigInteger_ and _Long_ ) and floating point ( _BigDecimal_ and _Double_
-) values. There are 5 operators:
+* Substraction: `-`
 
-Addition: _+_
+* Multiplication: `*`
 
-Substraction: _-_
+* Division: `/` and `div`
 
-Multiplication: _*_
-
-Division: _/_ and _div_
-
-Remainder (modulo): _%_ and _mod_
+* Remainder (modulo): `%` and `mod`
 
 The last two operators are available in both
 syntaxes to be consistent with XPath and ECMAScript.
 
 The evaluation of arithmetic operators is
-described in the following sections. _A_ and _B_ are the evaluation of
-subexpressions
+described in the following sections. `A` and `B` are the evaluation of
+subexpressions.
 
-=== Binary operators - _A \{+,-,*} B_
+==== Binary operators - `A {+,-,*} B`
 
-If _A_ and _B_ are null, return _(Long)0_
+* If `A` and `B` are null, return `(Long) 0`
 
-If _A_ or _B_ is a _BigDecimal_ , coerce both
-to _BigDecimal_ and then:
+* If `A` or `B` is a `BigDecimal`, coerce both to `BigDecimal` and
+then:
 
-If operator is _+_ , return _A.add(B)_
+** If operator is `+`, return `A.add(B)`
 
-If operator is _-_ , return _A.subtract(B)_
+** If operator is `-`, return `A.subtract(B)`
 
-If operator is _*_ , return _A.multiply(B)_
+** If operator is `*`, return `A.multiply(B)`
 
-If _A_ or _B_ is a _Float_ , _Double_ , or
-_String_ containing _._ , _e_ , or _E_ :
+* If `A` or `B` is a `Float`, `Double`, or `String` containing `.`,
+`e`, or `E`:
 
-If _A_ or _B_ is _BigInteger_ , coerce both
-_A_ and _B_ to _BigDecimal_ and apply operator.
+** If `A` or `B` is `BigInteger`, coerce both `A` and `B` to `BigDecimal`
+and apply operator.
 
-Otherwise, coerce both _A_ and _B_ to _Double_
+** Otherwise, coerce both `A` and `B` to `Double` and apply operator
+
+* If `A` or `B` is `BigInteger`, coerce both to `BigInteger` and then:
+
+** If operator is `+`, return `A.add(B)`
+
+** If operator is `-`, return `A.subtract(B)`
+
+** If operator is `*`, return `A.multiply(B)`
+
+* Otherwise coerce both `A` and `B` to `Long` and apply operator
+
+* If operator results in exception, error
+
+==== Binary operator - `A {/,div} B`
+
+* If `A` and `B` are null, return `(Long) 0`
+
+* If `A` or `B` is a `BigDecimal` or a `BigInteger`, coerce both to
+`BigDecimal` and return `A.divide(B, BigDecimal.ROUND_HALF_UP)`
+
+* Otherwise, coerce both `A` and `B` to `Double` and apply operator
+
+* If operator results in exception, error
+
+==== Binary operator - `A {%,mod} B`
+
+* If `A` and `B` are null, return `(Long) 0`
+
+* If `A` or `B` is a `BigDecimal`, `Float`, `Double`, or `String`
+containing `.`, `e`, or `E`, coerce both `A` and `B` to `Double`
 and apply operator
 
-If _A_ or _B_ is _BigInteger_ , coerce both to
-_BigInteger_ and then:
+* If `A` or `B` is a `BigInteger`, coerce both to `BigInteger` and
+return `A.remainder(B)`.
 
-If operator is _+_ , return _A.add(B)_
+* Otherwise coerce both `A` and `B` to `Long` and apply operator
 
-If operator is _-_ , return _A.subtract(B)_
+* If operator results in exception, error
 
-If operator is _*_ , return _A.multiply(B)_
+==== Unary minus operator - `-A`
 
-Otherwise coerce both _A_ and _B_ to _Long_
-and apply operator
+* If `A` is null, return `(Long) 0`
 
-If operator results in exception, error
+* If `A` is a `BigDecimal` or `BigInteger`, return `A.negate()`.
 
-=== Binary operator - _A \{/,div} B_
+* If `A` is a `String`:
 
-If _A_ and _B_ are null, return _(Long)0_
-
-If _A_ or _B_ is a _BigDecimal_ or a
-_BigInteger_ , coerce both to _BigDecimal_ and return _A.divide(B,
-BigDecimal.ROUND_HALF_UP)_
-
-Otherwise, coerce both _A_ and _B_ to _Double_
-and apply operator
-
-If operator results in exception, error
-
-=== Binary operator - _A \{%,mod} B_
-
-If _A_ and _B_ are null, return _(Long)0_
-
-If _A_ or _B_ is a _BigDecimal_ , _Float_ ,
-_Double_ , or _String_ containing _._ , _e_ , or _E_ , coerce both _A_
-and _B_ to _Double_ and apply operator
-
-If _A_ or _B_ is a _BigInteger_ , coerce both
-to _BigInteger_ and return _A.remainder(B)_ .
-
-Otherwise coerce both _A_ and _B_ to _Long_
-and apply operator
-
-If operator results in exception, error
-
-=== Unary minus operator - _-A_
-
-If _A_ is null, return _(Long)0_
-
-If _A_ is a _BigDecimal_ or _BigInteger_ ,
-return _A.negate()_ .
-
-If _A_ is a _String_ :
-
-If _A_ contains _._ , _e_ , or _E_ , coerce to
-a _Double_ and apply operator
-
-Otherwise, coerce to a _Long_ and apply
+** If `A` contains `.`, `e`, or `E`, coerce to a `Double` and apply
 operator
 
-If operator results in exception, error
+** Otherwise, coerce to a `Long` and apply operator
 
-If _A_ is _Byte_ , _Short_ , _Integer_ ,
-_Long_ , _Float_ , _Double_
+** If operator results in exception, error
 
-Retain type, apply operator
+* If `A` is `Byte`, `Short`, `Integer`, `Long`, `Float`, `Double`
 
-If operator results in exception, error
+** Retain type, apply operator
 
-Otherwise, error
+** If operator results in exception, error
 
-=== 
+* Otherwise, error
 
-image:ELSpec-8.png[image]
+=== String Concatenation Operator - `A += B`
 
-[[a265]]String Concatenation Operator
-- A += B
+To evaluate `A += B`:
 
-To evaluate A += B
+* Coerce `A` and `B` to String.
 
-Coerce A and B to String.
+* Return the concatenated string of `A` and `B`.
 
-Return the concatenated string of A and B.
-
-=== 
-
-image:ELSpec-8.png[image]
-
-Relational Operators
+=== Relational Operators
 
 The relational operators are:
 
- _==_ and _eq_
+* `==` and `eq`
 
- _!=_ and _ne_
+* `!=` and `ne`
 
- _<_ and _lt_
+* `<` and `lt`
 
- _>_ and _gt_
+* `>` and `gt`
 
- _<=_ and _le_
+* `<=` and `le`
 
- _>=_ and _ge_
+* `>=` and `ge`
 
 The second versions of the last 4 operators
 are made available to avoid having to use entity references in XML
-syntax and have the exact same behavior, i.e. _<_ behaves the same as
-_lt_ and so on.
+syntax and have the exact same behavior, i.e. `<` behaves the same as
+`lt` and so on.
 
 The evaluation of relational operators is
 described in the following sections.
 
-=== A \{<,>,<=,>=,lt,gt,le,ge} B
+==== `A {<,>,\<=,>=,lt,gt,le,ge} B`
 
-If _A==B_ , if operator is _<=_ , _le_ , _>=_
-, or _ge_ return _true_ .
+* If `A==B`, if operator is `<=`, `le`, `>=`, or `ge` return `true`
 
-If _A_ is null or _B_ is null, return _false_
+* If `A` is `null` or `B` is `null`, return `false`
 
-If _A_ or _B_ is _BigDecimal_ , coerce both
-_A_ and _B_ to _BigDecimal_ and use the return value of _A.compareTo(B)_
-.
+* If `A` or `B` is `BigDecimal`, coerce both `A` and `B` to `BigDecimal`
+and use the return value of `A.compareTo(B)`
 
-If _A_ or _B_ is _Float_ or _Double_ coerce
-both _A_ and _B_ to _Double_ apply operator
+* If `A` or `B` is `Float` or `Double` coerce both `A` and `B` to
+`Double` apply operator
 
-If _A_ or _B_ is _BigInteger_ , coerce both
-_A_ and _B_ to _BigInteger_ and use the return value of _A.compareTo(B)_
-.
+* If `A` or `B` is `BigInteger`, coerce both `A` and `B` to `BigInteger`
+and use the return value of `A.compareTo(B)`
 
-If _A_ or _B_ is _Byte_ , _Short_ ,
-_Character_ , _Integer_ , or _Long_ coerce both _A_ and _B_ to _Long_
-and apply operator
+* If `A` or `B` is `Byte`, `Short`, `Character`, `Integer`, or `Long`
+coerce both `A` and `B` to `Long` and apply operator
 
-If _A_ or _B_ is _String_ coerce both _A_ and
-_B_ to _String_ , compare lexically
+* If `A` or `B` is `String` coerce both `A` and `B` to `String`, compare
+lexically
 
-If _A_ is _Comparable_ , then:
+* If `A` is `Comparable`, then:
 
-If _A.compareTo(B)_ throws exception, error.
+** If `A.compareTo(B)` throws exception, error
 
-Otherwise use result of _A.compareTo(B)_
+** Otherwise use result of `A.compareTo(B)`
 
-If _B_ is _Comparable_ , then:
+* If `B` is `Comparable`, then:
 
-If _B.compareTo(A)_ throws exception, error.
+** If `B.compareTo(A)` throws exception, error
 
-Otherwise use result of _B.compareTo(A)_
+** Otherwise use result of `B.compareTo(A)`
 
-Otherwise, error
+* Otherwise, error
 
-=== A \{==,!=,eq,ne} B
+==== `A {==,!=,eq,ne} B`
 
-If _A==B_ , apply operator
+* If `A==B`, apply operator
 
-If _A_ is null or _B_ is null return _false_
-for _==_ or _eq_ , _true_ for _!=_ or _ne_ .
+* If `A` is null or `B` is null return `false` for `==` or `eq`, `true`
+for `!=` or `ne`
 
-If _A_ or _B_ is _BigDecimal_ , coerce both
-_A_ and _B_ to _BigDecimal_ and then:
+* If `A` or `B` is `BigDecimal`, coerce both `A` and `B` to
+`BigDecimal` and then:
 
-If operator is _==_ or _eq_ , return
-_A.equals(B)_
+** If operator is `==` or `eq`, return `A.equals(B)`
 
-If operator is _!=_ or _ne_ , return
-_!A.equals(B)_
+** If operator is `!=` or `ne`, retur `!A.equals(B)`
 
-If _A_ or _B_ is _Float_ or _Double_ coerce
-both _A_ and _B_ to _Double_ , apply operator
+* If `A` or `B` is `Float` or `Double` coerce both `A` and `B` to
+`Double`, apply operator
 
-If _A_ or _B_ is _BigInteger_ , coerce both
-_A_ and _B_ to _BigInteger_ and then:
+* If `A` or `B` is `BigInteger`, coerce both `A` and `B` to
+`BigInteger` and then:
 
-If operator is _==_ or _eq_ , return
-_A.equals(B)_
+** If operator is `==` or `eq`, return `A.equals(B)`
 
-If operator is _!=_ or _ne_ , return
-_!A.equals(B)_
+** If operator is `!=` or `ne`, return `!A.equals(B)`
 
-If _A_ or _B_ is _Byte_ , _Short_ ,
-_Character_ , _Integer_ , or _Long_ coerce both _A_ and _B_ to _Long_ ,
+* If `A` or `B` is `Byte`, `Short`, `Character`, `Integer`, or `Long`
+coerce both `A` and `B` to `Long`, apply operator
+
+* If `A` or `B` is `Boolean` coerce both `A` and `B` to `Boolean`,
 apply operator
 
-If _A_ or _B_ is _Boolean_ coerce both _A_ and
-_B_ to _Boolean_ , apply operator
+* If `A` or `B` is an enum, coerce both `A` and `B` to enum, apply
+operator
 
-If A or B is an enum, coerce both A and B to
-enum, apply operator
+* If `A` or `B` is `String` coerce both `A` and `B` to `String`, compare
+lexically
 
-If _A_ or _B_ is _String_ coerce both _A_ and
-_B_ to _String_ , compare lexically
+* Otherwise if an error occurs while calling `A.equals(B)`, error
 
-Otherwise if an error occurs while calling
-_A.equals(B)_ , error
+* Otherwise, apply operator to result of `A.equals(B)`
 
-Otherwise, apply operator to result of
-_A.equals(B)_
-
-=== 
-
-image:ELSpec-8.png[image]
-
-Logical Operators
+=== Logical Operators
 
 The logical operators are:
 
- _&&_ and _and_
+* `&&` and `and`
 
- _||_ and _or_
+* `||` and `or`
 
- _!_ and _not_
+* `!` and `not`
 
-The evaluation of logical operators is
-described in the following sections.
+The evaluation of logical operators is described in the following
+sections.
 
-=== Binary operator - _A \{&&,||,and,or} B_
+==== Binary operator - `A {&&,||,and,or} B`
 
-Coerce both _A_ and _B_ to _Boolean_ , apply
-operator
+Coerce both `A` and `B` to `Boolean`, apply operator
 
-The operator stops as soon as the expression
-can be determined, i.e., _A and B and C and D_ – if _B_ is false, then
-only _A and B_ is evaluated.
+The operator stops as soon as the expression can be determined, i.e.,
+`A and B and C and D` – if `B` is false, then only `A and B` is
+evaluated.
 
-=== Unary not operator - _\{!,not} A_
+==== Unary not operator - `{!,not} A`
 
-Coerce _A_ to _Boolean_ , apply operator.
-
+Coerce `A` to `Boolean`, apply operator.
 
 
-=== 
 
-image:ELSpec-8.png[image]
+=== Empty Operator - `empty A`
 
-Empty Operator - _empty A_
+The `empty` operator is a prefix operator that can be used to determine
+if a value is null or empty.
 
-The _empty_ operator is a prefix operator
-that can be used to determine if a value is null or empty.
+To evaluate `empty A`:
 
-To evaluate _empty A_
+* If `A` is null, return `true`
 
-If _A_ is null, return _true_
+* Otherwise, if `A` is the empty string, then return `true`
 
-Otherwise, if _A_ is the empty string, then
-return _true_
+* Otherwise, if `A` is an empty array, then return `true`
 
-Otherwise, if _A_ is an empty array, then
-return _true_
+* Otherwise, if `A` is an empty `Map`, return `true`
 
-Otherwise, if _A_ is an empty _Map_ , return
-_true_
+* Otherwise, if `A` is an empty `Collection`, return `true`
 
-Otherwise, if _A_ is an empty _Collection_ ,
-return _true_
+* Otherwise return `false`
 
-Otherwise return _false_
+=== Conditional Operator - `A ? B : C`
 
-=== 
+Evaluate `B` or `C`, depending on the result of the evaluation of `A`.
 
-image:ELSpec-8.png[image]
+Coerce `A` to `Boolean`:
 
-Conditional Operator - _A ? B : C_
+* If `A` is `true`, evaluate and return `B`
 
-Evaluate _B_ or _C_ , depending on the result
-of the evaluation of _A_ .
+* If `A` is `false`, evaluate and return `C`
 
-Coerce _A_ to _Boolean_ :
+=== Assignment Operator - `A = B`
 
-If _A_ is _true_ , evaluate and return _B_
+Assign the value of `B` to `A`. `A` must be an _lvalue_, otherwise, a
+`PropertyNotWritableException` will be thrown.
 
-If _A_ is _false_ , evaluate and return _C_
+The assignment operator is right-associative. For instance, `A=B=C` is
+the same as `A=(B=C)`.
 
-=== 
+To evaluate `expr-a` = `expr-b`:
 
-image:ELSpec-8.png[image]
+* Evaluate `expr-a`, up to the last property resolution, to (`base-a`,
+`prop-a`)
 
-[[a337]]Assignment Operator - A = B
+* If `base-a` is `null`, and `prop-a` is a `String`:
 
-Assign the value of B to A. A must be a
-lvalue, otherwise, a PropertyNotWritableException will be thrown.
+** If `prop-a` is a Lambda parameter, throw a
+`PropertyNotWritableException`
 
-The assignment operator is right-associative.
-For instance, A=B=C is the same as A= (B=C).
+** If prop-a is an EL variable (see link:ELSpec.html#a393[See Variables]),
+evaluate the `ValueExpression` the variable was set to, to obtain the
+new (`base-a`, `prop-a`)
 
-To evaluate expr-a = expr-b,
+* Evaluate `expr-b`, to `value-b`
 
-Evaluate expr-a, up to the last property
-resolution, to (base-a, prop-a)
+* Invoke `ELResolver.setValue(base-a, prop-a, value-b)`
 
-If base-a is null, and prop-a is a String,
+* Return `value-b`
 
-If prop-a is a Lambda parameter, throw a
-PropertyNotWritableException
+The behavior of the assignment operator is determined by the
+`ELResolver`. For instance, in a stand-alone environment, the class
+`StandardELContext` contains a default `ELResolver` that allows the
+assignment of an expression to a non-existing name, resulting in the
+creation of a bean with the given name in the local bean repository. A
+JSP container may use the `ScopeAttributeELResolver` to assign values
+to scope attributes, or to create attributes in the page scope.
 
-If prop-a is an EL variable (see
-link:ELSpec.html#a393[See Variables]), evaluate the
-ValueExpression the variable was set to, to obtain the new (base-a,
-prop-a)
+=== Semicolon Operator - `A ; B`
 
-Evaluate expr-b, to value-b
+The semicolon operator behaves like the comma operator in C.
 
-Invoke ELResolver.setValue(base-a, prop-a,
-value-b)
+To evaluate `A;B, A` is first evaluated, and its value is discarded.
+`B` is then evaluated and its value is returned.
 
-Return value-b
-
-The behavior of the assignment operator is
-determined by the ELResolver. For instance, in a stand-alone
-environment, the class StandardELContext contains a default ELResolver
-that allows the assignment of an expression to a non-existing name,
-resulting in the creation of a bean with the given name in the local
-bean repository. A JSP container may use the ScopeAttributeELResolver to
-assign values to scope attributes, or to create attributes in the page
-scope.
-
-=== 
-
-image:ELSpec-8.png[image]
-
-[[a350]]Semicolon Operator - A ; B
-
-The semicolon operator behaves like the comma
-operator in C.
-
-To evaluate A;B, A is first evaluated, and
-its value is discarded. B is then evaluated and its value is returned.
-
-=== 
-
-image:ELSpec-8.png[image]
-
-Parentheses
+=== Parentheses
 
 Parentheses can be used to change precedence,
-as in: _$\{(a*(b+c))}_
+as in: `${(a*(b+c))}`
 
-=== 
-
-image:ELSpec-8.png[image]
-
-[[a356]]Operator Precedence
+=== Operator Precedence
 
 Highest to lowest, left-to-right.
 
- _[] ._
+* `[] .`
 
- _()_
+* `()`
 
- _-_ (unary) _not ! empty_
+* `-` (unary) `not ! empty`
 
- _* / div % mod_
+* `* / div % mod`
 
- _+ - (binary)_
+* `+ - (binary)`
 
-+=
+* `+=`
 
- _< > <= >= lt gt le ge_
+* `< > <= >= lt gt le ge`
 
- _== != eq ne_
+* `== != eq ne`
 
- _&& and_
+* `&& and`
 
- _|| or_
+* `|| or`
 
- _? :_
+* `? :`
 
--> (Lambda Expression)
+* `\->` (Lambda Expression)
 
-=
+* `=`
 
-;
+* `;`
 
+Qualified functions with a namespace prefix have precedence over the
+operators. Thus the expression `${c?b:f()}` is illegal because `b:f()`
+is being parsed as a qualified function instead of part of a
+conditional expression. As usual, `()` can be used to make
+the precedence explicit, e.g `${c?b:(f())}`.
 
+The symbol `\->` in a Lambda Expression behaves like an operator for
+the purpose of ordering the operator precedence, and it has a higher
+precedence than the assignment and semicolon operators. The following
+examples illustrates when `()` is and is not needed.
 
-Qualified functions with a namespace prefix
-have precedence over the operators. Thus the expression _$\{c?b:f()}_ is
-illegal because _b:f()_ is being parsed as a qualified function instead
-of part of a conditional expression. As usual, _()_ can be used to make
-the precedence explicit, e.g _$\{c?b:(f())}._
+* `v = x->x+1`
 
-The symbol -> in a Lambda Expression behaves
-like an operator for the purpose of ordering the operator precedence,
-and it has a higher precedence than the assignment and semicolon
-operators. The following examples illustrates when () is and is not
-needed.
+* `x-> (a=x)`
 
- v = x->x+1
+* `x-> c?x+1:x+2`
 
- x-> (a=x)
+All operators are left associative except for the `?:`, `=`, and `\->`
+operators, which are right associative. For instance, `a=b=c` is the
+parsed as `a=(b=c)`, and `x->y->x+y` is parsed as `x->(y->x+y)`.
 
- x-> c?x+1:x+2
-
-All operators are left associative except for
-the ?:, =, and -> operators, which are right associative. For instance,
-a=b=c is the parsed as a=(b=c), and x->y->x+y is parsed as x->(y->x+y).
-
-=== 
-
-image:ELSpec-8.png[image]
-
-[[a380]]Reserved Words
+=== Reserved Words
 
 The following words are reserved for the
 language and must not be used as identifiers.
 
- and eq gt true instanceof +
-or ne le false empty +
-not lt ge null div
-
- mod
+[cols=5]
+|===
+|and
+|eq
+|gt
+|true
+|instanceof
+|or
+|ne
+|le
+|false
+|empty
+|not
+|lt
+|ge
+|null
+|div
+|mod||||
+|===
 
 Note that many of these words are not in the
 language now, but they may be in the future, so developers must avoid
 using these words.
 
-=== 
-
-image:ELSpec-8.png[image]
-
-[[a386]]Functions
+=== Functions
 
 The EL has qualified functions, reusing the
 notion of qualification from XML namespaces (and attributes), XSL
@@ -1256,79 +1154,69 @@ methods in Java classes.
 The full syntax is that of qualified n-ary
 functions:
 
- _[ns:]f([a1[,a2[,...[,an]]]])_
+ `[ns:]f([a1[,a2[,...[,an]]]])`
 
-Where _ns_ is the namespace prefix, _f_ is
-the name of the function, and _a_ is an argument.
+Where `ns` is the namespace prefix, `f` is
+the name of the function, and `a` is an argument.
 
 EL functions are mapped, resolved and bound
-at parse time. It is the responsibility of the _FunctionMapper_ class to
+at parse time. It is the responsibility of the `FunctionMapper` class to
 provide the mapping of namespace-qualified functions to static methods
-of specific classes when expressions are created. If no _FunctionMapper_
-is provided (by passing in _null_ ), functions are disabled.
+of specific classes when expressions are created. If no `FunctionMapper`
+is provided (by passing in `null`), functions are disabled.
 
-=== 
+=== Variables
 
-image:ELSpec-8.png[image]
-
-[[a393]]Variables
-
-Just like _FunctionMapper_ provides a
-flexible mechanism to add functions to the EL, _VariableMapper_ provides
+Just like `FunctionMapper` provides a
+flexible mechanism to add functions to the EL, `VariableMapper` provides
 a flexible mechanism to support the notion of EL variables. An EL
 variable does not directly refer to a model object that can then be
-resolved by an _ELResolver_ . Instead, an EL variable refers to an EL
+resolved by an `ELResolver` . Instead, an EL variable refers to an EL
 expression. The evaluation of that EL expression yields the value
 associated with the EL variable.
 
 EL variables are mapped, resolved and bound
-at parse time. It is the responsibility of the _VariableMapper_ class to
-provide the mapping of EL variables to _ValueExpression_ s when
-expressions are created. If no _VariableMapper_ is provided (by passing
-in _null_ ), variable mapping is disabled.
+at parse time. It is the responsibility of the `VariableMapper` class to
+provide the mapping of EL variables to ``ValueExpression``s when
+expressions are created. If no `VariableMapper` is provided (by passing
+in `null`), variable mapping is disabled.
 
-See the _jakarta.el_ package description for
-more details.
+See the `jakarta.el` package description for more details.
 
-=== 
+=== Lambda Expressions
 
-image:ELSpec-8.png[image]
-
-[[a398]]Lambda Expressions
-
-A lambda expression is a ValueExpression with
+A lambda expression is a `ValueExpression` with
 parameters. The syntax is similar to the lambda expression in the Java
 Language, except that in EL, the body of the lambda expression is an EL
 expression. These are some examples:
 
-x->x+1
+* `x->x+1`
 
-(x,y)->x+y
+* `(x,y)->x+y`
 
-()->64
+* `()\->64`
 
-The identifiers to the left of -> are lambda
+The identifiers to the left of `\->` are lambda
 parameters. The parenthesis is optional if and only if there is one
 parameter.
 
 A lambda expression behaves like a function.
-It can be invoked immediately,
+It can be invoked immediately:
 
-((x,y)->x+y)(3,4) evaluates to 7.
+* `((x,y)->x+y)(3,4)` evaluates to `7`.
 
 When a lambda expression is assigned, it can
-be referenced and invoked indirectly,
+be referenced and invoked indirectly:
 
-v = (x,y)->x+y; v(3,4) evaluates to 7
+* `v = (x,y)->x+y; v(3,4)` evaluates to `7`
 
-fact = n -> n==0? 1: n*fact(n-1); fact(5)
-evaluates to 120
+* `fact = n -> n==0? 1: n*fact(n-1); fact(5)` evaluates to `120`
 
 It can also be passed as an argument to a
 method, and be invoked in the method, by invoking
-jakarta.el.LambdaExpression.invoke(), such as
+`jakarta.el.LambdaExpression.invoke()`, such as
 
-employees.where(e->e.firstName == ‘Bob’)
+* `employees.where(e->e.firstName == 'Bob')`
 
 When a lambda expression is invoked, the
 expression in the body is evaluated, with its formal parameters replaced
@@ -1336,11 +1224,9 @@ by the arguments supplied at the invocation. The number of arguments
 must be equal to or more than the number the formal parameters. Any
 extra arguments are ignored.
 
-A lambda expression can be nested within
-another lambda expression, like
+A lambda expression can be nested within another lambda expression, like
 
-customers.select(c->[c.name,
-c.orders.sum(o->o.total)])
+* `customers.select(c->[c.name, c.orders.sum(o->o.total)])`
 
 The scope of a lambda argument is the body of
 the lambda expression. A lambda argument hides other EL variables,
@@ -1351,40 +1237,32 @@ Note that in the case of nested lambda
 expressions where the body of the inner lambda expression contains
 references to parameters of outer lambda expressions, such as
 
-x->y->x+y
+* `x->y->x+y`
 
 the scope of the outer lambda parameters
 extends to cover the inner body. For instance, with the above example,
-the argument x must be in scope when x+y is evaluated, even though the
+the argument `x` must be in scope when `x+y` is evaluated, even though the
 body of the outer lambda expression has already been executed.
 
-=== 
-
-image:ELSpec-8.png[image]
-
-Enums
+=== Enums
 
 The Unified EL supports Java SE 5 enumerated
 types. Coercion rules for dealing with enumerated types are included in
 the following section. Also, when referring to values that are instances
 of an enumerated type from within an EL expression, use the literal
 string value to cause coercion to happen via the below rules. For
-example, Let’s say we have an enum called Suit that has members Heart,
-Diamond, Club, and Spade. Furthermore, let’s say we have a reference in
-the EL, mySuit, that is a Spade. If you want to test for equality with
-the Spade enum, you would say $\{mySuit == ’Spade’}. The type of the
-mySuit will trigger the invocation of Enum.valueOf(Suit.class, ’Spade’).
+example, Let’s say we have an enum called `Suit` that has members `Heart`,
+`Diamond`, `Club`, and `Spade`. Furthermore, let’s say we have a reference in
+the EL, `mySuit`, that is a `Spade`. If you want to test for equality with
+the `Spade` enum, you would say `${mySuit == 'Spade'}`. The type of the
+`mySuit` will trigger the invocation of `Enum.valueOf(Suit.class, 'Spade')`.
 
-=== 
-
-image:ELSpec-8.png[image]
-
-[[a421]]Static Field and Method Reference
+=== Static Field and Method Reference
 
 A static field or static method of a Java
-class can be referenced with the syntax classname.field, such as
+class can be referenced with the syntax _classname.field_, such as
 
- Boolean.TRUE
+`Boolean.TRUE`
 
 the classname is the name of a class, without
 the package name.
@@ -1393,22 +1271,22 @@ An enum constant is a public static field, so
 the same syntax can be used to refer to an enum constant, like the
 following:
 
- RoundingMode.FLOOR
+`RoundingMode.FLOOR`
 
-=== Access Restrictions and Imports
+==== Access Restrictions and Imports
 
 For security, the following restrictions are
 enforced.
 
-=== Only the public static fields and methods can be referenced.
+. Only the public static fields and methods can be referenced.
 
-Static fields cannot be modified.
+. Static fields cannot be modified.
 
-Except for classes with java.lang.* package
+. Except for classes with java.lang.* package
 names, a class has to be explicitly imported before its static fields or
 methods can be referenced.
 
-=== Imports of Packages, Classes, and Static Fields
+==== Imports of Packages, Classes, and Static Fields
 
 Either a class or a package can be explicitly
 imported into the EL evaluation environment. Importing a package imports
@@ -1419,32 +1297,27 @@ loader.
 By default, the following packages are
 imported by the EL environment.
 
- java.lang.*
+`java.lang.*`
 
 A static field can also be imported
 statically. A statically imported static field can be referenced by the
-field name, without the classname.
+field name, without the class name.
 
 The imports of packages, classes, and static
-fields are handled by the ImportHandler in the ELContext.
+fields are handled by the `ImportHandler` in the `ELContext`.
 
-=== Constructor Reference
+==== Constructor Reference
 
-A class name reference, followed by arguments
-in parenthesis, such as
+A class name reference, followed by arguments in parenthesis, such as
 
- Boolean(true)
+`Boolean(true)`
 
 denotes the invocation of the constructor of
 the class with the supplied arguments. The same restrictions (the class
 must be public and has already been imported) for static methods apply
 to the constructor calls.
 
-=== 
-
-image:ELSpec-8.png[image]
-
-[[a443]]Type Conversion
+=== Type Conversion
 
 Every expression is evaluated in the context
 of an expected type. The result of the expression evaluation may not
@@ -1452,1367 +1325,779 @@ match the expected type exactly, so the rules described in the following
 sections are applied.
 
 Custom type conversions can be specified in
-an ELResolver by implementing the method convertToType. More than one
-ELResolvers can be specified for performing custom conversions, and they
+an `ELResolver` by implementing the method `convertToType`. More than one
+`ELResolver` can be specified for performing custom conversions, and they
 are selected and applied in the order of their positions in the
-ELResolver chain, as usual.
+`ELResolver` chain, as usual.
 
 During expression evaluations, the custom
 type converters are first selected and applied. If there is no custom
 type converter for the conversion, the default conversions specified in
 the following sections are used.
 
-=== To Coerce a Value X to Type Y
+==== To Coerce a Value `X` to Type `Y`
 
-If X is null and Y is not a primitive type
-and also not a String, return null.
+* If `X` is null and `Y` is not a primitive type and also not a `String`,
+return `null`.
 
-If _X_ is of a primitive type, Let _X’_ be
-the equivalent “boxed form” of _X_ . +
-Otherwise, Let _X’_ be the same as _X_ .
+* If `X` is of a primitive type, Let `X’` be the equivalent "boxed form"
+of `X`. +
+Otherwise, Let `X’` be the same as `X`.
 
-If _Y_ is of a primitive type, Let _Y’_ be
-the equivalent “boxed form” of _Y_ . +
-Otherwise, Let _Y’_ be the same as _Y_ .
+* If `Y` is of a primitive type, Let `Y’` be the equivalent "boxed form"
+of `Y`. +
+Otherwise, Let `Y’` be the same as `Y`.
 
-Apply the rules in Sections
+* Apply the rules in Sections
 link:ELSpec.html#a455[See Coerce A to
 String]-link:ELSpec.html#a511[See Coerce A to Any Other Type T]
-for coercing _X’_ to _Y’_ .
+for coercing `X’` to `Y’`.
 
-If _Y_ is a primitive type, then the result
-is found by “unboxing” the result of the coercion. If the result of the
-coercion is null, then error.
+* If `Y` is a primitive type, then the result
+is found by "unboxing" the result of the coercion. If the result of the
+coercion is `null`, then error.
 
-If _Y_ is not a primitive type, then the
+* If `Y` is not a primitive type, then the
 result is the result of the coercion.
 
-For example, if coercing an _int_ to a
-_String_ , “box” the _int_ into an _Integer_ and apply the rule for
-coercing an _Integer_ to a _String_ . Or if coercing a _String_ to a
-_double_ , apply the rule for coercing a _String_ to a _Double_ , then
-_“_ unbox _”_ the resulting _Double_ , making sure the resulting
-_Double_ isn’t actually _null_ .
+For example, if coercing an `int` to a `String`, "box" the `int` into an
+`Integer` and apply the rule for coercing an `Integer` to a `String`. Or
+if coercing a `String` to a `double`, apply the rule for coercing a
+`String` to a `Double`, then "unbox" the resulting `Double`, making sure
+the resulting `Double` isn’t actually `null`.
 
-=== [[a455]]Coerce A to String
+==== Coerce `A` to `String`
 
-If _A_ is _null_ : return _“”_
+* If `A` is `null` : return `""`
 
-Otherwise, if _A_ is _String_ : return _A_
+* Otherwise, if `A` is `String`, return `A`
 
-Otherwise, if A is Enum, return A.name()
+* Otherwise, if `A` is `Enum`, return `A.name()`
 
-Otherwise, if _A.toString()_ throws an
-exception, error
+* Otherwise, if `A.toString()` throws an exception, error
 
-Otherwise, return _A.toString()_
+* Otherwise, return `A.toString()`
 
-=== [[a461]]Coerce A to Number type N
+==== Coerce `A` to `Number` type `N`
 
-If _A_ is _null_ and N is not a primitive
-type, return null.
+* If `A` is `null` and `N` is not a primitive type, return `null`.
 
-If _A_ is _null_ or _""_ , return 0.
+* If `A` is `null` or `""`, return 0.
 
-If _A_ is _Character_ , convert _A_ to _new
-Short((short)a.charValue())_ , and apply the following rules.
+* If `A` is `Character`, convert `A` to
+`new Short((short)a.charValue())`, and apply the following rules.
 
-If _A_ is _Boolean_ , then error.
+* If `A` is `Boolean`, then error.
 
-If _A_ is _Number_ type _N_ , return A
+* If `A` is `Number` type `N`, return `A`
 
-If _A_ is _Number_ , coerce quietly to type
-_N_ using the following algorithm:
+* If `A` is `Number`, coerce quietly to type
+`N` using the following algorithm:
 
-If _N_ is _BigInteger_
+** If `N` is `BigInteger`
 
-If _A_ is a _BigDecimal_ , return
-_A.toBigInteger()_
+*** If `A` is a `BigDecimal`, return `A.toBigInteger()`
 
-Otherwise, return
-_BigInteger.valueOf(A.longValue())_
+*** Otherwise, return `BigInteger.valueOf(A.longValue())`
 
-If _N_ is _BigDecimal_ ,
+** If `N` is `BigDecimal`,
 
-If _A_ is a _BigInteger_ , return _new
-BigDecimal(A)_
+*** If `A` is a `BigInteger`, return `new BigDecimal(A)`
 
-Otherwise, return _new
-BigDecimal(A.doubleValue())_
+*** Otherwise, return `new BigDecimal(A.doubleValue())`
 
-If _N_ is _Byte_ , return _new
-Byte(A.byteValue())_
+** If `N` is `Byte`, return `new Byte(A.byteValue())`
 
-If _N_ is _Short_ , return _new
-Short(A.shortValue())_
+** If `N` is `Short`, return `new Short(A.shortValue())`
 
-If _N_ is _Integer_ , return _new
-Integer(A.intValue())_
+** If `N` is `Integer`, return `new Integer(A.intValue())`
 
-If _N_ is _Long_ , return _new
-Long(A.longValue())_
+** If `N` is `Long`, return `new Long(A.longValue())`
 
-If _N_ is _Float_ , return _new
-Float(A.floatValue())_
+** If `N` is `Float`, return `new Float(A.floatValue())`
 
-If _N_ is _Double_ , return _new
-Double(A.doubleValue())_
+** If `N` is `Double`, return `new Double(A.doubleValue())`
 
-Otherwise, error.
+** Otherwise, error.
 
-If _A_ is _String_ , then:
+* If `A` is `String`, then:
 
-If _N_ is _BigDecimal_ then:
+** If `N` is `BigDecimal` then:
 
-If _new BigDecimal(A)_ throws an exception
-then error.
+*** If `new BigDecimal(A)` throws an exception then error.
 
-Otherwise, return _new BigDecimal(A)_ .
+*** Otherwise, return `new BigDecimal(A)`.
 
-If _N_ is _BigInteger_ then:
+** If `N` is `BigInteger` then:
 
-If _new BigInteger(A)_ throws an exception
-then error.
+*** If `new BigInteger(A)` throws an exception then error.
 
-Otherwise, return _new BigInteger(A)_ .
+*** Otherwise, return `new BigInteger(A)`.
 
-If _N.valueOf(A)_ throws an exception, then
-error.
+** If `N.valueOf(A)` throws an exception, then error.
 
-Otherwise, return _N.valueOf(A)_ .
+** Otherwise, return `N.valueOf(A)` .
 
-Otherwise, error.
+* Otherwise, error.
 
-=== Coerce A to Character or char
+==== Coerce `A` to `Character` or `char`
 
-If A is null and the target type is not the
-primitive type char, return null
+If `A` is `null` and the target type is not the primitive type `char`,
+return `null`
 
-If _A_ is _null_ or _""_ , return _(char)0_
+* If `A` is `null` or `""`, return `(char)0`
 
-If _A_ is _Character_ , return _A_
+* If `A` is `Character`, return `A`
 
-If _A_ is _Boolean_ , error
+* If `A` is `Boolean`, error
 
-If _A_ is _Number_ , coerce quietly to type
-_Short_ , then return a _Character_ whose numeric value is equivalent to
-that of a _Short_ .
+* If `A` is `Number`, coerce quietly to type
+`Short`, then return a `Character` whose numeric value is equivalent to
+that of a `Short`
 
-If _A_ is _String_ , return _A.charAt (0)_
+* If `A` is `String`, return `A.charAt (0)`
 
-Otherwise, error
+* Otherwise, error
 
 
 
-=== Coerce A to Boolean or boolean
+==== Coerce `A` to `Boolean` or `boolean`
 
-If A is null and the target type is not the
-primitive type boolean, return null
+* If `A` is `null` and the target type is not the
+primitive type `boolean`, return `null`
 
-If _A_ is _null_ or _""_ , return _false_
+* If `A` is `null` or `""`, return `false`
 
-Otherwise, if _A_ is a _Boolean_ , return A
+* Otherwise, if `A` is a `Boolean`, return A
 
-Otherwise, if _A_ is a _String_ , and
-_Boolean.valueOf(A)_ does not throw an exception, return it
+* Otherwise, if `A` is a `String`, and
+`Boolean.valueOf(A)` does not throw an exception, return it
 
-Otherwise, error
+* Otherwise, error
 
-===  Coerce A to an Enum Type T
+====  Coerce `A` to an `Enum` Type` T`
 
-If A is null, return null
+* If `A` is `null`, return `null`
 
-If A is assignable to T, coerce quietly
+* If `A` is assignable to `T`, coerce quietly
 
-If A is "", return null.
+* If `A` is `""`, return `null`
 
-If A is a String call
-Enum.valueOf(T.getClass(), A) and return the result.
+* If `A` is a `String` call `Enum.valueOf(T.getClass(), A)` and return
+the result.
 
-===  [[a511]]Coerce A to Any Other Type T
+==== Coerce `A` to Any Other Type `T`
 
-If _A_ is _null_ , return _null_
+* If `A` is `null`, return `null`
 
-If _A_ is assignable to _T_ , coerce quietly
+* If `A` is assignable to `T`, coerce quietly
 
-If _A_ is a _String_ , and _T_ has no
-_PropertyEditor:_
+* If `A` is a `String`, and `T` has no `PropertyEditor:`
 
-If _A_ is _""_ , return _null_
+** If `A` is `""`, return `null`
 
-Otherwise error
+** Otherwise error
 
-If _A_ is a _String_ and _T_ 's
-_PropertyEditor_ throws an exception:
+* If `A` is a `String` and `T`'s `PropertyEditor` throws an exception:
 
-If _A_ is _""_ , return _null_
+** If `A` is `""`, return `null`
 
-Otherwise, error
+** Otherwise, error
 
-Otherwise, apply _T_ 's _PropertyEditor_
+* Otherwise, apply ``T``'s `PropertyEditor`
 
-Otherwise, error
+* Otherwise, error
 
 
 
-=== 
-
-image:ELSpec-8.png[image]
-
-[[a524]]Collected Syntax
+=== Collected Syntax
 
 The following is a javaCC grammar with syntax
 tree generation. It is meant to be used as a guide and reference only.
 
 
-
+[source]
+----
 /* == Option Declaration == */
-
 options
-
-\{
-
- STATIC=false;
-
- NODE_PREFIX="Ast";
-
- VISITOR_EXCEPTION="jakarta.el.ELException";
-
- VISITOR=false;
-
- MULTI=true;
-
- NODE_DEFAULT_VOID=true;
-
- JAVA_UNICODE_ESCAPE=false;
-
- UNICODE_INPUT=true;
-
- BUILD_NODE_FILES=true;
-
+{
+    STATIC=false;
+    NODE_PREFIX="Ast";
+    VISITOR_EXCEPTION="ELException";
+    VISITOR=false;
+    MULTI=true;
+    NODE_DEFAULT_VOID=true;
+    JAVA_UNICODE_ESCAPE=false;
+    UNICODE_INPUT=true;
+    BUILD_NODE_FILES=true;
 }
 
 /* == Parser Declaration == */
-
 PARSER_BEGIN( ELParser )
-
 package com.sun.el.parser;
-
 import java.io.StringReader;
-
-import jakarta.el.ELException;
-
+import ELException;
 public class ELParser
-
-\{
-
- public static Node parse(String ref) throws
-ELException
-
- \{
-
- try \{
-
- return (new ELParser(new
-StringReader(ref))).CompositeExpression();
-
- } catch (ParseException pe) \{
-
- throw new ELException(pe.getMessage());
-
- }
-
- }
-
+{
+    public static Node parse(String ref) throws ELException
+    {
+        try {
+            return (new ELParser(new StringReader(ref))).CompositeExpression();
+        } catch (ParseException pe) {
+            throw new ELException(pe.getMessage());
+        }
+    }
 }
-
 PARSER_END( ELParser )
 
 /*
-
  * CompositeExpression
-
- * Allow most flexible parsing, restrict by
-examining
-
+ * Allow most flexible parsing, restrict by examining
  * type of returned node
-
  */
-
-AstCompositeExpression CompositeExpression()
-#CompositeExpression : \{}
-
-\{
-
- (DeferredExpression() |
-
- DynamicExpression() |
-
- LiteralExpression())* <EOF> \{ return
-jjtThis; }
-
+AstCompositeExpression CompositeExpression() #CompositeExpression : {}
+{
+    (DeferredExpression() | DynamicExpression() | LiteralExpression())* <EOF> { return jjtThis; }
 }
 
-
-
 /*
-
  * LiteralExpression
-
  * Non-EL Expression blocks
-
  */
-
-void LiteralExpression() #LiteralExpression :
-\{ Token t = null; }
-
-\{
-
- t=<LITERAL_EXPRESSION> \{
-jjtThis.setImage(t.image); }
-
+void LiteralExpression() #LiteralExpression : { Token t = null; }
+{
+    t=<LITERAL_EXPRESSION> { jjtThis.setImage(t.image); }
 }
 
-
-
 /*
-
  * DeferredExpression
-
- * #\{..} Expressions
-
+ * #{..} Expressions
  */
-
-void DeferredExpression() #DeferredExpression
-: \{}
-
-\{
-
- <START_DEFERRED_EXPRESSION> Expression()
-<RCURL>
-
+void DeferredExpression() #DeferredExpression : {}
+{
+    <START_DEFERRED_EXPRESSION> Expression() <RCURL> 
 }
 
-
-
 /*
-
  * DynamicExpression
-
- * $\{..} Expressions
-
+ * ${..} Expressions
  */
-
-void DynamicExpression() #DynamicExpression :
-\{}
-
-\{
-
- <START_DYNAMIC_EXPRESSION> Expression()
-<RCURL>
-
+void DynamicExpression() #DynamicExpression : {}
+{
+    <START_DYNAMIC_EXPRESSION> Expression() <RCURL> 
 }
 
 /*
-
  * Expression
-
  * EL Expression Language Root
-
  */
-
-void Expression() : \{}
-
-\{
-
- SemiColon()
-
+void Expression() : {}
+{
+        SemiColon()
 }
 
-
-
 /*
-
  * SemiColon
-
  */
-
-void SemiColon() : \{}
-
-\{
-
- Assignment() (<SEMICOLON> Assignment()
-#SemiColon(2) )*
-
+void SemiColon() : {}
+{
+        Assignment() (<SEMICOLON> Assignment() #SemiColon(2) )*
 }
 
-
-
 /*
-
  * Assignment
-
- * For '=', right associatve, then
-LambdaExpression or Choice or Assignment
-
+ * For '=', right associatve, then LambdaExpression or Choice or Assignment
  */
-
-void Assignment() : \{}
-
-\{
-
- LOOKAHEAD(3) LambdaExpression() |
-
- Choice() (<ASSIGN> Assignment() #Assign(2)
-)?
-
+void Assignment() : {}
+{
+        LOOKAHEAD(4) LambdaExpression() | // Do not mistake ((i)) with Lambdaexp check until the arrow
+        Choice() ( LOOKAHEAD(2) <ASSIGN> Assignment() #Assign(2) )* // avoid failure of expr ${x = 10}
 }
 
-
-
 /*
-
  * LambdaExpression
-
  */
-
-void LambdaExpression() #LambdaExpression :
-\{}
-
-\{
-
- LambdaParameters() <ARROW>
-
- (LOOKAHEAD(3) LambdaExpression() | Choice()
-)
-
+void LambdaExpression() #LambdaExpression : {}
+{
+       LambdaParameters() <ARROW>
+       (LOOKAHEAD(3) LambdaExpression() | Choice() )
 }
 
-
-
-void LambdaParameters() #LambdaParameters:
-\{}
-
-\{
-
- Identifier()
-
- | <LPAREN (Identifier() (<COMMA>
-Identifier())*)? <RPAREN>
-
+void LambdaParameters() #LambdaParameters: {}
+{
+       Identifier()
+       | <LPAREN>
+            (Identifier() (<COMMA> Identifier())*)?
+         <RPAREN>
 }
-
-
 
 /*
-
  * Choice
-
- * For Choice markup a ? b : c, right
-associative
-
+ * For Choice markup a ? b : c, right associative
  */
-
-void Choice() : \{}
-
-\{
-
- Or() (<QUESTIONMARK> Choice() <COLON>
-Choice() #Choice(3))?
-
+void Choice() : {}
+{
+    Or() (<QUESTIONMARK> Choice() <COLON> Choice() #Choice(3))?
 }
 
-
-
 /*
-
  * Or
-
  * For 'or' '||', then And
-
  */
-
-void Or() : \{}
-
-\{
-
- And() ((<OR0>|<OR1>) And() #Or(2))*
-
+void Or() : {}
+{
+    And() ((<OR0>|<OR1>) And() #Or(2))*
 }
 
-
-
 /*
-
  * And
-
  * For 'and' '&&', then Equality
-
  */
-
-void And() : \{}
-
-\{
-
- Equality() ((<AND0>|<AND1>) Equality()
-#And(2))*
-
+void And() : {}
+{
+    Equality() ((<AND0>|<AND1>) Equality() #And(2))*
 }
 
 /*
-
  * Equality
-
  * For '==' 'eq' '!=' 'ne', then Compare
-
  */
-
-void Equality() : \{}
-
-\{
-
- Compare()
-
- (
-
- ((<EQ0>|<EQ1>) Compare() #Equal(2))
-
- |
-
- ((<NE0>|<NE1>) Compare() #NotEqual(2))
-
- )*
-
+void Equality() : {}
+{
+    Compare()
+    (
+        ((<EQ0>|<EQ1>) Compare() #Equal(2))
+    |
+        ((<NE0>|<NE1>) Compare() #NotEqual(2))
+    )*
 }
 
-
-
 /*
-
  * Compare
-
  * For a bunch of them, then Math
-
  */
-
-void Compare() : \{}
-
-\{
-
- Concatenation()
-
- (
-
- ((<LT0>|<LT1>) Concatenation() #LessThan(2))
-
- |
-
- ((<GT0>|<GT1>) Concatenation()
-#GreaterThan(2))
-
- |
-
- ((<LE0>|<LE1>) Concatenation()
-#LessThanEqual(2))
-
- |
-
- ((<GE0>|<GE1>) Concatenation()
-#GreaterThanEqual(2))
-
- )*
-
+void Compare() : {}
+{
+    Concatenation()
+    (
+        ((<LT0>|<LT1>) Concatenation() #LessThan(2))
+    |
+        ((<GT0>|<GT1>) Concatenation() #GreaterThan(2))
+    |
+        ((<LE0>|<LE1>) Concatenation() #LessThanEqual(2))
+    |
+        ((<GE0>|<GE1>) Concatenation() #GreaterThanEqual(2))
+    )*
 }
 
 /*
-
  * Concatenation
-
- * For 'cat', then Math()
-
+ * For '&', then Math()
  */
-
-void Concatenation() : \{}
-
-\{
-
- Math() ( <CONCAT> Math() #Concat(2) )*
-
+void Concatenation() : {}
+{
+        Math() ( <CONCAT> Math() #Concat(2) )*
 }
 
-
-
 /*
-
  * Math
-
  * For '+' '-', then Multiplication
-
  */
-
-void Math() : \{}
-
-\{
-
- Multiplication()
-
- (
-
- (<PLUS> Multiplication() #Plus(2))
-
- |
-
- (<MINUS> Multiplication() #Minus(2))
-
- )*
-
+void Math() : {}
+{
+    Multiplication()
+    (
+        (<PLUS> Multiplication() #Plus(2))
+    |
+        (<MINUS> Multiplication() #Minus(2))
+    )*
 }
 
 /*
-
  * Multiplication
-
  * For a bunch of them, then Unary
-
  */
-
-void Multiplication() : \{}
-
-\{
-
- Unary()
-
- (
-
- (<MULT> Unary() #Mult(2))
-
- |
-
- ((<DIV0>|<DIV1>) Unary() #Div(2))
-
- |
-
- ((<MOD0>|<MOD1>) Unary() #Mod(2))
-
- )*
-
+void Multiplication() : {}
+{
+    Unary()
+    (
+        (<MULT> Unary() #Mult(2))
+    |
+        ((<DIV0>|<DIV1>) Unary() #Div(2))
+    |
+        ((<MOD0>|<MOD1>) Unary() #Mod(2))   
+    )*  
 }
 
-
-
 /*
-
  * Unary
-
  * For '-' '!' 'not' 'empty', then Value
-
  */
-
-void Unary() : \{}
-
-\{
-
- <MINUS> Unary() #Negative
-
- |
-
- (<NOT0>|<NOT1>) Unary() #Not
-
- |
-
- <EMPTY> Unary() #Empty
-
- |
-
- Value()
-
+void Unary() : {}
+{
+        <MINUS> Unary() #Negative 
+    |
+        (<NOT0>|<NOT1>) Unary() #Not 
+    |
+        <EMPTY> Unary() #Empty
+    |   
+        Value()
 }
 
 /*
-
  * Value
-
  * Defines Prefix plus zero or more Suffixes
-
  */
-
-void Value() : \{}
-
-\{
-
- (ValuePrefix() (ValueSuffix())*) #Value(>1)
-
+void Value() : {}
+{
+    (ValuePrefix() (ValueSuffix())*) #Value(>1)
 }
 
-
-
 /*
-
  * ValuePrefix
-
  * For Literals, Variables, and Functions
-
  */
-
-void ValuePrefix() : \{}
-
-\{
-
- Literal() | NonLiteral()
-
+void ValuePrefix() : {}
+{
+    Literal()
+    | NonLiteral()
 }
 
-
-
 /*
-
  * ValueSuffix
-
  * Either dot or bracket notation
-
  */
-
-void ValueSuffix() : \{}
-
-\{
-
- DotSuffix() | BracketSuffix()
-
+void ValueSuffix() : {}
+{
+    DotSuffix() | BracketSuffix()
 }
 
-
-
 /*
-
  * DotSuffix
-
  * Dot Property and Dot Method
-
  */
-
-void DotSuffix() #DotSuffix : \{ Token t =
-null; }
-
-\{
-
- <DOT> t=<IDENTIFIER> \{
-jjtThis.setImage(t.image); }
-
- (MethodArguments())?
-
+void DotSuffix() #DotSuffix : {  Token t = null; }
+{
+        <DOT> t=<IDENTIFIER> { jjtThis.setImage(t.image); }
+        (MethodArguments())?
 }
 
 /*
-
  * BracketSuffix
-
  * Sub Expression Suffix
-
  */
-
-void BracketSuffix() #BracketSuffix : \{}
-
-\{
-
- <LBRACK> Expression() <RBRACK>
-
- (MethodArguments())?
-
+void BracketSuffix() #BracketSuffix : {}
+{
+    <LBRACK> Expression() <RBRACK>
+        (MethodArguments())?
 }
 
-/*
 
+/*
  * MethodArguments
-
  */
-
-void MethodArguments() #MethodArguments : \{}
-
-\{
-
- <LPAREN> (Expression() (<COMMA>
-Expression())*)? <RPAREN>
-
-}
-
-
-
-/*
-
- * Parenthesized Lambda Expression, with
-optional invokation
-
- */
-
-void LambdaExpressionOrCall()
-#LambdaExpression : \{}
-
-
-
-\{
-
- <LPAREN>
-
- LambdaParameters() <ARROW>
-
- (LOOKAHEAD(3) LambdaExpression() | Choice()
-)
-
- <RPAREN>
-
- (MethodArguments())*
-
+void MethodArguments() #MethodArguments : {}
+{
+        <LPAREN> (Expression() (<COMMA> Expression())*)? <RPAREN>
 }
 
 /*
+ * Parenthesized Lambda Expression, with optional invokation
+ */
+void LambdaExpressionOrCall() #LambdaExpression : {}
 
+{
+    <LPAREN>
+        LambdaParameters() <ARROW>
+        (LOOKAHEAD(3) LambdaExpression() | Choice() )
+    <RPAREN>
+    (MethodArguments())*
+}
+
+/*
  * NonLiteral
-
- * For Grouped Operations, Identifiers, and
-Functions
-
+ * For Grouped Operations, Identifiers, and Functions
  */
-
-void NonLiteral() : \{}
-
-\{
-
- LOOKAHEAD(4) LambdaExpressionOrCall()
-
- | <LPAREN> Expression() <RPAREN>
-
- | LOOKAHEAD(4) Function()
-
- | Identifier()
-
- | MapData()
-
- | ListData()
-
+void NonLiteral() : {}
+{
+        LOOKAHEAD(5) LambdaExpressionOrCall() // check beyond the arrow 
+    | <LPAREN> Expression() <RPAREN>
+    | LOOKAHEAD(4) Function()
+    | Identifier()
+        | MapData()
+        | ListData()
 }
 
-
-
-void MapData() #MapData: \{}
-
-\{
-
- <START_MAP>
-
- ( MapEntry() ( <COMMA> MapEntry() )* )?
-
- <RCURL>
-
+void MapData() #MapData: {}
+{
+    <START_MAP>
+        ( MapEntry() ( <COMMA> MapEntry() )* )?
+    <RCURL>
 }
 
-
-
-void MapEntry() #MapEntry: \{}
-
-\{
-
- Expression() (<COLON> Expression())?
-
+void MapEntry() #MapEntry: {}
+{
+    Expression() (<COLON> Expression())?
 }
 
-
-
-void ListData() #ListData: \{}
-
-\{
-
- <LBRACK>
-
- ( Expression() ( <COMMA> Expression() )* )?
-
- <RBRACK>
-
+void ListData() #ListData: {}
+{
+    <LBRACK>
+        ( Expression() ( <COMMA> Expression() )* )?
+    <RBRACK>
 }
-
-
 
 /*
-
  * Identifier
-
  * Java Language Identifier
-
  */
-
-void Identifier() #Identifier : \{ Token t =
-null; }
-
-\{
-
- t=<IDENTIFIER> \{ jjtThis.setImage(t.image);
-}
-
+void Identifier() #Identifier : { Token t = null; }
+{
+    t=<IDENTIFIER> { jjtThis.setImage(t.image); }
 }
 
 /*
-
  * Function
-
  * Namespace:Name(a,b,c)
-
  */
-
 void Function() #Function :
-
-\{
-
- Token t0 = null;
-
- Token t1 = null;
-
+{
+    Token t0 = null;
+    Token t1 = null;
+}
+{
+    t0=<IDENTIFIER> (<COLON> t1=<IDENTIFIER>)?
+    {
+        if (t1 != null) {
+            jjtThis.setPrefix(t0.image);
+            jjtThis.setLocalName(t1.image);
+        } else {
+            jjtThis.setLocalName(t0.image);
+        }
+    }
+        (MethodArguments())+
 }
 
-\{
-
- t0=<IDENTIFIER> (<COLON> t1=<IDENTIFIER>)?
-
- \{
-
- if (t1 != null) \{
-
- jjtThis.setPrefix(t0.image);
-
- jjtThis.setLocalName(t1.image);
-
- } else \{
-
- jjtThis.setLocalName(t0.image);
-
- }
-
- }
-
- (MethodArguments())+
-
-}
 
 /*
-
  * Literal
-
  * Reserved Keywords
-
  */
-
-void Literal() : \{}
-
-\{
-
- Boolean()
-
- | FloatingPoint()
-
- | Integer()
-
- | String()
-
- | Null()
-
+void Literal() : {}
+{
+    Boolean()
+    | FloatingPoint()
+    | Integer()
+    | String()
+    | Null()
 }
 
 /*
-
  * Boolean
-
  * For 'true' 'false'
-
  */
-
-void Boolean() : \{}
-
-\{
-
- <TRUE> #True
-
- | <FALSE> #False
-
+void Boolean() : {}
+{
+    <TRUE> #True
+    | <FALSE> #False
 }
 
 /*
-
  * FloatinPoint
-
  * For Decimal and Floating Point Literals
-
  */
-
-void FloatingPoint() #FloatingPoint : \{
-Token t = null; }
-
-\{
-
- t=<FLOATING_POINT_LITERAL> \{
-jjtThis.setImage(t.image); }
-
+void FloatingPoint() #FloatingPoint : { Token t = null; }
+{
+    t=<FLOATING_POINT_LITERAL> { jjtThis.setImage(t.image); }
 }
 
 /*
-
  * Integer
-
  * For Simple Numeric Literals
-
  */
-
-void Integer() #Integer : \{ Token t = null;
-}
-
-\{
-
- t=<INTEGER_LITERAL> \{
-jjtThis.setImage(t.image); }
-
+void Integer() #Integer : { Token t = null; }
+{
+    t=<INTEGER_LITERAL> { jjtThis.setImage(t.image); }
 }
 
 /*
-
  * String
-
  * For Quoted Literals
-
  */
-
-void String() #String : \{ Token t = null; }
-
-\{
-
- t=<STRING_LITERAL> \{
-jjtThis.setImage(t.image); }
-
+void String() #String : { Token t = null; }
+{
+    t=<STRING_LITERAL> { jjtThis.setImage(t.image); }
 }
 
 /*
-
  * Null
-
  * For 'null'
-
  */
-
-void Null() #Null : \{}
-
-\{
-
- <NULL>
-
-}
-
-/*
-==========================================================================
-*/TOKEN_MGR_DECLS:
-
-\{
-
- java.util.Stack<Integer> stack = new
-java.util.Stack<Integer>();
-
+void Null() #Null : {}
+{
+    <NULL>
 }
 
 
+/* ========================================================================== */
+TOKEN_MGR_DECLS:
+{
+    java.util.Stack<Integer> stack = new java.util.Stack<Integer>();
+}
 
 <DEFAULT> TOKEN :
-
-\{
-
- < LITERAL_EXPRESSION:
-
- ((~["\\", "$", "#"])
-
- | ("\\" ("\\" | "$" | "#"))
-
- | ("$" ~["\{", "$"])
-
- | ("#" ~["\{", "#"])
-
- )+
-
- | "$"
-
- | "#"
-
- >
-
+{
+  < LITERAL_EXPRESSION:
+    ((~["\\", "$", "#"])
+      | ("\\" ("\\" | "$" | "#"))
+      | ("$" ~["{", "$", "#"])
+      | ("#" ~["{", "$", "#"])
+    )+
+    | "$"
+    | "#"
+  >
 |
-
- < START_DYNAMIC_EXPRESSION: "$\{" >
-\{stack.push(DEFAULT);}: IN_EXPRESSION
-
+  < START_DYNAMIC_EXPRESSION: "${" > {stack.push(DEFAULT);}: IN_EXPRESSION
 |
-
- < START_DEFERRED_EXPRESSION: "#\{" >
-\{stack.push(DEFAULT);}: IN_EXPRESSION
-
+  < START_DEFERRED_EXPRESSION: "#{" > {stack.push(DEFAULT);}: IN_EXPRESSION
 }
 
-
-
-<DEFAULT> SKIP : \{ "\\" }
-
-
+<DEFAULT> SKIP : { "\\" }
 
 <IN_EXPRESSION, IN_MAP> SKIP:
-
-\{ " " | "\t" | "\n" | "\r" }
-
-
+{ " " | "\t" | "\n" | "\r" }
 
 <IN_EXPRESSION, IN_MAP> TOKEN :
-
-\{
-
- < START_MAP : "\{" >
-\{stack.push(curLexState);}: IN_MAP
-
-| < RCURL: "}" > \{SwitchTo(stack.pop());}
-
-| < INTEGER_LITERAL: ["0"-"9"] (["0"-"9"])* >
-
-| < FLOATING_POINT_LITERAL: (["0"-"9"])+ "."
-(["0"-"9"])* (<EXPONENT>)?
-
- | "." (["0"-"9"])+ (<EXPONENT>)?
-
- | (["0"-"9"])+ <EXPONENT>
-
- >
-
-| < #EXPONENT: ["e","E"] (["+","-"])?
-(["0"-"9"])+ >
-
-| < STRING_LITERAL: ("\"" ((~["\"","\\"])
-
- | ("\\" ( ["\\","\""] )))* "\"")
-
- | ("\'" ((~["\'","\\"])
-
- | ("\\" ( ["\\","\'"] )))* "\'")
-
- >
-
-| < BADLY_ESCAPED_STRING_LITERAL: ("\""
-(~["\"","\\"])* ("\\" ( ~["\\","\""] )))
-
- | ("\'" (~["\'","\\"])* ("\\" ( ~["\\","\'"]
-)))
-
- >
-
-| < TRUE : "true" >
-
-| < FALSE : "false" >
-
-| < NULL : "null" >
-
-| < DOT : "." >
-
-| < LPAREN : "(" >
-
-| < RPAREN : ")" >
-
-| < LBRACK : "[" >
-
-| < RBRACK : "]" >
-
-| < COLON : ":" >
-
-| < COMMA : "," >
-
-| < SEMICOLON : ";" >
-
-| < GT0 : ">" >
-
-| < GT1 : "gt" >
-
-| < LT0 : "<" >
-
-| < LT1 : "lt" >
-
-| < GE0 : ">=" >
-
-| < GE1 : "ge" >
-
-| < LE0 : "<=" >
-
-| < LE1 : "le" >
-
-| < EQ0 : "==" >
-
-| < EQ1 : "eq" >
-
-| < NE0 : "!=" >
-
-| < NE1 : "ne" >
-
-| < NOT0 : "!" >
-
-| < NOT1 : "not" >
-
-| < AND0 : "&&" >
-
-| < AND1 : "and" >
-
-| < OR0 : "||" >
-
-| < OR1 : "or" >
-
-| < EMPTY : "empty" >
-
-| < INSTANCEOF : "instanceof" >
-
-| < MULT : "*" >
-
-| < PLUS : "+" >
-
-| < MINUS : "-" >
-
-| < QUESTIONMARK : "?" >
-
-| < DIV0 : "/" >
-
-| < DIV1 : "div" >
-
-| < MOD0 : "%" >
-
-| < MOD1 : "mod" >
-
-| < CONCAT : "+=" >
-
-| < ASSIGN : "=" >
-
-| < ARROW : "->" >
-
-| < IDENTIFIER : (<LETTER>|<IMPL_OBJ_START>)
-(<LETTER>|<DIGIT>)* >
-
-| < #IMPL_OBJ_START: "#" >
-
-| < #LETTER:
-
- [
-
- "\u0024",
-
- "\u0041"-"\u005a",
-
- "\u005f",
-
- "\u0061"-"\u007a",
-
- "\u00c0"-"\u00d6",
-
- "\u00d8"-"\u00f6",
-
- "\u00f8"-"\u00ff",
-
- "\u0100"-"\u1fff",
-
- "\u3040"-"\u318f",
-
- "\u3300"-"\u337f",
-
- "\u3400"-"\u3d2d",
-
- "\u4e00"-"\u9fff",
-
- "\uf900"-"\ufaff"
-
-{empty} ]
-
- >
-
-| < #DIGIT:
-
- [
-
- "\u0030"-"\u0039",
-
- "\u0660"-"\u0669",
-
- "\u06f0"-"\u06f9",
-
- "\u0966"-"\u096f",
-
- "\u09e6"-"\u09ef",
-
- "\u0a66"-"\u0a6f",
-
- "\u0ae6"-"\u0aef",
-
- "\u0b66"-"\u0b6f",
-
- "\u0be7"-"\u0bef",
-
- "\u0c66"-"\u0c6f",
-
- "\u0ce6"-"\u0cef",
-
- "\u0d66"-"\u0d6f",
-
- "\u0e50"-"\u0e59",
-
- "\u0ed0"-"\u0ed9",
-
- "\u1040"-"\u1049"
-
-{empty} ]
-
- >
-
-| < ILLEGAL_CHARACTER: (~[]) >
-
+{
+        < START_MAP : "{" > {stack.push(curLexState);}: IN_MAP
+|       < RCURL: "}" > {SwitchTo(stack.pop());}
+|       < INTEGER_LITERAL: ["0"-"9"] (["0"-"9"])* >
+|   < FLOATING_POINT_LITERAL: (["0"-"9"])+ "." (["0"-"9"])* (<EXPONENT>)? 
+        | "." (["0"-"9"])+ (<EXPONENT>)?
+        | (["0"-"9"])+ <EXPONENT>
+    >
+|   < #EXPONENT: ["e","E"] (["+","-"])? (["0"-"9"])+ >
+|   < STRING_LITERAL: ("\"" ((~["\"","\\"])
+        | ("\\" ( ["\\","\""] )))* "\"")
+        | ("\'" ((~["\'","\\"])
+        | ("\\" ( ["\\","\'"] )))* "\'")
+    >
+|   < BADLY_ESCAPED_STRING_LITERAL: ("\"" (~["\"","\\"])* ("\\" ( ~["\\","\""] )))
+        | ("\'" (~["\'","\\"])* ("\\" ( ~["\\","\'"] )))
+    >
+|   < TRUE : "true" >
+|   < FALSE : "false" >
+|   < NULL : "null" >
+|   < DOT : "." >
+|   < LPAREN : "(" >
+|   < RPAREN : ")" >
+|   < LBRACK : "[" >
+|   < RBRACK : "]" >
+|   < COLON : ":" >
+|   < COMMA : "," >
+|       < SEMICOLON : ";" >
+|   < GT0 : ">" >
+|   < GT1 : "gt" >
+|   < LT0 : "<" >
+|   < LT1 : "lt" >
+|   < GE0 : ">=" >
+|   < GE1 : "ge" >
+|   < LE0 : "<=" >
+|   < LE1 : "le" >
+|   < EQ0 : "==" >
+|   < EQ1 : "eq" >
+|   < NE0 : "!=" >
+|   < NE1 : "ne" >
+|   < NOT0 : "!" >
+|   < NOT1 : "not" >
+|   < AND0 : "&&" >
+|   < AND1 : "and" >
+|   < OR0 : "||" >
+|   < OR1 : "or" >
+|   < EMPTY : "empty" >
+|   < INSTANCEOF : "instanceof" >
+|   < MULT : "*" >
+|   < PLUS : "+" >
+|   < MINUS : "-" >
+|   < QUESTIONMARK : "?" >
+|   < DIV0 : "/" >
+|   < DIV1 : "div" >
+|   < MOD0 : "%" >
+|   < MOD1 : "mod" >
+|       < CONCAT : "+=" >
+|       < ASSIGN : "=" >
+|       < ARROW : "->" >
+|   < IDENTIFIER : (<LETTER>|<IMPL_OBJ_START>) (<LETTER>|<DIGIT>)* >
+|   < #IMPL_OBJ_START: "#" >
+|   < #LETTER:
+        [
+        "\u0024",
+        "\u0041"-"\u005a",
+        "\u005f",
+        "\u0061"-"\u007a",
+        "\u00c0"-"\u00d6",
+        "\u00d8"-"\u00f6",
+        "\u00f8"-"\u00ff",
+        "\u0100"-"\u1fff",
+        "\u3040"-"\u318f",
+        "\u3300"-"\u337f",
+        "\u3400"-"\u3d2d",
+        "\u4e00"-"\u9fff",
+        "\uf900"-"\ufaff"
+        ]
+    >
+|   < #DIGIT:
+        [
+        "\u0030"-"\u0039",
+        "\u0660"-"\u0669",
+        "\u06f0"-"\u06f9",
+        "\u0966"-"\u096f",
+        "\u09e6"-"\u09ef",
+        "\u0a66"-"\u0a6f",
+        "\u0ae6"-"\u0aef",
+        "\u0b66"-"\u0b6f",
+        "\u0be7"-"\u0bef",
+        "\u0c66"-"\u0c6f",
+        "\u0ce6"-"\u0cef",
+        "\u0d66"-"\u0d6f",
+        "\u0e50"-"\u0e59",
+        "\u0ed0"-"\u0ed9",
+        "\u1040"-"\u1049"
+        ]
+    >
+|   < ILLEGAL_CHARACTER: (~[]) >
 }
-
-
-
-=== 
+----
 
 Notes
 
-* = 0 or more, + = 1 or more, ? = 0 or 1.
+* `*` = 0 or more, `+` = 1 or more, `?` = 0 or 1.
 
-An identifier is constrained to be a Java
-identifier - e.g., no _-_ , no _/_ , etc.
+* An identifier is constrained to be a Java identifier - e.g., no `-`,
+no `/`, etc.
 
-A _String_ only recognizes a limited set of
-escape sequences, and _\_ may not appear unescaped.
+* A `String` only recognizes a limited set of escape sequences, and `\`
+may not appear unescaped.
 
-The relational operator for equality is _==_
-(double equals).
+* The relational operator for equality is `==` (double equals).
 
-The value of an _IntegerLiteral_ ranges from
-_Long.MIN_VALUE_ to _Long.MAX_VALUE_
+* The value of an `IntegerLiteral` ranges from `Long.MIN_VALUE` to
+`Long.MAX_VALUE`
 
-The value of a _FloatingPointLiteral_ ranges
-from _Double.MIN_VALUE_ to _Double.MAX_VALUE_
+* The value of a `FloatingPointLiteral` ranges from
+`Double.MIN_VALUE` to `Double.MAX_VALUE`
 
-It is illegal to nest _$\{_ or _#\{_ inside
-an outer _$\{_ or _#\{_ .
+* It is illegal to nest `${` or `\#{` inside
+an outer `${` or `#{`.
 
-=== [[a1063]]
-
-=== 
-
-image:ELSpec-9.png[image]
-
-Operations on Collection Objects
-
-image:ELSpec-10.png[image]
+== Operations on Collection Objects
 
 This chapter describes how collection objects
 and literals can be constructed in the EL expression, and how collection
 objects can be manipulated and processed by applying operations in a
 pipeline.
 
-=== 
-
-image:ELSpec-11.png[image]
-
-Overview
+=== Overview
 
 To provide support for collection objects, EL
 includes syntaxes for constructing sets, lists, and maps dynamically.
@@ -2859,111 +2144,96 @@ argument to the filter method is a lambda expression which acts as a
 predicate function to determine if an element should be included in the
 resulting stream.
 
-=== 
-
-image:ELSpec-11.png[image]
-
-Construction of Collection Objects
+=== Construction of Collection Objects
 
 EL allows the construction of sets, lists,
 and maps dynamically. Any EL expressions, including nested collection
 constructions, can be used in the construction. These expressions are
 evaluated at the time of the construction.
 
-=== Set Construction
+==== Set Construction
 
-Construct an instance of
-java.lang.util.Set<Object>.
+Construct an instance of `java.lang.util.Set<Object>`.
 
-=== Syntax
+===== Syntax
 
-SetData := ‘\{‘ DataList ‘}’
+`SetData := '{' DataList '}'`
 
-DataList := (expression (‘,’ expression)* )?
+`DataList := (expression (',' expression)* )?`
 
-=== Example
+===== Example
 
-\{1, 2, 3}
+`{1, 2, 3}`
 
-=== List Construction
+==== List Construction
 
-Construct an instance of
-java.lang.util.List<Object>.
+Construct an instance of `java.lang.util.List<Object>`.
 
-=== Syntax
+===== Syntax
 
-ListData := ‘[‘ DataList ‘]’
+`ListData := '[' DataList ']'`
 
-DataList := (expression (‘,’ expression)* )?
+`DataList := (expression (',' expression)* )?`
 
-=== Example
+===== Example
 
-{empty}[1, "two", [foo, bar]]
+`[1, "two", [foo, bar]]`
 
-=== Map Construction
+==== Map Construction
 
-Construct an instance of
-java.lang.util.Map<Object>.
+Construct an instance of `java.lang.util.Map<Object>`.
 
-=== Syntax
+===== Syntax
 
-Map := '\{' MapEntries '}'
+`Map := '{' MapEntries '}'`
 
-MapEntries := (MapEntry (',' MapEntry)* )?
+`MapEntries := (MapEntry (',' MapEntry)* )?`
 
-MapEntry := expression ':' expression
+`MapEntry := expression ':' expression`
 
-=== Example
+===== Example
 
-\{"one":1, "two":2, "three":3}
+`{"one":1, "two":2, "three":3}`
 
-=== 
+=== Collection Operations
 
-image:ELSpec-11.png[image]
-
-Collection Operations
-
-=== Stream and Pipeline
+==== Stream and Pipeline
 
 The operations on a collection object are
 realized as method calls to the stream of elements derived from the
-collection. The method stream can be used to obtain a Stream from a
-java.util.Collection or a Java array.
+collection. The method `stream` can be used to obtain a `Stream` from a
+`java.util.Collection` or a Java array.
 
-To obtain a Stream from a Map, the collection
-view of a Map, such as MapEntry can be used as the source of Stream.
+To obtain a `Stream` from a `Map`, the collection view of a `Map`,
+such as `MapEntry` can be used as the source of `Stream`.
 
-Some operations return another Stream, which
+Some operations return another `Stream`, which
 allows other operations. Therefore the operations can be chained
 together to form a pipeline. For example, to get a list of titles of
 history books, one can write in EL:
 
+----
+books.stream().filter(b->b.category == 'history’)
+              .map(b->b.title)
+              .toList()
+----
 
+A stream pipeline consists of:
 
- books.stream().filter(b->b.category ==
-‘history’)
+* the source:
 
- .map(b->b.title)
+* intermediate operations; and
 
- .toList()
+* a terminal operation.
 
-A stream pipeline consists of
-
-The source,
-
-Intermediate operations, and
-
-A terminal operation.
-
-The source of a pipeline is the Stream
-object.
+The source of a pipeline is the `Stream` object.
 
 An intermediate operation is a method in
-Stream that returns a Stream. A pipeline may contain zero or more
+`Stream` that returns a `Stream`. A pipeline may contain zero or more
 intermediate operations.
 
-A pipeline ends in a terminal operation. A
-terminal operation is a method in Stream that does not return a Stream.
+A pipeline ends in a terminal operation. A terminal operation is a
+method in `Stream` that does not return a `Stream`.
 
 The execution of a pipeline only begins when
 the terminal operation starts its execution. Most of the intermediate
@@ -2991,32 +2261,32 @@ The source stream in a pipeline that has
 already started its execution cannot be used in another pipeline,
 otherwise the behavior is undefined.
 
-=== Operation Syntax Description
+==== Operation Syntax Description
 
-The implementation of Stream that contains
+The implementation of `Stream` that contains
 the methods supporting the operations are not part of the API. The
 syntax and the behavior of the operations are described in this chapter.
 
 For documentation purposes, pseudo method
 declarations are used in this chapter for the operations. A method
-includes
+includes:
 
-The return type
+* The return type
 
-The type of the source stream
+* The type of the source stream
 
-The method name
+* The method name
 
-The method parameters
+* The method parameters
 
 A typical method declaration would looks like
 
-returnT Stream<T>.method(T1 arg1, T2 arg2)
+`returnT Stream<T>.method(T1 arg1, T2 arg2)`
 
 Some methods have optional parameters. The
 declarations of the methods with all possible combinations of the
 parameters are listed in the syntax sections, as if they are overloaded.
-Any null parameter will result in a NullPointerException at run-time.
+Any `null` parameter will result in a `NullPointerException` at run-time.
 
 Some of the parameters are lambda
 expressions, also known as functions. A lambda expression can have its
@@ -3024,16 +2294,14 @@ own parameters and can return a value. To describe the parameter types
 and the return type of a lambda expression, the following is an example
 of the notation that is used.
 
- (p1,p2)->returnT
+`(p1,p2)\->returnT`
 
-For instance, the declaration for the
-operation filter is
+For instance, the declaration for the operation filter is
 
- Stream<S> Stream<S>.filter((S->boolean)
-predicate)
+`Stream<S> Stream<S>.filter((S->boolean) predicate)`
 
-From this we know that the source object is a
-Stream of S, and the return object is also a Stream, of the same type.
+From this we know that the source object is a `Stream` of `S`, and the
+return object is also a `Stream`, of the same type.
 The operator takes a predicate function (lambda expression) as an
 argument. The argument of the function is an element of the source, and
 the function returns a boolean.
@@ -3044,102 +2312,95 @@ various parts of the declaration, and do not have the same meaning as
 used in the Java language. At runtime, EL deals with Objects, and does
 not track generic types.
 
-=== Implementation Classes
+==== Implementation Classes
 
 The specification makes references to some
 implementation classes that are not in the API. They contains methods
 whose behaviors are specified in this section.
 
-=== Stream
+===== Stream
 
-An instant of Stream is obtained by calling
-the method stream() of a java.util.Collection object or a Java array.
+An instant of `Stream` is obtained by calling the method `stream()` of
+a `java.util.Collection` object or a Java array.
 The methods in this class support the stream operations and are
 described in link:ELSpec.html#a1171[See filter] to
 link:ELSpec.html#a1386[See findFirst].
 
-=== [[a1138]]Optional
+===== Optional
 
-An Optional is used to represent a value that
-may not exist. Instead of using null as a default value, the use of
-Optional allows the user to specify a default.
+An `Optional` is used to represent a value that
+may not exist. Instead of using `null` as a default value, the use of
+`Optional` allows the user to specify a default.
 
 A non-existing or empty value is represented
-by an empty Optional.
+by an empty `Optional`.
 
-An Optional is usually the result of a
-computation over the elements of a Stream, where an empty Stream results
-in an empty Optional. See for example,
+An `Optional` is usually the result of a computation over the elements
+of a `Stream`, where an empty `Stream` results
+in an empty `Optional`. See for example,
 link:ELSpec.html#a1320[See max].
 
-The following are methods in Optional<T>.
+The following are methods in `Optional<T>`.
 
-T get()
+* `T get()` +
+Returns the value held by the `Optional`, or
+throws an `ELException` if the `Optional` is empty.
 
-Returns the value held by the Optional, or
-throws an ELException if the Optional is empty.
-
-void ifPresent((x)->void)consumer)
-
-The value held by the Optional is processed
+* `void ifPresent((x)->void)consumer)` +
+The value held by the `Optional` is processed
 by the function consumer if it is not empty. See also
 link:ELSpec.html#a1164[See consumer].
 
-T orElse(T other)
+* `T orElse(T other)` +
+Returns the value held by the `Optional`, or
+the value other if the `Optional` is empty.
 
-Returns the value held by the Optional, or
-the value other if the Optional is empty.
+* `T orElseGet((()->T) other)` +
+Returns the value held by the `Optional`, or the value returned by the
+lambda expression other if the `Optional` is empty.
 
-T orElseGet((()->T) other)
-
-Returns the value held by the Optional, or
-the value returned by the lambda expression other if the Optional is
-empty.
-
-=== Functions
+==== Functions
 
 Some operations takes functions (lambda
-expressions) as parameters. Again, we used the notion
+expressions) as parameters. Again, we use the notion
 
- (arg1Type, ...)->returnType
+`(arg1Type, ...)\->returnType`
 
-to describe the argument types and the return
-type of a function.
+to describe the argument types and the return type of a function.
 
-=== [[a1155]]predicate
+===== predicate
 
-S -> boolean
+`S -> boolean`
 
-This function takes the input argument,
-usually the element of the source stream, and determines if it satisfies
-some criteria.
+This function takes the input argument, usually the element of the
+source stream, and determines if it satisfies some criteria.
 
-=== [[a1158]]mapper
+===== mapper
 
-S -> R
+`S -> R`
 
 This function maps, or transforms the input
 argument, usually the element of the source stream, to the result.
 
-=== [[a1161]]comparator
+===== comparator
 
-(S, S) -> int
+`(S, S) -> int`
 
 This function compares two arguments, usually
 the elements of the source stream, and returns a negative integer, zero,
 or a positive integer, if the first argument is respectively less than,
 equal to, or greater than the second argument.
 
-=== [[a1164]]consumer
+===== consumer
 
-S -> void
+`S -> void`
 
 This function processes the input argument,
 usually the element of the source stream, and returns nothing.
 
-=== [[a1167]]binaryOperator
+===== binaryOperator
 
-(S, S) -> S
+`(S, S) -> S`
 
 This function applies a binary operation to
 the input arguments, and returns the result. The first argument is
@@ -3149,222 +2410,197 @@ usually the element of the source stream.
 The arguments and the result are of the same
 type.
 
-=== [[a1171]]filter
+==== filter
 
-=== Syntax
+===== Syntax
 
-Stream<S> Stream<S>.filter((S->boolean)
-predicate)
+`Stream<S> Stream<S>.filter((S->boolean) predicate)`
 
-=== Description
+===== Description
 
 This method produces a stream containing the
 source stream elements for which the predicate function returns true.
 The argument of predicate function represents the element to test.
 
-=== See
+===== See
 
-{empty}link:ELSpec.html#a1155[See
-predicate]
+{empty}link:ELSpec.html#a1155[See predicate]
 
-=== Example
+===== Example
 
-To find the products whose price is greater
-than or equal to 10:
+To find the products whose price is greater than or equal to 10:
 
- products.stream().filter(p->p.unitPrice >=
-10).toList()
+`products.stream().filter(p->p.unitPrice >= 10).toList()`
 
-=== map
+==== map
 
-=== Syntax
+===== Syntax
 
-Stream<R> Stream<S>.map((S->R) mapper)
+`Stream<R> Stream<S>.map((S->R) mapper)`
 
-=== Description
+===== Description
 
 This method produces a stream by applying the
 mapper function to the elements of the source stream. The argument of
 mapper function represents the element to process, and the result of the
 mapper function represents the element of the resulting Stream.
 
-=== See
+===== See
 
-{empty}link:ELSpec.html#a1158[See
-mapper]
+{empty}link:ELSpec.html#a1158[See mapper]
 
-=== Examples
+===== Examples
 
 To get the list of the names of all products:
 
- products.stream().map(p->p.name).toList()
+`products.stream().map(p->p.name).toList()`
 
 To creates a list of product names and prices
 for products with a price greater than or equal to 10:
 
- products.stream().filter(p->p.unitPrice >=
-10).
+----
+products.stream().filter(p->p.unitPrice >= 10)
+                 .map(p->[p.name, p.unitPrice])
+                 .toList()
+----
 
- .map(p->[p.name, p.unitPrice])
+==== flatMap
 
- .toList()
+===== Syntax
 
-=== flatMap
+`Stream<R> Stream<S>.flatMap((S->Stream<R>) mapper)`
 
-=== Syntax
-
-Stream<R> Stream<S>.flatMap((S->Stream<R>)
-mapper)
-
-=== Description
+===== Description
 
 This method produces a stream by mapping each
 of the source elements to another stream and then concatenating the
 mapped streams. If the mapper function does not return a Stream, the
 behavior is undefined.
 
-=== See
+===== See
 
-{empty}link:ELSpec.html#a1158[See
-mapper]
+{empty}link:ELSpec.html#a1158[See mapper]
 
-=== Examples
+===== Examples
 
 To list all orders of US customers:
-
- customers.stream().filter(c->c.country ==
-'USA')
-
- .flatMap(c->c.orders.stream())
-
- .toList()
+----
+customers.stream().filter(c->c.country == 'USA')
+                  .flatMap(c->c.orders.stream())
+                  .toList()
+----
 
 To obtain a list of alphabets used in a list
 of words:
-
-
+----
 words.stream().flatMap(w->w.toCharArray().stream())
+              .sorted()
+              .distinct()
+              .toList()
+----
 
- .sorted()
+==== distinct
 
- .distinct()
+===== Syntax
 
- .toList()
+`Stream<S> Stream<S>.distinct()`
 
-=== distinct
-
-=== Syntax
-
-Stream<S> Stream<S>.distinct()
-
-=== Description
+===== Description
 
 This method produces a stream containing the
 elements of the source stream that are distinct, according to
-Object.equals.
+`Object.equals`.
 
-=== Example
+===== Example
 
 To remove the duplicate element b:
 
-['a', 'b', 'b',
-'c'].stream().distinct().toArray()
+`['a', 'b', 'b', 'c'].stream().distinct().toArray()`
 
-=== sorted
+==== sorted
 
-=== Syntax
+===== Syntax
 
-Stream<S> Stream<S>.sorted()
+`Stream<S> Stream<S>.sorted()`
 
-Stream<S> Stream<S>.sorted(((p,q)->int)
-comparator)
+`Stream<S> Stream<S>.sorted(((p,q)->int) comparator)`
 
-=== Description
+===== Description
 
 This method produces a stream containing the
 elements of the source stream in sorted order. If no comparator is
 specified, the elements are sorted in natural order. The behavior is
 undefined if no comparator is specified, and the elements do not
-implement java.lang.Comparable. If a comparator is specified, the
+implement `java.lang.Comparable`. If a comparator is specified, the
 elements are sorted with the provided comparator.
 
 The source collection is unaffected by this
 operation.
 
-=== See
+===== See
 
-{empty}link:ELSpec.html#a1161[See
-comparator]
+{empty}link:ELSpec.html#a1161[See comparator]
 
-=== Examples
+===== Examples
 
 To sort a list of integers
 
- [1,3,2,4].stream().sorted().toList()
+`[1,3,2,4].stream().sorted().toList()`
 
 To sort a list of integers in reversed order
 
- [1,3,2,4].stream().sorted((i,j)->j-i).List()
+`[1,3,2,4].stream().sorted((i,j)->j-i).List()`
 
 To sort a list of words in the order of word
 length; and then for words of the same length, in alphabetical order:
-
- words.stream().sorted(
-
- (s,t)->(s.length()==t.length()?
-s.compareTo(t)
-
- : s.length() - t.length()))
-
- .toLst()
+----
+words.stream().sorted(
+        (s,t)->(s.length()==t.length() ? s.compareTo(t)
+                                       : s.length() - t.length()))
+                .toList()
+----
 
 To sort the products by name:
 
- products.stream().sorted(
-
- (p,q)->p.name.compareTo(p.name)).toList()
+`products.stream().sorted\((p,q)->p.name.compareTo(p.name)).toList()`
 
 Or by defining a comparing function, this can
 be rewritten as:
-
- comparing =
-map->(x,y)->map(x).compareTo(map(y));
-
-
+----
+comparing = map->(x,y)->map(x).compareTo(map(y));
 products.stream().sorted(comparing(p->p.name)).toList()
+----
 
-=== forEach
+==== forEach
 
-=== Syntax
+===== Syntax
 
-Object stream<S>.forEach(((S)->void)consumer)
+`Object stream<S>.forEach(((S)->void)consumer)`
 
-=== Description
+===== Description
 
 This method invokes the consumer function for
 each element in the source stream.
 
-This method always returns null.
+This method always returns `null`.
 
-=== See
+===== See
 
-{empty}link:ELSpec.html#a1164[See
-consumer]
+{empty}link:ELSpec.html#a1164[See consumer]
 
-=== Example
+===== Example
 
 To print a list of customer names:
 
+`customers.stream().forEach(c->printer.print(c.name))`
 
-customers.stream().forEach(c->printer.print(c.name))
+==== peek
 
-=== peek
+===== Syntax
 
-=== Syntax
+`Stream<S> Stream<S>.peek(((S)->void)consumer)`
 
-Stream<S> Stream<S>.peek(((S)->void)consumer)
-
-=== Description
+===== Description
 
 This method produces a stream containing the
 elements of the source stream, and invokes the consumer function for
@@ -3372,42 +2608,38 @@ each element in the stream. The primary purpose of this method is for
 debugging, where one can take a peek at the elements in the stream at
 the place where this method is inserted.
 
-=== See
+===== See
 
-{empty}link:ELSpec.html#a1164[See
-consumer]
+{empty}link:ELSpec.html#a1164[See consumer]
 
-=== Example
+===== Example
 
-To print the a list of integer before and
-after a filter:
+To print the a list of integer before and after a filter:
+----
+[1,2,3,4,5].stream().peek(i->print(i))
+                    .filter(i-> i%2 == 0)
+                    .peek(i->print(i))
+                    .toList()
+----
 
- [1,2,3,4,5].stream().peek(i->print(i))
+==== iterator
 
- .filter(i-> i%2 == 0)
+===== Syntax
 
- .peek(i->print(i))
+`Iterator<S> Stream<S>.iterator()`
 
- .toList()
-
-=== iterator
-
-=== Syntax
-
-Iterator<S> Stream<S>.iterator()
-
-=== Description
+===== Description
 
 This method returns an iterator for the
 source stream, suitable for use in Java codes.
 
-=== limit
+==== limit
 
-=== Syntax
+===== Syntax
 
-Stream<S> Stream<S>.limit(Number count)
+`Stream<S> Stream<S>.limit(Number count)`
 
-=== Description
+===== Description
 
 This method produces a stream containing the
 first count number of elements of the source stream.
@@ -3416,26 +2648,24 @@ If count is greater than the number of source
 elements, all the elements are included in the returned stream. If the
 count is less than or equal to zero, an empty stream is returned.
 
-=== Example
+===== Example
 
 To list the 3 most expensive products:
+----
+products.stream().sorted(p->p.unitPrice)
+                 .limit(3)
+                 .toList()
+----
 
- products.stream().sorted(p->p.unitPrice)
+==== substream
 
- .limit(3)
+===== Syntax
 
- .toList()
+`Stream<S> Stream<S>.substream(Number start)`
 
-=== substream
+`Stream<S> Stream<S>.substream(Number start, Number end)`
 
-=== Syntax
-
-Stream<S> Stream<S>.substream(Number start)
-
-Stream<S> Stream<S>.substream(Number start,
-Number end)
-
-=== Description
+===== Description
 
 This method produces a stream containing the
 source elements, skipping the first start elements, and including the
@@ -3446,50 +2676,46 @@ If the elements in the source stream has
 fewer than start elements, nothing is included. If start is less than or
 equal to zero, no elements are skipped.
 
-=== Example
+===== Example
 
 The example
 
+`[1,2,3,4,5].stream().substream(2,4).toArray()`
 
-[1,2,3,4,5].stream().substream(2,4).toArray()
+produces the array `[3,4]`.
 
-produces the array [3,4].
+==== toArray
 
-=== toArray
+===== Syntax
 
-=== Syntax
+`S[] Stream<S>.toArray()`
 
-S[] Stream<S>.toArray()
-
-=== Description
+===== Description
 
 This method returns an array containing the
 elements of the source stream.
 
-=== toList
+==== toList
 
-=== Syntax
+===== Syntax
 
-List Stream<S>.toList()
+`List Stream<S>.toList()`
 
-=== Description
+===== Description
 
 This method returns a List containing the
 elements of the source stream.
 
 
+==== reduce
 
-=== reduce
+===== Syntax
 
-=== Syntax
+`Optional<S> Stream<S>.reduce(((S,S)->S) binaryOperator)`
 
-Optional<S> Stream<S>.reduce(((S,S)->S)
-binaryOperator)
+`S Stream<S>.reduce(S seed, ((S,S)->S) binaryOperator))`
 
-S Stream<S>.reduce(S seed, ((S,S)->S)
-binaryOperator))
-
-=== Description
+===== Description
 
 The method with a seed value starts by
 assigning the seed value to an internal accumulator. Then for each of
@@ -3503,7 +2729,7 @@ first element of the source elements as the seed value. If the source
 stream is empty, an empty Optional is returned, otherwise an Optional
 with the final accumulator value is returned.
 
-=== See
+===== See
 
 {empty}link:ELSpec.html#a1138[See
 Optional]
@@ -3511,23 +2737,21 @@ Optional]
 {empty}link:ELSpec.html#a1167[See
 binaryOperator]
 
-=== Example
+===== Example
 
 To find tallest student in a class:
 
+`students.stream().reduce((p,q)->(p.height>q.height? p: q).get()`
 
-students.stream().reduce((p,q)->(p.height>q.height? p: q).get()
+==== max
 
-=== [[a1320]]max
+===== Syntax
 
-=== Syntax
+`Optional<S> Stream<S>.max()`
 
-Optional<S> Stream<S>.max()
+`Optional<S> Stream<S>.max(((p,q)->int) comparator)`
 
-Optional<S> Stream<S>.max(((p,q)->int)
-comparator)
-
-=== Description
+===== Description
 
 This method computes the maximum of the
 elements in the source stream. If the comparator function is specified,
@@ -3538,33 +2762,30 @@ otherwise an ELException is thrown.
 This method returns an empty Optional for an
 empty stream.
 
-=== See
+===== See
 
 {empty}link:ELSpec.html#a1161[See
 comparator]
 
-=== Examples
+===== Examples
 
 To find tallest student in a class:
 
+`students.stream().max((p,q)->p.height-q.height)`
 
-students.stream().max((p,q)->p.height-q.height)
+To find the maximum height of the students in a class:
 
-To find the maximum height of the students in
-a class:
+`students.stream().map(s->s.height).max()`
 
- students.stream().map(s->s.height).max()
+==== min
 
-=== min
+===== Syntax
 
-=== Syntax
+`Optional<S> Stream<S>.min()`
 
-Optional<S> Stream<S>.min()
+`Optional<S> Stream<S>.min(((p,q)->int) comparator)`
 
-Optional<S> Stream<S>.min(((p,q)->int)
-comparator)
-
-=== Description
+===== Description
 
 This method computes the minimum of the
 elements in the source stream. If the comparator function is specified,
@@ -3575,18 +2796,18 @@ otherwise an ELException is thrown.
 This method returns an empty Optional for an
 empty stream.
 
-=== See
+===== See
 
 {empty}link:ELSpec.html#a1161[See
 comparator]
 
-=== average
+==== average
 
-=== Syntax
+===== Syntax
 
-Optional<S> Stream<S>.average()
+`Optional<S> Stream<S>.average()`
 
-=== Description
+===== Description
 
 This method computes the average of all
 elements in the source stream by first computes the sum of the elements
@@ -3594,16 +2815,16 @@ and then divides the sum by the number of elements. The elements are
 coerced to Number types according to link:ELSpec.html#a461[See
 Coerce A to Number type N] during the computation.
 
-This method returns an empty Optional for an
+This method returns an empty `Optional` for an
 empty stream.
 
-=== sum
+==== sum
 
-=== Syntax
+===== Syntax
 
-Number Stream<S>.sum()
+`Number Stream<S>.sum()`
 
-=== Description
+===== Description
 
 This method computes the sum of all elements
 in the source stream. The elements are coerced to Number types according
@@ -3612,186 +2833,162 @@ the computation.
 
 This method returns zero for an empty stream.
 
-=== [[a1355]]count
+==== count
 
-=== Syntax
+===== Syntax
 
-Long Stream<S>.count()
+`Long Stream<S>.count()`
 
-=== Description
+===== Description
 
 This method returns the count of elements in
 the source stream.
 
-=== anyMatch
+==== anyMatch
 
-=== Syntax
+===== Syntax
 
-Optional<boolean>
-Stream<S>.anyMatch((S->boolean) predicate)
+`Optional<boolean> Stream<S>.anyMatch((S->boolean) predicate)`
 
-=== Description
+===== Description
 
 This method returns an Optional of true if
 any element in the source stream satisfies the test given by the
 predicate. It returns an empty Optional if the stream is empty.
 
-=== See
+===== See
 
 {empty}link:ELSpec.html#a1155[See
 predicate]
 
-=== Example
+===== Example
 
 To determine if the list of integers contains
 any negative numbers:
 
+`integers.stream().anyMatch(i->i<0).orElse(false)`
 
-integers.stream().anyMatch(i->i<0).orElse(false)
-
-Note the use of orElse to set a default value
+Note the use of `orElse` to set a default value
 for the empty list.
 
-=== allMatch
+==== allMatch
 
-=== Syntax
+===== Syntax
 
-Optional<boolean>
-Stream<S>.allMatch((S->boolean) predicate)
+`Optional<boolean> Stream<S>.allMatch((S->boolean) predicate)`
 
-=== Description
+===== Description
 
-This method returns an Optional of true if
+This method returns an `Optional` of `true` if
 all elements in the source stream satisfy the test given by the
-predicate. It returns an empty Optional if the stream is empty.
+predicate. It returns an empty `Optional` if the stream is empty.
 
-=== See
+===== See
 
 {empty}link:ELSpec.html#a1155[See
 predicate]
 
-=== noneMatch
+==== noneMatch
 
-=== Syntax
+===== Syntax
 
-Optional<boolean>
-Stream<S>.noneMatch((S->boolean) predicate)
+`Optional<boolean> Stream<S>.noneMatch((S->boolean) predicate)`
 
-=== Description
+===== Description
 
-This method returns an Optional of true if
+This method returns an `Optional` of `true` if
 none of the elements in the source stream satisfies the test given by
-the predicate. It returns an empty Optional if the stream is empty.
+the predicate. It returns an empty `Optional` if the stream is empty.
 
-=== See
+===== See
 
 {empty}link:ELSpec.html#a1155[See
 predicate]
 
 
 
-=== [[a1386]]findFirst
+==== findFirst
 
-=== Syntax
+===== Syntax
 
-Optional<S> Stream<S>.findFirst()
+`Optional<S> Stream<S>.findFirst()`
 
-=== Description
+===== Description
 
-This method returns an Optional containing
-the first element in the stream, or an empty Optional if the stream is
+This method returns an `Optional` containing
+the first element in the stream, or an empty `Optional` if the stream is
 empty.
 
-=== See
+===== See
 
 {empty}link:ELSpec.html#a1138[See
 Optional]
 
 
-
-===  
-
-=== 
-
-image:ELSpec-12.png[image]
-
-Changes
-
-image:ELSpec-13.png[image]
+== Changes
 
 This appendix lists the
 changes in the EL specification. This appendix is non-normative.
 
+=== Changes between 3.0 Final Release and Proposed Final Draft
 
-
-image:ELSpec-14.png[image]
-
-Changes between 3.0 Final Release and Proposed Final Draft
-
-Added link:ELSpec.html#a173[See
+* Added link:ELSpec.html#a173[See
 Invoking method expressions].
 
-Added link:ELSpec.html#a1355[See
+* Added link:ELSpec.html#a1355[See
 count].
 
 
 
-image:ELSpec-14.png[image]
+=== Changes between 3.0 Proposed Final Draft and 3.0 EDR
 
-Changes between 3.0 Proposed Final Draft and 3.0 EDR
-
-Complete rewrite of Chapter 2, to align with
+* Complete rewrite of Chapter 2, to align with
 Java SE 8 libraries.
 
-Replace “+” and “cat” with “+=” as the String
-concatenation operator.
+* Replace `+` and `cat` with `+=` as the String concatenation operator.
 
-Removed T(...) syntax as a type specifier.
-
+* Removed `T(...)` syntax as a type specifier.
 
 
-image:ELSpec-14.png[image]
 
-New in 3.0 EDR
+=== New in 3.0 EDR
 
-Removed API from the specification document,
+* Removed API from the specification document,
 since they are included in the javadocs.
 
-Added link:ELSpec.html#a1063[See]
+* Added link:ELSpec.html#a1063[See]
 Operations on Collection Objects”.
 
-Added
+* Added
 link:ELSpec.html#a265[See String
 Concatenation Operator - A += B], String concatenation operator.
 
-Added link:ELSpec.html#a337[See
+* Added link:ELSpec.html#a337[See
 Assignment Operator - A = B], Assignment operator.
 
-Added link:ELSpec.html#a350[See
+* Added link:ELSpec.html#a350[See
 Semicolon Operator - A ; B], Semi-colon operator.
 
-Added link:ELSpec.html#a398[See Lambda
+* Added link:ELSpec.html#a398[See Lambda
 Expressions] Lambda Expression.
 
-Added link:ELSpec.html#a421[See Static
+* Added link:ELSpec.html#a421[See Static
 Field and Method Reference] Static Field and Methods.
 
-Added T and cat to
+* Added `T` and `cat` to
 link:ELSpec.html#a380[See Reserved Words] Reserved words.
 
-Modified link:ELSpec.html#a356[See
+* Modified link:ELSpec.html#a356[See
 Operator Precedence] Operator precedence.
 
-Modified coercion rule from nulls to
+* Modified coercion rule from nulls to
 non-primitive types.
 
-Many changes to the javadoc API.
+* Many changes to the javadoc API.
 
 
 
-image:ELSpec-14.png[image]
-
-Incompatibilities between EL 3.0 and EL 2.2
+=== Incompatibilities between EL 3.0 and EL 2.2
 
 EL 3.0 introduces many new features, and
 although we take care to keep it backward compatible, there are a few
@@ -3800,52 +2997,42 @@ features requires it, or because the feature in EL 2.2 is a bug that
 needs to be fixed. An implementation can provide an option to revert to
 the 2.2 behavior, if desired.
 
-The default coercion for nulls to non-primitive
-types (except String) returns nulls. For instance, a null coerced to
-Boolean now returns a null, while a null coerced to boolean returns
-false.
+* The default coercion for ``null``s to non-primitive
+types (except `String`) returns ``null``s. For instance, a `null` coerced
+to `Boolean` now returns a `null`, while a `null` coerced to `boolean
+returns `false`.
 
 
 
-image:ELSpec-14.png[image]
+=== Changes between Maintenance 1 and Maintenance Release 2
 
-Changes between Maintenance 1 and Maintenance Release 2
-
-The main change in this release is the addition
+* The main change in this release is the addition
 of method invocations with parameters in the EL, such as
-#\{trader.buy(“JAVA”)}.
+`#{trader.buy(“JAVA”)}`.
 
-Added one method in javax.el.ELResolver:
+* Added one method in `javax.el.ELResolver`: +
+`Object invoke(ELContext context, Object base,
+Object method, Class<?>[] paramTypes, Object[] params)`.
 
-Object invoke(ELContext context, Object base,
-Object method, Class<?>[] paramTypes, Object[] params).
+* Added one method in `javax.el.BeanELResolver`: +
+`Object invoke(ELContext context, Object base,
+Object method, Class<?>[] paramTypes, Object[] params)`.
 
-Added one method in javax.el.BeanELResolver:
+* Added one method in `javax.el.CompositeELResolver`: +
+`Object invoke(ELContext context, Object base,
+Object method, Class<?>[] paramTypes, Object[] params)`.
 
-Object invoke(ELContext context, Object base,
-Object method, Class<?>[] paramTypes, Object[] params).
-
-Added one method in
-javax.el.CompositeELResolver:
-
-Object invoke(ELContext context, Object base,
-Object method, Class<?>[] paramTypes, Object[] params).
-
-Section 1.1.1. Added to the first paragraph:
-
-Simlarly, . operator can also be used to invoke
-methods, when the method name is known, but the [] operator can be used
+* Section 1.1.1. Added to the first paragraph: +
+Simlarly, `.` operator can also be used to invoke
+methods, when the method name is known, but the `[]` operator can be used
 to invoke methods dynamically
 
-Section 1.2.1. Change the last part of the last
-paragraph from
-
+* Section 1.2.1. Change the last part of the last
+paragraph from: +
 Upon evaluation, the EL API verifies that the
 method conforms to the expected signature provided at parse time. There
-is therefore no coercion performed.
-
-to
-
+is therefore no coercion performed. +
+to +
 Upon evaluation, if the expected signature is
 provided at parse time, the EL API verifies that the method conforms to
 the expected signature, and there is therefore no coercion performed. If
@@ -3854,171 +3041,148 @@ evaluation, the method is identified with the information of the
 parameters in the expression and the parameters are coerced to the
 respective formal types.
 
-Section 1.6
+* Section 1.6
 
-Added syntax for method invocation with
+** Added syntax for method invocation with
 parameters.
 
-The steps for evaluation of the expression was
+** The steps for evaluation of the expression was
 modified to handle the method invocations with parameters.
 
-Section 1.19
-
+* Section 1.19 +
 Production of ValueSuffix includes the optional
 parameters.
 
 
 
-image:ELSpec-14.png[image]
+=== Changes between 1.0 Final Release and Maintenance Release 1
 
-Changes between 1.0 Final Release and Maintenance Release 1
+Added two methods in `javax.el.ExpressionFactory`:
 
-Added two methods in
-javax.el.ExpressionFactory:
+* `newInstance()`
 
-newInstance()
-
-newInstance(Properties)
+* `newInstance(Properties)`
 
 
 
-image:ELSpec-14.png[image]
+=== Changes between Final Release and Proposed Final Draft 2
 
-Changes between Final Release and Proposed Final Draft 2
+* Added support for enumerated data types.
 
-Added support for enumerated data types.
-Coercions and comparisons were updated to include enumerated type types.
-
+* Coercions and comparisons were updated to include enumerated type types.
 
 
-image:ELSpec-14.png[image]
+=== Changes between Public Review and Proposed Final Draft
 
-Changes between Public Review and Proposed Final Draft
+* New constructor for derived exception classes +
+Exception classes that extend `ELException` (
+`PropertyNotFoundException`, `PropertyNotWritableException`,
+`MethodNotFoundException` ) did not have a constructor with both '
+`message` ' and ' `rootCause` ' as arguments (as it exists in
+`ELException` ). The constructor has been added to these classes.
 
-New constructor for derived exception classes
+* `javax.el.ELContext` API changes
 
-Exception classes that extend _ELException_ (
-_PropertyNotFoundException_ , _PropertyNotWritableException_ ,
-_MethodNotFoundException_ ) did not have a constructor with both '
-_message_ ' and ' _rootCause_ ' as arguments (as it exists in
-_ELException_ ). The constructor has been added to these classes.
+** removed the `ELContext` constructor +
+`protected ELContext(javax.el.ELResolver resolver)`
 
- _javax.el.ELContext_ API changes
+** added the following abstract method in `ELContext` +
+`public abstract javax.el.ELResolver getELResolver();`
 
-removed the _ELContext_ constructor +
-_protected ELContext(javax.el.ELResolver resolver)_
-
-added the following abstract method in
-_ELContext +
-public abstract javax.el.ELResolver getELResolver();_
-
-Section 1.8.1 - A \{<,>,<=,>=,lt,gt,le,ge} B
-
-If the first condition (A==B) is false, simply
-fall through to the next step (do not return false). See See issue 129
+* Section 1.8.1 - A {<,>,<=,>=,lt,gt,le,ge} B +
+If the first condition `(A==B)` is `false`, simply
+fall through to the next step (do not return `false`). See See issue 129
 at jsp-spec-public.dev.java.net.
 
- _javax.el.ResourceBundleELResolver_
-
-New _ELResolver_ class added to support easy
+* `javax.el.ResourceBundleELResolver` +
+New `ELResolver` class added to support easy
 access to localized messages.
 
-Generics
-
+* Generics +
 Since JSP 2.1 requires J2SE 5.0, we’ve modified
 the APIs that can take advantage of generics. These include:
-_ExpressionFactory:createValueExpression(),
-ExpressionFactory:createMethodExpression(),
-ExpressionFactory:coerceToType(), ELResolver:getType(),
-ELResolver:getCommonPropertyType(), MethodInfo:MethodInfo(),
-MethodInfo.getReturnType(), MethodInfo:getParamTypes()_
+`ExpressionFactory:createValueExpression()`,
+`ExpressionFactory:createMethodExpression()`,
+`ExpressionFactory:coerceToType()`, `ELResolver:getType()`,
+`ELResolver:getCommonPropertyType()`, `MethodInfo:MethodInfo()`,
+`MethodInfo.getReturnType()`, `MethodInfo:getParamTypes()`
 
 
 
-image:ELSpec-14.png[image]
+=== Changes between Early Draft Release and Public Review
 
-Changes between Early Draft Release and Public Review
-
-New concept: EL Variables
-
+* New concept: EL Variables +
 The EL now supports the concept of EL Variables
 to properly support code structures such as <c:forEach> where a nested
 action accesses a deferred expression that includes a reference to an
-iteration variable.
-
-Resulting API changes are:
-
- _The javax.el_ package description describes
-the motivation behind EL variables.
-
- _ElContext_ has two additional methods to
-provide access to _FunctionMapper_ and _VariableMapper_ .
-
- _ExpressionFactory_ creation methods now take
-an _ELContext_ parameter. _FunctionMapper_ has been removed as a
-parameter to these methods.
-
-Added new class _VariableMapper_
-
+iteration variable. +
 At a few locations in the spec, the term
 "variable" has been replaced with "model object" to avoid confusion
-between model objects and the newly introduced EL variables.
-
+between model objects and the newly introduced EL variables. +
 Added new section “Variables” after section
-1.15 to introduce the concept of EL Variables.
+1.15 to introduce the concept of EL Variables. +
+Resulting API changes are:
 
-EL in a nutshell (section 1.1.1)
+** `The javax.el` package description describes
+the motivation behind EL variables.
 
+** `ElContext` has two additional methods to
+provide access to `FunctionMapper` and `VariableMapper` .
+
+** `ExpressionFactory` creation methods now take
+an `ELContext` parameter. `FunctionMapper` has been removed as a
+parameter to these methods.
+
+** Added new class `VariableMapper`
+
+
+* EL in a nutshell (section 1.1.1)+
 Added a paragraph commenting on the flexibility
 of the EL, thanks to its pluggable API for the resolution of model
 objects, functions, and variables.
 
-javax.el.ELException
+* `javax.el.ELException`
 
- _ElException_ now extends _RuntimeException_
-instead of _Exception_ .
+** `ElException` now extends `RuntimeException`
+instead of `Exception` .
 
-Method _getRootCause()_ has been removed in
-favor of _Throwable.getCause()._
+** Method `getRootCause()` has been removed in
+favor of `Throwable.getCause().`
 
-javax.el.ExpressionFactory
+* `javax.el.ExpressionFactory`
 
-Creation methods now use _ELContex_ t instead
-of _FunctionMapper_ (see EL Variables above).
+** Creation methods now use `ELContex` t instead
+of `FunctionMapper` (see EL Variables above).
 
-Added method _coerceToType()._ See issue 132 at
+** Added method `coerceToType().` See issue 132 at
 jsp-spec-public.dev.java.net.
 
-javax.el.MethodExpression
+* `javax.el.MethodExpression`
 
- _invoke()_ must unwrap an
-_InvocationTargetExceptions_ before re-throwing as an _ELException_ .
+** `invoke()` must unwrap an
+`InvocationTargetExceptions` before re-throwing as an `ELException` .
 
-Section 1.6 - Operators [] and .
-
- _PropertyNotFoundException_ is now thrown
-instead of _NullPointerException_ when this is the last property being
+* Section 1.6 - Operators `[]` and `.` +
+ `PropertyNotFoundException` is now thrown
+instead of `NullPointerException` when this is the last property being
 resolved and we’re dealing with an lvalue that is null.
 
-Section 1.13 - Operator Precedence
-
+* Section 1.13 - Operator Precedence +
 Clarified the fact that qualified functions
 with a namespace prefix have precedence over the operators.
 
-Faces Action Attribute and MethodExpression
-
-In Faces, the _action_ attribute accepts both a
-String literal or a _MethodExpression_ . When migrating to JSF 1.2, if
-the attribute's type is set as _MethodExpression_ , an error would be
+* Faces Action Attribute and MethodExpression +
+In Faces, the `action` attribute accepts both a
+String literal or a `MethodExpression` . When migrating to JSF 1.2, if
+the attribute's type is set as `MethodExpression`, an error would be
 reported if a String literal is specified because a String literal
-cannot evaluate to a valid _javax.el.MethodExpression_ .
-
+cannot evaluate to a valid `javax.el.MethodExpression`. +
 To solve this issue, the specification of
 MethodExpression has been expanded to also support String
 literal-expressions. Changes have been made to:
 
-Section 1.2.2
+** Section 1.2.2
 
- _ExpressionFactory.createMethodExpression()_
+** `ExpressionFactory.createMethodExpression()`
 
- _javax.el.MethodExpression:invoke()_
+** `javax.el.MethodExpression:invoke()`
