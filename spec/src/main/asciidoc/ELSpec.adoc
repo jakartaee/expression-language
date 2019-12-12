@@ -1,10 +1,13 @@
 :sectnums:
 = Jakarta Expression Language, Version 4.0
 
-Copyright (c) 2013, 2019 Oracle and/or its affiliates. All rights reserved.
+Copyright (c) 2013, 2019 Oracle and/or its affiliates and others.
+All rights reserved.
 
-Oracle and Java are registered trademarks of Oracle and/or its 
-affiliates. Other names may be trademarks of their respective owners. 
+Eclipse is a registered trademark of the Eclipse Foundation. Jakarta
+is a trademark of the Eclipse Foundation. Oracle and Java are
+registered trademarks of Oracle and/or its  affiliates. Other names
+may be trademarks of their respective owners. 
 
 === 
 
