@@ -19,7 +19,7 @@ package com.sun.el.parser;
 import java.util.Collection;
 import java.util.Map;
 
-import javax.el.ELException;
+import jakarta.el.ELException;
 
 import com.sun.el.lang.EvaluationContext;
 

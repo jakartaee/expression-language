@@ -23,17 +23,17 @@ import java.io.IOException;
 import java.io.ObjectInput;
 import java.io.ObjectOutput;
 
-import javax.el.ELContext;
-import javax.el.ELException;
-import javax.el.ELResolver;
-import javax.el.Expression;
-import javax.el.ExpressionFactory;
-import javax.el.FunctionMapper;
-import javax.el.PropertyNotFoundException;
-import javax.el.PropertyNotWritableException;
-import javax.el.ValueExpression;
-import javax.el.ValueReference;
-import javax.el.VariableMapper;
+import jakarta.el.ELContext;
+import jakarta.el.ELException;
+import jakarta.el.ELResolver;
+import jakarta.el.Expression;
+import jakarta.el.ExpressionFactory;
+import jakarta.el.FunctionMapper;
+import jakarta.el.PropertyNotFoundException;
+import jakarta.el.PropertyNotWritableException;
+import jakarta.el.ValueExpression;
+import jakarta.el.ValueReference;
+import jakarta.el.VariableMapper;
 
 import com.sun.el.lang.EvaluationContext;
 import com.sun.el.lang.ExpressionBuilder;
@@ -72,10 +72,10 @@ import com.sun.el.parser.Node;
  * <p>
  * See the notes about comparison, serialization and immutability in the {@link Expression} javadocs.
  *
- * @see javax.el.ELResolver
- * @see javax.el.Expression
- * @see javax.el.ExpressionFactory
- * @see javax.el.ValueExpression
+ * @see ELResolver
+ * @see Expression
+ * @see ExpressionFactory
+ * @see ValueExpression
  *
  * @author Jacob Hookom [jacob@hookom.net]
  * @version $Change: 181177 $$DateTime: 2001/06/26 08:45:09 $$Author: dochez $
@@ -118,7 +118,7 @@ public final class ValueExpressionImpl extends ValueExpression implements Extern
     /*
      * (non-Javadoc)
      *
-     * @see javax.el.ValueExpression#getExpectedType()
+     * @see ValueExpression#getExpectedType()
      */
     @Override
     public Class<?> getExpectedType() {
@@ -131,7 +131,7 @@ public final class ValueExpressionImpl extends ValueExpression implements Extern
      * @return the <code>expectedType</code> passed to the <code>ExpressionFactory.createValueExpression</code> method that
      * created this <code>ValueExpression</code>.
      *
-     * @see javax.el.Expression#getExpressionString()
+     * @see Expression#getExpressionString()
      */
     @Override
     public String getExpressionString() {
@@ -153,7 +153,7 @@ public final class ValueExpressionImpl extends ValueExpression implements Extern
     /*
      * (non-Javadoc)
      *
-     * @see javax.el.ValueExpression#getType(javax.el.ELContext)
+     * @see ValueExpression#getType(ELContext)
      */
     @Override
     public Class<?> getType(ELContext context) throws PropertyNotFoundException, ELException {
@@ -163,7 +163,7 @@ public final class ValueExpressionImpl extends ValueExpression implements Extern
     /*
      * (non-Javadoc)
      *
-     * @see javax.el.ValueExpression#getValueReference(javax.el.ELContext)
+     * @see ValueExpression#getValueReference(ELContext)
      */
     @Override
     public ValueReference getValueReference(ELContext context) throws PropertyNotFoundException, ELException {
@@ -173,7 +173,7 @@ public final class ValueExpressionImpl extends ValueExpression implements Extern
     /*
      * (non-Javadoc)
      *
-     * @see javax.el.ValueExpression#getValue(javax.el.ELContext)
+     * @see ValueExpression#getValue(ELContext)
      */
     @Override
     public Object getValue(ELContext context) throws PropertyNotFoundException, ELException {
@@ -206,7 +206,7 @@ public final class ValueExpressionImpl extends ValueExpression implements Extern
     /*
      * (non-Javadoc)
      *
-     * @see javax.el.ValueExpression#isLiteralText()
+     * @see ValueExpression#isLiteralText()
      */
     @Override
     public boolean isLiteralText() {
@@ -220,7 +220,7 @@ public final class ValueExpressionImpl extends ValueExpression implements Extern
     /*
      * (non-Javadoc)
      *
-     * @see javax.el.ValueExpression#isReadOnly(javax.el.ELContext)
+     * @see ValueExpression#isReadOnly(ELContext)
      */
     @Override
     public boolean isReadOnly(ELContext context) throws PropertyNotFoundException, ELException {
@@ -241,7 +241,7 @@ public final class ValueExpressionImpl extends ValueExpression implements Extern
     /*
      * (non-Javadoc)
      *
-     * @see javax.el.ValueExpression#setValue(javax.el.ELContext, java.lang.Object)
+     * @see ValueExpression#setValue(ELContext, java.lang.Object)
      */
     @Override
     public void setValue(ELContext context, Object value) throws PropertyNotFoundException, PropertyNotWritableException, ELException {

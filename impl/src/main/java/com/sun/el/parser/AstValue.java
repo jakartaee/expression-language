@@ -18,14 +18,14 @@ package com.sun.el.parser;
 
 import java.lang.reflect.Method;
 
-import javax.el.ELClass;
-import javax.el.ELException;
-import javax.el.ELResolver;
-import javax.el.ImportHandler;
-import javax.el.MethodInfo;
-import javax.el.PropertyNotFoundException;
-import javax.el.PropertyNotWritableException;
-import javax.el.ValueReference;
+import jakarta.el.ELClass;
+import jakarta.el.ELException;
+import jakarta.el.ELResolver;
+import jakarta.el.ImportHandler;
+import jakarta.el.MethodInfo;
+import jakarta.el.PropertyNotFoundException;
+import jakarta.el.PropertyNotWritableException;
+import jakarta.el.ValueReference;
 
 import com.sun.el.lang.ELSupport;
 import com.sun.el.lang.EvaluationContext;

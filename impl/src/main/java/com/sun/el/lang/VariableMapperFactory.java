@@ -16,8 +16,8 @@
 
 package com.sun.el.lang;
 
-import javax.el.ValueExpression;
-import javax.el.VariableMapper;
+import jakarta.el.ValueExpression;
+import jakarta.el.VariableMapper;
 
 /**
  * Creates a VariableMapper for the variables used in the expression.

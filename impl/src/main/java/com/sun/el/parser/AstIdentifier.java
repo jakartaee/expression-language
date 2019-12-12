@@ -16,16 +16,16 @@
 
 package com.sun.el.parser;
 
-import javax.el.ELClass;
-import javax.el.ELException;
-import javax.el.ELResolver;
-import javax.el.MethodExpression;
-import javax.el.MethodInfo;
-import javax.el.MethodNotFoundException;
-import javax.el.PropertyNotWritableException;
-import javax.el.ValueExpression;
-import javax.el.ValueReference;
-import javax.el.VariableMapper;
+import jakarta.el.ELClass;
+import jakarta.el.ELException;
+import jakarta.el.ELResolver;
+import jakarta.el.MethodExpression;
+import jakarta.el.MethodInfo;
+import jakarta.el.MethodNotFoundException;
+import jakarta.el.PropertyNotWritableException;
+import jakarta.el.ValueExpression;
+import jakarta.el.ValueReference;
+import jakarta.el.VariableMapper;
 
 import com.sun.el.lang.ELSupport;
 import com.sun.el.lang.EvaluationContext;
