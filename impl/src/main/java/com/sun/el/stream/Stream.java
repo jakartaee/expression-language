@@ -23,8 +23,8 @@ import java.util.Iterator;
 import java.util.PriorityQueue;
 import java.util.Set;
 
-import javax.el.ELException;
-import javax.el.LambdaExpression;
+import jakarta.el.ELException;
+import jakarta.el.LambdaExpression;
 
 import com.sun.el.lang.ELArithmetic;
 import com.sun.el.lang.ELSupport;

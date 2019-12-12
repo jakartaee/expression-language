@@ -29,10 +29,10 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
-import javax.el.ELContext;
-import javax.el.ELException;
-import javax.el.MethodNotFoundException;
-import javax.el.PropertyNotFoundException;
+import jakarta.el.ELContext;
+import jakarta.el.ELException;
+import jakarta.el.MethodNotFoundException;
+import jakarta.el.PropertyNotFoundException;
 
 import com.sun.el.lang.ELSupport;
 
@@ -144,7 +144,7 @@ public class ReflectionUtil {
     }
 
     /*
-     * This method duplicates code in javax.el.ELUtil. When making changes keep the code in sync.
+     * This method duplicates code in jakarta.el.ELUtil. When making changes keep the code in sync.
      */
     public static Object invokeMethod(ELContext context, Method m, Object base, Object[] params) {
 
@@ -161,7 +161,7 @@ public class ReflectionUtil {
     }
 
     /*
-     * This method duplicates code in javax.el.ELUtil. When making changes keep the code in sync.
+     * This method duplicates code in jakarta.el.ELUtil. When making changes keep the code in sync.
      */
     public static Method findMethod(Class<?> clazz, String methodName, Class<?>[] paramTypes, Object[] paramValues) {
 
@@ -186,7 +186,7 @@ public class ReflectionUtil {
     }
 
     /*
-     * This method duplicates code in javax.el.ELUtil. When making changes keep the code in sync.
+     * This method duplicates code in jakarta.el.ELUtil. When making changes keep the code in sync.
      */
     private static Wrapper findWrapper(Class<?> clazz, List<Wrapper> wrappers, String name, Class<?>[] paramTypes, Object[] paramValues) {
 
@@ -289,7 +289,7 @@ public class ReflectionUtil {
     }
 
     /*
-     * This method duplicates code in javax.el.ELUtil. When making changes keep the code in sync.
+     * This method duplicates code in jakarta.el.ELUtil. When making changes keep the code in sync.
      */
     private static Wrapper findMostSpecificWrapper(List<Wrapper> candidates, Class<?>[] matchingTypes, boolean elSpecific, String errorMsg) {
         List<Wrapper> ambiguouses = new ArrayList<Wrapper>();
@@ -319,7 +319,7 @@ public class ReflectionUtil {
     }
 
     /*
-     * This method duplicates code in javax.el.ELUtil. When making changes keep the code in sync.
+     * This method duplicates code in jakarta.el.ELUtil. When making changes keep the code in sync.
      */
     private static int isMoreSpecific(Wrapper wrapper1, Wrapper wrapper2, Class<?>[] matchingTypes, boolean elSpecific) {
         Class<?>[] paramTypes1 = wrapper1.getParameterTypes();
@@ -370,7 +370,7 @@ public class ReflectionUtil {
     }
 
     /*
-     * This method duplicates code in javax.el.ELUtil. When making changes keep the code in sync.
+     * This method duplicates code in jakarta.el.ELUtil. When making changes keep the code in sync.
      */
     private static int isMoreSpecific(Class<?> type1, Class<?> type2, Class<?> matchingType, boolean elSpecific) {
         type1 = getBoxingTypeIfPrimitive(type1);
@@ -407,7 +407,7 @@ public class ReflectionUtil {
     }
 
     /*
-     * This method duplicates code in javax.el.ELUtil. When making changes keep the code in sync.
+     * This method duplicates code in jakarta.el.ELUtil. When making changes keep the code in sync.
      */
     private static Class<?> getBoxingTypeIfPrimitive(Class<?> clazz) {
         if (clazz.isPrimitive()) {
@@ -435,7 +435,7 @@ public class ReflectionUtil {
     }
 
     /*
-     * This method duplicates code in javax.el.ELUtil. When making changes keep the code in sync.
+     * This method duplicates code in jakarta.el.ELUtil. When making changes keep the code in sync.
      */
     private static Class<?>[] getComparingParamTypesForVarArgsMethod(Class<?>[] paramTypes, int length) {
         Class<?>[] result = new Class<?>[length];
@@ -449,7 +449,7 @@ public class ReflectionUtil {
     }
 
     /*
-     * This method duplicates code in javax.el.ELUtil. When making changes keep the code in sync.
+     * This method duplicates code in jakarta.el.ELUtil. When making changes keep the code in sync.
      */
     private static final String paramString(Class<?>[] types) {
         if (types != null) {
@@ -470,7 +470,7 @@ public class ReflectionUtil {
     }
 
     /*
-     * This method duplicates code in javax.el.ELUtil. When making changes keep the code in sync.
+     * This method duplicates code in jakarta.el.ELUtil. When making changes keep the code in sync.
      */
     static boolean isAssignableFrom(Class<?> src, Class<?> target) {
         // src will always be an object
@@ -486,7 +486,7 @@ public class ReflectionUtil {
     }
 
     /*
-     * This method duplicates code in javax.el.ELUtil. When making changes keep the code in sync.
+     * This method duplicates code in jakarta.el.ELUtil. When making changes keep the code in sync.
      */
     private static boolean isCoercibleFrom(Object src, Class<?> target) {
         // TODO: This isn't pretty but it works. Significant refactoring would
@@ -500,7 +500,7 @@ public class ReflectionUtil {
     }
 
     /*
-     * This method duplicates code in javax.el.ELUtil. When making changes keep the code in sync.
+     * This method duplicates code in jakarta.el.ELUtil. When making changes keep the code in sync.
      */
     private static Class<?>[] getTypesFromValues(Object[] values) {
         if (values == null) {
@@ -519,7 +519,7 @@ public class ReflectionUtil {
     }
 
     /*
-     * This method duplicates code in javax.el.ELUtil. When making changes keep the code in sync.
+     * This method duplicates code in jakarta.el.ELUtil. When making changes keep the code in sync.
      *
      * Get a public method form a public class or interface of a given method. Note that if a PropertyDescriptor is obtained
      * for a non-public class that implements a public interface, the read/write methods will be for the class, and
@@ -559,7 +559,7 @@ public class ReflectionUtil {
     }
 
     /*
-     * This method duplicates code in javax.el.ELUtil. When making changes keep the code in sync.
+     * This method duplicates code in jakarta.el.ELUtil. When making changes keep the code in sync.
      */
     static Constructor<?> getConstructor(Class<?> type, Constructor<?> c) {
         if (c == null || Modifier.isPublic(type.getModifiers())) {
@@ -582,7 +582,7 @@ public class ReflectionUtil {
     }
 
     /*
-     * This method duplicates code in javax.el.ELUtil. When making changes keep the code in sync.
+     * This method duplicates code in jakarta.el.ELUtil. When making changes keep the code in sync.
      */
     static Object[] buildParameters(ELContext context, Class<?>[] parameterTypes, boolean isVarArgs, Object[] params) {
         Object[] parameters = null;
@@ -616,7 +616,7 @@ public class ReflectionUtil {
     }
 
     /*
-     * This method duplicates code in javax.el.ELUtil. When making changes keep the code in sync.
+     * This method duplicates code in jakarta.el.ELUtil. When making changes keep the code in sync.
      */
     private abstract static class Wrapper {
 
@@ -648,7 +648,7 @@ public class ReflectionUtil {
     }
 
     /*
-     * This method duplicates code in javax.el.ELUtil. When making changes keep the code in sync.
+     * This method duplicates code in jakarta.el.ELUtil. When making changes keep the code in sync.
      */
     private static class MethodWrapper extends Wrapper {
         private final Method m;
@@ -679,7 +679,7 @@ public class ReflectionUtil {
     }
 
     /*
-     * This method duplicates code in javax.el.ELUtil. When making changes keep the code in sync.
+     * This method duplicates code in jakarta.el.ELUtil. When making changes keep the code in sync.
      */
     private static class ConstructorWrapper extends Wrapper {
         private final Constructor<?> c;

@@ -16,7 +16,7 @@
 
 package com.sun.el.parser;
 
-import javax.el.ELException;
+import jakarta.el.ELException;
 
 /**
  * @author Jacob Hookom [jacob@hookom.net]

@@ -26,7 +26,7 @@ options
 {
 	STATIC=false;
 	NODE_PREFIX="Ast";
-	VISITOR_EXCEPTION="javax.el.ELException";
+	VISITOR_EXCEPTION="ELException";
 	VISITOR=false;
 	MULTI=true;
 	NODE_DEFAULT_VOID=true;
@@ -39,7 +39,7 @@ options
 PARSER_BEGIN( ELParser )
 package com.sun.el.parser;
 import java.io.StringReader;
-import javax.el.ELException;
+import ELException;
 public class ELParser
 {
     public static Node parse(String ref) throws ELException

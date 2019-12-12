@@ -16,10 +16,10 @@
 
 package com.sun.el.parser;
 
-import javax.el.ELException;
-import javax.el.MethodInfo;
-import javax.el.PropertyNotWritableException;
-import javax.el.ValueReference;
+import jakarta.el.ELException;
+import jakarta.el.MethodInfo;
+import jakarta.el.PropertyNotWritableException;
+import jakarta.el.ValueReference;
 
 import com.sun.el.lang.ELSupport;
 import com.sun.el.lang.EvaluationContext;
