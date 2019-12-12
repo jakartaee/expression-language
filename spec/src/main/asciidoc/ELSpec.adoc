@@ -100,44 +100,42 @@ The EL was originally designed as a simple
 language to meet the needs of the presentation layer in web
 applications. It features:
 
-A simple syntax restricted to the evaluation
-of expressions
+* A simple syntax restricted to the evaluation of expressions
 
-Variables and nested properties
+* Variables and nested properties
 
-Relational, logical, arithmetic, conditional,
-and empty operators
+* Relational, logical, arithmetic, conditional, and empty operators
 
-Functions implemented as static methods on
-Java classes
+* Functions implemented as static methods on Java classes
 
-Lenient semantics where appropriate default
-values and type conversions are provided to minimize exposing errors to
-end users
+* Lenient semantics where appropriate default values and type
+conversions are provided to minimize exposing errors to end users
 
 as well as
 
-A pluggable API for resolving variable
-references into Java objects and for resolving the properties applied to
-these Java objects
+* A pluggable API for resolving variable references into Java objects
+and for resolving the properties applied to these Java objects
 
-An API for deferred evaluation of expressions
-that refer to either values or methods on an object
+* An API for deferred evaluation of expressions that refer to either
+values or methods on an object
 
-Support for lvalue expressions (expressions a
-value can be assigned to)
+* Support for lvalue expressions (expressions a value can be assigned
+to)
 
 These last three features are key additions
 to the JSP 2.0 EL resulting from the EL alignment work done in the JSP
 2.1 and Faces 1.2 specifications.
 
-EL 3.0 adds features to enable EL to be used
-as a stand-alone tool. It introduces APIs for direct evaluation of EL
-expressions and manipulation of EL environments. It also adds some
+EL 3.0 added features to enable EL to be used
+as a stand-alone tool. It introduced APIs for direct evaluation of EL
+expressions and manipulation of EL environments. It also added some
 powerful features to the language, such as the support of operations for
 collection objects.
 
-=== EL in a nutshell
+EL 4.0 implements the transition from the `javax` namespace to the
+`jakarta` namespace.
+
+==== EL in a nutshell
 
 The syntax is quite simple. Model objects are
 accessed by name. A generalized _[]_ operator can be used to access
@@ -162,11 +160,7 @@ the resolution of model objects (and their associated properties and
 methods), functions, and variables are all performed through a pluggable
 API, making the EL easily adaptable to various environments.
 
-=== 
-
-image:ELSpec-8.png[image]
-
-EL Expressions
+=== EL Expressions
 
 An EL expression is specified either as an
 _eval-expression_ , or as a _literal-expression_ . The EL also supports
@@ -182,21 +176,21 @@ Each type of expression (eval-expression,
 literal-expression, and composite expression) is described in its own
 section below.
 
-=== Eval-expression
+==== Eval-expression
 
 An eval-expression is formed by using the
-constructs _$\{expr}_ or _#\{expr}_ . Both constructs are parsed and
+constructs `$\{expr}` or `#\{expr}`. Both constructs are parsed and
 evaluated in exactly the same way by the EL, even though they might
 carry different meanings in the technology that is using the EL.
 
 For instance, by convention the JavaEE web
-tier specifications use the _$\{expr}_ construct for immediate
-evaluation and the _#\{expr}_ construct for deferred evaluation. This
+tier specifications use the `$\{expr}` construct for immediate
+evaluation and the `\#{expr}` construct for deferred evaluation. This
 difference in delimiters points out the semantic differences between the
 two expression types in the JavaEE web tier. Expressions delimited by
-“#\{}” are said to use “deferred evaluation” because the expression is
+`#{}` are said to use “deferred evaluation” because the expression is
 not evaluated until its value is needed by the system. Expressions
-delimited by “$\{}" are said to use “immediate evaluation” because the
+delimited by `$\{}` are said to use “immediate evaluation” because the
 expression is compiled when the JSP page is compiled and it is executed
 when the JSP page is executed. More on this in
 link:ELSpec.html#a125[See Syntax restrictions].
@@ -207,12 +201,11 @@ on where each construct can be used.
 
 In some EL APIs, especially those introduced
 in EL 3.0 to support stand-alone use, the EL expressions are specified
-without $\{} or #\{} delimiters.
+without `$\{}` or `#\{}` delimiters.
 
-Nested eval-expressions, such as
-_$\{item[$\{i}]}_ , are illegal.
+*Nested eval-expressions, such as `${item[$\{i}]}`, are illegal.*
 
-=== Eval-expressions as value expressions
+===== Eval-expressions as value expressions
 
 When parsed as a value expression, an
 eval-expression can be evaluated as either an rvalue or an lvalue. An
@@ -226,12 +219,12 @@ rendered. They all yield rvalues.
 
 In the following JSTL action
 
- <c:out value="$\{customer.name}"/>
+ <c:out value="${customer.name}"/>
 
-the expression _$\{customer.name}_ is
+the expression `${customer.name}` is
 evaluated by the JSP engine and the returned value is fed to the tag
-handler and converted to the type associated with the attribute (
-_String_ in this case).
+handler and converted to the type associated with the attribute
+(`String` in this case).
 
 Faces, on the other hand, supports a full UI
 component model that requires expressions to represent more than just
@@ -239,46 +232,36 @@ rvalues. It needs expressions to represent references to data structures
 whose value could be assigned, as well as to represent methods that
 could be invoked.
 
-For example, in the following Faces code
-sample:
+For example, in the following Faces code sample:
 
-[width="100%",cols="100%",]
-|===
-a|
+[source,html]
+----
 <h:form>
-
- <h:inputText
-
- id="email"
-
- value="#\{checkOutFormBean.email}"
-
- size="25" maxlength="125"
-
-
-validator="#\{checkOutFormBean.validateEmail}"/>
-
+  <h:inputText
+    id="email"
+    value="#\{checkOutFormBean.email}"
+    size="25" maxlength="125"
+    validator="#\{checkOutFormBean.validateEmail}"/>
 </h:form>
-
-|===
+----
 
 when the form is submitted, the “apply
 request values” phase of Faces evaluates the EL expression
-_#\{checkOutFormBean.email}_ as a reference to a data structure whose
+`#{checkOutFormBean.email}` as a reference to a data structure whose
 value is set with the input parameter it is associated with in the form.
 The result of the expression therefore represents a reference to a data
-structure, or an _lvalue_ , the left hand side of an assignment
+structure, or an `lvalue`, the left hand side of an assignment
 operation.
 
 When that same expression is evaluated during
 the rendering phase, it yields the specific value associated with the
-object (rvalue), just as would be the case with JSP.
+object (`rvalue`), just as would be the case with JSP.
 
 The valid syntax for an lvalue is a subset of
 the valid syntax for an rvalue. In particular, an lvalue can only
-consist of either a single variable (e.g. _$\{name}_ ) or a property
-resolution on some object, via the _._ or _[]_ operator (e.g.
-_$\{employee.name}_ ). Of course, an EL function or method that returns
+consist of either a single variable (e.g. `$\{name}`) or a property
+resolution on some object, via the `.` or `[]` operator (e.g.
+`${employee.name}` ). Of course, an EL function or method that returns
 either an object or a name can be part of an lvalue.
 
 When parsing a value expression, an expected
@@ -298,26 +281,26 @@ eval-expressions].
 |Expression
 |Expected Type
 |Result
-|$\{customer.name}
-| _String_ a|
- _Guy Lafleur_
+|`${customer.name}`
+|`String`
+|`Guy Lafleur`
 
- _Expression evaluates to a String. No
+_Expression evaluates to a String. No
 conversion necessary._
 
-| _$_ \{book} |
-_String_ a|
- _Wonders of the World_
+|`${book}`
+|`String`
+|`Wonders of the World`
 
- _Expression evaluates to a Book object (e.g.
-com.example.Book). Conversion rules result in the evaluation of
-book.toString(), which could for example yield the book title._
+_Expression evaluates to a `Book` object (e.g.
+`com.example.Book`). Conversion rules result in the evaluation of
+`book.toString()`, which could for example yield the book title._
 
 |===
 
-=== Sample [[a81]]eval-expressions
+Sample [[a81]]eval-expressions
 
-=== Eval-expressions as method expressions
+===== Eval-expressions as method expressions
 
 In some cases, it is desirable for an EL
 expression to refer to a method instead of a model object.
@@ -326,18 +309,18 @@ For instance, in JSF, a component tag also
 has a set of attributes for referencing methods that can perform certain
 functions for the component associated with the tag. To support these
 types of expressions, the EL defines method expressions (EL class
-_MethodExpression)_ .
+`MethodExpression`).
 
 In the above example, the validator attribute
-uses an expression that is associated with type _MethodExpression_ .
-Just as with _ValueExpression_ s, the evaluation of the expression
+uses an expression that is associated with type `MethodExpression`.
+Just as with ``ValueExpression``s, the evaluation of the expression
 (calling the method) is deferred and can be processed by the underlying
 technology at the appropriate moment within its life cycle.
 
 A method expression shares the same syntax as
 an lvalue. That is, it can only consist of either a single variable
-(e.g. _$\{name}_ ) or a property resolution on some object, via the _._
-or _[]_ operator (e.g. _$\{employee.name}_ ). Information about the
+(e.g. `$\{name}`) or a property resolution on some object, via the `.`
+or `[]` operator (e.g. `${employee.name}`). Information about the
 expected return type and parameter types is provided at the time the
 method is parsed.
 
@@ -350,7 +333,7 @@ signature is not provided at parse time, then at evaluation, the method
 is identified with the information of the parameters in the expression,
 and the parameters are coerced to the respective formal types.
 
-=== Literal-expression
+==== Literal-expression
 
 A literal-expression does not use the
 _$\{expr}_ or _#\{expr}_ constructs, and simply evaluates to the text of
