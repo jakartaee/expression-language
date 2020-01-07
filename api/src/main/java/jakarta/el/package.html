@@ -190,7 +190,7 @@ Jakarta Expression Language variable its value.
 <p>
 For example, in the following code snippet
 <blockquote>
-  <code>&lt;h:inputText value="#{handler.customer.name}"/></code>
+  <code>&lt;h:inputText value="#{handler.customer.name}"/&gt;</code>
 </blockquote>
 
 <code>handler</code> refers to a model object that can be resolved by a Jakarta Expression Language Resolver.
@@ -199,9 +199,9 @@ For example, in the following code snippet
 However, in this other example:
 <blockquote>
 <pre>
-&lt;c:forEach var="item" items="#{model.list}">
-   &lt;h:inputText value="#{item.name}"/>
-&lt;/c:forEach>
+&lt;c:forEach var="item" items="#{model.list}"&gt;
+   &lt;h:inputText value="#{item.name}"/&gt;
+&lt;/c:forEach&gt;
 </pre>
 </blockquote>
 
@@ -213,7 +213,7 @@ specific item in the collection referred to by the Jakarta Expression Language e
 
 <p>
 Assuming that there are three elements in <code>${model.list}</code>, this means
-that for each invocation of <code>&lt;h:inputText></code>, the following information 
+that for each invocation of <code>&lt;h:inputText&gt;</code>, the following information 
 about <code>item</code> must be preserved in the {@link VariableMapper}:
 <blockquote>
     first invocation: <code>item</code> maps to first element in <code>${model.list}</code><br>
