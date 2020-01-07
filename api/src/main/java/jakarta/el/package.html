@@ -63,10 +63,10 @@ evaluating an expression is specified.
 </code> objects is controlled through the underlying technology.
 For example, in Jakarta Server Pages, the
  <code>JspContext.getELContext()</code> factory method is used.  In an
-stand-alone environment, a default {@link StandardELContext} is
+stand-alone environment, a default {@link jakarta.el.StandardELContext} is
 provided.</p>
  
- <p>Some technologies provide the ability to add an {@link ELContextListener}
+ <p>Some technologies provide the ability to add an {@link jakarta.el.ELContextListener}
  so that applications and frameworks can ensure their own context objects
  are attached to any newly created <code>ELContext</code>.</p>
  
@@ -76,14 +76,14 @@ provided.</p>
 that gets parsed according to the grammar defined by the Expression Language.</p>
 
 <p>There are two types of expressions defined by Jakarta Expression Language: <i>value expressions</i>
-and <i>method expressions</i>. A {@link ValueExpression} such as
+and <i>method expressions</i>. A {@link jakarta.el.ValueExpression} such as
 <code>"${customer.name}"</code> can be used either
 as an <i>rvalue</i> (return the value associated with property <code>name</code>
 of the model object <code>customer</code>) or as an <i>lvalue</i> 
 (set the value of the property <code>name</code> of the model object
 <code>customer</code>).</p>
 
-<p>A {@link MethodExpression} such as
+<p>A {@link jakarta.el.MethodExpression} such as
 <code>"${handler.process}"</code> makes it possible to invoke a method 
 (<code>process</code>) on a specific model object (<code>handler</code>).</p>
 
@@ -91,11 +91,11 @@ of the model object <code>customer</code>) or as an <i>lvalue</i>
 invocation, such as <code>${trader.buy("JAVA")}</code>, where the arguments to
 the method invocation are specified in the expression.</p>
 
-<p>All expression classes extend the base class {@link Expression}, making them
+<p>All expression classes extend the base class {@link jakarta.el.Expression}, making them
 serializable and forcing them to implement <code>equals()</code> and 
 <code>hashCode()</code>. Moreover, each method on these expression classes 
 that actually evaluates an expression receives a parameter
-of class {@link ELContext},
+of class {@link jakarta.el.ELContext},
 which provides the context required to evaluate the expression.</p>
 
 <h3><a name="ExpressionCreation">Creation of Expressions</a></h3>
@@ -104,7 +104,7 @@ which provides the context required to evaluate the expression.</p>
 The factory provides two creation methods; one for each type of expression
  supported by Jakarta Expression Language.</p>
 
-<p>To create an expression, one must provide an {@link ELContext},
+<p>To create an expression, one must provide an {@link jakarta.el.ELContext},
 a string representing 
 the expression, and the expected type (<code>ValueExpression</code>) or signature 
 (<code>MethodExpression</code>). 
@@ -112,7 +112,7 @@ the expression, and the expected type (<code>ValueExpression</code>) or signatur
 The <code>ELContext</code> provides the context necessary to parse an expression.
 Specifically, if the expression uses a Jakarta Expression Language function 
 (for example <code>${fn:toUpperCase(customer.name)}</code>) or a Jakarta Expression Language 
-variable, then {@link FunctionMapper} and {@link VariableMapper}
+variable, then {@link jakarta.el.FunctionMapper} and {@link jakarta.el.VariableMapper}
 objects must be available within the <code>ELContext</code> so that Jakarta Expression Language 
 functions and Jakarta Expression Language variables are properly mapped.
 
@@ -128,7 +128,7 @@ expressions are typically created in the tree building phase and evaluated in th
 rendering phrase.</p>
 
 <p>Adding parameters to a <code>ValueExpression</code> further enhances the
-power of deferred expressions.  The {@link LambdaExpression}
+power of deferred expressions.  The {@link jakarta.el.LambdaExpression}
 encapsulates such a construct.  A <code>LambdaExpression</code> can be
 invoked by supplying the actual parameters at evaluation.  It plays
 an important role in the support for collections operators.</p>
@@ -151,8 +151,10 @@ and method invocations of these objects.</p>
 
 <p>The Jakarta Expression Language API provides implementations of <code>ELResolver</code> supporting 
 property resolution for common data types which include arrays 
-({@link ArrayELResolver}), JavaBeans ({@link BeanELResolver}), <code>List</code>s ({@link ListELResolver}),
-<code>Map</code>s ({@link MapELResolver}), and <code>ResourceBundle</code>s ({@link ResourceBundleELResolver}).</p>
+({@link jakarta.el.ArrayELResolver}), JavaBeans ({@link jakarta.el.BeanELResolver}),
+<code>List</code>s ({@link jakarta.el.ListELResolver}),
+<code>Map</code>s ({@link jakarta.el.MapELResolver}), and
+<code>ResourceBundle</code>s ({@link jakarta.el.ResourceBundleELResolver}).</p>
 
 <p>Tools can easily obtain more information about resolvable model objects and their 
 resolvable properties by calling
@@ -164,7 +166,7 @@ on top-level model objects as well as their properties.</p>
 
 <p>If a Jakarta Expression Language expression uses a function 
 (for example <code>${fn:toUpperCase(customer.name)}</code>), then a 
-{@link FunctionMapper} object must also be specified within
+{@link jakarta.el.FunctionMapper} object must also be specified within
 the <code>ELContext</code>. 
 
 The <code>FunctionMapper</code> is responsible to map
@@ -174,9 +176,9 @@ static methods that can execute the specified functions.
 
 <h3><a name="Variables">Jakarta Expression Language Variables</a></h3>
 
-<p>Just like {@link FunctionMapper} provides
+<p>Just like {@link jakarta.el.FunctionMapper} provides
 a flexible mechanism to add functions to Jakarta Expression Language, 
-{@link VariableMapper} provides a flexible mechanism to support the notion of
+{@link jakarta.el.VariableMapper} provides a flexible mechanism to support the notion of
 <strong>Jakarta Expression Language variables</strong>.
 </p>
  
@@ -214,7 +216,7 @@ specific item in the collection referred to by the Jakarta Expression Language e
 <p>
 Assuming that there are three elements in <code>${model.list}</code>, this means
 that for each invocation of <code>&lt;h:inputText&gt;</code>, the following information 
-about <code>item</code> must be preserved in the {@link VariableMapper}:
+about <code>item</code> must be preserved in the {@link jakarta.el.VariableMapper}:
 <blockquote>
     first invocation: <code>item</code> maps to first element in <code>${model.list}</code><br>
     second invocation: <code>item</code> maps to second element in <code>${model.list}</code><br>
