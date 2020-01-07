@@ -45,8 +45,8 @@
         <bundle.version>4.0.0.M1-SNAPSHOT</bundle.version>
         <extensionName>jakarta.el</extensionName>
         <bundle.symbolicName>jakarta.el-api</bundle.symbolicName>
-        <vendorName>Oracle Corporation</vendorName>
-        <findbugs.version>2.4.0</findbugs.version>
+        <vendorName>Eclipse Foundation</vendorName>
+        <findbugs.version>2.5.2</findbugs.version>
         <findbugs.exclude />
         <findbugs.threshold>High</findbugs.threshold>
     </properties>
@@ -131,7 +131,6 @@
                     <compilerArgument>-Xlint:unchecked</compilerArgument>
                 </configuration>
             </plugin>
-        
         
             <!-- Creates the OSGi MANIFEST.MF file -->        
             <plugin>
@@ -219,7 +218,7 @@
                             <header><![CDATA[<br>Jakarta Expression Language API v${project.version}]]></header>
                             <bottom><![CDATA[
 Comments to: <a href="mailto:el-dev@eclipse.org">el-dev@eclipse.org</a>.<br>
-Copyright &#169; 2019 Eclipse Foundation. All rights reserved.<br>
+Copyright &#169; 2020 Eclipse Foundation. All rights reserved.<br>
 Use is subject to <a href="{@docRoot}/doc-files/speclicense.html" target="_top">license terms</a>.]]>
                             </bottom>
                             <docfilessubdirs>true</docfilessubdirs>
@@ -247,21 +246,13 @@ Use is subject to <a href="{@docRoot}/doc-files/speclicense.html" target="_top">
                     <findbugsXmlWithMessages>true</findbugsXmlWithMessages>
                 </configuration>
             </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-release-plugin</artifactId>
-                <configuration>
-                    <mavenExecutorId>forked-path</mavenExecutorId>
-                    <useReleaseProfile>false</useReleaseProfile>
-                    <arguments>${release.arguments}</arguments>
-                </configuration>
-            </plugin>
             
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-enforcer-plugin</artifactId>
                 <version>3.0.0-M2</version>
             </plugin>               
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-gpg-plugin</artifactId>
