@@ -55,7 +55,7 @@ class FactoryFinder {
                     return constr.newInstance(properties);
                 }
             }
-            return spiClass.newInstance();
+            return spiClass.getDeclaredConstructor().newInstance();
         } catch (ClassNotFoundException x) {
             throw new ELException("Provider " + className + " not found", x);
         } catch (Exception x) {
