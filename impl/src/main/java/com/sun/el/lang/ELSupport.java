@@ -106,18 +106,6 @@ public class ELSupport {
         if (obj0 == null || obj1 == null) {
             return false;
         }
-        if (obj0 instanceof Boolean || obj1 instanceof Boolean) {
-            return coerceToBoolean(obj0).equals(coerceToBoolean(obj1));
-        }
-        if (obj0.getClass().isEnum()) {
-            return obj0.equals(coerceToEnum(obj1, obj0.getClass()));
-        }
-        if (obj1.getClass().isEnum()) {
-            return obj1.equals(coerceToEnum(obj0, obj1.getClass()));
-        }
-        if (obj0 instanceof String || obj1 instanceof String) {
-            return coerceToString(obj0).equals(coerceToString(obj1));
-        }
         if (isBigDecimalOp(obj0, obj1)) {
             BigDecimal bd0 = (BigDecimal) coerceToNumber(obj0, BigDecimal.class);
             BigDecimal bd1 = (BigDecimal) coerceToNumber(obj1, BigDecimal.class);
@@ -137,9 +125,20 @@ public class ELSupport {
             Long l0 = (Long) coerceToNumber(obj0, Long.class);
             Long l1 = (Long) coerceToNumber(obj1, Long.class);
             return l0.equals(l1);
-        } else {
-            return obj0.equals(obj1);
         }
+        if (obj0 instanceof Boolean || obj1 instanceof Boolean) {
+            return coerceToBoolean(obj0).equals(coerceToBoolean(obj1));
+        }
+        if (obj0.getClass().isEnum()) {
+            return obj0.equals(coerceToEnum(obj1, obj0.getClass()));
+        }
+        if (obj1.getClass().isEnum()) {
+            return obj1.equals(coerceToEnum(obj0, obj1.getClass()));
+        }
+        if (obj0 instanceof String || obj1 instanceof String) {
+            return coerceToString(obj0).equals(coerceToString(obj1));
+        }
+        return obj0.equals(obj1);
     }
 
     /**

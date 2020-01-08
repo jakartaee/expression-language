@@ -49,22 +49,14 @@ public class OperatorTest {
     public void setUp() {
     }
     
-    void testExpr(String testname, String expr, Long expected) {
+    void testExpr(String testname, String expr, Object expected) {
         System.out.println("=== Test " + testname + " ===");
         System.out.println(" ** " + expr);
         Object result = elp.eval(expr);
         System.out.println("    returns " + result);
         assertEquals(expected, result);
     }
-    
-    void testExpr(String testname, String expr, String expected) {
-        System.out.println("=== Test " + testname + " ===");
-        System.out.println(" ** " + expr);
-        Object result = elp.eval(expr);
-        System.out.println("    returns " + result);
-        assertEquals(expected, result);
-    }
-    
+
     @Test
     public void testConcat() {
         testExpr("concat", "a = null; b = null; a + b", 0L);
@@ -122,5 +114,14 @@ public class OperatorTest {
                 elm.getELContext(), "${name}", Object.class, new Class[] {});
         m.invoke(elm.getELContext(), null);
         */
+    }
+
+    @Test
+    public void testEquals() {
+        testExpr("string", "'xx' == 'xx'", Boolean.TRUE);
+        testExpr("number", "'a'.length() == 1", Boolean.TRUE);
+        testExpr("coerce '01'", "'01' == 1", Boolean.TRUE);
+        testExpr("coerce '01'", "1 == '01'", Boolean.TRUE);
+        testExpr("coerce '01.10'", "'01.10' == 1.10", Boolean.TRUE);
     }
 }
