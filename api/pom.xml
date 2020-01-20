@@ -190,7 +190,7 @@
             <!-- Adds the manifest file created by the org.apache.felix:maven-bundle-plugin -->
             <plugin>
                 <artifactId>maven-jar-plugin</artifactId>
-                <version>2.4</version>
+                <version>3.1.0</version>
                 <configuration>
                     <archive>
                         <manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
