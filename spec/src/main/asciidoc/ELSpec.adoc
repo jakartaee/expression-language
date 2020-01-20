@@ -1,7 +1,7 @@
-:sectnums:
-= Jakarta Expression Language, Version 4.0
+:sectnums!:
+== Jakarta Expression Language, Version 4.0
 
-Copyright (c) 2013, 2019 Oracle and/or its affiliates and others.
+Copyright (c) 2013, 2020 Oracle and/or its affiliates and others.
 All rights reserved.
 
 Eclipse is a registered trademark of the Eclipse Foundation. Jakarta
@@ -9,21 +9,19 @@ is a trademark of the Eclipse Foundation. Oracle and Java are
 registered trademarks of Oracle and/or its affiliates. Other names
 may be trademarks of their respective owners. 
 
-The Jakarta Expression Language Team TBD, 2020
+The Jakarta Expression Language Team - {revdate}
 
 Comments to: el-dev@eclipse.org
-
-:sectnums!:
 
 == Preface
 
 This is the Expression Language specification
-version 4.0, developed by the Jakarta EL Team under the Eclipse
+version 4.0, developed by the Jakarta Expression Language Team under the Eclipse
 Foundation Specification Process.
 
 === Historical Note
 
-The EL was originally inspired by both
+The Expression Language (EL) was originally inspired by both
 ECMAScript and the XPath expression languages. During its inception, the
 experts involved were very reluctant to design yet another expression
 language and tried to use each of these languages, but they fell short
@@ -31,7 +29,7 @@ in different areas.
 
 The JSP Standard Tag Library (JSTL) version 1.0
 (based on JSP 1.2) was therefore first to introduce an Expression
-Language (EL) to make it easy for page authors to access and manipulate
+Language to make it easy for page authors to access and manipulate
 application data without having to master the complexity associated with
 programming languages such as Java and JavaScript.
 
@@ -55,7 +53,7 @@ specification of a unified expression language, defined in JSR 245, and
 which took effect for the JSP 2.1 and Faces 1.2 releases.
 
 The JSP/JSTL/Faces expert groups also
-acknowledged that the Expression Language(EL) is useful beyond their own
+acknowledged that the EL is useful beyond their own
 specifications. The 3.0 specification was the first JSR that defined the
 Expression Language as an independent specification, with no
 dependencies on other technologies.
@@ -92,7 +90,7 @@ Mail alias for comments: el-dev@eclipse.org
 == Language Syntax and Semantics
 
 The syntax and semantics of the Expression
-Language (EL) are described in this chapter.
+Language are described in this chapter.
 
 === Overview
 
@@ -144,7 +142,7 @@ to invoke methods in a JavaBeans object; the operator can be nested
 arbitrarily. The `.` operator can be used as a convenient shorthand for
 property access when the property name follows the conventions of Java
 identifiers, but the `[]` operator allows for more generalized access.
-Similarly, `.` operator can also be used to invoke methods, when the
+Similarly, the `.` operator can also be used to invoke methods, when the
 method name is known, but the `[]` operator can be used to invoke methods
 dynamically.
 
@@ -163,8 +161,8 @@ API, making the EL easily adaptable to various environments.
 === EL Expressions
 
 An EL expression is specified either as an
-_eval-expression_ , or as a _literal-expression_ . The EL also supports
-_composite expressions_ , where multiple EL expressions
+_eval-expression_, or as a _literal-expression_. The EL also supports
+_composite expressions_, where multiple EL expressions
 (eval-expressions and literal-expressions) are grouped together.
 
 An EL expression is parsed as either a value
@@ -193,7 +191,7 @@ not evaluated until its value is needed by the system. Expressions
 delimited by `${}` are said to use “immediate evaluation” because the
 expression is compiled when the JSP page is compiled and it is executed
 when the JSP page is executed. More on this in
-link:ELSpec.html#a125[See Syntax restrictions].
+link:ELSpec.html#a125[Syntax restrictions].
 
 Other technologies may choose to use the same
 convention. It is up to each technology to enforce its own restrictions
@@ -239,9 +237,9 @@ For example, in the following Faces code sample:
 <h:form>
   <h:inputText
     id="email"
-    value="#\{checkOutFormBean.email}"
+    value="#{checkOutFormBean.email}"
     size="25" maxlength="125"
-    validator="#\{checkOutFormBean.validateEmail}"/>
+    validator="#{checkOutFormBean.validateEmail}"/>
 </h:form>
 ----
 
@@ -261,7 +259,7 @@ The valid syntax for an lvalue is a subset of
 the valid syntax for an rvalue. In particular, an lvalue can only
 consist of either a single variable (e.g. `$\{name}`) or a property
 resolution on some object, via the `.` or `[]` operator (e.g.
-`${employee.name}` ). Of course, an EL function or method that returns
+`${employee.name}`). Of course, an EL function or method that returns
 either an object or a name can be part of an lvalue.
 
 When parsing a value expression, an expected
@@ -270,8 +268,8 @@ the result of the expression evaluation is coerced to. In the case of
 lvalues, the expected type is ignored and the provided value is coerced
 to the actual type of the property the expression points to, before that
 property is set. The EL type conversion rules are defined in
-link:ELSpec.html#a443[See Type Conversion]. A few sample
-eval-expressions are shown in link:ELSpec.html#a81[See Sample
+link:ELSpec.html#a443[Type Conversion]. A few sample
+eval-expressions are shown in link:ELSpec.html#a81[Sample
 eval-expressions].
 
 
@@ -339,8 +337,7 @@ A literal-expression does not use the
 `$\{expr}` or `#{expr}` constructs, and simply evaluates to the text of
 the expression, of type `String`. Upon evaluation, an expected type of
 something other than `String` can be provided. Sample
-literal-expressions are shown in link:ELSpec.html#a98[See
-Sample literal-expressions].
+literal-expressions are shown in link:ELSpec.html#a98[Sample literal-expressions].
 
 
 
@@ -383,9 +380,9 @@ strings `$\{exprA}` and `#\{exprB}`.
 A literal-expression can be used anywhere a
 value expression can be used. A literal-expression can also be used as a
 method expression that returns a non-void return value. The standard EL
-coercion rules (see link:ELSpec.html#a443[See Type Conversion])
+coercion rules (see link:ELSpec.html#a443[Type Conversion])
 then apply if the return type of the method expression is not
-java.lang.String.
+`java.lang.String`.
 
 ==== Composite expressions
 
@@ -403,7 +400,7 @@ eval-expression \"``$\{lastName}``".
 Once evaluated, the resulting `String` is
 then coerced to the expected type, according to the EL type conversion
 rules. A sample composite expression is shown in
-link:ELSpec.html#a118[See Sample composite expression]. +
+link:ELSpec.html#a118[Sample composite expression]. +
 
 [width="100%",cols="34%,33%,33%",options="header",]
 |===
@@ -440,7 +437,7 @@ used to parse a method expression.
 
 Some APIs in EL 3.0 use only single
 eval-expressions, and not the composite expressions. However, there is
-no lost in functionality, since a composite expression can be specified
+no loss in functionality, since a composite expression can be specified
 with a single eval-expressions, by using the string concatenation
 operators, introduced in EL 3.0. For instance, the composite expression
 
@@ -469,12 +466,11 @@ floating point, string, and null in an eval-expression.
 * Boolean - `true` and `false`
 
 * Integer - As defined by the
-`IntegerLiteral` construct in link:ELSpec.html#a524[See
-Collected Syntax]
+`IntegerLiteral` construct in link:ELSpec.html#a524[Collected Syntax]
 
 * Floating point - As defined by the
-`FloatingPointLiteral` construct in link:ELSpec.html#a524[See
-Collected Syntax]
+`FloatingPointLiteral` construct in link:ELSpec.html#a524[Collected
+Syntax]
 
 * String - With single and double quotes - `"`
 is escaped as `\"`, `'` is escaped as `\'`, and `\` is escaped as `\\`.
@@ -510,17 +506,17 @@ The resolution of names and properties is
 further affected by the presence of
 
 * Functions. See
-link:ELSpec.html#a386[See Functions].
+link:ELSpec.html#a386[Functions].
 
 * Variables. See
-link:ELSpec.html#a393[See Variables].
+link:ELSpec.html#a393[Variables].
 
 * Imported names (classes, fields, and
-methods). See link:ELSpec.html#a421[See Static Field and Method
+methods). See link:ELSpec.html#a421[Static Field and Method
 Reference].
 
 * Lambda expressions and arguments. See
-link:ELSpec.html#a398[See Lambda Expressions].
+link:ELSpec.html#a398[Lambda Expressions].
 
 The rules described below are used in
 resolving names and properties when evaluating identifiers, function
@@ -605,7 +601,7 @@ arguments.
 
 The steps for evaluating an expression with
 `[]` or `.` operators (property reference and method call) are described in
-link:ELSpec.html#a177[See Operators [] and .]. However, the
+link:ELSpec.html#a177[Operators [\] and .]. However, the
 syntax for `.` operator is also used to reference a static field, or to
 invoke a static method. Therefore if the expression with a `.` operator is
 not resolved by the ``ELResolver``s, and if the identifier for the base
@@ -616,16 +612,16 @@ imported class.
 ==== Invoking method expressions
 
 A method expression can consist of either a
-single variable (e.g. `${name}` ) or a property resolution on some
-object, via the `.` or `[]` operator (e.g. `${employee.getName}` ).
-link:ELSpec.html#a177[See Operators [] and .] describes how to
+single variable (e.g. `${name}`) or a property resolution on some
+object, via the `.` or `[]` operator (e.g. `${employee.getName}`).
+link:ELSpec.html#a177[Operators [\] and .] describes how to
 invoke a method of an object. This form of method expressions allows
 arguments to the method to be specified in the EL expression (e.g.
 `${employee.getName()}`.
 
 To invoke a method expression of a single
 variable, the identifier is first evaluated, as decribed in
-link:ELSpec.html#a146[See Evaluating Identifiers]. If the
+link:ELSpec.html#a146[Evaluating Identifiers]. If the
 identifier evaluates to a `jakarta.el.MethodExpression`, the method
 expression is invoked and the result returned, otherwise an error is
 raised. This form of method expression does not allow arguments to be
@@ -1032,7 +1028,7 @@ To evaluate `expr-a` = `expr-b`:
 ** If `prop-a` is a Lambda parameter, throw a
 `PropertyNotWritableException`
 
-** If prop-a is an EL variable (see link:ELSpec.html#a393[See Variables]),
+** If prop-a is an EL variable (see link:ELSpec.html#a393[Variables]),
 evaluate the `ValueExpression` the variable was set to, to obtain the
 new (`base-a`, `prop-a`)
 
@@ -1251,7 +1247,7 @@ types. Coercion rules for dealing with enumerated types are included in
 the following section. Also, when referring to values that are instances
 of an enumerated type from within an EL expression, use the literal
 string value to cause coercion to happen via the below rules. For
-example, Let’s say we have an enum called `Suit` that has members `Heart`,
+example, let’s say we have an enum called `Suit` that has members `Heart`,
 `Diamond`, `Club`, and `Spade`. Furthermore, let’s say we have a reference in
 the EL, `mySuit`, that is a `Spade`. If you want to test for equality with
 the `Spade` enum, you would say `${mySuit == 'Spade'}`. The type of the
@@ -1349,8 +1345,8 @@ of `Y`. +
 Otherwise, Let `Y’` be the same as `Y`.
 
 * Apply the rules in Sections
-link:ELSpec.html#a455[See Coerce A to
-String]-link:ELSpec.html#a511[See Coerce A to Any Other Type T]
+link:ELSpec.html#a455[Coerce A to
+String] to link:ELSpec.html#a511[Coerce A to Any Other Type T]
 for coercing `X’` to `Y’`.
 
 * If `Y` is a primitive type, then the result
@@ -1368,7 +1364,7 @@ the resulting `Double` isn’t actually `null`.
 
 ==== Coerce `A` to `String`
 
-* If `A` is `null` : return `""`
+* If `A` is `null` , return `""`
 
 * Otherwise, if `A` is `String`, return `A`
 
@@ -1385,7 +1381,7 @@ the resulting `Double` isn’t actually `null`.
 * If `A` is `null` or `""`, return 0.
 
 * If `A` is `Character`, convert `A` to
-`new Short((short)a.charValue())`, and apply the following rules.
+`new Short\((short)a.charValue())`, and apply the following rules.
 
 * If `A` is `Boolean`, then error.
 
@@ -1515,7 +1511,6 @@ the result.
 The following is a javaCC grammar with syntax
 tree generation. It is meant to be used as a guide and reference only.
 
-
 [source]
 ----
 /* == Option Declaration == */
@@ -1557,7 +1552,10 @@ PARSER_END( ELParser )
  */
 AstCompositeExpression CompositeExpression() #CompositeExpression : {}
 {
-    (DeferredExpression() | DynamicExpression() | LiteralExpression())* <EOF> { return jjtThis; }
+    (DeferredExpression() | DynamicExpression() | LiteralExpression())* <EOF>
+    {
+        return jjtThis;
+    }
 }
 
 /*
@@ -1610,8 +1608,8 @@ void SemiColon() : {}
  */
 void Assignment() : {}
 {
-        LOOKAHEAD(4) LambdaExpression() | // Do not mistake ((i)) with Lambdaexp check until the arrow
-        Choice() ( LOOKAHEAD(2) <ASSIGN> Assignment() #Assign(2) )* // avoid failure of expr ${x = 10}
+        LOOKAHEAD(4) LambdaExpression() |
+        Choice() ( LOOKAHEAD(2) <ASSIGN> Assignment() #Assign(2) )*
 }
 
 /*
@@ -1821,9 +1819,9 @@ void LambdaExpressionOrCall() #LambdaExpression : {}
 void NonLiteral() : {}
 {
         LOOKAHEAD(5) LambdaExpressionOrCall() // check beyond the arrow 
-    | <LPAREN> Expression() <RPAREN>
-    | LOOKAHEAD(4) Function()
-    | Identifier()
+        | <LPAREN> Expression() <RPAREN>
+        | LOOKAHEAD(4) Function()
+        | Identifier()
         | MapData()
         | ListData()
 }
@@ -2323,8 +2321,8 @@ whose behaviors are specified in this section.
 An instant of `Stream` is obtained by calling the method `stream()` of
 a `java.util.Collection` object or a Java array.
 The methods in this class support the stream operations and are
-described in link:ELSpec.html#a1171[See filter] to
-link:ELSpec.html#a1386[See findFirst].
+described in link:ELSpec.html#a1171[filter] to
+link:ELSpec.html#a1386[findFirst].
 
 ===== Optional
 
@@ -2338,7 +2336,7 @@ by an empty `Optional`.
 An `Optional` is usually the result of a computation over the elements
 of a `Stream`, where an empty `Stream` results
 in an empty `Optional`. See for example,
-link:ELSpec.html#a1320[See max].
+link:ELSpec.html#a1320[max].
 
 The following are methods in `Optional<T>`.
 
@@ -2349,7 +2347,7 @@ throws an `ELException` if the `Optional` is empty.
 * `void ifPresent((x)->void)consumer)` +
 The value held by the `Optional` is processed
 by the function consumer if it is not empty. See also
-link:ELSpec.html#a1164[See consumer].
+link:ELSpec.html#a1164[consumer].
 
 * `T orElse(T other)` +
 Returns the value held by the `Optional`, or
@@ -2424,7 +2422,7 @@ The argument of predicate function represents the element to test.
 
 ===== See
 
-{empty}link:ELSpec.html#a1155[See predicate]
+{empty}link:ELSpec.html#a1155[predicate]
 
 ===== Example
 
@@ -2447,7 +2445,7 @@ mapper function represents the element of the resulting Stream.
 
 ===== See
 
-{empty}link:ELSpec.html#a1158[See mapper]
+{empty}link:ELSpec.html#a1158[mapper]
 
 ===== Examples
 
@@ -2479,7 +2477,7 @@ behavior is undefined.
 
 ===== See
 
-{empty}link:ELSpec.html#a1158[See mapper]
+{empty}link:ELSpec.html#a1158[mapper]
 
 ===== Examples
 
@@ -2539,7 +2537,7 @@ operation.
 
 ===== See
 
-{empty}link:ELSpec.html#a1161[See comparator]
+{empty}link:ELSpec.html#a1161[comparator]
 
 ===== Examples
 
@@ -2586,7 +2584,7 @@ This method always returns `null`.
 
 ===== See
 
-{empty}link:ELSpec.html#a1164[See consumer]
+{empty}link:ELSpec.html#a1164[consumer]
 
 ===== Example
 
@@ -2610,7 +2608,7 @@ the place where this method is inserted.
 
 ===== See
 
-{empty}link:ELSpec.html#a1164[See consumer]
+{empty}link:ELSpec.html#a1164[consumer]
 
 ===== Example
 
@@ -2650,7 +2648,7 @@ count is less than or equal to zero, an empty stream is returned.
 
 ===== Example
 
-To list the 3 most expensive products:
+To list the 3 least expensive products:
 ----
 products.stream().sorted(p->p.unitPrice)
                  .limit(3)
@@ -2731,11 +2729,9 @@ with the final accumulator value is returned.
 
 ===== See
 
-{empty}link:ELSpec.html#a1138[See
-Optional]
+{empty}link:ELSpec.html#a1138[Optional]
 
-{empty}link:ELSpec.html#a1167[See
-binaryOperator]
+{empty}link:ELSpec.html#a1167[binaryOperator]
 
 ===== Example
 
@@ -2764,8 +2760,7 @@ empty stream.
 
 ===== See
 
-{empty}link:ELSpec.html#a1161[See
-comparator]
+{empty}link:ELSpec.html#a1161[comparator]
 
 ===== Examples
 
@@ -2798,8 +2793,7 @@ empty stream.
 
 ===== See
 
-{empty}link:ELSpec.html#a1161[See
-comparator]
+{empty}link:ELSpec.html#a1161[comparator]
 
 ==== average
 
@@ -2812,8 +2806,7 @@ comparator]
 This method computes the average of all
 elements in the source stream by first computes the sum of the elements
 and then divides the sum by the number of elements. The elements are
-coerced to Number types according to link:ELSpec.html#a461[See
-Coerce A to Number type N] during the computation.
+coerced to Number types according to link:ELSpec.html#a461[Coerce A to Number type N] during the computation.
 
 This method returns an empty `Optional` for an
 empty stream.
@@ -2828,7 +2821,7 @@ empty stream.
 
 This method computes the sum of all elements
 in the source stream. The elements are coerced to Number types according
-to link:ELSpec.html#a461[See Coerce A to Number type N] during
+to link:ELSpec.html#a461[Coerce A to Number type N] during
 the computation.
 
 This method returns zero for an empty stream.
@@ -2858,8 +2851,7 @@ predicate. It returns an empty Optional if the stream is empty.
 
 ===== See
 
-{empty}link:ELSpec.html#a1155[See
-predicate]
+{empty}link:ELSpec.html#a1155[predicate]
 
 ===== Example
 
@@ -2885,8 +2877,7 @@ predicate. It returns an empty `Optional` if the stream is empty.
 
 ===== See
 
-{empty}link:ELSpec.html#a1155[See
-predicate]
+{empty}link:ELSpec.html#a1155[predicate]
 
 ==== noneMatch
 
@@ -2902,8 +2893,7 @@ the predicate. It returns an empty `Optional` if the stream is empty.
 
 ===== See
 
-{empty}link:ELSpec.html#a1155[See
-predicate]
+{empty}link:ELSpec.html#a1155[predicate]
 
 
 
@@ -2921,8 +2911,7 @@ empty.
 
 ===== See
 
-{empty}link:ELSpec.html#a1138[See
-Optional]
+{empty}link:ELSpec.html#a1138[Optional]
 
 
 == Changes
@@ -2930,13 +2919,19 @@ Optional]
 This appendix lists the
 changes in the EL specification. This appendix is non-normative.
 
+=== Changes between 4.0 and 3.0 Final Release
+
+* Update specification document for move to Jakarta EE.
+
+* Convert from `javax.\*` to `jakarta.*`.
+
+ 
+
 === Changes between 3.0 Final Release and Proposed Final Draft
 
-* Added link:ELSpec.html#a173[See
-Invoking method expressions].
+* Added link:ELSpec.html#a173[Invoking method expressions].
 
-* Added link:ELSpec.html#a1355[See
-count].
+* Added link:ELSpec.html#a1355[count].
 
 
 
@@ -2956,33 +2951,27 @@ Java SE 8 libraries.
 * Removed API from the specification document,
 since they are included in the javadocs.
 
-* Added link:ELSpec.html#a1063[See]
-Operations on Collection Objects”.
+* Added link:ELSpec.html#a1063[
+Operations on Collection Objects].
 
 * Added
-link:ELSpec.html#a265[See String
-Concatenation Operator - A += B], String concatenation operator.
+link:ELSpec.html#a265[String
+Concatenation Operator - A += B].
 
-* Added link:ELSpec.html#a337[See
-Assignment Operator - A = B], Assignment operator.
+* Added link:ELSpec.html#a337[Assignment Operator - A = B].
 
-* Added link:ELSpec.html#a350[See
-Semicolon Operator - A ; B], Semi-colon operator.
+* Added link:ELSpec.html#a350[Semicolon Operator - A ; B].
 
-* Added link:ELSpec.html#a398[See Lambda
-Expressions] Lambda Expression.
+* Added link:ELSpec.html#a398[Lambda Expressions].
 
-* Added link:ELSpec.html#a421[See Static
-Field and Method Reference] Static Field and Methods.
+* Added link:ELSpec.html#a421[Static
+Field and Method Reference].
 
-* Added `T` and `cat` to
-link:ELSpec.html#a380[See Reserved Words] Reserved words.
+* Added `T` and `cat` to link:ELSpec.html#a380[Reserved Words].
 
-* Modified link:ELSpec.html#a356[See
-Operator Precedence] Operator precedence.
+* Modified link:ELSpec.html#a356[Operator Precedence].
 
-* Modified coercion rule from nulls to
-non-primitive types.
+* Modified coercion rule from nulls to non-primitive types.
 
 * Many changes to the javadoc API.
 
@@ -2999,7 +2988,7 @@ the 2.2 behavior, if desired.
 
 * The default coercion for ``null``s to non-primitive
 types (except `String`) returns ``null``s. For instance, a `null` coerced
-to `Boolean` now returns a `null`, while a `null` coerced to `boolean
+to `Boolean` now returns a `null`, while a `null` coerced to `boolean`
 returns `false`.
 
 
@@ -3032,7 +3021,7 @@ paragraph from: +
 Upon evaluation, the EL API verifies that the
 method conforms to the expected signature provided at parse time. There
 is therefore no coercion performed. +
-to +
+to: +
 Upon evaluation, if the expected signature is
 provided at parse time, the EL API verifies that the method conforms to
 the expected signature, and there is therefore no coercion performed. If
@@ -3075,11 +3064,11 @@ Added two methods in `javax.el.ExpressionFactory`:
 === Changes between Public Review and Proposed Final Draft
 
 * New constructor for derived exception classes +
-Exception classes that extend `ELException` (
-`PropertyNotFoundException`, `PropertyNotWritableException`,
-`MethodNotFoundException` ) did not have a constructor with both '
-`message` ' and ' `rootCause` ' as arguments (as it exists in
-`ELException` ). The constructor has been added to these classes.
+Exception classes that extend
+`ELException(PropertyNotFoundException, PropertyNotWritableException, MethodNotFoundException)`
+did not have a constructor with both
+`message` and `rootCause` as arguments (as it exists in
+`ELException`). The constructor has been added to these classes.
 
 * `javax.el.ELContext` API changes
 
@@ -3091,8 +3080,7 @@ Exception classes that extend `ELException` (
 
 * Section 1.8.1 - A {<,>,<=,>=,lt,gt,le,ge} B +
 If the first condition `(A==B)` is `false`, simply
-fall through to the next step (do not return `false`). See See issue 129
-at jsp-spec-public.dev.java.net.
+fall through to the next step (do not return `false`).
 
 * `javax.el.ResourceBundleELResolver` +
 New `ELResolver` class added to support easy
@@ -3151,11 +3139,10 @@ favor of `Throwable.getCause().`
 
 * `javax.el.ExpressionFactory`
 
-** Creation methods now use `ELContex` t instead
+** Creation methods now use `ELContext` instead
 of `FunctionMapper` (see EL Variables above).
 
-** Added method `coerceToType().` See issue 132 at
-jsp-spec-public.dev.java.net.
+** Added method `coerceToType()`.
 
 * `javax.el.MethodExpression`
 
