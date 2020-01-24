@@ -1286,9 +1286,9 @@ methods can be referenced.
 
 Either a class or a package can be explicitly
 imported into the EL evaluation environment. Importing a package imports
-all the classes in the package. The classes that can be imported are
-restricted to the classes that can be loaded by the current class
-loader.
+all the public, concrete classes in the package. The classes that can be
+imported are restricted to the classes that can be loaded by the current
+class loader.
 
 By default, the following packages are
 imported by the EL environment.
