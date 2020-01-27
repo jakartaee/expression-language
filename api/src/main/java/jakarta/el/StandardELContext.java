@@ -218,7 +218,7 @@ public class StandardELContext extends ELContext {
         private Map<String, Method> functions;
 
         DefaultFunctionMapper(Map<String, Method> initMap) {
-            functions = (initMap == null) ? new HashMap<String, Method>() : new HashMap<>(initMap);
+            functions = (initMap == null) ? new HashMap<>() : new HashMap<>(initMap);
         }
 
         @Override
