@@ -20,13 +20,12 @@ package jakarta.el;
 
 import static java.io.File.separator;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.lang.reflect.Constructor;
+import java.util.Iterator;
 import java.util.Properties;
+import java.util.ServiceLoader;
 
 class FactoryFinder {
 
@@ -64,20 +63,24 @@ class FactoryFinder {
     }
 
     /**
-     * Finds the implementation <code>Class</code> object for the given factory name, or if that fails, finds the
-     * <code>Class</code> object for the given fallback class name. The arguments supplied must be used in order. If using
-     * the first argument is successful, the second one will not be used.
-     * <P>
+     * Finds the implementation <code>Class</code> object for the given factory. The following search order is used:
+     * <ol>
+     * <li>{@link ServiceLoader} lookup using <code>serviceClass</code></li>
+     * <li>Property file located as <code>$java.home/lib/el.properties</code></li>
+     * <li>System property lookup using <code>factoryId</code></li>
+     * <li>Create an instance of <code>fallbackClassName</code></li>
+     * </ol>
      * This method is package private so that this code can be shared.
      *
      * @return the <code>Class</code> object of the specified message factory; may not be <code>null</code>
      *
+     * @param serviceClass The class to use when searching for the factory using the ServiceLoader mechanism
      * @param factoryId the name of the factory to find, which is a system property
      * @param fallbackClassName the implementation class name, which is to be used only if nothing else is found;
      * <code>null</code> to indicate that there is no fallback class name
      * @exception ELException if there is an error
      */
-    static Object find(String factoryId, String fallbackClassName, Properties properties) {
+    static Object find(Class<?> serviceClass, String factoryId, String fallbackClassName, Properties properties) {
         ClassLoader classLoader;
         try {
             classLoader = Thread.currentThread().getContextClassLoader();
@@ -85,25 +88,14 @@ class FactoryFinder {
             throw new ELException(x.toString(), x);
         }
 
-        String serviceId = "META-INF/services/" + factoryId;
-
         // try to find services in CLASSPATH
         try {
-            InputStream is = null;
-            if (classLoader == null) {
-                is = ClassLoader.getSystemResourceAsStream(serviceId);
-            } else {
-                is = classLoader.getResourceAsStream(serviceId);
-            }
-
-            if (is != null) {
-                BufferedReader reader = new BufferedReader(new InputStreamReader(is, "UTF-8"));
-
-                String factoryClassName = reader.readLine();
-                reader.close();
-
-                if (factoryClassName != null && !"".equals(factoryClassName)) {
-                    return newInstance(factoryClassName, classLoader, properties);
+            ServiceLoader<?> serviceLoader = ServiceLoader.load(serviceClass, classLoader);
+            Iterator<?> iter = serviceLoader.iterator();
+            while (iter.hasNext()) {
+                Object service = iter.next();
+                if (service != null) {
+                    return service;
                 }
             }
         } catch (Exception ex) {
