@@ -1,5 +1,5 @@
 Jakarta Expression Language Specification
-============================
+=========================================
 
 This project generates the Jakarta Expression Language Specification.
 
