@@ -1,3 +1,0 @@
-== Specification Scope
-
-Jakarta Expression Language defines an expression language for Java applications.
