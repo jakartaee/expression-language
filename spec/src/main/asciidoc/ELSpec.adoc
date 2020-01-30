@@ -478,10 +478,14 @@ floating point, string, and null in an eval-expression.
 `FloatingPointLiteral` construct in link:ELSpec.html#a524[Collected
 Syntax]
 
-* String - With single and double quotes - `"`
-is escaped as `\"`, `'` is escaped as `\'`, and `\` is escaped as `\\`.
-Quotes only need to be escaped in a string value enclosed in the same
-type of quote
+* String - Enclosed with single or double quotes with the following rules
+for escaping the enclosed string:
+** `\` must be escaped as `\\`
+** `"` must be escaped as `\"` when the string is enclosed with `"`
+** `"` may be escaped as `\"` when the string is enclosed with `'`
+** `'` must be escaped as `\'` when the string is enclosed with `'`
+** `'` may be escaped as `\'` when the string is enclosed with `"`
+** no other escaping is permitted
 
 * Null - `null`
 
