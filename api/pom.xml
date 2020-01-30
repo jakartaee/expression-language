@@ -194,6 +194,9 @@
                 <configuration>
                     <archive>
                         <manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
+                        <manifestEntries>
+                            <Automatic-Module-Name>jakarta.el.api</Automatic-Module-Name>
+                        </manifestEntries>
                     </archive>
                     <excludes>
                         <exclude>**/*.java</exclude>
