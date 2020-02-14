@@ -20,7 +20,6 @@ import jakarta.el.LambdaExpression;
 
 public class Optional {
 
-    private final static Optional EMPTY = new Optional();
     private final Object value;
 
     Optional(Object value) {
