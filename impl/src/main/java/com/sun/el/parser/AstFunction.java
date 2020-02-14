@@ -79,7 +79,6 @@ public final class AstFunction extends SimpleNode {
      * Find the object associated with the given name. Return null if the there is no such object.
      */
     private Object findValue(EvaluationContext ctx, String name) {
-        Object value;
         // First check if this is a Lambda argument
         if (ctx.isLambdaArgument(name)) {
             return ctx.getLambdaArgument(name);
