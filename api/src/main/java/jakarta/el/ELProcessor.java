@@ -290,7 +290,7 @@ public class ELProcessor {
         }
 
         if (dims == 1) {
-            return java.lang.reflect.Array.newInstance(c, 1).getClass();
+            return Array.newInstance(c, 1).getClass();
         }
 
         // Array of more than i dimension

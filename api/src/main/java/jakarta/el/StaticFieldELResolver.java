@@ -80,7 +80,7 @@ public class StaticFieldELResolver extends ELResolver {
                 Field field = klass.getField(fieldName);
 
                 int mod = field.getModifiers();
-                if (Modifier.isPublic(mod) && Modifier.isStatic(mod)) {
+                if (isPublic(mod) && isStatic(mod)) {
                     return field.get(null);
                 }
             } catch (NoSuchFieldException ex) {
