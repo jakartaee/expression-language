@@ -65,6 +65,7 @@ of the specification, and Compatible Implementations (CIs) that
 implement this specification and which pass the TCK, this specification
 defines the Jakarta standard for Expression Language.
 
+<<<
 === Typographical Conventions
 
 [width="100%",cols="50%,50%",options="header",]
@@ -165,8 +166,8 @@ _eval-expression_, or as a _literal-expression_. The EL also supports
 _composite expressions_, where multiple EL expressions
 (eval-expressions and literal-expressions) are grouped together.
 
-An EL expression is parsed as either a value
-expression or a method expression. A value expression refers to a value,
+An EL expression is parsed as either a _value
+expression_ or a _method expression_. A value expression refers to a value,
 whereas a method expression refers to a method on an object. Once
 parsed, the expression can optionally be evaluated one or more times.
 
@@ -191,7 +192,7 @@ not evaluated until its value is needed by the system. Expressions
 delimited by `${}` are said to use “immediate evaluation” because the
 expression is compiled when the JSP page is compiled and it is executed
 when the JSP page is executed. More on this in
-link:ELSpec.html#a125[Syntax restrictions].
+<<Syntax restrictions>>.
 
 Other technologies may choose to use the same
 convention. It is up to each technology to enforce its own restrictions
@@ -206,9 +207,9 @@ without `${}` or `#{}` delimiters.
 ===== Eval-expressions as value expressions
 
 When parsed as a value expression, an
-eval-expression can be evaluated as either an rvalue or an lvalue. An
-rvalue is an expression that would typically appear on the right side of
-the assignment operator. An lvalue would typically appear on the left
+eval-expression can be evaluated as either an _rvalue_ or an _lvalue_. An
+_rvalue_ is an expression that would typically appear on the right side of
+the assignment operator. An _lvalue_ would typically appear on the left
 side.
 
 For instance, all EL expressions in JSP 2.0
@@ -268,12 +269,11 @@ the result of the expression evaluation is coerced to. In the case of
 lvalues, the expected type is ignored and the provided value is coerced
 to the actual type of the property the expression points to, before that
 property is set. The EL type conversion rules are defined in
-link:ELSpec.html#a443[Type Conversion]. A few sample
-eval-expressions are shown in link:ELSpec.html#a81[Sample
-eval-expressions].
+<<Type Conversion>>. A few sample
+eval-expressions are shown in the following table.
 
 
-
+.Sample eval-expressions
 [width="100%",cols="34%,33%,33%",options="header",]
 |===
 |Expression
@@ -296,7 +296,6 @@ _Expression evaluates to a `Book` object (e.g.
 
 |===
 
-Sample [[a81]]eval-expressions
 
 ===== Eval-expressions as method expressions
 
@@ -337,10 +336,10 @@ A literal-expression does not use the
 `$\{expr}` or `#{expr}` constructs, and simply evaluates to the text of
 the expression, of type `String`. Upon evaluation, an expected type of
 something other than `String` can be provided. Sample
-literal-expressions are shown in link:ELSpec.html#a98[Sample literal-expressions].
+literal-expressions are shown in the following table.
 
 
-
+.Sample literal-expressions
 [width="100%",cols="34%,33%,33%",options="header",]
 |===
 |Expression
@@ -353,15 +352,14 @@ literal-expressions are shown in link:ELSpec.html#a98[Sample literal-expressions
 |`Boolean`
 |`Boolean.TRUE`
 |===
-Sample [[a98]]literal-expressions
 
 To generate literal values that include the
 character sequence \"``${``" or \"``#{``", the developer can choose to
 use a composite expression as shown here:
 
-`${'${'}exprA}`
+ ${'${'}exprA}
 
-`\#{'#{'}exprB}`
+ #{'#{'}exprB}
  
 The resulting values would
 then be the strings `${exprA}` and `#\{exprB}`.
@@ -370,9 +368,9 @@ Alternatively, the escape characters `\$` and
 `\#` can be used to escape what would otherwise be treated as an
 eval-expression. Given the literal-expressions:
 
-`\${exprA}`
+ \${exprA}
 
-`\#{exprB}`
+ \#{exprB}
 
 The resulting values would again be the
 strings `$\{exprA}` and `#\{exprB}`.
@@ -380,7 +378,7 @@ strings `$\{exprA}` and `#\{exprB}`.
 A literal-expression can be used anywhere a
 value expression can be used. A literal-expression can also be used as a
 method expression that returns a non-void return value. The standard EL
-coercion rules (see link:ELSpec.html#a443[Type Conversion])
+coercion rules (see <<Type Conversion>>)
 then apply if the return type of the method expression is not
 `java.lang.String`.
 
@@ -399,15 +397,15 @@ to ``String``s (according to the EL type conversion rules), and
 concatenated with any intervening literal-expressions.
 
 For example, the composite expression
-\"``$\{firstName} $\{lastName}``" is composed of three EL expressions:
-eval-expression \"``$\{firstName}``", literal-expression \"`` ``", and
-eval-expression \"``$\{lastName}``".
+`"$\{firstName} $\{lastName}"` is composed of three EL expressions:
+eval-expression `"$\{firstName}"`, literal-expression `" "`, and
+eval-expression `"$\{lastName}"`.
 
 Once evaluated, the resulting `String` is
 then coerced to the expected type, according to the EL type conversion
-rules. A sample composite expression is shown in
-link:ELSpec.html#a118[Sample composite expression]. +
+rules. A sample composite expression is shown in the following table.
 
+.Sample composite expression
 [width="100%",cols="34%,33%,33%",options="header",]
 |===
 |Expression
@@ -415,17 +413,17 @@ link:ELSpec.html#a118[Sample composite expression]. +
 |Result
 |`Welcome ${customer.name} to our site`
 |`String`
-|Welcome Guy Lafleur to our site
+|`Welcome Guy Lafleur to our site`
 
 _``${customer.name}`` evaluates to a `String` which
 is then concatenated with the literal-expressions. No conversion
 necessary._
 
 |===
-Sample composite expression
 
-It is illegal to mix `${}` and `\#{}`
-constructs in a composite expression. This restriction is imposed to
+
+*It is illegal to mix `${}` and `\#{}`
+constructs in a composite expression*. This restriction is imposed to
 avoid ambiguities should a user think that using `${expr}` or
 `#{expr}` dictates how an expression is evaluated. For instance, as was
 mentioned previously, the convention in the Jakarta EE web tier specifications
@@ -441,7 +439,7 @@ expression can be used anywhere an EL expression can be used except for
 when parsing a method expression. Only a single eval-expression can be
 used to parse a method expression.
 
-Some APIs in EL 3.0 use only single
+Some APIs in EL 3.0 onwards use only single
 eval-expressions, and not the composite expressions. However, there is
 no loss in functionality, since a composite expression can be specified
 with a single eval-expressions, by using the string concatenation
@@ -460,7 +458,7 @@ parsed and evaluated in exactly the same way by the EL, the underlying
 technology is free to impose restrictions on which syntax can be used
 according to where the expression appears.
 
-For instance, in JSP 2.1, `\#{}` expressions
+For instance, in JSP, `\#{}` expressions
 are only allowed for tag attributes that accept deferred expressions.
 `#{expr}` will generate an error if used anywhere else.
 
@@ -472,11 +470,10 @@ floating point, string, and null in an eval-expression.
 * Boolean - `true` and `false`
 
 * Integer - As defined by the
-`IntegerLiteral` construct in link:ELSpec.html#a524[Collected Syntax]
+`IntegerLiteral` construct in <<Collected Syntax>>
 
 * Floating point - As defined by the
-`FloatingPointLiteral` construct in link:ELSpec.html#a524[Collected
-Syntax]
+`FloatingPointLiteral` construct in <<Collected Syntax>>
 
 * String - Enclosed with single or double quotes with the following rules
 for escaping the enclosed string:
