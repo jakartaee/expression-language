@@ -2924,10 +2924,11 @@ empty.
 {empty}link:ELSpec.html#a1138[Optional]
 
 
+[appendix]
 == Changes
 
-This appendix lists the
-changes in the EL specification. This appendix is non-normative.
+This appendix lists the changes in the EL specification.
+This appendix is non-normative.
 
 === Changes between 4.0 and JSR 341
 
