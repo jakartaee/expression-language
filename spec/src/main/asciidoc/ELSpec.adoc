@@ -1152,7 +1152,10 @@ methods in Java classes.
 The full syntax is that of qualified n-ary
 functions:
 
- `[ns:]f([a1[,a2[,...[,an]]]])`
+[subs="normal"]
+----
+ [ns:]f([a~1~[,a~2~[,...[,a~n~]]]])
+----
 
 Where `ns` is the namespace prefix, `f` is
 the name of the function, and `a` is an argument.
