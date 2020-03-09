@@ -512,18 +512,14 @@ their associated properties.
 The resolution of names and properties is
 further affected by the presence of
 
-* Functions. See
-link:ELSpec.html#a386[Functions].
+* Functions. See <<Functions>>.
 
-* Variables. See
-link:ELSpec.html#a393[Variables].
+* Variables. See <<Variables>>.
 
 * Imported names (classes, fields, and
-methods). See link:ELSpec.html#a421[Static Field and Method
-Reference].
+methods). See <<Static Field and Method Reference>>.
 
-* Lambda expressions and arguments. See
-link:ELSpec.html#a398[Lambda Expressions].
+* Lambda expressions and arguments. See <<Lambda Expressions>>.
 
 The rules described below are used in
 resolving names and properties when evaluating identifiers, function
@@ -531,8 +527,7 @@ calls, and object properties and method calls.
 
 ==== Evaluating Identifiers
 
-The steps are used for evaluating an
-identifier.
+These steps are used for evaluating an identifier.
 
 * If the identifier is a lambda argument passed
 to a lambda expression invocation, its value is returned.
@@ -608,7 +603,7 @@ arguments.
 
 The steps for evaluating an expression with
 `[]` or `.` operators (property reference and method call) are described in
-link:ELSpec.html#a177[Operators [\] and .]. However, the
+<<Operators `[]` and `.`>>. However, the
 syntax for `.` operator is also used to reference a static field, or to
 invoke a static method. Therefore if the expression with a `.` operator is
 not resolved by the ``ELResolver``s, and if the identifier for the base
@@ -621,14 +616,14 @@ imported class.
 A method expression can consist of either a
 single variable (e.g. `${name}`) or a property resolution on some
 object, via the `.` or `[]` operator (e.g. `${employee.getName}`).
-link:ELSpec.html#a177[Operators [\] and .] describes how to
+<<Operators `[]` and `.`>> describes how to
 invoke a method of an object. This form of method expressions allows
 arguments to the method to be specified in the EL expression (e.g.
-`${employee.getName()}`.
+`${employee.getName()}`).
 
 To invoke a method expression of a single
-variable, the identifier is first evaluated, as decribed in
-link:ELSpec.html#a146[Evaluating Identifiers]. If the
+variable, the identifier is first evaluated, as described in
+<<Evaluating Identifiers>>. If the
 identifier evaluates to a `jakarta.el.MethodExpression`, the method
 expression is invoked and the result returned, otherwise an error is
 raised. This form of method expression does not allow arguments to be
@@ -640,7 +635,7 @@ The EL follows ECMAScript in unifying the
 treatment of the `.` and `[]` operators.
 
 `expr-a.identifier-b` is equivalent to
-`expr-a["identifier-b"]` ; that is, the identifier `identifier-b` is
+`expr-a["identifier-b"]`; that is, the identifier `identifier-b` is
 used to construct a literal whose value is the identifier, and then the
 `[]` operator is used with that value.
 
@@ -648,13 +643,13 @@ Similarly, `expr-a.identifier-b(params)` is
 equivalent to `expr-a["identifier-b"](params).`
 
 The expression
-`expr-a["identifier-b"](params)` denotes a parametered method
-invocation, where `params` is a comma-separated list of expressions
+`expr-a["identifier-b"](params)` denotes a method invocation
+with parameters, where `params` is a comma-separated list of expressions
 denoting the parameters for the method call.
 
 To evaluate `expr-a[expr-b] or expr-a[expr-b](params)`:
 
-* Evaluate `expr-a` into `value-a` .
+* Evaluate `expr-a` into `value-a`.
 
 * If `value-a` is `null`:
 
@@ -665,9 +660,9 @@ To evaluate `expr-a[expr-b] or expr-a[expr-b](params)`:
 expression evaluation, return `null`.
 
 *** Otherwise, throw `PropertyNotFoundException`. +
-_trying to de-reference null for an lvalue_
+_[trying to de-reference null for an lvalue]_
 
-** Otherwise, return `null` .
+** Otherwise, return `null`.
 
 * Evaluate `expr-b` into `value-b`.
 
@@ -677,12 +672,12 @@ _trying to de-reference null for an lvalue_
 
 *** If the expression is a value expression and
 `ValueExpression.getValue(context)` was called to initiate this
-expression evaluation, return `null` .
+expression evaluation, return `null`.
 
 *** Otherwise, throw `PropertyNotFoundException`. +
-_trying to de-reference null for an lvalue_
+_[trying to de-reference null for an lvalue]_
 
-** Otherwise, return `null` .
+** Otherwise, return `null`.
 
 * If the expression is a value expression:
 
@@ -774,7 +769,7 @@ subexpressions.
 
 ==== Binary operators - `A {+,-,*} B`
 
-* If `A` and `B` are null, return `(Long) 0`
+* If `A` and `B` are `null`, return `(Long) 0`
 
 * If `A` or `B` is a `BigDecimal`, coerce both to `BigDecimal` and
 then:
@@ -807,7 +802,7 @@ and apply operator.
 
 ==== Binary operator - `A {/,div} B`
 
-* If `A` and `B` are null, return `(Long) 0`
+* If `A` and `B` are `null`, return `(Long) 0`
 
 * If `A` or `B` is a `BigDecimal` or a `BigInteger`, coerce both to
 `BigDecimal` and return `A.divide(B, BigDecimal.ROUND_HALF_UP)`
@@ -818,7 +813,7 @@ and apply operator.
 
 ==== Binary operator - `A {%,mod} B`
 
-* If `A` and `B` are null, return `(Long) 0`
+* If `A` and `B` are `null`, return `(Long) 0`
 
 * If `A` or `B` is a `BigDecimal`, `Float`, `Double`, or `String`
 containing `.`, `e`, or `E`, coerce both `A` and `B` to `Double`
@@ -833,7 +828,7 @@ return `A.remainder(B)`.
 
 ==== Unary minus operator - `-A`
 
-* If `A` is null, return `(Long) 0`
+* If `A` is `null`, return `(Long) 0`
 
 * If `A` is a `BigDecimal` or `BigInteger`, return `A.negate()`.
 
@@ -874,7 +869,7 @@ The relational operators are:
 
 * `>` and `gt`
 
-* `<=` and `le`
+* `\<=` and `le`
 
 * `>=` and `ge`
 
@@ -888,7 +883,7 @@ described in the following sections.
 
 ==== `A {<,>,\<=,>=,lt,gt,le,ge} B`
 
-* If `A==B`, if operator is `<=`, `le`, `>=`, or `ge` return `true`
+* If `A==B`, if operator is `\<=`, `le`, `>=`, or `ge` return `true`
 
 * If `A` is `null` or `B` is `null`, return `false`
 
@@ -925,7 +920,7 @@ lexically
 
 * If `A==B`, apply operator
 
-* If `A` is null or `B` is null return `false` for `==` or `eq`, `true`
+* If `A` is `null` or `B` is `null` return `false` for `==` or `eq`, `true`
 for `!=` or `ne`
 
 * If `A` or `B` is `BigDecimal`, coerce both `A` and `B` to
@@ -976,7 +971,7 @@ sections.
 
 ==== Binary operator - `A {&&,||,and,or} B`
 
-Coerce both `A` and `B` to `Boolean`, apply operator
+* Coerce both `A` and `B` to `Boolean`, apply operator
 
 The operator stops as soon as the expression can be determined, i.e.,
 `A and B and C and D` – if `B` is false, then only `A and B` is
@@ -984,18 +979,18 @@ evaluated.
 
 ==== Unary not operator - `{!,not} A`
 
-Coerce `A` to `Boolean`, apply operator.
+* Coerce `A` to `Boolean`, apply operator.
 
 
 
 === Empty Operator - `empty A`
 
 The `empty` operator is a prefix operator that can be used to determine
-if a value is null or empty.
+if a value is `null` or empty.
 
 To evaluate `empty A`:
 
-* If `A` is null, return `true`
+* If `A` is `null`, return `true`
 
 * Otherwise, if `A` is the empty string, then return `true`
 
@@ -1035,7 +1030,7 @@ To evaluate `expr-a` = `expr-b`:
 ** If `prop-a` is a Lambda parameter, throw a
 `PropertyNotWritableException`
 
-** If prop-a is an EL variable (see link:ELSpec.html#a393[Variables]),
+** If prop-a is an EL variable (see <<Variables>>),
 evaluate the `ValueExpression` the variable was set to, to obtain the
 new (`base-a`, `prop-a`)
 
@@ -1077,11 +1072,11 @@ Highest to lowest, left-to-right.
 
 * `* / div % mod`
 
-* `+ - (binary)`
+* `+ -` (binary)
 
 * `+=`
 
-* `< > <= >= lt gt le ge`
+* `< > \<= >= lt gt le ge`
 
 * `== != eq ne`
 
@@ -1174,7 +1169,7 @@ Just like `FunctionMapper` provides a
 flexible mechanism to add functions to the EL, `VariableMapper` provides
 a flexible mechanism to support the notion of EL variables. An EL
 variable does not directly refer to a model object that can then be
-resolved by an `ELResolver` . Instead, an EL variable refers to an EL
+resolved by an `ELResolver`. Instead, an EL variable refers to an EL
 expression. The evaluation of that EL expression yields the value
 associated with the EL variable.
 
@@ -1340,7 +1335,7 @@ the following sections are used.
 
 ==== To Coerce a Value `X` to Type `Y`
 
-* If `X` is null and `Y` is not a primitive type and also not a `String`,
+* If `X` is `null` and `Y` is not a primitive type and also not a `String`,
 return `null`.
 
 * If `X` is of a primitive type, Let `X’` be the equivalent "boxed form"
@@ -1439,7 +1434,7 @@ the resulting `Double` isn’t actually `null`.
 
 ** If `N.valueOf(A)` throws an exception, then error.
 
-** Otherwise, return `N.valueOf(A)` .
+** Otherwise, return `N.valueOf(A)`.
 
 * Otherwise, error.
 
@@ -2007,7 +2002,7 @@ TOKEN_MGR_DECLS:
 |   < LT1 : "lt" >
 |   < GE0 : ">=" >
 |   < GE1 : "ge" >
-|   < LE0 : "<=" >
+|   < LE0 : "\<=" >
 |   < LE1 : "le" >
 |   < EQ0 : "==" >
 |   < EQ1 : "eq" >
