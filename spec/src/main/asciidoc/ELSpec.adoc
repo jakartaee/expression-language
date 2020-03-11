@@ -1283,7 +1283,7 @@ enforced.
 
 . Static fields cannot be modified.
 
-. Except for classes with java.lang.* package
+. Except for classes with `java.lang.*` package
 names, a class has to be explicitly imported before its static fields or
 methods can be referenced.
 
@@ -1350,8 +1350,7 @@ of `Y`. +
 Otherwise, Let `Y’` be the same as `Y`.
 
 * Apply the rules in Sections
-link:ELSpec.html#a455[Coerce A to
-String] to link:ELSpec.html#a511[Coerce A to Any Other Type T]
+<<Coerce A to String,1.23.2>> to <<Coerce A to Any Other Type T,1.23.7>>
 for coercing `X’` to `Y’`.
 
 * If `Y` is a primitive type, then the result
@@ -1383,7 +1382,7 @@ the resulting `Double` isn’t actually `null`.
 
 * If `A` is `null` and `N` is not a primitive type, return `null`.
 
-* If `A` is `null` or `""`, return 0.
+* If `A` is `null` or `""`, return `0`.
 
 * If `A` is `Character`, convert `A` to
 `new Short\((short)a.charValue())`, and apply the following rules.
@@ -1443,7 +1442,7 @@ the resulting `Double` isn’t actually `null`.
 
 ==== Coerce `A` to `Character` or `char`
 
-If `A` is `null` and the target type is not the primitive type `char`,
+* If `A` is `null` and the target type is not the primitive type `char`,
 return `null`
 
 * If `A` is `null` or `""`, return `(char)0`
@@ -1456,7 +1455,7 @@ return `null`
 `Short`, then return a `Character` whose numeric value is equivalent to
 that of a `Short`
 
-* If `A` is `String`, return `A.charAt (0)`
+* If `A` is `String`, return `A.charAt(0)`
 
 * Otherwise, error
 
@@ -1469,14 +1468,14 @@ primitive type `boolean`, return `null`
 
 * If `A` is `null` or `""`, return `false`
 
-* Otherwise, if `A` is a `Boolean`, return A
+* Otherwise, if `A` is a `Boolean`, return `A`
 
 * Otherwise, if `A` is a `String`, and
 `Boolean.valueOf(A)` does not throw an exception, return it
 
 * Otherwise, error
 
-====  Coerce `A` to an `Enum` Type` T`
+====  Coerce `A` to an `Enum` Type `T`
 
 * If `A` is `null`, return `null`
 
@@ -1499,7 +1498,7 @@ the result.
 
 ** Otherwise error
 
-* If `A` is a `String` and `T`'s `PropertyEditor` throws an exception:
+* If `A` is a `String` and ``T``'s `PropertyEditor` throws an exception:
 
 ** If `A` is `""`, return `null`
 
