@@ -1103,15 +1103,15 @@ the purpose of ordering the operator precedence, and it has a higher
 precedence than the assignment and semicolon operators. The following
 examples illustrates when `()` is and is not needed.
 
-* `v = x->x+1`
+* `v = x\->x+1`
 
-* `x-> (a=x)`
+* `x\-> (a=x)`
 
-* `x-> c?x+1:x+2`
+* `x\-> c?x+1:x+2`
 
 All operators are left associative except for the `?:`, `=`, and `\->`
 operators, which are right associative. For instance, `a=b=c` is the
-parsed as `a=(b=c)`, and `x->y->x+y` is parsed as `x->(y->x+y)`.
+parsed as `a=(b=c)`, and `x\->y\->x+y` is parsed as `x\->(y\->x+y)`.
 
 === Reserved Words
 
@@ -1191,9 +1191,9 @@ parameters. The syntax is similar to the lambda expression in the Java
 Language, except that in EL, the body of the lambda expression is an EL
 expression. These are some examples:
 
-* `x->x+1`
+* `x\->x+1`
 
-* `(x,y)->x+y`
+* `(x,y)\->x+y`
 
 * `()\->64`
 
@@ -1204,20 +1204,20 @@ parameter.
 A lambda expression behaves like a function.
 It can be invoked immediately:
 
-* `((x,y)->x+y)(3,4)` evaluates to `7`.
+* `((x,y)\->x+y)(3,4)` evaluates to `7`.
 
 When a lambda expression is assigned, it can
 be referenced and invoked indirectly:
 
-* `v = (x,y)->x+y; v(3,4)` evaluates to `7`
+* `v = (x,y)\->x+y; v(3,4)` evaluates to `7`
 
-* `fact = n -> n==0? 1: n*fact(n-1); fact(5)` evaluates to `120`
+* `fact = n \-> n==0? 1: n*fact(n-1); fact(5)` evaluates to `120`
 
 It can also be passed as an argument to a
 method, and be invoked in the method, by invoking
 `jakarta.el.LambdaExpression.invoke()`, such as
 
-* `employees.where(e->e.firstName == 'Bob')`
+* `employees.where(e\->e.firstName == 'Bob')`
 
 When a lambda expression is invoked, the
 expression in the body is evaluated, with its formal parameters replaced
@@ -1227,7 +1227,7 @@ extra arguments are ignored.
 
 A lambda expression can be nested within another lambda expression, like
 
-* `customers.select(c->[c.name, c.orders.sum(o->o.total)])`
+* `customers.select(c\->[c.name, c.orders.sum(o\->o.total)])`
 
 The scope of a lambda argument is the body of
 the lambda expression. A lambda argument hides other EL variables,
@@ -1238,7 +1238,7 @@ Note that in the case of nested lambda
 expressions where the body of the inner lambda expression contains
 references to parameters of outer lambda expressions, such as
 
-* `x->y->x+y`
+* `x\->y\->x+y`
 
 the scope of the outer lambda parameters
 extends to cover the inner body. For instance, with the above example,
@@ -2029,7 +2029,7 @@ TOKEN_MGR_DECLS:
 |   < MOD1 : "mod" >
 |       < CONCAT : "+=" >
 |       < ASSIGN : "=" >
-|       < ARROW : "->" >
+|       < ARROW : "\->" >
 |   < IDENTIFIER : (<LETTER>|<IMPL_OBJ_START>) (<LETTER>|<DIGIT>)* >
 |   < #IMPL_OBJ_START: "#" >
 |   < #LETTER:
@@ -2216,8 +2216,8 @@ together to form a pipeline. For example, to get a list of titles of
 history books, one can write in EL:
 
 ----
-books.stream().filter(b->b.category == 'history’)
-              .map(b->b.title)
+books.stream().filter(b\->b.category == 'history’)
+              .map(b\->b.title)
               .toList()
 ----
 
@@ -2301,7 +2301,7 @@ of the notation that is used.
 
 For instance, the declaration for the operation filter is
 
-`Stream<S> Stream<S>.filter((S->boolean) predicate)`
+`Stream<S> Stream<S>.filter((S\->boolean) predicate)`
 
 From this we know that the source object is a `Stream` of `S`, and the
 return object is also a `Stream`, of the same type.
@@ -2349,7 +2349,7 @@ The following are methods in `Optional<T>`.
 Returns the value held by the `Optional`, or
 throws an `ELException` if the `Optional` is empty.
 
-* `void ifPresent((x)->void)consumer)` +
+* `void ifPresent((x)\->void)consumer)` +
 The value held by the `Optional` is processed
 by the function consumer if it is not empty. See also
 link:ELSpec.html#a1164[consumer].
@@ -2358,7 +2358,7 @@ link:ELSpec.html#a1164[consumer].
 Returns the value held by the `Optional`, or
 the value other if the `Optional` is empty.
 
-* `T orElseGet((()->T) other)` +
+* `T orElseGet((()\->T) other)` +
 Returns the value held by the `Optional`, or the value returned by the
 lambda expression other if the `Optional` is empty.
 
@@ -2373,21 +2373,21 @@ to describe the argument types and the return type of a function.
 
 ===== predicate
 
-`S -> boolean`
+`S \-> boolean`
 
 This function takes the input argument, usually the element of the
 source stream, and determines if it satisfies some criteria.
 
 ===== mapper
 
-`S -> R`
+`S \-> R`
 
 This function maps, or transforms the input
 argument, usually the element of the source stream, to the result.
 
 ===== comparator
 
-`(S, S) -> int`
+`(S, S) \-> int`
 
 This function compares two arguments, usually
 the elements of the source stream, and returns a negative integer, zero,
@@ -2396,14 +2396,14 @@ equal to, or greater than the second argument.
 
 ===== consumer
 
-`S -> void`
+`S \-> void`
 
 This function processes the input argument,
 usually the element of the source stream, and returns nothing.
 
 ===== binaryOperator
 
-`(S, S) -> S`
+`(S, S) \-> S`
 
 This function applies a binary operation to
 the input arguments, and returns the result. The first argument is
@@ -2417,7 +2417,7 @@ type.
 
 ===== Syntax
 
-`Stream<S> Stream<S>.filter((S->boolean) predicate)`
+`Stream<S> Stream<S>.filter((S\->boolean) predicate)`
 
 ===== Description
 
@@ -2433,13 +2433,13 @@ The argument of predicate function represents the element to test.
 
 To find the products whose price is greater than or equal to 10:
 
-`products.stream().filter(p->p.unitPrice >= 10).toList()`
+`products.stream().filter(p\->p.unitPrice >= 10).toList()`
 
 ==== map
 
 ===== Syntax
 
-`Stream<R> Stream<S>.map((S->R) mapper)`
+`Stream<R> Stream<S>.map((S\->R) mapper)`
 
 ===== Description
 
@@ -2456,14 +2456,14 @@ mapper function represents the element of the resulting Stream.
 
 To get the list of the names of all products:
 
-`products.stream().map(p->p.name).toList()`
+`products.stream().map(p\->p.name).toList()`
 
 To creates a list of product names and prices
 for products with a price greater than or equal to 10:
 
 ----
-products.stream().filter(p->p.unitPrice >= 10)
-                 .map(p->[p.name, p.unitPrice])
+products.stream().filter(p\->p.unitPrice >= 10)
+                 .map(p\->[p.name, p.unitPrice])
                  .toList()
 ----
 
@@ -2471,7 +2471,7 @@ products.stream().filter(p->p.unitPrice >= 10)
 
 ===== Syntax
 
-`Stream<R> Stream<S>.flatMap((S->Stream<R>) mapper)`
+`Stream<R> Stream<S>.flatMap((S\->Stream<R>) mapper)`
 
 ===== Description
 
@@ -2488,15 +2488,15 @@ behavior is undefined.
 
 To list all orders of US customers:
 ----
-customers.stream().filter(c->c.country == 'USA')
-                  .flatMap(c->c.orders.stream())
+customers.stream().filter(c\->c.country == 'USA')
+                  .flatMap(c\->c.orders.stream())
                   .toList()
 ----
 
 To obtain a list of alphabets used in a list
 of words:
 ----
-words.stream().flatMap(w->w.toCharArray().stream())
+words.stream().flatMap(w\->w.toCharArray().stream())
               .sorted()
               .distinct()
               .toList()
@@ -2526,7 +2526,7 @@ To remove the duplicate element b:
 
 `Stream<S> Stream<S>.sorted()`
 
-`Stream<S> Stream<S>.sorted(((p,q)->int) comparator)`
+`Stream<S> Stream<S>.sorted(((p,q)\->int) comparator)`
 
 ===== Description
 
@@ -2552,33 +2552,33 @@ To sort a list of integers
 
 To sort a list of integers in reversed order
 
-`[1,3,2,4].stream().sorted((i,j)->j-i).List()`
+`[1,3,2,4].stream().sorted((i,j)\->j-i).List()`
 
 To sort a list of words in the order of word
 length; and then for words of the same length, in alphabetical order:
 ----
 words.stream().sorted(
-        (s,t)->(s.length()==t.length() ? s.compareTo(t)
+        (s,t)\->(s.length()==t.length() ? s.compareTo(t)
                                        : s.length() - t.length()))
                 .toList()
 ----
 
 To sort the products by name:
 
-`products.stream().sorted\((p,q)->p.name.compareTo(p.name)).toList()`
+`products.stream().sorted\((p,q)\->p.name.compareTo(p.name)).toList()`
 
 Or by defining a comparing function, this can
 be rewritten as:
 ----
-comparing = map->(x,y)->map(x).compareTo(map(y));
-products.stream().sorted(comparing(p->p.name)).toList()
+comparing = map\->(x,y)\->map(x).compareTo(map(y));
+products.stream().sorted(comparing(p\->p.name)).toList()
 ----
 
 ==== forEach
 
 ===== Syntax
 
-`Object stream<S>.forEach(((S)->void)consumer)`
+`Object stream<S>.forEach(((S)\->void)consumer)`
 
 ===== Description
 
@@ -2595,13 +2595,13 @@ This method always returns `null`.
 
 To print a list of customer names:
 
-`customers.stream().forEach(c->printer.print(c.name))`
+`customers.stream().forEach(c\->printer.print(c.name))`
 
 ==== peek
 
 ===== Syntax
 
-`Stream<S> Stream<S>.peek(((S)->void)consumer)`
+`Stream<S> Stream<S>.peek(((S)\->void)consumer)`
 
 ===== Description
 
@@ -2619,9 +2619,9 @@ the place where this method is inserted.
 
 To print the a list of integer before and after a filter:
 ----
-[1,2,3,4,5].stream().peek(i->print(i))
-                    .filter(i-> i%2 == 0)
-                    .peek(i->print(i))
+[1,2,3,4,5].stream().peek(i\->print(i))
+                    .filter(i\-> i%2 == 0)
+                    .peek(i\->print(i))
                     .toList()
 ----
 
@@ -2655,7 +2655,7 @@ count is less than or equal to zero, an empty stream is returned.
 
 To list the 3 least expensive products:
 ----
-products.stream().sorted(p->p.unitPrice)
+products.stream().sorted(p\->p.unitPrice)
                  .limit(3)
                  .toList()
 ----
@@ -2714,9 +2714,9 @@ elements of the source stream.
 
 ===== Syntax
 
-`Optional<S> Stream<S>.reduce(((S,S)->S) binaryOperator)`
+`Optional<S> Stream<S>.reduce(((S,S)\->S) binaryOperator)`
 
-`S Stream<S>.reduce(S seed, ((S,S)->S) binaryOperator))`
+`S Stream<S>.reduce(S seed, ((S,S)\->S) binaryOperator))`
 
 ===== Description
 
@@ -2742,7 +2742,7 @@ with the final accumulator value is returned.
 
 To find tallest student in a class:
 
-`students.stream().reduce((p,q)->(p.height>q.height? p: q).get()`
+`students.stream().reduce((p,q)\->(p.height>q.height? p: q).get()`
 
 ==== max
 
@@ -2750,7 +2750,7 @@ To find tallest student in a class:
 
 `Optional<S> Stream<S>.max()`
 
-`Optional<S> Stream<S>.max(((p,q)->int) comparator)`
+`Optional<S> Stream<S>.max(((p,q)\->int) comparator)`
 
 ===== Description
 
@@ -2771,11 +2771,11 @@ empty stream.
 
 To find tallest student in a class:
 
-`students.stream().max((p,q)->p.height-q.height)`
+`students.stream().max((p,q)\->p.height-q.height)`
 
 To find the maximum height of the students in a class:
 
-`students.stream().map(s->s.height).max()`
+`students.stream().map(s\->s.height).max()`
 
 ==== min
 
@@ -2783,7 +2783,7 @@ To find the maximum height of the students in a class:
 
 `Optional<S> Stream<S>.min()`
 
-`Optional<S> Stream<S>.min(((p,q)->int) comparator)`
+`Optional<S> Stream<S>.min(((p,q)\->int) comparator)`
 
 ===== Description
 
@@ -2846,7 +2846,7 @@ the source stream.
 
 ===== Syntax
 
-`Optional<boolean> Stream<S>.anyMatch((S->boolean) predicate)`
+`Optional<boolean> Stream<S>.anyMatch((S\->boolean) predicate)`
 
 ===== Description
 
@@ -2863,7 +2863,7 @@ predicate. It returns an empty Optional if the stream is empty.
 To determine if the list of integers contains
 any negative numbers:
 
-`integers.stream().anyMatch(i->i<0).orElse(false)`
+`integers.stream().anyMatch(i\->i<0).orElse(false)`
 
 Note the use of `orElse` to set a default value
 for the empty list.
@@ -2872,7 +2872,7 @@ for the empty list.
 
 ===== Syntax
 
-`Optional<boolean> Stream<S>.allMatch((S->boolean) predicate)`
+`Optional<boolean> Stream<S>.allMatch((S\->boolean) predicate)`
 
 ===== Description
 
@@ -2888,7 +2888,7 @@ predicate. It returns an empty `Optional` if the stream is empty.
 
 ===== Syntax
 
-`Optional<boolean> Stream<S>.noneMatch((S->boolean) predicate)`
+`Optional<boolean> Stream<S>.noneMatch((S\->boolean) predicate)`
 
 ===== Description
 
