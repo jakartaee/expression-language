@@ -2113,14 +2113,14 @@ have no problem switching from one to the other.
 
 Since the methods supporting the collection
 operations do not exist in Java SE 7, they are implemented in the
-Expression Language with ELResolvers. In an EL expression, collection
+Expression Language with ``ELResolver``s. In an EL expression, collection
 operations are carried out by invoking methods, and no special syntaxes
 are introduced for them. Strictly speaking, these operations are not
 part of the expression language, and can be taken as examples of what
 can be achieved with the expression language. The specification
 specifies the syntaxes and behaviors of a standard set of collection
 operations. However, an user can easily add, extend and modify the
-behavior of the operations by providing customized ELResolvers.
+behavior of the operations by providing customized ``ELResolver``s.
 
 Compared to Java SE 8, the collection support
 in EL has a much smaller and simpler scope. Although EL does not
@@ -2141,7 +2141,7 @@ collection operations, lambda expressions are specified as arguments to
 the methods supporting the operations. Usually when the lambda
 expressions are invoked, an element from stream of the collection is
 passed as an argument to the lambda expression. For instance, the
-argument to the filter method is a lambda expression which acts as a
+argument to the `filter` method is a lambda expression which acts as a
 predicate function to determine if an element should be included in the
 resulting stream.
 
@@ -2154,7 +2154,7 @@ evaluated at the time of the construction.
 
 ==== Set Construction
 
-Construct an instance of `java.lang.util.Set<Object>`.
+Construct an instance of `java.util.Set<Object>`.
 
 ===== Syntax
 
@@ -2168,7 +2168,7 @@ Construct an instance of `java.lang.util.Set<Object>`.
 
 ==== List Construction
 
-Construct an instance of `java.lang.util.List<Object>`.
+Construct an instance of `java.util.List<Object>`.
 
 ===== Syntax
 
@@ -2182,7 +2182,7 @@ Construct an instance of `java.lang.util.List<Object>`.
 
 ==== Map Construction
 
-Construct an instance of `java.lang.util.Map<Object>`.
+Construct an instance of `java.util.Map<Object,Object>`.
 
 ===== Syntax
 
@@ -2214,8 +2214,8 @@ together to form a pipeline. For example, to get a list of titles of
 history books, one can write in EL:
 
 ----
-books.stream().filter(b\->b.category == 'history’)
-              .map(b\->b.title)
+books.stream().filter(b->b.category == 'history’)
+              .map(b->b.title)
               .toList()
 ----
 
@@ -2324,8 +2324,7 @@ whose behaviors are specified in this section.
 An instant of `Stream` is obtained by calling the method `stream()` of
 a `java.util.Collection` object or a Java array.
 The methods in this class support the stream operations and are
-described in link:ELSpec.html#a1171[filter] to
-link:ELSpec.html#a1386[findFirst].
+described in <<filter,2.3.5>> to <<findFirst,2.3.26>>.
 
 ===== Optional
 
@@ -2338,8 +2337,7 @@ by an empty `Optional`.
 
 An `Optional` is usually the result of a computation over the elements
 of a `Stream`, where an empty `Stream` results
-in an empty `Optional`. See for example,
-link:ELSpec.html#a1320[max].
+in an empty `Optional`. See for example, <<max>>.
 
 The following are methods in `Optional<T>`.
 
@@ -2347,10 +2345,10 @@ The following are methods in `Optional<T>`.
 Returns the value held by the `Optional`, or
 throws an `ELException` if the `Optional` is empty.
 
-* `void ifPresent((x)\->void)consumer)` +
+* `void ifPresent((x)\->void) consumer)` +
 The value held by the `Optional` is processed
 by the function consumer if it is not empty. See also
-link:ELSpec.html#a1164[consumer].
+<<consumer>>.
 
 * `T orElse(T other)` +
 Returns the value held by the `Optional`, or
@@ -2358,7 +2356,7 @@ the value other if the `Optional` is empty.
 
 * `T orElseGet((()\->T) other)` +
 Returns the value held by the `Optional`, or the value returned by the
-lambda expression other if the `Optional` is empty.
+lambda expression `other` if the `Optional` is empty.
 
 ==== Functions
 
@@ -2420,12 +2418,12 @@ type.
 ===== Description
 
 This method produces a stream containing the
-source stream elements for which the predicate function returns true.
-The argument of predicate function represents the element to test.
+source stream elements for which the `predicate` function returns `true`.
+The argument of `predicate` function represents the element to test.
 
 ===== See
 
-{empty}link:ELSpec.html#a1155[predicate]
+<<predicate>>
 
 ===== Example
 
@@ -2442,13 +2440,13 @@ To find the products whose price is greater than or equal to 10:
 ===== Description
 
 This method produces a stream by applying the
-mapper function to the elements of the source stream. The argument of
-mapper function represents the element to process, and the result of the
-mapper function represents the element of the resulting Stream.
+`mapper` function to the elements of the source stream. The argument of
+`mapper` function represents the element to process, and the result of the
+`mapper` function represents the element of the resulting `Stream`.
 
 ===== See
 
-{empty}link:ELSpec.html#a1158[mapper]
+<<mapper>>
 
 ===== Examples
 
@@ -2460,8 +2458,8 @@ To creates a list of product names and prices
 for products with a price greater than or equal to 10:
 
 ----
-products.stream().filter(p\->p.unitPrice >= 10)
-                 .map(p\->[p.name, p.unitPrice])
+products.stream().filter(p->p.unitPrice >= 10)
+                 .map(p->[p.name, p.unitPrice])
                  .toList()
 ----
 
@@ -2475,26 +2473,26 @@ products.stream().filter(p\->p.unitPrice >= 10)
 
 This method produces a stream by mapping each
 of the source elements to another stream and then concatenating the
-mapped streams. If the mapper function does not return a Stream, the
+mapped streams. If the mapper function does not return a `Stream`, the
 behavior is undefined.
 
 ===== See
 
-{empty}link:ELSpec.html#a1158[mapper]
+<<mapper>>
 
 ===== Examples
 
 To list all orders of US customers:
 ----
-customers.stream().filter(c\->c.country == 'USA')
-                  .flatMap(c\->c.orders.stream())
+customers.stream().filter(c->c.country == 'USA')
+                  .flatMap(c->c.orders.stream())
                   .toList()
 ----
 
 To obtain a list of alphabets used in a list
 of words:
 ----
-words.stream().flatMap(w\->w.toCharArray().stream())
+words.stream().flatMap(w->w.toCharArray().stream())
               .sorted()
               .distinct()
               .toList()
@@ -2529,10 +2527,10 @@ To remove the duplicate element b:
 ===== Description
 
 This method produces a stream containing the
-elements of the source stream in sorted order. If no comparator is
+elements of the source stream in sorted order. If no `comparator` is
 specified, the elements are sorted in natural order. The behavior is
-undefined if no comparator is specified, and the elements do not
-implement `java.lang.Comparable`. If a comparator is specified, the
+undefined if no `comparator` is specified, and the elements do not
+implement `java.lang.Comparable`. If a `comparator` is specified, the
 elements are sorted with the provided comparator.
 
 The source collection is unaffected by this
@@ -2540,7 +2538,7 @@ operation.
 
 ===== See
 
-{empty}link:ELSpec.html#a1161[comparator]
+<<comparator>>
 
 ===== Examples
 
@@ -2556,7 +2554,7 @@ To sort a list of words in the order of word
 length; and then for words of the same length, in alphabetical order:
 ----
 words.stream().sorted(
-        (s,t)\->(s.length()==t.length() ? s.compareTo(t)
+        (s,t)->(s.length()==t.length() ? s.compareTo(t)
                                        : s.length() - t.length()))
                 .toList()
 ----
@@ -2568,8 +2566,8 @@ To sort the products by name:
 Or by defining a comparing function, this can
 be rewritten as:
 ----
-comparing = map\->(x,y)\->map(x).compareTo(map(y));
-products.stream().sorted(comparing(p\->p.name)).toList()
+comparing = map->(x,y)->map(x).compareTo(map(y));
+products.stream().sorted(comparing(p->p.name)).toList()
 ----
 
 ==== forEach
@@ -2580,14 +2578,14 @@ products.stream().sorted(comparing(p\->p.name)).toList()
 
 ===== Description
 
-This method invokes the consumer function for
+This method invokes the `consumer` function for
 each element in the source stream.
 
 This method always returns `null`.
 
 ===== See
 
-{empty}link:ELSpec.html#a1164[consumer]
+<<consumer>>
 
 ===== Example
 
@@ -2604,22 +2602,22 @@ To print a list of customer names:
 ===== Description
 
 This method produces a stream containing the
-elements of the source stream, and invokes the consumer function for
+elements of the source stream, and invokes the `consumer` function for
 each element in the stream. The primary purpose of this method is for
 debugging, where one can take a peek at the elements in the stream at
 the place where this method is inserted.
 
 ===== See
 
-{empty}link:ELSpec.html#a1164[consumer]
+<<consumer>>
 
 ===== Example
 
 To print the a list of integer before and after a filter:
 ----
-[1,2,3,4,5].stream().peek(i\->print(i))
-                    .filter(i\-> i%2 == 0)
-                    .peek(i\->print(i))
+[1,2,3,4,5].stream().peek(i->print(i))
+                    .filter(i-> i%2 == 0)
+                    .peek(i->print(i))
                     .toList()
 ----
 
@@ -2643,17 +2641,17 @@ source stream, suitable for use in Java codes.
 ===== Description
 
 This method produces a stream containing the
-first count number of elements of the source stream.
+first `count` number of elements of the source stream.
 
-If count is greater than the number of source
+If `count` is greater than the number of source
 elements, all the elements are included in the returned stream. If the
-count is less than or equal to zero, an empty stream is returned.
+`count` is less than or equal to zero, an empty stream is returned.
 
 ===== Example
 
 To list the 3 least expensive products:
 ----
-products.stream().sorted(p\->p.unitPrice)
+products.stream().sorted(p->p.unitPrice)
                  .limit(3)
                  .toList()
 ----
@@ -2669,12 +2667,12 @@ products.stream().sorted(p\->p.unitPrice)
 ===== Description
 
 This method produces a stream containing the
-source elements, skipping the first start elements, and including the
-rest of the elements in the stream if end is not specified, or the next
-(end - start) elements in the stream if end is specified.
+source elements, skipping the first `start` elements, and including the
+rest of the elements in the stream if `end` is not specified, or the next
+`(end - start)` elements in the stream if end is specified.
 
 If the elements in the source stream has
-fewer than start elements, nothing is included. If start is less than or
+fewer than `start` elements, nothing is included. If `start` is less than or
 equal to zero, no elements are skipped.
 
 ===== Example
@@ -2718,23 +2716,23 @@ elements of the source stream.
 
 ===== Description
 
-The method with a seed value starts by
-assigning the seed value to an internal accumulator. Then for each of
+The method with a `seed` value starts by
+assigning the `seed` value to an internal accumulator. Then for each of
 the elements in the source stream, the next accumulator value is
-computed, by invoking the binaryOperator function, with the current
+computed, by invoking the `binaryOperator` function, with the current
 accumulator value as the first argument and the current element as the
 second argument. The final accumulator value is returned.
 
-The method without a seed value uses the
-first element of the source elements as the seed value. If the source
-stream is empty, an empty Optional is returned, otherwise an Optional
+The method without a `seed` value uses the
+first element of the source elements as the `seed` value. If the source
+stream is empty, an empty `Optional` is returned, otherwise an `Optional`
 with the final accumulator value is returned.
 
 ===== See
 
-{empty}link:ELSpec.html#a1138[Optional]
+<<Optional>>
 
-{empty}link:ELSpec.html#a1167[binaryOperator]
+<<binaryOperator>>
 
 ===== Example
 
@@ -2753,17 +2751,17 @@ To find tallest student in a class:
 ===== Description
 
 This method computes the maximum of the
-elements in the source stream. If the comparator function is specified,
-it is used for comparisons. If no comparator function is specified, the
-elements themselves are compared, and must implement Comparable,
-otherwise an ELException is thrown.
+elements in the source stream. If the `comparator` function is specified,
+it is used for comparisons. If no `comparator` function is specified, the
+elements themselves are compared, and must implement `Comparable`,
+otherwise an `ELException` is thrown.
 
-This method returns an empty Optional for an
+This method returns an empty `Optional` for an
 empty stream.
 
 ===== See
 
-{empty}link:ELSpec.html#a1161[comparator]
+<<comparator>>
 
 ===== Examples
 
@@ -2786,17 +2784,17 @@ To find the maximum height of the students in a class:
 ===== Description
 
 This method computes the minimum of the
-elements in the source stream. If the comparator function is specified,
-it is used for comparisons. If no comparator function is specified, the
-elements themselves are compared, and must implement Comparable,
-otherwise an ELException is thrown.
+elements in the source stream. If the `comparator` function is specified,
+it is used for comparisons. If no `comparator` function is specified, the
+elements themselves are compared, and must implement `Comparable`,
+otherwise an `ELException` is thrown.
 
-This method returns an empty Optional for an
+This method returns an empty `Optional` for an
 empty stream.
 
 ===== See
 
-{empty}link:ELSpec.html#a1161[comparator]
+<<comparator>>
 
 ==== average
 
@@ -2809,7 +2807,8 @@ empty stream.
 This method computes the average of all
 elements in the source stream by first computes the sum of the elements
 and then divides the sum by the number of elements. The elements are
-coerced to Number types according to link:ELSpec.html#a461[Coerce A to Number type N] during the computation.
+coerced to Number types according to <<Coerce A to Number type N>>
+during the computation.
 
 This method returns an empty `Optional` for an
 empty stream.
@@ -2824,7 +2823,7 @@ empty stream.
 
 This method computes the sum of all elements
 in the source stream. The elements are coerced to Number types according
-to link:ELSpec.html#a461[Coerce A to Number type N] during
+to <<Coerce A to Number type N>> during
 the computation.
 
 This method returns zero for an empty stream.
@@ -2848,13 +2847,13 @@ the source stream.
 
 ===== Description
 
-This method returns an Optional of true if
+This method returns an `Optional` of `true` if
 any element in the source stream satisfies the test given by the
-predicate. It returns an empty Optional if the stream is empty.
+`predicate`. It returns an empty `Optional` if the stream is empty.
 
 ===== See
 
-{empty}link:ELSpec.html#a1155[predicate]
+<<predicate>>
 
 ===== Example
 
@@ -2876,11 +2875,11 @@ for the empty list.
 
 This method returns an `Optional` of `true` if
 all elements in the source stream satisfy the test given by the
-predicate. It returns an empty `Optional` if the stream is empty.
+`predicate`. It returns an empty `Optional` if the stream is empty.
 
 ===== See
 
-{empty}link:ELSpec.html#a1155[predicate]
+<<predicate>>
 
 ==== noneMatch
 
@@ -2892,11 +2891,11 @@ predicate. It returns an empty `Optional` if the stream is empty.
 
 This method returns an `Optional` of `true` if
 none of the elements in the source stream satisfies the test given by
-the predicate. It returns an empty `Optional` if the stream is empty.
+the `predicate`. It returns an empty `Optional` if the stream is empty.
 
 ===== See
 
-{empty}link:ELSpec.html#a1155[predicate]
+<<predicate>>
 
 
 
@@ -2914,7 +2913,7 @@ empty.
 
 ===== See
 
-{empty}link:ELSpec.html#a1138[Optional]
+<<Optional>>
 
 
 [appendix]
