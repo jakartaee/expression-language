@@ -1573,7 +1573,7 @@ void LiteralExpression() #LiteralExpression : { Token t = null; }
 
 /*
  * DeferredExpression
- * #{..} Expressions
+ * #{...} Expressions
  */
 void DeferredExpression() #DeferredExpression : {}
 {
@@ -1582,7 +1582,7 @@ void DeferredExpression() #DeferredExpression : {}
 
 /*
  * DynamicExpression
- * ${..} Expressions
+ * ${...} Expressions
  */
 void DynamicExpression() #DynamicExpression : {}
 {
@@ -1761,8 +1761,7 @@ void Value() : {}
  */
 void ValuePrefix() : {}
 {
-    Literal()
-    | NonLiteral()
+    Literal() | NonLiteral()
 }
 
 /*
@@ -1905,7 +1904,7 @@ void Boolean() : {}
 }
 
 /*
- * FloatinPoint
+ * FloatingPoint
  * For Decimal and Floating Point Literals
  */
 void FloatingPoint() #FloatingPoint : { Token t = null; }
@@ -1971,9 +1970,9 @@ TOKEN_MGR_DECLS:
 
 <IN_EXPRESSION, IN_MAP> TOKEN :
 {
-        < START_MAP : "{" > {stack.push(curLexState);}: IN_MAP
-|       < RCURL: "}" > {SwitchTo(stack.pop());}
-|       < INTEGER_LITERAL: ["0"-"9"] (["0"-"9"])* >
+    < START_MAP : "{" > {stack.push(curLexState);}: IN_MAP
+|   < RCURL: "}" > {SwitchTo(stack.pop());}
+|   < INTEGER_LITERAL: ["0"-"9"] (["0"-"9"])* >
 |   < FLOATING_POINT_LITERAL: (["0"-"9"])+ "." (["0"-"9"])* (<EXPONENT>)? 
         | "." (["0"-"9"])+ (<EXPONENT>)?
         | (["0"-"9"])+ <EXPONENT>
@@ -1997,7 +1996,7 @@ TOKEN_MGR_DECLS:
 |   < RBRACK : "]" >
 |   < COLON : ":" >
 |   < COMMA : "," >
-|       < SEMICOLON : ";" >
+|   < SEMICOLON : ";" >
 |   < GT0 : ">" >
 |   < GT1 : "gt" >
 |   < LT0 : "<" >
@@ -2026,9 +2025,9 @@ TOKEN_MGR_DECLS:
 |   < DIV1 : "div" >
 |   < MOD0 : "%" >
 |   < MOD1 : "mod" >
-|       < CONCAT : "+=" >
-|       < ASSIGN : "=" >
-|       < ARROW : "\->" >
+|   < CONCAT : "+=" >
+|   < ASSIGN : "=" >
+|   < ARROW : "->" >
 |   < IDENTIFIER : (<LETTER>|<IMPL_OBJ_START>) (<LETTER>|<DIGIT>)* >
 |   < #IMPL_OBJ_START: "#" >
 |   < #LETTER:
