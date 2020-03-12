@@ -2321,7 +2321,7 @@ whose behaviors are specified in this section.
 
 ===== Stream
 
-An instant of `Stream` is obtained by calling the method `stream()` of
+An instance of `Stream` is obtained by calling the method `stream()` of
 a `java.util.Collection` object or a Java array.
 The methods in this class support the stream operations and are
 described in <<filter,2.3.5>> to <<findFirst,2.3.26>>.
@@ -2361,7 +2361,7 @@ lambda expression `other` if the `Optional` is empty.
 ==== Functions
 
 Some operations takes functions (lambda
-expressions) as parameters. Again, we use the notion
+expressions) as parameters. Again, we use the notation:
 
 `(arg1Type, ...)\->returnType`
 
@@ -2489,7 +2489,7 @@ customers.stream().filter(c->c.country == 'USA')
                   .toList()
 ----
 
-To obtain a list of alphabets used in a list
+To obtain an alphabetical list of characters used in a list
 of words:
 ----
 words.stream().flatMap(w->w.toCharArray().stream())
