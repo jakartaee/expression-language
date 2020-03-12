@@ -1247,7 +1247,7 @@ body of the outer lambda expression has already been executed.
 
 === Enums
 
-The Unified EL supports Java SE 5 enumerated
+The Unified EL supports Java enumerated
 types. Coercion rules for dealing with enumerated types are included in
 the following section. Also, when referring to values that are instances
 of an enumerated type from within an EL expression, use the literal
