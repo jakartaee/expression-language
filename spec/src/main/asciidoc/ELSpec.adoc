@@ -216,9 +216,9 @@ For instance, all EL expressions in JSP 2.0
 are evaluated by the JSP engine immediately when the page response is
 rendered. They all yield rvalues.
 
-In the following JSTL action
+In the following JSTL action:
 
- <c:out value="${customer.name}"/>
+* `<c:out value="${customer.name}"/>`
 
 the expression `${customer.name}` is
 evaluated by the JSP engine and the returned value is fed to the tag
@@ -357,9 +357,9 @@ To generate literal values that include the
 character sequence \"``${``" or \"``#{``", the developer can choose to
 use a composite expression as shown here:
 
- ${'${'}exprA}
+* `${'${'}exprA}`
 
- #{'#{'}exprB}
+* `\#{'#{'}exprB}`
  
 The resulting values would
 then be the strings `${exprA}` and `#\{exprB}`.
@@ -368,9 +368,9 @@ Alternatively, the escape characters `\$` and
 `\#` can be used to escape what would otherwise be treated as an
 eval-expression. Given the literal-expressions:
 
- \${exprA}
+* `\${exprA}`
 
- \#{exprB}
+* `\#{exprB}`
 
 The resulting values would again be the
 strings `$\{exprA}` and `#\{exprB}`.
@@ -390,8 +390,8 @@ text outside of EL and the escaping rules described above will not apply.
 
 ==== Composite expressions
 
-The EL also supports _composite expressions_
-, where multiple EL expressions are grouped together. With composite
+The EL also supports _composite expressions_,
+where multiple EL expressions are grouped together. With composite
 expressions, eval-expressions are evaluated from left to right, coerced
 to ``String``s (according to the EL type conversion rules), and
 concatenated with any intervening literal-expressions.
@@ -443,13 +443,13 @@ Some APIs in EL 3.0 onwards use only single
 eval-expressions, and not the composite expressions. However, there is
 no loss in functionality, since a composite expression can be specified
 with a single eval-expressions, by using the string concatenation
-operators, introduced in EL 3.0. For instance, the composite expression
+operators, introduced in EL 3.0. For instance, the composite expression:
 
-`Welcome ${customer.name} to our site`
+* `Welcome ${customer.name} to our site`
 
-can be written as
+can be written as:
 
-`${'Welcome ' += customer.name += ' to our site'}`.
+* `${'Welcome ' += customer.name += ' to our site'}`.
 
 ==== Syntax restrictions
 
@@ -502,7 +502,7 @@ EL is used).
 
 A core concept in the EL is the evaluation of
 a model object name into an object, and the resolution of properties or
-methods applied to objects in an expression (operators `.` and `[]` ).
+methods applied to objects in an expression (operators `.` and `[]`).
 
 The EL API provides a generalized mechanism,
 an `ELResolver`, implemented by the underlying technology and which
@@ -510,7 +510,7 @@ defines the rules that govern the resolution of model object names and
 their associated properties.
 
 The resolution of names and properties is
-further affected by the presence of
+further affected by the presence of:
 
 * Functions. See <<Functions>>.
 
@@ -527,7 +527,7 @@ calls, and object properties and method calls.
 
 ==== Evaluating Identifiers
 
-These steps are used for evaluating an identifier.
+These steps are used for evaluating an identifier:
 
 * If the identifier is a lambda argument passed
 to a lambda expression invocation, its value is returned.
@@ -550,7 +550,7 @@ same name) that come after it in the list.
 ==== Evaluating functions
 
 The expression with the syntax
-_func(args...)(args...)..._ can mean any of the following.
+_func(args...)(args...)..._ can mean any of the following:
 
 * A call to an EL fucntion with empty namespace.
 
@@ -565,9 +565,9 @@ of a lambda expression that returns another lambda expression, which is
 then invoked.
 
 The following steps are used to evaluate the
-above expression.
+above expression:
 
-* Evaluate the name of the function as an identifier.
+* Evaluate the name of the function as an identifier:
 
 ** If the identifier is a lambda argument passed
 to a lambda expression invocation, its value is returned.
@@ -684,7 +684,7 @@ _[trying to de-reference null for an lvalue]_
 ** If `expr-a[expr-b]` is the last property being resolved:
 
 *** If `ValueExpression.getValue(context)` was
-called to initiate this expression evaluation.
+called to initiate this expression evaluation:
 
 **** If the expression is a parametered method
 call, evaluate `params` into `param-values`, and invoke
@@ -784,7 +784,7 @@ then:
 `e`, or `E`:
 
 ** If `A` or `B` is `BigInteger`, coerce both `A` and `B` to `BigDecimal`
-and apply operator.
+and apply operator
 
 ** Otherwise, coerce both `A` and `B` to `Double` and apply operator
 
@@ -820,7 +820,7 @@ containing `.`, `e`, or `E`, coerce both `A` and `B` to `Double`
 and apply operator
 
 * If `A` or `B` is a `BigInteger`, coerce both to `BigInteger` and
-return `A.remainder(B)`.
+return `A.remainder(B)`
 
 * Otherwise coerce both `A` and `B` to `Long` and apply operator
 
@@ -830,7 +830,7 @@ return `A.remainder(B)`.
 
 * If `A` is `null`, return `(Long) 0`
 
-* If `A` is a `BigDecimal` or `BigInteger`, return `A.negate()`.
+* If `A` is a `BigDecimal` or `BigInteger`, return `A.negate()`
 
 * If `A` is a `String`:
 
@@ -853,9 +853,9 @@ operator
 
 To evaluate `A += B`:
 
-* Coerce `A` and `B` to String.
+* Coerce `A` and `B` to String
 
-* Return the concatenated string of `A` and `B`.
+* Return the concatenated string of `A` and `B`
 
 === Relational Operators
 
@@ -979,7 +979,7 @@ evaluated.
 
 ==== Unary not operator - `{!,not} A`
 
-* Coerce `A` to `Boolean`, apply operator.
+* Coerce `A` to `Boolean`, apply operator
 
 
 
@@ -1204,7 +1204,7 @@ parameter.
 A lambda expression behaves like a function.
 It can be invoked immediately:
 
-* `((x,y)\->x+y)(3,4)` evaluates to `7`.
+* `((x,y)\->x+y)(3,4)` evaluates to `7`
 
 When a lambda expression is assigned, it can
 be referenced and invoked indirectly:
@@ -1215,7 +1215,7 @@ be referenced and invoked indirectly:
 
 It can also be passed as an argument to a
 method, and be invoked in the method, by invoking
-`jakarta.el.LambdaExpression.invoke()`, such as
+`jakarta.el.LambdaExpression.invoke()`, such as:
 
 * `employees.where(e\->e.firstName == 'Bob')`
 
@@ -1225,7 +1225,7 @@ by the arguments supplied at the invocation. The number of arguments
 must be equal to or more than the number the formal parameters. Any
 extra arguments are ignored.
 
-A lambda expression can be nested within another lambda expression, like
+A lambda expression can be nested within another lambda expression, like:
 
 * `customers.select(c\->[c.name, c.orders.sum(o\->o.total)])`
 
@@ -1236,7 +1236,7 @@ name.
 
 Note that in the case of nested lambda
 expressions where the body of the inner lambda expression contains
-references to parameters of outer lambda expressions, such as
+references to parameters of outer lambda expressions, such as:
 
 * `x\->y\->x+y`
 
@@ -1261,9 +1261,9 @@ the `Spade` enum, you would say `${mySuit == 'Spade'}`. The type of the
 === Static Field and Method Reference
 
 A static field or static method of a Java
-class can be referenced with the syntax _classname.field_, such as
+class can be referenced with the syntax _classname.field_, such as:
 
-`Boolean.TRUE`
+* `Boolean.TRUE`
 
 the classname is the name of a class, without
 the package name.
@@ -1272,7 +1272,7 @@ An enum constant is a public static field, so
 the same syntax can be used to refer to an enum constant, like the
 following:
 
-`RoundingMode.FLOOR`
+* `RoundingMode.FLOOR`
 
 ==== Access Restrictions and Imports
 
@@ -1296,9 +1296,9 @@ imported are restricted to the classes that can be loaded by the current
 class loader.
 
 By default, the following packages are
-imported by the EL environment.
+imported by the EL environment:
 
-`java.lang.*`
+* `java.lang.*`
 
 A static field can also be imported
 statically. A statically imported static field can be referenced by the
@@ -1309,9 +1309,9 @@ fields are handled by the `ImportHandler` in the `ELContext`.
 
 ==== Constructor Reference
 
-A class name reference, followed by arguments in parenthesis, such as
+A class name reference, followed by arguments in parenthesis, such as:
 
-`Boolean(true)`
+* `Boolean(true)`
 
 denotes the invocation of the constructor of
 the class with the supplied arguments. The same restrictions (the class
@@ -1339,26 +1339,26 @@ the following sections are used.
 ==== To Coerce a Value `X` to Type `Y`
 
 * If `X` is `null` and `Y` is not a primitive type and also not a `String`,
-return `null`.
+return `null`
 
 * If `X` is of a primitive type, Let `X’` be the equivalent "boxed form"
-of `X`. +
-Otherwise, Let `X’` be the same as `X`.
+of `X` +
+Otherwise, Let `X’` be the same as `X`
 
 * If `Y` is of a primitive type, Let `Y’` be the equivalent "boxed form"
-of `Y`. +
-Otherwise, Let `Y’` be the same as `Y`.
+of `Y` +
+Otherwise, Let `Y’` be the same as `Y`
 
 * Apply the rules in Sections
 <<Coerce A to String,1.23.2>> to <<Coerce A to Any Other Type T,1.23.7>>
-for coercing `X’` to `Y’`.
+for coercing `X’` to `Y’`
 
 * If `Y` is a primitive type, then the result
 is found by "unboxing" the result of the coercion. If the result of the
-coercion is `null`, then error.
+coercion is `null`, then error
 
 * If `Y` is not a primitive type, then the
-result is the result of the coercion.
+result is the result of the coercion
 
 For example, if coercing an `int` to a `String`, "box" the `int` into an
 `Integer` and apply the rule for coercing an `Integer` to a `String`. Or
@@ -1380,27 +1380,27 @@ the resulting `Double` isn’t actually `null`.
 
 ==== Coerce `A` to `Number` type `N`
 
-* If `A` is `null` and `N` is not a primitive type, return `null`.
+* If `A` is `null` and `N` is not a primitive type, return `null`
 
-* If `A` is `null` or `""`, return `0`.
+* If `A` is `null` or `""`, return `0`
 
 * If `A` is `Character`, convert `A` to
-`new Short\((short)a.charValue())`, and apply the following rules.
+`new Short\((short)a.charValue())`, and apply the following rules
 
-* If `A` is `Boolean`, then error.
+* If `A` is `Boolean`, then error
 
 * If `A` is `Number` type `N`, return `A`
 
 * If `A` is `Number`, coerce quietly to type
 `N` using the following algorithm:
 
-** If `N` is `BigInteger`
+** If `N` is `BigInteger`:
 
 *** If `A` is a `BigDecimal`, return `A.toBigInteger()`
 
 *** Otherwise, return `BigInteger.valueOf(A.longValue())`
 
-** If `N` is `BigDecimal`,
+** If `N` is `BigDecimal`:
 
 *** If `A` is a `BigInteger`, return `new BigDecimal(A)`
 
@@ -1418,27 +1418,27 @@ the resulting `Double` isn’t actually `null`.
 
 ** If `N` is `Double`, return `new Double(A.doubleValue())`
 
-** Otherwise, error.
+** Otherwise, error
 
 * If `A` is `String`, then:
 
 ** If `N` is `BigDecimal` then:
 
-*** If `new BigDecimal(A)` throws an exception then error.
+*** If `new BigDecimal(A)` throws an exception then error
 
-*** Otherwise, return `new BigDecimal(A)`.
+*** Otherwise, return `new BigDecimal(A)`
 
 ** If `N` is `BigInteger` then:
 
-*** If `new BigInteger(A)` throws an exception then error.
+*** If `new BigInteger(A)` throws an exception then error
 
-*** Otherwise, return `new BigInteger(A)`.
+*** Otherwise, return `new BigInteger(A)`
 
-** If `N.valueOf(A)` throws an exception, then error.
+** If `N.valueOf(A)` throws an exception, then error
 
-** Otherwise, return `N.valueOf(A)`.
+** Otherwise, return `N.valueOf(A)`
 
-* Otherwise, error.
+* Otherwise, error
 
 ==== Coerce `A` to `Character` or `char`
 
@@ -1484,7 +1484,7 @@ primitive type `boolean`, return `null`
 * If `A` is `""`, return `null`
 
 * If `A` is a `String` call `Enum.valueOf(T.getClass(), A)` and return
-the result.
+the result
 
 ==== Coerce `A` to Any Other Type `T`
 
@@ -2072,15 +2072,15 @@ TOKEN_MGR_DECLS:
 
 Notes
 
-* `*` = 0 or more, `+` = 1 or more, `?` = 0 or 1.
+* `*` = 0 or more, `+` = 1 or more, `?` = 0 or 1
 
 * An identifier is constrained to be a Java identifier - e.g., no `-`,
 no `/`, etc.
 
 * A `String` only recognizes a limited set of escape sequences, and `\`
-may not appear unescaped.
+may not appear unescaped
 
-* The relational operator for equality is `==` (double equals).
+* The relational operator for equality is `==` (double equals)
 
 * The value of an `IntegerLiteral` ranges from `Long.MIN_VALUE` to
 `Long.MAX_VALUE`
@@ -2089,7 +2089,7 @@ may not appear unescaped.
 `Double.MIN_VALUE` to `Double.MAX_VALUE`
 
 * It is illegal to nest `${` or `\#{` inside
-an outer `${` or `#{`.
+an outer `${` or `#{`
 
 == Operations on Collection Objects
 
@@ -2221,7 +2221,7 @@ books.stream().filter(b->b.category == 'history’)
 
 A stream pipeline consists of:
 
-* the source:
+* the source;
 
 * intermediate operations; and
 
@@ -2280,9 +2280,9 @@ includes:
 
 * The method parameters
 
-A typical method declaration would looks like
+A typical method declaration would looks like:
 
-`returnT Stream<T>.method(T1 arg1, T2 arg2)`
+* `returnT Stream<T>.method(T1 arg1, T2 arg2)`
 
 Some methods have optional parameters. The
 declarations of the methods with all possible combinations of the
@@ -2293,13 +2293,13 @@ Some of the parameters are lambda
 expressions, also known as functions. A lambda expression can have its
 own parameters and can return a value. To describe the parameter types
 and the return type of a lambda expression, the following is an example
-of the notation that is used.
+of the notation that is used:
 
-`(p1,p2)\->returnT`
+* `(p1,p2)\->returnT`
 
-For instance, the declaration for the operation filter is
+For instance, the declaration for the operation filter is:
 
-`Stream<S> Stream<S>.filter((S\->boolean) predicate)`
+* `Stream<S> Stream<S>.filter((S\->boolean) predicate)`
 
 From this we know that the source object is a `Stream` of `S`, and the
 return object is also a `Stream`, of the same type.
@@ -2454,7 +2454,7 @@ To get the list of the names of all products:
 
 `products.stream().map(p\->p.name).toList()`
 
-To creates a list of product names and prices
+To create a list of product names and prices
 for products with a price greater than or equal to 10:
 
 ----
@@ -2613,7 +2613,7 @@ the place where this method is inserted.
 
 ===== Example
 
-To print the a list of integer before and after a filter:
+To print a list of integers before and after a filter:
 ----
 [1,2,3,4,5].stream().peek(i->print(i))
                     .filter(i-> i%2 == 0)
