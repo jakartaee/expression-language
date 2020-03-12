@@ -2128,8 +2128,8 @@ disallow collections of infinite size, it works best when the collection
 objects are created in memory, with known sizes. It also does not
 address the performance issue in a multi-threaded environment, and does
 not provide explicit controls for evaluating collection operations in
-parallel. The future version of EL will likely include functionalities
-from Java SE 8, when it is released.
+parallel. A future version of EL will likely include functionalities
+from Java SE 8.
 
 Central to the implementation is the use of
 lambda expressions, now supported in EL. A lambda expression in the Java
