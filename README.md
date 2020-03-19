@@ -7,7 +7,7 @@ This repository contains the code for Jakarta Expression Language.
 Building
 --------
 
-Jakarta Authentication can be built by executing the following from the project root:
+Jakarta Expression Language can be built by executing the following from the project root:
 
 ``mvn clean package``
 
