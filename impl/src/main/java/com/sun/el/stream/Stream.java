@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2012, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2012, 2020 Oracle and/or its affiliates and others.
+ * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -176,7 +177,9 @@ public class Stream {
                     queue = new PriorityQueue<Object>(16, new Comparator<Object>() {
                         @Override
                         public int compare(Object o1, Object o2) {
-                            return ((Comparable) o1).compareTo(o2);
+                            @SuppressWarnings("unchecked")
+                            int result = ((Comparable<Object>) o1).compareTo(o2); 
+                            return result;
                         }
                     });
 

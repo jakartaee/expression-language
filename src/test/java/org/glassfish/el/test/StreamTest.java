@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2018, 2020 Oracle and/or its affiliates and others.
+ * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -77,6 +78,7 @@ public class StreamTest {
         }
 
         if (ret instanceof List) {
+            @SuppressWarnings("unchecked")
             List<Object> list = (List<Object>) ret;
             int i = 0;
             for (Object item: list) {
@@ -89,6 +91,7 @@ public class StreamTest {
 
         if (ret instanceof Iterator) {
             int i = 0;
+            @SuppressWarnings("unchecked")
             Iterator<Object> iter = (Iterator<Object>) ret;
             while (iter.hasNext()) {
                 Object item = iter.next();
