@@ -52,6 +52,25 @@
         <defaultGoal>package</defaultGoal>
         <plugins>
             <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <version>3.1.0</version>
+                <executions>
+                    <execution>
+                        <id>timestamp-property</id>
+                        <goals>
+                            <goal>timestamp-property</goal>
+                        </goals>
+                        <phase>validate</phase>
+                        <configuration>
+                            <name>current.year</name>
+                            <pattern>yyyy</pattern>
+                            <locale>en_US</locale>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-enforcer-plugin</artifactId>
                 <version>3.0.0-M3</version>
@@ -152,6 +171,7 @@
                         <revnumber>${project.version}</revnumber>
                         <revremark>${status}</revremark>
                         <revdate>${revisiondate}</revdate>
+                        <revyear>${current.year}</revyear>
                     </attributes>
                 </configuration>
             </plugin>
