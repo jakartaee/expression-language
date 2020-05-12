@@ -29,6 +29,7 @@ public class Date {
     public int getMonth() { return month; }
     public int getDate() { return date; }
 
+    @Override
     public String toString() {
         return "" + month + "/" + date + "/" + year;
     }

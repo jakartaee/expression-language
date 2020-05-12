@@ -34,6 +34,7 @@ public class Product {
         this.unitsInStock = unitsInStock;
     }
 
+    @Override
     public String toString() {
         return "Product: " + productID + ", " + name + ", " +
             category + ", " + unitPrice + ", " + unitsInStock;

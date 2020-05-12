@@ -39,6 +39,7 @@ public class Customer {
         this.orders = new ArrayList<>();
     }
 
+    @Override
     public String toString() {
         return "Customer: " + customerID + ", " + name + ", " + city + ", " +
                 country;
