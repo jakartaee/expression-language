@@ -187,6 +187,8 @@ public class ELProcessorTest {
         public int getFoo() {
             return 100;
         }
+        
+        @SuppressWarnings("unused")
         public int getFoo(int i) {
             return 200;
         }

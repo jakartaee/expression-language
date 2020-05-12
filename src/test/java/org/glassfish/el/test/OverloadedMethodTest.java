@@ -198,62 +198,77 @@ public class OverloadedMethodTest {
             return "methodWithNoArg";
         }
 
+        @SuppressWarnings("unused")
         public String methodWithSingleArg(I1 i1) {
             return "I1";
         }
 
+        @SuppressWarnings("unused")
         public String methodWithSingleArg(I2 i2) {
             return "I2";
         }
 
+        @SuppressWarnings("unused")
         public String methodWithSingleArg(I2Impl i2) {
             return "I2Impl";
         }
 
+        @SuppressWarnings("unused")
         public String methodWithSingleArg(I1AndI2Impl i1) {
             return "I1AndI2Impl";
         }
 
+        @SuppressWarnings("unused")
         public String methodWithDoubleArgs(I1 i1, I2 i2) {
             return "I1, I2";
         }
 
+        @SuppressWarnings("unused")
         public String methodWithDoubleArgs(I1Impl i1, I2 i2) {
             return "I1Impl, I2";
         }
 
+        @SuppressWarnings("unused")
         public String methodWithDoubleArgs(I1AndI2Impl i1, I1AndI2Impl i2) {
             return "I1AndI2Impl, I1AndI2Impl";
         }
 
+        @SuppressWarnings("unused")
         public String methodWithAmbiguousArgs(I1AndI2Impl i1, I2 i2) {
             return "I1AndI2Impl, I2";
         }
 
+        @SuppressWarnings("unused")
         public String methodWithAmbiguousArgs(I1 i1, I1AndI2Impl i2) {
             return "I1, I1AndI2Impl";
         }
 
+        @SuppressWarnings("unused")
         public String methodWithCoercibleArgs(String s1, String s2) {
             return "String, String";
         }
 
+        @SuppressWarnings("unused")
         public String methodWithCoercibleArgs2(String s1, String s2) {
             return "String, String";
         }
 
+        @SuppressWarnings("unused")
         public String methodWithCoercibleArgs2(Integer s1, Integer s2) {
             return "Integer, Integer";
         }
 
+        @SuppressWarnings("unused")
         public String methodWithVarArgs(I1 i1, I1... i2) {
             return "I1, I1...";
         }
 
+        @SuppressWarnings("unused")
         public String methodWithVarArgs2(I1 i1, I1... i2) {
             return "I1, I1...";
         }
 
+        @SuppressWarnings("unused")
         public String methodWithVarArgs2(I1 i1, I1AndI2Impl... i2) {
             return "I1, I1AndI2Impl...";
         }
@@ -271,10 +286,12 @@ public class OverloadedMethodTest {
             return arg1;
         }
         
+        @SuppressWarnings("unused")
         public String methodForMethodExpr2(Runnable r) {
             return "Runnable";
         }
         
+        @SuppressWarnings("unused")
         public String methodForMethodExpr2(String s) {
             return "String";
         }
