@@ -40,9 +40,9 @@ public class DataBase {
         }
 
         inited = true;
-        customers = new ArrayList<Customer>();
-        orders = new ArrayList<Order>();
-        products = new ArrayList<Product>();
+        customers = new ArrayList<>();
+        orders = new ArrayList<>();
+        products = new ArrayList<>();
         initCustomer();
         initProduct();
         initOrder();

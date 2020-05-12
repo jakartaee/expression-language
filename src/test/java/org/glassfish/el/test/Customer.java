@@ -36,7 +36,7 @@ public class Customer {
         this.city = city;
         this.country = country;
         this.phone = phone;
-        this.orders = new ArrayList<Order>();
+        this.orders = new ArrayList<>();
     }
 
     public String toString() {

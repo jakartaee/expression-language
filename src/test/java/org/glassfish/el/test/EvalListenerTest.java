@@ -57,7 +57,7 @@ public class EvalListenerTest {
     public void testEvalListener() {
         ELProcessor elp = new ELProcessor();
         ELManager elm = elp.getELManager();
-        final ArrayList<String> msgs = new ArrayList<String>();
+        final ArrayList<String> msgs = new ArrayList<>();
         elm.addEvaluationListener(new EvaluationListener() {
             @Override
             public void beforeEvaluation(ELContext ctxt, String expr) {
@@ -85,7 +85,7 @@ public class EvalListenerTest {
     public void testResListener() {
         ELProcessor elp = new ELProcessor();
         ELManager elm = elp.getELManager();
-        final ArrayList<String> msgs = new ArrayList<String>();
+        final ArrayList<String> msgs = new ArrayList<>();
         elm.addEvaluationListener(new EvaluationListener() {
             @Override
             public void propertyResolved(ELContext ctxt, Object b, Object p) {
