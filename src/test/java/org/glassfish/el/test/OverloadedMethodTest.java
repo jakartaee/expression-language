@@ -18,6 +18,7 @@ package org.glassfish.el.test;
 
 import jakarta.el.ELContext;
 import jakarta.el.ELException;
+import jakarta.el.ELManager;
 import jakarta.el.ELProcessor;
 import jakarta.el.ExpressionFactory;
 import jakarta.el.MethodExpression;
@@ -41,7 +42,7 @@ public class OverloadedMethodTest {
     @Before
     public void setUp() {
         elp = new ELProcessor();
-        exprFactory = elp.getELManager().getExpressionFactory();
+        exprFactory = ELManager.getExpressionFactory();
         elContext = elp.getELManager().getELContext();
         
         elp.defineBean("foo", new MyBean());

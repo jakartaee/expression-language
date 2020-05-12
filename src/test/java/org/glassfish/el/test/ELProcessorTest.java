@@ -40,7 +40,7 @@ public class ELProcessorTest {
     public static void setUpClass() throws Exception {
         elp = new ELProcessor();
         elm = elp.getELManager();
-        factory = elm.getExpressionFactory();
+        factory = ELManager.getExpressionFactory();
     }
     
     @Before

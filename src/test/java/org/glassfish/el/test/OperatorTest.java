@@ -96,7 +96,7 @@ public class OperatorTest {
         testExpr("quote", "\"'\"", "'");
         testExpr("quote", "'\"'", "\"");
         ELManager elm = elp.getELManager();
-        ValueExpression v = elm.getExpressionFactory().createValueExpression(
+        ValueExpression v = ELManager.getExpressionFactory().createValueExpression(
                 elm.getELContext(), "#${1+1}", Object.class);
         Object ret = v.getValue(elm.getELContext());
         assertEquals(ret, "#2");
