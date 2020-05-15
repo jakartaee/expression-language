@@ -33,7 +33,7 @@ document, or portions thereof, that you use:
 * All existing copyright notices, or if one does not exist, a notice
   (hypertext is preferred, but a textual representation is permitted)
   of the form: "Copyright © [$date-of-document] Eclipse Foundation, Inc.
-  https://www.eclipse.org/legal/efsl.php[https://www.eclipse.org/legal/efsl.php]"
+  +<<url to this license>>+"
 
 Inclusion of the full text of this NOTICE must be provided. We
 request that authorship attribution be provided in any software,
