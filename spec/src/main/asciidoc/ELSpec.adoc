@@ -1,3 +1,4 @@
+:xrefstyle: full
 :sectnums!:
 == Jakarta Expression Language, Version 4.0
 
