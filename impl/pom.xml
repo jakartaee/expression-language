@@ -37,7 +37,7 @@
     
     <properties>
         <!-- the bundle build number must be the same as the maven number -->
-        <bundle.version>4.0.0-SNAPSHOT</bundle.version>
+        <bundle.version>${project.version}</bundle.version>
         <!-- The most current api version -->
         <spec.version>4.0</spec.version>
         <extensionName>jakarta.el.impl</extensionName>
