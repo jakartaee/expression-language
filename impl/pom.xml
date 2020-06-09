@@ -46,7 +46,6 @@
         <findbugs.version>2.5.2</findbugs.version>
         <findbugs.exclude>${project.basedir}/exclude.xml</findbugs.exclude>
         <findbugs.threshold>High</findbugs.threshold>
-        <tlda-license.url>http://hudson-sca.us.oracle.com/job/tlda-license/lastSuccessfulBuild/artifact</tlda-license.url>
     </properties>
 
     <build>
