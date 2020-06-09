@@ -27,7 +27,7 @@
         <version>1.0.6</version>
     </parent>
 
-    <groupId>org.eclipse.ee4j.el</groupId>
+    <groupId>jakarta.el</groupId>
     <artifactId>el-parent</artifactId>
     <version>4.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
