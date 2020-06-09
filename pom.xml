@@ -89,6 +89,11 @@
         <tag>HEAD</tag>
     </scm>
 
+    <issueManagement>
+        <system>github</system>
+        <url>https://github.com/eclipse-ee4j/el-ri/issues</url>
+    </issueManagement>
+
     <build>
         <plugins>
             <!-- Sets minimal Maven version to 3.5.4 -->
