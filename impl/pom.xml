@@ -22,17 +22,16 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>org.eclipse.ee4j</groupId>
-        <artifactId>project</artifactId>
-        <version>1.0.6</version>
-        <relativePath/>
+        <groupId>jakarta.el</groupId>
+        <artifactId>el-parent</artifactId>
+        <version>4.0.0-SNAPSHOT</version>
+        <relativePath>../</relativePath>
     </parent>
     
     <groupId>org.glassfish</groupId>
     <artifactId>jakarta.el</artifactId>
-    <version>4.0.0-SNAPSHOT</version>
 
-    <name>Jakarta Expression Language 4.0 Implementation</name>
+    <name>Jakarta Expression Language Implementation</name>
     <description>Jakarta Expression Language Implementation</description>
     <url>https://projects.eclipse.org/projects/ee4j.el</url>
     
@@ -49,58 +48,6 @@
         <findbugs.threshold>High</findbugs.threshold>
         <tlda-license.url>http://hudson-sca.us.oracle.com/job/tlda-license/lastSuccessfulBuild/artifact</tlda-license.url>
     </properties>
-
-    <issueManagement>
-        <system>github</system>
-        <url>https://github.com/eclipse-ee4j/el-ri/issues</url>
-    </issueManagement>
-
-    <licenses>
-        <license>
-            <name>EPL 2.0</name>
-            <url>http://www.eclipse.org/legal/epl-2.0</url>
-            <distribution>repo</distribution>
-        </license>
-        <license>
-            <name>GPL2 w/ CPE</name>
-            <url>https://www.gnu.org/software/classpath/license.html</url>
-            <distribution>repo</distribution>
-        </license>
-    </licenses>
-    
-    <mailingLists>
-        <mailingList>
-            <name>Jakarta Expression Language 3.0 mailing list</name>
-            <post>el-dev@eclipse.org</post>
-            <subscribe>https://dev.eclipse.org/mailman/listinfo/el-dev</subscribe>
-            <unsubscribe>https://dev.eclipse.org/mailman/listinfo/el-dev</unsubscribe>
-            <archive>https://dev.eclipse.org/mhonarc/lists/el-dev</archive>
-        </mailingList>
-    </mailingLists>
-
-    <scm>
-        <connection>scm:git:https://github.com/eclipse-ee4j/el-ri.git</connection>
-        <developerConnection>
-            scm:git:git@github.com:eclipse-ee4j/el-ri.git
-        </developerConnection>
-        <url>https://github.com/eclipse-ee4j/el-ri</url>
-        <tag>HEAD</tag>
-    </scm>
-
-    <developers>
-        <developer>
-            <id>yaminikb</id>
-            <name>Yamini K B</name>
-            <organization>Oracle Corporation</organization>
-            <organizationUrl>http://www.oracle.com/</organizationUrl>
-        </developer>
-    </developers>
-
-    <contributors>
-        <contributor>
-            <name>Kin-man Chung</name>
-        </contributor>
-    </contributors>
 
     <build>
         <resources>
