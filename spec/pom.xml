@@ -20,19 +20,28 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>org.eclipse.ee4j</groupId>
-        <artifactId>project</artifactId>
-        <version>1.0.6</version>
-        <relativePath/>
+        <groupId>jakarta.el</groupId>
+        <artifactId>el-parent</artifactId>
+        <version>4.0.0-SNAPSHOT</version>
+        <relativePath>../</relativePath>
     </parent>
 
     <groupId>jakarta.el</groupId>
     <artifactId>expression-language-spec</artifactId>
     <version>4.0-SNAPSHOT</version>
     <packaging>pom</packaging>
+
     <name>Jakarta Expression Language Specification</name>
     <description>Jakarta Expression Language - Specification</description>
     <url>https://projects.eclipse.org/projects/ee4j.el</url>
+
+    <licenses>
+        <license>
+            <name>Eclipse Foundation Specification License – v1.0</name>
+            <url>https://www.eclipse.org/legal/efsl.php</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
 
     <properties>
         <site.output.dir>${project.build.directory}/staging</site.output.dir>
