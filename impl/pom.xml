@@ -137,11 +137,15 @@
                             <additionalJOption>-Xdoclint:none</additionalJOption>
                             <groups>
                                 <group>
-                                    <title>Jakarta Expression Language 3.0 Implementation</title>
+                                    <title>Jakarta Expression Language ${spec.version} Implementation</title>
                                     <packages>com.sun.el</packages>
                                 </group>
                             </groups>
-                            <bottom> Copyright (c) 2013 Oracle and/or its affiliates. All Rights Reserved. Use is subject to license terms. </bottom>
+                            <bottom><![CDATA[
+Comments to: <a href="mailto:el-dev@eclipse.org">el-dev@eclipse.org</a>.<br>
+Copyright &#169; 2018, 2020 Eclipse Foundation. All rights reserved.<br>
+Use is subject to <a href="http://www.eclipse.org/legal/epl-2.0" target="_top">license terms</a>.]]>
+                            </bottom>
                         </configuration>
                     </execution>
                 </executions>
