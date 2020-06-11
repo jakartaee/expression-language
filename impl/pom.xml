@@ -25,7 +25,6 @@
         <groupId>jakarta.el</groupId>
         <artifactId>el-parent</artifactId>
         <version>4.0.0-SNAPSHOT</version>
-        <relativePath>../</relativePath>
     </parent>
     
     <groupId>org.glassfish</groupId>
