@@ -109,7 +109,9 @@ class FactoryFinder {
             File configFile = new File(configFileName);
             if (configFile.exists()) {
                 Properties props = new Properties();
-                props.load(new FileInputStream(configFile));
+                try (FileInputStream propertiesStream = new FileInputStream(configFile)) {
+                    props.load(propertiesStream);
+                }
                 String factoryClassName = props.getProperty(factoryId);
 
                 return newInstance(factoryClassName, classLoader, properties);
