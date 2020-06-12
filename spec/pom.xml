@@ -20,9 +20,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>jakarta.el</groupId>
-        <artifactId>el-parent</artifactId>
-        <version>4.0.0-SNAPSHOT</version>
+        <groupId>org.eclipse.ee4j</groupId>
+        <artifactId>project</artifactId>
+        <version>1.0.6</version>
     </parent>
 
     <groupId>jakarta.el</groupId>
@@ -42,6 +42,45 @@
         </license>
     </licenses>
 
+    <developers>
+        <developer>
+            <id>jakarta-ee4j-el</id>
+            <name>Jakarta Expression Language Developers</name>
+            <organization>Eclipse Foundation</organization>
+            <email>el-dev@eclipse.org</email>
+        </developer>
+    </developers>
+
+    <contributors>
+       <contributor>
+           <name>Jakarta Expression Language Contributors</name>
+           <email>el-dev@eclipse.org</email>
+           <url>https://github.com/eclipse-ee4j/el-ri/graphs/contributors</url>
+       </contributor>
+    </contributors>
+     
+    <mailingLists>
+        <mailingList>
+            <name>Expression Language dev mailing list</name>
+            <post>el-dev@eclipse.org</post>
+            <subscribe>https://dev.eclipse.org/mailman/listinfo/el-dev</subscribe>
+            <unsubscribe>https://dev.eclipse.org/mailman/listinfo/el-dev</unsubscribe>
+            <archive>https://dev.eclipse.org/mhonarc/lists/el-dev</archive>
+        </mailingList>
+    </mailingLists>
+
+    <scm>
+        <connection>scm:git:https://github.com/eclipse-ee4j/el-ri.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com/eclipse-ee4j/el-ri.git</developerConnection>
+        <url>https://github.com/eclipse-ee4j/el-ri</url>
+        <tag>HEAD</tag>
+    </scm>
+
+    <issueManagement>
+        <system>github</system>
+        <url>https://github.com/eclipse-ee4j/el-ri/issues</url>
+    </issueManagement>
+
     <properties>
         <site.output.dir>${project.build.directory}/staging</site.output.dir>
         <maven.site.skip>true</maven.site.skip>
@@ -58,6 +97,33 @@
     <build>
         <defaultGoal>package</defaultGoal>
         <plugins>
+            <!-- Sets minimal Maven version to 3.5.4 and Java version to 8 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-enforcer-plugin</artifactId>
+                <version>3.0.0-M3</version>
+                <executions>
+                    <execution>
+                        <id>enforce</id>
+                        <goals>
+                            <goal>enforce</goal>
+                        </goals>
+                        <configuration>
+                            <rules>
+                                <requireMavenVersion>
+                                    <version>3.5.4</version>
+                                    <message>You need Maven 3.5.4 or higher</message>
+                                </requireMavenVersion>
+                                <requireJavaVersion>
+                                    <version>1.8</version>
+                                    <message>You need JDK8 or higher</message>
+                                </requireJavaVersion>
+                            </rules>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>build-helper-maven-plugin</artifactId>
@@ -73,27 +139,6 @@
                             <name>current.year</name>
                             <pattern>yyyy</pattern>
                             <locale>en_US</locale>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-enforcer-plugin</artifactId>
-                <version>3.0.0-M3</version>
-                <executions>
-                    <execution>
-                        <id>enforce-versions</id>
-                        <goals>
-                            <goal>enforce</goal>
-                        </goals>
-                        <configuration>
-                            <rules>
-                                <requireJavaVersion>
-                                    <version>[1.8.0,)</version>
-                                    <message>You need JDK8 or higher</message>
-                                </requireJavaVersion>
-                            </rules>
                         </configuration>
                     </execution>
                 </executions>

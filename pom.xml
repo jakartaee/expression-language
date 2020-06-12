@@ -36,74 +36,10 @@
     <description>Jakarta Expression Language</description>
     <url>https://projects.eclipse.org/projects/ee4j.el</url>
 
-    <developers>
-        <developer>
-            <id>jakarta-ee4j-el</id>
-            <name>Jakarta Expression Language Developers</name>
-            <organization>Eclipse Foundation</organization>
-            <email>el-dev@eclipse.org</email>
-        </developer>
-    </developers>
-
-    <contributors>
-       <contributor>
-           <name>Jakarta Expression Language Contributors</name>
-           <email>el-dev@eclipse.org</email>
-           <url>https://github.com/eclipse-ee4j/el-ri/graphs/contributors</url>
-       </contributor>
-    </contributors>
-     
-    <mailingLists>
-        <mailingList>
-            <name>Expression Language dev mailing list</name>
-            <post>el-dev@eclipse.org</post>
-            <subscribe>https://dev.eclipse.org/mailman/listinfo/el-dev</subscribe>
-            <unsubscribe>https://dev.eclipse.org/mailman/listinfo/el-dev</unsubscribe>
-            <archive>https://dev.eclipse.org/mhonarc/lists/el-dev</archive>
-        </mailingList>
-    </mailingLists>
-
     <modules>
         <module>api</module>
         <module>spec</module>
         <module>impl</module>
     </modules>
 
-    <scm>
-        <connection>scm:git:https://github.com/eclipse-ee4j/el-ri.git</connection>
-        <developerConnection>scm:git:ssh://git@github.com/eclipse-ee4j/el-ri.git</developerConnection>
-        <url>https://github.com/eclipse-ee4j/el-ri</url>
-        <tag>HEAD</tag>
-    </scm>
-
-    <issueManagement>
-        <system>github</system>
-        <url>https://github.com/eclipse-ee4j/el-ri/issues</url>
-    </issueManagement>
-
-    <build>
-        <plugins>
-            <!-- Sets minimal Maven version to 3.5.4 -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-enforcer-plugin</artifactId>
-                <version>3.0.0-M2</version>
-                <executions>
-                    <execution>
-                        <id>enforce-maven</id>
-                        <goals>
-                            <goal>enforce</goal>
-                        </goals>
-                        <configuration>
-                            <rules>
-                                <requireMavenVersion>
-                                    <version>3.5.4</version>
-                                </requireMavenVersion>
-                            </rules>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
 </project>
