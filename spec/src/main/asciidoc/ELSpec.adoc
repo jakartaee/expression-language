@@ -1351,7 +1351,7 @@ of `Y` +
 Otherwise, Let `Y’` be the same as `Y`
 
 * Apply the rules in Sections
-<<Coerce A to String,1.23.2>> to <<Coerce A to Any Other Type T,1.23.7>>
+<<Coerce `A` to `String`>> to <<Coerce `A` to Any Other Type `T`>>
 for coercing `X’` to `Y’`
 
 * If `Y` is a primitive type, then the result
@@ -2808,7 +2808,7 @@ empty stream.
 This method computes the average of all
 elements in the source stream by first computes the sum of the elements
 and then divides the sum by the number of elements. The elements are
-coerced to Number types according to <<Coerce A to Number type N>>
+coerced to Number types according to <<Coerce `A` to `Number` type `N`>>
 during the computation.
 
 This method returns an empty `Optional` for an
@@ -2824,7 +2824,7 @@ empty stream.
 
 This method computes the sum of all elements
 in the source stream. The elements are coerced to Number types according
-to <<Coerce A to Number type N>> during
+to <<Coerce `A` to `Number` type `N`>> during
 the computation.
 
 This method returns zero for an empty stream.
