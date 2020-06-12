@@ -31,7 +31,8 @@
     <groupId>jakarta.el</groupId>
     <artifactId>jakarta.el-api</artifactId>
     <version>4.0.0-SNAPSHOT</version>
-    
+    <packaging>jar</packaging>
+
     <name>Jakarta Expression Language API</name>
     <description>
         Jakarta Expression Language defines an expression language for Java applications
@@ -54,7 +55,7 @@
            <url>https://github.com/eclipse-ee4j/el-ri/graphs/contributors</url>
        </contributor>
     </contributors>
-     
+
     <mailingLists>
         <mailingList>
             <name>Expression Language dev mailing list</name>
@@ -130,12 +131,12 @@
                     </execution>
                 </executions>
             </plugin>
-
+        
             <!-- Restricts the Java version to 1.8 -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.0</version>
+                <version>3.8.1</version>
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
@@ -143,18 +144,18 @@
                 </configuration>
             </plugin>
 
-            <!-- Checks copyright / license headers -->        
+            <!-- Checks copyright / license headers -->
             <plugin>
                 <groupId>org.glassfish.copyright</groupId>
                 <artifactId>glassfish-copyright-maven-plugin</artifactId>
                 <version>2.3</version>
                 <configuration>
                     <excludeFile>etc/config/copyright-exclude</excludeFile>
-                    <!--svn|mercurial|git - defaults to svn-->
+                    <!--svn|mercurial|git - defaults to svn -->
                     <scm>git</scm>
                     <!-- turn on/off debugging -->
-                    <debug>off</debug>
-                    <!-- skip files not under SCM-->
+                    <debug>false</debug>
+                    <!-- skip files not under SCM -->
                     <scmOnly>true</scmOnly>
                     <!-- turn off warnings -->
                     <warn>true</warn>
@@ -166,11 +167,11 @@
                 </configuration>
             </plugin>
 
-            <!-- Creates the OSGi MANIFEST.MF file -->        
+            <!-- Creates the OSGi MANIFEST.MF file -->
             <plugin>
                 <groupId>org.apache.felix</groupId>
                 <artifactId>maven-bundle-plugin</artifactId>
-                <version>1.4.3</version>
+                <version>4.2.1</version>
                 <configuration>
                     <supportedProjectTypes>
                         <supportedProjectType>jar</supportedProjectType>
@@ -214,7 +215,7 @@
                     </excludes>
                 </configuration>
             </plugin>
-            
+
             <!-- Creates the source jar -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -225,17 +226,15 @@
                 </configuration>
                 <executions>
                     <execution>
-                       <id>attach-sources</id>
-                       <goals>
-                           <goal>jar-no-fork</goal> 
-                       </goals>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
                     </execution>
                 </executions>
             </plugin>
-            
-             <!-- 
-               Create Javadoc for API jar
-             -->
+
+            <!-- Create Javadoc for API jar -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
