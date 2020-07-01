@@ -59,7 +59,7 @@
            <url>https://github.com/eclipse-ee4j/el-ri/graphs/contributors</url>
        </contributor>
     </contributors>
-     
+
     <mailingLists>
         <mailingList>
             <name>Expression Language dev mailing list</name>
@@ -144,6 +144,7 @@
                     </execution>
                 </executions>
             </plugin>
+
             <plugin>
                 <groupId>org.asciidoctor</groupId>
                 <artifactId>asciidoctor-maven-plugin</artifactId>
