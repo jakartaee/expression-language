@@ -105,7 +105,7 @@
                 <version>3.0.0-M3</version>
                 <executions>
                     <execution>
-                        <id>enforce</id>
+                        <id>enforce-maven</id>
                         <goals>
                             <goal>enforce</goal>
                         </goals>
