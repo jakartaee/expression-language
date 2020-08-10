@@ -23,11 +23,15 @@ import static java.io.File.separator;
 import java.io.File;
 import java.io.FileInputStream;
 import java.lang.reflect.Constructor;
+import java.security.AccessController;
+import java.security.PrivilegedAction;
 import java.util.Iterator;
 import java.util.Properties;
 import java.util.ServiceLoader;
 
 class FactoryFinder {
+
+    private static final boolean IS_SECURITY_ENABLED = (System.getSecurityManager() != null);
 
     /**
      * Creates an instance of the specified class using the specified <code>ClassLoader</code> object.
@@ -54,7 +58,21 @@ class FactoryFinder {
                     return constr.newInstance(properties);
                 }
             }
-            return spiClass.getDeclaredConstructor().newInstance();
+
+            if (IS_SECURITY_ENABLED) {
+              return AccessController.doPrivileged(new PrivilegedAction < Object > () {@Override
+                public Object run() {
+                  try {
+                    return spiClass.getDeclaredConstructor().newInstance();
+                  } catch(Exception x) {
+                    throw new ELException("Provider " + className + " could not be instantiated: " + x, x);
+                  }
+                }
+              });
+            } else {
+              return spiClass.getDeclaredConstructor().newInstance();
+            }
+
         } catch (ClassNotFoundException x) {
             throw new ELException("Provider " + className + " not found", x);
         } catch (Exception x) {
@@ -83,7 +101,15 @@ class FactoryFinder {
     static Object find(Class<?> serviceClass, String factoryId, String fallbackClassName, Properties properties) {
         ClassLoader classLoader;
         try {
-            classLoader = Thread.currentThread().getContextClassLoader();
+            if (IS_SECURITY_ENABLED) {
+              classLoader = AccessController.doPrivileged(new PrivilegedAction < ClassLoader > () {@Override
+                public ClassLoader run() {
+                  return Thread.currentThread().getContextClassLoader();
+                }
+              });
+            } else {
+              classLoader = Thread.currentThread().getContextClassLoader();
+            }
         } catch (Exception x) {
             throw new ELException(x.toString(), x);
         }
@@ -103,25 +129,37 @@ class FactoryFinder {
 
         // Try to read from $java.home/lib/el.properties
         try {
-            String javah = System.getProperty("java.home");
-            String configFileName = javah + separator + "lib" + separator + "el.properties";
-
-            File configFile = new File(configFileName);
-            if (configFile.exists()) {
-                Properties props = new Properties();
-                try (FileInputStream propertiesStream = new FileInputStream(configFile)) {
-                    props.load(propertiesStream);
+            String factoryClassName = null;
+            if (IS_SECURITY_ENABLED) {
+              factoryClassName = AccessController.doPrivileged(
+              new PrivilegedAction < String > () {@Override
+                public String run() {
+                  return getFactoryClassName(factoryId);
                 }
-                String factoryClassName = props.getProperty(factoryId);
+              });
 
-                return newInstance(factoryClassName, classLoader, properties);
+            } else {
+              factoryClassName = getFactoryClassName(factoryId);
+            }
+            if (factoryClassName != null) {
+              return newInstance(factoryClassName, classLoader, properties);
             }
         } catch (Exception ex) {
         }
 
         // Use the system property
         try {
-            String systemProp = System.getProperty(factoryId);
+            String systemProp;
+            if (IS_SECURITY_ENABLED) {
+              systemProp = AccessController.doPrivileged(
+              new PrivilegedAction < String > () {@Override
+                public String run() {
+                  return System.getProperty(factoryId);
+                }
+              });
+            } else {
+              systemProp = System.getProperty(factoryId);
+            }
             if (systemProp != null) {
                 return newInstance(systemProp, classLoader, properties);
             }
@@ -133,5 +171,21 @@ class FactoryFinder {
         }
 
         return newInstance(fallbackClassName, classLoader, properties);
+    }
+
+    private static String getFactoryClassName(String factoryId) {
+      String factoryClass = null;;
+      String javah = System.getProperty("java.home");
+      String configFileName = javah + separator + "lib" + separator + "el.properties";
+
+      File configFile = new File(configFileName);
+      if (configFile.exists()) {
+        Properties props = new Properties();
+        try {
+          props.load(new FileInputStream(configFile));
+        } catch(Exception e) {}
+        factoryClass = props.getProperty(factoryId);
+      }
+      return factoryClass;
     }
 }
