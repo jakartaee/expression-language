@@ -42,12 +42,7 @@
         <bundle.version>4.0.0-SNAPSHOT</bundle.version>
         <!-- The most current api version -->
         <spec.version>4.0</spec.version>
-        <extensionName>jakarta.el</extensionName>
-        <bundle.symbolicName>com.sun.el.jakarta.el</bundle.symbolicName>
         <vendorName>Oracle Corporation</vendorName>
-        <findbugs.version>2.5.2</findbugs.version>
-        <findbugs.exclude>${project.basedir}/exclude.xml</findbugs.exclude>
-        <findbugs.threshold>High</findbugs.threshold>
     </properties>
     
     <developers>
@@ -173,13 +168,12 @@
                 <version>1.4.3</version>
                 <configuration>
                     <instructions>
-                        <Bundle-SymbolicName>${bundle.symbolicName}</Bundle-SymbolicName>
+                        <Bundle-SymbolicName>com.sun.el.jakarta.el</Bundle-SymbolicName>
                         <Bundle-Description>
                             Expression Language ${spec.version} API and Implementation
-
                         </Bundle-Description>
                         <Bundle-Version>${bundle.version}</Bundle-Version>
-                        <Extension-Name>${extensionName}</Extension-Name>
+                        <Extension-Name>jakarta.el</Extension-Name>
                         <Specification-Version>${spec.version}</Specification-Version>
                         <Specification-Vendor>${vendorName}</Specification-Vendor>
                         <Implementation-Version>${project.version}</Implementation-Version>
@@ -224,7 +218,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
-                <version> 2.2.1 </version>
+                <version>2.2.1</version>
                 <configuration>
                     <includePom>true</includePom>
                 </configuration>
@@ -262,7 +256,7 @@
                                     <packages>com.sun.el</packages>
                                 </group>
                             </groups>
-                            <bottom> Copyright (c) 2013 Oracle and/or its affiliates. All Rights Reserved. Use is subject to license terms. </bottom>
+                            <bottom> Copyright (c) 2013, 2020 Oracle and/or its affiliates. All Rights Reserved. Use is subject to license terms. </bottom>
                         </configuration>
                     </execution>
                 </executions>
@@ -271,17 +265,6 @@
             <!-- Use ant to manually invoke javacc, as this required is very infrequently <plugin> <groupId>org.codehaus.mojo</groupId> <artifactId>javacc-maven-plugin</artifactId> 
                 <version>2.6</version> <executions> <execution> <id>jjtree-javacc</id> <goals> <goal>jjtree-javacc</goal> </goals> <configuration> <sourceDirectory>src/main/java/com/sun/el/parser</sourceDirectory> 
                 <outputDirectory>src/main/java/com/sun/el/parser</outputDirectory> </configuration> </execution> </executions> </plugin> -->
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>findbugs-maven-plugin</artifactId>
-                <version>${findbugs.version}</version>
-                <configuration>
-                    <threshold>${findbugs.threshold}</threshold>
-                    <excludeFilterFile>${findbugs.exclude}</excludeFilterFile>
-                    <findbugsXmlOutput>true</findbugsXmlOutput>
-                    <findbugsXmlWithMessages>true</findbugsXmlWithMessages>
-                </configuration>
-            </plugin>
             
             <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
@@ -299,30 +282,5 @@
             </plugin>
         </plugins>
     </build>
-    
-    <reporting>
-        <plugins>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>findbugs-maven-plugin</artifactId>
-                <version>${findbugs.version}</version>
-                <configuration>
-                    <threshold>${findbugs.threshold}</threshold>
-                    <excludeFilterFile>${findbugs.exclude}</excludeFilterFile>
-                </configuration>
-            </plugin>
-             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <version>3.0.1</version>
-                <configuration>
-                    <excludePackageNames>com.sun.el.parser</excludePackageNames>
-                    <sourceFileExcludes>
-                        <sourceFileExclude>**/parser/*.java</sourceFileExclude>
-                    </sourceFileExcludes>
-                </configuration>
-            </plugin>
-        </plugins>
-    </reporting>
    
 </project>

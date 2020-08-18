@@ -47,7 +47,6 @@
             <email>el-dev@eclipse.org</email>
         </developer>
     </developers>
-
     <contributors>
        <contributor>
            <name>Jakarta Expression Language Contributors</name>
@@ -72,7 +71,6 @@
         <url>https://github.com/eclipse-ee4j/el-ri</url>
         <tag>HEAD</tag>
     </scm>
-
     <issueManagement>
         <system>github</system>
         <url>https://github.com/eclipse-ee4j/el-ri/issues</url>
@@ -85,9 +83,6 @@
         <extensionName>jakarta.el</extensionName>
         <bundle.symbolicName>jakarta.el-api</bundle.symbolicName>
         <vendorName>Eclipse Foundation</vendorName>
-        <findbugs.version>2.5.2</findbugs.version>
-        <findbugs.exclude />
-        <findbugs.threshold>High</findbugs.threshold>
     </properties>
 
     <build>
@@ -107,7 +102,6 @@
                 <targetPath>META-INF</targetPath>
             </resource>
         </resources>
-
         <plugins>
             <!-- Sets minimal Maven version to 3.5.4 -->
             <plugin>
@@ -202,12 +196,12 @@
             <!-- Adds the manifest file created by the org.apache.felix:maven-bundle-plugin -->
             <plugin>
                 <artifactId>maven-jar-plugin</artifactId>
-                <version>3.1.0</version>
+                <version>3.2.0</version>
                 <configuration>
                     <archive>
                         <manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
                         <manifestEntries>
-                            <Automatic-Module-Name>jakarta.el.api</Automatic-Module-Name>
+                            <Automatic-Module-Name>jakarta.el</Automatic-Module-Name>
                         </manifestEntries>
                     </archive>
                     <excludes>
@@ -238,7 +232,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <version>3.1.1</version>
+                <version>3.2.0</version>
                 <executions>
                     <execution>
                         <id>attach-javadocs</id>
@@ -271,31 +265,6 @@ Use is subject to <a href="{@docRoot}/doc-files/EFSL.html" target="_top">license
                 </executions>
             </plugin>
 
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>findbugs-maven-plugin</artifactId>
-                <version>${findbugs.version}</version>
-                <configuration>
-                    <threshold>${findbugs.threshold}</threshold>
-                    <excludeFilterFile>${findbugs.exclude}</excludeFilterFile>
-                    <findbugsXmlOutput>true</findbugsXmlOutput>
-                    <findbugsXmlWithMessages>true</findbugsXmlWithMessages>
-                </configuration>
-            </plugin>
         </plugins>
     </build>
-
-    <reporting>
-        <plugins>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>findbugs-maven-plugin</artifactId>
-                <version>${findbugs.version}</version>
-                <configuration>
-                    <threshold>${findbugs.threshold}</threshold>
-                    <excludeFilterFile>${findbugs.exclude}</excludeFilterFile>
-                </configuration>
-            </plugin>
-        </plugins>
-    </reporting>
 </project>
