@@ -29,7 +29,7 @@
 
     <groupId>jakarta.el</groupId>
     <artifactId>el-parent</artifactId>
-    <version>4.0.0</version>
+    <version>4.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>Jakarta Expression Language</name>
