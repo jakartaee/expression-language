@@ -32,14 +32,6 @@
                 outputdirectory="${dir}"
                 javacchome="${javacc.home}"/>
 
-        <replaceregexp byline="true">
-          <regexp pattern="final private LookaheadSuccess"/>
-          <substitution expression="static final private LookaheadSuccess"/>
-          <fileset dir="src/main/java/com/sun/el/parser">
-            <include name="ELParser.java"/>
-          </fileset>
-        </replaceregexp>
-
     </target>
 </project>
 
