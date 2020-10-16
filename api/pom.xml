@@ -30,7 +30,7 @@
 
     <groupId>jakarta.el</groupId>
     <artifactId>jakarta.el-api</artifactId>
-    <version>4.0.0-SNAPSHOT</version>
+    <version>4.0.0</version>
     <packaging>jar</packaging>
 
     <name>Jakarta Expression Language API</name>
