@@ -3,15 +3,15 @@ github: [metadata]
 remote_theme: eclipsefdn/jekyll-theme-eclipsefdn
 #theme: jekyll-theme-eclipsefdn # for local execution
 
-title: [Eclipse Mojarra]
-description: [Eclipse EE4J implementation of Jakarta Faces]
+title: [Eclipse Expression Language]
+description: [Eclipse EE4J implementation of Jakarta Expression Language]
 
 links:
-  source: https://github.com/eclipse-ee4j/mojarra
-  javadocs: https://javadoc.io/doc/jakarta.faces/jakarta.faces-api
+  source: https://github.com/eclipse-ee4j/el-ri
+  javadocs: https://javadoc.io/doc/jakarta.el/jakarta.el-api/
   issues_url: site.github.issues_url
-  download: https://github.com/eclipse-ee4j/mojarra/releases
-  mailinglist: https://accounts.eclipse.org/mailing-list/mojarra-dev
+  download: https://github.com/eclipse-ee4j/el-ri/releases
+  mailinglist: https://accounts.eclipse.org/mailing-list/el-dev
   # faq: FAQ
 
 include:
