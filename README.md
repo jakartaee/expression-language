@@ -2,8 +2,6 @@
 
 This repository contains the code for Jakarta Expression Language.
 
-[Online JavaDoc](https://javadoc.io/doc/jakarta.el/jakarta.el-api/)
-
 Certification
 -------------
 * [Jakarta Expression Language 3.0 TCK results summary](https://eclipse-ee4j.github.io/el-ri/certifications/expression-language/3.0/TCK-Results)
