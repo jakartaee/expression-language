@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1997, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -592,7 +592,7 @@ public class ReflectionUtil {
                 int varArgIndex = parameterTypes.length - 1;
                 // First argCount-1 parameters are standard
                 for (int i = 0; (i < varArgIndex && i < paramCount); i++) {
-                    parameters[i] = context.convertToType(params[i], parameterTypes[i]);
+                    parameters[i] = convertToTypeAvoidEmptyStr(context, params[i], parameterTypes[i]);
                 }
                 // Last parameter is the varargs
                 if (parameterTypes.length == paramCount && parameterTypes[varArgIndex] == params[varArgIndex].getClass()) {
@@ -601,17 +601,25 @@ public class ReflectionUtil {
                     Class<?> varArgClass = parameterTypes[varArgIndex].getComponentType();
                     final Object varargs = Array.newInstance(varArgClass, (paramCount - varArgIndex));
                     for (int i = (varArgIndex); i < paramCount; i++) {
-                        Array.set(varargs, i - varArgIndex, context.convertToType(params[i], varArgClass));
+                        Array.set(varargs, i - varArgIndex, convertToTypeAvoidEmptyStr(context, params[i], varArgClass));
                     }
                     parameters[varArgIndex] = varargs;
                 }
             } else {
                 for (int i = 0; i < parameterTypes.length && i < paramCount; i++) {
-                    parameters[i] = context.convertToType(params[i], parameterTypes[i]);
+                    parameters[i] = convertToTypeAvoidEmptyStr(context, params[i], parameterTypes[i]);
                 }
             }
         }
         return parameters;
+    }
+
+    private static Object convertToTypeAvoidEmptyStr(ELContext context, Object param, Class<?>parameterType) {
+        if (param == null && parameterType == String.class) {
+            return null;
+        } else {
+            return context.convertToType(param, parameterType);
+        }
     }
 
     /*
