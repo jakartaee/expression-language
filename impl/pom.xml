@@ -30,7 +30,7 @@
 
     <groupId>org.glassfish</groupId>
     <artifactId>jakarta.el</artifactId>
-    <version>4.0.0</version>
+    <version>4.0.1</version>
 
     <name>Jakarta Expression Language Implementation</name>
     <description>Jakarta Expression Language Implementation</description>
@@ -73,26 +73,16 @@
         <url>https://github.com/eclipse-ee4j/el-ri/issues</url>
     </issueManagement>
 
-    <properties>
-        <!-- the bundle build number must be the same as the maven number -->
-        <bundle.version>${project.version}</bundle.version>
-        <!-- The most current api version -->
-        <spec.version>4.0</spec.version>
-        <extensionName>jakarta.el.impl</extensionName>
-        <bundle.symbolicName>org.glassfish.jakarta.el</bundle.symbolicName>
-        <vendorName>Eclipse Foundation</vendorName>
-    </properties>
-
     <dependencies>
         <dependency>
             <groupId>jakarta.el</groupId>
             <artifactId>jakarta.el-api</artifactId>
-            <version>${bundle.version}</version>
+            <version>4.0.0</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.12</version>
+            <version>4.13.1</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -145,10 +135,10 @@
             <plugin>
                 <groupId>org.apache.felix</groupId>
                 <artifactId>maven-bundle-plugin</artifactId>
-                <version>4.2.1</version>
+                <version>5.1.1</version>
                 <configuration>
                     <instructions>
-                        <Bundle-SymbolicName>${bundle.symbolicName}</Bundle-SymbolicName>
+                        <Bundle-SymbolicName>org.glassfish.jakarta.el</Bundle-SymbolicName>
                         <_include>-osgi.bundle</_include>
                     </instructions>
                 </configuration>
@@ -174,9 +164,9 @@
                             ${project.build.outputDirectory}/META-INF/MANIFEST.MF
                         </manifestFile>
                         <manifestEntries>
-                            <Extension-Name>${extensionName}</Extension-Name>
-                            <Specification-Version>${spec.version}</Specification-Version>
-                            <Specification-Vendor>${vendorName}</Specification-Vendor>
+                            <Extension-Name>jakarta.el.impl</Extension-Name>
+                            <Specification-Version>4.0</Specification-Version>
+                            <Specification-Vendor>Eclipse Foundation</Specification-Vendor>
                             <Implementation-Version>${project.version}</Implementation-Version>
                             <Implementation-Vendor>${vendorName}</Implementation-Vendor>
                             <Automatic-Module-Name>com.sun.el</Automatic-Module-Name>
@@ -213,7 +203,7 @@
                             <additionalJOption>-Xdoclint:none</additionalJOption>
                             <groups>
                                 <group>
-                                    <title>Jakarta Expression Language ${spec.version} Implementation</title>
+                                    <title>Jakarta Expression Language ${project.version} Implementation</title>
                                     <packages>com.sun.el</packages>
                                 </group>
                             </groups>
