@@ -179,6 +179,7 @@
                             <Specification-Vendor>${vendorName}</Specification-Vendor>
                             <Implementation-Version>${project.version}</Implementation-Version>
                             <Implementation-Vendor>${vendorName}</Implementation-Vendor>
+                            <Automatic-Module-Name>com.sun.el</Automatic-Module-Name>
                         </manifestEntries>
                     </archive>
                 </configuration>
