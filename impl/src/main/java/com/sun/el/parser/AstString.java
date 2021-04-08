@@ -1,5 +1,6 @@
 /*
  * Copyright (c) 1997, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2021 Payara Services Ltd.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -55,7 +56,7 @@ public final class AstString extends SimpleNode {
             return;
         }
         int size = image.length();
-        StringBuffer buf = new StringBuffer(size);
+        StringBuilder buf = new StringBuilder(size);
         for (int i = 0; i < size; i++) {
             char c = image.charAt(i);
             if (c == '\\' && i + 1 < size) {
