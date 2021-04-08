@@ -1,5 +1,6 @@
 /*
  * Copyright (c) 1997, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2021 Payara Services Ltd.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -37,7 +38,7 @@ public final class AstCompositeExpression extends SimpleNode {
 
     @Override
     public Object getValue(EvaluationContext ctx) throws ELException {
-        StringBuffer sb = new StringBuffer(16);
+        StringBuilder sb = new StringBuilder(16);
         Object obj = null;
         if (this.children != null) {
             for (int i = 0; i < this.children.length; i++) {
