@@ -93,9 +93,7 @@ public abstract class ExpressionFactory {
      * to determine the <code>ExpressionFactory</code> implementation class to load:
      *
      * <ul>
-     * <li>Use the Services API (as detailed in the JAR specification). If a resource with the name of
-     * <code>META-INF/services/jakarta.el.ExpressionFactory</code> exists, then its first line, if present, is used as the
-     * UTF-8 encoded name of the implementation class.</li>
+     * <li>Use the Services API (as detailed in the JAR specification).</li>
      * <li>Use the properties file "lib/el.properties" in the JRE directory. If this file exists and it is readable by the
      * <code> java.util.Properties.load(InputStream)</code> method, and it contains an entry whose key is
      * "jakarta.el.ExpressionFactory", then the value of that entry is used as the name of the implementation class.</li>
