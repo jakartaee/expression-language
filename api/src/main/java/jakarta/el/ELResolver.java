@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997, 2019 Oracle and/or its affiliates and others.
+ * Copyright (c) 1997, 2021 Oracle and/or its affiliates and others.
  * All rights reserved.
  * Copyright 2004 The Apache Software Foundation
  *
@@ -326,7 +326,7 @@ public abstract class ELResolver {
      * @return object converted to <code>targetType</code>
      * @throws ELException thrown if errors occur.
      */
-    public Object convertToType(ELContext context, Object obj, Class<?> targetType) {
+    public <T> T convertToType(ELContext context, Object obj, Class<T> targetType) {
         return null;
     }
 }

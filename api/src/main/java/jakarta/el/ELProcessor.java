@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2012, 2019 Oracle and/or its affiliates and others.
+ * Copyright (c) 2012, 2021 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -103,7 +103,7 @@ public class ELProcessor {
      * @param expectedType Specifies the type that the resultant evaluation will be coerced to.
      * @return The result of the expression evaluation.
      */
-    public Object getValue(String expression, Class<?> expectedType) {
+    public <T> T getValue(String expression, Class<T> expectedType) {
         ValueExpression exp = factory.createValueExpression(elManager.getELContext(), bracket(expression), expectedType);
         return exp.getValue(elManager.getELContext());
     }

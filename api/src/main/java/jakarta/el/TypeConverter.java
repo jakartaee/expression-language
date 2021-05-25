@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2012, 2019 Oracle and/or its affiliates and others.
+ * Copyright (c) 2012, 2021 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -87,5 +87,5 @@ public abstract class TypeConverter extends ELResolver {
      * @throws ELException thrown if errors occur.
      */
     @Override
-    abstract public Object convertToType(ELContext context, Object obj, Class<?> targetType);
+    abstract public <T> T convertToType(ELContext context, Object obj, Class<T> targetType);
 }

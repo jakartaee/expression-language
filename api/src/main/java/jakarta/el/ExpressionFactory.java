@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997, 2020 Oracle and/or its affiliates and others.
+ * Copyright (c) 1997, 2021 Oracle and/or its affiliates and others.
  * All rights reserved.
  * Copyright 2004 The Apache Software Foundation
  *
@@ -235,7 +235,7 @@ public abstract class ExpressionFactory {
      * 
      * @throws ELException thrown if an error results from applying the conversion rules.
      */
-    public abstract Object coerceToType(Object obj, Class<?> targetType);
+    public abstract <T> T coerceToType(Object obj, Class<T> targetType);
 
     /**
      * Retrieves an ELResolver that implements the operations in collections.

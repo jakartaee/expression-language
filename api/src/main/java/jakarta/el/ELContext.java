@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997, 2020 Oracle and/or its affiliates and others.
+ * Copyright (c) 1997, 2021 Oracle and/or its affiliates and others.
  * All rights reserved.
  * Copyright 2004 The Apache Software Foundation
  *
@@ -418,13 +418,13 @@ public abstract class ELContext {
      *
      * @since Jakarta Expression Language 3.0
      */
-    public Object convertToType(Object obj, Class<?> targetType) {
+    public <T> T convertToType(Object obj, Class<T> targetType) {
         boolean propertyResolvedSave = isPropertyResolved();
         try {
             setPropertyResolved(false);
             ELResolver elResolver = getELResolver();
             if (elResolver != null) {
-                Object res = elResolver.convertToType(this, obj, targetType);
+                T res = elResolver.convertToType(this, obj, targetType);
                 if (isPropertyResolved()) {
                     return res;
                 }

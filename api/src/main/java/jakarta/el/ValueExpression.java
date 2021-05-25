@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997, 2019 Oracle and/or its affiliates and others.
+ * Copyright (c) 1997, 2021 Oracle and/or its affiliates and others.
  * All rights reserved.
  * Copyright 2004 The Apache Software Foundation
  *
@@ -80,7 +80,7 @@ public abstract class ValueExpression extends Expression {
      * @throws ELException if an exception was thrown while performing property or variable resolution. The thrown exception
      * must be included as the cause property of this exception, if available.
      */
-    public abstract Object getValue(ELContext context);
+    public abstract <T> T getValue(ELContext context);
 
     /**
      * Evaluates the expression relative to the provided context, and sets the result to the provided value.

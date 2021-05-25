@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997, 2019 Oracle and/or its affiliates and others.
+ * Copyright (c) 1997, 2021 Oracle and/or its affiliates and others.
  * All rights reserved.
  * Copyright 2004 The Apache Software Foundation
  *
@@ -468,10 +468,10 @@ public class CompositeELResolver extends ELResolver {
      * @since Jakarta Expression Language 3.0
      */
     @Override
-    public Object convertToType(ELContext context, Object obj, Class<?> targetType) {
+    public <T> T convertToType(ELContext context, Object obj, Class<T> targetType) {
         context.setPropertyResolved(false);
 
-        Object value = null;
+        T value = null;
         for (int i = 0; i < size; i++) {
             value = elResolvers[i].convertToType(context, obj, targetType);
             if (context.isPropertyResolved()) {
