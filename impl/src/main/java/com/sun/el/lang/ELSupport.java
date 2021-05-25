@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 1997, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1997, 2021 Oracle and/or its affiliates and others.
+ * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -334,14 +335,14 @@ public class ELSupport {
         }
     }
 
-    public final static Object coerceToType(final Object obj, final Class<?> type) throws IllegalArgumentException {
+    public final static <T> T coerceToType(final Object obj, final Class<T> type) throws IllegalArgumentException {
         return coerceToType(obj, type, false);
     }
 
-    public final static Object coerceToType(final Object obj, final Class<?> type, boolean isEL22Compatible) throws IllegalArgumentException {
+    public final static <T> T coerceToType(final Object obj, final Class<T> type, boolean isEL22Compatible) throws IllegalArgumentException {
 
         if (type == null || Object.class.equals(type) || (obj != null && type.isAssignableFrom(obj.getClass()))) {
-            return obj;
+            return (T) obj;
         }
 
         // New in 3.0
@@ -350,19 +351,19 @@ public class ELSupport {
         }
 
         if (String.class.equals(type)) {
-            return coerceToString(obj);
+            return (T) coerceToString(obj);
         }
         if (ELArithmetic.isNumberType(type)) {
-            return coerceToNumber(obj, type);
+            return (T) coerceToNumber(obj, type);
         }
         if (Character.class.equals(type) || Character.TYPE == type) {
-            return coerceToCharacter(obj);
+            return (T) coerceToCharacter(obj);
         }
         if (Boolean.class.equals(type) || Boolean.TYPE == type) {
-            return coerceToBoolean(obj);
+            return (T) coerceToBoolean(obj);
         }
         if (type.isEnum()) {
-            return coerceToEnum(obj, type);
+            return (T) coerceToEnum(obj, type);
         }
 
         if (obj == null) {
@@ -376,7 +377,7 @@ public class ELSupport {
             PropertyEditor editor = PropertyEditorManager.findEditor(type);
             if (editor != null) {
                 editor.setAsText((String) obj);
-                return editor.getValue();
+                return (T) editor.getValue();
             }
         }
         throw new IllegalArgumentException(MessageFactory.get("error.convert", obj, obj.getClass(), type));

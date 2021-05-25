@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 1997, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1997, 2021 Oracle and/or its affiliates and others.
+ * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -63,7 +64,7 @@ public class ExpressionFactoryImpl extends ExpressionFactory {
      * "jakarta.el.bc2.2" set to true.
      */
     @Override
-    public Object coerceToType(Object obj, Class<?> type) {
+    public <T> T coerceToType(Object obj, Class<T> type) {
         try {
             return ELSupport.coerceToType(obj, type, isBackwardCompatible22);
         } catch (IllegalArgumentException ex) {
