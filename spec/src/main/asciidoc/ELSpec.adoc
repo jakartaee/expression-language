@@ -2923,6 +2923,11 @@ empty.
 This appendix lists the changes in the EL specification.
 This appendix is non-normative.
 
+=== Changes between 5.0 and 4.0
+
+* https://github.com/eclipse-ee4j/el-ri/issues/157[#157]
+  Generics are now used where appropriate throughout the API
+
 === Changes between 4.0 and JSR 341
 
 * The API has moved from the `javax.el` package to the `jakarta.el`
