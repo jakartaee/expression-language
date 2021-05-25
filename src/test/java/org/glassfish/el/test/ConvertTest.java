@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2018, 2021 Oracle and/or its affiliates and others.
+ * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -25,6 +26,8 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+
+import java.lang.reflect.InvocationTargetException;
 
 /**
  *
@@ -100,10 +103,16 @@ public class ConvertTest {
     public void testCustom() {
         elp.getELManager().addELResolver(new TypeConverter() {
             @Override
-            public Object convertToType(ELContext context, Object obj, Class<?> type) {
+            public <T> T convertToType(ELContext context, Object obj, Class<T> type) {
                 if (obj instanceof String && type == MyBean.class) {
-                    context.setPropertyResolved(true);
-                    return new MyBean((String) obj);
+                    try {
+                        T result = type.getConstructor(String.class).newInstance(obj);
+                        context.setPropertyResolved(true);
+                        return result;
+                    } catch (InstantiationException | IllegalAccessException | IllegalArgumentException |
+                            InvocationTargetException | NoSuchMethodException | SecurityException e) {
+                        // Can't happen as MyBean has a suitable constructor
+                    }
                 }
                 return null;
             }
