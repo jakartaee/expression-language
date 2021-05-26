@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997, 2019 Oracle and/or its affiliates and others.
+ * Copyright (c) 1997, 2021 Oracle and/or its affiliates and others.
  * All rights reserved.
  * Copyright 2004 The Apache Software Foundation
  *
@@ -78,7 +78,7 @@ public abstract class MethodExpression extends Expression {
      * If not a String literal, evaluates the expression relative to the provided context, invokes the method that was found
      * using the supplied parameters, and returns the result of the method invocation.
      *
-     * Any parameters passed to this method is ignored if isLiteralText() or isParmetersProvided() is true.
+     * Any parameters passed to this method is ignored if isLiteralText() or isParametersProvided() is true.
      *
      * @param context The context of this evaluation.
      * @param params The parameters to pass to the method, or <code>null</code> if no parameters.
@@ -109,15 +109,5 @@ public abstract class MethodExpression extends Expression {
      */
     public boolean isParametersProvided() {
         return false;
-    }
-
-    /**
-     * Use isParametersProvided instead.
-     *
-     * @return <code>true</code> if the MethodExpression was created with parameters, <code>false</code> otherwise.
-     */
-    @Deprecated
-    public boolean isParmetersProvided() {
-        return isParametersProvided();
     }
 }
