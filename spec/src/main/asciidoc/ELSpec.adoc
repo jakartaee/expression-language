@@ -2,7 +2,7 @@
 :sectnums!:
 == Jakarta Expression Language, Version 4.0
 
-Copyright (c) 2013, 2020 Oracle and/or its affiliates and others.
+Copyright (c) 2013, 2021 Oracle and/or its affiliates and others.
 All rights reserved.
 
 Eclipse is a registered trademark of the Eclipse Foundation. Jakarta
@@ -330,6 +330,11 @@ signature, and there is therefore no coercion performed. If the expected
 signature is not provided at parse time, then at evaluation, the method
 is identified with the information of the parameters in the expression,
 and the parameters are coerced to the respective formal types.
+The method must be identified using the same process as that described in
+section 15.12.2 of the Java Language Specification, version 11 with the
+addition that coercion resolution is considered to be less specific than
+overload resolution.
+
 
 ==== Literal-expression
 
@@ -2931,6 +2936,10 @@ This appendix is non-normative.
 
 * https://github.com/eclipse-ee4j/el-ri/issues/157[#157]
   Generics are now used where appropriate throughout the API
+
+* https://github.com/eclipse-ee4j/el-ri/issues/159[#159]
+  Clarify expected behaviour when matching expressions to methods based on
+  parameter types
 
 === Changes between 4.0 and JSR 341
 
