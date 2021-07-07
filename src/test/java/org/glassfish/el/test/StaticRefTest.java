@@ -76,6 +76,6 @@ public class StaticRefTest {
 
     @Test
     public void testStaticMethod() {
-        assertEquals(4, elp.eval("Integer.numberOfTrailingZeros(16)"));
+        assertEquals(Long.valueOf(4), elp.eval("Integer.numberOfTrailingZeros(16)"));
     }
 }
