@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997, 2019 Oracle and/or its affiliates and others.
+ * Copyright (c) 1997, 2021 Oracle and/or its affiliates and others.
  * All rights reserved.
  * Copyright 2004 The Apache Software Foundation
  *
@@ -65,7 +65,7 @@ class ELUtil {
      * each processing thread.
      * </p>
      */
-    private static ThreadLocal<Map<String, ResourceBundle>> instance = new ThreadLocal<Map<String, ResourceBundle>>() {
+    private static ThreadLocal<Map<String, ResourceBundle>> instance = new ThreadLocal<>() {
         @Override
         protected Map<String, ResourceBundle> initialValue() {
             return (null);
