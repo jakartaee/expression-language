@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018, 2020 Oracle and/or its affiliates and others.
+ * Copyright (c) 2018, 2021 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -21,6 +21,7 @@ import org.junit.Test;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import jakarta.el.ELProcessor;
@@ -62,7 +63,7 @@ public class ELProcessorTest {
                 ctxt, "#{'abc'.length()}", Object.class, null);
         Object result = meth.invoke(ctxt, new Object[] {"abcde"});
         System.out.println("'abc'.length() called, equals " + result);
-        assertEquals(result, new Integer(3));
+        assertEquals(result, Integer.valueOf(3));
     }
 
     @Test
@@ -79,7 +80,7 @@ public class ELProcessorTest {
         Object result = elp.getValue("xx + 11", String.class);
         assertEquals(result, "111");
         elp.setVariable("xx", null);
-        assertEquals(elp.eval("xx"), null);
+        assertNull(elp.eval("xx"));
         elp.setVariable("yy", "abc");
         assertEquals(elp.eval("yy = 123; abc"), Long.valueOf(123));
         assertEquals(elp.eval("abc = 456; yy"), Long.valueOf(456));
@@ -172,9 +173,9 @@ public class ELProcessorTest {
         assertTrue(elp.eval("ELProcessorTest$MyBean.aaaa == 101"));
         assertTrue(elp.eval("ELProcessorTest$MyBean.getBar() == 64"));
         elm.importStatic("org.glassfish.el.test.ELProcessorTest$MyBean.aaaa");
-        assertEquals(new Integer(101), elp.eval("aaaa"));
+        assertEquals(Integer.valueOf(101), elp.eval("aaaa"));
         elm.importStatic("org.glassfish.el.test.ELProcessorTest$MyBean.getBar");
-        assertEquals(new Integer(64), elp.eval("getBar()"));
+        assertEquals(Integer.valueOf(64), elp.eval("getBar()"));
  /*
         elm.importStatic("a.b.NonExisting.foobar");
         elp.eval("foobar");
