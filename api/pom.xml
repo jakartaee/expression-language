@@ -126,14 +126,13 @@
                 </executions>
             </plugin>
         
-            <!-- Restricts the Java version to 1.8 -->
+            <!-- Restricts the Java version to 11 -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.1</version>
                 <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
+                    <release>11</release>
                     <compilerArgument>-Xlint:unchecked</compilerArgument>
                 </configuration>
             </plugin>
@@ -240,7 +239,7 @@
                             <goal>jar</goal>
                         </goals>
                         <configuration>
-                            <source>1.8</source>
+                            <source>11</source>
                             <additionalJOption>-Xdoclint:none</additionalJOption>
                             <description>Jakarta Expression Language API documentation</description>
                             <doctitle>Jakarta Expression Language API documentation</doctitle>
