@@ -89,7 +89,7 @@ public class ELProcessorTest {
     @Test
     public void testConcat() {
         Object result = elp.eval("'10' + 1");
-        assertEquals(result, 11L);
+        assertEquals(result, Long.valueOf(11));
         result = elp.eval("10 += '1'");
         assertEquals(result.toString(), "101");
     }
@@ -98,7 +98,7 @@ public class ELProcessorTest {
     public void testParenthesis() {
         elp.setVariable("xx", "1");
         Object result = elp.eval("((xx)) + 1");
-        assertEquals(result, 2L);
+        assertEquals(result, Long.valueOf(2));
     }
     
     @Test
@@ -115,7 +115,7 @@ public class ELProcessorTest {
         try {
             elp.defineFunction("xx", "", meth);
             Boolean ret = elp.eval("xx:getBar() == 64");
-            assertTrue(ret);
+            assertTrue(ret.booleanValue());
         } catch (NoSuchMethodException ex) {
             
         }
@@ -124,7 +124,7 @@ public class ELProcessorTest {
         try {
             elp.defineFunction("", "", meth2);
             Boolean ret = elp.eval("getFoo() == 100");
-            assertTrue(ret);
+            assertTrue(ret.booleanValue());
         } catch (NoSuchMethodException ex) {
             caught = true;
         }
@@ -133,7 +133,7 @@ public class ELProcessorTest {
         try {
             elp.defineFunction("yy", "", "org.glassfish.el.test.ELProcessorTest$MyBean", "getBar");
             Boolean ret = elp.eval("yy:getBar() == 64");
-            assertTrue(ret);
+            assertTrue(ret.booleanValue());
         } catch (ClassNotFoundException | NoSuchMethodException ex) {
             
         }
@@ -142,7 +142,7 @@ public class ELProcessorTest {
         try {
             elp.defineFunction("yy", "", "org.glassfish.el.test.ELProcessorTest$MyBean", "getFooBar");
             Boolean ret = elp.eval("yy:getBar() == 100");
-            assertTrue(ret);
+            assertTrue(ret.booleanValue());
         } catch (ClassNotFoundException | NoSuchMethodException ex) {
             caught = true;
         }
@@ -152,7 +152,7 @@ public class ELProcessorTest {
         try {
             elp.defineFunction("yy", "", "testBean", "getFoo");
             Boolean ret = elp.eval("yy:getBar() == 100");
-            assertTrue(ret);
+            assertTrue(ret.booleanValue());
         } catch (ClassNotFoundException | NoSuchMethodException ex) {
             caught = true;
         }
@@ -170,8 +170,10 @@ public class ELProcessorTest {
     @Test
     public void testImport() {
         elm.importClass("org.glassfish.el.test.ELProcessorTest$MyBean");
-        assertTrue(elp.eval("ELProcessorTest$MyBean.aaaa == 101"));
-        assertTrue(elp.eval("ELProcessorTest$MyBean.getBar() == 64"));
+        Boolean ret = elp.eval("ELProcessorTest$MyBean.aaaa == 101");
+        assertTrue(ret.booleanValue());
+        ret = elp.eval("ELProcessorTest$MyBean.getBar() == 64");
+        assertTrue(ret.booleanValue());
         elm.importStatic("org.glassfish.el.test.ELProcessorTest$MyBean.aaaa");
         assertEquals(Integer.valueOf(101), elp.eval("aaaa"));
         elm.importStatic("org.glassfish.el.test.ELProcessorTest$MyBean.getBar");

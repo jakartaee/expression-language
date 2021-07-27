@@ -56,8 +56,10 @@ public class StaticRefTest {
     @Test
     public void testStaticRef() {
         // Pre imported java.lang classes
-        assertTrue((Boolean)elp.eval("Boolean.TRUE"));
-        assertTrue((Boolean)elp.eval("Boolean.TRUE"));  // test caching Boolean
+        Boolean ret = elp.eval("Boolean.TRUE");
+        assertTrue(ret.booleanValue());
+        ret = elp.eval("Boolean.TRUE");
+        assertTrue(ret.booleanValue());  // test caching Boolean
     }
 
 /*
