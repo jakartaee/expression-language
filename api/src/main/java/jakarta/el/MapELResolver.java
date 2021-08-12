@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997, 2019 Oracle and/or its affiliates and others.
+ * Copyright (c) 1997, 2021 Oracle and/or its affiliates and others.
  * All rights reserved.
  * Copyright 2004 The Apache Software Foundation
  *
@@ -73,7 +73,7 @@ public class MapELResolver extends ELResolver {
     }
 
     /**
-     * If the base object is a map, returns the most general acceptable type for a value in this map.
+     * If the base object is a map, returns the type of the value for the property or {@link Object} if no value was found.
      *
      * <p>
      * If the base is a <code>Map</code>, the <code>propertyResolved</code> property of the <code>ELContext</code> object
@@ -81,16 +81,11 @@ public class MapELResolver extends ELResolver {
      * this method is called, the caller should ignore the return value.
      * </p>
      *
-     * <p>
-     * Assuming the base is a <code>Map</code>, this method will always return <code>Object.class</code>. This is because
-     * <code>Map</code>s accept any object as the value for a given key.
-     * </p>
-     *
      * @param context The context of this evaluation.
      * @param base The map to analyze. Only bases of type <code>Map</code> are handled by this resolver.
      * @param property The key to return the acceptable type for. Ignored by this resolver.
      * @return If the <code>propertyResolved</code> property of <code>ELContext</code> was set to <code>true</code>, then
-     * the most general acceptable type; otherwise undefined.
+     * the type of the value for the property or {@link Object} if no value was found; otherwise undefined.
      * @throws NullPointerException if context is <code>null</code>
      * @throws ELException if an exception was thrown while performing the property or variable resolution. The thrown
      * exception must be included as the cause property of this exception, if available.
@@ -103,7 +98,13 @@ public class MapELResolver extends ELResolver {
 
         if (base != null && base instanceof Map) {
             context.setPropertyResolved(true);
-            return Object.class;
+            Map map = (Map) base;
+            Object value = map.get(property); 
+            if (value != null) {
+                return value.getClass();
+            } else {
+                return Object.class;
+            }
         }
 
         return null;
