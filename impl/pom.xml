@@ -30,7 +30,7 @@
 
     <groupId>org.glassfish</groupId>
     <artifactId>jakarta.el</artifactId>
-    <version>4.0.2</version>
+    <version>4.0.3-SNAPSHOT</version>
 
     <name>Jakarta Expression Language Implementation</name>
     <description>Jakarta Expression Language Implementation</description>
