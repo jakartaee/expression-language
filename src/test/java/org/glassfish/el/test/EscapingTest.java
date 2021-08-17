@@ -16,9 +16,9 @@
 
 package org.glassfish.el.test;
 
-import jakarta.el.ELManager;
-import jakarta.el.ELProcessor;
-import jakarta.el.ValueExpression;
+import javax.el.ELManager;
+import javax.el.ELProcessor;
+import javax.el.ValueExpression;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
