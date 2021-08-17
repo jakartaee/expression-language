@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2018, 2021 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -205,7 +205,7 @@ public class ELParserTokenManager implements ELParserConstants {
                         jjCheckNAddStates(0, 3);
                         break;
                     case 4:
-                        if ((0xf7ffffffffffffffL & l) == 0L) {
+                        if ((0xf7ffffffefffffffL & l) == 0L) {
                             break;
                         }
                         if (kind > 1) {
