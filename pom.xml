@@ -23,12 +23,12 @@
     <parent>
         <groupId>org.eclipse.ee4j</groupId>
         <artifactId>project</artifactId>
-        <version>1.0.5</version>
+        <version>1.0.7</version>
     </parent>
 
     <groupId>org.glassfish</groupId>
     <artifactId>jakarta.el</artifactId>
-    <version>3.0.3</version>
+    <version>3.0.5-SNAPSHOT</version>
     
     <name>Jakarta Expression Language 3.0</name>
     <description>
@@ -39,7 +39,7 @@
 
     <properties>
         <!-- the bundle build number must be the same as the maven number -->
-        <bundle.version>3.0.3</bundle.version>
+        <bundle.version>${project.version}</bundle.version>
         <!-- The most current api version -->
         <spec.version>3.0</spec.version>
         <extensionName>javax.el</extensionName>
