@@ -2943,6 +2943,10 @@ This appendix is non-normative.
 
 === Changes between 5.0 and 4.0
 
+* https://github.com/eclipse-ee4j/el-ri/issues/45[#45]
+  Add support for coercing a `LambdaExpression` instance to a functional
+  interface method invocation
+
 * https://github.com/eclipse-ee4j/el-ri/issues/117[#117]
   Remove the deprecated, mis-spelt method
   `MethodExpression#isParmetersProvided()` from the API
