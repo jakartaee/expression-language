@@ -2947,6 +2947,11 @@ This appendix is non-normative.
   Add support for coercing a `LambdaExpression` instance to a functional
   interface method invocation
 
+* https://github.com/eclipse-ee4j/el-ri/issues/47[#47]
+  The `ELresolver` method `getFeatureDescriptors()` has been deprecated with
+  removal planed for EL 6.0. This is to remove the dependency on the
+  `java.desktop` module from the EL API.
+
 * https://github.com/eclipse-ee4j/el-ri/issues/117[#117]
   Remove the deprecated, mis-spelt method
   `MethodExpression#isParmetersProvided()` from the API

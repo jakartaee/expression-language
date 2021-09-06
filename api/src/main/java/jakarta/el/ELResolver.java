@@ -291,7 +291,10 @@ public abstract class ELResolver {
      * objects, or <code>null</code> if this resolver does not handle the given <code>base</code> object or that the results
      * are too complex to represent with this method
      * @see java.beans.FeatureDescriptor
+     * 
+     * @deprecated This method will be removed without replacement in EL 6.0
      */
+    @Deprecated(forRemoval = true, since = "5.0")
     public abstract Iterator<FeatureDescriptor> getFeatureDescriptors(ELContext context, Object base);
 
     /**

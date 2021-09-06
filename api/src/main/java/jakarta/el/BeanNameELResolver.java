@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2012, 2019 Oracle and/or its affiliates and others.
+ * Copyright (c) 2012, 2021 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -201,7 +201,10 @@ public class BeanNameELResolver extends ELResolver {
      * @param context The context of this evaluation.
      * @param base <code>null</code>.
      * @return <code>null</code>.
+     * 
+     * @deprecated This method will be removed without replacement in EL 6.0
      */
+    @Deprecated(forRemoval = true, since = "5.0")
     @Override
     public Iterator<FeatureDescriptor> getFeatureDescriptors(ELContext context, Object base) {
         return null;

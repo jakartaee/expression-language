@@ -404,7 +404,10 @@ public class CompositeELResolver extends ELResolver {
      * @return An <code>Iterator</code> containing zero or more (possibly infinitely more) <code>FeatureDescriptor</code>
      * objects, or <code>null</code> if this resolver does not handle the given <code>base</code> object or that the results
      * are too complex to represent with this method
+     * 
+     * @deprecated This method will be removed with replacement in EL 6.0
      */
+    @Deprecated(forRemoval = true, since = "5.0")
     @Override
     public Iterator<FeatureDescriptor> getFeatureDescriptors(ELContext context, Object base) {
         return new CompositeIterator(elResolvers, size, context, base);
@@ -485,6 +488,10 @@ public class CompositeELResolver extends ELResolver {
     private ELResolver[] elResolvers;
     private int size;
 
+    /**
+     * @deprecated This method will be removed without replacement in EL 6.0
+     */
+    @Deprecated(forRemoval = true, since = "5.0")
     private static class CompositeIterator implements Iterator<FeatureDescriptor> {
 
         ELResolver[] resolvers;

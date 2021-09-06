@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997, 2019 Oracle and/or its affiliates and others.
+ * Copyright (c) 1997, 2021 Oracle and/or its affiliates and others.
  * All rights reserved.
  * Copyright 2004 The Apache Software Foundation
  *
@@ -196,7 +196,10 @@ public class ResourceBundleELResolver extends ELResolver {
      * by this resolver.
      * @return An <code>Iterator</code> containing zero or more (possibly infinitely more) <code>FeatureDescriptor</code>
      * objects, each representing a key in this bundle, or <code>null</code> if the base object is not a ResourceBundle.
+     * 
+     * @deprecated This method will be removed without replacement in EL 6.0
      */
+    @Deprecated(forRemoval = true, since = "5.0")
     @Override
     public Iterator<FeatureDescriptor> getFeatureDescriptors(ELContext context, Object base) {
         if (base instanceof ResourceBundle) {
