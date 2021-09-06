@@ -1492,6 +1492,19 @@ primitive type `boolean`, return `null`
 * If `A` is a `String` call `Enum.valueOf(T.getClass(), A)` and return
 the result
 
+==== Coerce `A` to functional interface method invocation
+
+ * If `A` is a `LambdaExpression` then:
+ 
+ ** Return the result of invoking the `LambdaExpression` with the parameters
+    (coerced if necessary) that were passed to the Functional Interface method
+    invocation
+ 
+ * Otherwise, apply the rules in <<Coerce `A` to Any Other Type `T`>>
+
+Note: A Type is only considered to be a functional interface it it is annotated
+with `java.lang.FunctionalInterface`.
+
 ==== Coerce `A` to Any Other Type `T`
 
 * If `A` is `null`, return `null`
