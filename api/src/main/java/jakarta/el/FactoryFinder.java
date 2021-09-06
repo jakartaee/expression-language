@@ -174,7 +174,7 @@ class FactoryFinder {
     }
 
     private static String getFactoryClassName(String factoryId) {
-      String factoryClass = null;;
+      String factoryClass = null;
       String javah = System.getProperty("java.home");
       String configFileName = javah + separator + "lib" + separator + "el.properties";
 
