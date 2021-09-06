@@ -19,7 +19,6 @@ package org.glassfish.el.test;
 import jakarta.el.ELManager;
 import jakarta.el.ELProcessor;
 import jakarta.el.ValueExpression;
-import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
