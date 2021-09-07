@@ -2943,6 +2943,11 @@ This appendix is non-normative.
 
 === Changes between 5.0 and 4.0
 
+* https://github.com/eclipse-ee4j/el-ri/issues/43[#43]
+  The `BeanELResolver` is updated to also consider default method
+  implementations when looking for property getters, property setters and
+  methods.
+
 * https://github.com/eclipse-ee4j/el-ri/issues/45[#45]
   Add support for coercing a `LambdaExpression` instance to a functional
   interface method invocation

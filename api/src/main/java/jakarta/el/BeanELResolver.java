@@ -55,6 +55,12 @@ import java.util.concurrent.ConcurrentHashMap;
  * </p>
  *
  * <p>
+ * The JavaBeans specification predates the introduction of default method implementations defined on an interface. In
+ * addition to the JavaBeans specification requirements for looking up property getters, property setters and methods,
+ * this resolver also considers default methods and includes them in the results.
+ * </p>
+ *
+ * <p>
  * This resolver can be constructed in read-only mode, which means that {@link #isReadOnly} will always return
  * <code>true</code> and {@link #setValue} will always throw <code>PropertyNotWritableException</code>.
  * </p>
@@ -179,15 +185,42 @@ public class BeanELResolver extends ELResolver {
             try {
                 BeanInfo info = Introspector.getBeanInfo(baseClass);
                 descriptors = info.getPropertyDescriptors();
+                for (PropertyDescriptor descriptor : descriptors) {
+                    propertyMap.put(descriptor.getName(), new BeanProperty(baseClass, descriptor));
+                }
+                /**
+                 * Populating from any interfaces solves two distinct problems:
+                 * 1. When running under a security manager, classes may be
+                 *    unaccessible but have accessible interfaces.
+                 * 2. It enables default methods to be included.
+                 */
+                populateFromInterfaces(baseClass, baseClass);
             } catch (IntrospectionException ie) {
                 throw new ELException(ie);
             }
 
-            for (PropertyDescriptor descriptor : descriptors) {
-                propertyMap.put(descriptor.getName(), new BeanProperty(baseClass, descriptor));
-            }
         }
 
+        private void populateFromInterfaces(Class<?> baseClass, Class<?> aClass) throws IntrospectionException {
+            Class<?> interfaces[] = aClass.getInterfaces();
+            if (interfaces.length > 0) {
+                for (Class<?> ifs : interfaces) {
+                    BeanInfo info = Introspector.getBeanInfo(ifs);
+                    PropertyDescriptor[] pds = info.getPropertyDescriptors();
+                    for (PropertyDescriptor pd : pds) {
+                        if (!this.propertyMap.containsKey(pd.getName())) {
+                            this.propertyMap.put(pd.getName(), new BeanProperty(
+                                    baseClass, pd));
+                        }
+                    }
+                }
+            }
+            Class<?> superclass = aClass.getSuperclass();
+            if (superclass != null) {
+                populateFromInterfaces(baseClass, superclass);
+            }
+        }
+        
         public BeanProperty getBeanProperty(String property) {
             return propertyMap.get(property);
         }
