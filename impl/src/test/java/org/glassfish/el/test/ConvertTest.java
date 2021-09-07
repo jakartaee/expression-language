@@ -61,10 +61,10 @@ public class ConvertTest {
         int pint;
         Integer integer;
 
-        MyBean() {
+        public MyBean() {
 
         }
-        MyBean(String name) {
+        public MyBean(String name) {
             this.name = name;
         }
         public String getName() {
@@ -111,6 +111,7 @@ public class ConvertTest {
                         return result;
                     } catch (InstantiationException | IllegalAccessException | IllegalArgumentException |
                             InvocationTargetException | NoSuchMethodException | SecurityException e) {
+                        e.printStackTrace();
                         // Can't happen as MyBean has a suitable constructor
                     }
                 }
