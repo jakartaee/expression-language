@@ -2961,6 +2961,11 @@ This appendix is non-normative.
   Remove the deprecated, mis-spelt method
   `MethodExpression#isParmetersProvided()` from the API
 
+* https://github.com/eclipse-ee4j/el-ri/issues/154[#154]
+  Add the `MethodReference` class to provide access to details of the method to
+  which a `MethodExpression` resolves, including any annotations present on the
+  method.
+
 * https://github.com/eclipse-ee4j/el-ri/issues/157[#157]
   Generics are now used where appropriate throughout the API
 
