@@ -1,6 +1,6 @@
 :xrefstyle: full
 :sectnums!:
-== Jakarta Expression Language, Version 4.0
+== Jakarta Expression Language, Version 5.0
 
 Copyright (c) 2013, 2021 Oracle and/or its affiliates and others.
 All rights reserved.
@@ -17,7 +17,7 @@ Comments to: el-dev@eclipse.org
 == Preface
 
 This is the Expression Language specification
-version 4.0, developed by the Jakarta Expression Language Team under the Eclipse
+version 5.0, developed by the Jakarta Expression Language Team under the Eclipse
 Foundation Specification Process.
 
 === Historical Note
@@ -132,8 +132,13 @@ expressions and manipulation of EL environments. It also added some
 powerful features to the language, such as the support of operations for
 collection objects.
 
-EL 4.0 implements the transition from the `javax` namespace to the
+EL 4.0 implemented the transition from the `javax` namespace to the
 `jakarta` namespace.
+
+EL 5.0 made Java 11 the minimum version and implemented a number of
+enhancement requests from the user community. Deprecated code was removed
+and use of FeatureDescriptor was deprecated with a view to removing the
+dependency on the `java.desktop` module.
 
 ==== EL in a nutshell
 
