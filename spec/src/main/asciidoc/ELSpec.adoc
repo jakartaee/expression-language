@@ -2953,7 +2953,7 @@ This appendix is non-normative.
   interface method invocation
 
 * https://github.com/eclipse-ee4j/el-ri/issues/47[#47]
-  The `ELresolver` method `getFeatureDescriptors()` has been deprecated with
+  The `ELResolver` method `getFeatureDescriptors()` has been deprecated with
   removal planed for EL 6.0. This is to remove the dependency on the
   `java.desktop` module from the EL API.
 
