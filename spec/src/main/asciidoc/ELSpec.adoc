@@ -1329,6 +1329,12 @@ the class with the supplied arguments. The same restrictions (the class
 must be public and has already been imported) for static methods apply
 to the constructor calls.
 
+==== Additional Default Imports
+
+When EL is used in conjunction with another specification, for example Jakarta
+Server Pages, that specification may define further packages, in addition to
+`java.lang.*`, that are imported by default into the EL environment.
+
 === Type Conversion
 
 Every expression is evaluated in the context
