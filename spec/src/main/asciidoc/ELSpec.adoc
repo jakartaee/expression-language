@@ -2984,6 +2984,11 @@ This appendix is non-normative.
   Clarify expected behaviour when matching expressions to methods based on
   parameter types
 
+* https://github.com/eclipse-ee4j/el-ri/issues/167[#167]
+  Add a default implementation that returns `null` for the `ELResolver` method
+  `getFeatureDescriptors()` since it has been deprecated so that custom
+  `ELResolver` implementations do not need to implement the method.
+
 === Changes between 4.0 and JSR 341
 
 * The API has moved from the `javax.el` package to the `jakarta.el`

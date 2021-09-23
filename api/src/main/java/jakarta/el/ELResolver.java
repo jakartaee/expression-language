@@ -284,6 +284,10 @@ public abstract class ELResolver {
      * The <code>propertyResolved</code> property of the <code>ELContext</code> is not relevant to this method. The results
      * of all <code>ELResolver</code>s are concatenated in the case of composite resolvers.
      *
+     * <p>
+     * The default implementation in {@link ELResolver} returns {@code null}. Sub-classes may wish to over-ride this
+     * method.
+     * 
      * @param context The context of this evaluation.
      * @param base The base object whose set of valid properties is to be enumerated, or <code>null</code> to enumerate the
      * set of top-level variables that this resolver can evaluate.
@@ -295,7 +299,9 @@ public abstract class ELResolver {
      * @deprecated This method will be removed without replacement in EL 6.0
      */
     @Deprecated(forRemoval = true, since = "5.0")
-    public abstract Iterator<FeatureDescriptor> getFeatureDescriptors(ELContext context, Object base);
+    public Iterator<FeatureDescriptor> getFeatureDescriptors(ELContext context, Object base) {
+        return null;
+    }
 
     /**
      * Returns the most general type that this resolver accepts for the <code>property</code> argument, given a
