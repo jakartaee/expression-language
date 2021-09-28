@@ -138,8 +138,9 @@ public class BeanNameELResolver extends ELResolver {
      * @param context The context of this evaluation.
      * @param base <code>null</code>
      * @param property The name of the bean.
-     * @return If the <code>propertyResolved</code> property of <code>ELContext</code> was set to <code>true</code>, then
-     * the type of the bean with the given name. Otherwise, undefined.
+     * @return If the <code>propertyResolved</code> property of <code>ELContext</code> was set to <code>true</code> and
+     * the associated BeanNameResolver is not read-only then the type of the bean with the given name. If the given
+     * bean name was resolved but the associated BeanNameResolver is read-only then {@code null}. Otherwise, undefined.
      * @throws NullPointerException if context is <code>null</code>.
      * @throws ELException if an exception was thrown while performing the property or variable resolution. The thrown
      * exception must be included as the cause property of this exception, if available.
@@ -153,6 +154,14 @@ public class BeanNameELResolver extends ELResolver {
         if (base == null && property instanceof String) {
             if (beanNameResolver.isNameResolved((String) property)) {
                 context.setPropertyResolved(true);
+                
+                /*
+                 * No resolver level isReadOnly property for this resolver
+                 */
+                if (beanNameResolver.isReadOnly((String) property)) {
+                    return null;
+                }
+                
                 return beanNameResolver.getBean((String) property).getClass();
             }
         }

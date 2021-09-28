@@ -78,8 +78,9 @@ public class ListELResolver extends ELResolver {
      * </p>
      *
      * <p>
-     * Assuming the base is a <code>List</code>, this method will always return <code>Object.class</code>. This is because
-     * <code>List</code>s accept any object as an element.
+     * Assuming the base is a <code>List</code>, this method will return <code>Object.class</code> unless the resolver
+     * is constructed in read-only mode in which case {@code null} will be returned. This is because <code>List</code>s
+     * accept any object as an element.
      * </p>
      *
      * @param context The context of this evaluation.
@@ -87,7 +88,8 @@ public class ListELResolver extends ELResolver {
      * @param property The index of the element in the list to return the acceptable type for. Will be coerced into an
      * integer, but otherwise ignored by this resolver.
      * @return If the <code>propertyResolved</code> property of <code>ELContext</code> was set to <code>true</code>, then
-     * the most general acceptable type; otherwise undefined.
+     * the most general acceptable type which must be {@code null} if the either the property or the resolver is
+     * read-only; otherwise undefined
      * @throws PropertyNotFoundException if the given index is out of bounds for this list.
      * @throws NullPointerException if context is <code>null</code>
      * @throws ELException if an exception was thrown while performing the property or variable resolution. The thrown
@@ -107,6 +109,14 @@ public class ListELResolver extends ELResolver {
                 throw new PropertyNotFoundException();
             }
 
+            /*
+             * Not perfect as a custom list implementation may be read-only but
+             * consistent with isReadOnly().
+             */
+            if (list.getClass() == theUnmodifiableListClass || isReadOnly) {
+                return null;
+            }
+            
             return Object.class;
         }
 

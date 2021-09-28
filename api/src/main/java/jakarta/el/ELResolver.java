@@ -181,12 +181,17 @@ public abstract class ELResolver {
      * superclass of the type of the actual element that is currently in the specified array element.
      * </p>
      *
+     * <p>
+     * If the resolver or the property is read-only, this method must return {@code null}.
+     * </p>
+     * 
      * @param context The context of this evaluation.
      * @param base The base object whose property value is to be analyzed, or <code>null</code> to analyze a top-level
      * variable.
      * @param property The property or variable to return the acceptable type for.
-     * @return If the <code>propertyResolved</code> property of <code>ELContext</code> was set to <code>true</code>, then
-     * the most general acceptable type; otherwise undefined.
+     * @return If the <code>propertyResolved</code> property of <code>ELContext</code> was set to <code>true</code>,
+     * the most general acceptable type which must be {@code null} if the either the property or the resolver is
+     * read-only; otherwise undefined
      * @throws PropertyNotFoundException if the given (base, property) pair is handled by this <code>ELResolver</code> but
      * the specified variable or property does not exist or is not readable.
      * @throws ELException if an exception was thrown while performing the property or variable resolution. The thrown

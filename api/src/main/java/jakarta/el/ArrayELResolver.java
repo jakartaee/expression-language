@@ -73,9 +73,9 @@ public class ArrayELResolver extends ELResolver {
      * </p>
      *
      * <p>
-     * Assuming the base is an <code>array</code>, this method will always return
-     * <code>base.getClass().getComponentType()</code>, which is the most general type of component that can be stored at
-     * any given index in the array.
+     * Assuming the base is an <code>array</code> and that this resolver was not constructed in read-only mode, this
+     * method will return <code>base.getClass().getComponentType()</code>, which is the most general type of component
+     * that can be stored at any given index in the array.
      * </p>
      *
      * @param context The context of this evaluation.
@@ -83,7 +83,8 @@ public class ArrayELResolver extends ELResolver {
      * @param property The index of the element in the array to return the acceptable type for. Will be coerced into an
      * integer, but otherwise ignored by this resolver.
      * @return If the <code>propertyResolved</code> property of <code>ELContext</code> was set to <code>true</code>, then
-     * the most general acceptable type; otherwise undefined.
+     * the most general acceptable type which must be {@code null} if the either the property or the resolver is
+     * read-only; otherwise undefined
      * @throws PropertyNotFoundException if the given index is out of bounds for this array.
      * @throws NullPointerException if context is <code>null</code>
      * @throws ELException if an exception was thrown while performing the property or variable resolution. The thrown
@@ -102,6 +103,15 @@ public class ArrayELResolver extends ELResolver {
             if (index < 0 || index >= Array.getLength(base)) {
                 throw new PropertyNotFoundException();
             }
+
+            /*
+             * The resolver may have been created in read-only mode but the
+             * array and its elements will always be read-write.
+             */
+            if (isReadOnly) {
+                return null;
+            }
+
             return base.getClass().getComponentType();
         }
         return null;

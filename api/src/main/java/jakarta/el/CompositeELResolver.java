@@ -245,7 +245,8 @@ public class CompositeELResolver extends ELResolver {
      * variable.
      * @param property The property or variable to return the acceptable type for.
      * @return If the <code>propertyResolved</code> property of <code>ELContext</code> was set to <code>true</code>, then
-     * the most general acceptable type; otherwise undefined.
+     * the most general acceptable type which must be {@code null} if the either the property or the resolver is
+     * read-only; otherwise undefined
      * @throws NullPointerException if context is <code>null</code>
      * @throws PropertyNotFoundException if the given (base, property) pair is handled by this <code>ELResolver</code> but
      * the specified variable or property does not exist or is not readable.
