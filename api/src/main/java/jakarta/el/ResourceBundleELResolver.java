@@ -117,6 +117,10 @@ public class ResourceBundleELResolver extends ELResolver {
 
         if (base instanceof ResourceBundle) {
             context.setPropertyResolved(true);
+            /*
+             * ResourceBundles are always read-only so fall-through to return
+             * null
+             */
         }
 
         return null;

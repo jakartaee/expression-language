@@ -82,7 +82,8 @@ public class MapELResolver extends ELResolver {
      * </p>
      *
      * <p>
-     * Assuming the base is a <code>Map</code>, this method will always return <code>Object.class</code>. This is because
+     * Assuming the base is a <code>Map</code>, this method will always return <code>Object.class</code> unless the
+     * resolver is constructed in read-only mode in which case {@code null} will be returned. This is because
      * <code>Map</code>s accept any object as the value for a given key.
      * </p>
      *
@@ -90,7 +91,8 @@ public class MapELResolver extends ELResolver {
      * @param base The map to analyze. Only bases of type <code>Map</code> are handled by this resolver.
      * @param property The key to return the acceptable type for. Ignored by this resolver.
      * @return If the <code>propertyResolved</code> property of <code>ELContext</code> was set to <code>true</code>, then
-     * the most general acceptable type; otherwise undefined.
+     * the most general acceptable type which must be {@code null} if the either the property or the resolver is
+     * read-only; otherwise undefined
      * @throws NullPointerException if context is <code>null</code>
      * @throws ELException if an exception was thrown while performing the property or variable resolution. The thrown
      * exception must be included as the cause property of this exception, if available.
@@ -103,6 +105,12 @@ public class MapELResolver extends ELResolver {
 
         if (base != null && base instanceof Map) {
             context.setPropertyResolved(true);
+            
+            Map<?, ?> map = (Map<?, ?>) base;
+            if (isReadOnly || map.getClass() == theUnmodifiableMapClass) {
+                return null;
+            }
+
             return Object.class;
         }
 

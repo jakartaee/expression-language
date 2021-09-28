@@ -188,14 +188,11 @@ public class StaticFieldELResolver extends ELResolver {
      * resolver, before returning. If this property is not <code>true</code> after this method is called, the caller can
      * safely assume no value has been set.
      *
-     * <p>
-     * If the property string is a public static field of class specified in ELClass, return the type of the static field.
-     *
      * @param context The context of this evaluation.
      * @param base An <code>ELClass</code>.
      * @param property The name of the field.
      * @return If the <code>propertyResolved</code> property of <code>ELContext</code> was set to <code>true</code>, then
-     * the type of the type of the field.
+     * <code>null</code>; otherwise undefined.
      * @throws NullPointerException if context is <code>null</code>.
      * @throws PropertyNotFoundException if field is not a public static filed of the class, or if the field is
      * inaccessible.
@@ -211,15 +208,16 @@ public class StaticFieldELResolver extends ELResolver {
             String fieldName = (String) property;
             try {
                 context.setPropertyResolved(true);
-                Field field = klass.getField(fieldName);
-
-                int mod = field.getModifiers();
-                if (isPublic(mod) && isStatic(mod)) {
-                    return field.getType();
-                }
+                
+                klass.getField(fieldName);
+                
+                /*
+                 * This resolver is always read-only so fall-through to return
+                 * null.
+                 */
             } catch (NoSuchFieldException ex) {
+                throw new PropertyNotFoundException(getExceptionMessageString(context, "staticFieldReadError", new Object[] { klass.getName(), fieldName }));
             }
-            throw new PropertyNotFoundException(getExceptionMessageString(context, "staticFieldReadError", new Object[] { klass.getName(), fieldName }));
         }
 
         return null;

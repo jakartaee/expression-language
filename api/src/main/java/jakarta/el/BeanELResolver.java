@@ -253,16 +253,19 @@ public class BeanELResolver extends ELResolver {
      * </p>
      *
      * <p>
-     * The provided property will first be coerced to a <code>String</code>. If there is a <code>BeanInfoProperty</code> for
-     * this property and there were no errors retrieving it, the <code>propertyType</code> of the
-     * <code>propertyDescriptor</code> is returned. Otherwise, a <code>PropertyNotFoundException</code> is thrown.
+     * The provided property will first be coerced to a <code>String</code>. If there is a <code>BeanInfoProperty</code>
+     * for this property, there were no errors retrieving it and neither the property nor the resolver are read-only,
+     * the <code>propertyType</code> of the <code>propertyDescriptor</code> is returned. If the property is resolved but
+     * either the property or the resolver is read-only then {@code null} will be returned. Otherwise, a
+     * <code>PropertyNotFoundException</code> is thrown.
      * </p>
      *
      * @param context The context of this evaluation.
      * @param base The bean to analyze.
      * @param property The name of the property to analyze. Will be coerced to a <code>String</code>.
      * @return If the <code>propertyResolved</code> property of <code>ELContext</code> was set to <code>true</code>, then
-     * the most general acceptable type; otherwise undefined.
+     * the most general acceptable type which must be {@code null} if the either the property or the resolver is
+     * read-only; otherwise undefined
      * @throws NullPointerException if context is <code>null</code>
      * @throws PropertyNotFoundException if <code>base</code> is not <code>null</code> and the specified property does not
      * exist or is not readable.
@@ -281,6 +284,11 @@ public class BeanELResolver extends ELResolver {
 
         BeanProperty beanProperty = getBeanProperty(context, base, property);
         context.setPropertyResolved(true);
+        
+        if (isReadOnly || beanProperty.isReadOnly()) {
+            return null;
+        }
+        
         return beanProperty.getPropertyType();
     }
 
