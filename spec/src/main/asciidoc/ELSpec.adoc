@@ -2954,6 +2954,8 @@ This appendix is non-normative.
 
 === Changes between 5.0 and 4.0
 
+* The EL API requires Java 11 as a minimum.
+
 * https://github.com/eclipse-ee4j/el-ri/issues/43[#43]
   The `BeanELResolver` is updated to also consider default method
   implementations when looking for property getters, property setters and
@@ -2970,7 +2972,7 @@ This appendix is non-normative.
 
 * https://github.com/eclipse-ee4j/el-ri/issues/117[#117]
   Remove the deprecated, mis-spelt method
-  `MethodExpression#isParmetersProvided()` from the API
+  `MethodExpression.isParmetersProvided()` from the API
 
 * https://github.com/eclipse-ee4j/el-ri/issues/154[#154]
   Add the `MethodReference` class to provide access to details of the method to
@@ -2988,6 +2990,15 @@ This appendix is non-normative.
   Add a default implementation that returns `null` for the `ELResolver` method
   `getFeatureDescriptors()` since it has been deprecated so that custom
   `ELResolver` implementations do not need to implement the method.
+
+* https://github.com/eclipse-ee4j/el-ri/issues/168[#168]
+  Explicitly document that `ELResolver.getType()` must return null if either the
+  ELResolver or the resolved property is read-only. This changes the documented
+  behaviour of the `StaticFieldELResolver`.
+
+* Explicitly state that specifications that depend on this specification may
+  define further packages, in additional to `java/lang.*` that are imported by
+  default into the EL environment.
 
 === Changes between 4.0 and JSR 341
 
