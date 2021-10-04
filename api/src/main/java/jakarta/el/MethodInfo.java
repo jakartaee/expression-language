@@ -18,8 +18,13 @@
 
 package jakarta.el;
 
+import java.util.Arrays;
+
 /**
  * Holds information about a method that a {@link MethodExpression} evaluated to.
+ *
+ * Two MethodInfo instances are considered to be equal if they reference methods
+ * with the same name, return types and parameter types.
  *
  * @since Jakarta Server Pages 2.1
  */
@@ -69,4 +74,45 @@ public class MethodInfo {
         return paramTypes;
     }
 
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((name == null) ? 0 : name.hashCode());
+        result = prime * result + Arrays.hashCode(paramTypes);
+        result = prime * result + ((returnType == null) ? 0 : returnType.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        MethodInfo other = (MethodInfo) obj;
+        if (name == null) {
+            if (other.name != null) {
+                return false;
+            }
+        } else if (!name.equals(other.name)) {
+            return false;
+        }
+        if (!Arrays.equals(paramTypes, other.paramTypes)) {
+            return false;
+        }
+        if (returnType == null) {
+            if (other.returnType != null) {
+                return false;
+            }
+        } else if (!returnType.equals(other.returnType)) {
+            return false;
+        }
+        return true;
+    }
 }
