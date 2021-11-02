@@ -3011,6 +3011,8 @@ This appendix is non-normative.
 * https://github.com/eclipse-ee4j/el-ri/issues/172[#172]
   Add support for coercing arrays.
 
+* Add a JPMS module descriptor that defines the module name as `jakarta.el`.
+
 === Changes between 4.0 and JSR 341
 
 * The API has moved from the `javax.el` package to the `jakarta.el`
