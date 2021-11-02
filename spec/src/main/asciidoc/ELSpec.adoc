@@ -1476,8 +1476,6 @@ that of a `Short`
 
 * Otherwise, error
 
-
-
 ==== Coerce `A` to `Boolean` or `boolean`
 
 * If `A` is `null` and the target type is not the
@@ -1502,6 +1500,16 @@ primitive type `boolean`, return `null`
 
 * If `A` is a `String` call `Enum.valueOf(T.getClass(), A)` and return
 the result
+
+==== Coerce `A` to an array of Type `T`
+
+* If `A` is `null`, return `null`
+
+* If `A` is assignable to an array of type `T`, coerce quietly
+
+* If `A` is an array, return a copy of the array where each element has been coerced to type `T` using these rules
+
+Note: If coercion of any element in the array fails, the coercion of the array fails
 
 ==== Coerce `A` to functional interface method invocation
 
@@ -2999,6 +3007,9 @@ This appendix is non-normative.
 * Explicitly state that specifications that depend on this specification may
   define further packages, in additional to `java/lang.*` that are imported by
   default into the EL environment.
+
+* https://github.com/eclipse-ee4j/el-ri/issues/172[#172]
+  Add support for coercing arrays.
 
 === Changes between 4.0 and JSR 341
 
