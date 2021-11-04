@@ -1,3 +1,4 @@
 EFSL.html
 /etc/config/copyright-exclude
-/etc/config/copyright.txt
+/etc/config/copyright-eclipse.txt
+/etc/config/copyright-oracle.txt
