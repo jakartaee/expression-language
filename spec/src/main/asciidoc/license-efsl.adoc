@@ -52,10 +52,10 @@ specification is expressly prohibited.
 
 The notice is:
 
-"Copyright © 2018, 2020 Eclipse Foundation. This software or document
+"Copyright © 2018, 2021 Eclipse Foundation. This software or document
 includes material copied from or derived from
 Jakarta ® Expression Language
-https://jakarta.ee/specifications/expression-language/4.0/[https://jakarta.ee/specifications/expression-language/4.0/]"
+https://jakarta.ee/specifications/expression-language/5.0/[https://jakarta.ee/specifications/expression-language/5.0/]"
 
 ==== Disclaimers
 

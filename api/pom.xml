@@ -78,7 +78,7 @@
 
     <properties>
         <!-- Make sure the two versions are in sync with the maven version -->
-        <spec.version>4.0</spec.version>
+        <spec.version>5.0</spec.version>
         <bundle.version>${project.version}</bundle.version>
         <extensionName>jakarta.el</extensionName>
         <bundle.symbolicName>jakarta.el-api</bundle.symbolicName>

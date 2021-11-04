@@ -165,7 +165,7 @@
                         </manifestFile>
                         <manifestEntries>
                             <Extension-Name>jakarta.el.impl</Extension-Name>
-                            <Specification-Version>4.0</Specification-Version>
+                            <Specification-Version>5.0</Specification-Version>
                             <Specification-Vendor>Eclipse Foundation</Specification-Vendor>
                             <Implementation-Version>${project.version}</Implementation-Version>
                             <Implementation-Vendor>${vendorName}</Implementation-Vendor>
