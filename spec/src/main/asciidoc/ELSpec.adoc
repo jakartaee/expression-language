@@ -1501,6 +1501,8 @@ primitive type `boolean`, return `null`
 * If `A` is a `String` call `Enum.valueOf(T.getClass(), A)` and return
 the result
 
+* Otherwise, error
+
 ==== Coerce `A` to an array of Type `T`
 
 * If `A` is `null`, return `null`
@@ -1508,6 +1510,8 @@ the result
 * If `A` is assignable to an array of type `T`, coerce quietly
 
 * If `A` is an array, return a copy of the array where each element has been coerced to type `T` using these rules
+
+* Otherwise, error
 
 Note: If coercion of any element in the array fails, the coercion of the array fails
 
