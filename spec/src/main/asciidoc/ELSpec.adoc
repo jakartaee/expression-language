@@ -3009,7 +3009,7 @@ This appendix is non-normative.
   behaviour of the `StaticFieldELResolver`.
 
 * Explicitly state that specifications that depend on this specification may
-  define further packages, in additional to `java/lang.*` that are imported by
+  define further packages, in additional to `java.lang.*` that are imported by
   default into the EL environment.
 
 * https://github.com/eclipse-ee4j/el-ri/issues/172[#172]
