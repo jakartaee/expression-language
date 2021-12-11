@@ -106,7 +106,7 @@
             </resource>
         </resources>
         <plugins>
-            <!-- Sets minimal Maven version to 3.6.0 -->
+            <!-- Sets minimal Maven version -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-enforcer-plugin</artifactId>
@@ -121,7 +121,6 @@
                             <rules>
                                 <requireMavenVersion>
                                     <version>3.6.0</version>
-                                    <message>You need Maven 3.6.0 or higher</message>
                                 </requireMavenVersion>
                             </rules>
                         </configuration>

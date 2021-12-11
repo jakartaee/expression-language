@@ -94,7 +94,7 @@
     <build>
         <defaultGoal>package</defaultGoal>
         <plugins>
-            <!-- Sets minimal Maven version to 3.6.0 and Java version to 11 -->
+            <!-- Sets minimal Maven version and Java version-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-enforcer-plugin</artifactId>
@@ -109,11 +109,9 @@
                             <rules>
                                 <requireMavenVersion>
                                     <version>3.6.0</version>
-                                    <message>You need Maven 3.6.0 or higher</message>
                                 </requireMavenVersion>
                                 <requireJavaVersion>
                                     <version>11</version>
-                                    <message>You need Java 11 or higher</message>
                                 </requireJavaVersion>
                             </rules>
                         </configuration>
