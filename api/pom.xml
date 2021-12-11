@@ -103,7 +103,7 @@
             </resource>
         </resources>
         <plugins>
-            <!-- Sets minimal Maven version to 3.5.4 -->
+            <!-- Sets minimal Maven version -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-enforcer-plugin</artifactId>
@@ -117,8 +117,7 @@
                         <configuration>
                             <rules>
                                 <requireMavenVersion>
-                                    <version>3.5.4</version>
-                                    <message>You need Maven 3.5.4 or higher</message>
+                                    <version>3.6.0</version>
                                 </requireMavenVersion>
                             </rules>
                         </configuration>
@@ -239,13 +238,14 @@
                         <configuration>
                             <source>11</source>
                             <additionalJOption>-Xdoclint:none</additionalJOption>
+                            <quiet>true</quiet>
                             <description>Jakarta Expression Language API documentation</description>
                             <doctitle>Jakarta Expression Language API documentation</doctitle>
                             <windowtitle>Jakarta Expression Language API documentation</windowtitle>
                             <header><![CDATA[<br>Jakarta Expression Language API v${project.version}]]></header>
                             <bottom><![CDATA[
 Comments to: <a href="mailto:el-dev@eclipse.org">el-dev@eclipse.org</a>.<br>
-Copyright &#169; 2018, 2020 Eclipse Foundation. All rights reserved.<br>
+Copyright &#169; 2018, 2021 Eclipse Foundation. All rights reserved.<br>
 Use is subject to <a href="{@docRoot}/doc-files/EFSL.html" target="_top">license terms</a>.]]>
                             </bottom>
                             <docfilessubdirs>true</docfilessubdirs>

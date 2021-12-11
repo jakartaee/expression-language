@@ -82,7 +82,7 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.13.1</version>
+            <version>4.13.2</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -106,11 +106,11 @@
             </resource>
         </resources>
         <plugins>
-            <!-- Sets minimal Maven version to 3.5.4 -->
+            <!-- Sets minimal Maven version -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-enforcer-plugin</artifactId>
-                <version>3.0.0-M3</version>
+                <version>3.0.0</version>
                 <executions>
                     <execution>
                         <id>enforce-maven</id>
@@ -120,8 +120,7 @@
                         <configuration>
                             <rules>
                                 <requireMavenVersion>
-                                    <version>3.5.4</version>
-                                    <message>You need Maven 3.5.4 or higher</message>
+                                    <version>3.6.0</version>
                                 </requireMavenVersion>
                             </rules>
                         </configuration>
@@ -135,7 +134,7 @@
             <plugin>
                 <groupId>org.apache.felix</groupId>
                 <artifactId>maven-bundle-plugin</artifactId>
-                <version>5.1.1</version>
+                <version>5.1.2</version>
                 <configuration>
                     <instructions>
                         <Bundle-SymbolicName>org.glassfish.jakarta.el</Bundle-SymbolicName>
@@ -190,7 +189,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <version>3.2.0</version>
+                <version>3.3.1</version>
                 <executions>
                     <execution>
                         <id>attach-javadocs</id>
@@ -200,6 +199,7 @@
                         <configuration>
                             <source>11</source>
                             <additionalJOption>-Xdoclint:none</additionalJOption>
+                            <quiet>true</quiet>
                             <groups>
                                 <group>
                                     <title>Jakarta Expression Language ${project.version} Implementation</title>
@@ -208,7 +208,7 @@
                             </groups>
                             <bottom><![CDATA[
 Comments to: <a href="mailto:el-dev@eclipse.org">el-dev@eclipse.org</a>.<br>
-Copyright &#169; 2018, 2020 Eclipse Foundation. All rights reserved.<br>
+Copyright &#169; 2018, 2021 Eclipse Foundation. All rights reserved.<br>
 Use is subject to <a href="http://www.eclipse.org/legal/epl-2.0" target="_top">license terms</a>.]]>
                             </bottom>
                         </configuration>
