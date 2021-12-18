@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 1997, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1997, 2022 Oracle and/or its affiliates and others.
+ * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -232,10 +233,10 @@ public final class ExpressionBuilder implements NodeVisitor {
             if (m == null) {
                 throw new ELException(MessageFactory.get("error.fnMapper.method", funcNode.getOutputName()));
             }
-            int pcnt = m.getParameterTypes().length;
+            int pcnt = m.getParameterCount();
             int acnt = ((AstMethodArguments) node.jjtGetChild(0)).getParameterCount();
             if (acnt != pcnt) {
-                throw new ELException(MessageFactory.get("error.fnMapper.paramcount", funcNode.getOutputName(), "" + pcnt, "" + acnt));
+                throw new ELException(MessageFactory.get("error.fnMapper.paramcount", funcNode.getOutputName(), pcnt, acnt));
             }
         } else if (node instanceof AstIdentifier && this.varMapper != null) {
             String variable = ((AstIdentifier) node).getImage();
