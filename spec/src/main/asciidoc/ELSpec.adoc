@@ -2,7 +2,7 @@
 :sectnums!:
 == Jakarta Expression Language, Version 5.0
 
-Copyright (c) 2013, 2021 Oracle and/or its affiliates and others.
+Copyright (c) 2013, 2022 Oracle and/or its affiliates and others.
 All rights reserved.
 
 Eclipse is a registered trademark of the Eclipse Foundation. Jakarta
@@ -3016,6 +3016,9 @@ This appendix is non-normative.
   Add support for coercing arrays.
 
 * Add a JPMS module descriptor that defines the module name as `jakarta.el`.
+
+* https://github.com/jakartaee/expression-language/issues/183[#183]
+  Avoid a `NullPointerException` when passing `null` for varargs.
 
 === Changes between 4.0 and JSR 341
 
