@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997, 2021 Oracle and/or its affiliates and others.
+ * Copyright (c) 1997, 2022 Oracle and/or its affiliates and others.
  * All rights reserved.
  * Copyright 2004 The Apache Software Foundation
  *
@@ -665,7 +665,6 @@ class ELUtil {
     /*
      * This method duplicates code in com.sun.el.util.ReflectionUtil. When making changes keep the code in sync.
      */
-    @SuppressWarnings("null")
     static Object[] buildParameters(ELContext context, Class<?>[] parameterTypes, boolean isVarArgs, Object[] params) {
         Object[] parameters = null;
         if (parameterTypes.length > 0) {
