@@ -662,9 +662,6 @@ class ELUtil {
         return null;
     }
 
-    /*
-     * This method duplicates code in com.sun.el.util.ReflectionUtil. When making changes keep the code in sync.
-     */
     static Object[] buildParameters(ELContext context, Class<?>[] parameterTypes, boolean isVarArgs, Object[] params) {
         Object[] parameters = null;
         if (parameterTypes.length > 0) {
