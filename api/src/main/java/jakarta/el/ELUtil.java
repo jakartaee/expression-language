@@ -674,7 +674,8 @@ class ELUtil {
                     parameters[i] = context.convertToType(params[i], parameterTypes[i]);
                 }
                 // Last parameter is the varargs
-                if (parameterTypes.length == paramCount && parameterTypes[varArgIndex] == params[varArgIndex].getClass()) {
+                if (parameterTypes.length == paramCount && params[varArgIndex] != null &&
+                        parameterTypes[varArgIndex] == params[varArgIndex].getClass()) {
                     parameters[varArgIndex] = params[varArgIndex];
                 } else {
                     Class<?> varArgClass = parameterTypes[varArgIndex].getComponentType();
