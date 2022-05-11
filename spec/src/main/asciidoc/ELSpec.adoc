@@ -1,6 +1,6 @@
 :xrefstyle: full
 :sectnums!:
-== Jakarta Expression Language, Version 5.0
+== Jakarta Expression Language, Version 6.0
 
 Copyright (c) 2013, 2022 Oracle and/or its affiliates and others.
 All rights reserved.
@@ -17,7 +17,7 @@ Comments to: el-dev@eclipse.org
 == Preface
 
 This is the Expression Language specification
-version 5.0, developed by the Jakarta Expression Language Team under the Eclipse
+version 6.0, developed by the Jakarta Expression Language Team under the Eclipse
 Foundation Specification Process.
 
 === Historical Note

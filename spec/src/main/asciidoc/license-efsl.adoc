@@ -55,7 +55,7 @@ The notice is:
 "Copyright © 2018, 2022 Eclipse Foundation. This software or document
 includes material copied from or derived from
 Jakarta ® Expression Language
-https://jakarta.ee/specifications/expression-language/5.0/[https://jakarta.ee/specifications/expression-language/5.0/]"
+https://jakarta.ee/specifications/expression-language/6.0/[https://jakarta.ee/specifications/expression-language/6.0/]"
 
 ==== Disclaimers
 

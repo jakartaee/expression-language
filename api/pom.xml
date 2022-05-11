@@ -30,7 +30,7 @@
 
     <groupId>jakarta.el</groupId>
     <artifactId>jakarta.el-api</artifactId>
-    <version>5.0.0-SNAPSHOT</version>
+    <version>6.0.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>Jakarta Expression Language API</name>
@@ -78,7 +78,7 @@
 
     <properties>
         <!-- Make sure the two versions are in sync with the maven version -->
-        <spec.version>5.0</spec.version>
+        <spec.version>6.0</spec.version>
         <bundle.version>${project.version}</bundle.version>
         <extensionName>jakarta.el</extensionName>
         <bundle.symbolicName>jakarta.el-api</bundle.symbolicName>
