@@ -2964,6 +2964,10 @@ empty.
 This appendix lists the changes in the EL specification.
 This appendix is non-normative.
 
+=== Changes between 6.0 and 5.0
+
+* TBD
+
 === Changes between 5.0 and 4.0
 
 * The EL API requires Java 11 as a minimum.
