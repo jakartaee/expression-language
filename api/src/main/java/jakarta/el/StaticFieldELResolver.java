@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2012, 2021 Oracle and/or its affiliates and others.
+ * Copyright (c) 2012, 2022 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -171,7 +171,7 @@ public class StaticFieldELResolver extends ELResolver {
             Constructor<?> constructor = ELUtil.findConstructor(klass, paramTypes, params);
             ret = ELUtil.invokeConstructor(context, constructor, params);
         } else {
-            Method method = ELUtil.findMethod(klass, name, paramTypes, params, true);
+            Method method = ELUtil.findMethod(klass, base, name, paramTypes, params, true);
             ret = ELUtil.invokeMethod(context, method, null, params);
         }
         context.setPropertyResolved(base, methodName);
