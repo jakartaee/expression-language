@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997, 2021 Oracle and/or its affiliates and others.
+ * Copyright (c) 1997, 2022 Oracle and/or its affiliates and others.
  * All rights reserved.
  * Copyright 2004 The Apache Software Foundation
  *
@@ -439,7 +439,7 @@ public abstract class ELContext {
 
         ExpressionFactory exprFactory = (ExpressionFactory) getContext(ExpressionFactory.class);
         if (exprFactory == null) {
-            exprFactory = ELUtil.getExpressionFactory();
+            exprFactory = ELManager.getExpressionFactory();
         }
 
         return exprFactory.coerceToType(obj, targetType);
