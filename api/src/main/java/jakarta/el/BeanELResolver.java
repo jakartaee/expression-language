@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997, 2021 Oracle and/or its affiliates and others.
+ * Copyright (c) 1997, 2022 Oracle and/or its affiliates and others.
  * All rights reserved.
  * Copyright 2004 The Apache Software Foundation
  *
@@ -146,29 +146,35 @@ public class BeanELResolver extends ELResolver {
      */
     final static class BeanProperty {
 
+        final private Class<?> baseClass;
+        final private PropertyDescriptor descriptor;
         private Method readMethod;
         private Method writeMethod;
-        private PropertyDescriptor descriptor;
 
         public BeanProperty(Class<?> baseClass, PropertyDescriptor descriptor) {
+            this.baseClass = baseClass;
             this.descriptor = descriptor;
-            readMethod = ELUtil.getMethod(baseClass, descriptor.getReadMethod());
-            writeMethod = ELUtil.getMethod(baseClass, descriptor.getWriteMethod());
         }
 
         public Class<?> getPropertyType() {
             return descriptor.getPropertyType();
         }
 
-        public boolean isReadOnly() {
-            return getWriteMethod() == null;
+        public boolean isReadOnly(Object base) {
+            return getWriteMethod(base) == null;
         }
 
-        public Method getReadMethod() {
+        public Method getReadMethod(Object base) {
+            if (readMethod == null) {
+                readMethod = ELUtil.getMethod(baseClass, base, descriptor.getReadMethod());
+            }
             return readMethod;
         }
 
-        public Method getWriteMethod() {
+        public Method getWriteMethod(Object base) {
+            if (writeMethod == null) {
+                writeMethod = ELUtil.getMethod(baseClass, base, descriptor.getWriteMethod());
+            }
             return writeMethod;
         }
     }
@@ -285,7 +291,7 @@ public class BeanELResolver extends ELResolver {
         BeanProperty beanProperty = getBeanProperty(context, base, property);
         context.setPropertyResolved(true);
         
-        if (isReadOnly || beanProperty.isReadOnly()) {
+        if (isReadOnly || beanProperty.isReadOnly(base)) {
             return null;
         }
         
@@ -329,7 +335,7 @@ public class BeanELResolver extends ELResolver {
             return null;
         }
 
-        Method method = getBeanProperty(context, base, property).getReadMethod();
+        Method method = getBeanProperty(context, base, property).getReadMethod(base);
         if (method == null) {
             throw new PropertyNotFoundException(
                     getExceptionMessageString(context, "propertyNotReadable", new Object[] { base.getClass().getName(), property.toString() }));
@@ -397,7 +403,7 @@ public class BeanELResolver extends ELResolver {
             throw new PropertyNotWritableException(getExceptionMessageString(context, "resolverNotwritable", new Object[] { base.getClass().getName() }));
         }
 
-        Method method = getBeanProperty(context, base, property).getWriteMethod();
+        Method method = getBeanProperty(context, base, property).getWriteMethod(base);
         if (method == null) {
             throw new PropertyNotWritableException(
                     getExceptionMessageString(context, "propertyNotWritable", new Object[] { base.getClass().getName(), property.toString() }));
@@ -468,7 +474,7 @@ public class BeanELResolver extends ELResolver {
             return null;
         }
 
-        Method method = ELUtil.findMethod(base.getClass(), methodName.toString(), paramTypes, params, false);
+        Method method = ELUtil.findMethod(base.getClass(), base, methodName.toString(), paramTypes, params, false);
 
         for (Object param : params) {
             // If the parameters is a LambdaExpression, set the ELContext
@@ -529,7 +535,7 @@ public class BeanELResolver extends ELResolver {
             return true;
         }
 
-        return getBeanProperty(context, base, property).isReadOnly();
+        return getBeanProperty(context, base, property).isReadOnly(base);
     }
 
     /**

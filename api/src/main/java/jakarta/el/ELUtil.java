@@ -18,6 +18,7 @@
 
 package jakarta.el;
 
+import java.lang.reflect.AccessibleObject;
 import java.lang.reflect.Array;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
@@ -198,8 +199,8 @@ class ELUtil {
         }
     }
 
-    static Method findMethod(Class<?> klass, String methodName, Class<?>[] paramTypes, Object[] params, boolean staticOnly) {
-        Method method = findMethod(klass, methodName, paramTypes, params);
+    static Method findMethod(Class<?> klass, Object base, String methodName, Class<?>[] paramTypes, Object[] params, boolean staticOnly) {
+        Method method = findMethod(klass, base, methodName, paramTypes, params);
         if (staticOnly && !Modifier.isStatic(method.getModifiers())) {
             throw new MethodNotFoundException("Method " + methodName + "for class " + klass + " not found or accessible");
         }
@@ -221,7 +222,7 @@ class ELUtil {
         }
     }
 
-    static Method findMethod(Class<?> clazz, String methodName, Class<?>[] paramTypes, Object[] paramValues) {
+    static Method findMethod(Class<?> clazz, Object base, String methodName, Class<?>[] paramTypes, Object[] paramValues) {
         if (clazz == null || methodName == null) {
             throw new MethodNotFoundException("Method not found: " + clazz + "." + methodName + "(" + paramString(paramTypes) + ")");
         }
@@ -240,7 +241,7 @@ class ELUtil {
             return null;
         }
 
-        return getMethod(clazz, (Method) result.unWrap());
+        return getMethod(clazz, base, (Method) result.unWrap());
     }
 
     @SuppressWarnings("null")
@@ -557,8 +558,12 @@ class ELUtil {
      * for a non-public class that implements a public interface, the read/write methods will be for the class, and
      * therefore inaccessible. To correct this, a version of the same method must be found in a superclass or interface.
      */
-    static Method getMethod(Class<?> type, Method m) {
-        if (m == null || Modifier.isPublic(type.getModifiers())) {
+    static Method getMethod(Class<?> type, Object base, Method m) {
+        // If base is null, method MUST be static
+        // If base is non-null, method may be static or non-static
+        if (m == null ||
+                (Modifier.isPublic(type.getModifiers()) &&
+                        (canAccess(base, m) || base != null && canAccess(null, m)))) {
             return m;
         }
         Class<?>[] inf = type.getInterfaces();
@@ -566,7 +571,7 @@ class ELUtil {
         for (int i = 0; i < inf.length; i++) {
             try {
                 mp = inf[i].getMethod(m.getName(), m.getParameterTypes());
-                mp = getMethod(mp.getDeclaringClass(), mp);
+                mp = getMethod(mp.getDeclaringClass(), base, mp);
                 if (mp != null) {
                     return mp;
                 }
@@ -578,7 +583,7 @@ class ELUtil {
         if (sup != null) {
             try {
                 mp = sup.getMethod(m.getName(), m.getParameterTypes());
-                mp = getMethod(mp.getDeclaringClass(), mp);
+                mp = getMethod(mp.getDeclaringClass(), base, mp);
                 if (mp != null) {
                     return mp;
                 }
@@ -609,6 +614,16 @@ class ELUtil {
         return null;
     }
 
+    
+    static boolean canAccess(Object base, AccessibleObject accessibleObject) {
+        try {
+            return accessibleObject.canAccess(base);
+        } catch (IllegalArgumentException iae) {
+            return false;
+        }
+    }
+    
+    
     @SuppressWarnings("null") // params cannot be null when used
     static Object[] buildParameters(ELContext context, Class<?>[] parameterTypes, boolean isVarArgs, Object[] params) {
         Object[] parameters = null;
