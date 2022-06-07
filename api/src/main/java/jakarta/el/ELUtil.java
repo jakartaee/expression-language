@@ -217,9 +217,6 @@ class ELUtil {
         return method;
     }
 
-    /*
-     * This method duplicates code in com.sun.el.util.ReflectionUtil. When making changes keep the code in sync.
-     */
     static Object invokeMethod(ELContext context, Method method, Object base, Object[] params) {
 
         Object[] parameters = buildParameters(context, method.getParameterTypes(), method.isVarArgs(), params);
@@ -234,9 +231,6 @@ class ELUtil {
         }
     }
 
-    /*
-     * This method duplicates code in com.sun.el.util.ReflectionUtil. When making changes keep the code in sync.
-     */
     static Method findMethod(Class<?> clazz, String methodName, Class<?>[] paramTypes, Object[] paramValues) {
         if (clazz == null || methodName == null) {
             throw new MethodNotFoundException("Method not found: " + clazz + "." + methodName + "(" + paramString(paramTypes) + ")");
@@ -259,9 +253,6 @@ class ELUtil {
         return getMethod(clazz, (Method) result.unWrap());
     }
 
-    /*
-     * This method duplicates code in com.sun.el.util.ReflectionUtil. When making changes keep the code in sync.
-     */
     @SuppressWarnings("null")
     private static Wrapper findWrapper(Class<?> clazz, List<Wrapper> wrappers, String name, Class<?>[] paramTypes, Object[] paramValues) {
         List<Wrapper> assignableCandidates = new ArrayList<>();
@@ -359,12 +350,8 @@ class ELUtil {
         } else {
             throw new MethodNotFoundException("Method not found: " + clazz + "." + name + "(" + paramString(paramTypes) + ")");
         }
-
     }
 
-    /*
-     * This method duplicates code in com.sun.el.util.ReflectionUtil. When making changes keep the code in sync.
-     */
     private static Wrapper findMostSpecificWrapper(List<Wrapper> candidates, Class<?>[] matchingTypes, boolean elSpecific, String errorMsg) {
         List<Wrapper> ambiguouses = new ArrayList<>();
         for (Wrapper candidate : candidates) {
@@ -392,9 +379,6 @@ class ELUtil {
         return ambiguouses.get(0);
     }
 
-    /*
-     * This method duplicates code in com.sun.el.util.ReflectionUtil. When making changes keep the code in sync.
-     */
     private static int isMoreSpecific(Wrapper wrapper1, Wrapper wrapper2, Class<?>[] matchingTypes, boolean elSpecific) {
         Class<?>[] paramTypes1 = wrapper1.getParameterTypes();
         Class<?>[] paramTypes2 = wrapper2.getParameterTypes();
@@ -443,9 +427,6 @@ class ELUtil {
         return result;
     }
 
-    /*
-     * This method duplicates code in com.sun.el.util.ReflectionUtil. When making changes keep the code in sync.
-     */
     private static int isMoreSpecific(Class<?> type1, Class<?> type2, Class<?> matchingType, boolean elSpecific) {
         type1 = getBoxingTypeIfPrimitive(type1);
         type2 = getBoxingTypeIfPrimitive(type2);
@@ -480,9 +461,6 @@ class ELUtil {
         }
     }
 
-    /*
-     * This method duplicates code in com.sun.el.util.ReflectionUtil. When making changes keep the code in sync.
-     */
     private static Class<?> getBoxingTypeIfPrimitive(Class<?> clazz) {
         if (clazz.isPrimitive()) {
             if (clazz == Boolean.TYPE) {
@@ -513,9 +491,6 @@ class ELUtil {
         }
     }
 
-    /*
-     * This method duplicates code in com.sun.el.util.ReflectionUtil. When making changes keep the code in sync.
-     */
     private static Class<?>[] getComparingParamTypesForVarArgsMethod(Class<?>[] paramTypes, int length) {
         Class<?>[] result = new Class<?>[length];
         System.arraycopy(paramTypes, 0, result, 0, paramTypes.length - 1);
@@ -527,9 +502,6 @@ class ELUtil {
         return result;
     }
 
-    /*
-     * This method duplicates code in com.sun.el.util.ReflectionUtil. When making changes keep the code in sync.
-     */
     private static final String paramString(Class<?>[] types) {
         if (types != null) {
             StringBuilder sb = new StringBuilder();
@@ -548,9 +520,6 @@ class ELUtil {
         return null;
     }
 
-    /*
-     * This method duplicates code in com.sun.el.util.ReflectionUtil. When making changes keep the code in sync.
-     */
     static boolean isAssignableFrom(Class<?> src, Class<?> target) {
         // src will always be an object
         // Short-cut. null is always assignable to an object and in Jakarta Expression Language null
@@ -564,9 +533,6 @@ class ELUtil {
         return target.isAssignableFrom(src);
     }
 
-    /*
-     * This method duplicates code in com.sun.el.util.ReflectionUtil. When making changes keep the code in sync.
-     */
     private static boolean isCoercibleFrom(Object src, Class<?> target) {
         // TODO: This isn't pretty but it works. Significant refactoring would
         // be required to avoid the exception.
@@ -579,9 +545,6 @@ class ELUtil {
         return true;
     }
 
-    /*
-     * This method duplicates code in com.sun.el.util.ReflectionUtil. When making changes keep the code in sync.
-     */
     private static Class<?>[] getTypesFromValues(Object[] values) {
         if (values == null) {
             return null;
@@ -600,12 +563,9 @@ class ELUtil {
     }
 
     /*
-     * This method duplicates code in com.sun.el.util.ReflectionUtil. When making changes keep the code in sync.
-     *
      * Get a public method form a public class or interface of a given method. Note that if a PropertyDescriptor is obtained
      * for a non-public class that implements a public interface, the read/write methods will be for the class, and
      * therefore inaccessible. To correct this, a version of the same method must be found in a superclass or interface.
-     *
      */
     static Method getMethod(Class<?> type, Method m) {
         if (m == null || Modifier.isPublic(type.getModifiers())) {
@@ -639,9 +599,6 @@ class ELUtil {
         return null;
     }
 
-    /*
-     * This method duplicates code in com.sun.el.util.ReflectionUtil. When making changes keep the code in sync.
-     */
     static Constructor<?> getConstructor(Class<?> type, Constructor<?> c) {
         if (c == null || Modifier.isPublic(type.getModifiers())) {
             return c;
@@ -694,9 +651,6 @@ class ELUtil {
         return parameters;
     }
 
-    /*
-     * This method duplicates code in com.sun.el.util.ReflectionUtil. When making changes keep the code in sync.
-     */
     private abstract static class Wrapper {
 
         public static List<Wrapper> wrap(Method[] methods, String name) {
@@ -726,9 +680,6 @@ class ELUtil {
         public abstract boolean isBridge();
     }
 
-    /*
-     * This method duplicates code in com.sun.el.util.ReflectionUtil. When making changes keep the code in sync.
-     */
     private static class MethodWrapper extends Wrapper {
         private final Method m;
 
@@ -757,9 +708,6 @@ class ELUtil {
         }
     }
 
-    /*
-     * This method duplicates code in com.sun.el.util.ReflectionUtil. When making changes keep the code in sync.
-     */
     private static class ConstructorWrapper extends Wrapper {
         private final Constructor<?> c;
 
@@ -787,5 +735,4 @@ class ELUtil {
             return false;
         }
     }
-
 }
