@@ -53,11 +53,7 @@ class ELUtil {
     private ELUtil() {
     }
 
-    /*
-     * For testing Backward Compatibility option static java.util.Properties properties = new java.util.Properties(); static
-     * { properties.setProperty("jakarta.el.bc2.2", "true"); }
-     */
-    public static ExpressionFactory exprFactory = ExpressionFactory.newInstance(/* properties */);
+    public static ExpressionFactory exprFactory = ExpressionFactory.newInstance();
 
     /**
      * <p>
