@@ -53,8 +53,6 @@ class ELUtil {
     private ELUtil() {
     }
 
-    public static ExpressionFactory exprFactory = ExpressionFactory.newInstance();
-
     /**
      * <p>
      * The <code>ThreadLocal</code> variable used to record the <code>jakarta.faces.context.FacesContext</code> instance for
@@ -159,10 +157,6 @@ class ELUtil {
         }
 
         return result;
-    }
-
-    static ExpressionFactory getExpressionFactory() {
-        return exprFactory;
     }
 
     static Constructor<?> findConstructor(Class<?> klass, Class<?>[] paramTypes, Object[] params) {
@@ -533,7 +527,7 @@ class ELUtil {
         // TODO: This isn't pretty but it works. Significant refactoring would
         // be required to avoid the exception.
         try {
-            getExpressionFactory().coerceToType(src, target);
+            ELManager.getExpressionFactory().coerceToType(src, target);
         } catch (Exception e) {
             return false;
         }
