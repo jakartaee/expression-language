@@ -35,3 +35,4 @@ nb-configuration.xml
 # mac
 .DS_Store
 
+/target-test/

@@ -76,6 +76,15 @@
         <url>https://github.com/eclipse-ee4j/el-ri/issues</url>
     </issueManagement>
 
+    <dependencies>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>5.8.1</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
     <properties>
         <!-- Make sure the two versions are in sync with the maven version -->
         <spec.version>5.0</spec.version>
@@ -134,6 +143,13 @@
                     <release>11</release>
                     <compilerArgument>-Xlint:unchecked</compilerArgument>
                 </configuration>
+            </plugin>
+
+            <!-- Execute unit tests -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.0.0-M5</version>
             </plugin>
 
             <!-- Checks copyright / license headers -->
