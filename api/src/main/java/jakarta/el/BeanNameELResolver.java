@@ -17,9 +17,6 @@
 
 package jakarta.el;
 
-import java.beans.FeatureDescriptor;
-import java.util.Iterator;
-
 /**
  * <p>
  * An <code>ELResolver</code> for resolving user or container managed beans.
@@ -202,21 +199,6 @@ public class BeanNameELResolver extends ELResolver {
         }
 
         return false;
-    }
-
-    /**
-     * Always returns <code>null</code>, since there is no reason to iterate through a list of one element: bean name.
-     *
-     * @param context The context of this evaluation.
-     * @param base <code>null</code>.
-     * @return <code>null</code>.
-     * 
-     * @deprecated This method will be removed without replacement in EL 6.0
-     */
-    @Deprecated(forRemoval = true, since = "5.0")
-    @Override
-    public Iterator<FeatureDescriptor> getFeatureDescriptors(ELContext context, Object base) {
-        return null;
     }
 
     /**

@@ -18,9 +18,6 @@
 
 package jakarta.el;
 
-import java.beans.FeatureDescriptor;
-import java.util.Iterator;
-
 /**
  * Maintains an ordered composite list of child <code>ELResolver</code>s.
  *
@@ -384,37 +381,6 @@ public class CompositeELResolver extends ELResolver {
     }
 
     /**
-     * Returns information about the set of variables or properties that can be resolved for the given <code>base</code>
-     * object. One use for this method is to assist tools in auto-completion. The results are collected from all component
-     * resolvers.
-     *
-     * <p>
-     * The <code>propertyResolved</code> property of the <code>ELContext</code> is not relevant to this method. The results
-     * of all <code>ELResolver</code>s are concatenated.
-     * </p>
-     *
-     * <p>
-     * The <code>Iterator</code> returned is an iterator over the collection of <code>FeatureDescriptor</code> objects
-     * returned by the iterators returned by each component resolver's <code>getFeatureDescriptors</code> method. If
-     * <code>null</code> is returned by a resolver, it is skipped.
-     * </p>
-     *
-     * @param context The context of this evaluation.
-     * @param base The base object whose set of valid properties is to be enumerated, or <code>null</code> to enumerate the
-     * set of top-level variables that this resolver can evaluate.
-     * @return An <code>Iterator</code> containing zero or more (possibly infinitely more) <code>FeatureDescriptor</code>
-     * objects, or <code>null</code> if this resolver does not handle the given <code>base</code> object or that the results
-     * are too complex to represent with this method
-     * 
-     * @deprecated This method will be removed with replacement in EL 6.0
-     */
-    @Deprecated(forRemoval = true, since = "5.0")
-    @Override
-    public Iterator<FeatureDescriptor> getFeatureDescriptors(ELContext context, Object base) {
-        return new CompositeIterator(elResolvers, size, context, base);
-    }
-
-    /**
      * Returns the most general type that this resolver accepts for the <code>property</code> argument, given a
      * <code>base</code> object. One use for this method is to assist tools in auto-completion. The result is obtained by
      * querying all component resolvers.
@@ -488,60 +454,4 @@ public class CompositeELResolver extends ELResolver {
 
     private ELResolver[] elResolvers;
     private int size;
-
-    /**
-     * @deprecated This method will be removed without replacement in EL 6.0
-     */
-    @Deprecated(forRemoval = true, since = "5.0")
-    private static class CompositeIterator implements Iterator<FeatureDescriptor> {
-
-        ELResolver[] resolvers;
-        int size;
-        int index = 0;
-        Iterator<FeatureDescriptor> propertyIter = null;
-        ELContext context;
-        Object base;
-
-        CompositeIterator(ELResolver[] resolvers, int size, ELContext context, Object base) {
-            this.resolvers = resolvers;
-            this.size = size;
-            this.context = context;
-            this.base = base;
-        }
-
-        @Override
-        public boolean hasNext() {
-            if (propertyIter == null || !propertyIter.hasNext()) {
-                while (index < size) {
-                    ELResolver elResolver = resolvers[index++];
-                    propertyIter = elResolver.getFeatureDescriptors(context, base);
-                    if (propertyIter != null) {
-                        return propertyIter.hasNext();
-                    }
-                }
-                return false;
-            }
-            return propertyIter.hasNext();
-        }
-
-        @Override
-        public FeatureDescriptor next() {
-            if (propertyIter == null || !propertyIter.hasNext()) {
-                while (index < size) {
-                    ELResolver elResolver = resolvers[index++];
-                    propertyIter = elResolver.getFeatureDescriptors(context, base);
-                    if (propertyIter != null) {
-                        return propertyIter.next();
-                    }
-                }
-                return null;
-            }
-            return propertyIter.next();
-        }
-
-        @Override
-        public void remove() {
-            throw new UnsupportedOperationException();
-        }
-    }
 }

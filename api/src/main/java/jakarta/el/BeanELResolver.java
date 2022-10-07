@@ -18,11 +18,9 @@
 
 package jakarta.el;
 
-import static java.lang.Boolean.TRUE;
 import static jakarta.el.ELUtil.getExceptionMessageString;
 
 import java.beans.BeanInfo;
-import java.beans.FeatureDescriptor;
 import java.beans.IntrospectionException;
 import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
@@ -30,9 +28,7 @@ import java.lang.ref.ReferenceQueue;
 import java.lang.ref.SoftReference;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -536,57 +532,6 @@ public class BeanELResolver extends ELResolver {
         }
 
         return getBeanProperty(context, base, property).isReadOnly(base);
-    }
-
-    /**
-     * If the base object is not <code>null</code>, returns an <code>Iterator</code> containing the set of JavaBeans
-     * properties available on the given object. Otherwise, returns <code>null</code>.
-     *
-     * <p>
-     * The <code>Iterator</code> returned must contain zero or more instances of {@link java.beans.FeatureDescriptor}. Each
-     * info object contains information about a property in the bean, as obtained by calling the
-     * <code>BeanInfo.getPropertyDescriptors</code> method. The <code>FeatureDescriptor</code> is initialized using the same
-     * fields as are present in the <code>PropertyDescriptor</code>, with the additional required named attributes
-     * "<code>type</code>" and "<code>resolvableAtDesignTime</code>" set as follows:
-     * <ul>
-     * <li>{@link ELResolver#TYPE} - The runtime type of the property, from
-     * <code>PropertyDescriptor.getPropertyType()</code>.</li>
-     * <li>{@link ELResolver#RESOLVABLE_AT_DESIGN_TIME} - <code>true</code>.</li>
-     * </ul>
-     *
-     *
-     * @param context The context of this evaluation.
-     * @param base The bean to analyze.
-     * @return An <code>Iterator</code> containing zero or more <code>FeatureDescriptor</code> objects, each representing a
-     * property on this bean, or <code>null</code> if the <code>base</code> object is <code>null</code>.
-     * 
-     * @deprecated This method will be removed without replacement in EL 6.0
-     */
-    @Deprecated(forRemoval = true, since = "5.0")
-    @Override
-    public Iterator<FeatureDescriptor> getFeatureDescriptors(ELContext context, Object base) {
-        if (base == null) {
-            return null;
-        }
-
-        BeanInfo info = null;
-        try {
-            info = Introspector.getBeanInfo(base.getClass());
-        } catch (Exception ex) {
-        }
-
-        if (info == null) {
-            return null;
-        }
-
-        ArrayList<FeatureDescriptor> featureDescriptors = new ArrayList<>(info.getPropertyDescriptors().length);
-        for (PropertyDescriptor propertyDescriptor : info.getPropertyDescriptors()) {
-            propertyDescriptor.setValue("type", propertyDescriptor.getPropertyType());
-            propertyDescriptor.setValue("resolvableAtDesignTime", TRUE);
-            featureDescriptors.add(propertyDescriptor);
-        }
-
-        return featureDescriptors.iterator();
     }
 
     /**

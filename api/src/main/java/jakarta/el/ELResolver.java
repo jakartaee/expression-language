@@ -18,9 +18,6 @@
 
 package jakarta.el;
 
-import java.beans.FeatureDescriptor;
-import java.util.Iterator;
-
 /**
  * Enables customization of variable, property, method call, and type conversion resolution behavior for Jakarta
  * Expression Language expression evaluation.
@@ -90,20 +87,6 @@ import java.util.Iterator;
  * @since Jakarta Server Pages 2.1
  */
 public abstract class ELResolver {
-
-    // --------------------------------------------------------- Constants
-
-    /**
-     * The attribute name of the named attribute in the <code>FeatureDescriptor</code> that specifies the runtime type of
-     * the variable or property.
-     */
-    public static final String TYPE = "type";
-
-    /**
-     * The attribute name of the named attribute in the <code>FeatureDescriptor</code> that specifies whether the variable
-     * or property can be resolved at runtime.
-     */
-    public static final String RESOLVABLE_AT_DESIGN_TIME = "resolvableAtDesignTime";
 
     /**
      * Attempts to resolve the given <code>property</code> object on the given <code>base</code> object.
@@ -245,68 +228,6 @@ public abstract class ELResolver {
      * exception must be included as the cause property of this exception, if available.
      */
     public abstract boolean isReadOnly(ELContext context, Object base, Object property);
-
-    /**
-     * Returns information about the set of variables or properties that can be resolved for the given <code>base</code>
-     * object. One use for this method is to assist tools in auto-completion.
-     *
-     * <p>
-     * If the <code>base</code> parameter is <code>null</code>, the resolver must enumerate the list of top-level variables
-     * it can resolve.
-     * </p>
-     *
-     * <p>
-     * The <code>Iterator</code> returned must contain zero or more instances of {@link java.beans.FeatureDescriptor}, in no
-     * guaranteed order. In the case of primitive types such as <code>int</code>, the value <code>null</code> must be
-     * returned. This is to prevent the useless iteration through all possible primitive values. A return value of
-     * <code>null</code> indicates that this resolver does not handle the given <code>base</code> object or that the results
-     * are too complex to represent with this method and the {@link #getCommonPropertyType} method should be used instead.
-     * </p>
-     *
-     * <p>
-     * Each <code>FeatureDescriptor</code> will contain information about a single variable or property. In addition to the
-     * standard properties, the <code>FeatureDescriptor</code> must have two named attributes (as set by the
-     * <code>setValue</code> method):
-     * <ul>
-     * <li>{@link #TYPE} - The value of this named attribute must be an instance of <code>java.lang.Class</code> and specify
-     * the runtime type of the variable or property.</li>
-     * <li>{@link #RESOLVABLE_AT_DESIGN_TIME} - The value of this named attribute must be an instance of
-     * <code>java.lang.Boolean</code> and indicates whether it is safe to attempt to resolve this property at design-time.
-     * For instance, it may be unsafe to attempt a resolution at design time if the <code>ELResolver</code> needs access to
-     * a resource that is only available at runtime and no acceptable simulated value can be provided.</li>
-     * </ul>
-     *
-     * <p>
-     * The caller should be aware that the <code>Iterator</code> returned might iterate through a very large or even
-     * infinitely large set of properties. Care should be taken by the caller to not get stuck in an infinite loop.
-     *
-     * <p>
-     * This is a "best-effort" list. Not all <code>ELResolver</code>s will return completely accurate results, but all must
-     * be callable at both design-time and runtime (i.e. whether or not <code>Beans.isDesignTime()</code> returns
-     * <code>true</code>), without causing errors.
-     *
-     * <p>
-     * The <code>propertyResolved</code> property of the <code>ELContext</code> is not relevant to this method. The results
-     * of all <code>ELResolver</code>s are concatenated in the case of composite resolvers.
-     *
-     * <p>
-     * The default implementation in {@link ELResolver} returns {@code null}. Sub-classes may wish to over-ride this
-     * method.
-     * 
-     * @param context The context of this evaluation.
-     * @param base The base object whose set of valid properties is to be enumerated, or <code>null</code> to enumerate the
-     * set of top-level variables that this resolver can evaluate.
-     * @return An <code>Iterator</code> containing zero or more (possibly infinitely more) <code>FeatureDescriptor</code>
-     * objects, or <code>null</code> if this resolver does not handle the given <code>base</code> object or that the results
-     * are too complex to represent with this method
-     * @see java.beans.FeatureDescriptor
-     * 
-     * @deprecated This method will be removed without replacement in EL 6.0
-     */
-    @Deprecated(forRemoval = true, since = "5.0")
-    public Iterator<FeatureDescriptor> getFeatureDescriptors(ELContext context, Object base) {
-        return null;
-    }
 
     /**
      * Returns the most general type that this resolver accepts for the <code>property</code> argument, given a

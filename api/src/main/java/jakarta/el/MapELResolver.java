@@ -18,14 +18,8 @@
 
 package jakarta.el;
 
-import static java.lang.Boolean.TRUE;
-
-import java.beans.FeatureDescriptor;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -261,72 +255,6 @@ public class MapELResolver extends ELResolver {
         }
 
         return false;
-    }
-
-    /**
-     * If the base object is a map, returns an <code>Iterator</code> containing the set of keys available in the
-     * <code>Map</code>. Otherwise, returns <code>null</code>.
-     *
-     * <p>
-     * The <code>Iterator</code> returned must contain zero or more instances of {@link java.beans.FeatureDescriptor}. Each
-     * info object contains information about a key in the Map, and is initialized as follows:
-     * <ul>
-     * <li>displayName - The return value of calling the <code>toString</code> method on this key, or <code>"null"</code> if
-     * the key is <code>null</code>.</li>
-     * <li>name - Same as displayName property.</li>
-     * <li>shortDescription - Empty string</li>
-     * <li>expert - <code>false</code></li>
-     * <li>hidden - <code>false</code></li>
-     * <li>preferred - <code>true</code></li>
-     * </ul>
-     *
-     * In addition, the following named attributes must be set in the returned <code>FeatureDescriptor</code>s:
-     * <ul>
-     * <li>{@link ELResolver#TYPE} - The return value of calling the <code>getClass()</code> method on this key, or
-     * <code>null</code> if the key is <code>null</code>.</li>
-     * <li>{@link ELResolver#RESOLVABLE_AT_DESIGN_TIME} - <code>true</code></li>
-     * </ul>
-     *
-     *
-     * @param context The context of this evaluation.
-     * @param base The map whose keys are to be iterated over. Only bases of type <code>Map</code> are handled by this
-     * resolver.
-     * @return An <code>Iterator</code> containing zero or more (possibly infinitely more) <code>FeatureDescriptor</code>
-     * objects, each representing a key in this map, or <code>null</code> if the base object is not a map.
-     * 
-     * @deprecated This method will be removed without replacement in EL 6.0
-     */
-    @Deprecated(forRemoval = true, since = "5.0")
-    @Override
-    public Iterator<FeatureDescriptor> getFeatureDescriptors(ELContext context, Object base) {
-        if (base != null && base instanceof Map) {
-            Map<?, ?> map = (Map<?, ?>) base;
-            Iterator<?> iter = map.keySet().iterator();
-            List<FeatureDescriptor> list = new ArrayList<>();
-
-            while (iter.hasNext()) {
-                Object key = iter.next();
-                FeatureDescriptor descriptor = new FeatureDescriptor();
-                String name = key == null ? null : key.toString();
-                descriptor.setName(name);
-                descriptor.setDisplayName(name);
-                descriptor.setShortDescription("");
-                descriptor.setExpert(false);
-                descriptor.setHidden(false);
-                descriptor.setPreferred(true);
-
-                if (key != null) {
-                    descriptor.setValue("type", key.getClass());
-                }
-
-                descriptor.setValue("resolvableAtDesignTime", TRUE);
-                list.add(descriptor);
-            }
-
-            return list.iterator();
-        }
-
-        return null;
     }
 
     /**

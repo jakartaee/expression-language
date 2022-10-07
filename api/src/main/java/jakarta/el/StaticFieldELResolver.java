@@ -21,11 +21,9 @@ import static java.lang.reflect.Modifier.isPublic;
 import static java.lang.reflect.Modifier.isStatic;
 import static jakarta.el.ELUtil.getExceptionMessageString;
 
-import java.beans.FeatureDescriptor;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-import java.util.Iterator;
 
 /**
  * An {@link ELResolver} for resolving static fields, enum constants and static methods. Also handles constructor calls
@@ -257,22 +255,6 @@ public class StaticFieldELResolver extends ELResolver {
         }
 
         return true;
-    }
-
-    /**
-     * Returns the properties that can be resolved. Always returns <code>null</code>, since there is no reason to iterate
-     * through a list of one element: field name.
-     *
-     * @param context The context of this evaluation.
-     * @param base An <code>ELClass</code>.
-     * @return <code>null</code>.
-     * 
-     * @deprecated This method will be removed without replacement in EL 6.0
-     */
-    @Deprecated(forRemoval = true, since = "5.0")
-    @Override
-    public Iterator<FeatureDescriptor> getFeatureDescriptors(ELContext context, Object base) {
-        return null;
     }
 
     /**

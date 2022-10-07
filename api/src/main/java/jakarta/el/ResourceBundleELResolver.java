@@ -18,13 +18,6 @@
 
 package jakarta.el;
 
-import static java.lang.Boolean.TRUE;
-
-import java.beans.FeatureDescriptor;
-import java.util.ArrayList;
-import java.util.Enumeration;
-import java.util.Iterator;
-import java.util.List;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 
@@ -170,65 +163,6 @@ public class ResourceBundleELResolver extends ELResolver {
         }
 
         return false;
-    }
-
-    /**
-     * If the base object is a ResourceBundle, returns an <code>Iterator</code> containing the set of keys available in the
-     * <code>ResourceBundle</code>. Otherwise, returns <code>null</code>.
-     *
-     * <p>
-     * The <code>Iterator</code> returned must contain zero or more instances of {@link java.beans.FeatureDescriptor}. Each
-     * info object contains information about a key in the ResourceBundle, and is initialized as follows:
-     * <ul>
-     * <li>displayName - The <code>String</code> key
-     * <li>name - Same as displayName property.</li>
-     * <li>shortDescription - Empty string</li>
-     * <li>expert - <code>false</code></li>
-     * <li>hidden - <code>false</code></li>
-     * <li>preferred - <code>true</code></li>
-     * </ul>
-     *
-     * In addition, the following named attributes must be set in the returned <code>FeatureDescriptor</code>s:
-     * <ul>
-     * <li>{@link ELResolver#TYPE} - <code>String.class</code></li>
-     * <li>{@link ELResolver#RESOLVABLE_AT_DESIGN_TIME} - <code>true</code></li>
-     * </ul>
-     *
-     *
-     * @param context The context of this evaluation.
-     * @param base The bundle whose keys are to be iterated over. Only bases of type <code>ResourceBundle</code> are handled
-     * by this resolver.
-     * @return An <code>Iterator</code> containing zero or more (possibly infinitely more) <code>FeatureDescriptor</code>
-     * objects, each representing a key in this bundle, or <code>null</code> if the base object is not a ResourceBundle.
-     * 
-     * @deprecated This method will be removed without replacement in EL 6.0
-     */
-    @Deprecated(forRemoval = true, since = "5.0")
-    @Override
-    public Iterator<FeatureDescriptor> getFeatureDescriptors(ELContext context, Object base) {
-        if (base instanceof ResourceBundle) {
-            ResourceBundle bundle = (ResourceBundle) base;
-            List<FeatureDescriptor> features = new ArrayList<>();
-            String key = null;
-            FeatureDescriptor desc = null;
-
-            for (Enumeration<String> e = bundle.getKeys(); e.hasMoreElements();) {
-                key = e.nextElement();
-                desc = new FeatureDescriptor();
-                desc.setDisplayName(key);
-                desc.setExpert(false);
-                desc.setHidden(false);
-                desc.setName(key);
-                desc.setPreferred(true);
-                desc.setValue(TYPE, String.class);
-                desc.setValue(RESOLVABLE_AT_DESIGN_TIME, TRUE);
-                features.add(desc);
-            }
-
-            return features.iterator();
-        }
-
-        return null;
     }
 
     /**
