@@ -18,9 +18,7 @@
 
 package jakarta.el;
 
-import java.beans.FeatureDescriptor;
 import java.lang.reflect.Array;
-import java.util.Iterator;
 
 /**
  * Defines property resolution behavior on arrays.
@@ -250,25 +248,6 @@ public class ArrayELResolver extends ELResolver {
             }
         }
         return isReadOnly;
-    }
-
-    /**
-     * Always returns <code>null</code>, since there is no reason to iterate through set set of all integers.
-     *
-     * <p>
-     * The {@link #getCommonPropertyType} method returns sufficient information about what properties this resolver accepts.
-     * </p>
-     *
-     * @param context The context of this evaluation.
-     * @param base The array to analyze. Only bases that are a Java language array are handled by this resolver.
-     * @return <code>null</code>.
-     * 
-     * @deprecated This method will be removed without replacement in EL 6.0
-     */
-    @Deprecated(forRemoval = true, since = "5.0")
-    @Override
-    public Iterator<FeatureDescriptor> getFeatureDescriptors(ELContext context, Object base) {
-        return null;
     }
 
     /**

@@ -18,10 +18,8 @@
 
 package jakarta.el;
 
-import java.beans.FeatureDescriptor;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -285,25 +283,6 @@ public class ListELResolver extends ELResolver {
         }
 
         return false;
-    }
-
-    /**
-     * Always returns <code>null</code>, since there is no reason to iterate through set set of all integers.
-     *
-     * <p>
-     * The {@link #getCommonPropertyType} method returns sufficient information about what properties this resolver accepts.
-     * </p>
-     *
-     * @param context The context of this evaluation.
-     * @param base The list. Only bases of type <code>List</code> are handled by this resolver.
-     * @return <code>null</code>.
-     * 
-     * @deprecated This method will be removed without replacement in EL 6.0
-     */
-    @Deprecated(forRemoval = true, since = "5.0")
-    @Override
-    public Iterator<FeatureDescriptor> getFeatureDescriptors(ELContext context, Object base) {
-        return null;
     }
 
     /**
