@@ -2,7 +2,7 @@
 :sectnums!:
 == Jakarta Expression Language, Version 6.0
 
-Copyright (c) 2013, 2022 Oracle and/or its affiliates and others.
+Copyright (c) 2013, 2023 Oracle and/or its affiliates and others.
 All rights reserved.
 
 Eclipse is a registered trademark of the Eclipse Foundation. Jakarta
@@ -2969,6 +2969,9 @@ This appendix is non-normative.
 * Remove deprecated code.
 
 * Update to reflect new GitHub organisation and project names.
+
+* https://github.com/jakartaee/expression-language/issues/192[#192]
+  Removal all references to the Java SecurityManager and associated APIs.
 
 === Changes between 5.0 and 4.0
 
