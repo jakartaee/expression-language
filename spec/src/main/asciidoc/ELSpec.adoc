@@ -84,7 +84,7 @@ specification and welcome your comments and suggestions. We have a
 GitHub project with an issue tracker and a mailing list for comments
 and discussions about this specification.
 
-Project: https://github.com/eclipse-ee4j/el-ri
+Project: https://github.com/jakartaee/expression-language
 
 Mail alias for comments: el-dev@eclipse.org
 
@@ -2968,46 +2968,48 @@ This appendix is non-normative.
 
 * Remove deprecated code.
 
+* Update to reflect new GitHub organisation and project names.
+
 === Changes between 5.0 and 4.0
 
 * The EL API requires Java 11 as a minimum.
 
-* https://github.com/eclipse-ee4j/el-ri/issues/43[#43]
+* https://github.com/jakartaee/expression-language/issues/43[#43]
   The `BeanELResolver` is updated to also consider default method
   implementations when looking for property getters, property setters and
   methods.
 
-* https://github.com/eclipse-ee4j/el-ri/issues/45[#45]
+* https://github.com/jakartaee/expression-language/issues/45[#45]
   Add support for coercing a `LambdaExpression` instance to a functional
   interface method invocation
 
-* https://github.com/eclipse-ee4j/el-ri/issues/47[#47]
+* https://github.com/jakartaee/expression-language/issues/47[#47]
   The `ELResolver` method `getFeatureDescriptors()` has been deprecated with
   removal planed for EL 6.0. This is to remove the dependency on the
   `java.desktop` module from the EL API.
 
-* https://github.com/eclipse-ee4j/el-ri/issues/117[#117]
+* https://github.com/jakartaee/expression-language/issues/117[#117]
   Remove the deprecated, mis-spelt method
   `MethodExpression.isParmetersProvided()` from the API
 
-* https://github.com/eclipse-ee4j/el-ri/issues/154[#154]
+* https://github.com/jakartaee/expression-language/issues/154[#154]
   Add the `MethodReference` class to provide access to details of the method to
   which a `MethodExpression` resolves, including any annotations present on the
   method.
 
-* https://github.com/eclipse-ee4j/el-ri/issues/157[#157]
+* https://github.com/jakartaee/expression-language/issues/157[#157]
   Generics are now used where appropriate throughout the API
 
-* https://github.com/eclipse-ee4j/el-ri/issues/159[#159]
+* https://github.com/jakartaee/expression-language/issues/159[#159]
   Clarify expected behaviour when matching expressions to methods based on
   parameter types
 
-* https://github.com/eclipse-ee4j/el-ri/issues/167[#167]
+* https://github.com/jakartaee/expression-language/issues/167[#167]
   Add a default implementation that returns `null` for the `ELResolver` method
   `getFeatureDescriptors()` since it has been deprecated so that custom
   `ELResolver` implementations do not need to implement the method.
 
-* https://github.com/eclipse-ee4j/el-ri/issues/168[#168]
+* https://github.com/jakartaee/expression-language/issues/168[#168]
   Explicitly document that `ELResolver.getType()` must return null if either the
   ELResolver or the resolved property is read-only. This changes the documented
   behaviour of the `StaticFieldELResolver`.
@@ -3016,7 +3018,7 @@ This appendix is non-normative.
   define further packages, in additional to `java.lang.*` that are imported by
   default into the EL environment.
 
-* https://github.com/eclipse-ee4j/el-ri/issues/172[#172]
+* https://github.com/jakartaee/expression-language/issues/172[#172]
   Add support for coercing arrays.
 
 * Add a JPMS module descriptor that defines the module name as `jakarta.el`.
