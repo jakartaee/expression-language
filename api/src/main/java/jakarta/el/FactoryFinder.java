@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997, 2021 Oracle and/or its affiliates and others.
+ * Copyright (c) 1997, 2023 Oracle and/or its affiliates and others.
  * All rights reserved.
  * Copyright 2004 The Apache Software Foundation
  *
@@ -23,15 +23,11 @@ import static java.io.File.separator;
 import java.io.File;
 import java.io.FileInputStream;
 import java.lang.reflect.Constructor;
-import java.security.AccessController;
-import java.security.PrivilegedAction;
 import java.util.Iterator;
 import java.util.Properties;
 import java.util.ServiceLoader;
 
 class FactoryFinder {
-
-    private static final boolean IS_SECURITY_ENABLED = (System.getSecurityManager() != null);
 
     /**
      * Creates an instance of the specified class using the specified <code>ClassLoader</code> object.
@@ -59,19 +55,7 @@ class FactoryFinder {
                 }
             }
 
-            if (IS_SECURITY_ENABLED) {
-              return AccessController.doPrivileged(new PrivilegedAction < Object > () {@Override
-                public Object run() {
-                  try {
-                    return spiClass.getDeclaredConstructor().newInstance();
-                  } catch(Exception x) {
-                    throw new ELException("Provider " + className + " could not be instantiated: " + x, x);
-                  }
-                }
-              });
-            } else {
-              return spiClass.getDeclaredConstructor().newInstance();
-            }
+            return spiClass.getDeclaredConstructor().newInstance();
 
         } catch (ClassNotFoundException x) {
             throw new ELException("Provider " + className + " not found", x);
@@ -101,15 +85,7 @@ class FactoryFinder {
     static Object find(Class<?> serviceClass, String factoryId, String fallbackClassName, Properties properties) {
         ClassLoader classLoader;
         try {
-            if (IS_SECURITY_ENABLED) {
-              classLoader = AccessController.doPrivileged(new PrivilegedAction < ClassLoader > () {@Override
-                public ClassLoader run() {
-                  return Thread.currentThread().getContextClassLoader();
-                }
-              });
-            } else {
-              classLoader = Thread.currentThread().getContextClassLoader();
-            }
+            classLoader = Thread.currentThread().getContextClassLoader();
         } catch (Exception x) {
             throw new ELException(x.toString(), x);
         }
@@ -129,41 +105,17 @@ class FactoryFinder {
 
         // Try to read from $java.home/lib/el.properties
         try {
-            String factoryClassName = null;
-            if (IS_SECURITY_ENABLED) {
-              factoryClassName = AccessController.doPrivileged(
-              new PrivilegedAction < String > () {@Override
-                public String run() {
-                  return getFactoryClassName(factoryId);
-                }
-              });
-
-            } else {
-              factoryClassName = getFactoryClassName(factoryId);
-            }
+            String factoryClassName = getFactoryClassName(factoryId);
             if (factoryClassName != null) {
-              return newInstance(factoryClassName, classLoader, properties);
+                return newInstance(factoryClassName, classLoader, properties);
             }
         } catch (Exception ex) {
         }
 
         // Use the system property
-        try {
-            String systemProp;
-            if (IS_SECURITY_ENABLED) {
-              systemProp = AccessController.doPrivileged(
-              new PrivilegedAction < String > () {@Override
-                public String run() {
-                  return System.getProperty(factoryId);
-                }
-              });
-            } else {
-              systemProp = System.getProperty(factoryId);
-            }
-            if (systemProp != null) {
-                return newInstance(systemProp, classLoader, properties);
-            }
-        } catch (SecurityException se) {
+        String systemProp = System.getProperty(factoryId);
+        if (systemProp != null) {
+            return newInstance(systemProp, classLoader, properties);
         }
 
         if (fallbackClassName == null) {
@@ -180,11 +132,11 @@ class FactoryFinder {
 
       File configFile = new File(configFileName);
       if (configFile.exists()) {
-        Properties props = new Properties();
-        try {
-          props.load(new FileInputStream(configFile));
-        } catch(Exception e) {}
-        factoryClass = props.getProperty(factoryId);
+          Properties props = new Properties();
+          try {
+              props.load(new FileInputStream(configFile));
+          } catch(Exception e) {}
+          factoryClass = props.getProperty(factoryId);
       }
       return factoryClass;
     }
