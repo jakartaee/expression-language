@@ -2966,7 +2966,7 @@ This appendix is non-normative.
 
 === Changes between 6.0 and 5.0
 
-* TBD
+* Remove deprecated code.
 
 === Changes between 5.0 and 4.0
 
