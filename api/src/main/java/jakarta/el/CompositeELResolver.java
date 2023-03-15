@@ -42,9 +42,9 @@ package jakarta.el;
  * </p>
  *
  * <p>
- * The <code>ELContext.propertyResolved</code> flag is not used for the design-time methods
- * {@link #getFeatureDescriptors} and {@link #getCommonPropertyType}. Instead, results are collected and combined from
- * all child <code>ELResolver</code>s for these methods.
+ * The <code>ELContext.propertyResolved</code> flag is not used for the design-time method
+ * {@link #getCommonPropertyType}. Instead, results are collected and combined from
+ * all child <code>ELResolver</code>s for this method.
  * </p>
  *
  * @see ELContext
