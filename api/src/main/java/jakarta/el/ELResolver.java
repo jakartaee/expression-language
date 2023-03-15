@@ -78,7 +78,7 @@ package jakarta.el;
  * target type.
  *
  * <p>
- * The {@link #getFeatureDescriptors} and {@link #getCommonPropertyType} methods are primarily designed for design-time
+ * The {@link #getCommonPropertyType} method is primarily designed for design-time
  * tool support, but must handle invocation at runtime as well. The {@link java.beans.Beans#isDesignTime} method can be
  * used to determine if the resolver is being consulted at design-time or runtime.
  *
