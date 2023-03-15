@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2023 Contributors to the Eclipse Foundation
  * 
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -18,15 +18,18 @@ package jakarta.el;
 import java.lang.reflect.Method;
 import java.util.TimeZone;
 
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 
-public class TestELUtil {
+public class TestELUtil extends ELBaseTest {
 
     /*
      * https://github.com/jakartaee/expression-language/issues/188
      */
-    @Test
-    public void testAccessibleMethod() throws Exception {
+    @ParameterizedTest
+    @MethodSource("data")
+    public void testAccessibleMethod(boolean useStandalone) throws Exception {
+        configureBeanSupport(useStandalone);
         TimeZone tz = TimeZone.getDefault();
         Method m = ELUtil.findMethod(tz.getClass(), tz, "getRawOffset", null, null);
         m.invoke(tz);

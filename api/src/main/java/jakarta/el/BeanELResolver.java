@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997, 2022 Oracle and/or its affiliates and others.
+ * Copyright (c) 1997, 2023 Oracle and/or its affiliates and others.
  * All rights reserved.
  * Copyright 2004 The Apache Software Foundation
  *
@@ -20,10 +20,6 @@ package jakarta.el;
 
 import static jakarta.el.ELUtil.getExceptionMessageString;
 
-import java.beans.BeanInfo;
-import java.beans.IntrospectionException;
-import java.beans.Introspector;
-import java.beans.PropertyDescriptor;
 import java.lang.ref.ReferenceQueue;
 import java.lang.ref.SoftReference;
 import java.lang.reflect.InvocationTargetException;
@@ -146,20 +142,20 @@ public class BeanELResolver extends ELResolver {
     /*
      * Defines a property for a bean.
      */
-    final static class BeanProperty {
+    abstract static class BeanProperty {
 
         final private Class<?> baseClass;
-        final private PropertyDescriptor descriptor;
+        final private Class<?> type;
         private Method readMethod;
         private Method writeMethod;
 
-        public BeanProperty(Class<?> baseClass, PropertyDescriptor descriptor) {
+        public BeanProperty(Class<?> baseClass, Class<?> type) {
             this.baseClass = baseClass;
-            this.descriptor = descriptor;
+            this.type = type;
         }
 
         public Class<?> getPropertyType() {
-            return descriptor.getPropertyType();
+            return this.type;
         }
 
         public boolean isReadOnly(Object base) {
@@ -168,67 +164,35 @@ public class BeanELResolver extends ELResolver {
 
         public Method getReadMethod(Object base) {
             if (readMethod == null) {
-                readMethod = ELUtil.getMethod(baseClass, base, descriptor.getReadMethod());
+                readMethod = ELUtil.getMethod(baseClass, base, getReadMethod());
             }
             return readMethod;
         }
 
         public Method getWriteMethod(Object base) {
             if (writeMethod == null) {
-                writeMethod = ELUtil.getMethod(baseClass, base, descriptor.getWriteMethod());
+                writeMethod = ELUtil.getMethod(baseClass, base, getWriteMethod());
             }
             return writeMethod;
         }
+        
+        abstract Method getWriteMethod();
+        
+        abstract Method getReadMethod();
     }
 
     /*
      * Defines the properties for a bean.
      */
-    final static class BeanProperties {
+    abstract static class BeanProperties {
 
-        private final Map<String, BeanProperty> propertyMap = new HashMap<>();
+        protected final Map<String, BeanProperty> propertyMap = new HashMap<>();
+        protected final Class<?> baseClass;
 
-        public BeanProperties(Class<?> baseClass) {
-            PropertyDescriptor[] descriptors;
-            try {
-                BeanInfo info = Introspector.getBeanInfo(baseClass);
-                descriptors = info.getPropertyDescriptors();
-                for (PropertyDescriptor descriptor : descriptors) {
-                    propertyMap.put(descriptor.getName(), new BeanProperty(baseClass, descriptor));
-                }
-                /**
-                 * Populating from any interfaces solves two distinct problems:
-                 * 1. When running under a security manager, classes may be
-                 *    unaccessible but have accessible interfaces.
-                 * 2. It enables default methods to be included.
-                 */
-                populateFromInterfaces(baseClass, baseClass);
-            } catch (IntrospectionException ie) {
-                throw new ELException(ie);
-            }
-
+        BeanProperties(Class<?> baseClass) {
+            this.baseClass = baseClass;
         }
 
-        private void populateFromInterfaces(Class<?> baseClass, Class<?> aClass) throws IntrospectionException {
-            Class<?> interfaces[] = aClass.getInterfaces();
-            if (interfaces.length > 0) {
-                for (Class<?> ifs : interfaces) {
-                    BeanInfo info = Introspector.getBeanInfo(ifs);
-                    PropertyDescriptor[] pds = info.getPropertyDescriptors();
-                    for (PropertyDescriptor pd : pds) {
-                        if (!this.propertyMap.containsKey(pd.getName())) {
-                            this.propertyMap.put(pd.getName(), new BeanProperty(
-                                    baseClass, pd));
-                        }
-                    }
-                }
-            }
-            Class<?> superclass = aClass.getSuperclass();
-            if (superclass != null) {
-                populateFromInterfaces(baseClass, superclass);
-            }
-        }
-        
         public BeanProperty getBeanProperty(String property) {
             return propertyMap.get(property);
         }
@@ -568,7 +532,7 @@ public class BeanELResolver extends ELResolver {
 
         BeanProperties beanProperties = properties.get(baseClass);
         if (beanProperties == null) {
-            beanProperties = new BeanProperties(baseClass);
+            beanProperties = BeanSupport.getInstance().getBeanProperties(baseClass);
             properties.put(baseClass, beanProperties);
         }
 
