@@ -1063,7 +1063,7 @@ to scope attributes, or to create attributes in the page scope.
 
 The semicolon operator behaves like the comma operator in C.
 
-To evaluate `A;B, A` is first evaluated, and its value is discarded.
+To evaluate `A;B`, `A` is first evaluated, and its value is discarded.
 `B` is then evaluated and its value is returned.
 
 === Parentheses
