@@ -16,7 +16,7 @@
 module jakarta.el {
     exports jakarta.el;
 
-    requires transitive java.desktop;
+    requires static transitive java.desktop;
     
     uses jakarta.el.ExpressionFactory;
 }
