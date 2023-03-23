@@ -45,6 +45,8 @@ import java.lang.reflect.Array;
  */
 public class ArrayELResolver extends ELResolver {
 
+    private static final String LENGTH_PROPERTY_NAME = "length";
+
     /**
      * Creates a new read/write <code>ArrayELResolver</code>.
      */
@@ -116,23 +118,27 @@ public class ArrayELResolver extends ELResolver {
     }
 
     /**
-     * If the base object is a Java language array, returns the value at the given index. The index is specified by the
-     * <code>property</code> argument, and coerced into an integer. If the coercion could not be performed, an
-     * <code>IllegalArgumentException</code> is thrown. If the index is out of bounds, <code>null</code> is returned.
+     * If the base object is a Java language array, returns the length of the array or the value at the given index. If
+     * the {@code property} argument is the case sensitive string {@code "length"}, then the length of the array is
+     * returned. Otherwise, the {@code property} argument is coerced into an integer and used as the index of the value
+     * to be returned. If the coercion could not be performed, an {@code IllegalArgumentException} is thrown. If the
+     * index is out of bounds, {@code null} is returned.
      *
      * <p>
-     * If the base is a Java language array, the <code>propertyResolved</code> property of the <code>ELContext</code> object
-     * must be set to <code>true</code> by this resolver, before returning. If this property is not <code>true</code> after
-     * this method is called, the caller should ignore the return value.
+     * If the base is a Java language array, the {@code propertyResolved} property of the {@code ELContext} object must
+     * be set to {@code true} by this resolver, before returning. If this property is not {@code true} after this method
+     * is called, the caller should ignore the return value.
      * </p>
      *
      * @param context The context of this evaluation.
      * @param base The array to analyze. Only bases that are Java language arrays are handled by this resolver.
-     * @param property The index of the value to be returned. Will be coerced into an integer.
-     * @return If the <code>propertyResolved</code> property of <code>ELContext</code> was set to <code>true</code>, then
-     * the value at the given index or <code>null</code> if the index was out of bounds. Otherwise, undefined.
-     * @throws IllegalArgumentException if the property could not be coerced into an integer.
-     * @throws NullPointerException if context is <code>null</code>.
+     * @param property Either the string {@code "length"} or the index of the value to be returned. An index value will
+     * be coerced into an integer.
+     * @return If the {@code propertyResolved} property of {@code ELContext} was set to {@code true}, then the length of
+     * the array, the value at the given index or {@code null} if the index was out of bounds. Otherwise, undefined.
+     * @throws IllegalArgumentException if the property was not the string {@code "length"} and could not be coerced
+     * into an integer.
+     * @throws NullPointerException if context is {@code null}.
      * @throws ELException if an exception was thrown while performing the property or variable resolution. The thrown
      * exception must be included as the cause property of this exception, if available.
      */
@@ -145,6 +151,9 @@ public class ArrayELResolver extends ELResolver {
 
         if (base != null && base.getClass().isArray()) {
             context.setPropertyResolved(base, property);
+            if (LENGTH_PROPERTY_NAME.equals(property)) {
+                return Integer.valueOf(Array.getLength(base));
+            }
             int index = toInteger(property);
             if (index >= 0 && index < Array.getLength(base)) {
                 return Array.get(base, index);

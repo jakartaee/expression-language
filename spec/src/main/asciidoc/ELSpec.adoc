@@ -1269,6 +1269,14 @@ the EL, `mySuit`, that is a `Spade`. If you want to test for equality with
 the `Spade` enum, you would say `${mySuit == 'Spade'}`. The type of the
 `mySuit` will trigger the invocation of `Enum.valueOf(Suit.class, 'Spade')`.
 
+
+=== Arrays
+
+In addition to accessing array elements by index, the unified EL also supports
+the property `length` for arrays which will return the length of the array as an
+integer.
+
+
 === Static Field and Method Reference
 
 A static field or static method of a Java
@@ -3025,6 +3033,10 @@ This appendix is non-normative.
   Add support for coercing arrays.
 
 * Add a JPMS module descriptor that defines the module name as `jakarta.el`.
+
+* https://github.com/jakartaee/expression-language/issues/175[#175]
+  Add a special case for the property `length` to the `ArrayELResolver` that
+  returns the length of the array.
 
 * https://github.com/jakartaee/expression-language/issues/183[#183]
   Avoid a `NullPointerException` when passing `null` for varargs.
