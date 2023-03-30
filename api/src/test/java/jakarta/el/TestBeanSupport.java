@@ -84,15 +84,17 @@ public class TestBeanSupport extends ELBaseTest {
         doTest(useStandalone, MismatchBean.class, "value", TypeA.class, TypeA.class, null);
     }
 
-    /*
-     * The first setter found "wins".
-     */
     @ParameterizedTest
     @MethodSource("data")
-    public void testAmbiguousBean(boolean useStandalone) {
-        doTest(useStandalone, AmbiguousBean.class, "value", TypeA.class, null, TypeA.class);
+    public void testAmbiguousBean01(boolean useStandalone) {
+        doTest(useStandalone, AmbiguousBean01.class, "value", TypeA.class, null, TypeA.class);
     }
 
+    @ParameterizedTest
+    @MethodSource("data")
+    public void testAmbiguousBean02(boolean useStandalone) {
+        doTest(useStandalone, AmbiguousBean02.class, "value", TypeA.class, null, TypeA.class);
+    }
 
     private void doTest(boolean useStandalone, Class<?> clazz, String propertyName, Class<?> type, Class<?> typeGet,
             Class<?> typeSet) {
@@ -235,11 +237,20 @@ public class TestBeanSupport extends ELBaseTest {
     }
 
 
-    public static class AmbiguousBean {
+    public static class AmbiguousBean01 {
         public void setValue(@SuppressWarnings("unused") TypeA value) {
         }
 
         public void setValue(@SuppressWarnings("unused") String value) {
+        }
+    }
+
+
+    public static class AmbiguousBean02 {
+        public void setValue(@SuppressWarnings("unused") String value) {
+        }
+
+        public void setValue(@SuppressWarnings("unused") TypeA value) {
         }
     }
 

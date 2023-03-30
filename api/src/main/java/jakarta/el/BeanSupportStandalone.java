@@ -18,6 +18,7 @@ package jakarta.el;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -30,6 +31,15 @@ import jakarta.el.BeanELResolver.BeanProperty;
  * package.
  */
 class BeanSupportStandalone extends BeanSupport {
+
+    /*
+     * The full JavaBeans implementation has a much more detailed definition of method order that applies to an entire
+     * class. When ordering write methods for a single property, a much simpler comparator can be used because it is
+     * known that the method names are the same, the return parameters are both void and the methods only have a single
+     * parameter.
+     */
+    private static final Comparator<Method> WRITE_METHOD_COMPARATOR =
+            Comparator.comparing(m -> m.getParameterTypes()[0].getName());
 
     @Override
     BeanProperties getBeanProperties(Class<?> type) {
@@ -132,6 +142,9 @@ class BeanSupportStandalone extends BeanSupport {
                 if (readMethod != null) {
                     type = readMethod.getReturnType();
                 } else {
+                    if (writeMethods.size() > 1) {
+                        writeMethods.sort(WRITE_METHOD_COMPARATOR);
+                    }
                     type = writeMethods.get(0).getParameterTypes()[0];
                 }
                 for (Method candidate : writeMethods) {
