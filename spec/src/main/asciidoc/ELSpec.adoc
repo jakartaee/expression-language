@@ -1300,6 +1300,8 @@ enforced.
 
 . Only the public static fields and methods can be referenced.
 
+. The fields and/or methods must be in an accessible module.
+
 . Static fields cannot be modified.
 
 . Except for classes with `java.lang.*` package
@@ -2977,6 +2979,12 @@ This appendix is non-normative.
 * Remove deprecated code.
 
 * Update to reflect new GitHub organisation and project names.
+
+* https://github.com/jakartaee/expression-language/issues/175[#175]
+  Add support for a new property, `length`, for arrays.
+
+* https://github.com/jakartaee/expression-language/issues/188[#188]
+  Allow for module visibility when accessing class methods.
 
 * https://github.com/jakartaee/expression-language/issues/192[#192]
   Removal all references to the Java SecurityManager and associated APIs.
