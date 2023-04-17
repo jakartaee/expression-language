@@ -57,6 +57,12 @@ import java.util.concurrent.ConcurrentHashMap;
  * </p>
  *
  * <p>
+ * The JavaBeans specification predates the introduction of Modules. In addition to the JavaBeans specification
+ * requirements for looking up property getters, property setters and methods, this resolver also considers module
+ * visibility. 
+ * </p>
+ *
+ * <p>
  * This resolver can be constructed in read-only mode, which means that {@link #isReadOnly} will always return
  * <code>true</code> and {@link #setValue} will always throw <code>PropertyNotWritableException</code>.
  * </p>
