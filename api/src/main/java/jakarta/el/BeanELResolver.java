@@ -32,6 +32,12 @@ import java.util.concurrent.ConcurrentHashMap;
  * Defines property resolution behavior on objects using the JavaBeans component architecture.
  *
  * <p>
+ * If the {@code java.beans.*} package is available (part of the {@code java.desktop} module) the JavaBeans
+ * implementation provided by the JRE is used. If the {@code java.beans.*} package is not available, a built-in
+ * stand-alone implementation is used that just provides getter/setter support (as everything else requires classes from
+ * {@code java.beans.*}).
+ * 
+ * <p>
  * This resolver handles base objects of any type, as long as the base is not <code>null</code>. It accepts any object
  * as a property or method, and coerces it to a string.
  *
