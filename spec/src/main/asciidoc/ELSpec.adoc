@@ -2980,6 +2980,13 @@ This appendix is non-normative.
 
 * Update to reflect new GitHub organisation and project names.
 
+* https://github.com/jakartaee/expression-language/issues/47[#47]
+  Make the dependency on the `java.beans.*` package (and hence the
+  `java.desktop` module) optional. If the `java.beans.*` package is not
+  available, an internal implementation is used to support the `BeanELResolver`
+  that just provides getter/setter support as all other JavaBeans functionality
+  requires classes from the `java.beans.*` package.
+
 * https://github.com/jakartaee/expression-language/issues/175[#175]
   Add support for a new property, `length`, for arrays.
 
