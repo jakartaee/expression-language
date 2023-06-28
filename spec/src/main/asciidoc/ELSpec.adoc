@@ -1277,6 +1277,28 @@ the property `length` for arrays which will return the length of the array as an
 integer.
 
 
+=== `java.util.Optional`
+
+Note: Unified EL implementations have their own `Optional` class (see
+<<Optional>>) that is separate to `java.util.Optional` and the behaviour
+described in this section.
+
+By default, instances of `java.util.Optional` are treated by the unified EL in 
+an identical manner to any other Java object. This means, for example, that
+resolving the expression `someObject.optionalProperty.otherProperty` would
+result in a `PropertyNotFoundException` if `optionalProperty` was an instance of
+`java.util.Optional`.
+
+The EL API provides an additional `ELResolver` implementation,
+`OptionalELResolver` that provides alternative handling for
+`java.util.Optional`. With this resolver added to the set of standard resolvers,
+the expression `someObject.optionalProperty.otherProperty` would result in
+`null` if the `optionalProperty` was an empty `java.util.Optional` and the value
+of `otherProperty` if the `java.util.Optional` was populated with an object that
+had a property named `otherProperty`. The behaviour of the `OptionalELResolver`
+is fully documented in its Javadoc. 
+
+  
 === Static Field and Method Reference
 
 A static field or static method of a Java
@@ -2989,6 +3011,10 @@ This appendix is non-normative.
 
 * https://github.com/jakartaee/expression-language/issues/175[#175]
   Add support for a new property, `length`, for arrays.
+
+* https://github.com/jakartaee/expression-language/issues/176[#176]
+  Add support for `java.util.Optional`. The support is not enabled by default.
+  Users must add the new resolver `OptionalELResolver` to enable this support.
 
 * https://github.com/jakartaee/expression-language/issues/188[#188]
   Allow for module visibility when accessing class methods.
