@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997, 2022 Oracle and/or its affiliates and others.
+ * Copyright (c) 1997, 2023 Oracle and/or its affiliates and others.
  * All rights reserved.
  * Copyright 2004 The Apache Software Foundation
  *
@@ -101,10 +101,10 @@ public abstract class ELResolver {
      * @param base The base object whose property value is to be returned, or <code>null</code> to resolve a top-level
      * variable.
      * @param property The property or variable to be resolved.
-     * 
+     *
      * @return If the <code>propertyResolved</code> property of <code>ELContext</code> was set to <code>true</code>, then
      * the result of the variable or property resolution; otherwise undefined.
-     * 
+     *
      * @throws NullPointerException if context is <code>null</code>
      * @throws PropertyNotFoundException if the given (base, property) pair is handled by this <code>ELResolver</code> but
      * the specified variable or property does not exist or is not readable.
@@ -132,15 +132,15 @@ public abstract class ELResolver {
      * an empty array if the method has no parameters. Can be <code>null</code>, in which case the method's formal parameter
      * types are assumed to be unknown.
      * @param params The parameters to pass to the method, or <code>null</code> if no parameters.
-     * 
+     *
      * @return The result of the method invocation (<code>null</code> if the method has a <code>void</code> return type).
-     * 
+     *
      * @throws MethodNotFoundException if no suitable method can be found.
      * @throws ELException if an exception was thrown while performing (base, method) resolution. The thrown exception must
      * be included as the cause property of this exception, if available. If the exception thrown is an
      * <code>InvocationTargetException</code>, extract its <code>cause</code> and pass it to the <code>ELException</code>
      * constructor.
-     * 
+     *
      * @since Jakarta Expression Language 2.2
      */
     public Object invoke(ELContext context, Object base, Object method, Class<?>[] paramTypes, Object[] params) {
@@ -167,7 +167,7 @@ public abstract class ELResolver {
      * <p>
      * If the resolver or the property is read-only, this method must return {@code null}.
      * </p>
-     * 
+     *
      * @param context The context of this evaluation.
      * @param base The base object whose property value is to be analyzed, or <code>null</code> to analyze a top-level
      * variable.

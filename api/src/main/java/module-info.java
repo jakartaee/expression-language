@@ -1,6 +1,6 @@
 /*
- * Copyright (c) 2021 Contributors to the Eclipse Foundation
- * 
+ * Copyright (c) 2023 Contributors to the Eclipse Foundation
+ *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
  * http://www.eclipse.org/legal/epl-2.0.
@@ -17,6 +17,6 @@ module jakarta.el {
     exports jakarta.el;
 
     requires static transitive java.desktop;
-    
+
     uses jakarta.el.ExpressionFactory;
 }

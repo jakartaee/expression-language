@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997, 2022 Oracle and/or its affiliates and others.
+ * Copyright (c) 1997, 2023 Oracle and/or its affiliates and others.
  * All rights reserved.
  * Copyright 2004 The Apache Software Foundation
  *
@@ -181,9 +181,9 @@ public class CompositeELResolver extends ELResolver {
      * an empty array if the method has no parameters. Can be <code>null</code>, in which case the method's formal parameter
      * types are assumed to be unknown.
      * @param params The parameters to pass to the method, or <code>null</code> if no parameters.
-     * 
+     *
      * @return The result of the method invocation (<code>null</code> if the method has a <code>void</code> return type).
-     * 
+     *
      * @since Jakarta Expression Language 2.2
      */
     @Override
@@ -393,7 +393,7 @@ public class CompositeELResolver extends ELResolver {
      * @param context The context of this evaluation.
      * @param base The base object to return the most general property type for, or <code>null</code> to enumerate the set
      * of top-level variables that this resolver can evaluate.
-     * 
+     *
      * @return <code>null</code> if this <code>ELResolver</code> does not know how to handle the given <code>base</code>
      * object; otherwise <code>Object.class</code> if any type of <code>property</code> is accepted; otherwise the most
      * general <code>property</code> type accepted for the given <code>base</code>.
@@ -432,7 +432,7 @@ public class CompositeELResolver extends ELResolver {
      * @param context The context of this evaluation.
      * @param obj The object to convert.
      * @param targetType The target type for the convertion.
-     * 
+     *
      * @throws ELException thrown if errors occur.
      *
      * @since Jakarta Expression Language 3.0

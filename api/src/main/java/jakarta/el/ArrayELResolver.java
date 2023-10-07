@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997, 2022 Oracle and/or its affiliates and others.
+ * Copyright (c) 1997, 2023 Oracle and/or its affiliates and others.
  * All rights reserved.
  * Copyright 2004 The Apache Software Foundation
  *
@@ -40,7 +40,7 @@ import java.lang.reflect.Array;
  *
  * @see CompositeELResolver
  * @see ELResolver
- * 
+ *
  * @since Jakarta Server Pages 2.1
  */
 public class ArrayELResolver extends ELResolver {
