@@ -138,6 +138,7 @@ public class StandardELContext extends ELContext {
      * <li>A {@link ResourceBundleELResolver} for resolving ResourceBundle properties</li>
      * <li>A {@link ListELResolver} for resolving List properties</li>
      * <li>An {@link ArrayELResolver} for resolving array properties</li>
+     * <li>A {@link RecordELResolver} for resolving Record properties</li>
      * <li>A {@link BeanELResolver} for resolving bean properties</li>
      * </ol>
      *
@@ -158,6 +159,7 @@ public class StandardELContext extends ELContext {
             resolver.add(new ResourceBundleELResolver());
             resolver.add(new ListELResolver());
             resolver.add(new ArrayELResolver());
+            resolver.add(new RecordELResolver());
             resolver.add(new BeanELResolver());
             elResolver = resolver;
         }

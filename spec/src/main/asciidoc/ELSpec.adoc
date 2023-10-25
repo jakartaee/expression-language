@@ -2998,6 +2998,8 @@ This appendix is non-normative.
 
 === Changes between 6.0 and 5.0
 
+* The EL API requires Java 17 as a minimum.
+
 * Remove deprecated code.
 
 * Update to reflect new GitHub organisation and project names.
@@ -3021,6 +3023,10 @@ This appendix is non-normative.
 
 * https://github.com/jakartaee/expression-language/issues/192[#192]
   Removal all references to the Java SecurityManager and associated APIs.
+
+* https://github.com/jakartaee/expression-language/issues/201[#201]
+  Add support for `java.lang.Record` instances. The support is enabled by
+  default. Support is provided via the new `RecordELResolver`.
 
 === Changes between 5.0 and 4.0
 
