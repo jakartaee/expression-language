@@ -24,9 +24,9 @@ import java.util.Objects;
 /**
  * Defines property resolution behavior on instances of {@link Record}.
  * <p>
- * The resolver handles base objects of type {@link Record}. It accepts any non-{@code null} object as a property and coerces it to a
- * String using {@link Object#toString()}. The property string is used to find find an accessor method for a field
- * with the same name.
+ * The resolver handles base objects of type {@link Record}. It accepts any non-{@code null} object as a property and
+ * coerces it to a String using {@link Object#toString()}. The property string is used to find an accessor method for a
+ * field with the same name.
  * <p>
  * This resolver is always read-only since {@link Record}s are always read-only.
  * <p>
