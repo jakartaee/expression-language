@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2023 Contributors to the Eclipse Foundation
- * 
+ *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
  * http://www.eclipse.org/legal/epl-2.0.
@@ -98,7 +98,7 @@ public class RecordELResolver extends ELResolver {
      * @param base     The {@link Record} to analyze.
      * @param property The name of the property to analyze. Will be coerced to a String.
      *
-     * @return Always {@null}
+     * @return Always {@code null}
      *
      * @throws NullPointerException      if the provided {@link ELContext} is {@code null}.
      * @throws PropertyNotFoundException if the {@code base} is an instance of {@link Record} and the specified property
