@@ -189,7 +189,7 @@ public class RecordELResolver extends ELResolver {
                 base.getClass().getMethod(propertyName);
             } catch (NoSuchMethodException nsme) {
                 throw new PropertyNotFoundException(
-                        getExceptionMessageString(context, "propertyNotReadable", new Object[] { base.getClass().getName(), property.toString() }));
+                        getExceptionMessageString(context, "propertyNotFound", new Object[] { base.getClass().getName(), property.toString() }));
             }
 
             return true;
