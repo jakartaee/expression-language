@@ -140,7 +140,7 @@
                 </executions>
             </plugin>
         
-            <!-- Restricts the Java version to 11 -->
+            <!-- Restricts the Java version to 17+ -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -258,7 +258,7 @@
                             <goal>jar</goal>
                         </goals>
                         <configuration>
-                            <source>11</source>
+                            <source>17</source>
                             <additionalJOption>-Xdoclint:none</additionalJOption>
                             <quiet>true</quiet>
                             <description>Jakarta Expression Language API documentation</description>
@@ -283,7 +283,6 @@ Use is subject to <a href="{@docRoot}/doc-files/EFSL.html" target="_top">license
                     </execution>
                 </executions>
             </plugin>
-
         </plugins>
     </build>
 </project>
