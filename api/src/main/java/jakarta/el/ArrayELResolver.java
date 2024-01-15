@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997, 2023 Oracle and/or its affiliates and others.
+ * Copyright (c) 1997, 2024 Oracle and/or its affiliates and others.
  * All rights reserved.
  * Copyright 2004 The Apache Software Foundation
  *
@@ -24,8 +24,9 @@ import java.lang.reflect.Array;
  * Defines property resolution behavior on arrays.
  *
  * <p>
- * This resolver handles base objects that are Java language arrays. It accepts any object as a property and coerces
- * that object into an integer index into the array. The resulting value is the value in the array at that index.
+ * This resolver handles base objects that are Java language arrays. It accepts the case sensitive string {@code
+ * "length"} or any other object as a property and coerces that object into an integer index into the array. The
+ * resulting value is the value in the array at that index.
  * </p>
  *
  * <p>
@@ -73,15 +74,17 @@ public class ArrayELResolver extends ELResolver {
      * </p>
      *
      * <p>
-     * Assuming the base is an <code>array</code> and that this resolver was not constructed in read-only mode, this
-     * method will return <code>base.getClass().getComponentType()</code>, which is the most general type of component
-     * that can be stored at any given index in the array.
+     * Assuming the base is an <code>array</code>, that this resolver was not constructed in read-only mode, and that
+     * the provided property can be coerced to a valid index for base array, this method will return 
+     * <code>base.getClass().getComponentType()</code>, which is the most general type of component that can be stored
+     * at any given index in the array.
      * </p>
      *
      * @param context The context of this evaluation.
      * @param base The array to analyze. Only bases that are Java language arrays are handled by this resolver.
-     * @param property The index of the element in the array to return the acceptable type for. Will be coerced into an
-     * integer, but otherwise ignored by this resolver.
+     * @param property The case sensitive string {@code "length"} or the index of the element in the array to return the
+     * acceptable type for. If not the case sensitive string {@code "length"}, will be coerced into an integer and
+     * checked if it is a valid index for the array, but otherwise ignored by this resolver.
      * @return If the <code>propertyResolved</code> property of <code>ELContext</code> was set to <code>true</code>, then
      * the most general acceptable type which must be {@code null} if the either the property or the resolver is
      * read-only; otherwise undefined
@@ -99,6 +102,10 @@ public class ArrayELResolver extends ELResolver {
 
         if (base != null && base.getClass().isArray()) {
             context.setPropertyResolved(true);
+            if (LENGTH_PROPERTY_NAME.equals(property)) {
+                return null;
+            }
+
             int index = toInteger(property);
             if (index < 0 || index >= Array.getLength(base)) {
                 throw new PropertyNotFoundException();
@@ -163,9 +170,10 @@ public class ArrayELResolver extends ELResolver {
     }
 
     /**
-     * If the base object is a Java language array, attempts to set the value at the given index with the given value. The
-     * index is specified by the <code>property</code> argument, and coerced into an integer. If the coercion could not be
-     * performed, an <code>IllegalArgumentException</code> is thrown. If the index is out of bounds, a
+     * If the base object is a Java language array and the property is not the case sensitive string {@code length},
+     * attempts to set the value at the given index with the given value. The index is specified by the
+     * <code>property</code> argument, and coerced into an integer. If the coercion could not be performed, an
+     * <code>IllegalArgumentException</code> is thrown. If the index is out of bounds, a
      * <code>PropertyNotFoundException</code> is thrown.
      *
      * <p>
@@ -175,19 +183,21 @@ public class ArrayELResolver extends ELResolver {
      * </p>
      *
      * <p>
-     * If this resolver was constructed in read-only mode, this method will always throw
-     * <code>PropertyNotWritableException</code>.
+     * If this resolver was constructed in read-only mode or the property is the case sensitive string {@code length},
+     * this method will always throw <code>PropertyNotWritableException</code>.
      * </p>
      *
      * @param context The context of this evaluation.
      * @param base The array to be modified. Only bases that are Java language arrays are handled by this resolver.
-     * @param property The index of the value to be set. Will be coerced into an integer.
+     * @param property The case sensitive string {@code length} or an object to coerce to an integer to provide the
+     * index of the value to be set.
      * @param val The value to be set at the given index.
      * @throws ClassCastException if the class of the specified element prevents it from being added to this array.
      * @throws NullPointerException if context is <code>null</code>.
      * @throws IllegalArgumentException if the property could not be coerced into an integer, or if some aspect of the
      * specified element prevents it from being added to this array.
-     * @throws PropertyNotWritableException if this resolver was constructed in read-only mode.
+     * @throws PropertyNotWritableException if this resolver was constructed in read-only mode or the property was the
+     * case sensitive string {@code length}.
      * @throws PropertyNotFoundException if the given index is out of bounds for this array.
      * @throws ELException if an exception was thrown while performing the property or variable resolution. The thrown
      * exception must be included as the cause property of this exception, if available.
@@ -201,7 +211,7 @@ public class ArrayELResolver extends ELResolver {
 
         if (base != null && base.getClass().isArray()) {
             context.setPropertyResolved(base, property);
-            if (isReadOnly) {
+            if (isReadOnly || LENGTH_PROPERTY_NAME.equals(property)) {
                 throw new PropertyNotWritableException();
             }
             Class<?> type = base.getClass().getComponentType();
@@ -226,14 +236,14 @@ public class ArrayELResolver extends ELResolver {
      * </p>
      *
      * <p>
-     * If this resolver was constructed in read-only mode, this method will always return <code>true</code>. Otherwise, it
-     * returns <code>false</code>.
+     * If this resolver was constructed in read-only mode or the property is the case sensitive string {@code length},
+     * this method will always return <code>true</code>. Otherwise, it returns <code>false</code>.
      * </p>
      *
      * @param context The context of this evaluation.
      * @param base The array to analyze. Only bases that are a Java language array are handled by this resolver.
-     * @param property The index of the element in the array to return the acceptable type for. Will be coerced into an
-     * integer, but otherwise ignored by this resolver.
+     * @param property The case sensitive string {@code length} or an object to coerce to an integer to provide the
+     * index to check if an attempt to call {@link #setValue} with that index will always fail.
      * @return If the <code>propertyResolved</code> property of <code>ELContext</code> was set to <code>true</code>, then
      * <code>true</code> if calling the <code>setValue</code> method will always fail or <code>false</code> if it is
      * possible that such a call may succeed; otherwise undefined.
@@ -251,6 +261,11 @@ public class ArrayELResolver extends ELResolver {
 
         if (base != null && base.getClass().isArray()) {
             context.setPropertyResolved(true);
+
+            if (LENGTH_PROPERTY_NAME.equals(property)) {
+                return true;
+            }
+            
             int index = toInteger(property);
             if (index < 0 || index >= Array.getLength(base)) {
                 throw new PropertyNotFoundException();
