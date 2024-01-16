@@ -52,7 +52,7 @@ public class RecordELResolver extends ELResolver {
      * @throws NullPointerException      if the provided {@link ELContext} is {@code null}.
      * @throws PropertyNotFoundException if the {@code base} is an instance of {@link Record} and the specified property
      *                                       does not exist.
-     * @throws ELException               if an exception was throws while performing the property resolution. The thrown
+     * @throws ELException               if an exception was thrown while performing the property resolution. The thrown
      *                                       exception must be included as the cause of this exception, if available.
      */
     @Override
