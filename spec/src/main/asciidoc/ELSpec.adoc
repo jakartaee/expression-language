@@ -499,7 +499,7 @@ for escaping the enclosed string:
 
 * Null - `null`
 
-=== Errors, Warnings, Default Values
+=== Errors, Warnings and Default Values
 
 The Expression Language has been designed with
 the presentation layer of web applications in mind. In that usage,
