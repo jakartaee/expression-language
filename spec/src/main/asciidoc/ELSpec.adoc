@@ -300,7 +300,7 @@ conversion necessary._
 
 _Expression evaluates to a `Book` object (e.g.
 `com.example.Book`). Conversion rules result in the evaluation of
-`book.toString()`, which could for example yield the book title._
+`book.toString()`, which could, for example, yield the book title._
 
 |===
 
