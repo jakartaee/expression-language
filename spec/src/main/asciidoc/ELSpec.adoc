@@ -2188,7 +2188,7 @@ they are not identical, but they are similar enough that users should
 have no problem switching from one to the other.
 
 Since the methods supporting the collection
-operations do not exist in Java SE 7, they are implemented in the
+operations did not exist in Java SE 7, they were implemented in the
 Expression Language with ``ELResolver``s. In an EL expression, collection
 operations are carried out by invoking methods, and no special syntaxes
 are introduced for them. Strictly speaking, these operations are not
