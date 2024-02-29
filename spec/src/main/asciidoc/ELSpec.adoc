@@ -396,8 +396,8 @@ then apply if the return type of the method expression is not
 `java.lang.String`.
 
 Note that when EL is integrated into other technologies, such as JSP,
-that integration may not include Literal Expressions. Where integrations
-do not include Literal Expressions, those integrating technologies will
+that integration may not include literal-expressions. Where integrations
+do not include literal-expressions, those integrating technologies will
 define their own specification, including escaping rules, for handling
 text outside of EL and the escaping rules described above will not apply.
 
