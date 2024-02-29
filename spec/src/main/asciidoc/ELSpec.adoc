@@ -2274,7 +2274,7 @@ Construct an instance of `java.util.Map<Object,Object>`.
 
 === Collection Operations
 
-==== Stream and Pipeline
+==== Streams and Pipelines
 
 The operations on a collection object are
 realized as method calls to the stream of elements derived from the
