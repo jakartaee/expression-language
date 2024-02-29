@@ -91,9 +91,6 @@ Mail alias for comments: el-dev@eclipse.org
 :sectnums:
 == Language Syntax and Semantics
 
-The syntax and semantics of the Expression
-Language are described in this chapter.
-
 === Overview
 
 The EL was originally designed as a simple
