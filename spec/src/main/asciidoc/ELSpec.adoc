@@ -137,6 +137,11 @@ enhancement requests from the user community. Deprecated code was removed
 and use of FeatureDescriptor was deprecated with a view to removing the
 dependency on the `java.desktop` module.
 
+EL 6.0 made Java 17 the minimum version, removed deprecated code and made the
+dependency on the `java.desktop` module optional. New resolvers have been added
+for `java.lang.Record` and `java.lang.Optional` instances and support for the
+`length` property has been added to arrays.
+
 ==== EL in a nutshell
 
 The syntax is quite simple. Model objects are
