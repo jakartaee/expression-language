@@ -2215,7 +2215,7 @@ simpler: it is just an anonymous function that can be passed as an
 argument to a method, to be evaluated in the method when needed. In the
 collection operations, lambda expressions are specified as arguments to
 the methods supporting the operations. Usually when the lambda
-expressions are invoked, an element from stream of the collection is
+expressions are invoked, an element from the stream of the collection is
 passed as an argument to the lambda expression. For instance, the
 argument to the `filter` method is a lambda expression which acts as a
 predicate function to determine if an element should be included in the
