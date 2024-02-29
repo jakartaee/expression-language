@@ -2637,7 +2637,7 @@ words.stream().sorted(
 
 To sort the products by name:
 
-`products.stream().sorted\((p,q)\->p.name.compareTo(p.name)).toList()`
+`products.stream().sorted\((p,q)\->p.name.compareTo(q.name)).toList()`
 
 Or by defining a comparing function, this can
 be rewritten as:
