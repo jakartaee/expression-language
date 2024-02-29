@@ -181,7 +181,7 @@ Each type of expression (eval-expression,
 literal-expression, and composite expression) is described in its own
 section below.
 
-==== Eval-expression
+==== Eval-expressions
 
 An eval-expression is formed by using the
 constructs `$\{expr}` or `#\{expr}`. Both constructs are parsed and
@@ -341,7 +341,7 @@ addition that coercion resolution is considered to be less specific than
 overload resolution.
 
 
-==== Literal-expression
+==== Literal-expressions
 
 A literal-expression does not use the
 `$\{expr}` or `#{expr}` constructs, and simply evaluates to the text of
@@ -980,7 +980,7 @@ The logical operators are:
 The evaluation of logical operators is described in the following
 sections.
 
-==== Binary operator - `A {&&,||,and,or} B`
+==== Binary operators - `A {&&,||,and,or} B`
 
 * Coerce both `A` and `B` to `Boolean`, apply operator
 
