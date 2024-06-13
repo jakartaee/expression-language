@@ -84,7 +84,7 @@
         <maven.site.skip>true</maven.site.skip>
         <asciidoctorj.version>2.5.11</asciidoctorj.version>
         <asciidoctorj.pdf.version>2.3.13</asciidoctorj.pdf.version>
-        <jruby.version>9.3.2.0</jruby.version>
+        <jruby.version>9.4.7.0</jruby.version>
         <!-- status: DRAFT, BETA, etc., or blank for final -->
         <status>DRAFT</status>
         <maven.build.timestamp.format>MMMM dd, yyyy</maven.build.timestamp.format>
