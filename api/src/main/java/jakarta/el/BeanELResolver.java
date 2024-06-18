@@ -532,6 +532,25 @@ public class BeanELResolver extends ELResolver {
         return Object.class;
     }
 
+    /**
+     * Clears properties cache by class loader.
+     * To be called from the Container to clear the cache when ClassLoader is no longer in use
+     * <p>
+     * Even though {@link #properties} map is using {@link SoftReference} to store
+     * its cache content, GC may not clean the cache on its own. This is because
+     * the cache stores Class types, which hold a reference to its ClassLoader,
+     * which in turn is much heavier than the garbage collector believes.
+     * There may not be enough memory pressure to remove the Class element,
+     * and GC may not be able to clear the ClassLoader without help from this method.
+     *
+     * @param classLoader
+     */
+    public void clearProperties(ClassLoader classLoader) {
+        properties.entrySet().removeIf(entry -> entry.getKey().getClassLoader() == classLoader);
+        properties.map.entrySet().removeIf(entry -> entry.getKey().getClassLoader() == classLoader);
+        properties.cleanup();
+    }
+
     private BeanProperty getBeanProperty(ELContext context, Object base, Object prop) {
         String property = prop.toString();
         Class<?> baseClass = base.getClass();
