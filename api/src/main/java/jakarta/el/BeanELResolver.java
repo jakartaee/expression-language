@@ -21,7 +21,7 @@ package jakarta.el;
 import static jakarta.el.ELUtil.getExceptionMessageString;
 
 import java.lang.ref.ReferenceQueue;
-import java.lang.ref.SoftReference;
+import java.lang.ref.WeakReference;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.HashMap;
@@ -87,26 +87,27 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class BeanELResolver extends ELResolver {
 
-    static private class BPSoftReference extends SoftReference<BeanProperties> {
-        final Class<?> key;
+    static private class BPWeakReference extends WeakReference<BeanProperties> {
+        final String key;
 
-        BPSoftReference(Class<?> key, BeanProperties beanProperties, ReferenceQueue<BeanProperties> refQ) {
+        BPWeakReference(Class<?> key, BeanProperties beanProperties, ReferenceQueue<BeanProperties> refQ) {
             super(beanProperties, refQ);
-            this.key = key;
+            this.key = key.getName();
         }
     }
 
-    static private class SoftConcurrentHashMap extends ConcurrentHashMap<Class<?>, BeanProperties> {
+    static private class WeakConcurrentHashMap extends ConcurrentHashMap<Class<?>, BeanProperties> {
 
         private static final long serialVersionUID = -178867497897782229L;
         private static final int CACHE_INIT_SIZE = 1024;
-        private ConcurrentHashMap<Class<?>, BPSoftReference> map = new ConcurrentHashMap<>(CACHE_INIT_SIZE);
+        private ConcurrentHashMap<String, BPWeakReference> map =
+                new ConcurrentHashMap<>(CACHE_INIT_SIZE);
         private ReferenceQueue<BeanProperties> refQ = new ReferenceQueue<>();
 
         // Remove map entries that have been placed on the queue by GC.
         private void cleanup() {
-            BPSoftReference BPRef = null;
-            while ((BPRef = (BPSoftReference) refQ.poll()) != null) {
+            BPWeakReference BPRef = null;
+            while ((BPRef = (BPWeakReference) refQ.poll()) != null) {
                 map.remove(BPRef.key);
             }
         }
@@ -114,36 +115,41 @@ public class BeanELResolver extends ELResolver {
         @Override
         public BeanProperties put(Class<?> key, BeanProperties value) {
             cleanup();
-            BPSoftReference prev = map.put(key, new BPSoftReference(key, value, refQ));
+            BPWeakReference prev = map.put(key.getName(), new BPWeakReference(key, value, refQ));
             return prev == null ? null : prev.get();
         }
 
         @Override
         public BeanProperties putIfAbsent(Class<?> key, BeanProperties value) {
             cleanup();
-            BPSoftReference prev = map.putIfAbsent(key, new BPSoftReference(key, value, refQ));
+            BPWeakReference prev = map.putIfAbsent(key.getName(), new BPWeakReference(key, value, refQ));
             return prev == null ? null : prev.get();
         }
 
         @Override
         public BeanProperties get(Object key) {
             cleanup();
-            BPSoftReference BPRef = map.get(key);
-            if (BPRef == null) {
+            if (key instanceof Class<?>) {
+                String keyName = ((Class<?>) key).getName();
+                BPWeakReference BPRef = map.get(keyName);
+                if (BPRef == null) {
+                    return null;
+                }
+                if (BPRef.get() == null) {
+                    // value has been garbage collected, remove entry in map
+                    map.remove(keyName);
+                    return null;
+                }
+                return BPRef.get();
+            } else {
                 return null;
             }
-            if (BPRef.get() == null) {
-                // value has been garbage collected, remove entry in map
-                map.remove(key);
-                return null;
-            }
-            return BPRef.get();
         }
     }
 
     private boolean isReadOnly;
 
-    private final SoftConcurrentHashMap properties = new SoftConcurrentHashMap();
+    private final WeakConcurrentHashMap properties = new WeakConcurrentHashMap();
 
     /*
      * Defines a property for a bean.
