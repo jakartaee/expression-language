@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997, 2022 Oracle and/or its affiliates and others.
+ * Copyright (c) 1997, 2024 Oracle and/or its affiliates and others.
  * All rights reserved.
  * Copyright 2004 The Apache Software Foundation
  *
@@ -410,6 +410,7 @@ public abstract class ELContext {
      * <p>
      * An <code>ELException</code> is thrown if an error occurs during the conversion.
      *
+     * @param <T> The target type for the conversion.
      * @param obj The object to convert.
      * @param targetType The target type for the conversion.
      * 

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997, 2021 Oracle and/or its affiliates and others.
+ * Copyright (c) 1997, 2024 Oracle and/or its affiliates and others.
  * All rights reserved.
  * Copyright 2004 The Apache Software Foundation
  *
@@ -228,6 +228,7 @@ public abstract class ExpressionFactory {
      * <p>
      * An <code>ELException</code> is thrown if an error results from applying the conversion rules.
      *
+     * @param <T> The target type for the coercion.
      * @param obj The object to coerce.
      * @param targetType The target type for the coercion.
      * 

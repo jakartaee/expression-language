@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997, 2021 Oracle and/or its affiliates and others.
+ * Copyright (c) 1997, 2024 Oracle and/or its affiliates and others.
  * All rights reserved.
  * Copyright 2004 The Apache Software Foundation
  *
@@ -70,6 +70,7 @@ public abstract class ValueExpression extends Expression {
      * The resulting value is automatically coerced to the type returned by <code>getExpectedType()</code>, which was
      * provided to the <code>ExpressionFactory</code> when this expression was created.
      *
+     * @param <T> The type of the result of the expression evaluation.
      * @param context The context of this evaluation.
      * 
      * @return The result of the expression evaluation.
