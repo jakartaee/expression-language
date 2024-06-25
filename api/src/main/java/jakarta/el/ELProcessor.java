@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2012, 2021 Oracle and/or its affiliates and others.
+ * Copyright (c) 2012, 2024 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -89,6 +89,7 @@ public class ELProcessor {
     /**
      * Evaluates an Jakarta Expression Language expression.
      *
+     * @param <T> The type of the result of the expression evaluation.
      * @param expression The Jakarta Expression Language expression to be evaluated.
      * @return The result of the expression evaluation.
      */
@@ -101,6 +102,7 @@ public class ELProcessor {
     /**
      * Evaluates an Jakarta Expression Language expression, and coerces the result to the specified type.
      *
+     * @param <T> The type of the result of the expression evaluation.
      * @param expression The Jakarta Expression Language expression to be evaluated.
      * @param expectedType Specifies the type that the resultant evaluation will be coerced to.
      * @return The result of the expression evaluation.

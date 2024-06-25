@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997, 2023 Oracle and/or its affiliates and others.
+ * Copyright (c) 1997, 2024 Oracle and/or its affiliates and others.
  * All rights reserved.
  * Copyright 2004 The Apache Software Foundation
  *
@@ -255,6 +255,7 @@ public abstract class ELResolver {
      * An <code>ELException</code> is thrown if an error occurs during the conversion.
      * </p>
      *
+     * @param <T> The target type for the conversion
      * @param context The context of this evaluation.
      * @param obj The object to convert.
      * @param targetType The target type for the conversion.
