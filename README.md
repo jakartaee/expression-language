@@ -5,6 +5,9 @@ This repository contains the source for:
  - the Jakarta Expression Language [API](https://javadoc.io/doc/jakarta.el/jakarta.el-api/) (/api) - 
  - the Jakarta Expression Language [specification](https://jakarta.ee/specifications/expression-language/4.0/jakarta-expression-language-spec-4.0.html) (/spec)
 
+## Implementation
+
+The current reference implementation is [Eclipse Expressly](https://github.com/eclipse-ee4j/expressly).
 
 ## Building
 
