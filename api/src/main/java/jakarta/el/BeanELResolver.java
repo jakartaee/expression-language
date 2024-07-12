@@ -1,4 +1,5 @@
 /*
+ * Copyright (c) 2024 Contributors to the Eclipse Foundation.
  * Copyright (c) 1997, 2023 Oracle and/or its affiliates and others.
  * All rights reserved.
  * Copyright 2004 The Apache Software Foundation
@@ -448,11 +449,13 @@ public class BeanELResolver extends ELResolver {
 
         Method method = ELUtil.findMethod(base.getClass(), base, methodName.toString(), paramTypes, params, false);
 
-        for (Object param : params) {
-            // If the parameters is a LambdaExpression, set the ELContext
-            // for its evaluation
-            if (param instanceof LambdaExpression) {
-                ((LambdaExpression) param).setELContext(context);
+        if (params != null) {
+            for (Object param : params) {
+                // If the parameters is a LambdaExpression, set the ELContext
+                // for its evaluation
+                if (param instanceof LambdaExpression) {
+                    ((LambdaExpression) param).setELContext(context);
+                }
             }
         }
 
