@@ -32,6 +32,8 @@ import java.util.Objects;
  * <p>
  * {@code ELResolver}s are combined together using {@link CompositeELResolver}s to define rich semantics for evaluating
  * an expression. See the javadocs for {@link ELResolver} for details.
+ * 
+ * @since Jakarta Expression Language 6.0
  */
 public class RecordELResolver extends ELResolver {
 
