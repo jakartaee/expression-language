@@ -1,9 +1,10 @@
 # Jakarta Expression Language
 
-This repository contains the source for:
+This repository contains the source for the Jakarta Expression Language API and associated specification document.
 
- - the Jakarta Expression Language [API](https://javadoc.io/doc/jakarta.el/jakarta.el-api/) (/api) - 
- - the Jakarta Expression Language [specification](https://jakarta.ee/specifications/expression-language/4.0/jakarta-expression-language-spec-4.0.html) (/spec)
+Releases of both the API and the specification document, along with a details of the compatible implementations for each
+release, are listed on the Jakarta EE [specification page](https://jakarta.ee/specifications/expression-language/) for
+the Jakarta Expression Language.
 
 
 ## Building
