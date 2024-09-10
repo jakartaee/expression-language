@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2018, 2024 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -17,12 +17,18 @@
 package org.glassfish.el.test;
 
 import org.junit.Test;
+
+import com.sun.el.ExpressionFactoryImpl;
+
 import org.junit.Before;
 import org.junit.BeforeClass;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import javax.el.ELProcessor;
+import javax.el.ExpressionFactory;
+import javax.el.StandardELContext;
+import javax.el.ValueExpression;
 
 public class LambdaTest {
     
@@ -86,12 +92,25 @@ public class LambdaTest {
     @Test
     public void testLambda() {
         ELProcessor elp = new ELProcessor();
-        testExpr(elp, "Lambda Lambda", "f = ()->y->y+1; f()(100)", 101L);
+        testExpr(elp, "Lambda Lambda 1", "f = ()->y->y+1; f()(100)", 101L);
         testExpr(elp, "Lambda Lambda 2", "f = (x)->(tem=x; y->tem+y); f(1)(100)", 101L);
         testExpr(elp, "Lambda Lambda 3", "(()->y->y+1)()(100)", 101L);
         testExpr(elp, "Lambda Lambda 4", "(x->(y->x+y)(1))(100)", 101L);
-        testExpr(elp, "Lambda Lambda 5", "(x->(y->x+y))(1)(100)", 101L);
+        testExpr(elp, "Lambda Lambda 5", "((x)->(y->x+y))(1)(100)", 101L);
         testExpr(elp, "Lambda Lambda 6"
                 , "(x->y->x(0)+y)(x->x+1)(100)", 101L);
+        testExpr(elp, "Lambda Lambda 7", "f = ()->((1)); f()", 1L);
+        testExpr(elp, "Lambda Lambda 8", "f = ()->(y)->y+1; f()(100)", 101L);
+    }
+
+    @Test
+    public void testIssue257() {
+        ExpressionFactory factory = new ExpressionFactoryImpl();
+        StandardELContext context = new StandardELContext(factory);
+        context.getVariableMapper().setVariable("tReadOnly",
+            factory.createValueExpression(true, Boolean.class));
+        ValueExpression valueExpression = factory.createValueExpression(context, "#{(tReadOnly)}", Boolean.class);
+        Object result = valueExpression.getValue(context);
+        assertEquals(true, result);
     }
 }

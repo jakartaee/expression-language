@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2018, 2024 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -66,11 +66,12 @@ public class OperatorTest {
         System.out.println("    returns " + result);
         assertEquals(expected, result);
     }
-    
+
     @Test
     public void testConcat() {
         testExpr("concat", "a = null; b = null; a + b", 0L);
         testExpr("add", "10 + 11", 21L);
+        testExpr("add 2", "((1)) + 1", 2L);
         testExpr("concat", "'10' + 11", 21L);
         testExpr("concat 2", "11 + '10'", 21L);
         testExpr("concat 3", "100 += 10 ", "10010");
@@ -78,7 +79,7 @@ public class OperatorTest {
         testExpr("concat 5", "'100' + 10 + 1", 111L);
         testExpr("concat 6", "'100' += 10 + 1", "10011");
     }
-    
+
     @Test
     public void testAssign() {
         elp.eval("vv = 10");
