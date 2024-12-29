@@ -565,7 +565,7 @@ same name) that come after it in the list.
 The expression with the syntax
 _func(args...)(args...)..._ can mean any of the following:
 
-* A call to an EL fucntion with empty namespace.
+* A call to an EL function with empty namespace.
 
 * A call to a lambda expression.
 
