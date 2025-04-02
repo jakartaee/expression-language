@@ -21,6 +21,8 @@ import java.io.Serializable;
 
 public class SimpleBean implements Serializable, SimpleInterface {
 
+  private static final long serialVersionUID = 1L;
+
   private String fullName = "Doug Donahue"; // Default Setting
 
   private String intention;
@@ -35,7 +37,7 @@ public class SimpleBean implements Serializable, SimpleInterface {
 
   /**
    * Set full name using the pattern firstName + " " + lastName.
-   * 
+   *
    * @param firstName
    * @param lastName
    */
