@@ -71,14 +71,14 @@ public class ELClientIT {
 
   private static enum greeting {
     hello, goodbye
-  };
+  }
 
   private Hashtable<Class<?>,Object> numberTable;
 
   private enum planets {
     MERCURY, VENUS, EARTH, MARS, JUPITER, SATURN, URANUS, NEPTUNE
     /** ,PLUTO */
-  };
+  }
 
   public ELClientIT(){
     initializeNumberTable();
@@ -1905,7 +1905,7 @@ public class ELClientIT {
       Object result = ExprEval.evaluateValueExpression("${A}", timeNV,
           Date.class);
       pass1 = ExprEval.compareClass(result, Date.class)
-          && ExprEval.compareValue(result, (Date) time);
+          && ExprEval.compareValue(result, time);
 
       result = ExprEval.evaluateValueExpression("#{null}", null, Date.class);
       pass2 = (result == null) ? true : false;

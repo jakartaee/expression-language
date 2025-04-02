@@ -44,7 +44,7 @@ public class ELClientIT {
 
   private enum TestEnum {
     APPLE, PEAR
-  };
+  }
 
   // Data Type to test String Coercion.
   private static final DougType DT = new DougType();

@@ -115,7 +115,7 @@ public class SigTestDriver extends SignatureTestDriver {
     command.add(API_VERSION_FLAG);
     command.add(info.getVersion());
 
-    return ((String[]) command.toArray(new String[command.size()]));
+    return command.toArray(new String[command.size()]);
 
   } // END createTestArguments
 
@@ -136,7 +136,6 @@ public class SigTestDriver extends SignatureTestDriver {
       logger.log(Logger.Level.TRACE, "   testArguments[" + ii + "] = " + testArguments[ii]);
     }
 
-    @SuppressWarnings("unchecked")
     Method runMethod = sigTestClass.getDeclaredMethod("run",
         new Class[] { String[].class, PrintWriter.class, PrintWriter.class });
     runMethod.invoke(sigTestInstance,
