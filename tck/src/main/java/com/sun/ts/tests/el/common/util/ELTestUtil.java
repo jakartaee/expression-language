@@ -90,7 +90,7 @@ public final class ELTestUtil {
       Class<?>[] argTypes, Object[] params) throws Exception {
 
     try {
-      checkForNPE(clazz.newInstance(), methName, argTypes, params);
+      checkForNPE(clazz.getConstructor().newInstance(), methName, argTypes, params);
 
     } catch (Exception e) {
       throw new Exception(FAIL + NL + e.toString());

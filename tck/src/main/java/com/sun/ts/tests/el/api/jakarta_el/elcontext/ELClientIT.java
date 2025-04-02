@@ -95,9 +95,8 @@ public class ELClientIT {
     ELManager elm = new ELManager();
     ELContext elc = elm.getELContext();
 
-    String disName = "english";
-    Locale en = new Locale(disName);
-    elc.setLocale(en);
+    String disName = Locale.ENGLISH.getDisplayName();
+    elc.setLocale(Locale.ENGLISH);
     String result = elc.getLocale().getDisplayName();
 
     if (!result.equalsIgnoreCase(disName)) {

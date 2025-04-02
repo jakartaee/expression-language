@@ -88,7 +88,7 @@ public class ELClientIT {
       logger.log(Logger.Level.TRACE, "first expression to be evaluated is " + expr1);
 
       NameValuePair values1[] = NameValuePair
-          .buildNameValuePair(new Float(-1.0f), new Float(-1.0));
+          .buildNameValuePair(Float.valueOf(-1.0f), Float.valueOf((float) -1.0));
 
       Object result1 = ExprEval.evaluateValueExpression(expr1, values1,
           Boolean.class);
@@ -137,7 +137,7 @@ public class ELClientIT {
       logger.log(Logger.Level.TRACE, "first expression to be evaluated is " + expr1);
 
       NameValuePair values1[] = NameValuePair
-          .buildNameValuePair(new Float(-1.0f), new Float(-1.0));
+          .buildNameValuePair(Float.valueOf(-1.0f), Float.valueOf((float)-1.0));
 
       Object result1 = ExprEval.evaluateValueExpression(expr1, values1,
           Boolean.class);
