@@ -59,13 +59,13 @@ public class VarMapperELContext extends ELContext {
     ELResolver elResolver;
     this.compResolver.add(new VariableELResolver());
     this.compResolver.add(new jakarta.el.BeanELResolver());
-    elResolver = (ELResolver) compResolver;
+    elResolver = compResolver;
 
     return elResolver;
   }
 
   public ELContext getELContext() {
-    return (ELContext) (this);
+    return this;
   }
 
   @Override

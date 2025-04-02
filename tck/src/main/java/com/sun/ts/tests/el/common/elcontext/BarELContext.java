@@ -45,11 +45,11 @@ public class BarELContext extends ELContext {
 
   @Override
   public ELResolver getELResolver() {
-    return (ELResolver) elResolver;
+    return elResolver;
   }
 
   public ELContext getELContext() {
-    return (ELContext) (this);
+    return this;
   }
 
   @Override

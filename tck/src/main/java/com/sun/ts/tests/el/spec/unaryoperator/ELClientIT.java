@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009, 2020 Oracle and/or its affiliates and others.
+ * Copyright (c) 2009, 2025 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -200,7 +200,7 @@ public class ELClientIT {
 
           logger.log(Logger.Level.TRACE, "result is " + result.toString());
           pass = (ExprEval.compareClass(result, Double.class)
-              && ExprEval.compareValue((Double) result, expectedResult));
+              && ExprEval.compareValue(result, expectedResult));
         }
       }
 
@@ -242,7 +242,7 @@ public class ELClientIT {
 
         logger.log(Logger.Level.TRACE, "result is " + result.toString());
         pass = (ExprEval.compareClass(result, Long.class)
-            && ExprEval.compareValue((Long) result, expectedResult));
+            && ExprEval.compareValue(result, expectedResult));
       }
 
       if (!pass)
@@ -282,7 +282,7 @@ public class ELClientIT {
 
         logger.log(Logger.Level.TRACE, "result is " + result.toString());
         pass = (ExprEval.compareClass(result, Byte.class)
-            && ExprEval.compareValue((Byte) result, expectedResult));
+            && ExprEval.compareValue(result, expectedResult));
       }
 
       if (!pass)
@@ -322,7 +322,7 @@ public class ELClientIT {
 
         logger.log(Logger.Level.TRACE, "result is " + result.toString());
         pass = (ExprEval.compareClass(result, Short.class)
-            && ExprEval.compareValue((Short) result, expectedResult));
+            && ExprEval.compareValue(result, expectedResult));
       }
 
       if (!pass)
@@ -362,7 +362,7 @@ public class ELClientIT {
 
         logger.log(Logger.Level.TRACE, "result is " + result.toString());
         pass = (ExprEval.compareClass(result, Integer.class)
-            && ExprEval.compareValue((Integer) result, expectedResult));
+            && ExprEval.compareValue(result, expectedResult));
       }
 
       if (!pass)
@@ -402,7 +402,7 @@ public class ELClientIT {
 
         logger.log(Logger.Level.TRACE, "result is " + result.toString());
         pass = (ExprEval.compareClass(result, Long.class)
-            && ExprEval.compareValue((Long) result, expectedResult));
+            && ExprEval.compareValue(result, expectedResult));
       }
 
       if (!pass)
@@ -482,7 +482,7 @@ public class ELClientIT {
 
         logger.log(Logger.Level.TRACE, "result is " + result.toString());
         pass = (ExprEval.compareClass(result, Double.class)
-            && ExprEval.compareValue((Double) result, expectedResult));
+            && ExprEval.compareValue(result, expectedResult));
       }
 
       if (!pass)
