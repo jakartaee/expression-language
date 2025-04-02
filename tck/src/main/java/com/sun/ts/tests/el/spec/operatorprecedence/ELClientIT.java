@@ -46,8 +46,6 @@ public class ELClientIT {
 
   private static final String[] OROPER = { "||", "or" };
 
-  private final boolean[] deferred = { true, false };
-
   @AfterEach
   public void cleanup() throws Exception {
     logger.log(Logger.Level.INFO, "Cleanup method called");

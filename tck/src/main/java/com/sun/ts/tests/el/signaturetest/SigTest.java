@@ -114,8 +114,8 @@ public abstract class SigTest {
    * @throws Exception
    *           When an error occurs executing the signature tests.
    */
-  public void signatureTest(String mapFile, String packageFile, Properties mapFileAsProps, String[] packages)
-   throws Exception {
+  public void signatureTest(String mapFile, String packageFile, @SuppressWarnings("unused") Properties mapFileAsProps,
+      String[] packages) throws Exception {
 
     SigTestResult results = null;
     String repositoryDir = System.getProperty("java.io.tmpdir");
