@@ -71,7 +71,7 @@ public class ELClientIT {
    * @test_Strategy: Verify that API calls work as expected:
    *                 CompositeELResolver() add() getValue() getType() setValue()
    *                 isReadOnly() getCommonPropertyType()
-   *                 getFeatureDescriptors() ELContext.getELResolver()
+   *                 ELContext.getELResolver()
    */
   @Test
   public void compositeELResolverTest() throws Exception {
@@ -192,7 +192,6 @@ public class ELClientIT {
    *
    * @test_Strategy: Verify that API calls work as expected: getValue()
    *                 getType() setValue() isReadOnly() getCommonPropertyType()
-   *                 getFeatureDescriptors()
    */
   @Test
   public void compositeELResolverNPETest() throws Exception {

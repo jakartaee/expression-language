@@ -158,14 +158,6 @@ public class ELClientIT {
     buf.append("getCommonPropertyType() returns " + commonPropertyType.getName()
         + ELTestUtil.NL);
 
-    // getFeatureDescriptors() commenting below as the method is deprecated in EL 6.0
-    // context.setPropertyResolved(false);
-    // Iterator<?> i = resolver.getFeatureDescriptors(context, base);
-
-    // if (i == null) {
-    //   buf.append("getFeatureDescriptors() returns null" + ELTestUtil.NL);
-    // }
-
     if (!pass) {
       throw new Exception(ELTestUtil.FAIL + ELTestUtil.NL + buf.toString());
     }

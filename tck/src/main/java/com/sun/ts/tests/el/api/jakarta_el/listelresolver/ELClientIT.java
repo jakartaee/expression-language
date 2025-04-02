@@ -76,7 +76,7 @@ public class ELClientIT {
    *
    * @test_Strategy: Verify that API calls work as expected: ListELResolver()
    *                 getValue() getType() setValue() isReadOnly()
-   *                 getCommonPropertyType() getFeatureDescriptors()
+   *                 getCommonPropertyType()
    */
   @Test
   public void listELResolverTest() throws Exception {

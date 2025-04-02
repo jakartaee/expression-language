@@ -75,7 +75,7 @@ public class ELClientIT {
    *                 EL:JAVADOC:80; EL:JAVADOC:81; EL:JAVADOC:83
    * @test_Strategy: Verify that API calls work as expected: MapELResolver()
    *                 getValue() getType() setValue() isReadOnly()
-   *                 getCommonPropertyType() getFeatureDescriptors()
+   *                 getCommonPropertyType()
    */
   @Test
   public void mapELResolverTest() throws Exception {
