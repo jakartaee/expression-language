@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2012, 2020 Oracle and/or its affiliates and others.
+ * Copyright (c) 2012, 2025 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -26,8 +26,6 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Properties;
-
 
 import com.sun.ts.tests.el.common.util.TypesBean;
 import com.sun.ts.tests.el.common.util.Validator;
@@ -68,19 +66,19 @@ public class ELClientIT {
    * @test_Strategy: Validate that when we have variable A set to a specific
    *                 data type that we coerce and receive back the correct value
    *                 and Class type.
-   * 
+   *
    *                 Operators: +, -, *, /, div, %, mod
-   * 
+   *
    *                 Variable A - BigDecimal
-   * 
+   *
    *                 Variable B - Rotating through the following types:
    *                 BigDecimal, BigInteger, Integer, Float, Long, Short,
    *                 Double, Byte
-   * 
+   *
    *                 Excluded: none
-   * 
+   *
    * @since: 3.0
-   * 
+   *
    */
   @Test
   public void elAssignmentOperatorBigDecimalTest() throws Exception {
@@ -143,18 +141,18 @@ public class ELClientIT {
    * @test_Strategy: Validate that when we have variable A set to a specific
    *                 data type that we coerce and receive back the correct value
    *                 and Class type.
-   * 
+   *
    *                 Operators: +, -, *, /, div, %, mod
-   * 
+   *
    *                 Variable A - Float
-   * 
+   *
    *                 Variable B - Rotating through the following types: Integer,
    *                 Float, Long, Short, Double, Byte
-   * 
+   *
    *                 Exclude: BigDecimal
-   * 
+   *
    * @since: 3.0
-   * 
+   *
    */
   @Test
   public void elAssignmentOperatorFloatTest() throws Exception {
@@ -255,18 +253,18 @@ public class ELClientIT {
    * @test_Strategy: Validate that when we have variable A set to a specific
    *                 data type that we coerce and receive back the correct value
    *                 and Class type.
-   * 
+   *
    *                 Operators: +, -, *, /, div, %, mod
-   * 
+   *
    *                 Variable A - Double
-   * 
+   *
    *                 Variable B - Rotating through the following types: Integer,
    *                 Float, Long, Short, Double, Byte
-   * 
+   *
    *                 Exclude: BigDecimal, Float
-   * 
+   *
    * @since: 3.0
-   * 
+   *
    */
   @Test
   public void elAssignmentOperatorDoubleTest() throws Exception {
@@ -368,18 +366,18 @@ public class ELClientIT {
    * @test_Strategy: Validate that when we have variable A set to a specific
    *                 data type that we coerce and receive back the correct value
    *                 and Class type.
-   * 
+   *
    *                 Operators: +, -, *, /, div, %, mod
-   * 
+   *
    *                 Variable A - BigInteger
-   * 
+   *
    *                 Variable B - Rotating through the following types: Integer,
    *                 Float, Long, Short, Double, Byte
-   * 
+   *
    *                 Exclude: BigDecimal, Float, Double
-   * 
+   *
    * @since: 3.0
-   * 
+   *
    */
   @Test
   public void elAssignmentOperatorBigIntegerTest() throws Exception {
@@ -456,18 +454,18 @@ public class ELClientIT {
    * @test_Strategy: Validate that when we have variable A set to a specific
    *                 data type that we coerce and receive back the correct value
    *                 and Class type.
-   * 
+   *
    *                 Operators: +, -, *, /, div, %, mod
-   * 
+   *
    *                 Variable A - Integer
-   * 
+   *
    *                 Variable B - Rotating through the following types: Integer,
    *                 Float, Long, Short, Double, Byte
-   * 
+   *
    *                 Exclude: BigDecimal, BigInteger, Float, Double
-   * 
+   *
    * @since: 3.0
-   * 
+   *
    */
   @Test
   public void elAssignmentOperatorIntegerTest() throws Exception {
@@ -545,18 +543,18 @@ public class ELClientIT {
    * @test_Strategy: Validate that when we have variable A set to a specific
    *                 data type that we coerce and receive back the correct value
    *                 and Class type.
-   * 
+   *
    *                 Operators: +, -, *, /, div, %, mod
-   * 
+   *
    *                 Variable A - Long
-   * 
+   *
    *                 Variable B - Rotating through the following types: Integer,
    *                 Float, Long, Short, Double, Byte
-   * 
+   *
    *                 Exclude: BigDecimal, BigInteger, Float, Double, Integer
-   * 
+   *
    * @since: 3.0
-   * 
+   *
    */
   @Test
   public void elAssignmentOperatorLongTest() throws Exception {
@@ -635,19 +633,19 @@ public class ELClientIT {
    * @test_Strategy: Validate that when we have variable A set to a specific
    *                 data type that we coerce and receive back the correct value
    *                 and Class type.
-   * 
+   *
    *                 Operators: +, -, *, /, div, %, mod
-   * 
+   *
    *                 Variable A - Short
-   * 
+   *
    *                 Variable B - Rotating through the following types: Integer,
    *                 Float, Long, Short, Double, Byte
-   * 
+   *
    *                 Exclude: BigDecimal, BigInteger, Float, Double, Integer,
    *                 Long
-   * 
+   *
    * @since: 3.0
-   * 
+   *
    */
   @Test
   public void elAssignmentOperatorShortTest() throws Exception {
@@ -727,19 +725,19 @@ public class ELClientIT {
    * @test_Strategy: Validate that when we have variable A set to a specific
    *                 data type that we coerce and receive back the correct value
    *                 and Class type.
-   * 
+   *
    *                 Operators: +, -, *, /, div, %, mod
-   * 
+   *
    *                 Variable A - Byte
-   * 
+   *
    *                 Variable B - Rotating through the following types: Integer,
    *                 Float, Long, Short, Double, Byte
-   * 
+   *
    *                 Exclude: BigDecimal, BigInteger, Float, Double, Integer,
    *                 Long, Short
-   * 
+   *
    * @since: 3.0
-   * 
+   *
    */
   @Test
   public void elAssignmentOperatorByteTest() throws Exception {
@@ -820,15 +818,15 @@ public class ELClientIT {
    * @test_Strategy: Validate that when we have variable A set to a specific
    *                 data type that we coerce and receive back the correct value
    *                 and Class type.
-   * 
+   *
    *                 Operators: +, -, *, /, div, %, mod
-   * 
+   *
    *                 Variable A - null
-   * 
+   *
    *                 Variable B - null
-   * 
+   *
    * @since: 3.0
-   * 
+   *
    */
   @Test
   public void elAssignmentOperatorNullTest() throws Exception {
@@ -873,19 +871,19 @@ public class ELClientIT {
    * @test_Strategy: Validate that when we have variable A set to a specific
    *                 data type that we coerce and receive back the correct value
    *                 and Class type.
-   * 
+   *
    *                 Operators: +, -, *, /, div, %, mod
-   * 
+   *
    *                 Variable A - BigDecimal
-   * 
+   *
    *                 Variable B - Rotating through the following types:
    *                 BigDecimal, BigInteger, Integer, Float, Long, Short,
    *                 Double, Byte
-   * 
+   *
    *                 Excluded: none
-   * 
+   *
    * @since: 3.0
-   * 
+   *
    */
   @Test
   public void elAssignmentOperatorMultiTest() throws Exception {

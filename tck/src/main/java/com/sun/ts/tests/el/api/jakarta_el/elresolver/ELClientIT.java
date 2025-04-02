@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009, 2020 Oracle and/or its affiliates and others.
+ * Copyright (c) 2009, 2025 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -20,9 +20,6 @@
  */
 
 package com.sun.ts.tests.el.api.jakarta_el.elresolver;
-
-import java.util.Properties;
-
 
 import com.sun.ts.tests.el.common.api.resolver.ResolverTest;
 import com.sun.ts.tests.el.common.elcontext.BarELContext;
@@ -50,7 +47,7 @@ public class ELClientIT {
   private static final String[] names = { "doug", "nick", "roger", "ryan",
       "ed" };
 
-  
+
   @AfterEach
   public void cleanup() throws Exception {
     logger.log(Logger.Level.INFO, "Cleanup method called");
@@ -68,10 +65,10 @@ public class ELClientIT {
 
   /**
    * @testName: elResolverTest
-   * 
+   *
    * @assertion_ids: EL:JAVADOC:50; EL:JAVADOC:51; EL:JAVADOC:52; EL:JAVADOC:53;
    *                 EL:JAVADOC:54; EL:JAVADOC:55; EL:JAVADOC:229
-   * 
+   *
    * @test_Strategy: Create an ELContext and get its ELResolver. Verify that API
    *                 calls work as expected: getValue() getType() setValue()
    *                 isReadOnly() getCommonPropertyType()
@@ -104,13 +101,13 @@ public class ELClientIT {
 
   /**
    * @testName: elResolverNPETest
-   * 
+   *
    * @assertion_ids: EL:JAVADOC:233; EL:JAVADOC:239; EL:JAVADOC:242
-   * 
+   *
    * @test_Strategy: Verify that a NullPointerException is thrown as expected
    *                 for the following methods: getValue() getType() setValue()
    *                 isReadOnly()
-   * 
+   *
    * @since: 3.0
    */
   @Test
@@ -146,9 +143,9 @@ public class ELClientIT {
 
   /**
    * @testName: elResolverPNFETest
-   * 
+   *
    * @assertion_ids: EL:JAVADOC:231; EL:JAVADOC:234; EL:JAVADOC:240
-   * 
+   *
    * @test_Strategy: Verify that API calls throw PropertyNotFoundException as
    *                 expected: getType() setValue() isReadOnly()
    */
@@ -183,13 +180,13 @@ public class ELClientIT {
 
   /**
    * @testName: elResolverPNWETest
-   * 
+   *
    * @assertion_ids: EL:JAVADOC:50; EL:JAVADOC:244
-   * 
+   *
    * @test_Strategy: Verify that the setValue() method throws a
    *                 PropertyNotWritableException, if the resolver was
    *                 constructed in read-only mode.
-   * 
+   *
    *                 setValue()
    */
   @Test

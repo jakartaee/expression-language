@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009, 2020 Oracle and/or its affiliates and others.
+ * Copyright (c) 2009, 2025 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -20,9 +20,6 @@
  */
 
 package com.sun.ts.tests.el.spec.operatorprecedence;
-
-import java.util.Properties;
-
 
 import com.sun.ts.tests.el.common.elcontext.FuncMapperELContext;
 import com.sun.ts.tests.el.common.util.ExprEval;
@@ -69,9 +66,9 @@ public class ELClientIT {
 
   /*
    * @testName: elMultiPreBinaryTest
-   * 
+   *
    * @assertion_ids: EL:SPEC:28
-   * 
+   *
    * @test_Strategy: Validate that the order of precedence is followed when an
    * EL Expression is evaluated.
    *
@@ -87,9 +84,9 @@ public class ELClientIT {
 
   /*
    * @testName: elDivPreBinaryTest
-   * 
+   *
    * @assertion_ids: EL:SPEC:28
-   * 
+   *
    * @test_Strategy: Validate that the order of precedence is followed when an
    * EL Expression is evaluated.
    *
@@ -108,9 +105,9 @@ public class ELClientIT {
 
   /*
    * @testName: elModPreBinaryTest
-   * 
+   *
    * @assertion_ids: EL:SPEC:28
-   * 
+   *
    * @test_Strategy: Validate that the order of precedence is followed when an
    * EL Expression is evaluated.
    *
@@ -129,9 +126,9 @@ public class ELClientIT {
 
   /*
    * @testName: elMultiPreRelationalTest
-   * 
+   *
    * @assertion_ids: EL:SPEC:28
-   * 
+   *
    * @test_Strategy: Validate that the order of precedence is followed when an
    * EL Expression is evaluated.
    *
@@ -164,9 +161,9 @@ public class ELClientIT {
 
   /*
    * @testName: elDivPreRelationalTest
-   * 
+   *
    * @assertion_ids: EL:SPEC:28
-   * 
+   *
    * @test_Strategy: Validate that the order of precedence is followed when an
    * EL Expression is evaluated.
    *
@@ -201,9 +198,9 @@ public class ELClientIT {
 
   /*
    * @testName: elModPreRelationalTest
-   * 
+   *
    * @assertion_ids: EL:SPEC:28
-   * 
+   *
    * @test_Strategy: Validate that the order of precedence is followed when an
    * EL Expression is evaluated.
    *
@@ -238,9 +235,9 @@ public class ELClientIT {
 
   /*
    * @testName: elMultiEqualPreAndTest
-   * 
+   *
    * @assertion_ids: EL:SPEC:28
-   * 
+   *
    * @test_Strategy: Validate that the order of precedence is followed when an
    * EL Expression is evaluated.
    *
@@ -258,9 +255,9 @@ public class ELClientIT {
 
   /*
    * @testName: elDivEqualPreAndTest
-   * 
+   *
    * @assertion_ids: EL:SPEC:28
-   * 
+   *
    * @test_Strategy: Validate that the order of precedence is followed when an
    * EL Expression is evaluated.
    *
@@ -282,9 +279,9 @@ public class ELClientIT {
 
   /*
    * @testName: elModEqualPreAndTest
-   * 
+   *
    * @assertion_ids: EL:SPEC:28
-   * 
+   *
    * @test_Strategy: Validate that the order of precedence is followed when an
    * EL Expression is evaluated.
    *
@@ -306,9 +303,9 @@ public class ELClientIT {
 
   /*
    * @testName: elMultiEqualOrCondTest
-   * 
+   *
    * @assertion_ids: EL:SPEC:28
-   * 
+   *
    * @test_Strategy: Validate that the order of precedence is followed when an
    * EL Expression is evaluated.
    *
@@ -327,9 +324,9 @@ public class ELClientIT {
 
   /*
    * @testName: elDivEqualPreOrTest
-   * 
+   *
    * @assertion_ids: EL:SPEC:28
-   * 
+   *
    * @test_Strategy: Validate that the order of precedence is followed when an
    * EL Expression is evaluated.
    *
@@ -353,9 +350,9 @@ public class ELClientIT {
 
   /*
    * @testName: elModEqualPreOrTest
-   * 
+   *
    * @assertion_ids: EL:SPEC:28
-   * 
+   *
    * @test_Strategy: Validate that the order of precedence is followed when an
    * EL Expression is evaluated.
    *
@@ -378,9 +375,9 @@ public class ELClientIT {
 
   /*
    * @testName: elMultiEqualPreCondTest
-   * 
+   *
    * @assertion_ids: EL:SPEC:28
-   * 
+   *
    * @test_Strategy: Validate that the order of precedence is followed when an
    * EL Expression is evaluated.
    *
@@ -397,9 +394,9 @@ public class ELClientIT {
 
   /*
    * @testName: elDivEqualPreCondTest
-   * 
+   *
    * @assertion_ids: EL:SPEC:28
-   * 
+   *
    * @test_Strategy: Validate that the order of precedence is followed when an
    * EL Expression is evaluated.
    *
@@ -417,9 +414,9 @@ public class ELClientIT {
 
   /*
    * @testName: elModEqualPreCondTest
-   * 
+   *
    * @assertion_ids: EL:SPEC:28
-   * 
+   *
    * @test_Strategy: Validate that the order of precedence is followed when an
    * EL Expression is evaluated.
    *
@@ -436,9 +433,9 @@ public class ELClientIT {
 
   /*
    * @testName: elParenPreBinaryTest
-   * 
+   *
    * @assertion_ids: EL:SPEC:28; EL:SPEC:27
-   * 
+   *
    * @test_Strategy: Validate that the order of precedence is followed when an
    * EL Expression is evaluated.
    *
@@ -473,9 +470,9 @@ public class ELClientIT {
 
   /*
    * @testName: functionPrecedenceTest
-   * 
+   *
    * @assertion_ids: EL:SPEC:29
-   * 
+   *
    * @test_Strategy: Validate that qualified functions with a namespace prefix
    * have precedence over the operators by constructing an expression which
    * cannot be parsed due to this rule.

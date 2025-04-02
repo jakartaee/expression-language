@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2012, 2020 Oracle and/or its affiliates and others.
+ * Copyright (c) 2012, 2025 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -26,8 +26,6 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Properties;
-
 
 import com.sun.ts.tests.el.common.util.TypesBean;
 import com.sun.ts.tests.el.common.util.Validator;
@@ -63,30 +61,30 @@ void logFinishTest(TestInfo testInfo) {
 
   /**
    * @testName: elLambdaExprBigDecimalTest
-   * 
+   *
    * @assertion_ids: EL:SPEC:50.1; EL:SPEC:50.2; EL:SPEC:50.3; EL:SPEC:50.4;
    *                 EL:SPEC:50.5; EL:SPEC:50.6; EL:JAVADOC:212
-   * 
+   *
    * @test_Strategy: Evaluate the Lambda Expression, making sure the coercion
    *                 rules are followed.
-   * 
+   *
    *                 Operators: +, -, *, /, div, %, mod
-   * 
+   *
    *                 Expressions: "(((x, y)-> x [operator] y)(a, b))", "z =
    *                 (x,y)->x [operator] y" "z(a, b)", "func = (x,y)->x
    *                 [operator] y; func(a, b)", "(cond->[true/false]? a
    *                 [operator] b: a [operator] 2)(a)"
-   * 
+   *
    *                 Variable A - BigDecimal
-   * 
+   *
    *                 Variable B - Rotating through the following types:
    *                 BigDecimal, BigInteger, Integer, Float, Long, Short,
    *                 Double, Byte
-   * 
+   *
    *                 Excluded: none
-   * 
+   *
    * @since: 3.0
-   * 
+   *
    */
   @Test
   public void elLambdaExprBigDecimalTest() throws Exception {
@@ -132,29 +130,29 @@ void logFinishTest(TestInfo testInfo) {
 
   /**
    * @testName: elLambdaExprFloatTest
-   * 
+   *
    * @assertion_ids: EL:SPEC:50.1; EL:SPEC:50.2; EL:SPEC:50.3; EL:SPEC:50.4;
    *                 EL:SPEC:50.5; EL:SPEC:50.6; EL:JAVADOC:212
-   * 
+   *
    * @test_Strategy: Evaluate the Lambda Expression, making sure the coercion
    *                 rules are followed.
-   * 
+   *
    *                 Operators: +, -, *, /, div, %, mod
-   * 
+   *
    *                 Expressions: "(((x, y)-> x [operator] y)(a, b))", "z =
    *                 (x,y)->x [operator] y" "z(a, b)", "func = (x,y)->x
    *                 [operator] y; func(a, b)", "(cond->[true/false]? a
    *                 [operator] b: a [operator] 2)(a)"
-   * 
+   *
    *                 Variable A - Float
-   * 
+   *
    *                 Variable B - Rotating through the following types: Integer,
    *                 Float, Long, Short, Double, Byte
-   * 
+   *
    *                 Exclude: BigDecimal
-   * 
+   *
    * @since: 3.0
-   * 
+   *
    */
   @Test
   public void elLambdaExprFloatTest() throws Exception {
@@ -239,29 +237,29 @@ void logFinishTest(TestInfo testInfo) {
 
   /**
    * @testName: elLambdaExprDoubleTest
-   * 
+   *
    * @assertion_ids: EL:SPEC:50.1; EL:SPEC:50.2; EL:SPEC:50.3; EL:SPEC:50.4;
    *                 EL:SPEC:50.5; EL:SPEC:50.6; EL:JAVADOC:212
-   * 
+   *
    * @test_Strategy: Evaluate the Lambda Expression, making sure the coercion
    *                 rules are followed.
-   * 
+   *
    *                 Operators: +, -, *, /, div, %, mod
-   * 
+   *
    *                 Expressions: "(((x, y)-> x [operator] y)(a, b))", "z =
    *                 (x,y)->x [operator] y" "z(a, b)", "func = (x,y)->x
    *                 [operator] y; func(a, b)", "(cond->[true/false]? a
    *                 [operator] b: a [operator] 2)(a)"
-   * 
+   *
    *                 Variable A - Double
-   * 
+   *
    *                 Variable B - Rotating through the following types: Integer,
    *                 Float, Long, Short, Double, Byte
-   * 
+   *
    *                 Exclude: BigDecimal, Float
-   * 
+   *
    * @since: 3.0
-   * 
+   *
    */
   @Test
   public void elLambdaExprDoubleTest() throws Exception {
@@ -346,27 +344,27 @@ void logFinishTest(TestInfo testInfo) {
 
   /**
    * @testName: elLambdaExprBigIntegerTest
-   * 
+   *
    * @assertion_ids: EL:SPEC:50.1; EL:SPEC:50.2; EL:SPEC:50.3; EL:SPEC:50.4;
    *                 EL:SPEC:50.5; EL:SPEC:50.6; EL:JAVADOC:212
-   * 
+   *
    * @test_Strategy: Evaluate the Lambda Expression, making sure the coercion
    *                 rules are followed.
-   * 
+   *
    *                 Operators: +, -, *, /, div, %, mod
-   * 
+   *
    *                 Expressions: "(((x, y)-> x [operator] y)(a, b))", "z =
    *                 (x,y)->x [operator] y" "z(a, b)"
-   * 
+   *
    *                 Variable A - BigInteger
-   * 
+   *
    *                 Variable B - Rotating through the following types: Integer,
    *                 Float, Long, Short, Double, Byte
-   * 
+   *
    *                 Exclude: BigDecimal, Float, Double
-   * 
+   *
    * @since: 3.0
-   * 
+   *
    */
   @Test
   public void elLambdaExprBigIntegerTest() throws Exception {
@@ -423,27 +421,27 @@ void logFinishTest(TestInfo testInfo) {
 
   /**
    * @testName: elLambdaExprIntegerTest
-   * 
+   *
    * @assertion_ids: EL:SPEC:50.1; EL:SPEC:50.2; EL:SPEC:50.3; EL:SPEC:50.4;
    *                 EL:SPEC:50.5; EL:SPEC:50.6; EL:JAVADOC:212
-   * 
+   *
    * @test_Strategy: Evaluate the Lambda Expression, making sure the coercion
    *                 rules are followed.
-   * 
+   *
    *                 Operators: +, -, *, /, div, %, mod
-   * 
+   *
    *                 Expressions: "(((x, y)-> x [operator] y)(a, b))", "z =
    *                 (x,y)->x [operator] y" "z(a, b)"
-   * 
+   *
    *                 Variable A - Integer
-   * 
+   *
    *                 Variable B - Rotating through the following types: Integer,
    *                 Float, Long, Short, Double, Byte
-   * 
+   *
    *                 Exclude: BigDecimal, BigInteger, Float, Double
-   * 
+   *
    * @since: 3.0
-   * 
+   *
    */
   @Test
   public void elLambdaExprIntegerTest() throws Exception {
@@ -501,27 +499,27 @@ void logFinishTest(TestInfo testInfo) {
 
   /**
    * @testName: elLambdaExprLongTest
-   * 
+   *
    * @assertion_ids: EL:SPEC:50.1; EL:SPEC:50.2; EL:SPEC:50.3; EL:SPEC:50.4;
    *                 EL:SPEC:50.5; EL:SPEC:50.6; EL:JAVADOC:212
-   * 
+   *
    * @test_Strategy: Evaluate the Lambda Expression, making sure the coercion
    *                 rules are followed.
-   * 
+   *
    *                 Operators: +, -, *, /, div, %, mod
-   * 
+   *
    *                 Expressions: "(((x, y)-> x [operator] y)(a, b))", "z =
    *                 (x,y)->x [operator] y" "z(a, b)"
-   * 
+   *
    *                 Variable A - Long
-   * 
+   *
    *                 Variable B - Rotating through the following types: Integer,
    *                 Float, Long, Short, Double, Byte
-   * 
+   *
    *                 Exclude: BigDecimal, BigInteger, Float, Double, Integer
-   * 
+   *
    * @since: 3.0
-   * 
+   *
    */
   @Test
   public void elLambdaExprLongTest() throws Exception {
@@ -580,28 +578,28 @@ void logFinishTest(TestInfo testInfo) {
 
   /**
    * @testName: elLambdaExprShortTest
-   * 
+   *
    * @assertion_ids: EL:SPEC:50.1; EL:SPEC:50.2; EL:SPEC:50.3; EL:SPEC:50.4;
    *                 EL:SPEC:50.5; EL:SPEC:50.6; EL:JAVADOC:212
-   * 
+   *
    * @test_Strategy: Evaluate the Lambda Expression, making sure the coercion
    *                 rules are followed.
-   * 
+   *
    *                 Operators: +, -, *, /, div, %, mod
-   * 
+   *
    *                 Expressions: "(((x, y)-> x [operator] y)(a, b))", "z =
    *                 (x,y)->x [operator] y" "z(a, b)"
-   * 
+   *
    *                 Variable A - Short
-   * 
+   *
    *                 Variable B - Rotating through the following types: Integer,
    *                 Float, Long, Short, Double, Byte
-   * 
+   *
    *                 Exclude: BigDecimal, BigInteger, Float, Double, Integer,
    *                 Long
-   * 
+   *
    * @since: 3.0
-   * 
+   *
    */
   @Test
   public void elLambdaExprShortTest() throws Exception {
@@ -661,28 +659,28 @@ void logFinishTest(TestInfo testInfo) {
 
   /**
    * @testName: elLambdaExprByteTest
-   * 
+   *
    * @assertion_ids: EL:SPEC:50.1; EL:SPEC:50.2; EL:SPEC:50.3; EL:SPEC:50.4;
    *                 EL:SPEC:50.5; EL:SPEC:50.6; EL:JAVADOC:212
-   * 
+   *
    * @test_Strategy: Evaluate the Lambda Expression, making sure the coercion
    *                 rules are followed.
-   * 
+   *
    *                 Operators: +, -, *, /, div, %, mod
-   * 
+   *
    *                 Expressions: "(((x, y)-> x [operator] y)(a, b))", "z =
    *                 (x,y)->x [operator] y" "z(a, b)"
-   * 
+   *
    *                 Variable A - Byte
-   * 
+   *
    *                 Variable B - Rotating through the following types: Integer,
    *                 Float, Long, Short, Double, Byte
-   * 
+   *
    *                 Exclude: BigDecimal, BigInteger, Float, Double, Integer,
    *                 Long, Short
-   * 
+   *
    * @since: 3.0
-   * 
+   *
    */
   @Test
   public void elLambdaExprByteTest() throws Exception {
@@ -743,23 +741,23 @@ void logFinishTest(TestInfo testInfo) {
 
   /**
    * @testName: elLambdaExprStringTest
-   * 
+   *
    * @assertion_ids: EL:SPEC:49.1; EL:JAVADOC:212
-   * 
+   *
    * @test_Strategy: Validate that when we have variable A set to a specific
    *                 data type that we coerce and receive back the correct value
    *                 and Class type.
-   * 
+   *
    *                 Operators: +
-   * 
+   *
    *                 Expression: "(((x, y)-> x cat y)(a, b))"
-   * 
+   *
    *                 Variable A - String
-   * 
+   *
    *                 Variable B - String
-   * 
+   *
    * @since: 3.0
-   * 
+   *
    */
   @Test
   public void elLambdaExprStringTest() throws Exception {
@@ -780,23 +778,23 @@ void logFinishTest(TestInfo testInfo) {
 
   /**
    * @testName: elLambdaExprNullTest
-   * 
+   *
    * @assertion_ids: EL:SPEC:50.1; EL:SPEC:50.2; EL:SPEC:50.3; EL:SPEC:50.4;
    *                 EL:SPEC:50.5; EL:SPEC:50.6; EL:JAVADOC:212
-   * 
+   *
    * @test_Strategy: Evaluate the Lambda Expression, making sure the coercion
    *                 rules are followed.
-   * 
+   *
    *                 Operators: +, -, *, /, div, %, mod
-   * 
+   *
    *                 Expression: "(((x, y)-> x [operator] y)(a, b))"
-   * 
+   *
    *                 Variable A - null
-   * 
+   *
    *                 Variable B - null
-   * 
+   *
    * @since: 3.0
-   * 
+   *
    */
   @Test
   public void elLambdaExprNullTest() throws Exception {

@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2009, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2009, 2025 Oracle and/or its affiliates and others.
+ * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -23,8 +24,6 @@ package com.sun.ts.tests.el.spec.binaryoperator;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Iterator;
-import java.util.Properties;
-
 
 import com.sun.ts.tests.el.common.util.ExprEval;
 import com.sun.ts.tests.el.common.util.TestNum;
@@ -153,7 +152,7 @@ public class ELClientIT {
    * @assertion_ids: EL:SPEC:18.1
    * @test_Strategy: Validate that if both of the operands in an EL "/"
    *                 (division) operation are null, the result is (Long) 0.
-   * 
+   *
    */
   @Test
   public void elNullOperandDivisionTest() throws Exception {
@@ -184,7 +183,7 @@ public class ELClientIT {
    * @assertion_ids: EL:SPEC:19.1
    * @test_Strategy: Validate that if both of the operands in an EL "%" (mod)
    *                 operation are null, the result is (Long) 0.
-   * 
+   *
    */
   @Test
   public void elNullOperandModulusTest() throws Exception {
@@ -216,7 +215,7 @@ public class ELClientIT {
    * @test_Strategy: Validate that if one of the operands in an EL "+"
    *                 (addition) operation is a BigDecimal, the result is coerced
    *                 to BigDecimal and is the sum of the operands.
-   * 
+   *
    *                 Equations tested: BigDecimal + BigDecimal BigDecimal +
    *                 Double BigDecimal + Float BigDecimal + String containing
    *                 ".", "e", or "E" BigDecimal + BigInteger BigDecimal +
@@ -240,7 +239,7 @@ public class ELClientIT {
    *                 (subtraction) operation is a BigDecimal, the result is
    *                 coerced to BigDecimal and is the difference of the
    *                 operands.
-   * 
+   *
    *                 Equations tested: BigDecimal - BigDecimal BigDecimal -
    *                 Double BigDecimal - Float BigDecimal - String containing
    *                 ".", "e", or "E" BigDecimal - BigInteger BigDecimal -
@@ -263,7 +262,7 @@ public class ELClientIT {
    * @test_Strategy: Validate that if one of the operands in an EL "*"
    *                 (multiplication) operation is a BigDecimal, the result is
    *                 coerced to BigDecimal and is the product of the operands.
-   * 
+   *
    *                 Equations tested: BigDecimal * BigDecimal BigDecimal *
    *                 Double BigDecimal * Float BigDecimal * String containing
    *                 ".", "e", or "E" BigDecimal * BigInteger BigDecimal *
@@ -286,7 +285,7 @@ public class ELClientIT {
    * @test_Strategy: Validate that if one of the operands in an EL "/" (div)
    *                 operation is a BigDecimal, the result is coerced to
    *                 BigDecimal and is the quotient of the operands.
-   * 
+   *
    *                 Equations tested: BigDecimal / BigDecimal BigDecimal /
    *                 Double BigDecimal / Float BigDecimal / String containing
    *                 ".", "e", or "E" BigDecimal / BigInteger BigDecimal /
@@ -309,7 +308,7 @@ public class ELClientIT {
    * @test_Strategy: Validate that if one of the operands in an EL "%" (mod)
    *                 operation is a BigDecimal, the result is coerced to Double
    *                 and is the remainder of the quotient of the operands.
-   * 
+   *
    *                 Equations tested: BigDecimal % BigDecimal BigDecimal %
    *                 Double BigDecimal % Float BigDecimal % String containing
    *                 ".", "e", or "E" BigDecimal % BigInteger BigDecimal %
@@ -332,7 +331,7 @@ public class ELClientIT {
    * @test_Strategy: Validate that if one of the operands in an EL "+"
    *                 (addition) operation is a BigInteger, the result is coerced
    *                 to BigInteger and is the sum of the operands.
-   * 
+   *
    *                 Equations tested: BigInteger + BigInteger BigInteger +
    *                 Integer BigInteger + Long BigInteger + Short BigInteger +
    *                 Byte
@@ -354,7 +353,7 @@ public class ELClientIT {
    *                 (subtraction) operation is a BigInteger, the result is
    *                 coerced to BigInteger and is the difference of the
    *                 operands.
-   * 
+   *
    *                 Equations tested: BigInteger - BigInteger BigInteger -
    *                 Integer BigInteger - Long BigInteger - Short BigInteger -
    *                 Byte
@@ -375,7 +374,7 @@ public class ELClientIT {
    * @test_Strategy: Validate that if one of the operands in an EL "*" operation
    *                 is a BigInteger, the result is coerced to BigInteger and is
    *                 the product of the operands.
-   * 
+   *
    *                 BigInteger * BigInteger BigInteger * Integer BigInteger *
    *                 Long BigInteger * Short BigInteger * Byte
    */
@@ -395,7 +394,7 @@ public class ELClientIT {
    * @test_Strategy: Validate that if one of the operands in an EL "/" (div)
    *                 operation is a BigInteger, the result is coerced to
    *                 BigDecimal and is the quotient of the operands.
-   * 
+   *
    *                 BigInteger / BigInteger BigInteger / Integer BigInteger /
    *                 Long BigInteger / Short BigInteger / Byte
    */
@@ -416,7 +415,7 @@ public class ELClientIT {
    *                 operation is a BigInteger, the result is coerced to
    *                 BigInteger and is the remainder of the quotient of the
    *                 operands.
-   * 
+   *
    *                 BigInteger % BigInteger BigInteger % Integer BigInteger %
    *                 Long BigInteger % Short BigInteger % Byte
    */
@@ -436,7 +435,7 @@ public class ELClientIT {
    * @test_Strategy: Validate that if one of the operands in an EL "+"
    *                 (addition) operation is a Float, the result is coerced to
    *                 Double and is the sum of the operands.
-   * 
+   *
    *                 Equations tested: Float + Double Float + Float Float +
    *                 String containing ".", "e", or "E" Float + BigInteger Float
    *                 + Integer Float + Long Float + Short Float + Byte
@@ -460,7 +459,7 @@ public class ELClientIT {
    * @test_Strategy: Validate that if one of the operands in an EL "-"
    *                 (subtraction) operation is a Float, the result is coerced
    *                 to Double and is the difference of the operands.
-   * 
+   *
    *                 Equations tested: Float - Double Float - Float Float -
    *                 String containing ".", "e", or "E" Float - BigInteger Float
    *                 - Integer Float - Long Float - Short Float - Byte
@@ -484,7 +483,7 @@ public class ELClientIT {
    * @test_Strategy: Validate that if one of the operands in an EL "*"
    *                 (multiplication) operation is a Float, the result is
    *                 coerced to Double and is the product of the operands.
-   * 
+   *
    *                 Equations tested: Float * Double Float * Float Float *
    *                 String containing ".", "e", or "E" Float * BigInteger Float
    *                 * Integer Float * Long Float * Short Float * Byte
@@ -508,7 +507,7 @@ public class ELClientIT {
    * @test_Strategy: Validate that if one of the operands in an EL "/" (div)
    *                 operation is a Float, the result is coerced to Double and
    *                 is the quotient of the operands.
-   * 
+   *
    *                 Equations tested: Float / Double Float / Float Float /
    *                 String containing ".", "e", or "E" Float / BigInteger Float
    *                 / Integer Float / Long Float / Short Float / Byte
@@ -532,7 +531,7 @@ public class ELClientIT {
    * @test_Strategy: Validate that if one of the operands in an EL "%" (mod)
    *                 operation is a Float, the result is coerced to Double and
    *                 is the remainder of the quotient of the operands.
-   * 
+   *
    *                 Equations tested: Float % Double Float % Float Float %
    *                 String containing ".", "e", or "E" Float % BigInteger Float
    *                 % Integer Float % Long Float % Short Float % Byte
@@ -556,7 +555,7 @@ public class ELClientIT {
    * @test_Strategy: Validate that if one of the operands in an EL "+"
    *                 (addition) operation is a Double, the result is coerced to
    *                 Double and is the sum of the operands.
-   * 
+   *
    *                 Equations tested: Double + Double Double + String
    *                 containing ".", "e", or "E" Double + BigInteger Double +
    *                 Integer Double + Long Double + Short Double + Byte
@@ -577,7 +576,7 @@ public class ELClientIT {
    * @test_Strategy: Validate that if one of the operands in an EL "-"
    *                 (subtraction) operation is a Double, the result is coerced
    *                 to Double and is the difference of the operands.
-   * 
+   *
    *                 Equations tested: Double - Double Double - String
    *                 containing ".", "e", or "E" Double - BigInteger Double -
    *                 Integer Double - Long Double - Short Double - Byte
@@ -598,7 +597,7 @@ public class ELClientIT {
    * @test_Strategy: Validate that if one of the operands in an EL "*"
    *                 (multiplication) operation is a Double, the result is
    *                 coerced to Double and is the product of the operands.
-   * 
+   *
    *                 Equations tested: Double * Double Double * String
    *                 containing ".", "e", or "E" Double * BigInteger Double *
    *                 Integer Double * Long Double * Short Double * Byte
@@ -619,7 +618,7 @@ public class ELClientIT {
    * @test_Strategy: Validate that if one of the operands in an EL "/" (div)
    *                 operation is a Double, the result is coerced to Double and
    *                 is the quotient of the operands.
-   * 
+   *
    *                 Equations tested: Double / Double Double / String
    *                 containing ".", "e", or "E" Double / BigInteger Double /
    *                 Integer Double / Long Double / Short Double / Byte
@@ -640,7 +639,7 @@ public class ELClientIT {
    * @test_Strategy: Validate that if one of the operands in an EL "%" (mod)
    *                 operation is a Double, the result is coerced to Double and
    *                 is the remainder of the quotient of the operands.
-   * 
+   *
    *                 Equations tested: Double % Double Double % String
    *                 containing ".", "e", or "E" Double % BigInteger Double %
    *                 Integer Double % Long Double % Short Double % Byte
@@ -660,7 +659,7 @@ public class ELClientIT {
    * @test_Strategy: Validate that if one of the operands in an EL "-"
    *                 (subtraction) operation is a numeric string, the result is
    *                 coerced to Double and is the difference of the operands.
-   * 
+   *
    *                 Equations tested: Numeric String - String containing ".",
    *                 "e", or "E" Numeric String - BigInteger Numeric String -
    *                 Integer Numeric String - Long Numeric String - Short
@@ -682,7 +681,7 @@ public class ELClientIT {
    * @test_Strategy: Validate that if one of the operands in an EL "*"
    *                 (multiplication) operation is a numeric string, the result
    *                 is coerced to Double and is the product of the operands.
-   * 
+   *
    *                 Equations tested: Numeric String * String containing ".",
    *                 "e", or "E" Numeric String * BigInteger Numeric String *
    *                 Integer Numeric String * Long Numeric String * Short
@@ -704,7 +703,7 @@ public class ELClientIT {
    * @test_Strategy: Validate that if one of the operands in an EL "/" (div)
    *                 operation is a numeric string, the result is coerced to
    *                 Double and is the quotient of the operands.
-   * 
+   *
    *                 Equations tested: Numeric String / String containing ".",
    *                 "e", or "E" Numeric String / BigInteger Numeric String /
    *                 Integer Numeric String / Long Numeric String / Short
@@ -727,7 +726,7 @@ public class ELClientIT {
    *                 operation is a numeric string, the result is coerced to
    *                 Double and is the remainder of the quotient of the
    *                 operands.
-   * 
+   *
    *                 Equations tested: Numeric String % String containing ".",
    *                 "e", or "E" Numeric String % BigInteger Numeric String %
    *                 Integer Numeric String % Long Numeric String % Short
@@ -749,7 +748,7 @@ public class ELClientIT {
    * @test_Strategy: Validate that if one of the operands in an EL "+"
    *                 (addition) operation is a Long, the result is coerced to
    *                 Long and is the sum of the operands.
-   * 
+   *
    *                 Equations tested: Long + Integer Long + Long Long + Short
    *                 Long + Byte
    */
@@ -769,7 +768,7 @@ public class ELClientIT {
    * @test_Strategy: Validate that if one of the operands in an EL "-"
    *                 (subtraction) operation is a Long, the result is coerced to
    *                 Long and is the difference of the operands.
-   * 
+   *
    *                 Equations tested: Long - Integer Long - Long Long - Short
    *                 Long - Byte
    */
@@ -789,7 +788,7 @@ public class ELClientIT {
    * @test_Strategy: Validate that if one of the operands in an EL "*"
    *                 (multiplication) operation is a Long, the result is coerced
    *                 to Long and is the product of the operands.
-   * 
+   *
    *                 Equations tested: Long * Integer Long * Long Long * Short
    *                 Long * Byte
    */
@@ -809,7 +808,7 @@ public class ELClientIT {
    * @test_Strategy: Validate that if one of the operands in an EL "/" (div)
    *                 operation is a Long, the result is coerced to Double and is
    *                 the quotient of the operands.
-   * 
+   *
    *                 Equations tested: Long / Integer Long / Long Long / Short
    *                 Long / Byte
    */
@@ -829,7 +828,7 @@ public class ELClientIT {
    * @test_Strategy: Validate that if one of the operands in an EL "%" (mod)
    *                 operation is a Long, the result is coerced to Long and is
    *                 the remainder of the quotient of the operands.
-   * 
+   *
    *                 Equations tested: Long % Integer Long % Long Long % Short
    *                 Long % Byte
    */
@@ -849,7 +848,7 @@ public class ELClientIT {
    * @test_Strategy: Validate that if one of the operands in an EL "+"
    *                 (addition) operation is a Integer, the result is coerced to
    *                 Long and is the sum of the operands.
-   * 
+   *
    *                 Equations tested: Integer + Integer Integer + Short Integer
    *                 + Byte
    */
@@ -869,7 +868,7 @@ public class ELClientIT {
    * @test_Strategy: Validate that if one of the operands in an EL "-"
    *                 (subtraction) operation is a Integer, the result is coerced
    *                 to Long and is the difference of the operands.
-   * 
+   *
    *                 Equations tested: Long - Integer Long - Short Long - Byte
    */
   @Test
@@ -888,7 +887,7 @@ public class ELClientIT {
    * @test_Strategy: Validate that if one of the operands in an EL "*"
    *                 (multiplication) operation is a Integer, the result is
    *                 coerced to Long and is the product of the operands.
-   * 
+   *
    *                 Equations tested: Integer * Integer Integer * Short Integer
    *                 * Byte
    */
@@ -908,7 +907,7 @@ public class ELClientIT {
    * @test_Strategy: Validate that if one of the operands in an EL "/" (div)
    *                 operation is a Integer, the result is coerced to Double and
    *                 is the quotient of the operands.
-   * 
+   *
    *                 Equations tested: Integer / Integer Integer / Short Integer
    *                 / Byte
    */
@@ -928,7 +927,7 @@ public class ELClientIT {
    * @test_Strategy: Validate that if one of the operands in an EL "%" (mod)
    *                 operation is a Integer, the result is coerced to Long and
    *                 is the remainder of the quotient of the operands.
-   * 
+   *
    *                 Equations tested: Integer % Integer Integer % Short Integer
    *                 % Byte
    */
@@ -948,7 +947,7 @@ public class ELClientIT {
    * @test_Strategy: Validate that if one of the operands in an EL "+"
    *                 (addition) operation is a Short, the result is coerced to
    *                 Long and is the sum of the operands.
-   * 
+   *
    *                 Equations tested: Short + Short Short + Byte
    */
   @Test
@@ -967,7 +966,7 @@ public class ELClientIT {
    * @test_Strategy: Validate that if one of the operands in an EL "-"
    *                 (subtraction) operation is a Short, the result is coerced
    *                 to Long and is the difference of the operands.
-   * 
+   *
    *                 Equations tested: Short - Short Short - Byte
    */
   @Test
@@ -986,7 +985,7 @@ public class ELClientIT {
    * @test_Strategy: Validate that if one of the operands in an EL "*"
    *                 (multiplication) operation is a Short, the result is
    *                 coerced to Long and is the product of the operands.
-   * 
+   *
    *                 Equations tested: Short * Short Short * Byte
    */
   @Test
@@ -1005,7 +1004,7 @@ public class ELClientIT {
    * @test_Strategy: Validate that if one of the operands in an EL "/" (div)
    *                 operation is a Short, the result is coerced to Double and
    *                 is the quotient of the operands.
-   * 
+   *
    *                 Equations tested: Short / Short Short / Byte
    */
   @Test
@@ -1024,7 +1023,7 @@ public class ELClientIT {
    * @test_Strategy: Validate that if one of the operands in an EL "%" (mod)
    *                 operation is a Short, the result is coerced to Long and is
    *                 the remainder of the quotient of the operands.
-   * 
+   *
    *                 Equations tested: Short % Short Short % Byte
    */
   @Test
@@ -1043,7 +1042,7 @@ public class ELClientIT {
    * @test_Strategy: Validate that if both operands in an EL "+" (addition)
    *                 operation are Bytes, the result is coerced to Long and is
    *                 the sum of the operands.
-   * 
+   *
    *                 Equations tested: Byte + Byte
    */
   @Test
@@ -1062,7 +1061,7 @@ public class ELClientIT {
    * @test_Strategy: Validate that if both operands in an EL "-" (subtraction)
    *                 operation are Bytes, the result is coerced to Long and is
    *                 the difference of the operands.
-   * 
+   *
    *                 Equations tested: Byte - Byte
    */
   @Test
@@ -1081,7 +1080,7 @@ public class ELClientIT {
    * @test_Strategy: Validate that if both operands in an EL "*"
    *                 (multiplication) operation are Bytes, the result is coerced
    *                 to Long and is the product of the operands.
-   * 
+   *
    *                 Equations tested: Byte * Byte
    */
   @Test
@@ -1100,7 +1099,7 @@ public class ELClientIT {
    * @test_Strategy: Validate that if both operands in an EL "/" (div) operation
    *                 are Bytes, the result is coerced to Double and is the
    *                 quotient of the operands.
-   * 
+   *
    *                 Equations tested: Byte / Byte
    */
   @Test
@@ -1119,7 +1118,7 @@ public class ELClientIT {
    * @test_Strategy: Validate that if both operands in an EL "%" (mod) operation
    *                 are Bytes, the result is coerced to Long and is the
    *                 remainder of the quotient of the operands.
-   * 
+   *
    *                 Equations tested: Byte % Byte
    */
   @Test
@@ -1137,10 +1136,10 @@ public class ELClientIT {
    * @assertion_ids: EL:SPEC:23.1; EL:SPEC:24.2.1
    * @test_Strategy: Validate that if one of the operands in an EL "&&", "and"
    *                 operation is a Boolean, the result is coerced to Boolean.
-   * 
+   *
    *                 Equations tested: Boolean && String Boolean && Boolean
    *                 Boolean and String Boolean and Boolean
-   * 
+   *
    */
   @Test
   public void elBooleanAndTest() throws Exception {
@@ -1158,10 +1157,10 @@ public class ELClientIT {
    * @assertion_ids: EL:SPEC:23.1; EL:SPEC:24.2.1
    * @test_Strategy: Validate that if one of the operands in an EL "||", "or"
    *                 operation is a Boolean, the result is coerced to Boolean.
-   * 
+   *
    *                 Equations tested: Boolean || String Boolean || Boolean
    *                 Boolean or String Boolean or Boolean
-   * 
+   *
    */
   @Test
   public void elBooleanOrTest() throws Exception {

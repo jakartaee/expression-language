@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, 2020 Oracle and/or its affiliates and others.
+ * Copyright (c) 2013, 2025 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -22,8 +22,6 @@
 package com.sun.ts.tests.el.api.jakarta_el.elprocessor;
 
 import java.lang.reflect.Method;
-import java.util.Properties;
-
 
 import com.sun.ts.tests.el.common.util.ELTestUtil;
 
@@ -61,7 +59,7 @@ public class ELClientIT {
    * @assertion_ids: EL:JAVADOC:220; EL:JAVADOC:216; EL:JAVADOC:219
    * @test_Strategy: Assert that a NullPointerException is thrown if any of the
    *                 arguments is null.
-   * 
+   *
    * @since: 3.0
    */
   @Test
@@ -73,19 +71,19 @@ public class ELClientIT {
       meth = elp.getClass().getMethod("toString", new Class<?>[] {});
 
       // Tests for defineFunction(String, String, Method)
-      logger.log(Logger.Level.INFO, 
+      logger.log(Logger.Level.INFO,
           "Testing: ELProcessor.defineFunction(null, " + "function, meth)");
       ELTestUtil.checkForNPE(elp, "defineFunction",
           new Class<?>[] { String.class, String.class, Method.class },
           new Object[] { null, "function", meth });
 
-      logger.log(Logger.Level.INFO, 
+      logger.log(Logger.Level.INFO,
           "Testing: ELProcessor.defineFunction(prefix, " + "null, meth)");
       ELTestUtil.checkForNPE(elp, "defineFunction",
           new Class<?>[] { String.class, String.class, Method.class },
           new Object[] { "prefix", null, meth });
 
-      logger.log(Logger.Level.INFO, 
+      logger.log(Logger.Level.INFO,
           "Testing: ELProcessor.defineFunction(prefix, " + "function, null)");
       ELTestUtil.checkForNPE(elp, "defineFunction",
           new Class<?>[] { String.class, String.class, Method.class },
@@ -134,7 +132,7 @@ public class ELClientIT {
    * @assertion_ids: EL:JAVADOC:220; EL:JAVADOC:214; EL:JAVADOC:217
    * @test_Strategy: Assert that a ClassNotFoundException if the specified class
    *                 does not exists.
-   * 
+   *
    * @since: 3.0
    */
   @Test
@@ -156,7 +154,7 @@ public class ELClientIT {
    * @test_Strategy: Assert that a NoSuchMethodException if the method (with or
    *                 without the signature) is not a declared method of the
    *                 class, or if the method signature is not valid.
-   * 
+   *
    * @since: 3.0
    */
   @Test

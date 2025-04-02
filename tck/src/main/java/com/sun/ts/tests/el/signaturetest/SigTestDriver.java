@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2024 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2025 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -17,7 +17,6 @@
 package com.sun.ts.tests.el.signaturetest;
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.io.PrintWriter;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -45,7 +44,7 @@ public class SigTestDriver extends SignatureTestDriver {
   private static final String API_VERSION_FLAG = "-ApiVersion";
 
   private static final String EXCLUDE_FLAG = "-Exclude";
-  
+
   private static final String STATIC_FLAG = "-Static";
 
   private static final String CHECKVALUE_FLAG = "-CheckValue"; // only valid w/
@@ -59,7 +58,7 @@ public class SigTestDriver extends SignatureTestDriver {
   private static final String DEBUG_FLAG = "-Debug";
 
   private static final String FORMATPLAIN_FLAG = "-FormatPlain";
-  
+
   private static final String EXCLUDE_JDK_CLASS_FLAG = "-IgnoreJDKClass";
 
   @Override
@@ -112,7 +111,7 @@ public class SigTestDriver extends SignatureTestDriver {
     }
 
     command.add(EXCLUDE_JDK_CLASS_FLAG);
-            
+
     command.add(API_VERSION_FLAG);
     command.add(info.getVersion());
 
@@ -131,7 +130,7 @@ public class SigTestDriver extends SignatureTestDriver {
     ByteArrayOutputStream output = new ByteArrayOutputStream();
 
     // do some logging to help with troubleshooting
-    logger.log(Logger.Level.TRACE, 
+    logger.log(Logger.Level.TRACE,
         "\nCalling:  com.sun.tdk.signaturetest.SignatureTest() with following args:");
     for (int ii = 0; ii < testArguments.length; ii++) {
       logger.log(Logger.Level.TRACE, "   testArguments[" + ii + "] = " + testArguments[ii]);
@@ -148,7 +147,7 @@ public class SigTestDriver extends SignatureTestDriver {
     // currently, there is no way to determine if there are error msgs in
     // the rawmessages, so we will always dump this and call it a status.
     logger.log(Logger.Level.INFO, "********** Status Report '" + packageOrClassName + "' **********\n");
-    logger.log(Logger.Level.INFO, rawMessages);    
+    logger.log(Logger.Level.INFO, rawMessages);
 
     return sigTestInstance.toString().substring(7).startsWith("Passed.");
   } // END runSignatureTest

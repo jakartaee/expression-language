@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009, 2020 Oracle and/or its affiliates and others.
+ * Copyright (c) 2009, 2025 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -23,7 +23,6 @@ package com.sun.ts.tests.el.api.jakarta_el.resourcebundleelresolver;
 
 import java.io.Serializable;
 import java.util.Enumeration;
-import java.util.Properties;
 import java.util.ResourceBundle;
 import java.util.StringTokenizer;
 
