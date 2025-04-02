@@ -39,8 +39,6 @@ public class SigTestDriver extends SignatureTestDriver {
 
   private static final String PACKAGE_FLAG = "-Package";
 
-  private static final String PACKAGE_NO_SUBS_FLAG = "-PackageWithoutSubpackages";
-
   private static final String API_VERSION_FLAG = "-ApiVersion";
 
   private static final String EXCLUDE_FLAG = "-Exclude";
@@ -50,14 +48,8 @@ public class SigTestDriver extends SignatureTestDriver {
   private static final String CHECKVALUE_FLAG = "-CheckValue"; // only valid w/
                                                                // -static
 
-  private static final String NO_CHECKVALUE_FLAG = "-NoCheckValue";
-
   private static final String SMODE_FLAG = "-mode"; // requires arg of bin or
                                                     // src
-
-  private static final String DEBUG_FLAG = "-Debug";
-
-  private static final String FORMATPLAIN_FLAG = "-FormatPlain";
 
   private static final String EXCLUDE_JDK_CLASS_FLAG = "-IgnoreJDKClass";
 

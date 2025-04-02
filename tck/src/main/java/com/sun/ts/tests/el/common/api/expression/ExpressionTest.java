@@ -260,7 +260,7 @@ public class ExpressionTest {
 
     // getMethodInfo()
     try {
-      MethodInfo minfo = mexp.getMethodInfo(context);
+      mexp.getMethodInfo(context);
     } catch (Exception e) {
       pass = false;
       buf.append("getMethodInfo() threw an unexpected exception" + NLINE);

@@ -33,17 +33,8 @@ public class Validator {
 
   private static final Logger logger = System.getLogger(Validator.class.getName());
 
-  private static Validator instance = null;
-
   protected Validator() {
     // Exists only to defeat instantiation.
-  }
-
-  private Validator getInstance() {
-    if (instance == null) {
-      instance = new Validator();
-    }
-    return instance;
   }
 
   /**
