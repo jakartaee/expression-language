@@ -32,6 +32,7 @@ import jakarta.el.FunctionMapper;
 import jakarta.el.VariableMapper;
 
 import java.lang.System.Logger;
+import java.lang.reflect.InvocationTargetException;
 /**
  * This ELContext provides a VariableELResolver to enable the setting and
  * resolution of variables as well as a VariableMapper implementation. The path
@@ -85,13 +86,21 @@ public class VarMapperELContext extends ELContext {
 
     try {
       clazz = Class.forName(classname);
-      instance = clazz.newInstance();
+      instance = clazz.getConstructor().newInstance();
     } catch (ClassNotFoundException cnfe) {
       logger.log(Logger.Level.ERROR, "ClassNotFoundException: " + cnfe.getMessage());
     } catch (InstantiationException ie) {
       logger.log(Logger.Level.ERROR, "InstantiationException: " + ie.getMessage());
     } catch (IllegalAccessException iae) {
       logger.log(Logger.Level.ERROR, "IllegalAccessException: " + iae.getMessage());
+    } catch (IllegalArgumentException e) {
+        logger.log(Logger.Level.ERROR, "IllegalArgumentException: " + e.getMessage());
+      } catch (InvocationTargetException e) {
+        logger.log(Logger.Level.ERROR, "InvocationTargetException: " + e.getMessage());
+      } catch (NoSuchMethodException e) {
+        logger.log(Logger.Level.ERROR, "NoSuchMethodException: " + e.getMessage());
+      } catch (SecurityException e) {
+        logger.log(Logger.Level.ERROR, "SecurityException: " + e.getMessage());
     }
     return instance;
   }

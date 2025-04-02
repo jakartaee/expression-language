@@ -370,22 +370,22 @@ public class ELClientIT {
 
   private List<Float> getFloatList() {
     List<Float> floatList = new ArrayList<>();
-    floatList.add(new Float("8.1F"));
-    floatList.add(new Float("-70.2F"));
-    floatList.add(new Float("8.1e4F"));
-    floatList.add(new Float("8.1E6F"));
-    floatList.add(new Float("8.1e-9F"));
-    floatList.add(new Float("8.1E+3F"));
-    floatList.add(new Float("-.72F"));
-    floatList.add(new Float(".999F"));
-    floatList.add(new Float("-.1e1F"));
-    floatList.add(new Float(".234E22F"));
-    floatList.add(new Float("-.3444e-2F"));
-    floatList.add(new Float(".5E+7F"));
-    floatList.add(new Float("-1e1F"));
-    floatList.add(new Float("234E2F"));
-    floatList.add(new Float("-3444e-2F"));
-    floatList.add(new Float("-3444e+2F"));
+    floatList.add(Float.valueOf("8.1F"));
+    floatList.add(Float.valueOf("-70.2F"));
+    floatList.add(Float.valueOf("8.1e4F"));
+    floatList.add(Float.valueOf("8.1E6F"));
+    floatList.add(Float.valueOf("8.1e-9F"));
+    floatList.add(Float.valueOf("8.1E+3F"));
+    floatList.add(Float.valueOf("-.72F"));
+    floatList.add(Float.valueOf(".999F"));
+    floatList.add(Float.valueOf("-.1e1F"));
+    floatList.add(Float.valueOf(".234E22F"));
+    floatList.add(Float.valueOf("-.3444e-2F"));
+    floatList.add(Float.valueOf(".5E+7F"));
+    floatList.add(Float.valueOf("-1e1F"));
+    floatList.add(Float.valueOf("234E2F"));
+    floatList.add(Float.valueOf("-3444e-2F"));
+    floatList.add(Float.valueOf("-3444e+2F"));
 
     return floatList;
   }
