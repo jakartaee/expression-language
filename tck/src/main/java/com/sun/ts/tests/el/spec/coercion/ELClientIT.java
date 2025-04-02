@@ -497,14 +497,14 @@ public class ELClientIT {
 
     Class<?> expectedClass = String.class;
 
-    Boolean boo = false; // result1
-    Byte bite = 0; // result2
-    Character funny = '1'; // result3
-    Short tee = 2; // result4
-    Integer i = 3; // result5
-    Long rope = 4L; // result6
-    Float ter = 5.5f; // result7
-    Double down = 6.5d; // result8
+    Boolean boo = Boolean.FALSE; // result1
+    Byte bite = Byte.valueOf((byte) 0); // result2
+    Character funny = Character.valueOf('1'); // result3
+    Short tee = Short.valueOf((short) 2); // result4
+    Integer i = Integer.valueOf(3); // result5
+    Long rope = Long.valueOf(4L); // result6
+    Float ter = Float.valueOf(5.5f); // result7
+    Double down = Double.valueOf(6.5d); // result8
 
     try {
       // Boolean to String
@@ -616,20 +616,20 @@ public class ELClientIT {
 
     Class<?> expectedClass = Character.class;
 
-    Byte bite = 7;
-    Character funny = '1';
-    Short tee = 2;
-    Integer i = 3;
-    Long rope = 4L;
-    Float ter = 5f;
-    Double down = 6.5d;
+    Byte bite = Byte.valueOf((byte) 7);
+    Character funny = Character.valueOf('1');
+    Short tee = Short.valueOf((short) 2);
+    Integer i = Integer.valueOf(3);
+    Long rope = Long.valueOf(4L);
+    Float ter = Float.valueOf(5f);
+    Double down = Double.valueOf(6.5d);
 
     try {
       // String to Character
       result1 = ExprEval.evaluateValueExpression("${'STRING'}", null,
           expectedClass);
       pass1 = (ExprEval.compareClass(result1, expectedClass)
-          && ExprEval.compareValue(result1, 'S'));
+          && ExprEval.compareValue(result1, Character.valueOf('S')));
 
       // Byte to Character
       result2 = ExprEval.evaluateValueExpression("${" + bite + "}", null,
@@ -1365,10 +1365,10 @@ public class ELClientIT {
         expectedValue = Double.valueOf(DOUBLE);
       } else if ("BigInteger".equals(name)) {
         testValue = BIGINT;
-        expectedValue = BigInteger.valueOf(Long.valueOf(BIGINT));
+        expectedValue = BigInteger.valueOf(Long.parseLong(BIGINT));
       } else if ("BigDecimal".equals(name)) {
         testValue = BIGDEC;
-        expectedValue = BigDecimal.valueOf(Double.valueOf(BIGDEC));
+        expectedValue = BigDecimal.valueOf(Double.parseDouble(BIGDEC));
       } else {
         // Default Values, this should never been utilized.
         testValue = "0";
@@ -1420,33 +1420,33 @@ public class ELClientIT {
       name = expectedClass.getSimpleName();
 
       if ("Byte".equals(name)) {
-        testValue = '1';
+        testValue = Character.valueOf('1');
         expectedValue = Byte.valueOf("1");
       } else if ("Short".equals(name)) {
-        testValue = '2';
+        testValue = Character.valueOf('2');
         expectedValue = Short.valueOf("2");
       } else if ("Integer".equals(name)) {
-        testValue = '3';
+        testValue = Character.valueOf('3');
         expectedValue = Integer.valueOf(3);
       } else if ("Long".equals(name)) {
-        testValue = '4';
+        testValue = Character.valueOf('4');
         expectedValue = Long.valueOf(4L);
       } else if ("Float".equals(name)) {
-        testValue = '5';
+        testValue = Character.valueOf('5');
         expectedValue = Float.valueOf(5f);
       } else if ("Double".equals(name)) {
-        testValue = '6';
+        testValue = Character.valueOf('6');
         expectedValue = Double.valueOf(6d);
       } else if ("BigInteger".equals(name)) {
-        testValue = '7';
+        testValue = Character.valueOf('7');
         expectedValue = BigInteger.valueOf(7);
       } else if ("BigDecimal".equals(name)) {
-        testValue = '8';
+        testValue = Character.valueOf('8');
         expectedValue = BigDecimal.valueOf(8);
       } else {
-        // Default Values, this should never been utilized.
-        testValue = '0';
-        expectedValue = '1';
+        // Default Values, these should never be utilized.
+        testValue = Character.valueOf('0');
+        expectedValue = Character.valueOf('1');
       }
 
       try {
@@ -1496,16 +1496,16 @@ public class ELClientIT {
 
       if ("Byte".equals(name)) {
         testValue = numberTable.get(testClass);
-        expectedValue = BigInteger.valueOf(Long.valueOf(BYTE));
+        expectedValue = BigInteger.valueOf(Long.parseLong(BYTE));
       } else if ("Short".equals(name)) {
         testValue = numberTable.get(testClass);
-        expectedValue = BigInteger.valueOf(Long.valueOf(SHORT));
+        expectedValue = BigInteger.valueOf(Long.parseLong(SHORT));
       } else if ("Integer".equals(name)) {
         testValue = numberTable.get(testClass);
-        expectedValue = BigInteger.valueOf(Long.valueOf(INTEGER));
+        expectedValue = BigInteger.valueOf(Long.parseLong(INTEGER));
       } else if ("Long".equals(name)) {
         testValue = numberTable.get(testClass);
-        expectedValue = BigInteger.valueOf(Long.valueOf(LONG));
+        expectedValue = BigInteger.valueOf(Long.parseLong(LONG));
       } else if ("Float".equals(name)) {
         testValue = numberTable.get(testClass);
         expectedValue = BigInteger.valueOf(Float.valueOf(FLOAT).longValue());
@@ -1514,15 +1514,15 @@ public class ELClientIT {
         expectedValue = BigInteger.valueOf(Double.valueOf(DOUBLE).longValue());
       } else if ("BigInteger".equals(name)) {
         testValue = numberTable.get(testClass);
-        expectedValue = BigInteger.valueOf(Long.valueOf(BIGINT));
+        expectedValue = BigInteger.valueOf(Long.parseLong(BIGINT));
       } else if ("BigDecimal".equals(name)) {
         testValue = numberTable.get(testClass);
-        expectedValue = BigDecimal.valueOf(Double.valueOf(BIGDEC))
+        expectedValue = BigDecimal.valueOf(Double.valueOf(BIGDEC).longValue())
             .toBigInteger();
       } else {
         // Default Values, this should never been utilized.
         testValue = "0";
-        expectedValue = BigInteger.valueOf(Long.valueOf("1"));
+        expectedValue = BigInteger.valueOf(Long.parseLong("1"));
       }
 
       try {
@@ -1571,32 +1571,32 @@ public class ELClientIT {
 
       if ("Byte".equals(name)) {
         testValue = numberTable.get(testClass);
-        expectedValue = BigDecimal.valueOf(Double.valueOf(BYTE));
+        expectedValue = BigDecimal.valueOf(Double.parseDouble(BYTE));
       } else if ("Short".equals(name)) {
         testValue = numberTable.get(testClass);
-        expectedValue = BigDecimal.valueOf(Double.valueOf(SHORT));
+        expectedValue = BigDecimal.valueOf(Double.parseDouble(SHORT));
       } else if ("Integer".equals(name)) {
         testValue = numberTable.get(testClass);
-        expectedValue = BigDecimal.valueOf(Double.valueOf(INTEGER));
+        expectedValue = BigDecimal.valueOf(Double.parseDouble(INTEGER));
       } else if ("Long".equals(name)) {
         testValue = numberTable.get(testClass);
-        expectedValue = BigDecimal.valueOf(Double.valueOf(LONG));
+        expectedValue = BigDecimal.valueOf(Double.parseDouble(LONG));
       } else if ("Float".equals(name)) {
         testValue = numberTable.get(testClass);
         expectedValue = BigDecimal.valueOf(Float.valueOf(FLOAT).doubleValue());
       } else if ("Double".equals(name)) {
         testValue = numberTable.get(testClass);
-        expectedValue = BigDecimal.valueOf(Double.valueOf(DOUBLE));
+        expectedValue = BigDecimal.valueOf(Double.parseDouble(DOUBLE));
       } else if ("BigInteger".equals(name)) {
         testValue = numberTable.get(testClass);
-        expectedValue = BigDecimal.valueOf(Double.valueOf(BIGINT));
+        expectedValue = BigDecimal.valueOf(Double.parseDouble(BIGINT));
       } else if ("BigDecimal".equals(name)) {
         testValue = numberTable.get(testClass);
-        expectedValue = BigDecimal.valueOf(Double.valueOf(BIGDEC));
+        expectedValue = BigDecimal.valueOf(Double.parseDouble(BIGDEC));
       } else {
         // Default Values, this should never been utilized.
         testValue = "0";
-        expectedValue = BigDecimal.valueOf(Double.valueOf("1"));
+        expectedValue = BigDecimal.valueOf(Double.parseDouble("1"));
       }
 
       try {
@@ -1937,8 +1937,7 @@ public class ELClientIT {
     numberTable.put(Long.class, Long.valueOf(LONG));
     numberTable.put(Float.class, Float.valueOf(FLOAT));
     numberTable.put(Double.class, Double.valueOf(DOUBLE));
-    numberTable.put(BigInteger.class, BigInteger.valueOf(Long.valueOf(BIGINT)));
-    numberTable.put(BigDecimal.class,
-        BigDecimal.valueOf(Double.valueOf(BIGDEC)));
+    numberTable.put(BigInteger.class, BigInteger.valueOf(Long.parseLong(BIGINT)));
+    numberTable.put(BigDecimal.class, BigDecimal.valueOf(Double.parseDouble(BIGDEC)));
   }
 }

@@ -255,7 +255,7 @@ public class ELClientIT {
      * the '+=' operator!
      */
     Validator.testBoolean(false, "true", null, "+=");
-    Validator.testBoolean(false, true, null, "+=");
+    Validator.testBoolean(false, Boolean.TRUE, null, "+=");
 
   }
 

@@ -447,7 +447,7 @@ public class ELClientIT {
     // For each float in validate List.
     for (Iterator<?> it = TestNum.getFloatList().iterator(); it.hasNext();) {
       Float testValue = (Float) it.next();
-      expectedResult = testValue + Float.valueOf("1.0");
+      expectedResult = Float.valueOf(testValue.floatValue() + Float.valueOf("1.0").floatValue());
       Validator.testFloat(testValue, expectedResult, "+");
     }
 
@@ -471,7 +471,7 @@ public class ELClientIT {
     // For each float in validate List.
     for (Iterator<?> it = TestNum.getFloatList().iterator(); it.hasNext();) {
       Float testValue = (Float) it.next();
-      expectedResult = testValue - Float.valueOf("1.0");
+      expectedResult = Float.valueOf(testValue.floatValue() - Float.valueOf("1.0").floatValue());
       Validator.testFloat(testValue, expectedResult, "-");
     }
 
@@ -495,7 +495,7 @@ public class ELClientIT {
     // For each float in validate List.
     for (Iterator<?> it = TestNum.getFloatList().iterator(); it.hasNext();) {
       Float testValue = (Float) it.next();
-      expectedResult = testValue * Float.valueOf("1.0");
+      expectedResult = Float.valueOf(testValue.floatValue() * Float.valueOf("1.0").floatValue());
       Validator.testFloat(testValue, expectedResult, "*");
     }
 
@@ -519,7 +519,7 @@ public class ELClientIT {
     // For each float in validate List.
     for (Iterator<?> it = TestNum.getFloatList().iterator(); it.hasNext();) {
       Float testValue = (Float) it.next();
-      expectedResult = testValue / Float.valueOf("1.0");
+      expectedResult = Float.valueOf(testValue.floatValue() / Float.valueOf("1.0").floatValue());
       Validator.testFloat(testValue, expectedResult, "/");
     }
 
@@ -543,7 +543,7 @@ public class ELClientIT {
     // For each float in validate List.
     for (Iterator<?> it = TestNum.getFloatList().iterator(); it.hasNext();) {
       Float testValue = (Float) it.next();
-      expectedResult = testValue % Float.valueOf("1.0");
+      expectedResult = Float.valueOf(testValue.floatValue() % Float.valueOf("1.0").floatValue());
       Validator.testFloat(testValue, expectedResult, "%");
     }
 
@@ -1144,11 +1144,11 @@ public class ELClientIT {
   @Test
   public void elBooleanAndTest() throws Exception {
 
-    Validator.testBoolean(true, "true", true, "&&");
-    Validator.testBoolean(true, true, true, "&&");
+    Validator.testBoolean(true, "true", Boolean.TRUE, "&&");
+    Validator.testBoolean(true, Boolean.TRUE, Boolean.TRUE, "&&");
 
-    Validator.testBoolean(true, "false", false, "and");
-    Validator.testBoolean(true, false, false, "and");
+    Validator.testBoolean(true, "false", Boolean.FALSE, "and");
+    Validator.testBoolean(true, Boolean.FALSE, Boolean.FALSE, "and");
 
   }
 
@@ -1165,11 +1165,11 @@ public class ELClientIT {
   @Test
   public void elBooleanOrTest() throws Exception {
 
-    Validator.testBoolean(false, "false", false, "||");
-    Validator.testBoolean(true, "false", true, "or");
+    Validator.testBoolean(false, "false", Boolean.FALSE, "||");
+    Validator.testBoolean(true, "false", Boolean.TRUE, "or");
 
-    Validator.testBoolean(true, false, true, "||");
-    Validator.testBoolean(true, true, true, "or");
+    Validator.testBoolean(true, Boolean.FALSE, Boolean.TRUE, "||");
+    Validator.testBoolean(true, Boolean.TRUE, Boolean.TRUE, "or");
 
   }
 

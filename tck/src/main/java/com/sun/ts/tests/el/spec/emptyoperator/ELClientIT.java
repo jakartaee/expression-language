@@ -84,7 +84,7 @@ public class ELClientIT {
         }
 
         pass = (ExprEval.compareClass(result, Boolean.class)
-            && ExprEval.compareValue((Boolean) result, expectedResult));
+            && ExprEval.compareValue((Boolean) result, Boolean.valueOf(expectedResult)));
 
         if (!pass)
           throw new Exception("TEST FAILED: pass = false");
@@ -193,7 +193,7 @@ public class ELClientIT {
         logger.log(Logger.Level.TRACE, "result is " + result.toString());
 
         pass = (ExprEval.compareClass(result, Boolean.class)
-            && ExprEval.compareValue((Boolean) result, expectedResult));
+            && ExprEval.compareValue((Boolean) result, Boolean.valueOf(expectedResult)));
 
         if (!pass)
           throw new Exception("TEST FAILED: pass = false");
