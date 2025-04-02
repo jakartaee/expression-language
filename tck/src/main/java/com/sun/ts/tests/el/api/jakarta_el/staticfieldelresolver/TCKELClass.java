@@ -29,6 +29,7 @@ public class TCKELClass {
   // Not writable from StaticFieldELResolver
   public String notStatic = "notStatic";
 
+  @SuppressWarnings("unused")
   private static String privStatic = "privStatic";
 
   /**
