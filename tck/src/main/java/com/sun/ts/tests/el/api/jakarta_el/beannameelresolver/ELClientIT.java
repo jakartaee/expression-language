@@ -65,7 +65,7 @@ public class ELClientIT {
    *
    * @test_Strategy: Verify the following method calls work as expected:
    *                 getValue() getType() setValue() isReadOnly()
-   *                 getCommonPropertyType() getFeatureDescriptors()
+   *                 getCommonPropertyType()
    */
   @Test
   public void beanNameELResolverTest() throws Exception {

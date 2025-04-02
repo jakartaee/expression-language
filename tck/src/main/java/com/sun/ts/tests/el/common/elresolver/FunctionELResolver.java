@@ -21,8 +21,6 @@
 
 package com.sun.ts.tests.el.common.elresolver;
 
-import java.util.Iterator;
-
 import com.sun.ts.tests.el.common.functionmapper.TCKFunctionMapper;
 
 import jakarta.el.ELContext;
@@ -84,10 +82,6 @@ public class FunctionELResolver extends ELResolver {
     if (base == null)
       context.setPropertyResolved(true);
     return false;
-  }
-
-  public Iterator getFeatureDescriptors(ELContext context, Object base) {
-    return null;
   }
 
   @Override

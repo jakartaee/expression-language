@@ -17,8 +17,6 @@
 
 package com.sun.ts.tests.el.common.api.resolver;
 
-import java.util.Iterator;
-
 import jakarta.el.ELContext;
 import jakarta.el.ELException;
 import jakarta.el.ELResolver;
@@ -86,12 +84,6 @@ public class BarELResolver extends ELResolver {
     }
 
     return true;
-  }
-
-  public Iterator getFeatureDescriptors(ELContext context, Object base) {
-    if (context == null)
-      throw new NullPointerException();
-    return null;
   }
 
   @Override

@@ -77,7 +77,6 @@ public class ELClientIT {
    * @test_Strategy: Verify that API calls work as expected:
    *                 ResourceBundleELResolver() setValue() getValue() getType()
    *                 isReadOnly() getCommonPropertyType()
-   *                 getFeatureDescriptors()
    */
   @Test
   public void resourceBundleELResolverTest() throws Exception {

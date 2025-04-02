@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2024 Contributors to the Eclipse Foundation
+ * Copyright (c) 2025 Contributors to the Eclipse Foundation
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -52,7 +52,7 @@ public class ELClientIT {
    * @testName: recordELResolverTest
    *
    * @test_Strategy: Verify that API calls work as expected for: arrayELResolver() getValue() getType() setValue()
-   * isReadOnly() getCommonPropertyType() getFeatureDescriptors(). Records should behave similarly to read-only beans.
+   * isReadOnly() getCommonPropertyType(). Records should behave similarly to read-only beans.
    */
   @Test
   public void recordELResolverTest() throws Exception {
@@ -76,7 +76,7 @@ public class ELClientIT {
     }
     logger.log(Logger.Level.TRACE, buf.toString());
   }
-  
-  
+
+
   public record TestRecord(String propertyA, String propertyB) { }
 }
