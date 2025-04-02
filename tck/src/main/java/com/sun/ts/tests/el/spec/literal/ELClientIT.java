@@ -369,7 +369,7 @@ public class ELClientIT {
   // methods
 
   private List getFloatList() {
-    List<Float> floatList = new ArrayList<Float>();
+    List<Float> floatList = new ArrayList<>();
     floatList.add(new Float("8.1F"));
     floatList.add(new Float("-70.2F"));
     floatList.add(new Float("8.1e4F"));
@@ -391,7 +391,7 @@ public class ELClientIT {
   }
 
   private List getIntegerList() {
-    List<Integer> integerList = new ArrayList<Integer>();
+    List<Integer> integerList = new ArrayList<>();
     integerList.add(1);
     integerList.add(-2);
     integerList.add(2147483647);

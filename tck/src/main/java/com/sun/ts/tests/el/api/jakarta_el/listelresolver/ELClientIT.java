@@ -45,7 +45,7 @@ public class ELClientIT {
   private List<String> names;
 
   public ELClientIT(){
-    names = new ArrayList<String>();
+    names = new ArrayList<>();
     names.add("doug");
     names.add("nick");
     names.add("ryan");

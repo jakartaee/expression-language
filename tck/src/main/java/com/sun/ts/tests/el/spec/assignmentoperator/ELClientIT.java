@@ -162,7 +162,7 @@ public class ELClientIT {
     String aValue = "a = types.tckFloat";
 
     // excluded data types.
-    List<String> excludeList = new ArrayList<String>();
+    List<String> excludeList = new ArrayList<>();
     excludeList.add("BigDecimal");
 
     Iterator<Class<?>> iter;
@@ -274,7 +274,7 @@ public class ELClientIT {
     String aValue = "a = types.tckDouble";
 
     // excluded data types.
-    List<String> excludeList = new ArrayList<String>();
+    List<String> excludeList = new ArrayList<>();
     excludeList.add("BigDecimal");
     excludeList.add("Float");
 
@@ -387,7 +387,7 @@ public class ELClientIT {
     String aValue = "a = types.tckBigInteger";
 
     // excluded data types.
-    List<String> excludeList = new ArrayList<String>();
+    List<String> excludeList = new ArrayList<>();
     excludeList.add("BigDecimal");
     excludeList.add("Double");
     excludeList.add("Float");
@@ -475,7 +475,7 @@ public class ELClientIT {
     String aValue = "a = types.tckInteger";
 
     // excluded data types.
-    List<String> excludeList = new ArrayList<String>();
+    List<String> excludeList = new ArrayList<>();
     excludeList.add("BigDecimal");
     excludeList.add("BigInteger");
     excludeList.add("Double");
@@ -564,7 +564,7 @@ public class ELClientIT {
     String aValue = "a = types.tckLong";
 
     // excluded data types.
-    List<String> excludeList = new ArrayList<String>();
+    List<String> excludeList = new ArrayList<>();
     excludeList.add("BigDecimal");
     excludeList.add("BigInteger");
     excludeList.add("Integer");
@@ -655,7 +655,7 @@ public class ELClientIT {
     String aValue = "a = types.tckShort";
 
     // excluded data types.
-    List<String> excludeList = new ArrayList<String>();
+    List<String> excludeList = new ArrayList<>();
     excludeList.add("BigDecimal");
     excludeList.add("BigInteger");
     excludeList.add("Integer");
@@ -747,7 +747,7 @@ public class ELClientIT {
     String aValue = "a = types.tckByte";
 
     // excluded data types.
-    List<String> excludeList = new ArrayList<String>();
+    List<String> excludeList = new ArrayList<>();
     excludeList.add("BigDecimal");
     excludeList.add("BigInteger");
     excludeList.add("Integer");

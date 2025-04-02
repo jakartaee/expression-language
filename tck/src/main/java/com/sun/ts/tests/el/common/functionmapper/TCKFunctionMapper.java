@@ -46,7 +46,7 @@ public class TCKFunctionMapper extends FunctionMapper {
 
   public TCKFunctionMapper() {
 
-    fMap = new HashMap<String, Method>();
+    fMap = new HashMap<>();
     try {
       fMap.put(KEY, clazz.getMethod("valueOf", String.class));
     } catch (NoSuchMethodException nsme) {

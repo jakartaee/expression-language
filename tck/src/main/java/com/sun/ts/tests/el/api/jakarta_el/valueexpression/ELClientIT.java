@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009, 2020 Oracle and/or its affiliates and others.
+ * Copyright (c) 2009, 2025 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -171,12 +171,12 @@ public class ELClientIT {
    *                 EL:JAVADOC:114; EL:JAVADOC:368; EL:JAVADOC:371;
    *                 EL:JAVADOC:372; EL:JAVADOC:375; EL:JAVADOC:376;
    *                 EL:JAVADOC:378; EL:JAVADOC:379; EL:JAVADOC:380
-   * 
+   *
    * @test_Strategy: Validate the behavior of ValueExpression API
    *                 ValueExpression.getValue() ValueExpression.setValue()
    *                 ValueExpression.getType()
    *                 ValueExpression.isReadOTestUtil.NEW_LINEy()
-   * 
+   *
    *                 If the ELContext parameter for these methods is null, a
    *                 NullPointerException is thrown. If the ELContext parameter
    *                 is not the same as the one with which the ValueExpression
@@ -315,7 +315,7 @@ public class ELClientIT {
     try {
       vexp.isReadOnly(emptyContext);
       pass = false;
-      logger.log(Logger.Level.ERROR, 
+      logger.log(Logger.Level.ERROR,
           "Call to isReadOTestUtil.NEW_LINEy() for non-existent property did "
               + "not cause an exception to be thrown" + ELTestUtil.NL);
 
@@ -324,7 +324,7 @@ public class ELClientIT {
 
     } catch (Exception e) {
       pass = false;
-      logger.log(Logger.Level.ERROR, 
+      logger.log(Logger.Level.ERROR,
           "Call to isReadOTestUtil.NEW_LINEy() for non-existent property "
               + "caused an exception to be thrown, but it was not a"
               + " PropertyNotFoundException: " + ELTestUtil.NL
@@ -355,9 +355,9 @@ public class ELClientIT {
 
   /**
    * @testName: valueExpressionSerializableTest
-   * 
+   *
    * @assertion_ids: EL:SPEC:44
-   * 
+   *
    * @test_Strategy: Validate that ValueExpression implements Serializable and
    *                 that a ValueExpression can be manually serialized and
    *                 deserialized.
@@ -422,11 +422,11 @@ public class ELClientIT {
 
   /*
    * The HashTable is of this format.
-   * 
+   *
    * Key = Test Class Value = Test Value
    */
   private void initializeTable() {
-    testValueTable = new Hashtable<Class<?>, Object>();
+    testValueTable = new Hashtable<>();
 
     testValueTable.put(String.class, "SERIAL");
     testValueTable.put(Integer.class, Integer.valueOf("123"));
@@ -435,9 +435,9 @@ public class ELClientIT {
 
   /**
    * @testName: valueExpressionEqualsTest
-   * 
+   *
    * @assertion_ids: EL:JAVADOC:56
-   * 
+   *
    * @test_Strategy: Validate that ValueExpression implements equals() and that
    *                 the behavior is as expected
    */

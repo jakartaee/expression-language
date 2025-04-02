@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2012, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2012, 2025 Oracle and/or its affiliates and others.
+ * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -63,10 +64,10 @@ public class DataBase {
     }
 
     inited = true;
-    customers = new ArrayList<Customer>();
-    orders = new ArrayList<Order>();
-    products = new ArrayList<Product>();
-    ints = new ArrayList<Integer>();
+    customers = new ArrayList<>();
+    orders = new ArrayList<>();
+    products = new ArrayList<>();
+    ints = new ArrayList<>();
 
     initCustomer();
     initProduct();

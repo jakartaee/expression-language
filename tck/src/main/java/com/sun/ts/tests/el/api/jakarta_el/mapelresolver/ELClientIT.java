@@ -44,7 +44,7 @@ public class ELClientIT {
   private HashMap<String, String> animals;
 
   public ELClientIT(){
-    animals = new HashMap<String, String>();
+    animals = new HashMap<>();
     animals.put("dog", "retriever");
     animals.put("fish", "bass");
     animals.put("bird", "parrot");
