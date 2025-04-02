@@ -22,6 +22,8 @@ import java.util.List;
 
 public class SigTestResult implements Serializable {
 
+  private static final long serialVersionUID = 1L;
+
   private static final String NL = System.getProperty("line.separator", "\n");
 
   private List<String> failedPkgs = new ArrayList<>();
