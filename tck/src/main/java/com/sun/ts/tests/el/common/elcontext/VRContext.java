@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009, 2020 Oracle and/or its affiliates and others.
+ * Copyright (c) 2009, 2025 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -49,6 +49,7 @@ public class VRContext extends ELContext {
     varMapper = this.getVariableMapperImpl(testProps);
   }
 
+  @Override
   public ELResolver getELResolver() {
     ELResolver elResolver;
     ELResolver rel = new VariableELResolver();

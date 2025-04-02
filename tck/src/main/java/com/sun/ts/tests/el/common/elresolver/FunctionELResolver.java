@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009, 2020 Oracle and/or its affiliates and others.
+ * Copyright (c) 2009, 2025 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -35,6 +35,7 @@ import jakarta.el.ELResolver;
 
 public class FunctionELResolver extends ELResolver {
 
+  @Override
   public Object getValue(ELContext context, Object base, Object property)
       throws ELException {
     if (context == null)
@@ -53,6 +54,7 @@ public class FunctionELResolver extends ELResolver {
     return result;
   }
 
+  @Override
   public Class getType(ELContext context, Object base, Object property)
       throws ELException {
     if (context == null)
@@ -64,6 +66,7 @@ public class FunctionELResolver extends ELResolver {
     return null;
   }
 
+  @Override
   public void setValue(ELContext context, Object base, Object property,
       Object value) {
     if (context == null)
@@ -73,6 +76,7 @@ public class FunctionELResolver extends ELResolver {
       context.setPropertyResolved(true);
   }
 
+  @Override
   public boolean isReadOnly(ELContext context, Object base, Object property) {
     if (context == null)
       throw new NullPointerException();
@@ -86,6 +90,7 @@ public class FunctionELResolver extends ELResolver {
     return null;
   }
 
+  @Override
   public Class getCommonPropertyType(ELContext context, Object base) {
     if (base == null)
       return Object.class;

@@ -171,6 +171,7 @@ public class ELClientIT {
 
     private static final String KEYS = "Breakfast Lunch Dinner";
 
+    @Override
     public Object handleGetObject(String key) {
       if ("Breakfast".equals(key))
         return "BREAKFAST";
@@ -182,6 +183,7 @@ public class ELClientIT {
       return null;
     }
 
+    @Override
     public Enumeration getKeys() {
       StringTokenizer keyTokenizer = new StringTokenizer(KEYS);
 

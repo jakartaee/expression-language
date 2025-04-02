@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009, 2020 Oracle and/or its affiliates and others.
+ * Copyright (c) 2009, 2025 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -74,6 +74,7 @@ public class SimpleELContext extends ELContext {
     this.compResolver = new CompositeELResolver();
   }
 
+  @Override
   public ELResolver getELResolver() {
     ELResolver elResolver;
 
@@ -98,10 +99,12 @@ public class SimpleELContext extends ELContext {
     return (ELContext) (this);
   }
 
+  @Override
   public VariableMapper getVariableMapper() {
     return null;
   }
 
+  @Override
   public FunctionMapper getFunctionMapper() {
     return null;
   }
@@ -136,7 +139,7 @@ public class SimpleELContext extends ELContext {
       break;
 
     default:
-      logger.log(Logger.Level.TRACE, 
+      logger.log(Logger.Level.TRACE,
           "Unknown ELResolver! " + enumResolver + " trying to use default"
               + NLINE + "Setting" + " ELResolver == VariableELResolver");
       break;
