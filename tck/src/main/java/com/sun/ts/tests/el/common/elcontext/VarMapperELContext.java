@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009, 2020 Oracle and/or its affiliates and others.
+ * Copyright (c) 2009, 2025 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -54,6 +54,7 @@ public class VarMapperELContext extends ELContext {
     varMapper = this.getVariableMapperImpl(testProps);
   }
 
+  @Override
   public ELResolver getELResolver() {
     ELResolver elResolver;
     this.compResolver.add(new VariableELResolver());
@@ -67,10 +68,12 @@ public class VarMapperELContext extends ELContext {
     return (ELContext) (this);
   }
 
+  @Override
   public VariableMapper getVariableMapper() {
     return varMapper;
   }
 
+  @Override
   public FunctionMapper getFunctionMapper() {
     return null;
   }

@@ -64,6 +64,7 @@ public class SigTestResult implements Serializable {
 
   } // END addPassedClass
 
+  @Override
   public String toString() {
 
     String delim = "******************************************************"

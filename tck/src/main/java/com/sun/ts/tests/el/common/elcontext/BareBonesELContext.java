@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009, 2020 Oracle and/or its affiliates and others.
+ * Copyright (c) 2009, 2025 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -42,6 +42,7 @@ public class BareBonesELContext extends ELContext {
     this.elResolver = new CompositeELResolver();
   }
 
+  @Override
   public ELResolver getELResolver() {
     return (ELResolver) elResolver;
   }
@@ -50,10 +51,12 @@ public class BareBonesELContext extends ELContext {
     return (ELContext) (this);
   }
 
+  @Override
   public VariableMapper getVariableMapper() {
     return null;
   }
 
+  @Override
   public FunctionMapper getFunctionMapper() {
     return null;
   }

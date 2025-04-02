@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2024 Oracle and/or its affiliates and others.
+ * Copyright (c) 2007, 2025 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -49,6 +49,7 @@ public class ELSigTestIT extends SigTest {
    * @return String[] The names of the packages whose signatures should be
    *         verified.
    */
+  @Override
   protected String[] getPackages() {
     return new String[] { "jakarta.el" };
   }
