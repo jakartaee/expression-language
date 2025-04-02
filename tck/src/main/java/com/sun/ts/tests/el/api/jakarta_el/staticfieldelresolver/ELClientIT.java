@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2012, 2021 Oracle and/or its affiliates and others.
+ * Copyright (c) 2012, 2025 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -20,11 +20,6 @@
  */
 
 package com.sun.ts.tests.el.api.jakarta_el.staticfieldelresolver;
-
-import java.util.Iterator;
-import java.util.Properties;
-
-
 
 import com.sun.ts.tests.el.common.api.resolver.ResolverTest;
 import com.sun.ts.tests.el.common.util.ELTestUtil;
@@ -64,16 +59,16 @@ public class ELClientIT {
 
   /**
    * @testName: staticFieldELResolverTest
-   * 
+   *
    * @assertion_ids: EL:JAVADOC:330; EL:JAVADOC:331; EL:JAVADOC:332;
    *                 EL:JAVADOC:335; EL:JAVADOC:338; EL:JAVADOC:341;
    *                 EL:JAVADOC:343; EL:JAVADOC:346; EL:JAVADOC:189;
    *                 EL:JAVADOC:204
-   * 
-   * 
+   *
+   *
    * @test_Strategy: Verify the following method calls work as expected:
    *                 getValue() getType() setValue() isReadOnly()
-   *                 getCommonPropertyType() 
+   *                 getCommonPropertyType()
    */
   @Test
   public void staticFieldELResolverTest() throws Exception {
@@ -179,9 +174,9 @@ public class ELClientIT {
 
   /**
    * @testName: staticFieldResolverInvokeMNFETest
-   * 
+   *
    * @assertion_ids: EL:JAVADOC:339; EL:JAVADOC:189; EL:JAVADOC:204
-   * 
+   *
    * @test_Strategy: Verify that the invoke() method throws
    *                 MethodNotFoundException if no suitable method can be found.
    */
@@ -216,9 +211,9 @@ public class ELClientIT {
 
   /**
    * @testName: staticFieldELResolverInvokeTest
-   * 
+   *
    * @assertion_ids: EL:JAVADOC:338; EL:JAVADOC:189; EL:JAVADOC:204
-   * 
+   *
    * @test_Strategy: Verify that API calls work as expected for
    *                 BeanNameELResolver.invoke().
    */
@@ -253,13 +248,13 @@ public class ELClientIT {
 
   /**
    * @testName: staticFieldELResolverNPETest
-   * 
+   *
    * @assertion_ids: EL:JAVADOC:333; EL:JAVADOC:336; EL:JAVADOC:342;
    *                 EL:JAVADOC:344; EL:JAVADOC:189
-   * 
+   *
    * @test_Strategy: Verify that the following methods throw a
    *                 NullPointerException, if context is null:
-   * 
+   *
    *                 getType() getValue() isReadOnly() setValue()
    */
   @Test
@@ -289,9 +284,9 @@ public class ELClientIT {
 
   /**
    * @testName: staticFieldResolverInvokePNFETest
-   * 
+   *
    * @assertion_ids: EL:JAVADOC:334; EL:JAVADOC:337
-   * 
+   *
    * @test_Strategy: Verify that the invoke() method throws
    *                 PropertyNotFoundException the specified class does not
    *                 exist, or if the field is not a public static filed of the

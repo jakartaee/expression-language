@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, 2020 Oracle and/or its affiliates and others.
+ * Copyright (c) 2013, 2025 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -19,8 +19,6 @@ package com.sun.ts.tests.el.api.jakarta_el.lambdaexpression;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
-
 
 import com.sun.ts.tests.el.common.util.ELTestUtil;
 
@@ -60,9 +58,9 @@ public class ELClientIT {
 
   /**
    * @testName: invokeNPETest
-   * 
+   *
    * @assertion_ids: EL:JAVADOC:406
-   * 
+   *
    * @test_Strategy: Throws a NullPointerException if elContext is null.
    */
   @Test
@@ -78,9 +76,9 @@ public class ELClientIT {
 
   /**
    * @testName: invokeELETest
-   * 
+   *
    * @assertion_ids: EL:JAVADOC:408
-   * 
+   *
    * @test_Strategy: Throws a ELException if not enough arguments are provided.
    */
   @Test

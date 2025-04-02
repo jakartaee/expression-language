@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2009, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2009, 2025 Oracle and/or its affiliates and others.
+ * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -23,8 +24,6 @@ package com.sun.ts.tests.el.spec.relationaloperator;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.List;
-import java.util.Properties;
-
 
 import com.sun.ts.tests.el.common.util.ExprEval;
 import com.sun.ts.tests.el.common.util.NameValuePair;
@@ -314,7 +313,7 @@ public class ELClientIT {
    * @test_Strategy: Validate that if one of the operands in an EL "<" or "lt"
    *                 operation is a BigDecimal, the result is coerced to
    *                 BigDecimal and the correct boolean value is returned.
-   * 
+   *
    *                 Equations tested: BigDecimal "<" & "lt" BigDecimal
    *                 BigDecimal "<" & "lt" Double BigDecimal "<" & "lt" Float
    *                 BigDecimal "<" & "lt" BigInteger BigDecimal "<" & "lt"
@@ -341,7 +340,7 @@ public class ELClientIT {
    * @test_Strategy: Validate that if one of the operands in an EL "<=" or "le"
    *                 operation is a BigDecimal, the result is coerced to
    *                 BigDecimal and the correct boolean value is returned.
-   * 
+   *
    *                 Equations tested: BigDecimal "<=" & "le" BigDecimal
    *                 BigDecimal "<=" & "le" Double BigDecimal "<=" & "le" Float
    *                 BigDecimal "<=" & "le" BigInteger BigDecimal "<=" & "le"
@@ -367,7 +366,7 @@ public class ELClientIT {
    * @test_Strategy: Validate that if one of the operands in an EL ">" or "gt"
    *                 operation is a BigDecimal, the result is coerced to
    *                 BigDecimal and the correct boolean value is returned.
-   * 
+   *
    *                 Equations tested: BigDecimal ">" & "gt" BigDecimal
    *                 BigDecimal ">" & "gt" Double BigDecimal ">" & "gt" Float
    *                 BigDecimal ">" & "gt" BigInteger BigDecimal ">" & "gt"
@@ -394,7 +393,7 @@ public class ELClientIT {
    * @test_Strategy: Validate that if one of the operands in an EL ">=" or "ge"
    *                 operation is a BigDecimal, the result is coerced to
    *                 BigDecimal and the correct boolean value is returned.
-   * 
+   *
    *                 Equations tested: BigDecimal ">=" & "ge" BigDecimal
    *                 BigDecimal ">=" & "ge" Double BigDecimal ">=" & "ge" Float
    *                 BigDecimal ">=" & "ge" BigInteger BigDecimal ">=" & "ge"
@@ -421,7 +420,7 @@ public class ELClientIT {
    * @test_Strategy: Validate that if one of the operands in an EL "==" or "eq"
    *                 operation is a BigDecimal, the result is coerced to
    *                 BigDecimal and the correct boolean value is returned.
-   * 
+   *
    *                 Equations tested: BigDecimal "==" & "eq" BigDecimal
    *                 BigDecimal "==" & "eq" Double BigDecimal "==" & "eq" Float
    *                 BigDecimal "==" & "eq" BigInteger BigDecimal "==" & "eq"
@@ -445,7 +444,7 @@ public class ELClientIT {
    * @test_Strategy: Validate that if one of the operands in an EL "!=" or "ne"
    *                 operation is a BigDecimal, the result is coerced to
    *                 BigDecimal and the correct boolean value is returned.
-   * 
+   *
    *                 Equations tested: BigDecimal "!=" & "ne" BigDecimal
    *                 BigDecimal "!=" & "ne" Double BigDecimal "!=" & "ne" Float
    *                 BigDecimal "!=" & "ne" BigInteger BigDecimal "!=" & "ne"
@@ -469,7 +468,7 @@ public class ELClientIT {
    * @test_Strategy: Validate that if one of the operands in an EL "<" or "lt"
    *                 operation is a Float, the result is coerced to Double and
    *                 the correct boolean value is returned.
-   * 
+   *
    *                 Equations tested: Float "<" & "lt" Double Float "<" & "lt"
    *                 Float Float "<" & "lt" BigInteger Float "<" & "lt" Integer
    *                 Float "<" & "lt" Long Float "<" & "lt" Short Float "<" &
@@ -495,7 +494,7 @@ public class ELClientIT {
    * @test_Strategy: Validate that if one of the operands in an EL "<=" or "le"
    *                 operation is a Float, the result is coerced to Double and
    *                 the correct boolean value is returned.
-   * 
+   *
    *                 Equations tested: Float "<=" & "le" Double Float "<=" &
    *                 "le" Float Float "<=" & "le" BigInteger Float "<=" & "le"
    *                 Integer Float "<=" & "le" Long Float "<=" & "le" Short
@@ -520,7 +519,7 @@ public class ELClientIT {
    * @test_Strategy: Validate that if one of the operands in an EL ">" or "gt"
    *                 operation is a Float, the result is coerced to Double and
    *                 the correct boolean value is returned.
-   * 
+   *
    *                 Equations tested: Float ">" & "gt" Double Float ">" & "gt"
    *                 Float Float ">" & "gt" BigInteger Float ">" & "gt" Integer
    *                 Float ">" & "gt" Long Float ">" & "gt" Short Float ">" &
@@ -546,7 +545,7 @@ public class ELClientIT {
    * @test_Strategy: Validate that if one of the operands in an EL ">=" or "ge"
    *                 operation is a Float, the result is coerced to Double and
    *                 the correct boolean value is returned.
-   * 
+   *
    *                 Equations tested: Float ">=" & "ge" Double Float ">=" &
    *                 "ge" Float Float ">=" & "ge" BigInteger Float ">=" & "ge"
    *                 Integer Float ">=" & "ge" Long Float ">=" & "ge" Short
@@ -572,7 +571,7 @@ public class ELClientIT {
    * @test_Strategy: Validate that if one of the operands in an EL "==" or "eq"
    *                 operation is a Float, the result is coerced to Double and
    *                 the correct boolean value is returned.
-   * 
+   *
    *                 Equations tested: Float "==" & "eq" Double Float "==" &
    *                 "eq" Float Float "==" & "eq" BigInteger Float "==" & "eq"
    *                 Integer Float "==" & "eq" Long Float "==" & "eq" Short
@@ -595,7 +594,7 @@ public class ELClientIT {
    * @test_Strategy: Validate that if one of the operands in an EL "!=" or "ne"
    *                 operation is a Float, the result is coerced to Double and
    *                 the correct boolean value is returned.
-   * 
+   *
    *                 Equations tested: Float "!=" & "ne" Double Float "!=" &
    *                 "ne" Float Float "!=" & "ne" BigInteger Float "!=" & "ne"
    *                 Integer Float "!=" & "ne" Long Float "!=" & "ne" Short
@@ -618,7 +617,7 @@ public class ELClientIT {
    * @test_Strategy: Validate that if one of the operands in an EL "<" or "lt"
    *                 operation is a Double, the result is coerced to Double and
    *                 the correct boolean value is returned.
-   * 
+   *
    *                 Equations tested: Double "<" & "lt" Double Double "<" &
    *                 "lt" BigInteger Double "<" & "lt" Integer Double "<" & "lt"
    *                 Long Double "<" & "lt" Short Double "<" & "lt" Byte
@@ -643,7 +642,7 @@ public class ELClientIT {
    * @test_Strategy: Validate that if one of the operands in an EL "<=" or "le"
    *                 operation is a Double, the result is coerced to Double and
    *                 the correct boolean value is returned.
-   * 
+   *
    *                 Equations tested: Double "<=" & "le" Double Double "<=" &
    *                 "le" BigInteger Double "<=" & "le" Integer Double "<=" &
    *                 "le" Long Double "<=" & "le" Short Double "<=" & "le" Byte
@@ -667,7 +666,7 @@ public class ELClientIT {
    * @test_Strategy: Validate that if one of the operands in an EL ">" or "gt"
    *                 operation is a Double, the result is coerced to Double and
    *                 the correct boolean value is returned.
-   * 
+   *
    *                 Equations tested: Double ">" & "gt" Double Double ">" &
    *                 "gt" BigInteger Double ">" & "gt" Integer Double ">" & "gt"
    *                 Long Double ">" & "gt" Short Double ">" & "gt" Byte
@@ -692,7 +691,7 @@ public class ELClientIT {
    * @test_Strategy: Validate that if one of the operands in an EL ">=" or "ge"
    *                 operation is a Double, the result is coerced to Double and
    *                 the correct boolean value is returned.
-   * 
+   *
    *                 Equations tested: Double ">=" & "ge" Double Double ">=" &
    *                 "ge" BigInteger Double ">=" & "ge" Integer Double ">=" &
    *                 "ge" Long Double ">=" & "ge" Short Double ">=" & "ge" Byte
@@ -717,7 +716,7 @@ public class ELClientIT {
    * @test_Strategy: Validate that if one of the operands in an EL "==" or "eq"
    *                 operation is a Double, the result is coerced to Double and
    *                 the correct boolean value is returned.
-   * 
+   *
    *                 Equations tested: Double "==" & "eq" Double Double "==" &
    *                 "eq" BigInteger Double "==" & "eq" Integer Double "==" &
    *                 "eq" Long Double "==" & "eq" Short Double "==" & "eq" Byte
@@ -739,7 +738,7 @@ public class ELClientIT {
    * @test_Strategy: Validate that if one of the operands in an EL "!=" or "ne"
    *                 operation is a Double, the result is coerced to Double and
    *                 the correct boolean value is returned.
-   * 
+   *
    *                 Equations tested: Double "!=" & "ne" Double Double "!=" &
    *                 "ne" BigInteger Double "!=" & "ne" Integer Double "!=" &
    *                 "ne" Long Double "!=" & "ne" Short Double "!=" & "ne" Byte
@@ -761,7 +760,7 @@ public class ELClientIT {
    * @test_Strategy: Validate that if one of the operands in an EL "<" or "lt"
    *                 operation is a BigInteger, the result is coerced to
    *                 BigInteger and the correct boolean value is returned.
-   * 
+   *
    *                 Equations tested: BigInteger "<" & "lt" BigInteger
    *                 BigInteger "<" & "lt" Integer BigInteger "<" & "lt" Long
    *                 BigInteger "<" & "lt" Short BigInteger "<" & "lt" Byte
@@ -786,7 +785,7 @@ public class ELClientIT {
    * @test_Strategy: Validate that if one of the operands in an EL "<=" or "le"
    *                 operation is a BigInteger, the result is coerced to
    *                 BigInteger and the correct boolean value is returned.
-   * 
+   *
    *                 Equations tested: BigInteger "<=" & "le" BigInteger
    *                 BigInteger "<=" & "le" Integer BigInteger "<=" & "le" Long
    *                 BigInteger "<=" & "le" Short BigInteger "<=" & "le" Byte
@@ -810,7 +809,7 @@ public class ELClientIT {
    * @test_Strategy: Validate that if one of the operands in an EL ">" or "gt"
    *                 operation is a BigInteger, the result is coerced to
    *                 BigInteger and the correct boolean value is returned.
-   * 
+   *
    *                 Equations tested: BigInteger ">" & "gt" BigInteger
    *                 BigInteger ">" & "gt" Integer BigInteger ">" & "gt" Long
    *                 BigInteger ">" & "gt" Short BigInteger ">" & "gt" Byte
@@ -835,7 +834,7 @@ public class ELClientIT {
    * @test_Strategy: Validate that if one of the operands in an EL ">=" or "ge"
    *                 operation is a BigInteger, the result is coerced to
    *                 BigInteger and the correct boolean value is returned.
-   * 
+   *
    *                 Equations tested: BigInteger ">=" & "ge" BigInteger
    *                 BigInteger ">=" & "ge" Integer BigInteger ">=" & "ge" Long
    *                 BigInteger ">=" & "ge" Short BigInteger ">=" & "ge" Byte
@@ -860,7 +859,7 @@ public class ELClientIT {
    * @test_Strategy: Validate that if one of the operands in an EL "==" or "eq"
    *                 operation is a BigInteger, the result is coerced to
    *                 BigInteger and the correct boolean value is returned.
-   * 
+   *
    *                 Equations tested: BigInteger "==" & "eq" BigInteger
    *                 BigInteger "==" & "eq" Integer BigInteger "==" & "eq" Long
    *                 BigInteger "==" & "eq" Short BigInteger "==" & "eq" Byte
@@ -882,7 +881,7 @@ public class ELClientIT {
    * @test_Strategy: Validate that if one of the operands in an EL "!=" or "ne"
    *                 operation is a BigInteger, the result is coerced to
    *                 BigInteger and the correct boolean value is returned.
-   * 
+   *
    *                 Equations tested: BigInteger "!=" & "ne" BigInteger
    *                 BigInteger "!=" & "ne" Integer BigInteger "!=" & "ne" Long
    *                 BigInteger "!=" & "ne" Short BigInteger "!=" & "ne" Byte
@@ -904,7 +903,7 @@ public class ELClientIT {
    * @test_Strategy: Validate that if one of the operands in an EL "<" or "lt"
    *                 operation is a Long, the result is coerced to Long and the
    *                 correct boolean value is returned.
-   * 
+   *
    *                 Equations tested: Long "<" & "lt" Integer Long "<" & "lt"
    *                 Long Long "<" & "lt" Short Long "<" & "lt" Byte
    */
@@ -928,7 +927,7 @@ public class ELClientIT {
    * @test_Strategy: Validate that if one of the operands in an EL "<=" or "le"
    *                 operation is a Long, the result is coerced to Long and the
    *                 correct boolean value is returned.
-   * 
+   *
    *                 Equations tested: Long "<=" & "le" Integer Long "<=" & "le"
    *                 Long Long "<=" & "le" Short Long "<=" & "le" Byte
    */
@@ -951,7 +950,7 @@ public class ELClientIT {
    * @test_Strategy: Validate that if one of the operands in an EL ">" or "gt"
    *                 operation is a Long, the result is coerced to Long and the
    *                 correct boolean value is returned.
-   * 
+   *
    *                 Equations tested: Long ">" & "gt" Integer Long ">" & "gt"
    *                 Long Long ">" & "gt" Short Long ">" & "gt" Byte
    */
@@ -975,7 +974,7 @@ public class ELClientIT {
    * @test_Strategy: Validate that if one of the operands in an EL ">=" or "ge"
    *                 operation is a Long, the result is coerced to Long and the
    *                 correct boolean value is returned.
-   * 
+   *
    *                 Equations tested: Long ">=" & "ge" Integer Long ">=" & "ge"
    *                 Long Long ">=" & "ge" Short Long ">=" & "ge" Byte
    */
@@ -999,7 +998,7 @@ public class ELClientIT {
    * @test_Strategy: Validate that if one of the operands in an EL "==" or "eq"
    *                 operation is a Long, the result is coerced to Long and the
    *                 correct boolean value is returned.
-   * 
+   *
    *                 Equations tested: Long "==" & "eq" Integer Long "==" & "eq"
    *                 Long Long "==" & "eq" Short Long "==" & "eq" Byte
    */
@@ -1020,7 +1019,7 @@ public class ELClientIT {
    * @test_Strategy: Validate that if one of the operands in an EL "!=" or "ne"
    *                 operation is a Long, the result is coerced to Long and the
    *                 correct boolean value is returned.
-   * 
+   *
    *                 Equations tested: Long "!=" & "ne" Integer Long "!=" & "ne"
    *                 Long Long "!=" & "ne" Short Long "!=" & "ne" Byte
    */
@@ -1041,7 +1040,7 @@ public class ELClientIT {
    * @test_Strategy: Validate that if one of the operands in an EL "<" or "lt"
    *                 operation is an Integer, the result is coerced to Long and
    *                 the correct boolean value is returned.
-   * 
+   *
    *                 Equations tested: Integer "<" & "lt" Integer Integer "<" &
    *                 "lt" Short Integer "<" & "lt" Byte
    */
@@ -1065,7 +1064,7 @@ public class ELClientIT {
    * @test_Strategy: Validate that if one of the operands in an EL "<=" or "le"
    *                 operation is an Integer, the result is coerced to Long and
    *                 the correct boolean value is returned.
-   * 
+   *
    *                 Equations tested: Integer "<=" & "le" Integer Integer "<="
    *                 & "le" Short Integer "<=" & "le" Byte
    */
@@ -1088,7 +1087,7 @@ public class ELClientIT {
    * @test_Strategy: Validate that if one of the operands in an EL ">" or "gt"
    *                 operation is an Integer, the result is coerced to Long and
    *                 the correct boolean value is returned.
-   * 
+   *
    *                 Equations tested: Integer ">" & "gt" Integer Integer ">" &
    *                 "gt" Short Integer ">" & "gt" Byte
    */
@@ -1112,7 +1111,7 @@ public class ELClientIT {
    * @test_Strategy: Validate that if one of the operands in an EL ">=" or "ge"
    *                 operation is an Integer, the result is coerced to Long and
    *                 the correct boolean value is returned.
-   * 
+   *
    *                 Equations tested: Integer ">=" & "ge" Integer Integer ">="
    *                 & "ge" Short Integer ">=" & "ge" Byte
    */
@@ -1136,7 +1135,7 @@ public class ELClientIT {
    * @test_Strategy: Validate that if one of the operands in an EL "==" or "eq"
    *                 operation is an Integer, the result is coerced to Long and
    *                 the correct boolean value is returned.
-   * 
+   *
    *                 Equations tested: Integer "==" & "eq" Integer Integer "=="
    *                 & "eq" Short Integer "==" & "eq" Byte
    */
@@ -1157,7 +1156,7 @@ public class ELClientIT {
    * @test_Strategy: Validate that if one of the operands in an EL "!=" or "ne"
    *                 operation is an Integer, the result is coerced to Long and
    *                 the correct boolean value is returned.
-   * 
+   *
    *                 Equations tested: Integer "!=" & "ne" Integer Integer "!="
    *                 & "ne" Short Integer "!=" & "ne" Byte
    */
@@ -1178,7 +1177,7 @@ public class ELClientIT {
    * @test_Strategy: Validate that if one of the operands in an EL "<" or "lt"
    *                 operation is an Short, the result is coerced to Long and
    *                 the correct boolean value is returned.
-   * 
+   *
    *                 Equations tested: Short "<" & "lt" Short Short "<" & "lt"
    *                 Byte
    */
@@ -1202,7 +1201,7 @@ public class ELClientIT {
    * @test_Strategy: Validate that if one of the operands in an EL "<=" or "le"
    *                 operation is an Short, the result is coerced to Long and
    *                 the correct boolean value is returned.
-   * 
+   *
    *                 Equations tested: Short "<=" & "le" Short Short "<=" & "le"
    *                 Byte
    */
@@ -1225,7 +1224,7 @@ public class ELClientIT {
    * @test_Strategy: Validate that if one of the operands in an EL ">" or "gt"
    *                 operation is an Short, the result is coerced to Long and
    *                 the correct boolean value is returned.
-   * 
+   *
    *                 Equations tested: Short ">" & "gt" Short Short ">" & "gt"
    *                 Byte
    */
@@ -1249,7 +1248,7 @@ public class ELClientIT {
    * @test_Strategy: Validate that if one of the operands in an EL ">=" or "ge"
    *                 operation is an Short, the result is coerced to Long and
    *                 the correct boolean value is returned.
-   * 
+   *
    *                 Equations tested: Short ">=" & "ge" Short Short ">=" & "ge"
    *                 Byte
    */
@@ -1273,7 +1272,7 @@ public class ELClientIT {
    * @test_Strategy: Validate that if one of the operands in an EL "==" or "eq"
    *                 operation is an Short, the result is coerced to Long and
    *                 the correct boolean value is returned.
-   * 
+   *
    *                 Equations tested: Short "==" & "eq" Short Short "==" & "eq"
    *                 Byte
    */
@@ -1294,7 +1293,7 @@ public class ELClientIT {
    * @test_Strategy: Validate that if one of the operands in an EL "!=" or "ne"
    *                 operation is an Short, the result is coerced to Long and
    *                 the correct boolean value is returned.
-   * 
+   *
    *                 Equations tested: Short "!=" & "ne" Short Short "!=" & "ne"
    *                 Byte
    */
@@ -1315,7 +1314,7 @@ public class ELClientIT {
    * @test_Strategy: Validate that if one of the operands in an EL "<" or "lt"
    *                 operation is an Byte, the result is coerced to Long and the
    *                 correct boolean value is returned.
-   * 
+   *
    *                 Equations tested: Byte "<" & "lt" Byte
    */
   @Test
@@ -1338,7 +1337,7 @@ public class ELClientIT {
    * @test_Strategy: Validate that if one of the operands in an EL "<=" or "le"
    *                 operation is an Byte, the result is coerced to Long and the
    *                 correct boolean value is returned.
-   * 
+   *
    *                 Equations tested: Byte "<=" & "le" Byte
    */
   @Test
@@ -1360,7 +1359,7 @@ public class ELClientIT {
    * @test_Strategy: Validate that if one of the operands in an EL ">" or "gt"
    *                 operation is an Byte, the result is coerced to Long and the
    *                 correct boolean value is returned.
-   * 
+   *
    *                 Equations tested: Byte ">" & "gt" Byte
    */
   @Test
@@ -1383,7 +1382,7 @@ public class ELClientIT {
    * @test_Strategy: Validate that if one of the operands in an EL ">=" or "ge"
    *                 operation is an Byte, the result is coerced to Long and the
    *                 correct boolean value is returned.
-   * 
+   *
    *                 Equations tested: Byte ">=" & "ge" Byte
    */
   @Test
@@ -1406,7 +1405,7 @@ public class ELClientIT {
    * @test_Strategy: Validate that if one of the operands in an EL "==" or "eq"
    *                 operation is an Byte, the result is coerced to Long and the
    *                 correct boolean value is returned.
-   * 
+   *
    *                 Equations tested: Byte "==" & "eq" Byte
    */
   @Test
@@ -1426,7 +1425,7 @@ public class ELClientIT {
    * @test_Strategy: Validate that if one of the operands in an EL "!=" or "ne"
    *                 operation is an Byte, the result is coerced to Long and the
    *                 correct boolean value is returned.
-   * 
+   *
    *                 Equations tested: Byte "!=" & "ne" Byte
    */
   @Test
@@ -1446,7 +1445,7 @@ public class ELClientIT {
    * @test_Strategy: Validate that if one of the operands in an EL "<" or "lt"
    *                 operation is an String, that both operands are coerced to
    *                 type String and the correct boolean value is returned.
-   * 
+   *
    *                 Equations tested: String "<" & "lt" String
    */
   @Test
@@ -1469,7 +1468,7 @@ public class ELClientIT {
    * @test_Strategy: Validate that if one of the operands in an EL "<=" or "le"
    *                 operation is a String, that both operands are coerced to
    *                 type String and the correct boolean value is returned.
-   * 
+   *
    *                 Equations tested: String "<=" & "le" String
    */
   @Test
@@ -1491,7 +1490,7 @@ public class ELClientIT {
    * @test_Strategy: Validate that if one of the operands in an EL ">" or "gt"
    *                 operation is an String, that both operands are coerced to
    *                 type String and the correct boolean value is returned.
-   * 
+   *
    *                 Equations tested: String ">" & "gt" String
    */
   @Test
@@ -1514,7 +1513,7 @@ public class ELClientIT {
    * @test_Strategy: Validate that if one of the operands in an EL ">=" or "ge"
    *                 operation is an String, that both operands are coerced to
    *                 type String and the correct boolean value is returned.
-   * 
+   *
    *                 Equations tested: String ">=" & "ge" String
    */
   @Test
@@ -1537,7 +1536,7 @@ public class ELClientIT {
    * @test_Strategy: Validate that if one of the operands in an EL "==" or "eq"
    *                 operation is an String, that both operands are coerced to
    *                 type String and the correct boolean value is returned.
-   * 
+   *
    *                 Equations tested: String "==" & "eq" String
    */
   @Test
@@ -1557,7 +1556,7 @@ public class ELClientIT {
    * @test_Strategy: Validate that if one of the operands in an EL "!=" or "ne"
    *                 operation is an String, that both operands are coerced to
    *                 type String and the correct boolean value is returned.
-   * 
+   *
    *                 Equations tested: String "!=" & "ne" String
    */
   @Test
@@ -1576,7 +1575,7 @@ public class ELClientIT {
    * @assertion_ids: EL:SPEC:21.8.2
    * @test_Strategy: Validate that if operand A in an EL "<" or "lt" operation
    *                 is comparable, the result A.compareTo(B) is returned.
-   * 
+   *
    *                 Equation example: DougType "<" & "lt" NickType
    */
   @Test
@@ -1598,7 +1597,7 @@ public class ELClientIT {
    * @assertion_ids: EL:SPEC:21.8.2
    * @test_Strategy: Validate that if operand A in an EL "<=" or "le" operation
    *                 is comparable, the result A.compareTo(B) is returned.
-   * 
+   *
    *                 Equation example: DougType "<=" & "le" NickType
    */
   @Test
@@ -1619,7 +1618,7 @@ public class ELClientIT {
    * @assertion_ids: EL:SPEC:21.8.2
    * @test_Strategy: Validate that if operand A in an EL ">" or "gt" operation
    *                 is comparable, the result A.compareTo(B) is returned.
-   * 
+   *
    *                 Equation example: DougType "<" & "gt" NickType
    */
   @Test
@@ -1641,7 +1640,7 @@ public class ELClientIT {
    * @assertion_ids: EL:SPEC:21.8.2
    * @test_Strategy: Validate that if operand A in an EL ">=" or "ge" operation
    *                 is comparable, the result A.compareTo(B) is returned.
-   * 
+   *
    *                 Equations tested: DougType ">=" & "ge" NickType
    */
   @Test
@@ -1663,7 +1662,7 @@ public class ELClientIT {
    * @assertion_ids: EL:SPEC:22.11
    * @test_Strategy: Validate that if operand A in an EL "==" or "eq" operation
    *                 is comparable, the result A.equals(B) is returned.
-   * 
+   *
    *                 Equations Example: DougType "==" & "eq" NickType
    */
   @Test
@@ -1682,7 +1681,7 @@ public class ELClientIT {
    * @assertion_ids: EL:SPEC:22.11
    * @test_Strategy: Validate that if operand A in an EL "!=" or "ne" operation
    *                 is comparable, the result A.equals(B) is returned.
-   * 
+   *
    *                 Equation Example: DougType "!=" & "ne" NickType
    */
   @Test
@@ -1702,7 +1701,7 @@ public class ELClientIT {
    * @test_Strategy: Validate that if one of the operands in an EL "==" or "eq"
    *                 operation is an Boolean, that both operands are coerced to
    *                 type Boolean and the correct boolean value is returned.
-   * 
+   *
    *                 Equations tested: Boolean "==" & "eq" String
    */
   @Test
@@ -1722,7 +1721,7 @@ public class ELClientIT {
    * @test_Strategy: Validate that if one of the operands in an EL "!=" or "ne"
    *                 operation is an Boolean, that both operands are coerced to
    *                 type Boolean and the correct boolean value is returned.
-   * 
+   *
    *                 Equations tested: String "!=" & "ne" String
    */
   @Test
@@ -1742,7 +1741,7 @@ public class ELClientIT {
    * @test_Strategy: Validate that if one of the operands in an EL "==" or "eq"
    *                 operation is an Enum, that both operands are coerced to
    *                 type Enum and the correct boolean value is returned.
-   * 
+   *
    *                 Example Equation: Enum "==" String or Integer
    */
   @Test
@@ -1763,7 +1762,7 @@ public class ELClientIT {
    * @test_Strategy: Validate that if one of the operands in an EL "!=" or "ne"
    *                 operation is an Enum, that both operands are coerced to
    *                 type String and the correct boolean value is returned.
-   * 
+   *
    *                 Example Equation: Enum "!=" & "ne" Enum
    */
   @Test
@@ -1785,7 +1784,7 @@ public class ELClientIT {
    * This method is used to validate an expression that has at least one
    * BigDecimal in it. We pass in one of the operands(testVal), the other
    * operand is automatically picked up from the numberList.
-   * 
+   *
    * @param testVal
    *          - One of the operands used in the expression.
    * @param expectedVal
@@ -1800,7 +1799,7 @@ public class ELClientIT {
     boolean pass;
 
     for (int i = 0; numberList.size() > i; i++) {
-      logger.log(Logger.Level.TRACE, 
+      logger.log(Logger.Level.TRACE,
           "*** Start " + "\"" + "BigDecimal" + "\"" + " Test Sequence ***");
 
       Object testNum = numberList.get(i);
@@ -1831,7 +1830,7 @@ public class ELClientIT {
 
       } finally {
         ExprEval.cleanup();
-        logger.log(Logger.Level.TRACE, 
+        logger.log(Logger.Level.TRACE,
             "*** End " + "\"" + "BigDecimal" + "\"" + " Test Sequence ***");
       }
 
@@ -1845,7 +1844,7 @@ public class ELClientIT {
    * This method is used to validate an expression that has at least one
    * BigInteger in it. We pass in one of the operands(testVal), the other
    * operand is automatically picked up from the numberList.
-   * 
+   *
    * @param testVal
    *          - One of the operands used in the expression.
    * @param expectedVal
@@ -1860,7 +1859,7 @@ public class ELClientIT {
     boolean pass;
 
     for (int i = 0; numberList.size() > i; i++) {
-      logger.log(Logger.Level.TRACE, 
+      logger.log(Logger.Level.TRACE,
           "*** Start " + "\"" + "BigInteger" + "\"" + " Test Sequence ***");
 
       Object testNum = numberList.get(i);
@@ -1899,7 +1898,7 @@ public class ELClientIT {
 
       } finally {
         ExprEval.cleanup();
-        logger.log(Logger.Level.TRACE, 
+        logger.log(Logger.Level.TRACE,
             "*** End " + "\"" + "BigInteger" + "\"" + " Test Sequence ***");
       }
 
@@ -1913,7 +1912,7 @@ public class ELClientIT {
    * This method is used to validate an expression that has at least one Float
    * in it. We pass in one of the operands(testVal), the other operand is
    * automatically picked up from the numberList.
-   * 
+   *
    * @param testVal
    *          - One of the operands used in the expression.
    * @param expectedVal
@@ -1928,7 +1927,7 @@ public class ELClientIT {
     boolean pass;
 
     for (int i = 0; numberList.size() > i; i++) {
-      logger.log(Logger.Level.TRACE, 
+      logger.log(Logger.Level.TRACE,
           "*** Start " + "\"" + "Float" + "\"" + " Test Sequence ***");
 
       Object testNum = numberList.get(i);
@@ -1950,7 +1949,7 @@ public class ELClientIT {
       try {
         String expr = ExprEval.buildElExpr(false, booleanOperator);
         logger.log(Logger.Level.TRACE, "expression to be evaluated is " + expr);
-        logger.log(Logger.Level.TRACE, 
+        logger.log(Logger.Level.TRACE,
             "types are " + "Float" + " and " + testNum.getClass().getName());
 
         Object result = ExprEval.evaluateValueExpression(expr, values,
@@ -1966,7 +1965,7 @@ public class ELClientIT {
 
       } finally {
         ExprEval.cleanup();
-        logger.log(Logger.Level.TRACE, 
+        logger.log(Logger.Level.TRACE,
             "*** End " + "\"" + "Float" + "\"" + " Test Sequence ***");
       }
 
@@ -1980,7 +1979,7 @@ public class ELClientIT {
    * This method is used to validate an expression that has at least one Double
    * in it. We pass in one of the operands(testVal), the other operand is
    * automatically picked up from the numberList.
-   * 
+   *
    * @param testVal
    *          - One of the operands used in the expression.
    * @param expectedVal
@@ -1995,7 +1994,7 @@ public class ELClientIT {
     boolean pass;
 
     for (int i = 0; numberList.size() > i; i++) {
-      logger.log(Logger.Level.TRACE, 
+      logger.log(Logger.Level.TRACE,
           "*** Start " + "\"" + "Double" + "\"" + " Test Sequence ***");
 
       Object testNum = numberList.get(i);
@@ -2017,7 +2016,7 @@ public class ELClientIT {
       try {
         String expr = ExprEval.buildElExpr(false, booleanOperator);
         logger.log(Logger.Level.TRACE, "expression to be evaluated is " + expr);
-        logger.log(Logger.Level.TRACE, 
+        logger.log(Logger.Level.TRACE,
             "types are " + "Double" + " and " + testNum.getClass().getName());
 
         Object result = ExprEval.evaluateValueExpression(expr, values,
@@ -2033,7 +2032,7 @@ public class ELClientIT {
 
       } finally {
         ExprEval.cleanup();
-        logger.log(Logger.Level.TRACE, 
+        logger.log(Logger.Level.TRACE,
             "*** End " + "\"" + "Double" + "\"" + " Test Sequence ***");
       }
 
@@ -2047,7 +2046,7 @@ public class ELClientIT {
    * This method is used to validate an expression that has at least one Long in
    * it. We pass in one of the operands(testVal), the other operand is
    * automatically picked up from the numberList.
-   * 
+   *
    * @param testVal
    *          - One of the operands used in the expression.
    * @param expectedVal
@@ -2084,7 +2083,7 @@ public class ELClientIT {
       try {
         String expr = ExprEval.buildElExpr(false, booleanOperator);
         logger.log(Logger.Level.TRACE, "expression to be evaluated is " + expr);
-        logger.log(Logger.Level.TRACE, 
+        logger.log(Logger.Level.TRACE,
             "types are " + "Long" + " and " + testNum.getClass().getName());
 
         Object result = ExprEval.evaluateValueExpression(expr, values,
@@ -2113,7 +2112,7 @@ public class ELClientIT {
    * This method is used to validate an expression that has at least one Integer
    * in it. We pass in one of the operands(testVal), the other operand is
    * automatically picked up from the numberList.
-   * 
+   *
    * @param testVal
    *          - One of the operands used in the expression.
    * @param expectedVal
@@ -2128,7 +2127,7 @@ public class ELClientIT {
     boolean pass;
 
     for (int i = 0; numberList.size() > i; i++) {
-      logger.log(Logger.Level.TRACE, 
+      logger.log(Logger.Level.TRACE,
           "*** Start " + "\"" + "Integer" + "\"" + " Test Sequence ***");
 
       Object testNum = numberList.get(i);
@@ -2152,7 +2151,7 @@ public class ELClientIT {
       try {
         String expr = ExprEval.buildElExpr(false, booleanOperator);
         logger.log(Logger.Level.TRACE, "expression to be evaluated is " + expr);
-        logger.log(Logger.Level.TRACE, 
+        logger.log(Logger.Level.TRACE,
             "types are " + "Integer" + " and " + testNum.getClass().getName());
 
         Object result = ExprEval.evaluateValueExpression(expr, values,
@@ -2168,7 +2167,7 @@ public class ELClientIT {
 
       } finally {
         ExprEval.cleanup();
-        logger.log(Logger.Level.TRACE, 
+        logger.log(Logger.Level.TRACE,
             "*** End " + "\"" + "Integer" + "\"" + " Test Sequence ***");
       }
 
@@ -2182,7 +2181,7 @@ public class ELClientIT {
    * This method is used to validate an expression that has at least one Short
    * in it. We pass in one of the operands(testVal), the other operand is
    * automatically picked up from the numberList.
-   * 
+   *
    * @param testVal
    *          - One of the operands used in the expression.
    * @param expectedVal
@@ -2197,7 +2196,7 @@ public class ELClientIT {
     boolean pass;
 
     for (int i = 0; numberList.size() > i; i++) {
-      logger.log(Logger.Level.TRACE, 
+      logger.log(Logger.Level.TRACE,
           "*** Start " + "\"" + "Short" + "\"" + " Test Sequence ***");
 
       Object testNum = numberList.get(i);
@@ -2215,7 +2214,7 @@ public class ELClientIT {
       try {
         String expr = ExprEval.buildElExpr(false, booleanOperator);
         logger.log(Logger.Level.TRACE, "expression to be evaluated is " + expr);
-        logger.log(Logger.Level.TRACE, 
+        logger.log(Logger.Level.TRACE,
             "types are " + "Short" + " and " + testNum.getClass().getName());
 
         Object result = ExprEval.evaluateValueExpression(expr, values,
@@ -2231,7 +2230,7 @@ public class ELClientIT {
 
       } finally {
         ExprEval.cleanup();
-        logger.log(Logger.Level.TRACE, 
+        logger.log(Logger.Level.TRACE,
             "*** End " + "\"" + "Short" + "\"" + " Test Sequence ***");
       }
 
@@ -2245,7 +2244,7 @@ public class ELClientIT {
    * This method is used to validate an expression that has at least one Byte in
    * it. We pass in one of the operands(testVal), the other operand is
    * automatically picked up from the numberList.
-   * 
+   *
    * @param testVal
    *          - One of the operands used in the expression.
    * @param expectedVal
@@ -2277,7 +2276,7 @@ public class ELClientIT {
       try {
         String expr = ExprEval.buildElExpr(false, booleanOperator);
         logger.log(Logger.Level.TRACE, "expression to be evaluated is " + expr);
-        logger.log(Logger.Level.TRACE, 
+        logger.log(Logger.Level.TRACE,
             "types are " + "Byte" + " and " + testNum.getClass().getName());
 
         Object result = ExprEval.evaluateValueExpression(expr, values,
@@ -2306,7 +2305,7 @@ public class ELClientIT {
    * This method is used to validate an expression that has at least one String
    * in it. We pass in one of the operands(testVal), the other operand is
    * automatically picked up from the numberList.
-   * 
+   *
    * @param testVal
    *          - One of the operands used in the expression.
    * @param expectedVal
@@ -2324,7 +2323,7 @@ public class ELClientIT {
         testValTwo);
 
     try {
-      logger.log(Logger.Level.TRACE, 
+      logger.log(Logger.Level.TRACE,
           "*** Start " + "\"" + "String" + "\"" + " Test Sequence ***");
 
       String expr = ExprEval.buildElExpr(false, booleanOperator);

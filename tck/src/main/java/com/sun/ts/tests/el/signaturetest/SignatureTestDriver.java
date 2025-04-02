@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2024 Oracle and/or its affiliates and others.
+ * Copyright (c) 2007, 2025 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -21,7 +21,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.Properties;
 
@@ -82,7 +81,7 @@ public abstract class SignatureTestDriver {
         logger.log(Logger.Level.INFO, "********** BEGIN VALIDATE PACKAGE '"
             + packagesUnderTest[i] + "' **********\n");
 
-        logger.log(Logger.Level.INFO, 
+        logger.log(Logger.Level.INFO,
             "********** VALIDATE IN STATIC MODE - TO CHECK CONSANT VALUES ****");
         logger.log(Logger.Level.INFO, "Static mode supports checks of static constants values ");
 
@@ -102,7 +101,7 @@ public abstract class SignatureTestDriver {
 
         logger.log(Logger.Level.INFO, "\n\n");
         logger.log(Logger.Level.INFO, "********** VALIDATE IN REFLECTIVE MODE  ****");
-        logger.log(Logger.Level.INFO, 
+        logger.log(Logger.Level.INFO,
             "Reflective mode supports verification within containers (ie ejb, servlet, etc)");
 
         String[] args2 = createTestArguments(packageListFile, mapFile,
@@ -139,7 +138,7 @@ public abstract class SignatureTestDriver {
         logger.log(Logger.Level.INFO, "********** BEGIN VALIDATE CLASS '"
             + classesUnderTest[i] + "' **********\n");
 
-        logger.log(Logger.Level.INFO, 
+        logger.log(Logger.Level.INFO,
             "********** VALIDATE IN STATIC MODE - TO CHECK CONSANT VALUES ****");
         logger.log(Logger.Level.INFO, "Static mode supports checks of static constants values ");
 
@@ -159,7 +158,7 @@ public abstract class SignatureTestDriver {
 
         logger.log(Logger.Level.INFO, "\n\n");
         logger.log(Logger.Level.INFO, "********** VALIDATE IN REFLECTIVE MODE  ****");
-        logger.log(Logger.Level.INFO, 
+        logger.log(Logger.Level.INFO,
             "Reflective mode supports verification within containers (ie ejb, servlet, etc)");
 
         String[] args2 = createTestArguments(packageListFile, mapFile,

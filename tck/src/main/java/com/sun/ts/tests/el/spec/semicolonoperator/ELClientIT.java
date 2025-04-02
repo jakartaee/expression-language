@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2012, 2020 Oracle and/or its affiliates and others.
+ * Copyright (c) 2012, 2025 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -26,8 +26,6 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Properties;
-
 
 import com.sun.ts.tests.el.common.util.TypesBean;
 import com.sun.ts.tests.el.common.util.Validator;
@@ -54,7 +52,7 @@ public class ELClientIT {
   void logStartTest(TestInfo testInfo) {
     logger.log(Logger.Level.INFO, "STARTING TEST : "+testInfo.getDisplayName());
   }
- 
+
   @AfterEach
   void logFinishTest(TestInfo testInfo) {
     logger.log(Logger.Level.INFO, "FINISHED TEST : "+testInfo.getDisplayName());
@@ -62,26 +60,26 @@ public class ELClientIT {
 
   /**
    * @testName: elSemiColonOperatorBigDecimalTest
-   * 
+   *
    * @assertion_ids: EL:SPEC:49.1
-   * 
+   *
    * @test_Strategy: To evaluate A;B, A is first evaluated, and its value is
    *                 discarded. B is then evaluated and its value is returned.
-   * 
+   *
    *                 Operators: +, -, *, /, div, %, mod
-   * 
+   *
    *                 Expression: "a = types.tckBigDecimal; a [operator] b"
-   * 
+   *
    *                 Variable A - BigDecimal
-   * 
+   *
    *                 Variable B - Rotating through the following types:
    *                 BigDecimal, BigInteger, Integer, Float, Long, Short,
    *                 Double, Byte
-   * 
+   *
    *                 Excluded: none
-   * 
+   *
    * @since: 3.0
-   * 
+   *
    */
   @Test
   public void elSemiColonOperatorBigDecimalTest() throws Exception {
@@ -137,26 +135,26 @@ public class ELClientIT {
 
   /**
    * @testName: elSemiColonOperatorFloatTest
-   * 
+   *
    * @assertion_ids: EL:SPEC:49.1
-   * 
+   *
    * @test_Strategy: Validate that when we have variable A set to a specific
    *                 data type that we coerce and receive back the correct value
    *                 and Class type.
-   * 
+   *
    *                 Operators: +, -, *, /, div, %, mod
-   * 
+   *
    *                 Expression: "a = types.tckFloat; a [operator] b"
-   * 
+   *
    *                 Variable A - Float
-   * 
+   *
    *                 Variable B - Rotating through the following types: Integer,
    *                 Float, Long, Short, Double, Byte
-   * 
+   *
    *                 Exclude: BigDecimal
-   * 
+   *
    * @since: 3.0
-   * 
+   *
    */
   @Test
   public void elSemiColonOperatorFloatTest() throws Exception {
@@ -249,26 +247,26 @@ public class ELClientIT {
 
   /**
    * @testName: elSemiColonOperatorDoubleTest
-   * 
+   *
    * @assertion_ids: EL:SPEC:49.1
-   * 
+   *
    * @test_Strategy: Validate that when we have variable A set to a specific
    *                 data type that we coerce and receive back the correct value
    *                 and Class type.
-   * 
+   *
    *                 Operators: +, -, *, /, div, %, mod
-   * 
+   *
    *                 Expression: "a = types.tckDouble; a [operator] b"
-   * 
+   *
    *                 Variable A - Double
-   * 
+   *
    *                 Variable B - Rotating through the following types: Integer,
    *                 Float, Long, Short, Double, Byte
-   * 
+   *
    *                 Exclude: BigDecimal, Float
-   * 
+   *
    * @since: 3.0
-   * 
+   *
    */
   @Test
   public void elSemiColonOperatorDoubleTest() throws Exception {
@@ -362,26 +360,26 @@ public class ELClientIT {
 
   /**
    * @testName: elSemiColonOperatorBigIntegerTest
-   * 
+   *
    * @assertion_ids: EL:SPEC:49.1
-   * 
+   *
    * @test_Strategy: Validate that when we have variable A set to a specific
    *                 data type that we coerce and receive back the correct value
    *                 and Class type.
-   * 
+   *
    *                 Operators: +, -, *, /, div, %, mod
-   * 
+   *
    *                 Expression: "a = types.tckBigInteger; a [operator] b"
-   * 
+   *
    *                 Variable A - BigInteger
-   * 
+   *
    *                 Variable B - Rotating through the following types: Integer,
    *                 Float, Long, Short, Double, Byte
-   * 
+   *
    *                 Exclude: BigDecimal, Float, Double
-   * 
+   *
    * @since: 3.0
-   * 
+   *
    */
   @Test
   public void elSemiColonOperatorBigIntegerTest() throws Exception {
@@ -450,26 +448,26 @@ public class ELClientIT {
 
   /**
    * @testName: elSemiColonOperatorIntegerTest
-   * 
+   *
    * @assertion_ids: EL:SPEC:49.1
-   * 
+   *
    * @test_Strategy: Validate that when we have variable A set to a specific
    *                 data type that we coerce and receive back the correct value
    *                 and Class type.
-   * 
+   *
    *                 Operators: +, -, *, /, div, %, mod
-   * 
+   *
    *                 Expression: "a = types.tckInteger; a [operator] b"
-   * 
+   *
    *                 Variable A - Integer
-   * 
+   *
    *                 Variable B - Rotating through the following types: Integer,
    *                 Float, Long, Short, Double, Byte
-   * 
+   *
    *                 Exclude: BigDecimal, BigInteger, Float, Double
-   * 
+   *
    * @since: 3.0
-   * 
+   *
    */
   @Test
   public void elSemiColonOperatorIntegerTest() throws Exception {
@@ -539,26 +537,26 @@ public class ELClientIT {
 
   /**
    * @testName: elSemiColonOperatorLongTest
-   * 
+   *
    * @assertion_ids: EL:SPEC:49.1
-   * 
+   *
    * @test_Strategy: Validate that when we have variable A set to a specific
    *                 data type that we coerce and receive back the correct value
    *                 and Class type.
-   * 
+   *
    *                 Operators: +, -, *, /, div, %, mod
-   * 
+   *
    *                 Expression: "a = types.tckLong; a [operator] b"
-   * 
+   *
    *                 Variable A - Long
-   * 
+   *
    *                 Variable B - Rotating through the following types: Integer,
    *                 Float, Long, Short, Double, Byte
-   * 
+   *
    *                 Exclude: BigDecimal, BigInteger, Float, Double, Integer
-   * 
+   *
    * @since: 3.0
-   * 
+   *
    */
   @Test
   public void elSemiColonOperatorLongTest() throws Exception {
@@ -629,27 +627,27 @@ public class ELClientIT {
 
   /**
    * @testName: elSemiColonOperatorShortTest
-   * 
+   *
    * @assertion_ids: EL:SPEC:49.1
-   * 
+   *
    * @test_Strategy: Validate that when we have variable A set to a specific
    *                 data type that we coerce and receive back the correct value
    *                 and Class type.
-   * 
+   *
    *                 Operators: +, -, *, /, div, %, mod
-   * 
+   *
    *                 Expression: "a = types.tckShort; a [operator] b"
-   * 
+   *
    *                 Variable A - Short
-   * 
+   *
    *                 Variable B - Rotating through the following types: Integer,
    *                 Float, Long, Short, Double, Byte
-   * 
+   *
    *                 Exclude: BigDecimal, BigInteger, Float, Double, Integer,
    *                 Long
-   * 
+   *
    * @since: 3.0
-   * 
+   *
    */
   @Test
   public void elSemiColonOperatorShortTest() throws Exception {
@@ -721,27 +719,27 @@ public class ELClientIT {
 
   /**
    * @testName: elSemiColonOperatorByteTest
-   * 
+   *
    * @assertion_ids: EL:SPEC:49.1
-   * 
+   *
    * @test_Strategy: Validate that when we have variable A set to a specific
    *                 data type that we coerce and receive back the correct value
    *                 and Class type.
-   * 
+   *
    *                 Operators: +, -, *, /, div, %, mod
-   * 
+   *
    *                 Expression: "a = types.tckByte; a [operator] b"
-   * 
+   *
    *                 Variable A - Byte
-   * 
+   *
    *                 Variable B - Rotating through the following types: Integer,
    *                 Float, Long, Short, Double, Byte
-   * 
+   *
    *                 Exclude: BigDecimal, BigInteger, Float, Double, Integer,
    *                 Long, Short
-   * 
+   *
    * @since: 3.0
-   * 
+   *
    */
   @Test
   public void elSemiColonOperatorByteTest() throws Exception {
@@ -814,23 +812,23 @@ public class ELClientIT {
 
   /**
    * @testName: elSemiColonOperatorNullTest
-   * 
+   *
    * @assertion_ids: EL:SPEC:49.1
-   * 
+   *
    * @test_Strategy: Validate that when we have variable A set to a specific
    *                 data type that we coerce and receive back the correct value
    *                 and Class type.
-   * 
+   *
    *                 Operators: +, -, *, /, div, %, mod
-   * 
+   *
    *                 Expression: "a = null; a [operator] b"
-   * 
+   *
    *                 Variable A - null
-   * 
+   *
    *                 Variable B - null
-   * 
+   *
    * @since: 3.0
-   * 
+   *
    */
   @Test
   public void elSemiColonOperatorNullTest() throws Exception {

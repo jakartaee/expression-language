@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, 2020 Oracle and/or its affiliates and others.
+ * Copyright (c) 2013, 2025 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -24,8 +24,6 @@ package com.sun.ts.tests.el.spec.concatoperator;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Iterator;
-import java.util.Properties;
-
 
 import com.sun.ts.tests.el.common.util.ELTestUtil;
 import com.sun.ts.tests.el.common.util.TestNum;
@@ -61,13 +59,13 @@ public class ELClientIT {
 
   /**
    * @testName: elBigDecimalConcatenationTest
-   * 
+   *
    * @assertion_ids: EL:SPEC:38; EL:SPEC:47.1; EL:SPEC:47.1.1; EL:SPEC:47.1.2
-   * 
+   *
    * @test_Strategy: Validate that if one of the operands is BigDecimal that the
    *                 operator is '+=' that both operands are coerced to type
    *                 String and concatenated.
-   * 
+   *
    *                 Equations tested: BigDecimal += BigDecimal BigDecimal +=
    *                 Double BigDecimal += Float BigDecimal += String
    *                 containing".", "e", or "E" BigDecimal += BigInteger
@@ -92,7 +90,7 @@ public class ELClientIT {
    * @test_Strategy: Validate that if one of the operands is BigInteger that the
    *                 operator is '+=' that both operands are coerced to type
    *                 String and concatenated.
-   * 
+   *
    *                 Equations tested: BigInteger += BigInteger BigInteger +=
    *                 Integer BigInteger += Long BigInteger += Short BigInteger
    *                 += Byte
@@ -114,7 +112,7 @@ public class ELClientIT {
    * @assertion_ids: EL:SPEC:38; EL:SPEC:47.1; EL:SPEC:47.1.1; EL:SPEC:47.1.2
    * @test_Strategy: Validate when the operator is '+=' that the operands are
    *                 coerced to Strings and the result is a Concatenation.
-   * 
+   *
    *                 Equations tested: Float + Double Float + Float Float +
    *                 String containing ".", "e", or "E" Float + BigInteger Float
    *                 + Integer Float + Long Float + Short Float + Byte
@@ -139,7 +137,7 @@ public class ELClientIT {
    * @assertion_ids: EL:SPEC:38; EL:SPEC:47.1; EL:SPEC:47.1.1; EL:SPEC:47.1.2
    * @test_Strategy: Validate when the operator is '+=' that the operands are
    *                 coerced to Strings and the result is a Concatenation.
-   * 
+   *
    *                 Equations tested: Double += Double Double += String
    *                 containing ".", "e", or "E" Double += BigInteger Double +=
    *                 Integer Double += Long Double += Short Double += Byte
@@ -161,7 +159,7 @@ public class ELClientIT {
    * @assertion_ids: EL:SPEC:38; EL:SPEC:47.1; EL:SPEC:47.1.1; EL:SPEC:47.1.2
    * @test_Strategy: Validate when the operator is '+=' that the operands are
    *                 coerced to Strings and the result is a Concatenation.
-   * 
+   *
    *                 Equations tested: Long += Integer Long += Long Long +=
    *                 Short Long += Byte
    */
@@ -182,7 +180,7 @@ public class ELClientIT {
    * @assertion_ids: EL:SPEC:38; EL:SPEC:47.1; EL:SPEC:47.1.1; EL:SPEC:47.1.2
    * @test_Strategy: Validate when the operator is '+=' that the operands are
    *                 coerced to Strings and the result is a Concatenation.
-   * 
+   *
    *                 Equations tested: Integer += Integer Integer += Short
    *                 Integer += Byte
    */
@@ -203,7 +201,7 @@ public class ELClientIT {
    * @assertion_ids: EL:SPEC:38; EL:SPEC:47.1; EL:SPEC:47.1.1; EL:SPEC:47.1.2
    * @test_Strategy: Validate when the operator is '+=' that the operands are
    *                 coerced to Strings and the result is a Concatenation.
-   * 
+   *
    *                 Equations tested: Short += Short Short += Byte
    */
   @Test
@@ -224,7 +222,7 @@ public class ELClientIT {
    * @test_Strategy: Validate that if the operator is '+=' that both operands
    *                 are coerced to String and the result is a Concatenation of
    *                 the operands.
-   * 
+   *
    *                 Equations tested: Byte += Byte
    */
   @Test
@@ -245,9 +243,9 @@ public class ELClientIT {
    * @test_Strategy: Validate when the operator is '+=' that both operands are
    *                 coerced to Strings and that they result is a Concatenation
    *                 of the operands.
-   * 
+   *
    *                 Equations tested: Boolean += String Boolean += Boolean
-   * 
+   *
    */
   @Test
   public void elBooleanConcatenationTest() throws Exception {
@@ -268,7 +266,7 @@ public class ELClientIT {
 
   /**
    * Test a query for the correct value.
-   * 
+   *
    * @param name
    *          The Name of the test
    * @param query

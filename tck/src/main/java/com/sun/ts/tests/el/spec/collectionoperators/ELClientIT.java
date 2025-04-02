@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, 2021 Oracle and/or its affiliates and others.
+ * Copyright (c) 2013, 2025 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -22,8 +22,6 @@
 package com.sun.ts.tests.el.spec.collectionoperators;
 
 import java.lang.reflect.Array;
-import java.util.Properties;
-
 
 import com.sun.ts.tests.el.common.util.DataBase;
 import com.sun.ts.tests.el.common.util.ELTestUtil;
@@ -63,15 +61,15 @@ public class ELClientIT {
 
   /**
    * @testName: elCollectionMapFilterTest
-   * 
+   *
    * @assertion_ids: EL:SPEC:53; EL:SPEC:53.1; EL:SPEC:53.2; EL:SPEC:53.3;
    *                 EL:SPEC:59; EL:SPEC:59.1; EL:SPEC:58.1; EL:SPEC:58.2
-   * 
+   *
    * @test_Strategy: Test to make sure the 'map'& "filter' operator works
    *                 properly.
-   * 
+   *
    * @since: 3.0
-   * 
+   *
    */
   @Test
   public void elCollectionMapFilterTest() throws Exception {
@@ -95,13 +93,13 @@ public class ELClientIT {
 
   /**
    * @testName: elCollectionMinTest
-   * 
+   *
    * @assertion_ids: EL:SPEC:72; EL:SPEC:72.1; EL:SPEC:72.2
-   * 
+   *
    * @test_Strategy: Test to make sure the 'min' operator works properly.
-   * 
+   *
    * @since: 3.0
-   * 
+   *
    */
   @Test
   public void elCollectionMinTest() throws Exception {
@@ -123,13 +121,13 @@ public class ELClientIT {
 
   /**
    * @testName: elCollectionMaxTest
-   * 
+   *
    * @assertion_ids: EL:SPEC:71; EL:SPEC:71.1; EL:SPEC:71.2
-   * 
+   *
    * @test_Strategy: Test to make sure the 'max' operator works properly.
-   * 
+   *
    * @since: 3.0
-   * 
+   *
    */
   @Test
   public void elCollectionMaxTest() throws Exception {
@@ -150,13 +148,13 @@ public class ELClientIT {
 
   /**
    * @testName: elCollectionDistinctTest
-   * 
+   *
    * @assertion_ids: EL:SPEC:61; EL:SPEC:61.1
-   * 
+   *
    * @test_Strategy: Test to make sure the 'distinct' operator works properly.
-   * 
+   *
    * @since: 3.0
-   * 
+   *
    */
   @Test
   public void elCollectionDistinctTest() throws Exception {
@@ -170,13 +168,13 @@ public class ELClientIT {
 
   /**
    * @testName: elCollectionForEachTest
-   * 
+   *
    * @assertion_ids: EL:SPEC:63; EL:SPEC:63.1
-   * 
+   *
    * @test_Strategy: Test to make sure the 'forEach' operator works properly.
-   * 
+   *
    * @since: 3.0
-   * 
+   *
    */
   @Test
   public void elCollectionForEachTest() throws Exception {
@@ -192,14 +190,14 @@ public class ELClientIT {
 
   /**
    * @testName: elCollectionFindFirstTest
-   * 
+   *
    * @assertion_ids: EL:SPEC:78; EL:SPEC:78.1; EL:SPEC:62; EL:SPEC:62.1;
    *                 EL:SPEC:62.2
-   * 
+   *
    * @test_Strategy: Test to make sure the 'findFirst' operator works properly.
-   * 
+   *
    * @since: 3.0
-   * 
+   *
    */
   @Test
   public void elCollectionFindFirstTest() throws Exception {
@@ -214,13 +212,13 @@ public class ELClientIT {
 
   /**
    * @testName: elCollectionLimitTest
-   * 
+   *
    * @assertion_ids: EL:SPEC:66; EL:SPEC:66.1
-   * 
+   *
    * @test_Strategy: Test to make sure the 'limit' operator works properly.
-   * 
+   *
    * @since: 3.0
-   * 
+   *
    */
   @Test
   public void elCollectionLimitTest() throws Exception {
@@ -245,13 +243,13 @@ public class ELClientIT {
 
   /**
    * testName: elCollectionAnyMatchTest
-   * 
+   *
    * @assertion_ids: EL:SPEC:75; EL:SPEC:75.1
-   * 
+   *
    * @test_Strategy: Test to make sure the 'anyMatch' operator works properly.
-   * 
+   *
    * @since: 3.0
-   * 
+   *
    *         Bug 20438221 : Commented the test for now
    */
   public void elCollectionAnyMatchTest() throws Exception {
@@ -267,13 +265,13 @@ public class ELClientIT {
 
   /**
    * testName: elCollectionNoneMatchTest
-   * 
+   *
    * @assertion_ids: EL:SPEC:77; EL:SPEC:77.1
-   * 
+   *
    * @test_Strategy: Test to make sure the 'noneMatch' operator works properly.
-   * 
+   *
    * @since: 3.0
-   * 
+   *
    *         Bug 20438221 : Commented the test for now
    */
   public void elCollectionNoneMatchTest() throws Exception {
@@ -289,13 +287,13 @@ public class ELClientIT {
 
   /**
    * testName: elCollectionAllMatchTest
-   * 
+   *
    * @assertion_ids: EL:SPEC:76; EL:SPEC:76.1
-   * 
+   *
    * @test_Strategy: Test to make sure the 'allMatch' operator works properly.
-   * 
+   *
    * @since: 3.0
-   * 
+   *
    *         Bug 20438221 : Commented the test for now.
    */
   public void elCollectionAllMatchTest() throws Exception {
@@ -311,13 +309,13 @@ public class ELClientIT {
 
   /**
    * @testName: elCollectionSumTest
-   * 
+   *
    * @assertion_ids: EL:SPEC:74; EL:SPEC:74.1
-   * 
+   *
    * @test_Strategy: Test to make sure the 'sum' operator works properly.
-   * 
+   *
    * @since: 3.0
-   * 
+   *
    */
   @Test
   public void elCollectionSumTest() throws Exception {
@@ -332,13 +330,13 @@ public class ELClientIT {
 
   /**
    * @testName: elCollectionCountTest
-   * 
+   *
    * @assertion_ids: EL:SPEC:79; EL:SPEC:79.1
-   * 
+   *
    * @test_Strategy: Test to make sure the 'count' operator works properly.
-   * 
+   *
    * @since: 3.0
-   * 
+   *
    */
   @Test
   public void elCollectionCountTest() throws Exception {
@@ -350,13 +348,13 @@ public class ELClientIT {
 
   /**
    * @testName: elCollectionAverageTest
-   * 
+   *
    * @assertion_ids: EL:SPEC:73; EL:SPEC:73.1
-   * 
+   *
    * @test_Strategy: Test to make sure the 'average' operator works properly.
-   * 
+   *
    * @since: 3.0
-   * 
+   *
    */
   @Test
   public void elCollectionAverageTest() throws Exception {
@@ -370,13 +368,13 @@ public class ELClientIT {
 
   /**
    * @testName: elCollectionToArrayTest
-   * 
+   *
    * @assertion_ids: EL:SPEC:68; EL:SPEC:68.1
-   * 
+   *
    * @test_Strategy: Test to make sure the 'toArray' operator works properly.
-   * 
+   *
    * @since: 3.0
-   * 
+   *
    */
   @Test
   public void elCollectionToArrayTest() throws Exception {
@@ -396,14 +394,14 @@ public class ELClientIT {
 
   /**
    * @testName: elCollectionReduceTest
-   * 
+   *
    * @assertion_ids: EL:SPEC:70; EL:SPEC:70.1; EL:SPEC:70.2; EL:SPEC:56.2;
    *                 EL:SPEC:56.3
-   * 
+   *
    * @test_Strategy: Test to make sure the 'reduce' operator works properly.
-   * 
+   *
    * @since: 3.0
-   * 
+   *
    */
   @Test
   public void elCollectionReduceTest() throws Exception {
@@ -426,13 +424,13 @@ public class ELClientIT {
 
   /**
    * @testName: elCollectionSubStreamTest
-   * 
+   *
    * @assertion_ids: EL:SPEC:67; EL:SPEC:67.1; EL:SPEC:67.2
-   * 
+   *
    * @test_Strategy: Test to make sure the 'substream' operator works properly.
-   * 
+   *
    * @since: 3.0
-   * 
+   *
    */
   @Test
   public void elCollectionSubStreamTest() throws Exception {
@@ -449,13 +447,13 @@ public class ELClientIT {
 
   /**
    * @testName: elCollectionPeekTest
-   * 
+   *
    * @assertion_ids: EL:SPEC:4; EL:SPEC:64.1
-   * 
+   *
    * @test_Strategy: Test to make sure the 'peek' operator works properly.
-   * 
+   *
    * @since: 3.0
-   * 
+   *
    */
   @Test
   public void elCollectionPeekTest() throws Exception {
@@ -471,13 +469,13 @@ public class ELClientIT {
 
   /**
    * @testName: elCollectionFlatMapTest
-   * 
+   *
    * @assertion_ids: EL:SPEC:60; EL:SPEC:60.1
-   * 
+   *
    * @test_Strategy: Test to make sure the 'flatMap' operator works properly.
-   * 
+   *
    * @since: 3.0
-   * 
+   *
    */
   @Test
   public void elCollectionFlatMapTest() throws Exception {
@@ -495,7 +493,7 @@ public class ELClientIT {
 
   }// End elCollectionFlatMapTest()
 
-  
+
   /**
    * @testName: elCollectionSetLiteralTest
    * @assertion_ids: EL:SPEC:51; EL:SPEC:51.1; EL:SPEC:51.2; EL:SPEC:51.3;
@@ -505,18 +503,18 @@ public class ELClientIT {
   @Test
   public void elCollectionSetLiteralTest() throws Exception {
     boolean pass = false;
-    
+
     try {
       ELProcessor elp = new ELProcessor();
-      
+
       String valueA = "myValueA";
       String valueB = "myValueB";
-      
+
       elp.setVariable("aaa", "'" + valueA + "'");
       elp.setVariable("bbb", "'" + valueB + "'");
-      
+
       Boolean result = (Boolean) elp.eval("{aaa,bbb}.contains(aaa)");
-      
+
       pass = result.booleanValue();
     } catch (Exception e) {
       pass = false;
@@ -525,13 +523,13 @@ public class ELClientIT {
 
       e.printStackTrace();
     }
-    
+
     if (!pass) {
       throw new Exception("TEST FAILED!");
     }
   }
-  
-  
+
+
   /**
    * @testName: elCollectionListLiteralTest
    * @assertion_ids: EL:SPEC:52; EL:SPEC:52.1; EL:SPEC:52.2; EL:SPEC:52.3;
@@ -541,18 +539,18 @@ public class ELClientIT {
   @Test
   public void elCollectionListLiteralTest() throws Exception {
     boolean pass = false;
-    
+
     try {
       ELProcessor elp = new ELProcessor();
-      
+
       String valueA = "myValueA";
       String valueB = "myValueB";
-      
+
       elp.setVariable("aaa", "'" + valueA + "'");
       elp.setVariable("bbb", "'" + valueB + "'");
-      
+
       Object result = elp.eval("[aaa,bbb].get(1)");
-      
+
       pass = valueB.equals(result);
     } catch (Exception e) {
       pass = false;
@@ -561,13 +559,13 @@ public class ELClientIT {
 
       e.printStackTrace();
     }
-    
+
     if (!pass) {
       throw new Exception("TEST FAILED!");
     }
   }
-  
-  
+
+
   /**
    * @testName: elCollectionMapLiteralTest
    * @assertion_ids: EL:SPEC:53; EL:SPEC:53.1; EL:SPEC:53.2; EL:SPEC:53.3;
@@ -577,18 +575,18 @@ public class ELClientIT {
   @Test
   public void elCollectionMapLiteralTest() throws Exception {
     boolean pass = false;
-    
+
     try {
       ELProcessor elp = new ELProcessor();
-      
+
       String key = "myKey";
       String value = "myValue";
-      
+
       elp.setVariable("aaa", "'" + key + "'");
       elp.setVariable("bbb", "'" + value + "'");
-      
+
       Object result = elp.eval("{aaa:bbb}.get(aaa)");
-      
+
       pass = value.equals(result);
     } catch (Exception e) {
       pass = false;
@@ -597,13 +595,13 @@ public class ELClientIT {
 
       e.printStackTrace();
     }
-    
+
     if (!pass) {
       throw new Exception("TEST FAILED!");
     }
   }
-  
-  
+
+
   // --------------------------- private methods
 
   private void logLine(String s) {
@@ -623,7 +621,7 @@ public class ELClientIT {
 
   /**
    * Test a Collection query that returns an Iterable.
-   * 
+   *
    * @param name
    *          The Name of the test
    * @param query
@@ -688,15 +686,15 @@ public class ELClientIT {
   }
 
   /**
-   * 
+   *
    * @param name
    *          The Name of the test.
-   * 
+   *
    * @param query
    *          The EL query string
    * @param expected
    *          The expected boolean value for the given query.
-   * 
+   *
    * @throws Exception
    */
   private void testIterable(String name, String query, Boolean expected)
@@ -707,7 +705,7 @@ public class ELClientIT {
 
   /**
    * Test a Collection query that returns a Array
-   * 
+   *
    * @param name
    *          The Name of the test
    * @param query

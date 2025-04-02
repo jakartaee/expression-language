@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009, 2020 Oracle and/or its affiliates and others.
+ * Copyright (c) 2009, 2025 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -23,8 +23,6 @@ package com.sun.ts.tests.el.api.jakarta_el.listelresolver;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
-
 
 import com.sun.ts.tests.el.common.api.resolver.ResolverTest;
 import com.sun.ts.tests.el.common.elcontext.BareBonesELContext;
@@ -53,7 +51,7 @@ public class ELClientIT {
     names.add("ryan");
   }
 
-  
+
   @AfterEach
   public void cleanup() throws Exception {
     logger.log(Logger.Level.INFO, "Cleanup method called");
@@ -72,10 +70,10 @@ public class ELClientIT {
 
   /**
    * @testName: listELResolverTest
-   * 
+   *
    * @assertion_ids: EL:JAVADOC:68; EL:JAVADOC:69; EL:JAVADOC:70; EL:JAVADOC:71;
    *                 EL:JAVADOC:72; EL:JAVADOC:73; EL:JAVADOC:75
-   * 
+   *
    * @test_Strategy: Verify that API calls work as expected: ListELResolver()
    *                 getValue() getType() setValue() isReadOnly()
    *                 getCommonPropertyType() getFeatureDescriptors()
@@ -104,14 +102,14 @@ public class ELClientIT {
 
   /**
    * @testName: listELResolverNPETest
-   * 
+   *
    * @assertion_ids: EL:JAVADOC:70; EL:JAVADOC:71; EL:JAVADOC:72; EL:JAVADOC:73;
    *                 EL:JAVADOC:75; EL:JAVADOC:276; EL:JAVADOC:279;
    *                 EL:JAVADOC:282; EL:JAVADOC:285
-   * 
+   *
    * @test_Strategy: Verify that the following methods throw a
    *                 NullPointerException, if context is null:
-   * 
+   *
    *                 getType() getValue() isReadOnly() setValue()
    */
   @Test
@@ -135,13 +133,13 @@ public class ELClientIT {
 
   /**
    * @testName: listELResolverPNFETest
-   * 
+   *
    * @assertion_ids: EL:JAVADOC:70; EL:JAVADOC:72; EL:JAVADOC:73; EL:JAVADOC:75;
    *                 EL:JAVADOC:275; EL:JAVADOC:281; EL:JAVADOC:288
    * @test_Strategy: Verify that the following methods throw a
    *                 PropertyNotFoundException, if the given index is out of
    *                 bounds for this list:
-   * 
+   *
    *                 getType() isReadOnly() setValue()
    */
   @Test
@@ -168,14 +166,14 @@ public class ELClientIT {
 
   /**
    * @testName: listELResolverIAETest
-   * 
+   *
    * @assertion_ids: EL:JAVADOC:71; EL:JAVADOC:73; EL:JAVADOC:75;
    *                 EL:JAVADOC:278; EL:JAVADOC:286
-   * 
+   *
    * @test_Strategy: Verify that the following methods throw an
    *                 IllegalArgumentException, if the property could not be
    *                 coerced into an integer:
-   * 
+   *
    *                 getValue() setValue()
    */
   @Test
@@ -202,15 +200,15 @@ public class ELClientIT {
 
   /**
    * @testName: listELResolverPNWETest
-   * 
+   *
    * @assertion_ids: EL:JAVADOC:74; EL:JAVADOC:75; EL:JAVADOC:287
-   * 
+   *
    * @test_Strategy: Verify that the single-parameter constructor for
    *                 listELResolver can be used to construct a read-only
    *                 resolver, and that the setValue() method throws a
    *                 PropertyNotWritableException, if the resolver was
    *                 constructed in read-only mode.
-   * 
+   *
    *                 ListELResolver(boolean) setValue()
    */
   @Test

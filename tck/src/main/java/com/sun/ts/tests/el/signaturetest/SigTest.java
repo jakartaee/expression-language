@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2024 Oracle and/or its affiliates and others.
+ * Copyright (c) 2007, 2025 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -24,7 +24,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-import java.util.ArrayList;
 import java.util.Properties;
 
 import java.lang.System.Logger;
@@ -127,7 +126,7 @@ public abstract class SigTest {
     SigTestResult results = null;
     String repositoryDir = System.getProperty("java.io.tmpdir");
     String[] classes = getClasses();
-    String testClasspath = testInfo.getTestClasspath(); 
+    String testClasspath = testInfo.getTestClasspath();
 
     // If testing with Java 9+, extract the JDK's modules so they can be used
     // on the testcase's classpath.
@@ -157,7 +156,7 @@ public abstract class SigTest {
       logger.log(Logger.Level.INFO, "Exception while executing JImage!  Some tests may fail.");
       e.printStackTrace();
     }
-    
+
 
     try {
       results = getSigTestDriver().executeSigTest(packageFile, mapFile,
