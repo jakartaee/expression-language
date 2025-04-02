@@ -15,6 +15,7 @@
  */
 package com.sun.ts.tests.el.common.util;
 
+@SuppressWarnings("unused")
 public class MethodsBean {
 
   public String targetA(CharSequence arg0) {
@@ -36,7 +37,7 @@ public class MethodsBean {
   public String targetB(Long arg0) {
     return "Long";
   }
-  
+
   public String targetC(CharSequence arg0, CharSequence arg1) {
     return "CharSequence-CharSequence";
   }
@@ -44,7 +45,7 @@ public class MethodsBean {
   public String targetC(String arg0, String... varArgs) {
     return "String-Strings";
   }
-  
+
   public String targetD(Long arg0, Long arg1) {
     return "Long-Long";
   }
@@ -52,7 +53,7 @@ public class MethodsBean {
   public String targetD(String arg0, String... varArgs) {
     return "String-Strings";
   }
-  
+
   public String targetE(Long arg0, Long arg1) {
     return "Long-Long";
   }
@@ -60,7 +61,7 @@ public class MethodsBean {
   public String targetE(String arg0, String arg1) {
     return "String-String";
   }
-  
+
   @Deprecated
   public String targetF(String arg0, Long arg1) {
     return "String-Long";
