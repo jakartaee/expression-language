@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009, 2020 Oracle and/or its affiliates and others.
+ * Copyright (c) 2009, 2025 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -48,14 +48,17 @@ public class FuncMapperELContext extends ELContext {
     funcMapper = new TCKFunctionMapper();
   }
 
+  @Override
   public ELResolver getELResolver() {
     return elResolver;
   }
 
+  @Override
   public VariableMapper getVariableMapper() {
     return null;
   }
 
+  @Override
   public FunctionMapper getFunctionMapper() {
     return funcMapper;
   }

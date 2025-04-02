@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Oracle and/or its affiliates and others.
+ * Copyright (c) 2023, 2025 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -72,6 +72,7 @@ import java.io.PrintWriter;
      * Prints this Throwable and its backtrace to the standard error stream.
      *
      */
+    @Override
     public void printStackTrace() {
       if (this.t != null) {
         this.t.printStackTrace();
@@ -86,6 +87,7 @@ import java.io.PrintWriter;
      * @param s
      *          <code>PrintStream</code> to use for output
      */
+    @Override
     public void printStackTrace(PrintStream s) {
       if (this.t != null) {
         this.t.printStackTrace(s);
@@ -100,6 +102,7 @@ import java.io.PrintWriter;
      * @param s
      *          <code>PrintWriter</code> to use for output
      */
+    @Override
     public void printStackTrace(PrintWriter s) {
       if (this.t != null) {
         this.t.printStackTrace(s);
