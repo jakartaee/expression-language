@@ -83,11 +83,8 @@ public class ELClientIT {
       BarELContext barContext = new BarELContext();
       ELContext context = barContext.getELContext();
 
-      if (barContext != null) {
-        ELResolver resolver = barContext.getELResolver();
-        pass = ResolverTest.testELResolver(context, resolver, null, "Bar",
-            "Foo", buf, true);
-      }
+      ELResolver resolver = barContext.getELResolver();
+      pass = ResolverTest.testELResolver(context, resolver, null, "Bar", "Foo", buf, true);
     } catch (Exception ex) {
       throw new Exception(ex);
     }

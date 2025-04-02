@@ -329,6 +329,7 @@ public class ExpressionTest {
       return false;
     } else {
       int hcode1 = exp1.hashCode();
+      @SuppressWarnings("null") // exp2 cannot be null here
       int hcode2 = exp2.hashCode();
 
       if (hcode1 != hcode2) {
