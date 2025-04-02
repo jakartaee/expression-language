@@ -125,7 +125,7 @@ public class SigTestDriver extends SignatureTestDriver {
 
     Class<?> sigTestClass = Class
         .forName("com.sun.tdk.signaturetest.SignatureTest");
-    Object sigTestInstance = sigTestClass.newInstance();
+    Object sigTestInstance = sigTestClass.getConstructor().newInstance();
 
     ByteArrayOutputStream output = new ByteArrayOutputStream();
 
