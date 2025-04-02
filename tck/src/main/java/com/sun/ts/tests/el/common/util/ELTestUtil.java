@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2012, 2020 Oracle and/or its affiliates and others.
+ * Copyright (c) 2012, 2025 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -45,7 +45,7 @@ public final class ELTestUtil {
    * Checks to see if a NullPointerException is thrown from a given
    * method(methName) from a given Class(className). use this method for any
    * none Abstract classes you wish to test.
-   * 
+   *
    * @param className
    *          - The Class that has the method under test.
    * @param methName
@@ -54,7 +54,7 @@ public final class ELTestUtil {
    *          - The type value of the arguments for the method under test.
    * @param params
    *          - The parameters you are feeding into the method under test.
-   * 
+   *
    * @throws Exception
    */
   public static void checkForNPE(String className, String methName,
@@ -74,8 +74,8 @@ public final class ELTestUtil {
    * method(methName) from a given Class. use this method for any Abstract
    * classes you wish to test. You can pass in the instantiated class that you
    * want to test.
-   * 
-   * @param Class
+   *
+   * @param clazz
    *          - The class you want to test.
    * @param methName
    *          - The method that you want to test.
@@ -83,7 +83,7 @@ public final class ELTestUtil {
    *          - The type value of the arguments for the method under test.
    * @param params
    *          - The parameters you are feeding into the method under test.
-   * 
+   *
    * @throws Exception
    */
   public static void checkForNPE(Class<?> clazz, String methName,
@@ -103,7 +103,7 @@ public final class ELTestUtil {
    * method(methName) from a given Class. use this method for any Abstract
    * classes you wish to test. You can pass in the instantiated class that you
    * want to test.
-   * 
+   *
    * @param object
    *          - The Object you want to test.
    * @param methName
@@ -112,7 +112,7 @@ public final class ELTestUtil {
    *          - The type value of the arguments for the method under test.
    * @param params
    *          - The parameters you are feeding into the method under test.
-   * 
+   *
    * @throws Exception
    */
   public static void checkForNPE(Object object, String methName,
@@ -125,7 +125,7 @@ public final class ELTestUtil {
 
   /**
    * Checks to see if a ClassNotFoundException is thrown
-   * 
+   *
    * @param object
    *          - The Object you want to test.
    * @param methName
@@ -134,7 +134,7 @@ public final class ELTestUtil {
    *          - The type value of the arguments for the method under test.
    * @param params
    *          - The parameters you are feeding into the method under test.
-   * 
+   *
    * @throws Exception
    */
   public static void checkForCNFE(Object object, String methName,
@@ -147,7 +147,7 @@ public final class ELTestUtil {
 
   /**
    * Checks to see if a NoSuchMethodException is thrown
-   * 
+   *
    * @param object
    *          - The Object you want to test.
    * @param methName
@@ -156,7 +156,7 @@ public final class ELTestUtil {
    *          - The type value of the arguments for the method under test.
    * @param params
    *          - The parameters you are feeding into the method under test.
-   * 
+   *
    * @throws Exception
    */
   public static void checkForNSME(Object object, String methName,
@@ -171,16 +171,16 @@ public final class ELTestUtil {
 
   /*
    * Checks to see if a NoSuchMethodException is thrown
-   * 
+   *
    * @param object - The Object you want to test.
-   * 
+   *
    * @param methName - The method that you want to test.
-   * 
+   *
    * @param argTypes - The type value of the arguments for the method under
    * test.
-   * 
+   *
    * @param params - The parameters you are feeding into the method under test.
-   * 
+   *
    * @throws Exception
    */
   private static void checkForException(Object object, String methName,
