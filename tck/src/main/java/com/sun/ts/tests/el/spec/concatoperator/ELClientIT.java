@@ -25,11 +25,8 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Iterator;
 
-import com.sun.ts.tests.el.common.util.ELTestUtil;
 import com.sun.ts.tests.el.common.util.TestNum;
 import com.sun.ts.tests.el.common.util.Validator;
-
-import jakarta.el.ELProcessor;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -258,39 +255,4 @@ public class ELClientIT {
     Validator.testBoolean(false, Boolean.TRUE, null, "+=");
 
   }
-
-  // ------------------------------------------------------- private methods
-  private void logLine(String s) {
-    logger.log(Logger.Level.TRACE, s);
-  }
-
-  /**
-   * Test a query for the correct value.
-   *
-   * @param name
-   *          The Name of the test
-   * @param query
-   *          The EL query string
-   * @param expected
-   *          The expected result of the query.
-   */
-  private void testQuery(String name, String query, String expected)
-      throws Exception {
-    ELProcessor elp = new ELProcessor();
-
-    logLine("=== Testing " + name + " ===");
-    logLine(query);
-
-    logLine(" = returns =");
-    Object ret = elp.eval(query);
-
-    if (!expected.equals(ret.toString())) {
-
-      throw new Exception(
-          ELTestUtil.FAIL + "  Unexpected Value!" + ELTestUtil.NL + "Expected: "
-              + expected + ELTestUtil.NL + "Received: " + ret.toString());
-
-    }
-  }
-
 }
