@@ -324,13 +324,13 @@ public class ELClientIT {
   public void elBigDecimalLessThanTest() throws Exception {
 
     // Value passed in is larger than COMPARATOR.
-    this.testOperatorBoolean(BigDecimal.valueOf(10.531), false, "<");
+    this.testOperatorBoolean(BigDecimal.valueOf(10.531), Boolean.FALSE, "<");
 
     // value passed in is equal to the COMPARATOR.
-    this.testOperatorBoolean(BigDecimal.valueOf(1.0000), false, "lt");
+    this.testOperatorBoolean(BigDecimal.valueOf(1.0000), Boolean.FALSE, "lt");
 
     // value passed in is smaller than COMPARATOR.
-    this.testOperatorBoolean(BigDecimal.valueOf(0.531), true, "lt");
+    this.testOperatorBoolean(BigDecimal.valueOf(0.531), Boolean.TRUE, "lt");
 
   }
 
@@ -351,13 +351,13 @@ public class ELClientIT {
   public void elBigDecimalLessThanEqualTest() throws Exception {
 
     // Value passed in is larger than COMPARATOR.
-    this.testOperatorBoolean(BigDecimal.valueOf(10.531), false, "<=");
+    this.testOperatorBoolean(BigDecimal.valueOf(10.531), Boolean.FALSE, "<=");
 
     // value passed in is equal to the COMPARATOR.
-    this.testOperatorBoolean(BigDecimal.valueOf(1.0000), true, "le");
+    this.testOperatorBoolean(BigDecimal.valueOf(1.0000), Boolean.TRUE, "le");
 
     // Value passed in is smaller than COMPARATOR.
-    this.testOperatorBoolean(BigDecimal.valueOf(-10.531), true, "<=");
+    this.testOperatorBoolean(BigDecimal.valueOf(-10.531), Boolean.TRUE, "<=");
   }
 
   /**
@@ -377,13 +377,13 @@ public class ELClientIT {
   public void elBigDecimalGreaterThanTest() throws Exception {
 
     // Value passed in is larger than COMPARATOR.
-    this.testOperatorBoolean(BigDecimal.valueOf(10.531), true, ">");
+    this.testOperatorBoolean(BigDecimal.valueOf(10.531), Boolean.TRUE, ">");
 
     // value passed in is equal to the COMPARATOR.
-    this.testOperatorBoolean(BigDecimal.valueOf(1.0000), false, ">");
+    this.testOperatorBoolean(BigDecimal.valueOf(1.0000), Boolean.FALSE, ">");
 
     // value passed in is smaller than COMPARATOR.
-    this.testOperatorBoolean(BigDecimal.valueOf(0.531), false, "gt");
+    this.testOperatorBoolean(BigDecimal.valueOf(0.531), Boolean.FALSE, "gt");
 
   }
 
@@ -404,13 +404,13 @@ public class ELClientIT {
   public void elBigDecimalGreaterThanEqualTest() throws Exception {
 
     // Value passed in is larger than COMPARATOR.
-    this.testOperatorBoolean(BigDecimal.valueOf(10.531), true, ">=");
+    this.testOperatorBoolean(BigDecimal.valueOf(10.531), Boolean.TRUE, ">=");
 
     // value passed in is equal to the COMPARATOR.
-    this.testOperatorBoolean(BigDecimal.valueOf(1.0000), true, "ge");
+    this.testOperatorBoolean(BigDecimal.valueOf(1.0000), Boolean.TRUE, "ge");
 
     // value passed in is smaller than the COMPARATOR.
-    this.testOperatorBoolean(BigDecimal.valueOf(-1.0000), false, "ge");
+    this.testOperatorBoolean(BigDecimal.valueOf(-1.0000), Boolean.FALSE, "ge");
 
   }
 
@@ -431,10 +431,10 @@ public class ELClientIT {
   public void elBigDecimalEqualToTest() throws Exception {
 
     // Value passed in is larger than COMPARATOR.
-    this.testOperatorBoolean(BigDecimal.valueOf(10.531), false, "==");
+    this.testOperatorBoolean(BigDecimal.valueOf(10.531), Boolean.FALSE, "==");
 
     // value passed in is equal to the COMPARATOR.
-    this.testOperatorBoolean(BigDecimal.valueOf(1), true, "eq");
+    this.testOperatorBoolean(BigDecimal.valueOf(1), Boolean.TRUE, "eq");
 
   }
 
@@ -455,10 +455,10 @@ public class ELClientIT {
   public void elBigDecimalNotEqualToTest() throws Exception {
 
     // Value passed in is larger than COMPARATOR.
-    this.testOperatorBoolean(BigDecimal.valueOf(10.531), true, "!=");
+    this.testOperatorBoolean(BigDecimal.valueOf(10.531), Boolean.TRUE, "!=");
 
     // value passed in is equal to the COMPARATOR.
-    this.testOperatorBoolean(BigDecimal.valueOf(1), false, "ne");
+    this.testOperatorBoolean(BigDecimal.valueOf(1), Boolean.FALSE, "ne");
 
   }
 
@@ -478,13 +478,13 @@ public class ELClientIT {
   public void elFloatLessThanTest() throws Exception {
 
     // Value passed in is larger than COMPARATOR.
-    this.testOperatorBoolean(Float.valueOf(10f), false, "<");
+    this.testOperatorBoolean(Float.valueOf(10f), Boolean.FALSE, "<");
 
     // value passed in is equal to the COMPARATOR.
-    this.testOperatorBoolean(Float.valueOf(1f), false, "<");
+    this.testOperatorBoolean(Float.valueOf(1f), Boolean.FALSE, "<");
 
     // value passed in is smaller than COMPARATOR.
-    this.testOperatorBoolean(Float.valueOf(-10f), true, "lt");
+    this.testOperatorBoolean(Float.valueOf(-10f), Boolean.TRUE, "lt");
 
   }
 
@@ -504,13 +504,13 @@ public class ELClientIT {
   public void elFloatLessThanEqualTest() throws Exception {
 
     // Value passed in is larger than COMPARATOR.
-    this.testOperatorBoolean(Float.valueOf(10f), false, "<=");
+    this.testOperatorBoolean(Float.valueOf(10f), Boolean.FALSE, "<=");
 
     // value passed in is equal to the COMPARATOR.
-    this.testOperatorBoolean(Float.valueOf(1f), true, "le");
+    this.testOperatorBoolean(Float.valueOf(1f), Boolean.TRUE, "le");
 
     // Value passed in is smaller than COMPARATOR.
-    this.testOperatorBoolean(Float.valueOf(-10f), true, "<=");
+    this.testOperatorBoolean(Float.valueOf(-10f), Boolean.TRUE, "<=");
   }
 
   /**
@@ -529,13 +529,13 @@ public class ELClientIT {
   public void elFloatGreaterThanTest() throws Exception {
 
     // Value passed in is larger than COMPARATOR.
-    this.testOperatorBoolean(Float.valueOf(10531f), true, ">");
+    this.testOperatorBoolean(Float.valueOf(10531f), Boolean.TRUE, ">");
 
     // value passed in is equal to the COMPARATOR.
-    this.testOperatorBoolean(Float.valueOf(1f), false, ">");
+    this.testOperatorBoolean(Float.valueOf(1f), Boolean.FALSE, ">");
 
     // value passed in is smaller than COMPARATOR.
-    this.testOperatorBoolean(Float.valueOf(-531f), false, "gt");
+    this.testOperatorBoolean(Float.valueOf(-531f), Boolean.FALSE, "gt");
 
   }
 
@@ -555,13 +555,13 @@ public class ELClientIT {
   public void elFloatGreaterThanEqualTest() throws Exception {
 
     // Value passed in is larger than COMPARATOR.
-    this.testOperatorBoolean(Float.valueOf(10531f), true, ">=");
+    this.testOperatorBoolean(Float.valueOf(10531f), Boolean.TRUE, ">=");
 
     // value passed in is equal to the COMPARATOR.
-    this.testOperatorBoolean(Float.valueOf(1f), true, "ge");
+    this.testOperatorBoolean(Float.valueOf(1f), Boolean.TRUE, "ge");
 
     // value passed in is smaller than the COMPARATOR.
-    this.testOperatorBoolean(Float.valueOf(-1f), false, "ge");
+    this.testOperatorBoolean(Float.valueOf(-1f), Boolean.FALSE, "ge");
 
   }
 
@@ -581,10 +581,10 @@ public class ELClientIT {
   public void elFloatEqualToTest() throws Exception {
 
     // Value passed in is larger than COMPARATOR.
-    this.testOperatorBoolean(Float.valueOf(10531), false, "==");
+    this.testOperatorBoolean(Float.valueOf(10531), Boolean.FALSE, "==");
 
     // value passed in is equal to the COMPARATOR.
-    this.testOperatorBoolean(Float.valueOf(1), true, "eq");
+    this.testOperatorBoolean(Float.valueOf(1), Boolean.TRUE, "eq");
 
   }
 
@@ -604,10 +604,10 @@ public class ELClientIT {
   public void elFloatNotEqualToTest() throws Exception {
 
     // Value passed in is larger than COMPARATOR.
-    this.testOperatorBoolean(Float.valueOf(10531), true, "!=");
+    this.testOperatorBoolean(Float.valueOf(10531), Boolean.TRUE, "!=");
 
     // value passed in is equal to the COMPARATOR.
-    this.testOperatorBoolean(Float.valueOf(1), false, "ne");
+    this.testOperatorBoolean(Float.valueOf(1), Boolean.FALSE, "ne");
 
   }
 
@@ -626,13 +626,13 @@ public class ELClientIT {
   public void elDoubleLessThanTest() throws Exception {
 
     // Value passed in is larger than COMPARATOR.
-    this.testOperatorBoolean(Double.valueOf(2.5), false, "<");
+    this.testOperatorBoolean(Double.valueOf(2.5), Boolean.FALSE, "<");
 
     // value passed in is equal to the COMPARATOR.
-    this.testOperatorBoolean(Double.valueOf(1.0), false, "lt");
+    this.testOperatorBoolean(Double.valueOf(1.0), Boolean.FALSE, "lt");
 
     // value passed in is smaller than COMPARATOR.
-    this.testOperatorBoolean(Double.valueOf(-2.5), true, "lt");
+    this.testOperatorBoolean(Double.valueOf(-2.5), Boolean.TRUE, "lt");
 
   }
 
@@ -651,13 +651,13 @@ public class ELClientIT {
   public void elDoubleLessThanEqualTest() throws Exception {
 
     // Value passed in is larger than COMPARATOR.
-    this.testOperatorBoolean(Double.valueOf(2.5), false, "<=");
+    this.testOperatorBoolean(Double.valueOf(2.5), Boolean.FALSE, "<=");
 
     // value passed in is equal to the COMPARATOR.
-    this.testOperatorBoolean(Double.valueOf(1.0), true, "le");
+    this.testOperatorBoolean(Double.valueOf(1.0), Boolean.TRUE, "le");
 
     // Value passed in is smaller than COMPARATOR.
-    this.testOperatorBoolean(Double.valueOf(-1.5), true, "<=");
+    this.testOperatorBoolean(Double.valueOf(-1.5), Boolean.TRUE, "<=");
   }
 
   /**
@@ -675,13 +675,13 @@ public class ELClientIT {
   public void elDoubleGreaterThanTest() throws Exception {
 
     // Value passed in is larger than COMPARATOR.
-    this.testOperatorBoolean(Double.valueOf(10.5), true, ">");
+    this.testOperatorBoolean(Double.valueOf(10.5), Boolean.TRUE, ">");
 
     // value passed in is equal to the COMPARATOR.
-    this.testOperatorBoolean(Double.valueOf(1.0), false, "gt");
+    this.testOperatorBoolean(Double.valueOf(1.0), Boolean.FALSE, "gt");
 
     // value passed in is smaller than COMPARATOR.
-    this.testOperatorBoolean(Double.valueOf(-10.5), false, "gt");
+    this.testOperatorBoolean(Double.valueOf(-10.5), Boolean.FALSE, "gt");
 
   }
 
@@ -700,13 +700,13 @@ public class ELClientIT {
   public void elDoubleGreaterThanEqualTest() throws Exception {
 
     // Value passed in is larger than COMPARATOR.
-    this.testOperatorBoolean(Double.valueOf(10.0), true, ">=");
+    this.testOperatorBoolean(Double.valueOf(10.0), Boolean.TRUE, ">=");
 
     // value passed in is equal to the COMPARATOR.
-    this.testOperatorBoolean(Double.valueOf(1.0), true, "ge");
+    this.testOperatorBoolean(Double.valueOf(1.0), Boolean.TRUE, "ge");
 
     // value passed in is smaller than the COMPARATOR.
-    this.testOperatorBoolean(Double.valueOf(-10.0), false, "ge");
+    this.testOperatorBoolean(Double.valueOf(-10.0), Boolean.FALSE, "ge");
 
   }
 
@@ -725,10 +725,10 @@ public class ELClientIT {
   public void elDoubleEqualToTest() throws Exception {
 
     // Value passed in is larger than COMPARATOR.
-    this.testOperatorBoolean(Double.valueOf(10531), false, "==");
+    this.testOperatorBoolean(Double.valueOf(10531), Boolean.FALSE, "==");
 
     // value passed in is equal to the COMPARATOR.
-    this.testOperatorBoolean(Double.valueOf(1.00), true, "eq");
+    this.testOperatorBoolean(Double.valueOf(1.00), Boolean.TRUE, "eq");
 
   }
 
@@ -747,10 +747,10 @@ public class ELClientIT {
   public void elDoubleNotEqualToTest() throws Exception {
 
     // Value passed in is larger than COMPARATOR.
-    this.testOperatorBoolean(Double.valueOf(10531), true, "!=");
+    this.testOperatorBoolean(Double.valueOf(10531), Boolean.TRUE, "!=");
 
     // value passed in is equal to the COMPARATOR.
-    this.testOperatorBoolean(Double.valueOf(1), false, "ne");
+    this.testOperatorBoolean(Double.valueOf(1), Boolean.FALSE, "ne");
 
   }
 
@@ -769,13 +769,13 @@ public class ELClientIT {
   public void elBigIntegerLessThanTest() throws Exception {
 
     // Value passed in is larger than COMPARATOR.
-    this.testOperatorBoolean(BigInteger.valueOf(10531), false, "<");
+    this.testOperatorBoolean(BigInteger.valueOf(10531), Boolean.FALSE, "<");
 
     // value passed in is equal to the COMPARATOR.
-    this.testOperatorBoolean(BigInteger.valueOf(1), false, "lt");
+    this.testOperatorBoolean(BigInteger.valueOf(1), Boolean.FALSE, "lt");
 
     // value passed in is smaller than COMPARATOR.
-    this.testOperatorBoolean(BigInteger.valueOf(-10531), true, "lt");
+    this.testOperatorBoolean(BigInteger.valueOf(-10531), Boolean.TRUE, "lt");
 
   }
 
@@ -794,13 +794,13 @@ public class ELClientIT {
   public void elBigIntegerLessThanEqualTest() throws Exception {
 
     // Value passed in is larger than COMPARATOR.
-    this.testOperatorBoolean(BigInteger.valueOf(10531), false, "<=");
+    this.testOperatorBoolean(BigInteger.valueOf(10531), Boolean.FALSE, "<=");
 
     // value passed in is equal to the COMPARATOR.
-    this.testOperatorBoolean(BigInteger.valueOf(1), true, "le");
+    this.testOperatorBoolean(BigInteger.valueOf(1), Boolean.TRUE, "le");
 
     // Value passed in is smaller than COMPARATOR.
-    this.testOperatorBoolean(BigInteger.valueOf(-10531), true, "<=");
+    this.testOperatorBoolean(BigInteger.valueOf(-10531), Boolean.TRUE, "<=");
   }
 
   /**
@@ -818,13 +818,13 @@ public class ELClientIT {
   public void elBigIntegerGreaterThanTest() throws Exception {
 
     // Value passed in is larger than COMPARATOR.
-    this.testOperatorBoolean(BigInteger.valueOf(10531), true, ">");
+    this.testOperatorBoolean(BigInteger.valueOf(10531), Boolean.TRUE, ">");
 
     // value passed in is equal to the COMPARATOR.
-    this.testOperatorBoolean(BigInteger.valueOf(1), false, "gt");
+    this.testOperatorBoolean(BigInteger.valueOf(1), Boolean.FALSE, "gt");
 
     // value passed in is smaller than COMPARATOR.
-    this.testOperatorBoolean(BigInteger.valueOf(-10531), false, "gt");
+    this.testOperatorBoolean(BigInteger.valueOf(-10531), Boolean.FALSE, "gt");
 
   }
 
@@ -843,13 +843,13 @@ public class ELClientIT {
   public void elBigIntegerGreaterThanEqualTest() throws Exception {
 
     // Value passed in is larger than COMPARATOR.
-    this.testOperatorBoolean(BigInteger.valueOf(10531), true, ">=");
+    this.testOperatorBoolean(BigInteger.valueOf(10531), Boolean.TRUE, ">=");
 
     // value passed in is equal to the COMPARATOR.
-    this.testOperatorBoolean(BigInteger.valueOf(1), true, "ge");
+    this.testOperatorBoolean(BigInteger.valueOf(1), Boolean.TRUE, "ge");
 
     // value passed in is smaller than the COMPARATOR.
-    this.testOperatorBoolean(BigInteger.valueOf(-10531), false, "ge");
+    this.testOperatorBoolean(BigInteger.valueOf(-10531), Boolean.FALSE, "ge");
 
   }
 
@@ -868,10 +868,10 @@ public class ELClientIT {
   public void elBigIntegerEqualToTest() throws Exception {
 
     // Value passed in is larger than COMPARATOR.
-    this.testOperatorBoolean(BigInteger.valueOf(10531), false, "==");
+    this.testOperatorBoolean(BigInteger.valueOf(10531), Boolean.FALSE, "==");
 
     // value passed in is equal to the COMPARATOR.
-    this.testOperatorBoolean(BigInteger.valueOf(1), true, "eq");
+    this.testOperatorBoolean(BigInteger.valueOf(1), Boolean.TRUE, "eq");
 
   }
 
@@ -890,10 +890,10 @@ public class ELClientIT {
   public void elBigIntegerNotEqualToTest() throws Exception {
 
     // Value passed in is larger than COMPARATOR.
-    this.testOperatorBoolean(BigInteger.valueOf(10531), true, "!=");
+    this.testOperatorBoolean(BigInteger.valueOf(10531), Boolean.TRUE, "!=");
 
     // value passed in is equal to the COMPARATOR.
-    this.testOperatorBoolean(BigInteger.valueOf(1), false, "ne");
+    this.testOperatorBoolean(BigInteger.valueOf(1), Boolean.FALSE, "ne");
 
   }
 
@@ -911,13 +911,13 @@ public class ELClientIT {
   public void elLongLessThanTest() throws Exception {
 
     // Value passed in is larger than COMPARATOR.
-    this.testOperatorBoolean(Long.valueOf(25000), false, "<");
+    this.testOperatorBoolean(Long.valueOf(25000), Boolean.FALSE, "<");
 
     // value passed in is equal to the COMPARATOR.
-    this.testOperatorBoolean(Long.valueOf(1), false, "<");
+    this.testOperatorBoolean(Long.valueOf(1), Boolean.FALSE, "<");
 
     // value passed in is smaller than COMPARATOR.
-    this.testOperatorBoolean(Long.valueOf(-25000), true, "lt");
+    this.testOperatorBoolean(Long.valueOf(-25000), Boolean.TRUE, "lt");
 
   }
 
@@ -935,13 +935,13 @@ public class ELClientIT {
   public void elLongLessThanEqualTest() throws Exception {
 
     // Value passed in is larger than COMPARATOR.
-    this.testOperatorBoolean(Long.valueOf(25000), false, "<=");
+    this.testOperatorBoolean(Long.valueOf(25000), Boolean.FALSE, "<=");
 
     // value passed in is equal to the COMPARATOR.
-    this.testOperatorBoolean(Long.valueOf(1), true, "le");
+    this.testOperatorBoolean(Long.valueOf(1), Boolean.TRUE, "le");
 
     // Value passed in is smaller than COMPARATOR.
-    this.testOperatorBoolean(Long.valueOf(-25000), true, "<=");
+    this.testOperatorBoolean(Long.valueOf(-25000), Boolean.TRUE, "<=");
   }
 
   /**
@@ -958,13 +958,13 @@ public class ELClientIT {
   public void elLongGreaterThanTest() throws Exception {
 
     // Value passed in is larger than COMPARATOR.
-    this.testOperatorBoolean(Long.valueOf(10531), true, ">");
+    this.testOperatorBoolean(Long.valueOf(10531), Boolean.TRUE, ">");
 
     // value passed in is equal to the COMPARATOR.
-    this.testOperatorBoolean(Long.valueOf(1), false, ">");
+    this.testOperatorBoolean(Long.valueOf(1), Boolean.FALSE, ">");
 
     // value passed in is smaller than COMPARATOR.
-    this.testOperatorBoolean(Long.valueOf(-10531), false, "gt");
+    this.testOperatorBoolean(Long.valueOf(-10531), Boolean.FALSE, "gt");
 
   }
 
@@ -982,13 +982,13 @@ public class ELClientIT {
   public void elLongGreaterThanEqualTest() throws Exception {
 
     // Value passed in is larger than COMPARATOR.
-    this.testOperatorBoolean(Long.valueOf(25000), true, ">=");
+    this.testOperatorBoolean(Long.valueOf(25000), Boolean.TRUE, ">=");
 
     // value passed in is equal to the COMPARATOR.
-    this.testOperatorBoolean(Long.valueOf(1), true, "ge");
+    this.testOperatorBoolean(Long.valueOf(1), Boolean.TRUE, "ge");
 
     // value passed in is smaller than the COMPARATOR.
-    this.testOperatorBoolean(Long.valueOf(-25000), false, "ge");
+    this.testOperatorBoolean(Long.valueOf(-25000), Boolean.FALSE, "ge");
 
   }
 
@@ -1006,10 +1006,10 @@ public class ELClientIT {
   public void elLongEqualToTest() throws Exception {
 
     // Value passed in is larger than COMPARATOR.
-    this.testOperatorBoolean(Long.valueOf(25000), false, "==");
+    this.testOperatorBoolean(Long.valueOf(25000), Boolean.FALSE, "==");
 
     // value passed in is equal to the COMPARATOR.
-    this.testOperatorBoolean(Long.valueOf(1), true, "eq");
+    this.testOperatorBoolean(Long.valueOf(1), Boolean.TRUE, "eq");
 
   }
 
@@ -1027,10 +1027,10 @@ public class ELClientIT {
   public void elLongNotEqualToTest() throws Exception {
 
     // Value passed in is larger than COMPARATOR.
-    this.testOperatorBoolean(Long.valueOf(25000), true, "!=");
+    this.testOperatorBoolean(Long.valueOf(25000), Boolean.TRUE, "!=");
 
     // value passed in is equal to the COMPARATOR.
-    this.testOperatorBoolean(Long.valueOf(1), false, "ne");
+    this.testOperatorBoolean(Long.valueOf(1), Boolean.FALSE, "ne");
 
   }
 
@@ -1048,13 +1048,13 @@ public class ELClientIT {
   public void elIntegerLessThanTest() throws Exception {
 
     // Value passed in is larger than COMPARATOR.
-    this.testOperatorBoolean(Integer.valueOf(25), false, "<");
+    this.testOperatorBoolean(Integer.valueOf(25), Boolean.FALSE, "<");
 
     // value passed in is equal to the COMPARATOR.
-    this.testOperatorBoolean(Integer.valueOf(1), false, "lt");
+    this.testOperatorBoolean(Integer.valueOf(1), Boolean.FALSE, "lt");
 
     // value passed in is smaller than COMPARATOR.
-    this.testOperatorBoolean(Integer.valueOf(-25), true, "lt");
+    this.testOperatorBoolean(Integer.valueOf(-25), Boolean.TRUE, "lt");
 
   }
 
@@ -1072,13 +1072,13 @@ public class ELClientIT {
   public void elIntegerLessThanEqualTest() throws Exception {
 
     // Value passed in is larger than COMPARATOR.
-    this.testOperatorBoolean(Integer.valueOf(25), false, "<=");
+    this.testOperatorBoolean(Integer.valueOf(25), Boolean.FALSE, "<=");
 
     // value passed in is equal to the COMPARATOR.
-    this.testOperatorBoolean(Integer.valueOf(1), true, "le");
+    this.testOperatorBoolean(Integer.valueOf(1), Boolean.TRUE, "le");
 
     // Value passed in is smaller than COMPARATOR.
-    this.testOperatorBoolean(Integer.valueOf(-25), true, "<=");
+    this.testOperatorBoolean(Integer.valueOf(-25), Boolean.TRUE, "<=");
   }
 
   /**
@@ -1095,13 +1095,13 @@ public class ELClientIT {
   public void elIntegerGreaterThanTest() throws Exception {
 
     // Value passed in is larger than COMPARATOR.
-    this.testOperatorBoolean(Integer.valueOf(105), true, ">");
+    this.testOperatorBoolean(Integer.valueOf(105), Boolean.TRUE, ">");
 
     // value passed in is equal to the COMPARATOR.
-    this.testOperatorBoolean(Integer.valueOf(1), false, "gt");
+    this.testOperatorBoolean(Integer.valueOf(1), Boolean.FALSE, "gt");
 
     // value passed in is smaller than COMPARATOR.
-    this.testOperatorBoolean(Integer.valueOf(-105), false, "gt");
+    this.testOperatorBoolean(Integer.valueOf(-105), Boolean.FALSE, "gt");
 
   }
 
@@ -1119,13 +1119,13 @@ public class ELClientIT {
   public void elIntegerGreaterThanEqualTest() throws Exception {
 
     // Value passed in is larger than COMPARATOR.
-    this.testOperatorBoolean(Integer.valueOf(250), true, ">=");
+    this.testOperatorBoolean(Integer.valueOf(250), Boolean.TRUE, ">=");
 
     // value passed in is equal to the COMPARATOR.
-    this.testOperatorBoolean(Integer.valueOf(1), true, "ge");
+    this.testOperatorBoolean(Integer.valueOf(1), Boolean.TRUE, "ge");
 
     // value passed in is smaller than the COMPARATOR.
-    this.testOperatorBoolean(Integer.valueOf(-250), false, "ge");
+    this.testOperatorBoolean(Integer.valueOf(-250), Boolean.FALSE, "ge");
 
   }
 
@@ -1143,10 +1143,10 @@ public class ELClientIT {
   public void elIntegerEqualToTest() throws Exception {
 
     // Value passed in is larger than COMPARATOR.
-    this.testOperatorBoolean(Integer.valueOf(25), false, "==");
+    this.testOperatorBoolean(Integer.valueOf(25), Boolean.FALSE, "==");
 
     // value passed in is equal to the COMPARATOR.
-    this.testOperatorBoolean(Integer.valueOf(1), true, "eq");
+    this.testOperatorBoolean(Integer.valueOf(1), Boolean.TRUE, "eq");
 
   }
 
@@ -1164,10 +1164,10 @@ public class ELClientIT {
   public void elIntegerNotEqualToTest() throws Exception {
 
     // Value passed in is larger than COMPARATOR.
-    this.testOperatorBoolean(Integer.valueOf(25), true, "!=");
+    this.testOperatorBoolean(Integer.valueOf(25), Boolean.TRUE, "!=");
 
     // value passed in is equal to the COMPARATOR.
-    this.testOperatorBoolean(Integer.valueOf(1), false, "ne");
+    this.testOperatorBoolean(Integer.valueOf(1), Boolean.FALSE, "ne");
 
   }
 
@@ -1185,13 +1185,13 @@ public class ELClientIT {
   public void elShortLessThanTest() throws Exception {
 
     // Value passed in is larger than COMPARATOR.
-    this.testOperatorBoolean(Short.valueOf("2"), false, "<");
+    this.testOperatorBoolean(Short.valueOf("2"), Boolean.FALSE, "<");
 
     // value passed in is equal to the COMPARATOR.
-    this.testOperatorBoolean(Short.valueOf("1"), false, "<");
+    this.testOperatorBoolean(Short.valueOf("1"), Boolean.FALSE, "<");
 
     // value passed in is smaller than COMPARATOR.
-    this.testOperatorBoolean(Short.valueOf("-2"), true, "lt");
+    this.testOperatorBoolean(Short.valueOf("-2"), Boolean.TRUE, "lt");
 
   }
 
@@ -1209,13 +1209,13 @@ public class ELClientIT {
   public void elShortLessThanEqualTest() throws Exception {
 
     // Value passed in is larger than COMPARATOR.
-    this.testOperatorBoolean(Short.valueOf("2"), false, "<=");
+    this.testOperatorBoolean(Short.valueOf("2"), Boolean.FALSE, "<=");
 
     // value passed in is equal to the COMPARATOR.
-    this.testOperatorBoolean(Short.valueOf("1"), true, "le");
+    this.testOperatorBoolean(Short.valueOf("1"), Boolean.TRUE, "le");
 
     // Value passed in is smaller than COMPARATOR.
-    this.testOperatorBoolean(Short.valueOf("-2"), true, "<=");
+    this.testOperatorBoolean(Short.valueOf("-2"), Boolean.TRUE, "<=");
   }
 
   /**
@@ -1232,13 +1232,13 @@ public class ELClientIT {
   public void elShortGreaterThanTest() throws Exception {
 
     // Value passed in is larger than COMPARATOR.
-    this.testOperatorBoolean(Short.valueOf("2"), true, ">");
+    this.testOperatorBoolean(Short.valueOf("2"), Boolean.TRUE, ">");
 
     // value passed in is equal to the COMPARATOR.
-    this.testOperatorBoolean(Short.valueOf("1"), false, ">");
+    this.testOperatorBoolean(Short.valueOf("1"), Boolean.FALSE, ">");
 
     // value passed in is smaller than COMPARATOR.
-    this.testOperatorBoolean(Short.valueOf("-2"), false, "gt");
+    this.testOperatorBoolean(Short.valueOf("-2"), Boolean.FALSE, "gt");
 
   }
 
@@ -1256,13 +1256,13 @@ public class ELClientIT {
   public void elShortGreaterThanEqualTest() throws Exception {
 
     // Value passed in is larger than COMPARATOR.
-    this.testOperatorBoolean(Short.valueOf("2"), true, ">=");
+    this.testOperatorBoolean(Short.valueOf("2"), Boolean.TRUE, ">=");
 
     // value passed in is equal to the COMPARATOR.
-    this.testOperatorBoolean(Short.valueOf("1"), true, "ge");
+    this.testOperatorBoolean(Short.valueOf("1"), Boolean.TRUE, "ge");
 
     // value passed in is smaller than the COMPARATOR.
-    this.testOperatorBoolean(Short.valueOf("-2"), false, "ge");
+    this.testOperatorBoolean(Short.valueOf("-2"), Boolean.FALSE, "ge");
 
   }
 
@@ -1280,10 +1280,10 @@ public class ELClientIT {
   public void elShortEqualToTest() throws Exception {
 
     // Value passed in is larger than COMPARATOR.
-    this.testOperatorBoolean(Short.valueOf("2"), false, "==");
+    this.testOperatorBoolean(Short.valueOf("2"), Boolean.FALSE, "==");
 
     // value passed in is equal to the COMPARATOR.
-    this.testOperatorBoolean(Short.valueOf("1"), true, "eq");
+    this.testOperatorBoolean(Short.valueOf("1"), Boolean.TRUE, "eq");
 
   }
 
@@ -1301,10 +1301,10 @@ public class ELClientIT {
   public void elShortNotEqualToTest() throws Exception {
 
     // Value passed in is larger than COMPARATOR.
-    this.testOperatorBoolean(Short.valueOf("2"), true, "!=");
+    this.testOperatorBoolean(Short.valueOf("2"), Boolean.TRUE, "!=");
 
     // value passed in is equal to the COMPARATOR.
-    this.testOperatorBoolean(Short.valueOf("1"), false, "ne");
+    this.testOperatorBoolean(Short.valueOf("1"), Boolean.FALSE, "ne");
 
   }
 
@@ -1321,13 +1321,13 @@ public class ELClientIT {
   public void elByteLessThanTest() throws Exception {
 
     // Value passed in is larger than COMPARATOR.
-    this.testOperatorBoolean(Byte.valueOf("2"), false, "<");
+    this.testOperatorBoolean(Byte.valueOf("2"), Boolean.FALSE, "<");
 
     // value passed in is equal to the COMPARATOR.
-    this.testOperatorBoolean(Byte.valueOf("1"), false, "lt");
+    this.testOperatorBoolean(Byte.valueOf("1"), Boolean.FALSE, "lt");
 
     // value passed in is smaller than COMPARATOR.
-    this.testOperatorBoolean(Byte.valueOf("-2"), true, "lt");
+    this.testOperatorBoolean(Byte.valueOf("-2"), Boolean.TRUE, "lt");
 
   }
 
@@ -1344,13 +1344,13 @@ public class ELClientIT {
   public void elByteLessThanEqualTest() throws Exception {
 
     // Value passed in is larger than COMPARATOR.
-    this.testOperatorBoolean(Byte.valueOf("2"), false, "<=");
+    this.testOperatorBoolean(Byte.valueOf("2"), Boolean.FALSE, "<=");
 
     // value passed in is equal to the COMPARATOR.
-    this.testOperatorBoolean(Byte.valueOf("1"), true, "le");
+    this.testOperatorBoolean(Byte.valueOf("1"), Boolean.TRUE, "le");
 
     // Value passed in is smaller than COMPARATOR.
-    this.testOperatorBoolean(Byte.valueOf("-2"), true, "<=");
+    this.testOperatorBoolean(Byte.valueOf("-2"), Boolean.TRUE, "<=");
   }
 
   /**
@@ -1366,13 +1366,13 @@ public class ELClientIT {
   public void elByteGreaterThanTest() throws Exception {
 
     // Value passed in is larger than COMPARATOR.
-    this.testOperatorBoolean(Byte.valueOf("2"), true, ">");
+    this.testOperatorBoolean(Byte.valueOf("2"), Boolean.TRUE, ">");
 
     // value passed in is equal to the COMPARATOR.
-    this.testOperatorBoolean(Byte.valueOf("1"), false, "gt");
+    this.testOperatorBoolean(Byte.valueOf("1"), Boolean.FALSE, "gt");
 
     // value passed in is smaller than COMPARATOR.
-    this.testOperatorBoolean(Byte.valueOf("-2"), false, "gt");
+    this.testOperatorBoolean(Byte.valueOf("-2"), Boolean.FALSE, "gt");
 
   }
 
@@ -1389,13 +1389,13 @@ public class ELClientIT {
   public void elByteGreaterThanEqualTest() throws Exception {
 
     // Value passed in is larger than COMPARATOR.
-    this.testOperatorBoolean(Byte.valueOf("2"), true, ">=");
+    this.testOperatorBoolean(Byte.valueOf("2"), Boolean.TRUE, ">=");
 
     // value passed in is equal to the COMPARATOR.
-    this.testOperatorBoolean(Byte.valueOf("1"), true, "ge");
+    this.testOperatorBoolean(Byte.valueOf("1"), Boolean.TRUE, "ge");
 
     // value passed in is smaller than the COMPARATOR.
-    this.testOperatorBoolean(Byte.valueOf("-2"), false, "ge");
+    this.testOperatorBoolean(Byte.valueOf("-2"), Boolean.FALSE, "ge");
 
   }
 
@@ -1412,10 +1412,10 @@ public class ELClientIT {
   public void elByteEqualToTest() throws Exception {
 
     // Value passed in is larger than COMPARATOR.
-    this.testOperatorBoolean(Byte.valueOf("2"), false, "==");
+    this.testOperatorBoolean(Byte.valueOf("2"), Boolean.FALSE, "==");
 
     // value passed in is equal to the COMPARATOR.
-    this.testOperatorBoolean(Byte.valueOf("1"), true, "eq");
+    this.testOperatorBoolean(Byte.valueOf("1"), Boolean.TRUE, "eq");
 
   }
 
@@ -1432,10 +1432,10 @@ public class ELClientIT {
   public void elByteNotEqualToTest() throws Exception {
 
     // Value passed in is larger than COMPARATOR.
-    this.testOperatorBoolean(Byte.valueOf("2"), true, "!=");
+    this.testOperatorBoolean(Byte.valueOf("2"), Boolean.TRUE, "!=");
 
     // value passed in is equal to the COMPARATOR.
-    this.testOperatorBoolean(Byte.valueOf("1"), false, "ne");
+    this.testOperatorBoolean(Byte.valueOf("1"), Boolean.FALSE, "ne");
 
   }
 
@@ -1452,13 +1452,13 @@ public class ELClientIT {
   public void elStringLessThanTest() throws Exception {
 
     // Value A is less than value B. (true)
-    this.testOperatorBoolean("Alpha", DT, true, "<");
+    this.testOperatorBoolean("Alpha", DT, Boolean.TRUE, "<");
 
     // Value A is less than value B. (false)
-    this.testOperatorBoolean("Beta", DT, false, "lt");
+    this.testOperatorBoolean("Beta", DT, Boolean.FALSE, "lt");
 
-    // Value A is less than value B. (true)
-    this.testOperatorBoolean("Gamma", DT, false, "lt");
+    // Value A is less than value B. (false)
+    this.testOperatorBoolean("Gamma", DT, Boolean.FALSE, "lt");
 
   }
 
@@ -1475,13 +1475,13 @@ public class ELClientIT {
   public void elStringLessThanEqualTest() throws Exception {
 
     // Value A is less than or equal to value B. (false)
-    this.testOperatorBoolean("Gamma", DT, false, "<=");
+    this.testOperatorBoolean("Gamma", DT, Boolean.FALSE, "<=");
 
     // Value A is less than or equal to value B. (true)
-    this.testOperatorBoolean("Beta", DT, true, "le");
+    this.testOperatorBoolean("Beta", DT, Boolean.TRUE, "le");
 
     // Value A is less than or equal to value B. (true)
-    this.testOperatorBoolean("Alpha", DT, true, "<=");
+    this.testOperatorBoolean("Alpha", DT, Boolean.TRUE, "<=");
   }
 
   /**
@@ -1496,14 +1496,14 @@ public class ELClientIT {
   @Test
   public void elStringGreaterThanTest() throws Exception {
 
-    // Value A is greater than value B. (false)
-    this.testOperatorBoolean("Gamma", DT, true, ">");
+    // Value A is greater than value B. (true)
+    this.testOperatorBoolean("Gamma", DT, Boolean.TRUE, ">");
 
     // Value A greater than value B. (false)
-    this.testOperatorBoolean("Beta", DT, false, "gt");
+    this.testOperatorBoolean("Beta", DT, Boolean.FALSE, "gt");
 
     // Value A is greater than value B. (false)
-    this.testOperatorBoolean("Alpha", DT, false, "gt");
+    this.testOperatorBoolean("Alpha", DT, Boolean.FALSE, "gt");
 
   }
 
@@ -1520,13 +1520,13 @@ public class ELClientIT {
   public void elStringGreaterThanEqualTest() throws Exception {
 
     // Value A is greater than or equal to value B. (true)
-    this.testOperatorBoolean("Gamma", DT, true, ">=");
+    this.testOperatorBoolean("Gamma", DT, Boolean.TRUE, ">=");
 
     // Value A is greater than or equal to value B. (true)
-    this.testOperatorBoolean("Beta", DT, true, "ge");
+    this.testOperatorBoolean("Beta", DT, Boolean.TRUE, "ge");
 
     // Value A is greater than or equal to value B. (false)
-    this.testOperatorBoolean("Alpha", DT, false, "ge");
+    this.testOperatorBoolean("Alpha", DT, Boolean.FALSE, "ge");
 
   }
 
@@ -1543,10 +1543,10 @@ public class ELClientIT {
   public void elStringEqualToTest() throws Exception {
 
     // Value A is equal to value B. (true)
-    this.testOperatorBoolean("Beta", DT, true, "==");
+    this.testOperatorBoolean("Beta", DT, Boolean.TRUE, "==");
 
     // Value A is smaller than value B. (false)
-    this.testOperatorBoolean("Alpha", DT, false, "eq");
+    this.testOperatorBoolean("Alpha", DT, Boolean.FALSE, "eq");
 
   }
 
@@ -1563,10 +1563,10 @@ public class ELClientIT {
   public void elStringNotEqualToTest() throws Exception {
 
     // Value A is not equal to value B. (true)
-    this.testOperatorBoolean("Alpha", DT, true, "!=");
+    this.testOperatorBoolean("Alpha", DT, Boolean.TRUE, "!=");
 
     // Value A is not equal to value B. (false)
-    this.testOperatorBoolean("Beta", DT, false, "ne");
+    this.testOperatorBoolean("Beta", DT, Boolean.FALSE, "ne");
 
   }
 
@@ -1582,13 +1582,13 @@ public class ELClientIT {
   public void elOtherLessThanTest() throws Exception {
 
     // Value A is less than value B. (true)
-    this.testOperatorBoolean(DT, NT, true, "<");
+    this.testOperatorBoolean(DT, NT, Boolean.TRUE, "<");
 
     // Value A is less than value B. (false)
-    this.testOperatorBoolean(DT, DT, false, "lt");
+    this.testOperatorBoolean(DT, DT, Boolean.FALSE, "lt");
 
     // Value A is less than value B. (false)
-    this.testOperatorBoolean(NT, DT, false, "lt");
+    this.testOperatorBoolean(NT, DT, Boolean.FALSE, "lt");
 
   }
 
@@ -1604,13 +1604,13 @@ public class ELClientIT {
   public void elOtherLessThanEqualTest() throws Exception {
 
     // Value A is less than or equal to value B. (false)
-    this.testOperatorBoolean(NT, DT, false, "<=");
+    this.testOperatorBoolean(NT, DT, Boolean.FALSE, "<=");
 
     // Value A is less than or equal to value B. (true)
-    this.testOperatorBoolean(DT, DT, true, "le");
+    this.testOperatorBoolean(DT, DT, Boolean.TRUE, "le");
 
     // Value A is less than or equal to value B. (true)
-    this.testOperatorBoolean(DT, NT, true, "<=");
+    this.testOperatorBoolean(DT, NT, Boolean.TRUE, "<=");
   }
 
   /**
@@ -1625,13 +1625,13 @@ public class ELClientIT {
   public void elOtherGreaterThanTest() throws Exception {
 
     // Value A is greater than value B. (true)
-    this.testOperatorBoolean(NT, DT, true, ">");
+    this.testOperatorBoolean(NT, DT, Boolean.TRUE, ">");
 
     // Value A greater than value B. (false)
-    this.testOperatorBoolean(DT, DT, false, "gt");
+    this.testOperatorBoolean(DT, DT, Boolean.FALSE, "gt");
 
     // Value A is greater than value B. (false)
-    this.testOperatorBoolean(DT, NT, false, "gt");
+    this.testOperatorBoolean(DT, NT, Boolean.FALSE, "gt");
 
   }
 
@@ -1647,13 +1647,13 @@ public class ELClientIT {
   public void elOtherGreaterThanEqualTest() throws Exception {
 
     // Value A is greater than or equal to value B. (true)
-    this.testOperatorBoolean(NT, DT, true, ">=");
+    this.testOperatorBoolean(NT, DT, Boolean.TRUE, ">=");
 
     // Value A is greater than or equal to value B. (true)
-    this.testOperatorBoolean(DT, DT, true, "ge");
+    this.testOperatorBoolean(DT, DT, Boolean.TRUE, "ge");
 
     // Value A is greater than or equal to value B. (false)
-    this.testOperatorBoolean(DT, NT, false, "ge");
+    this.testOperatorBoolean(DT, NT, Boolean.FALSE, "ge");
 
   }
 
@@ -1669,10 +1669,10 @@ public class ELClientIT {
   public void elOtherEqualToTest() throws Exception {
 
     // Value A is equal to value B. (true)
-    this.testOperatorBoolean(DT, DT, true, "==");
+    this.testOperatorBoolean(DT, DT, Boolean.TRUE, "==");
 
     // Value A is smaller than value B. (false)
-    this.testOperatorBoolean(DT, NT, false, "eq");
+    this.testOperatorBoolean(DT, NT, Boolean.FALSE, "eq");
 
   }
 
@@ -1688,10 +1688,10 @@ public class ELClientIT {
   public void elOtherNotEqualToTest() throws Exception {
 
     // Value A is not equal to value B. (true)
-    this.testOperatorBoolean(DT, NT, true, "!=");
+    this.testOperatorBoolean(DT, NT, Boolean.TRUE, "!=");
 
     // Value A is not equal to value B. (false)
-    this.testOperatorBoolean(DT, DT, false, "ne");
+    this.testOperatorBoolean(DT, DT, Boolean.FALSE, "ne");
 
   }
 
@@ -1708,10 +1708,10 @@ public class ELClientIT {
   public void elBooleanEqualToTest() throws Exception {
 
     // Value A is equal to value B. (true)
-    this.testOperatorBoolean("true", true, true, "==");
+    this.testOperatorBoolean("true", Boolean.TRUE, Boolean.TRUE, "==");
 
     // Value A is smaller than value B. (false)
-    this.testOperatorBoolean("false", true, false, "eq");
+    this.testOperatorBoolean("false", Boolean.TRUE, Boolean.FALSE, "eq");
 
   }
 
@@ -1728,10 +1728,10 @@ public class ELClientIT {
   public void elBooleanNotEqualToTest() throws Exception {
 
     // Value A is not equal to value B. (true)
-    this.testOperatorBoolean("false", true, true, "!=");
+    this.testOperatorBoolean("false", Boolean.TRUE, Boolean.TRUE, "!=");
 
     // Value A is not equal to value B. (false)
-    this.testOperatorBoolean("false", false, false, "ne");
+    this.testOperatorBoolean("false", Boolean.FALSE, Boolean.FALSE, "ne");
 
   }
 
@@ -1748,12 +1748,12 @@ public class ELClientIT {
   public void elEnumEqualToTest() throws Exception {
 
     // Value A is equal to value B. (true)
-    this.testOperatorBoolean(TestEnum.APPLE, "APPLE", true, "==");
-    this.testOperatorBoolean(TestEnum.PEAR, "PEAR", true, "eq");
+    this.testOperatorBoolean(TestEnum.APPLE, "APPLE", Boolean.TRUE, "==");
+    this.testOperatorBoolean(TestEnum.PEAR, "PEAR", Boolean.TRUE, "eq");
 
     // Value A is not equal to value B. (false)
-    this.testOperatorBoolean(TestEnum.PEAR, "APPLE", false, "==");
-    this.testOperatorBoolean(TestEnum.APPLE, "PEAR", false, "eq");
+    this.testOperatorBoolean(TestEnum.PEAR, "APPLE", Boolean.FALSE, "==");
+    this.testOperatorBoolean(TestEnum.APPLE, "PEAR", Boolean.FALSE, "eq");
   }
 
   /**
@@ -1769,12 +1769,12 @@ public class ELClientIT {
   public void elEnumNotEqualToTest() throws Exception {
 
     // Value A is not equal to value B. (true)
-    this.testOperatorBoolean(TestEnum.APPLE, "PEAR", true, "!=");
-    this.testOperatorBoolean(TestEnum.PEAR, "APPLE", true, "ne");
+    this.testOperatorBoolean(TestEnum.APPLE, "PEAR", Boolean.TRUE, "!=");
+    this.testOperatorBoolean(TestEnum.PEAR, "APPLE", Boolean.TRUE, "ne");
 
     // Value A is not equal to value B. (false)
-    this.testOperatorBoolean(TestEnum.APPLE, "APPLE", false, "!=");
-    this.testOperatorBoolean(TestEnum.PEAR, "PEAR", false, "ne");
+    this.testOperatorBoolean(TestEnum.APPLE, "APPLE", Boolean.FALSE, "!=");
+    this.testOperatorBoolean(TestEnum.PEAR, "PEAR", Boolean.FALSE, "ne");
   }
 
   // ---------------------------------------------------------- private

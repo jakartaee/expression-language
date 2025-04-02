@@ -127,7 +127,7 @@ public class ELClientIT {
 
     try {
       pass = ResolverTest.testELResolverInvoke(context, context.getELResolver(),
-          new SimpleBean(), "bogue_method", types, values, true, buf);
+          new SimpleBean(), "bogue_method", types, values, Boolean.TRUE, buf);
 
     } catch (Exception ex) {
       throw new Exception(ex);
@@ -171,7 +171,7 @@ public class ELClientIT {
 
     try {
       pass = ResolverTest.testELResolverInvoke(context, context.getELResolver(),
-          new SimpleBean(), "isName", types, values, false, buf);
+          new SimpleBean(), "isName", types, values, Boolean.FALSE, buf);
 
     } catch (Exception ex) {
       throw new Exception(ex);

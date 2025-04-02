@@ -416,7 +416,7 @@ public class ELClientIT {
           Boolean.class);
 
       pass = (ExprEval.compareClass(expr, Boolean.class)
-          && ExprEval.compareValue(expr, true));
+          && ExprEval.compareValue(expr, Boolean.TRUE));
 
     } catch (Exception e) {
       ELTestUtil.printStackTrace(e);

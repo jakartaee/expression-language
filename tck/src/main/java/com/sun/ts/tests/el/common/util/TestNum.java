@@ -70,13 +70,13 @@ public final class TestNum {
 
     numberList = new ArrayList<>();
 
-    numberList.add(BigDecimal.valueOf(Long.valueOf(COMPARATOR)));
+    numberList.add(BigDecimal.valueOf(Long.parseLong(COMPARATOR)));
     numberList.add(Double.valueOf(COMPARATOR));
     numberList.add(Float.valueOf(COMPARATOR));
     numberList.add(COMPARATOR + ".0");
     numberList.add(COMPARATOR + "e0");
     numberList.add(COMPARATOR + "E0");
-    numberList.add(BigInteger.valueOf(Long.valueOf(COMPARATOR)));
+    numberList.add(BigInteger.valueOf(Long.parseLong(COMPARATOR)));
     numberList.add(Long.valueOf(COMPARATOR));
     numberList.add(Integer.valueOf(COMPARATOR));
     numberList.add(Short.valueOf(COMPARATOR));

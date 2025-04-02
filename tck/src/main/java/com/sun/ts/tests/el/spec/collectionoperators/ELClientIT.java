@@ -256,10 +256,10 @@ public class ELClientIT {
     buildELContext();
 
     testIterable("anyMatch_True",
-        "products.stream().anyMatch(p->p.unitPrice >= 10)", true);
+        "products.stream().anyMatch(p->p.unitPrice >= 10)", Boolean.TRUE);
 
     testIterable("anyMatch_False",
-        "products.stream().anyMatch(p->p.unitPrice == 100)", false);
+        "products.stream().anyMatch(p->p.unitPrice == 100)", Boolean.FALSE);
 
   } // End elCollectionAnyMatchTest()
 
@@ -278,10 +278,10 @@ public class ELClientIT {
     buildELContext();
 
     testIterable("noneMatch_False",
-        "products.stream().noneMatch(p->p.unitPrice >= 10)", false);
+        "products.stream().noneMatch(p->p.unitPrice >= 10)", Boolean.FALSE);
 
     testIterable("noneMatch_True",
-        "products.stream().noneMatch(p->p.unitPrice == 100)", true);
+        "products.stream().noneMatch(p->p.unitPrice == 100)", Boolean.TRUE);
 
   } // End elCollectionNoneMatchTest()
 
@@ -300,10 +300,10 @@ public class ELClientIT {
     buildELContext();
 
     testIterable("allMatch_true",
-        "products.stream().allMatch(p->p.unitPrice >= 1)", true);
+        "products.stream().allMatch(p->p.unitPrice >= 1)", Boolean.TRUE);
 
     testIterable("allMatch_false",
-        "products.stream().allMatch(p->p.unitPrice == 100)", false);
+        "products.stream().allMatch(p->p.unitPrice == 100)", Boolean.FALSE);
 
   } // End elCollectionAllMatchTest()
 

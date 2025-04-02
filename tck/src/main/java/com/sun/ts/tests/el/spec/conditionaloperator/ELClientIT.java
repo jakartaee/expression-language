@@ -96,7 +96,7 @@ public class ELClientIT {
     boolean pass = false;
 
     NameValuePair value[] = NameValuePair.buildConditionalNameValue(testVal,
-        true, false);
+            Boolean.TRUE, Boolean.FALSE);
 
     try {
       for (boolean tf : deferred) {
@@ -106,7 +106,7 @@ public class ELClientIT {
 
         logger.log(Logger.Level.TRACE, "result is " + result.toString());
         pass = (ExprEval.compareClass(result, Boolean.class)
-            && ExprEval.compareValue((Boolean) result, expectedResult));
+            && ExprEval.compareValue((Boolean) result, Boolean.valueOf(expectedResult)));
 
         if (!pass)
           throw new Exception("TEST FAILED: pass = false");
@@ -121,8 +121,8 @@ public class ELClientIT {
 
     boolean pass = false;
 
-    NameValuePair value[] = NameValuePair.buildConditionalNameValue(testVal,
-        true, false);
+    NameValuePair value[] = NameValuePair.buildConditionalNameValue(Boolean.valueOf(testVal),
+            Boolean.TRUE, Boolean.FALSE);
 
     try {
       for (boolean tf : deferred) {
@@ -132,7 +132,7 @@ public class ELClientIT {
 
         logger.log(Logger.Level.TRACE, "result is " + result.toString());
         pass = (ExprEval.compareClass(result, Boolean.class)
-            && ExprEval.compareValue((Boolean) result, expectedResult));
+            && ExprEval.compareValue((Boolean) result, Boolean.valueOf(expectedResult)));
 
         if (!pass)
           throw new Exception("TEST FAILED: pass = false");

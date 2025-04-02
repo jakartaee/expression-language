@@ -35,14 +35,14 @@ public class TypesBean {
   private static HashMap<Class<?>, String> numberMap;
 
   private BigDecimal tckBigDecimal = BigDecimal
-      .valueOf(Long.valueOf(COMPARATOR));
+      .valueOf(Long.parseLong(COMPARATOR));
 
   private Double tckDouble = Double.valueOf(COMPARATOR);
 
   private Float tckFloat = Float.valueOf(COMPARATOR);
 
   private BigInteger tckBigInteger = BigInteger
-      .valueOf(Long.valueOf(COMPARATOR));
+      .valueOf(Long.parseLong(COMPARATOR));
 
   private Long tckLong = Long.valueOf(COMPARATOR);
 
@@ -52,7 +52,7 @@ public class TypesBean {
 
   private Byte tckByte = Byte.valueOf(COMPARATOR);
 
-  private Boolean tckBoolean = true;
+  private Boolean tckBoolean = Boolean.TRUE;
 
   private Byte tckNull = null;
 

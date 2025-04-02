@@ -271,7 +271,7 @@ public class ELClientIT {
     byte num = 1;
     byte expectedResult = -1;
 
-    NameValuePair value[] = NameValuePair.buildUnaryNameValue(num);
+    NameValuePair value[] = NameValuePair.buildUnaryNameValue(Byte.valueOf(num));
 
     try {
       for (boolean tf : deferred) {
@@ -282,7 +282,7 @@ public class ELClientIT {
 
         logger.log(Logger.Level.TRACE, "result is " + result.toString());
         pass = (ExprEval.compareClass(result, Byte.class)
-            && ExprEval.compareValue(result, expectedResult));
+            && ExprEval.compareValue(result, Byte.valueOf(expectedResult)));
       }
 
       if (!pass)
@@ -311,7 +311,7 @@ public class ELClientIT {
     short num = 1;
     short expectedResult = -1;
 
-    NameValuePair value[] = NameValuePair.buildUnaryNameValue(num);
+    NameValuePair value[] = NameValuePair.buildUnaryNameValue(Short.valueOf(num));
 
     try {
       for (boolean tf : deferred) {
@@ -322,7 +322,7 @@ public class ELClientIT {
 
         logger.log(Logger.Level.TRACE, "result is " + result.toString());
         pass = (ExprEval.compareClass(result, Short.class)
-            && ExprEval.compareValue(result, expectedResult));
+            && ExprEval.compareValue(result, Short.valueOf(expectedResult)));
       }
 
       if (!pass)
@@ -351,7 +351,7 @@ public class ELClientIT {
     int num = 1;
     int expectedResult = -1;
 
-    NameValuePair value[] = NameValuePair.buildUnaryNameValue(num);
+    NameValuePair value[] = NameValuePair.buildUnaryNameValue(Integer.valueOf(num));
 
     try {
       for (boolean tf : deferred) {
@@ -362,7 +362,7 @@ public class ELClientIT {
 
         logger.log(Logger.Level.TRACE, "result is " + result.toString());
         pass = (ExprEval.compareClass(result, Integer.class)
-            && ExprEval.compareValue(result, expectedResult));
+            && ExprEval.compareValue(result, Integer.valueOf(expectedResult)));
       }
 
       if (!pass)
@@ -391,7 +391,7 @@ public class ELClientIT {
     long num = 10000;
     long expectedResult = -10000;
 
-    NameValuePair value[] = NameValuePair.buildUnaryNameValue(num);
+    NameValuePair value[] = NameValuePair.buildUnaryNameValue(Long.valueOf(num));
 
     try {
       for (boolean tf : deferred) {
@@ -402,7 +402,7 @@ public class ELClientIT {
 
         logger.log(Logger.Level.TRACE, "result is " + result.toString());
         pass = (ExprEval.compareClass(result, Long.class)
-            && ExprEval.compareValue(result, expectedResult));
+            && ExprEval.compareValue(result, Long.valueOf(expectedResult)));
       }
 
       if (!pass)
@@ -431,7 +431,7 @@ public class ELClientIT {
     float num = 10000f;
     float expectedResult = -10000f;
 
-    NameValuePair value[] = NameValuePair.buildUnaryNameValue(num);
+    NameValuePair value[] = NameValuePair.buildUnaryNameValue(Float.valueOf(num));
 
     try {
       for (boolean tf : deferred) {
@@ -442,7 +442,7 @@ public class ELClientIT {
 
         logger.log(Logger.Level.TRACE, "result is " + result.toString());
         pass = (ExprEval.compareClass(result, Float.class)
-            && ExprEval.compareValue((Float) result, expectedResult, 0));
+            && ExprEval.compareValue((Float) result, Float.valueOf(expectedResult), 0));
       }
 
       if (!pass)
@@ -471,7 +471,7 @@ public class ELClientIT {
     double num = 10000.0;
     double expectedResult = -10000.0;
 
-    NameValuePair value[] = NameValuePair.buildUnaryNameValue(num);
+    NameValuePair value[] = NameValuePair.buildUnaryNameValue(Double.valueOf(num));
 
     try {
       for (boolean tf : deferred) {
@@ -482,7 +482,7 @@ public class ELClientIT {
 
         logger.log(Logger.Level.TRACE, "result is " + result.toString());
         pass = (ExprEval.compareClass(result, Double.class)
-            && ExprEval.compareValue(result, expectedResult));
+            && ExprEval.compareValue(result, Double.valueOf(expectedResult)));
       }
 
       if (!pass)
@@ -545,7 +545,7 @@ public class ELClientIT {
 
           logger.log(Logger.Level.TRACE, "result is " + result.toString());
           pass = (ExprEval.compareClass(result, Boolean.class)
-              && ExprEval.compareValue((Boolean) result, expectedResult));
+              && ExprEval.compareValue((Boolean) result, Boolean.valueOf(expectedResult)));
 
           if (!pass)
             throw new Exception("TEST FAILED: pass = false");
