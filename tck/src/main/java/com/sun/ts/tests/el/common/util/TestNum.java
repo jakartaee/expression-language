@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2006, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2006, 2025 Oracle and/or its affiliates and others.
+ * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -43,12 +44,12 @@ public final class TestNum {
 
   /**
    * Used for a common list of Float values when testing.
-   * 
+   *
    * @return - A set list of common Floats that we use as test values.
    */
   public static ArrayList getFloatList() {
 
-    floatList = new ArrayList<Float>();
+    floatList = new ArrayList<>();
 
     floatList.add(Float.valueOf("1.00005f"));
     floatList.add(Float.valueOf("1.5E-4d"));
@@ -67,7 +68,7 @@ public final class TestNum {
    */
   public static ArrayList getNumberList() {
 
-    numberList = new ArrayList<Object>();
+    numberList = new ArrayList<>();
 
     numberList.add(BigDecimal.valueOf(Long.valueOf(COMPARATOR)));
     numberList.add(Double.valueOf(COMPARATOR));

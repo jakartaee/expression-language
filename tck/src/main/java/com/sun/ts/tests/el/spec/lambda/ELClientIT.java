@@ -159,7 +159,7 @@ void logFinishTest(TestInfo testInfo) {
     String comparitorA = "Float";
 
     // excluded data types.
-    List<String> excludeList = new ArrayList<String>();
+    List<String> excludeList = new ArrayList<>();
     excludeList.add("BigDecimal");
 
     Iterator<Class<?>> iter = TypesBean.getNumberMap().keySet().iterator();
@@ -266,7 +266,7 @@ void logFinishTest(TestInfo testInfo) {
     String comparitorA = "Double";
 
     // excluded data types.
-    List<String> excludeList = new ArrayList<String>();
+    List<String> excludeList = new ArrayList<>();
     excludeList.add("BigDecimal");
     excludeList.add("Float");
 
@@ -371,7 +371,7 @@ void logFinishTest(TestInfo testInfo) {
     String comparitorA = "BigInteger";
 
     // excluded data types.
-    List<String> excludeList = new ArrayList<String>();
+    List<String> excludeList = new ArrayList<>();
     excludeList.add("BigDecimal");
     excludeList.add("Double");
     excludeList.add("Float");
@@ -448,7 +448,7 @@ void logFinishTest(TestInfo testInfo) {
     String comparitorA = "Integer";
 
     // excluded data types.
-    List<String> excludeList = new ArrayList<String>();
+    List<String> excludeList = new ArrayList<>();
     excludeList.add("BigDecimal");
     excludeList.add("BigInteger");
     excludeList.add("Double");
@@ -526,7 +526,7 @@ void logFinishTest(TestInfo testInfo) {
     String comparitorA = "Long";
 
     // excluded data types.
-    List<String> excludeList = new ArrayList<String>();
+    List<String> excludeList = new ArrayList<>();
     excludeList.add("BigDecimal");
     excludeList.add("BigInteger");
     excludeList.add("Integer");
@@ -606,7 +606,7 @@ void logFinishTest(TestInfo testInfo) {
     String comparitorA = "Short";
 
     // excluded data types.
-    List<String> excludeList = new ArrayList<String>();
+    List<String> excludeList = new ArrayList<>();
     excludeList.add("BigDecimal");
     excludeList.add("BigInteger");
     excludeList.add("Integer");
@@ -687,7 +687,7 @@ void logFinishTest(TestInfo testInfo) {
     String comparitorA = "Byte";
 
     // excluded data types.
-    List<String> excludeList = new ArrayList<String>();
+    List<String> excludeList = new ArrayList<>();
     excludeList.add("BigDecimal");
     excludeList.add("BigInteger");
     excludeList.add("Integer");
