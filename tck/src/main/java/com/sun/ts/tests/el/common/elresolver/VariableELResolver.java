@@ -21,10 +21,7 @@
 
 package com.sun.ts.tests.el.common.elresolver;
 
-import java.beans.FeatureDescriptor;
 import java.util.Hashtable;
-import java.util.Iterator;
-
 import jakarta.el.ELContext;
 import jakarta.el.ELException;
 import jakarta.el.ELResolver;
@@ -101,11 +98,6 @@ public class VariableELResolver extends ELResolver {
       context.setPropertyResolved(true);
     }
     return false;
-  }
-
-  public Iterator<FeatureDescriptor> getFeatureDescriptors(ELContext context,
-      Object base) {
-    return null;
   }
 
   @Override

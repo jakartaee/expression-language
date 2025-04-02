@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009, 2024 Oracle and/or its affiliates and others.
+ * Copyright (c) 2009, 2025 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -61,13 +61,13 @@ public class ELClientIT {
 
   /**
    * @testName: beanELResolverTest
-   * 
+   *
    * @assertion_ids: EL:JAVADOC:9; EL:JAVADOC:11; EL:JAVADOC:12; EL:JAVADOC:13;
    *                 EL:JAVADOC:14; EL:JAVADOC:15; EL:JAVADOC:16
-   * 
+   *
    * @test_Strategy: Verify that API calls work as expected: beanELResolver()
    *                 getValue() getType() setValue() isReadOnly()
-   *                 getCommonPropertyType() getFeatureDescriptors()
+   *                 getCommonPropertyType()
    */
   @Test
   public void beanELResolverTest() throws Exception {
@@ -95,10 +95,10 @@ public class ELClientIT {
 
   /**
    * @testName: beanELResolverDefaultMethodReadOnlyTest
-   * 
+   *
    * @assertion_ids: EL:JAVADOC:9; EL:JAVADOC:11; EL:JAVADOC:12; EL:JAVADOC:13;
    *                 EL:JAVADOC:14; EL:JAVADOC:15; EL:JAVADOC:16
-   * 
+   *
    * @test_Strategy: Verify that API calls work as expected when accessing
    *                 read-only properties defined via a default interface method
    */
@@ -130,13 +130,13 @@ public class ELClientIT {
     logger.log(Logger.Level.TRACE, buf.toString());
   }
 
-  
+
   /**
    * @testName: beanELResolverDefaultMethodReadWriteTest
-   * 
+   *
    * @assertion_ids: EL:JAVADOC:9; EL:JAVADOC:11; EL:JAVADOC:12; EL:JAVADOC:13;
    *                 EL:JAVADOC:14; EL:JAVADOC:15; EL:JAVADOC:16
-   * 
+   *
    * @test_Strategy: Verify that API calls work as expected when accessing
    *                 writable properties defined via a default interface method
    */
@@ -284,14 +284,14 @@ public class ELClientIT {
 
   /**
    * @testName: beanELResolverNPETest
-   * 
+   *
    * @assertion_ids: EL:JAVADOC:9; EL:JAVADOC:13; EL:JAVADOC:14; EL:JAVADOC:15;
    *                 EL:JAVADOC:16; EL:JAVADOC:136; EL:JAVADOC:139;
    *                 EL:JAVADOC:145; EL:JAVADOC:148
-   * 
+   *
    * @test_Strategy: Verify that the following methods throw a
    *                 NullPointerException, if context is null:
-   * 
+   *
    *                 getType() getValue() isReadOnly() setValue()
    */
   @Test
@@ -318,15 +318,15 @@ public class ELClientIT {
 
   /**
    * @testName: beanELResolverPNFETest
-   * 
+   *
    * @assertion_ids: EL:JAVADOC:9; EL:JAVADOC:13; EL:JAVADOC:14; EL:JAVADOC:15;
    *                 EL:JAVADOC:16; EL:JAVADOC:137; EL:JAVADOC:140;
    *                 EL:JAVADOC:146; EL:JAVADOC:149
-   * 
+   *
    * @test_Strategy: Verify that the following methods throw a
    *                 PropertyNotFoundException, if the base is not null and the
    *                 specified property does not exist.
-   * 
+   *
    *                 getType() isReadOnly() setValue() getValue()
    */
   @Test
@@ -356,15 +356,15 @@ public class ELClientIT {
 
   /**
    * @testName: beanELResolverPNWETest
-   * 
+   *
    * @assertion_ids: EL:JAVADOC:10; EL:JAVADOC:16; EL:JAVADOC:150
-   * 
+   *
    * @test_Strategy: Verify that the single-parameter constructor for
    *                 beanELResolver can be used to construct a read-only
    *                 resolver, and that the setValue() method throws a
    *                 PropertyNotWritableException, if the resolver was
    *                 constructed in read-only mode.
-   * 
+   *
    *                 BeanELResolver(boolean) setValue()
    */
   @Test
@@ -389,14 +389,13 @@ public class ELClientIT {
     }
     logger.log(Logger.Level.TRACE, buf.toString());
   }
-  
+
   /**
    * @testName: beanELResolverMethodVisibilityTest
-   * 
+   *
    * @test_Strategy: Verify that API calls work as expected for a property that is not visible via the implementing
    *                 class (it is in an internal, non-exported class) but is visible via an interface method:
    *                 beanELResolver() getValue() getType() setValue() isReadOnly() getCommonPropertyType()
-   *                 getFeatureDescriptors()
    */
   @Test
   public void beanELResolverMethodVisibilityTest() throws Exception {
@@ -404,7 +403,7 @@ public class ELClientIT {
     boolean pass = false;
     StringBuffer buf = new StringBuffer();
     TimeZone tz = TimeZone.getDefault();
-    
+
     try {
       BeanELResolver beanResolver = new BeanELResolver();
       BareBonesELContext barebonesContext = new BareBonesELContext();

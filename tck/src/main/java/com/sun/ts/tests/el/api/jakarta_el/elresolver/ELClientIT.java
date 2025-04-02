@@ -72,7 +72,6 @@ public class ELClientIT {
    * @test_Strategy: Create an ELContext and get its ELResolver. Verify that API
    *                 calls work as expected: getValue() getType() setValue()
    *                 isReadOnly() getCommonPropertyType()
-   *                 getFeatureDescriptors()
    */
   @Test
   public void elResolverTest() throws Exception {

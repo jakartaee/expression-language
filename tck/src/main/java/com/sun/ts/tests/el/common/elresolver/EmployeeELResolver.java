@@ -21,8 +21,6 @@
 
 package com.sun.ts.tests.el.common.elresolver;
 
-import java.util.Iterator;
-
 import jakarta.el.ELContext;
 import jakarta.el.ELException;
 import jakarta.el.ELResolver;
@@ -104,10 +102,6 @@ public class EmployeeELResolver extends ELResolver {
         || (base instanceof String && base.equals("worker")))
       context.setPropertyResolved(true);
     return true;
-  }
-
-  public Iterator getFeatureDescriptors(ELContext context, Object base) {
-    return null;
   }
 
   @Override

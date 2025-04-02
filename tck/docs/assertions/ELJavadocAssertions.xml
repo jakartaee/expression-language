@@ -2,7 +2,7 @@
 <!DOCTYPE javadoc SYSTEM "https://raw.githubusercontent.com/eclipse-ee4j/jakartaee-tck/master/internal/docs/dtd/javadoc_assertions.dtd">
 <!--
 
-    Copyright (c) 2018, 2022 Oracle and/or its affiliates and others.
+    Copyright (c) 2018, 2025 Oracle and/or its affiliates and others.
     All rights reserved.
 
     This program and the accompanying materials are made available under the
@@ -54,18 +54,6 @@
       <package>jakarta.el</package>
       <class-interface>ArrayELResolver</class-interface>
       <method name="getCommonPropertyType" return-type="java.lang.Class">
-        <parameters>
-          <parameter>jakarta.el.ELContext</parameter>
-          <parameter>java.lang.Object</parameter>
-        </parameters>
-      </method>
-    </assertion>
-    <assertion required="true" impl-spec="false" status="active" testable="true">
-      <id>4</id>
-      <description>Always returns null, since there is no reason to iterate through set set of all integers. The #getCommonPropertyType method returns sufficient information about what properties this resolver accepts.</description>
-      <package>jakarta.el</package>
-      <class-interface>ArrayELResolver</class-interface>
-      <method name="getFeatureDescriptors" return-type="java.util.Iterator">
         <parameters>
           <parameter>jakarta.el.ELContext</parameter>
           <parameter>java.lang.Object</parameter>
@@ -156,18 +144,6 @@
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
-      <id>12</id>
-      <description>If the base object is not null, returns an Iterator containing the set of JavaBeans properties available on the given object. Otherwise, returns null. The Iterator returned must contain zero or more instances of java.beans.FeatureDescriptor. Each info object contains information about a property in the bean, as obtained by calling the BeanInfo.getPropertyDescriptors method. The FeatureDescriptor is initialized using the same fields as are present in the PropertyDescriptor, with the additional required named attributes "type" and "resolvableAtDesignTime" set as follows: ELResolver#TYPE - The runtime type of the property, from PropertyDescriptor.getPropertyType(). ELResolver#RESOLVABLE_AT_DESIGN_TIME - true.</description>
-      <package>jakarta.el</package>
-      <class-interface>BeanELResolver</class-interface>
-      <method name="getFeatureDescriptors" return-type="java.util.Iterator">
-        <parameters>
-          <parameter>jakarta.el.ELContext</parameter>
-          <parameter>java.lang.Object</parameter>
-        </parameters>
-      </method>
-    </assertion>
-    <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>13</id>
       <description>If the base object is not null, returns the most general acceptable type that can be set on this bean property. If the base is not null, the propertyResolved property of the ELContext object must be set to true by this resolver, before returning. If this property is not true after this method is called, the caller should ignore the return value. The provided property will first be coerced to a String. If there is a BeanInfoProperty for this property and there were no errors retrieving it, the propertyType of the propertyDescriptor is returned. Otherwise, a PropertyNotFoundException is thrown.</description>
       <package>jakarta.el</package>
@@ -244,18 +220,6 @@
       <package>jakarta.el</package>
       <class-interface>CompositeELResolver</class-interface>
       <method name="getCommonPropertyType" return-type="java.lang.Class">
-        <parameters>
-          <parameter>jakarta.el.ELContext</parameter>
-          <parameter>java.lang.Object</parameter>
-        </parameters>
-      </method>
-    </assertion>
-    <assertion required="true" impl-spec="false" status="active" testable="true">
-      <id>27</id>
-      <description>Returns information about the set of variables or properties that can be resolved for the given base object. One use for this method is to assist tools in auto-completion. The results are collected from all component resolvers. The propertyResolved property of the ELContext is not relevant to this method. The results of all ELResolvers are concatenated. The Iterator returned is an iterator over the collection of FeatureDescriptor objects returned by the iterators returned by each component resolver's getFeatureDescriptors method. If null is returned by a resolver, it is skipped.</description>
-      <package>jakarta.el</package>
-      <class-interface>CompositeELResolver</class-interface>
-      <method name="getFeatureDescriptors" return-type="java.util.Iterator">
         <parameters>
           <parameter>jakarta.el.ELContext</parameter>
           <parameter>java.lang.Object</parameter>
@@ -470,18 +434,6 @@
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
-      <id>51</id>
-      <description>Returns information about the set of variables or properties that can be resolved for the given base object. One use for this method is to assist tools in auto-completion. If the base parameter is null, the resolver must enumerate the list of top-level variables it can resolve. The Iterator returned must contain zero or more instances of java.beans.FeatureDescriptor, in no guaranteed order. In the case of primitive types such as int, the value null must be returned. This is to prevent the useless iteration through all possible primitive values. A return value of null indicates that this resolver does not handle the given base object or that the results are too complex to represent with this method and the #getCommonPropertyType method should be used instead. Each FeatureDescriptor will contain information about a single variable or property. In addition to the standard properties, the FeatureDescriptor must have two named attributes (as set by the setValue method): #TYPE - The value of this named attribute must be an instance of java.lang.Class and specify the runtime type of the variable or property. #RESOLVABLE_AT_DESIGN_TIME - The value of this named attribute must be an instance of java.lang.Boolean and indicates whether it is safe to attempt to resolve this property at design-time. For instance, it may be unsafe to attempt a resolution at design time if the ELResolver needs access to a resource that is only available at runtime and no acceptable simulated value can be provided. The caller should be aware that the Iterator returned might iterate through a very large or even infinitely large set of properties. Care should be taken by the caller to not get stuck in an infinite loop. This is a "best-effort" list. Not all ELResolvers will return completely accurate results, but all must be callable at both design-time and runtime (i.e. whether or not Beans.isDesignTime() returns true), without causing errors. The propertyResolved property of the ELContext is not relevant to this method. The results of all ELResolvers are concatenated in the case of composite resolvers.</description>
-      <package>jakarta.el</package>
-      <class-interface>ELResolver</class-interface>
-      <method name="getFeatureDescriptors" return-type="java.util.Iterator">
-        <parameters>
-          <parameter>jakarta.el.ELContext</parameter>
-          <parameter>java.lang.Object</parameter>
-        </parameters>
-      </method>
-    </assertion>
-    <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>52</id>
       <description>For a given base and property, attempts to identify the most general type that is acceptable for an object to be passed as the value parameter in a future call to the #setValue method. If this resolver handles the given (base, property) pair, the propertyResolved property of the ELContext object must be set to true by the resolver, before returning. If this property is not true after this method is called, the caller should ignore the return value. This is not always the same as getValue().getClass(). For example, in the case of an ArrayELResolver, the getType method will return the element type of the array, which might be a superclass of the type of the actual element that is currently in the specified array element.</description>
       <package>jakarta.el</package>
@@ -651,18 +603,6 @@
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
-      <id>69</id>
-      <description>Always returns null, since there is no reason to iterate through set set of all integers. The #getCommonPropertyType method returns sufficient information about what properties this resolver accepts.</description>
-      <package>jakarta.el</package>
-      <class-interface>ListELResolver</class-interface>
-      <method name="getFeatureDescriptors" return-type="java.util.Iterator">
-        <parameters>
-          <parameter>jakarta.el.ELContext</parameter>
-          <parameter>java.lang.Object</parameter>
-        </parameters>
-      </method>
-    </assertion>
-    <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>70</id>
       <description>If the base object is a list, returns the most general acceptable type for a value in this list. If the base is a List, the propertyResolved property of the ELContext object must be set to true by this resolver, before returning. If this property is not true after this method is called, the caller should ignore the return value. Assuming the base is a List, this method will always return Object.class. This is because Lists accept any object as an element.</description>
       <package>jakarta.el</package>
@@ -739,18 +679,6 @@
       <package>jakarta.el</package>
       <class-interface>MapELResolver</class-interface>
       <method name="getCommonPropertyType" return-type="java.lang.Class">
-        <parameters>
-          <parameter>jakarta.el.ELContext</parameter>
-          <parameter>java.lang.Object</parameter>
-        </parameters>
-      </method>
-    </assertion>
-    <assertion required="true" impl-spec="false" status="active" testable="true">
-      <id>77</id>
-      <description>If the base object is a map, returns an Iterator containing the set of keys available in the Map. Otherwise, returns null. The Iterator returned must contain zero or more instances of java.beans.FeatureDescriptor. Each info object contains information about a key in the Map, and is initialized as follows: displayName - The return value of calling the toString method on this key, or "null" if the key is null. name - Same as displayName property. shortDescription - Empty string expert - false hidden - false preferred - true In addition, the following named attributes must be set in the returned FeatureDescriptors: ELResolver#TYPE - The return value of calling the getClass() method on this key, or null if the key is null. ELResolver#RESOLVABLE_AT_DESIGN_TIME - true</description>
-      <package>jakarta.el</package>
-      <class-interface>MapELResolver</class-interface>
-      <method name="getFeatureDescriptors" return-type="java.util.Iterator">
         <parameters>
           <parameter>jakarta.el.ELContext</parameter>
           <parameter>java.lang.Object</parameter>
@@ -1011,31 +939,6 @@
       <method name="getCommonPropertyType" return-type="java.lang.Class">
         <parameters>
           <parameter>jakarta.el.ELContext</parameter>
-          <parameter>java.lang.Object</parameter>
-        </parameters>
-      </method>
-    </assertion>
-    <assertion required="true" impl-spec="false" status="active" testable="true">
-      <id>104</id>
-      <description>If the base object is a ResourceBundle, returns an Iterator containing the set of keys available in the ResourceBundle. Otherwise, returns null. The Iterator returned must contain zero or more instances of java.beans.FeatureDescriptor. Each info object contains information about a key in the ResourceBundle, and is initialized as follows: displayName - The String key name - Same as displayName property. shortDescription - Empty string expert - false hidden - false preferred - true In addition, the following named attributes must be set in the returned FeatureDescriptors: ELResolver#TYPE - String.class ELResolver#RESOLVABLE_AT_DESIGN_TIME - true</description>
-      <package>jakarta.el</package>
-      <class-interface>ResourceBundleELResolver</class-interface>
-      <method name="getFeatureDescriptors" return-type="java.util.Iterator">
-        <parameters>
-          <parameter>jakarta.el.ELContext</parameter>
-          <parameter>java.lang.Object</parameter>
-        </parameters>
-      </method>
-    </assertion>
-    <assertion required="true" impl-spec="false" status="active" testable="true">
-      <id>105</id>
-      <description>If the base object is an instance of ResourceBundle, return null, since the resolver is read only. If the base is ResourceBundle, the propertyResolved property of the ELContext object must be set to true by this resolver, before returning. If this property is not true after this method is called, the caller should ignore the return value.</description>
-      <package>jakarta.el</package>
-      <class-interface>ResourceBundleELResolver</class-interface>
-      <method name="getType" return-type="java.lang.Class">
-        <parameters>
-          <parameter>jakarta.el.ELContext</parameter>
-          <parameter>java.lang.Object</parameter>
           <parameter>java.lang.Object</parameter>
         </parameters>
       </method>
@@ -1665,18 +1568,6 @@
       <package>jakarta.el</package>
       <class-interface>BeanNameELResolver</class-interface>
       <method name="getCommonPropertyType" return-type="java.lang.Class">
-        <parameters>
-          <parameter>jakarta.el.ELContext</parameter>
-          <parameter>java.lang.Object</parameter>
-        </parameters>
-      </method>
-    </assertion>
-    <assertion required="true" impl-spec="false" status="active" testable="true">
-      <id>EL:JAVADOC:154</id>
-      <description>Always returns null, since there is no reason to iterate through a list of one element: bean name.</description>
-      <package>jakarta.el</package>
-      <class-interface>BeanNameELResolver</class-interface>
-      <method name="getFeatureDescriptors" return-type="java.util.Iterator">
         <parameters>
           <parameter>jakarta.el.ELContext</parameter>
           <parameter>java.lang.Object</parameter>
@@ -3603,18 +3494,6 @@
       </method>
     </assertion>
     <assertion required="true" impl-spec="false" status="active" testable="true">
-      <id>EL:JAVADOC:331</id>
-      <description>Returns the properties that can be resolved. Always returns null, since there is no reason to iterate through a list of one element: field name.</description>
-      <package>jakarta.el</package>
-      <class-interface>StaticFieldELResolver</class-interface>
-      <method name="getFeatureDescriptors" return-type="java.util.Iterator">
-        <parameters>
-          <parameter>jakarta.el.ELContext</parameter>
-          <parameter>java.lang.Object</parameter>
-        </parameters>
-      </method>
-    </assertion>
-    <assertion required="true" impl-spec="false" status="active" testable="true">
       <id>EL:JAVADOC:332</id>
       <description>Returns the type of a static field. If the base object is an instance of ELClassand the property is a String, the propertyResolved property of the ELContext object must be set to true by the resolver, before returning. If this property is not true after this method is called, the caller can safely assume no value has been set. If the property is the string "class", returns java.lang.Class.class. If the property string is a public static field of class specified in ELClass, return the type of the static field.</description>
       <package>jakarta.el</package>
@@ -3826,18 +3705,6 @@
       <package>jakarta.el</package>
       <class-interface>TypeConverter</class-interface>
       <method name="getCommonPropertyType" return-type="java.lang.Class">
-        <parameters>
-          <parameter>jakarta.el.ELContext</parameter>
-          <parameter>java.lang.Object</parameter>
-        </parameters>
-      </method>
-    </assertion>
-    <assertion required="true" impl-spec="false" status="active" testable="true">
-      <id>EL:JAVADOC:350</id>
-      <description>Returns information about the set of variables or properties that can be resolved for the given base object. One use for this method is to assist tools in auto-completion. If the base parameter is null, the resolver must enumerate the list of top-level variables it can resolve. The Iterator returned must contain zero or more instances of java.beans.FeatureDescriptor, in no guaranteed order. In the case of primitive types such as int, the value null must be returned. This is to prevent the useless iteration through all possible primitive values. A return value of null indicates that this resolver does not handle the given base object or that the results are too complex to represent with this method and the #getCommonPropertyType method should be used instead. Each FeatureDescriptor will contain information about a single variable or property. In addition to the standard properties, the FeatureDescriptor must have two named attributes (as set by the setValue method): #TYPE - The value of this named attribute must be an instance of java.lang.Class and specify the runtime type of the variable or property. #RESOLVABLE_AT_DESIGN_TIME - The value of this named attribute must be an instance of java.lang.Boolean and indicates whether it is safe to attempt to resolve this property at design-time. For instance, it may be unsafe to attempt a resolution at design time if the ELResolver needs access to a resource that is only available at runtime and no acceptable simulated value can be provided. The caller should be aware that the Iterator returned might iterate through a very large or even infinitely large set of properties. Care should be taken by the caller to not get stuck in an infinite loop. This is a "best-effort" list. Not all ELResolvers will return completely accurate results, but all must be callable at both design-time and runtime (i.e. whether or not Beans.isDesignTime() returns true), without causing errors. The propertyResolved property of the ELContext is not relevant to this method. The results of all ELResolvers are concatenated in the case of composite resolvers.</description>
-      <package>jakarta.el</package>
-      <class-interface>TypeConverter</class-interface>
-      <method name="getFeatureDescriptors" return-type="java.util.Iterator">
         <parameters>
           <parameter>jakarta.el.ELContext</parameter>
           <parameter>java.lang.Object</parameter>
