@@ -40,7 +40,7 @@ public class TCKFunctionMapper extends FunctionMapper {
 
   private static final String KEY = "Int:val";
 
-  private final Class clazz = Integer.class;
+  private final Class<?> clazz = Integer.class;
 
   private final HashMap<String, Method> fMap;
 

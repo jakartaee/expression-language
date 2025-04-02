@@ -53,7 +53,7 @@ public class FunctionELResolver extends ELResolver {
   }
 
   @Override
-  public Class getType(ELContext context, Object base, Object property)
+  public Class<?> getType(ELContext context, Object base, Object property)
       throws ELException {
     if (context == null)
       throw new NullPointerException();
@@ -85,7 +85,7 @@ public class FunctionELResolver extends ELResolver {
   }
 
   @Override
-  public Class getCommonPropertyType(ELContext context, Object base) {
+  public Class<?> getCommonPropertyType(ELContext context, Object base) {
     if (base == null)
       return Object.class;
     return null;

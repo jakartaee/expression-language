@@ -47,7 +47,7 @@ public final class TestNum {
    *
    * @return - A set list of common Floats that we use as test values.
    */
-  public static ArrayList getFloatList() {
+  public static ArrayList<Float> getFloatList() {
 
     floatList = new ArrayList<>();
 
@@ -66,7 +66,7 @@ public final class TestNum {
    *
    * @return - A common List of Number types with a constant value.
    */
-  public static ArrayList getNumberList() {
+  public static ArrayList<Object> getNumberList() {
 
     numberList = new ArrayList<>();
 

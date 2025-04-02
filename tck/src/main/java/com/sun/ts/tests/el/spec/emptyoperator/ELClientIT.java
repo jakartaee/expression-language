@@ -141,7 +141,7 @@ public class ELClientIT {
   @Test
   public void elEmptyMapTest() throws Exception {
 
-    HashMap testMap = new HashMap();
+    HashMap<String,String> testMap = new HashMap<>();
 
     this.testEmptyOperator(testMap, true);
 
@@ -163,7 +163,7 @@ public class ELClientIT {
   @Test
   public void elEmptyCollectionTest() throws Exception {
 
-    ArrayList testCollection = new ArrayList();
+    ArrayList<String> testCollection = new ArrayList<>();
 
     this.testEmptyOperator(testCollection, true);
 
