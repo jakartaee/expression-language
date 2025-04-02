@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2012, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2012, 2025 Oracle and/or its affiliates and others.
+ * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -31,16 +32,13 @@ public class TCKELClass {
   private static String privStatic = "privStatic";
 
   /**
-   * 
-   * @param firstName
-   *          - first name @String
-   * @param lastName
-   *          - last Name
-   * @return true is full name matches the given firstName + " " + lastName
-   *         pattern.
+   * @param name
+   *          - Name to test against firstName
+   *
+   * @return true if firstName matches the provided name
    */
   public static boolean isName(String name) {
-    boolean result = Boolean.FALSE;
+    boolean result = false;
 
     if (name.equals(firstName)) {
       result = true;
@@ -48,5 +46,4 @@ public class TCKELClass {
 
     return result;
   }
-
 }

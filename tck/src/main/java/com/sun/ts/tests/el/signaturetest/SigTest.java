@@ -94,12 +94,6 @@ public abstract class SigTest {
    * Called by the test framework to initialize this test. The method simply
    * retrieves some state information that is necessary to run the test when
    * when the test framework invokes the run method (actually the test1 method).
-   *
-   * @param args
-   *          List of arguments passed to this test.
-   * @param p
-   *          Properties specified by the test user and passed to this test via
-   *          the test framework.
    */
   public void setup() {
     try {
