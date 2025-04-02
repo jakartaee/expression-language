@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009, 2021 Oracle and/or its affiliates and others.
+ * Copyright (c) 2009, 2025 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -46,13 +46,13 @@ public class ExpressionTest {
   }
 
   public static boolean testMethodInfo(MethodInfo minfo, String expectedName,
-      Class expectedReturnType, int expectedNumParams,
-      Class[] expectedParamTypes, StringBuffer buf) {
+      Class<?> expectedReturnType, int expectedNumParams,
+      Class<?>[] expectedParamTypes, StringBuffer buf) {
 
     boolean pass = true;
     String name = minfo.getName();
-    Class returnType = minfo.getReturnType();
-    Class[] paramTypes = minfo.getParamTypes();
+    Class<?> returnType = minfo.getReturnType();
+    Class<?>[] paramTypes = minfo.getParamTypes();
     int numParams = paramTypes.length;
 
     if (!name.equals(expectedName)) {
@@ -95,12 +95,12 @@ public class ExpressionTest {
       Object[] expectedParamValues, StringBuffer buf) {
 
     boolean pass = true;
-    
+
     Object base = mref.getBase();
     MethodInfo minfo = mref.getMethodInfo();
     Annotation[] annotations = mref.getAnnotations();
     Object[] parameterValues = mref.getEvaluatedParameters();
-    
+
     if (base == null) {
       buf.append("Did not get expected base object." + NLINE);
       buf.append("Expected base = " + expectedBase + NLINE);
@@ -169,7 +169,7 @@ public class ExpressionTest {
   }
 
   public static boolean testValueExpression(ValueExpression vexp,
-      ELContext context, String exprStr, Class expectedType,
+      ELContext context, String exprStr, Class<?> expectedType,
       Object expectedValue, boolean expectedReadOnly,
       boolean expectedLiteralText, StringBuffer buf) {
 
@@ -211,12 +211,12 @@ public class ExpressionTest {
     }
 
     // getType()
-    Class type = vexp.getType(context);
+    Class<?> type = vexp.getType(context);
     String typeName = (type == null) ? "null" : type.getName();
     buf.append("Type retrieved is " + typeName + NLINE);
 
     // getExpectedType()
-    Class retrievedType = vexp.getExpectedType();
+    Class<?> retrievedType = vexp.getExpectedType();
     if (!(retrievedType.equals(expectedType))) {
       pass = false;
       buf.append(

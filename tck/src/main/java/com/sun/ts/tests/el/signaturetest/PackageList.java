@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2024 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2025 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -74,7 +74,7 @@ class PackageList {
   private String additionalPackageName;
 
   // Name of packages and sub-packages in the
-  private Set packageNames = new TreeSet();
+  private Set<String> packageNames = new TreeSet<>();
 
   /**
    * Creates an instance of the PackageList class. The PackageList instance
@@ -202,17 +202,17 @@ class PackageList {
   private void removeExistingPackage() {
     String delPackage = this.additionalPackageName;
     String packageName;
-    List delPkgs = new ArrayList();
+    List<String> delPkgs = new ArrayList<>();
     // iterate over package set and find package names to remove
-    for (Iterator i = packageNames.iterator(); i.hasNext();) {
-      packageName = (String) i.next();
+    for (Iterator<String> i = packageNames.iterator(); i.hasNext();) {
+      packageName = i.next();
       if (packageName.startsWith(delPackage)) {
         delPkgs.add(packageName);
       }
     }
     // actually remove the package names from the set
     for (int i = 0; i < delPkgs.size(); i++) {
-      packageName = (String) (delPkgs.get(i));
+      packageName = delPkgs.get(i);
       packageNames.remove(packageName);
       System.out.println(
           "PackageList.removeExistingPackage() \"" + packageName + "\"");
@@ -329,8 +329,8 @@ class PackageList {
     try {
       out = new BufferedWriter(new FileWriter(packageFile));
       writeHeader(out);
-      for (Iterator i = packageNames.iterator(); i.hasNext();) {
-        String packageName = (String) i.next();
+      for (Iterator<String> i = packageNames.iterator(); i.hasNext();) {
+        String packageName = i.next();
         out.write(packageName);
         out.newLine();
         System.out
@@ -353,15 +353,15 @@ class PackageList {
    *         package.
    */
   public String[] getSubPackages(String pkgName) {
-    List result = new ArrayList();
+    List<String> result = new ArrayList<>();
     String subPackageName = pkgName + ".";
-    for (Iterator i = packageNames.iterator(); i.hasNext();) {
-      String packageName = (String) i.next();
+    for (Iterator<String> i = packageNames.iterator(); i.hasNext();) {
+      String packageName = i.next();
       if (packageName.startsWith(subPackageName)) {
         result.add(packageName);
       }
     }
-    return (String[]) (result.toArray(new String[result.size()]));
+    return result.toArray(new String[result.size()]);
   }
 
   /**

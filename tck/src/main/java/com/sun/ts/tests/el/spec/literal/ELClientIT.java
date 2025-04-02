@@ -120,10 +120,10 @@ public class ELClientIT {
     boolean pass1, pass2;
     Long expectedResult;
 
-    List ilist = this.getIntegerList();
+    List<Integer> ilist = this.getIntegerList();
 
-    for (Iterator it = ilist.iterator(); it.hasNext();) {
-      Integer tInteger = (Integer) it.next();
+    for (Iterator<Integer> it = ilist.iterator(); it.hasNext();) {
+      Integer tInteger = it.next();
       expectedResult = Long.valueOf(tInteger);
 
       // test "$" symbol
@@ -176,10 +176,10 @@ public class ELClientIT {
     boolean pass1, pass2;
     Float expectedResult;
 
-    List flist = this.getFloatList();
+    List<Float> flist = this.getFloatList();
 
-    for (Iterator it = flist.iterator(); it.hasNext();) {
-      Float tFloat = (Float) it.next();
+    for (Iterator<Float> it = flist.iterator(); it.hasNext();) {
+      Float tFloat = it.next();
       expectedResult = Float.valueOf(tFloat);
 
       // test "$" symbol
@@ -232,8 +232,8 @@ public class ELClientIT {
     String expectedResult;
     String testString;
 
-    Hashtable sMap = this.getStringTable();
-    Enumeration keys = sMap.keys();
+    Hashtable<String,String> sMap = this.getStringTable();
+    Enumeration<String> keys = sMap.keys();
 
     while (keys.hasMoreElements()) {
 
@@ -333,7 +333,7 @@ public class ELClientIT {
     // Hashtable layout.
     // key - expected value
     // value - test expression
-    Hashtable testValues = new Hashtable();
+    Hashtable<String,String> testValues = new Hashtable<>();
     testValues.put("${foo}", "#{'${'}foo}");
     testValues.put("${foo}", "${'${'}foo}");
     testValues.put("#{foo}", "${'#{'}foo}");
@@ -368,7 +368,7 @@ public class ELClientIT {
   // ---------------------------------------------------------- Private
   // methods
 
-  private List getFloatList() {
+  private List<Float> getFloatList() {
     List<Float> floatList = new ArrayList<>();
     floatList.add(new Float("8.1F"));
     floatList.add(new Float("-70.2F"));
@@ -390,7 +390,7 @@ public class ELClientIT {
     return floatList;
   }
 
-  private List getIntegerList() {
+  private List<Integer> getIntegerList() {
     List<Integer> integerList = new ArrayList<>();
     integerList.add(1);
     integerList.add(-2);
@@ -403,8 +403,8 @@ public class ELClientIT {
   /**
    * The returned Hashtable is in the form of: "Expected String" - "Test String"
    */
-  private Hashtable getStringTable() {
-    Hashtable testStrings = new Hashtable();
+  private Hashtable<String,String> getStringTable() {
+    Hashtable<String,String> testStrings = new Hashtable<>();
     testStrings.put("string", "'string'");
     testStrings.put("str\\ing", "'str\\\\ing'");
     testStrings.put("\"catstring\"", "'\"catstring\"'");

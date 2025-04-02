@@ -42,13 +42,13 @@ public class VectELResolver extends ELResolver {
 
     if (base == null && "vect".equals(property)) {
       context.setPropertyResolved(true);
-      return new Vector();
+      return new Vector<>();
     }
     return null;
   }
 
   @Override
-  public Class getType(ELContext context, Object base, Object property)
+  public Class<?> getType(ELContext context, Object base, Object property)
       throws ELException {
     if (context == null)
       throw new NullPointerException();
@@ -81,7 +81,7 @@ public class VectELResolver extends ELResolver {
   }
 
   @Override
-  public Class getCommonPropertyType(ELContext context, Object base) {
+  public Class<?> getCommonPropertyType(ELContext context, Object base) {
     return null;
   }
 }

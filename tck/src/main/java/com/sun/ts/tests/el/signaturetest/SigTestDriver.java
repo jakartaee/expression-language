@@ -72,7 +72,7 @@ public class SigTestDriver extends SignatureTestDriver {
     PackageList packageList = new PackageList(packageListFile);
     String[] subPackages = packageList.getSubPackages(packageOrClassUnderTest);
 
-    List command = new ArrayList();
+    List<String> command = new ArrayList<>();
 
     if (bStaticMode) {
       // static mode allows finer level of constants checking
@@ -123,7 +123,7 @@ public class SigTestDriver extends SignatureTestDriver {
   protected boolean runSignatureTest(String packageOrClassName,
       String[] testArguments) throws Exception {
 
-    Class sigTestClass = Class
+    Class<?> sigTestClass = Class
         .forName("com.sun.tdk.signaturetest.SignatureTest");
     Object sigTestInstance = sigTestClass.newInstance();
 
