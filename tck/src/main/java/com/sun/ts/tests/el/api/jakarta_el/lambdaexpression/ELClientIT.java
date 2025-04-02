@@ -65,7 +65,7 @@ public class ELClientIT {
    */
   @Test
   public void invokeNPETest() throws Exception {
-    List<String> params = new ArrayList<String>();
+    List<String> params = new ArrayList<>();
     params.add("one");
     LambdaExpression le = new LambdaExpression(params, null);
 
@@ -85,7 +85,7 @@ public class ELClientIT {
   public void invokeELETest() throws Exception {
     StringBuffer buff = new StringBuffer();
     boolean pass = false;
-    List<String> params = new ArrayList<String>();
+    List<String> params = new ArrayList<>();
     params.add("one");
 
     LambdaExpression le = new LambdaExpression(params, null);

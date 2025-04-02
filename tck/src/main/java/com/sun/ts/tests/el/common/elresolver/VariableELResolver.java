@@ -73,11 +73,11 @@ public class VariableELResolver extends ELResolver {
     }
 
     if (varTable == null) {
-      varTable = new Hashtable<Object, Object>();
+      varTable = new Hashtable<>();
     }
 
     if (value == null) {
-      varTable = new Hashtable<Object, Object>();
+      varTable = new Hashtable<>();
       varTable.clear();
       return;
     }
