@@ -327,24 +327,24 @@ public final class ExprEval {
 
   public static boolean compareValue(Double val, Float expectedVal, int eps) {
 
-    BigDecimal a = new BigDecimal(val);
-    BigDecimal b = new BigDecimal(expectedVal);
+    BigDecimal a = new BigDecimal(val.doubleValue());
+    BigDecimal b = new BigDecimal(expectedVal.doubleValue());
 
     return compareValue(a, b, eps);
   }
 
   public static boolean compareValue(Float val, Float expectedVal, int eps) {
 
-    BigDecimal a = new BigDecimal(val);
-    BigDecimal b = new BigDecimal(expectedVal);
+    BigDecimal a = new BigDecimal(val.doubleValue());
+    BigDecimal b = new BigDecimal(expectedVal.doubleValue());
 
     return compareValue(a, b, eps);
   }
 
   public static boolean compareValue(Long val, Long expectedVal, int eps) {
 
-    BigDecimal a = new BigDecimal(val);
-    BigDecimal b = new BigDecimal(expectedVal);
+    BigDecimal a = new BigDecimal(val.longValue());
+    BigDecimal b = new BigDecimal(expectedVal.longValue());
 
     return compareValue(a, b, eps);
   }

@@ -124,7 +124,7 @@ public class ELClientIT {
 
     for (Iterator<Integer> it = ilist.iterator(); it.hasNext();) {
       Integer tInteger = it.next();
-      expectedResult = Long.valueOf(tInteger);
+      expectedResult = Long.valueOf(tInteger.longValue());
 
       // test "$" symbol
       try {
@@ -180,7 +180,7 @@ public class ELClientIT {
 
     for (Iterator<Float> it = flist.iterator(); it.hasNext();) {
       Float tFloat = it.next();
-      expectedResult = Float.valueOf(tFloat);
+      expectedResult = tFloat;
 
       // test "$" symbol
       try {
@@ -392,10 +392,10 @@ public class ELClientIT {
 
   private List<Integer> getIntegerList() {
     List<Integer> integerList = new ArrayList<>();
-    integerList.add(1);
-    integerList.add(-2);
-    integerList.add(2147483647);
-    integerList.add(-2147483647);
+    integerList.add(Integer.valueOf(1));
+    integerList.add(Integer.valueOf(-2));
+    integerList.add(Integer.valueOf(2147483647));
+    integerList.add(Integer.valueOf(-2147483647));
 
     return integerList;
   }

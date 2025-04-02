@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009, 2020 Oracle and/or its affiliates and others.
+ * Copyright (c) 2009, 2025 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -45,7 +45,7 @@ import java.lang.System.Logger;
 public class ELClientIT {
 
   private static final Logger logger = System.getLogger(ELClientIT.class.getName());
-  
+
   @AfterEach
   public void cleanup() throws Exception {
     logger.log(Logger.Level.INFO, "Cleanup method called");
@@ -63,7 +63,7 @@ public class ELClientIT {
 
   /**
    * @testName: newInstanceTest
-   * 
+   *
    * @assertion_ids: EL:JAVADOC:119; EL:JAVADOC:120
    * @test_Strategy: Verify that an ExpressionFactory can be instantiated with
    *                 the newInstance() API.
@@ -86,7 +86,7 @@ public class ELClientIT {
 
   /**
    * @testName: createValueExpressionTest
-   * 
+   *
    * @assertion_ids: EL:JAVADOC:63
    * @test_Strategy: Verify that the ExpressionFactory can handle the types of
    *                 input specified in the javadoc when invoking the
@@ -157,7 +157,7 @@ public class ELClientIT {
 
   /**
    * @testName: createValueExpression2Test
-   * 
+   *
    * @assertion_ids: EL:JAVADOC:64
    * @test_Strategy: Verify the functionality of the
    *                 createValueExpression(Object, Class) method.
@@ -197,7 +197,7 @@ public class ELClientIT {
 
   /**
    * @testName: createValueExpressionELExceptionTest
-   * 
+   *
    * @assertion_ids: EL:JAVADOC:63
    * @test_Strategy: Verify that
    *                 ExpressionFactory.createValueExpression(ELContext, String,
@@ -262,7 +262,7 @@ public class ELClientIT {
 
   /**
    * @testName: createMethodExpressionTest
-   * 
+   *
    * @assertion_ids: EL:JAVADOC:62
    * @test_Strategy: Verify that the ExpressionFactory can handle the types of
    *                 input specified in the javadoc when invoking the
@@ -326,9 +326,9 @@ public class ELClientIT {
 
   /**
    * @testName: createMethodExpressionELExceptionTest
-   * 
+   *
    * @assertion_ids: EL:JAVADOC:63; EL:JAVADOC:253
-   * 
+   *
    * @test_Strategy: Verify that ExpressionFactory.createMethodExpression()
    *                 throws an ELException for expressions with syntactical
    *                 errors, and for expressions that are not lvalues.
@@ -395,10 +395,10 @@ public class ELClientIT {
 
   /**
    * @testName: createExpressionNPETest
-   * 
+   *
    * @assertion_ids: EL:JAVADOC:62; EL:JAVADOC:63; EL:JAVADOC:64;
    *                 EL:JAVADOC:253; EL:JAVADOC:254; EL:JAVADOC:256
-   * 
+   *
    * @test_Strategy: Verify that ExpressionFactory.createValueExpression() and
    *                 ExpressionFactory.createMethodExpression() throw a
    *                 NullPointerException under the conditions stated in the
@@ -415,7 +415,7 @@ public class ELClientIT {
         new Class<?>[] { ELContext.class, String.class, Class.class },
         new Object[] { context, "function", null });
 
-    logger.log(Logger.Level.INFO, 
+    logger.log(Logger.Level.INFO,
         "Testing: ELContext.createValueExpression(instance, " + "null)");
     ELTestUtil.checkForNPE(expFactory, "createValueExpression",
         new Class<?>[] { Object.class, Class.class },
@@ -432,7 +432,7 @@ public class ELClientIT {
 
   /**
    * @testName: coerceToTypeTest
-   * 
+   *
    * @assertion_ids: EL:JAVADOC:61
    * @test_Strategy: Verify that the coerceToType() method coerces an object to
    *                 a specific type according to the EL type conversion rules.
@@ -483,9 +483,9 @@ public class ELClientIT {
 
   /**
    * @testName: coerceToTypeELExceptionTest
-   * 
+   *
    * @assertion_ids: EL:JAVADOC:61; EL:JAVADOC:251
-   * 
+   *
    * @test_Strategy: Verify that the coerceToType() method throws an ELException
    *                 for invalid type conversions.
    */
@@ -498,7 +498,7 @@ public class ELClientIT {
         new ObjectAndType(Integer.valueOf(1), Boolean.class),
         new ObjectAndType(Boolean.FALSE, Long.class),
         new ObjectAndType(Boolean.TRUE, Character.class),
-        new ObjectAndType(true, Float.class),
+        new ObjectAndType(Boolean.TRUE, Float.class),
         new ObjectAndType("non-numeric string", Long.class),
         new ObjectAndType(Integer.valueOf(1), Class.class) };
 

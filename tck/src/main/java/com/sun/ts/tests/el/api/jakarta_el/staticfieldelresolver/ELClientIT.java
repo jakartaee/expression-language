@@ -187,7 +187,7 @@ public class ELClientIT {
 
     try {
       pass = ResolverTest.testELResolverInvoke(context, context.getELResolver(),
-          new ELClass(TCKELClass.class), "bogue_method", types, values, true,
+          new ELClass(TCKELClass.class), "bogue_method", types, values, Boolean.TRUE,
           buf);
 
     } catch (Exception ex) {
@@ -224,7 +224,7 @@ public class ELClientIT {
 
     try {
       pass = ResolverTest.testELResolverInvoke(context, context.getELResolver(),
-          new ELClass(TCKELClass.class), "isName", types, values, false, buf);
+          new ELClass(TCKELClass.class), "isName", types, values, Boolean.FALSE, buf);
 
     } catch (Exception ex) {
       throw new Exception(ex);

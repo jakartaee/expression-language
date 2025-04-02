@@ -197,7 +197,7 @@ public class Validator {
                 "Setting Expected Type: " + returnType.getCanonicalName());
 
             pass = (ExprEval.compareClass(result, returnType)
-                && ExprEval.compareValue(((BigDecimal) result).floatValue(),
+                && ExprEval.compareValue(Float.valueOf(((BigDecimal) result).floatValue()),
                     (Float) expectedVal, 3));
           } else {
             returnType = Double.class;
@@ -296,7 +296,7 @@ public class Validator {
                 "Setting Expected Type: " + returnType.getCanonicalName());
 
             pass = (ExprEval.compareClass(result, returnType)
-                && ExprEval.compareValue(((BigDecimal) result).doubleValue(),
+                && ExprEval.compareValue(Double.valueOf(((BigDecimal) result).doubleValue()),
                     expectedVal));
           } else {
             returnType = Double.class;
@@ -391,7 +391,7 @@ public class Validator {
                 "Setting Expected Type: " + returnType.getCanonicalName());
 
             pass = (ExprEval.compareClass(result, returnType)
-                && ExprEval.compareValue(((BigDecimal) result).doubleValue(),
+                && ExprEval.compareValue(Double.valueOf(((BigDecimal) result).doubleValue()),
                     expectedVal));
           } else {
             returnType = Double.class;
@@ -583,7 +583,7 @@ public class Validator {
 
           pass = (ExprEval.compareClass(result, returnType)
               && ExprEval.compareValue(result,
-                  ((Long) expectedVal).doubleValue()));
+                  Double.valueOf(((Long) expectedVal).doubleValue())));
         } else {
           returnType = Long.class;
           logger.log(Logger.Level.INFO,
@@ -677,7 +677,7 @@ public class Validator {
 
           pass = (ExprEval.compareClass(result, returnType)
               && ExprEval.compareValue(result,
-                  ((Integer) expectedVal).doubleValue()));
+                  Double.valueOf(((Integer) expectedVal).doubleValue())));
         } else {
           returnType = Long.class;
           logger.log(Logger.Level.INFO,
@@ -685,7 +685,7 @@ public class Validator {
 
           pass = (ExprEval.compareClass(result, returnType)
               && ExprEval.compareValue(result,
-                  ((Integer) expectedVal).longValue()));
+                  Long.valueOf(((Integer) expectedVal).longValue())));
         }
 
       } catch (RuntimeException re) {
@@ -770,14 +770,14 @@ public class Validator {
 
           pass = (ExprEval.compareClass(result, returnType)
               && ExprEval.compareValue(result,
-                  ((Short) expectedVal).doubleValue()));
+                  Double.valueOf(((Short) expectedVal).doubleValue())));
         } else {
           returnType = Long.class;
           logger.log(Logger.Level.INFO,
               "Setting Expected Type: " + returnType.getCanonicalName());
 
           pass = (ExprEval.compareClass(result, returnType) && ExprEval
-              .compareValue(result, ((Short) expectedVal).longValue()));
+              .compareValue(result, Long.valueOf(((Short) expectedVal).longValue())));
         }
 
       } catch (RuntimeException re) {
@@ -861,14 +861,14 @@ public class Validator {
 
           pass = (ExprEval.compareClass(result, returnType)
               && ExprEval.compareValue(result,
-                  ((Byte) expectedVal).doubleValue()));
+                  Double.valueOf(((Byte) expectedVal).doubleValue())));
         } else {
           returnType = Long.class;
           logger.log(Logger.Level.INFO,
               "Setting Expected Type: " + returnType.getCanonicalName());
 
           pass = (ExprEval.compareClass(result, returnType) && ExprEval
-              .compareValue(result, ((Byte) expectedVal).longValue()));
+              .compareValue(result, Long.valueOf(((Byte) expectedVal).longValue())));
         }
 
       } catch (RuntimeException re) {
@@ -909,8 +909,7 @@ public class Validator {
 
     boolean pass = false;
 
-    NameValuePair values[] = NameValuePair.buildNameValuePair(testValOne,
-        testValTwo);
+    NameValuePair values[] = NameValuePair.buildNameValuePair(Boolean.valueOf(testValOne), testValTwo);
 
     try {
       logger.log(Logger.Level.INFO,
@@ -927,7 +926,7 @@ public class Validator {
        * them. (NEW to EL 3.0)
        */
       if ("+=".equals(operator)) {
-        pass = Validator.runConcatenationTest(testValOne, result, testValTwo);
+        pass = Validator.runConcatenationTest(Boolean.valueOf(testValOne), result, testValTwo);
 
       } else {
         logger.log(Logger.Level.INFO, "result is " + result.toString());
@@ -984,7 +983,7 @@ public class Validator {
 
   // ------------------------- private methods
 
-  private static Boolean runConcatenationTest(Object testVal, Object result,
+  private static boolean runConcatenationTest(Object testVal, Object result,
       Object testNum) {
 
     Class<String> returnType = String.class;

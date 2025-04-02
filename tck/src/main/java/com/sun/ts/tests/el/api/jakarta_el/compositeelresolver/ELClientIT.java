@@ -127,7 +127,7 @@ public class ELClientIT {
       String[] values = { "Doug", "Donahue" };
 
       pass = ResolverTest.testELResolverInvoke(context, compResolver, sb,
-          "isName", types, values, false, buf);
+          "isName", types, values, Boolean.FALSE, buf);
 
     } catch (Exception ex) {
       throw new Exception(ex);
