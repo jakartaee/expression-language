@@ -2,5 +2,11 @@ version: 2
 updates:
   - package-ecosystem: "maven"
     directory: "/"
+    target-branch: "master"
+    schedule:
+      interval: "weekly"
+  - package-ecosystem: "maven"
+    directory: "/"
+    target-branch: "6.0.x"
     schedule:
       interval: "weekly"
