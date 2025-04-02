@@ -112,7 +112,7 @@ import java.io.PrintWriter;
     }
 
     @Override
-    public Throwable getCause() {
+    public synchronized Throwable getCause() {
       return t;
     }
 
