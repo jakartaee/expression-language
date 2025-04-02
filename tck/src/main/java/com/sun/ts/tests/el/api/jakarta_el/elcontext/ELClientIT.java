@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2012, 2020 Oracle and/or its affiliates and others.
+ * Copyright (c) 2012, 2025 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -23,9 +23,6 @@ package com.sun.ts.tests.el.api.jakarta_el.elcontext;
 
 import java.util.List;
 import java.util.Locale;
-import java.util.Properties;
-
-
 
 import com.sun.ts.tests.el.common.util.ELTestUtil;
 
@@ -65,7 +62,7 @@ public class ELClientIT {
    *                 EL:JAVADOC:326; EL:JAVADOC:321
    * @test_Strategy: Assert that we get back the expected value from
    *                 getContext() that we put in with putContext().
-   * 
+   *
    * @since: 3.0
    */
   @Test
@@ -90,7 +87,7 @@ public class ELClientIT {
    * @assertion_ids: EL:JAVADOC:36; EL:JAVADOC:40; EL:JAVADOC:328;
    *                 EL:JAVADOC:329
    * @test_Strategy: Assert that we get back the Locale we set.
-   * 
+   *
    * @since: 3.0
    */
   @Test
@@ -117,7 +114,7 @@ public class ELClientIT {
    *                 EL:JAVADOC:329; EL:JAVADOC:322
    * @test_Strategy: Assert that when we call setPropertyResolved that
    *                 isPropertyResolved returns true.
-   * 
+   *
    * @since: 3.0
    */
   @Test
@@ -150,7 +147,7 @@ public class ELClientIT {
    *                 EL:JAVADOC:329; EL:JAVADOC:327
    * @test_Strategy: Validate that a NullPointerException is thrown if Class is
    *                 null or Object is null.
-   * 
+   *
    * @since: 3.0
    */
   @Test
@@ -176,7 +173,7 @@ public class ELClientIT {
    *                 EL:JAVADOC:329; EL:JAVADOC:321
    * @test_Strategy: Validate that a NullPointerException is thrown if key is
    *                 null.
-   * 
+   *
    * @since: 3.0
    */
   @Test
@@ -196,7 +193,7 @@ public class ELClientIT {
    *                 EL:JAVADOC:328; EL:JAVADOC:329
    * @test_Strategy: Validate that a NullPointerException is thrown if key is
    *                 null.
-   * 
+   *
    * @since: 3.0
    */
   @Test

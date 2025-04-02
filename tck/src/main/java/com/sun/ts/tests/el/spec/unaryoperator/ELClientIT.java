@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2009, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2009, 2020 Oracle and/or its affiliates and others.
+ * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -22,8 +23,6 @@ package com.sun.ts.tests.el.spec.unaryoperator;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.util.Properties;
-
 
 import com.sun.ts.tests.el.common.util.ExprEval;
 import com.sun.ts.tests.el.common.util.NameValuePair;
@@ -58,9 +57,9 @@ public class ELClientIT {
 
   /*
    * @testName: elNullUnaryTest
-   * 
+   *
    * @assertion_ids: EL:SPEC:20.1
-   * 
+   *
    * @test_Strategy: Validate that if null is passed with the unary minus
    * operator, the result is (Long) 0. Test both ${-null} & #{-null}
    */
@@ -94,9 +93,9 @@ public class ELClientIT {
 
   /*
    * @testName: elBigDecimalUnaryTest
-   * 
+   *
    * @assertion_ids: EL:SPEC:20.2
-   * 
+   *
    * @test_Strategy: Validate that if a BigDecimal A is passed with the unary
    * minus operator (-), the result is A.negate(). Test both ${- value} & #{-
    * value}
@@ -133,9 +132,9 @@ public class ELClientIT {
 
   /*
    * @testName: elBigIntegerUnaryTest
-   * 
+   *
    * @assertion_ids: EL:SPEC:20.2
-   * 
+   *
    * @test_Strategy: Validate that if a BigInteger A is passed with the unary
    * minus operator (-), the result is A.negate(). Test both ${- value} & #{-
    * value}
@@ -172,9 +171,9 @@ public class ELClientIT {
 
   /*
    * @testName: elDoubleStringUnaryTest
-   * 
+   *
    * @assertion_ids: EL:SPEC:20.3.1
-   * 
+   *
    * @test_Strategy: Validate that if a String is passed with the unary minus
    * operator (-), the result is as follows: - If the String contains ".", "e",
    * or "E" coerce to Double, apply operator.
@@ -215,9 +214,9 @@ public class ELClientIT {
 
   /*
    * @testName: elLongStringUnaryTest
-   * 
+   *
    * @assertion_ids: EL:SPEC:20.3.2
-   * 
+   *
    * @test_Strategy: Validate that if a String is passed with the unary minus
    * operator (-), the result is as follows: - If the String does not contain
    * ".", "e", or "E" coerce to Long, apply operator.
@@ -256,9 +255,9 @@ public class ELClientIT {
 
   /*
    * @testName: elByteUnaryTest
-   * 
+   *
    * @assertion_ids: EL:SPEC:20.4.1
-   * 
+   *
    * @test_Strategy: Validate that if a Byte is passed with the unary minus
    * operator (-), the type is retained and the operator is applied.
    *
@@ -296,9 +295,9 @@ public class ELClientIT {
 
   /*
    * @testName: elShortUnaryTest
-   * 
+   *
    * @assertion_ids: EL:SPEC:20.4.1
-   * 
+   *
    * @test_Strategy: Validate that if a Short is passed with the unary minus
    * operator (-), the type is retained and the operator is applied.
    *
@@ -336,9 +335,9 @@ public class ELClientIT {
 
   /*
    * @testName: elIntegerUnaryTest
-   * 
+   *
    * @assertion_ids: EL:SPEC:20.4.1
-   * 
+   *
    * @test_Strategy: Validate that if an Integer is passed with the unary minus
    * operator (-), the type is retained and the operator is applied.
    *
@@ -376,9 +375,9 @@ public class ELClientIT {
 
   /*
    * @testName: elLongUnaryTest
-   * 
+   *
    * @assertion_ids: EL:SPEC:20.4.1
-   * 
+   *
    * @test_Strategy: Validate that if a Long is passed with the unary minus
    * operator (-), the type is retained and the operator is applied.
    *
@@ -416,9 +415,9 @@ public class ELClientIT {
 
   /*
    * @testName: elFloatUnaryTest
-   * 
+   *
    * @assertion_ids: EL:SPEC:20.4.1
-   * 
+   *
    * @test_Strategy: Validate that if a Float is passed with the unary minus
    * operator (-), the type is retained and the operator is applied.
    *
@@ -456,9 +455,9 @@ public class ELClientIT {
 
   /*
    * @testName: elDoubleUnaryTest
-   * 
+   *
    * @assertion_ids: EL:SPEC:20.4.1
-   * 
+   *
    * @test_Strategy: Validate that if a Double is passed with the unary minus
    * operator (-), the type is retained and the operator is applied.
    *
@@ -496,9 +495,9 @@ public class ELClientIT {
 
   /*
    * @testName: elBooleanUnaryFalseTest
-   * 
+   *
    * @assertion_ids: EL:SPEC:24.1.1
-   * 
+   *
    * @test_Strategy: Validate that if a String("false") is passed with the unary
    * "not" operator, the type is coerced to Boolean and the operator is applied.
    *
@@ -513,9 +512,9 @@ public class ELClientIT {
 
   /*
    * @testName: elBooleanUnaryTrueTest
-   * 
+   *
    * @assertion_ids: EL:SPEC:24.1.1
-   * 
+   *
    * @test_Strategy: Validate that if a String("true") is passed with the unary
    * "not" operator, the type is coerced to Boolean and the operator is applied.
    *

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2012, 2020 Oracle and/or its affiliates and others.
+ * Copyright (c) 2012, 2025 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -20,9 +20,6 @@
  */
 
 package com.sun.ts.tests.el.api.jakarta_el.beannameelresolver;
-
-import java.util.Properties;
-
 
 import com.sun.ts.tests.el.common.api.resolver.ResolverTest;
 import com.sun.ts.tests.el.common.util.ELTestUtil;
@@ -61,11 +58,11 @@ public class ELClientIT {
 
   /**
    * @testName: beanNameELResolverTest
-   * 
+   *
    * @assertion_ids: EL:JAVADOC:152; EL:JAVADOC:153; EL:JAVADOC:154;
    *                 EL:JAVADOC:155; EL:JAVADOC:158; EL:JAVADOC:161;
    *                 EL:JAVADOC:164
-   * 
+   *
    * @test_Strategy: Verify the following method calls work as expected:
    *                 getValue() getType() setValue() isReadOnly()
    *                 getCommonPropertyType() getFeatureDescriptors()
@@ -102,11 +99,11 @@ public class ELClientIT {
 
   /**
    * @testName: beanNameELResolverInvokeMNFETest
-   * 
+   *
    * @assertion_ids: EL:JAVADOC:9; EL:JAVADOC:11; EL:JAVADOC:12; EL:JAVADOC:13;
    *                 EL:JAVADOC:14; EL:JAVADOC:15; EL:JAVADOC:16;
    *                 EL:JAVADOC:143; EL:JAVADOC:237
-   * 
+   *
    * @test_Strategy: Verify that the invoke() method throws
    *                 MethodNotFoundException if no suitable method can be found.
    */
@@ -145,12 +142,12 @@ public class ELClientIT {
 
   /**
    * @testName: beanNameELResolverInvokeTest
-   * 
+   *
    * @assertion_ids: EL:JAVADOC:9; EL:JAVADOC:11; EL:JAVADOC:12; EL:JAVADOC:13;
    *                 EL:JAVADOC:14; EL:JAVADOC:15; EL:JAVADOC:16;
    *                 EL:JAVADOC:142; EL:JAVADOC:199; EL:JAVADOC:200;
    *                 EL:JAVADOC:202; EL:JAVADOC:203; EL:JAVADOC:236
-   * 
+   *
    * @test_Strategy: Verify that API calls work as expected for
    *                 BeanNameELResolver.invoke().
    */
@@ -189,9 +186,9 @@ public class ELClientIT {
 
   /**
    * @testName: beanNameELResolverGetTypeNPETest
-   * 
+   *
    * @assertion_ids: EL:JAVADOC:156
-   * 
+   *
    * @test_Strategy: Validate a NullPointerException is thrown if context is
    *                 null.
    */
@@ -208,9 +205,9 @@ public class ELClientIT {
 
   /**
    * @testName: beanNameELResolverGetValueNPETest
-   * 
+   *
    * @assertion_ids: EL:JAVADOC:159
-   * 
+   *
    * @test_Strategy: Validate a NullPointerException is thrown if context is
    *                 null.
    */
@@ -227,9 +224,9 @@ public class ELClientIT {
 
   /**
    * @testName: beanNameELResolverIsReadOnlyNPETest
-   * 
+   *
    * @assertion_ids: EL:JAVADOC:162
-   * 
+   *
    * @test_Strategy: Validate a NullPointerException is thrown if context is
    *                 null.
    */
@@ -246,9 +243,9 @@ public class ELClientIT {
 
   /**
    * @testName: beanNameELResolverSetValueNPETest
-   * 
+   *
    * @assertion_ids: EL:JAVADOC:165
-   * 
+   *
    * @test_Strategy: Validate a NullPointerException is thrown if context is
    *                 null.
    */

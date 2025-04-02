@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009, 2020 Oracle and/or its affiliates and others.
+ * Copyright (c) 2009, 2025 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -20,10 +20,6 @@
  */
 
 package com.sun.ts.tests.el.api.jakarta_el.compositeelresolver;
-
-import java.util.Properties;
-
-
 
 import com.sun.ts.tests.el.common.api.resolver.ResolverTest;
 import com.sun.ts.tests.el.common.elcontext.BareBonesELContext;
@@ -67,11 +63,11 @@ public class ELClientIT {
 
   /**
    * @testName: compositeELResolverTest
-   * 
+   *
    * @assertion_ids: EL:JAVADOC:24; EL:JAVADOC:25; EL:JAVADOC:26; EL:JAVADOC:27;
    *                 EL:JAVADOC:28; EL:JAVADOC:29; EL:JAVADOC:30; EL:JAVADOC:31;
    *                 EL:JAVADOC:34
-   * 
+   *
    * @test_Strategy: Verify that API calls work as expected:
    *                 CompositeELResolver() add() getValue() getType() setValue()
    *                 isReadOnly() getCommonPropertyType()
@@ -104,9 +100,9 @@ public class ELClientIT {
 
   /**
    * @testName: compositeELResolverInvokeTest
-   * 
+   *
    * @assertion_ids: EL:JAVADOC:24; EL:JAVADOC:25; EL:JAVADOC:181
-   * 
+   *
    * @test_Strategy: Verify that API calls work as expected for
    *                 BeanELResolver.invoke().
    */
@@ -146,9 +142,9 @@ public class ELClientIT {
 
   /**
    * @testName: compositeELResolverAddNPETest
-   * 
+   *
    * @assertion_ids: EL:JAVADOC:24; EL:JAVADOC:25; EL:JAVADOC:174
-   * 
+   *
    * @test_Strategy: Verify that the CompositeELResolver.add method throws a
    *                 NullPointerException if the provided resolver is null.
    */
@@ -188,12 +184,12 @@ public class ELClientIT {
 
   /**
    * @testName: compositeELResolverNPETest
-   * 
+   *
    * @assertion_ids: EL:JAVADOC:25; EL:JAVADOC:26; EL:JAVADOC:27; EL:JAVADOC:28;
    *                 EL:JAVADOC:29; EL:JAVADOC:30; EL:JAVADOC:31;
    *                 EL:JAVADOC:175; EL:JAVADOC:178; EL:JAVADOC:175;
    *                 EL:JAVADOC:182; EL:JAVADOC:185
-   * 
+   *
    * @test_Strategy: Verify that API calls work as expected: getValue()
    *                 getType() setValue() isReadOnly() getCommonPropertyType()
    *                 getFeatureDescriptors()
@@ -232,11 +228,11 @@ public class ELClientIT {
 
   /**
    * @testName: compositeELResolverPNFETest
-   * 
+   *
    * @assertion_ids: EL:JAVADOC:25; EL:JAVADOC:28; EL:JAVADOC:30; EL:JAVADOC:31;
    *                 EL:JAVADOC:176; EL:JAVADOC:179; EL:JAVADOC:183;
    *                 EL:JAVADOC:186
-   * 
+   *
    * @test_Strategy: Verify that API calls throw PropertyNotFoundException as
    *                 expected: getType() setValue() isReadOnly()
    */
@@ -272,13 +268,13 @@ public class ELClientIT {
 
   /**
    * @testName: compositeELResolverPNWETest
-   * 
+   *
    * @assertion_ids: EL:JAVADOC:25; EL:JAVADOC:187
-   * 
+   *
    * @test_Strategy: Verify that the setValue() method throws a
    *                 PropertyNotWritableException, if the resolver was
    *                 constructed in read-only mode.
-   * 
+   *
    *                 setValue()
    */
   @Test

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009, 2020 Oracle and/or its affiliates and others.
+ * Copyright (c) 2009, 2025 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -22,8 +22,6 @@
 package com.sun.ts.tests.el.api.jakarta_el.functionmapper;
 
 import java.lang.reflect.Method;
-import java.util.Properties;
-
 
 import com.sun.ts.tests.el.common.util.ELTestUtil;
 import com.sun.ts.tests.el.common.elcontext.FuncMapperELContext;
@@ -40,7 +38,7 @@ import java.lang.System.Logger;
 public class ELClientIT {
 
   private static final Logger logger = System.getLogger(ELClientIT.class.getName());
-  
+
   @AfterEach
   public void cleanup() throws Exception {
     logger.log(Logger.Level.INFO, "Cleanup method called");
@@ -60,7 +58,7 @@ public class ELClientIT {
 
   /**
    * @testName: functionMapperTest
-   * 
+   *
    * @assertion_ids: EL:JAVADOC:35; EL:JAVADOC:67
    * @test_Strategy: Validate the behavior of ELContext.getFunctionMapper()
    *                 FunctionMapper.resolveFunction()

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2009, 2025 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -22,8 +22,6 @@ package com.sun.ts.tests.el.spec.emptyoperator;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Properties;
-
 
 import com.sun.ts.tests.el.common.util.ExprEval;
 import com.sun.ts.tests.el.common.util.NameValuePair;
@@ -59,9 +57,9 @@ public class ELClientIT {
 
   /*
    * @testName: elEmptyNullTest
-   * 
+   *
    * @assertion_ids: EL:SPEC:25.1
-   * 
+   *
    * @test_Strategy: Validate that if "null" is passed with the Empty operator,
    * the correct Boolean result is returned.
    */
@@ -99,9 +97,9 @@ public class ELClientIT {
 
   /*
    * @testName: elEmptyStringTest
-   * 
+   *
    * @assertion_ids: EL:SPEC:25.2; EL:SPEC:25.6
-   * 
+   *
    * @test_Strategy: Validate that if a String is passed with the Empty
    * operator, the correct Boolean result is returned.
    */
@@ -116,9 +114,9 @@ public class ELClientIT {
 
   /*
    * @testName: elEmptyArrayTest
-   * 
+   *
    * @assertion_ids: EL:SPEC:25.3; EL:SPEC:25.6
-   * 
+   *
    * @test_Strategy: Validate that if a Array is passed with the Empty operator,
    * the correct Boolean result is returned.
    */
@@ -134,9 +132,9 @@ public class ELClientIT {
 
   /*
    * @testName: elEmptyMapTest
-   * 
+   *
    * @assertion_ids: EL:SPEC:25.4; EL:SPEC:25.6
-   * 
+   *
    * @test_Strategy: Validate that if a Map is passed with the Empty operator,
    * the correct Boolean result is returned.
    */
@@ -156,9 +154,9 @@ public class ELClientIT {
 
   /*
    * @testName: elEmptyCollectionTest
-   * 
+   *
    * @assertion_ids: EL:SPEC:25.5; EL:SPEC:25.6
-   * 
+   *
    * @test_Strategy: Validate that if a Collection is passed with the Empty
    * operator, the correct Boolean result is returned.
    */

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009, 2020 Oracle and/or its affiliates and others.
+ * Copyright (c) 2009, 2025 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -20,9 +20,6 @@
  */
 
 package com.sun.ts.tests.el.api.jakarta_el.methodinfo;
-
-import java.util.Properties;
-
 
 import com.sun.ts.tests.el.common.api.expression.ExpressionTest;
 import com.sun.ts.tests.el.common.elcontext.SimpleELContext;
@@ -62,7 +59,7 @@ public class ELClientIT {
 
   /**
    * @testName: methodInfoTest
-   * 
+   *
    * @assertion_ids: EL:JAVADOC:411;EL:JAVADOC:412;EL:JAVADOC:413
    * @test_Strategy: Validate the behavior of MethodInfo MethodInfo class
    *                 methods: MethodInfo.getName() MethodInfo.getReturnType()
