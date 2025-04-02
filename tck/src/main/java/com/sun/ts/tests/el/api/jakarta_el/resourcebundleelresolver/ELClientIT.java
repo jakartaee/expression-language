@@ -22,11 +22,10 @@
 package com.sun.ts.tests.el.api.jakarta_el.resourcebundleelresolver;
 
 import java.io.Serializable;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Enumeration;
 import java.util.ResourceBundle;
-import java.util.StringTokenizer;
-
-
 import com.sun.ts.tests.el.common.api.resolver.ResolverTest;
 import com.sun.ts.tests.el.common.elcontext.BareBonesELContext;
 import com.sun.ts.tests.el.common.util.ELTestUtil;
@@ -183,11 +182,8 @@ public class ELClientIT {
     }
 
     @Override
-    public Enumeration getKeys() {
-      StringTokenizer keyTokenizer = new StringTokenizer(KEYS);
-
-      return keyTokenizer;
-
+    public Enumeration<String> getKeys() {
+      return Collections.enumeration(Arrays.asList(KEYS.split(" ")));
     }
   }
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009, 2020 Oracle and/or its affiliates and others.
+ * Copyright (c) 2009, 2025 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -83,7 +83,7 @@ public class ELClientIT {
   @Test
   public void ELFunctionBindingTest() throws Exception {
 
-    Class expectedClass = Integer.class;
+    Class<?> expectedClass = Integer.class;
     Integer expectedValue = Integer.valueOf(10);
 
     // Create ValueExpressions from a function mapped by the
@@ -153,7 +153,7 @@ public class ELClientIT {
   @Test
   public void ELVariableBindingTest() throws Exception {
 
-    Class expectedClass = Double.class;
+    Class<?> expectedClass = Double.class;
     Double expectedValue = Double.valueOf(10.0);
 
     // Create a ValueExpression and use it to set a variable

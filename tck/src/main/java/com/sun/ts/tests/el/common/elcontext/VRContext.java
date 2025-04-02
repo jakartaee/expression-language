@@ -77,7 +77,7 @@ public class VRContext extends ELContext {
 
   private Object getImplSpecificInstance(String classname) {
 
-    Class clazz;
+    Class<?> clazz;
     Object instance = null;
 
     try {

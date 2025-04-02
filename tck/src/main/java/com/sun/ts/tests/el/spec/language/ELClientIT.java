@@ -442,7 +442,7 @@ public class ELClientIT {
 
     try {
       // literal expression returning String
-      Class[] params = {};
+      Class<?>[] params = {};
 
       Object value1 = ExprEval.evaluateMethodExpression("true", params,
           String.class, ResolverType.VECT_ELRESOLVER);
@@ -486,7 +486,7 @@ public class ELClientIT {
 
     try {
       // literal expression returning String
-      Class[] params = {};
+      Class<?>[] params = {};
 
       Object value = ExprEval.evaluateMethodExpression("496", params,
           Integer.class, ResolverType.VECT_ELRESOLVER);
@@ -590,7 +590,7 @@ public class ELClientIT {
     String expr = "${foo}";
     String expected = "bar";
 
-    Hashtable contextObjects = new Hashtable();
+    Hashtable<Class<?>,Object> contextObjects = new Hashtable<>();
     contextObjects.put(String.class, "string context");
     contextObjects.put(Integer.class, Integer.valueOf(1));
     contextObjects.put(Boolean.class, Boolean.TRUE);

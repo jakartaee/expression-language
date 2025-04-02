@@ -40,7 +40,7 @@ public class ELClientIT {
 
   private static final Logger logger = System.getLogger(ELClientIT.class.getName());
 
-  private List numberList;
+  private List<Object> numberList;
 
   private enum TestEnum {
     APPLE, PEAR
@@ -2353,7 +2353,7 @@ public class ELClientIT {
 
   // ---------------------------------------------------- Inner Classes
 
-  private static class DougType implements Comparable {
+  private static class DougType implements Comparable<Object> {
 
     @Override
     public String toString() {
@@ -2361,6 +2361,7 @@ public class ELClientIT {
       return "Beta";
     }
 
+    @Override
     public int compareTo(Object o) {
 
       if (o == null)
@@ -2390,13 +2391,14 @@ public class ELClientIT {
 
   }
 
-  private static class NickType implements Comparable {
+  private static class NickType implements Comparable<Object> {
 
     @Override
     public String toString() {
       return "Gamma";
     }
 
+    @Override
     public int compareTo(Object o) {
 
       if (o == null)
