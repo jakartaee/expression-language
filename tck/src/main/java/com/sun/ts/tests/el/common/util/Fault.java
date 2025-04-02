@@ -122,7 +122,7 @@ import java.io.PrintWriter;
         throw new IllegalStateException("Can't overwrite cause");
       if (!Exception.class.isInstance(cause))
         throw new IllegalArgumentException("Cause not permitted");
-      this.t = (Exception) cause;
+      this.t = cause;
       return this;
     }
   }

@@ -135,7 +135,7 @@ public class ELClientIT {
 
         logger.log(Logger.Level.TRACE, "result is " + result.toString());
         pass1 = (ExprEval.compareClass(result, Long.class)
-            && ExprEval.compareValue((Long) result, expectedResult));
+            && ExprEval.compareValue(result, expectedResult));
 
       } catch (Exception e) {
         throw new Exception(e);
@@ -149,7 +149,7 @@ public class ELClientIT {
             "#{" + tInteger.toString() + "}", null, Object.class);
         logger.log(Logger.Level.TRACE, "result is " + result.toString());
         pass2 = (ExprEval.compareClass(result, Long.class)
-            && ExprEval.compareValue((Long) result, expectedResult));
+            && ExprEval.compareValue(result, expectedResult));
 
       } catch (Exception e) {
         throw new Exception(e);
@@ -249,7 +249,7 @@ public class ELClientIT {
 
         logger.log(Logger.Level.TRACE, "result is " + result.toString());
         pass1 = (ExprEval.compareClass(result, String.class)
-            && ExprEval.compareValue((String) result, expectedResult));
+            && ExprEval.compareValue(result, expectedResult));
 
       } catch (Exception e) {
         throw new Exception(e);
@@ -263,7 +263,7 @@ public class ELClientIT {
             "#{" + testString + "}", null, Object.class);
         logger.log(Logger.Level.TRACE, "result is " + result.toString());
         pass2 = (ExprEval.compareClass(result, String.class)
-            && ExprEval.compareValue((String) result, expectedResult));
+            && ExprEval.compareValue(result, expectedResult));
 
       } catch (Exception e) {
         throw new Exception(e);
@@ -347,7 +347,7 @@ public class ELClientIT {
 
     while (itr.hasNext()) {
       expected = itr.next();
-      exprStr = (String) testValues.get(expected);
+      exprStr = testValues.get(expected);
 
       try {
         Object expr = ExprEval.evaluateValueExpression(exprStr, null,

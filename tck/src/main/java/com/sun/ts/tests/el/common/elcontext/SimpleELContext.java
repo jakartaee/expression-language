@@ -57,7 +57,7 @@ public class SimpleELContext extends ELContext {
   public enum Resolver {
 
     EmployeeELResolver, VariableELResolver, VectELResolver
-  };
+  }
 
   /*
    * Default Constructor.
@@ -90,13 +90,13 @@ public class SimpleELContext extends ELContext {
       compResolver.add(myResolver);
     }
 
-    elResolver = (ELResolver) compResolver;
+    elResolver = compResolver;
 
     return elResolver;
   }
 
   public ELContext getELContext() {
-    return (ELContext) (this);
+    return this;
   }
 
   @Override
