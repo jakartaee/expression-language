@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2012, 2019 Oracle and/or its affiliates and others.
+ * Copyright (c) 2012, 2025 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -14,7 +14,6 @@
  *
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
-
 package jakarta.el;
 
 import static java.lang.reflect.Modifier.isAbstract;
@@ -47,7 +46,7 @@ public class ImportHandler {
     /**
      * Import a static field or method.
      *
-     * @param name The static member name, including the full class name, to be imported
+     * @param name The static member name, including the full class name (in canonical form), to be imported
      * @throws ELException if the name does not include a ".".
      */
     public void importStatic(String name) throws ELException {
@@ -65,7 +64,7 @@ public class ImportHandler {
     /**
      * Import a class.
      *
-     * @param name The full class name of the class to be imported
+     * @param name The full class name (in canonical form) of the class to be imported
      * @throws ELException if the name does not include a ".".
      */
     public void importClass(String name) throws ELException {
@@ -144,6 +143,25 @@ public class ImportHandler {
         if (c != null) {
             checkModifiers(c.getModifiers());
             classMap.put(className, c);
+            return c;
+        }
+
+        // Might be an inner class
+        StringBuilder sb = new StringBuilder(className);
+        int replacementPosition = sb.lastIndexOf(".");
+        while (replacementPosition > -1) {
+            sb.setCharAt(replacementPosition, '$');
+            c = getClassFor(sb.toString());
+            if (c != null) {
+                checkModifiers(c.getModifiers());
+                classMap.put(sb.toString(), c);
+                break;
+            }
+            replacementPosition = sb.lastIndexOf(".", replacementPosition);
+        }
+
+        if (c == null) {
+            notAClass.add(className);
         }
 
         return c;
@@ -155,11 +173,11 @@ public class ImportHandler {
                 return Class.forName(className, false, Thread.currentThread().getContextClassLoader());
                 // Some operating systems have case-insensitive path names. An example is Windows if className is
                 // attempting to be resolved from a wildcard import a java.lang.NoClassDefFoundError may be thrown as
-                // the expected case for the type likely doesn't match. See 
-                // https://bugs.java.com/bugdatabase/view_bug.do?bug_id=8024775 and 
+                // the expected case for the type likely doesn't match. See
+                // https://bugs.java.com/bugdatabase/view_bug.do?bug_id=8024775 and
                 // https://bugs.openjdk.java.net/browse/JDK-8133522.
             } catch (ClassNotFoundException | NoClassDefFoundError ex) {
-                notAClass.add(className);
+                // Ignore
             }
         }
 

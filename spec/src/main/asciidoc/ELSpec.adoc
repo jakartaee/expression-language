@@ -2,7 +2,7 @@
 :sectnums!:
 == Jakarta Expression Language, Version 6.1
 
-Copyright (c) 2013, 2024 Oracle and/or its affiliates and others.
+Copyright (c) 2013, 2025 Oracle and/or its affiliates and others.
 All rights reserved.
 
 Eclipse is a registered trademark of the Eclipse Foundation. Jakarta
@@ -3000,6 +3000,10 @@ This appendix is non-normative.
 
 === Changes between 6.1 and 6.0
 
+* https://github.com/jakartaee/expression-language/issues/313[#313]
+  Add support for inner classes when using the `ImportHandler` and clarify that
+  the import handler expects canonical class names where full class names are
+  required.
 
 === Changes between 6.0 and 5.0
 
