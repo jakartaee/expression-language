@@ -452,7 +452,8 @@ public class ELClientIT {
         new ObjectAndType(Integer.valueOf(1), Float.class),
         new ObjectAndType("10000", Long.class),
         new ObjectAndType("no value", Boolean.class),
-        new ObjectAndType(null, null) };
+        new ObjectAndType(null, null),
+        new ObjectAndType(new NotBrokenToString(), String.class) };
 
     ExpressionFactory expFactory = ExpressionFactory.newInstance();
 
@@ -500,7 +501,8 @@ public class ELClientIT {
         new ObjectAndType(Boolean.TRUE, Character.class),
         new ObjectAndType(Boolean.TRUE, Float.class),
         new ObjectAndType("non-numeric string", Long.class),
-        new ObjectAndType(Integer.valueOf(1), Class.class) };
+        new ObjectAndType(Integer.valueOf(1), Class.class),
+        new ObjectAndType(new BrokenToString(), String.class) };
 
     ExpressionFactory expFactory = ExpressionFactory.newInstance();
 
@@ -533,6 +535,23 @@ public class ELClientIT {
     public ObjectAndType(Object obj, Class<?> type) {
       this.obj = obj;
       this.type = type;
+    }
+  }
+
+  private static class NotBrokenToString {
+
+    @Override
+    public String toString() {
+      return "Data";
+    }
+  }
+
+
+  private static class BrokenToString {
+
+    @Override
+    public String toString() {
+      throw new IllegalStateException();
     }
   }
 }
