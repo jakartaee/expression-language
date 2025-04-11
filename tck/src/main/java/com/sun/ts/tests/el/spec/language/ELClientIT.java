@@ -23,8 +23,9 @@ package com.sun.ts.tests.el.spec.language;
 
 import java.util.Hashtable;
 
-import com.sun.ts.tests.el.common.util.ELTestUtil;
+import com.sun.ts.tests.el.common.elresolver.SingleIdentifierELResolver;
 import com.sun.ts.tests.el.common.spec.Book;
+import com.sun.ts.tests.el.common.util.ELTestUtil;
 import com.sun.ts.tests.el.common.util.ExprEval;
 import com.sun.ts.tests.el.common.util.ResolverType;
 
@@ -606,4 +607,37 @@ public class ELClientIT {
       throw new Exception("TEST FAILED!");
   }
 
+  @Test
+  public void optimiseStandaloneIdentifier() throws Exception {
+    boolean pass = false;
+
+    String expr = "${" + SingleIdentifierELResolver.SINGLE + "}";
+    String expected = SingleIdentifierELResolver.PASS;
+
+    try {
+      pass = expected.equals(
+              ExprEval.evaluateValueExpression(expr, null, String.class, ResolverType.SINGLE_IDENTIFER_ELRESOLVER));
+    } catch (Exception e) {
+        throw new Exception(e);
+      }
+      if (!pass)
+        throw new Exception("TEST FAILED!");
+  }
+
+  @Test
+  public void optimiseStandaloneIdentifierNegative() throws Exception {
+    boolean pass = false;
+
+    String expr = "${" + SingleIdentifierELResolver.NOT_SINGLE + ".length()}";
+    Integer expected = Integer.valueOf(SingleIdentifierELResolver.PASS.length());
+
+    try {
+      pass = expected.equals(
+              ExprEval.evaluateValueExpression(expr, null, Integer.class, ResolverType.SINGLE_IDENTIFER_ELRESOLVER));
+    } catch (Exception e) {
+        throw new Exception(e);
+      }
+      if (!pass)
+        throw new Exception("TEST FAILED!");
+  }
 }
