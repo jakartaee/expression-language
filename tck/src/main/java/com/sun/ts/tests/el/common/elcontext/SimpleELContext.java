@@ -22,10 +22,12 @@ package com.sun.ts.tests.el.common.elcontext;
 
 
 import com.sun.ts.tests.el.common.elresolver.EmployeeELResolver;
+import com.sun.ts.tests.el.common.elresolver.SingleIdentifierELResolver;
 import com.sun.ts.tests.el.common.elresolver.VariableELResolver;
 import com.sun.ts.tests.el.common.elresolver.VectELResolver;
 import com.sun.ts.tests.el.common.util.ResolverType;
 
+import jakarta.el.BeanELResolver;
 import jakarta.el.CompositeELResolver;
 import jakarta.el.ELContext;
 import jakarta.el.ELResolver;
@@ -136,6 +138,13 @@ public class SimpleELContext extends ELContext {
     case VECT_ELRESOLVER:
       myResolver = new VectELResolver();
       logger.log(Logger.Level.TRACE, "Setting ELResolver == VectELResolver");
+      break;
+
+    case SINGLE_IDENTIFER_ELRESOLVER:
+      myResolver = new CompositeELResolver();
+      ((CompositeELResolver) myResolver).add(new SingleIdentifierELResolver());
+      ((CompositeELResolver) myResolver).add(new BeanELResolver());
+      logger.log(Logger.Level.TRACE, "Setting ELResolver == SingleIdentifierELResolver");
       break;
 
     default:

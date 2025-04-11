@@ -560,6 +560,20 @@ One implication of the explicit search order
 of the identifiers is that an identifier hides other identifiers (of the
 same name) that come after it in the list.
 
+===== Resolving Identifiers with ``ELResolver``s
+
+Resolution of identifiers with ``ELResolver``s can be optimised when a single,
+stand-alone identifier (e.g. `identifier-a`) needs to be resolved compared to
+the resolution of multiple identifiers (e.g. `identifier-a.identifier-b`). This
+is particularly important for applications using Jakarta Pages as optimisation
+enables measurable performance improvements for instances of
+`jakarta.servlet.jsp.el.ScopedAttributeELResolver`.
+
+To support such optimisations, when resolving a single, stand-alone identifier,
+the implementation is required to put an instance of `Boolean.TRUE` into the
+`ELContext` under the key `jakarta.el.ELResolver.StandaloneIdentifierMarker` for
+the duration of the attempt to resolve the identifier.
+
 ==== Evaluating functions
 
 The expression with the syntax
@@ -2999,6 +3013,12 @@ This appendix lists the changes in the EL specification.
 This appendix is non-normative.
 
 === Changes between 6.1 and 6.0
+
+* https://github.com/jakartaee/expression-language/issues/211[#211]
+  Provider a marker in the `ELContext` when resolving single, stand-alone
+  identifiers that allows an `ELResolver` to optimise the resolution of the
+  identifier. This change supports a performance improvement in
+  `jakarta.servlet.jsp.el.ScopedAttributeELResolver`.
 
 * https://github.com/jakartaee/expression-language/issues/313[#313]
   Add support for inner classes when using the `ImportHandler` and clarify that
