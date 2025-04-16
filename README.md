@@ -37,3 +37,8 @@ To make changes, fork this repository, make your changes, and submit a pull requ
 ## About Jakarta Expression Language
 
 Jakarta Expression Language defines an expression language for Java applications.
+
+## TCK Challenges
+
+All test challenges for Jakarta Expression Language must be resolved by Active Resolution.
+Please see the TCK Users guide for more details.
