@@ -65,6 +65,10 @@ public final class ExprEval {
       sandwich = "{empty A}";
     else if ("conditional".equals(operation))
       sandwich = "{A " + "?" + "B" + ":" + " C}";
+    else if ("null_coalescing".equals(operation))
+        sandwich = "{A " + "??" + "B" + "}";
+    else if ("elvis".equals(operation))
+        sandwich = "{A " + "?:" + "B" + "}";
     else // binary operation
       sandwich = "{A " + operation + " B}";
 
