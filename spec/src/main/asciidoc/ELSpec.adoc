@@ -1039,6 +1039,28 @@ Coerce `A` to `Boolean`:
 
 * If `A` is `false`, evaluate and return `C`
 
+== Elvis Operator - `A ?: B`
+
+The Elivs operator returns the first operand if that operand is `true`.
+Otherwise, the second operand is returned.
+
+Coerce `A` to `boolean` (primitive):
+
+* If `A` is `true`, evaluate and return `A` (without coercion)
+
+* If `A` is `false`, evaluate and return `B`
+
+== Null coalescing Operator - `A ?? B`
+
+The Null coalescing operator returns the first operand if that operand is non-null.
+Otherwise, the second operand is returned.
+
+To evaluate `A ?? B`:
+
+* If `A` is `null`, return `B`
+
+* Otherwise return `A`
+
 === Assignment Operator - `A = B`
 
 Assign the value of `B` to `A`. `A` must be an _lvalue_, otherwise, a
@@ -1703,7 +1725,7 @@ void SemiColon() : {}
 void Assignment() : {}
 {
         LOOKAHEAD(4) LambdaExpression() |
-        Choice() ( LOOKAHEAD(2) <ASSIGN> Assignment() #Assign(2) )*
+        Ternary() ( LOOKAHEAD(2) <ASSIGN> Assignment() #Assign(2) )*
 }
 
 /*
@@ -1712,7 +1734,7 @@ void Assignment() : {}
 void LambdaExpression() #LambdaExpression : {}
 {
        LambdaParameters() <ARROW>
-       (LOOKAHEAD(3) LambdaExpression() | Choice() )
+       (LOOKAHEAD(3) LambdaExpression() | Ternary() )
 }
 
 void LambdaParameters() #LambdaParameters: {}
@@ -1724,12 +1746,19 @@ void LambdaParameters() #LambdaParameters: {}
 }
 
 /*
- * Choice
- * For Choice markup a ? b : c, right associative
+ * Ternary
+ * For '??' '?:' '? :' then Or
  */
-void Choice() : {}
+void Ternary() : {}
 {
-    Or() (<QUESTIONMARK> Choice() <COLON> Choice() #Choice(3))?
+    Or()
+    (
+        LOOKAHEAD(2) (<QUESTIONMARK><QUESTIONMARK> Ternary() #NullCoalescing(2))
+    |
+        LOOKAHEAD(2) (<QUESTIONMARK><COLON> Ternary() #Elvis(2))
+    |
+        (<QUESTIONMARK> Ternary() <COLON> Ternary() #Choice(3))
+    )?
 }
 
 /*
@@ -1900,7 +1929,7 @@ void LambdaExpressionOrCall() #LambdaExpression : {}
 {
     <LPAREN>
         LambdaParameters() <ARROW>
-        (LOOKAHEAD(3) LambdaExpression() | Choice() )
+        (LOOKAHEAD(3) LambdaExpression() | Ternary() )
     <RPAREN>
     (MethodArguments())*
 }
