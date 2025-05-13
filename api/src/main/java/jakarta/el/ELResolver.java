@@ -278,7 +278,7 @@ public abstract class ELResolver {
      *
      * @since Jakarta Expression Language 6.1
      */
-    public class StandaloneIdentifierMarker {
+    public static class StandaloneIdentifierMarker {
 
         private StandaloneIdentifierMarker() {
             // Non-public default constructor as there is no need to create instances of this class.
