@@ -567,7 +567,7 @@ stand-alone identifier (e.g. `identifier-a`) needs to be resolved compared to
 the resolution of multiple identifiers (e.g. `identifier-a.identifier-b`). This
 is particularly important for applications using Jakarta Pages as optimisation
 enables measurable performance improvements for instances of
-`jakarta.servlet.jsp.el.ScopedAttributeELResolver`.
+`jakarta.servlet.jsp.el.ImportELResolver`.
 
 To support such optimisations, when resolving a single, stand-alone identifier,
 the implementation is required to put an instance of `Boolean.TRUE` into the
@@ -3047,7 +3047,7 @@ This appendix is non-normative.
   Provider a marker in the `ELContext` when resolving single, stand-alone
   identifiers that allows an `ELResolver` to optimise the resolution of the
   identifier. This change supports a performance improvement in
-  `jakarta.servlet.jsp.el.ScopedAttributeELResolver`.
+  `jakarta.servlet.jsp.el.ImportELResolver`.
 
 * https://github.com/jakartaee/expression-language/issues/313[#313]
   Add support for inner classes when using the `ImportHandler` and clarify that

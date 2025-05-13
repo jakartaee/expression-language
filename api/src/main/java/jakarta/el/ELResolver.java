@@ -270,7 +270,7 @@ public abstract class ELResolver {
      * This class is used as a key for {@link ELContext#getContext(Class)}. The key references a context object that if
      * present and set to {@code Boolean#TRUE}, indicates that the identifier being resolved is a single, stand-alone
      * identifier. This allows {@link ELResolver} instances - and in particular
-     * {@code jakarta.servlet.jsp.el.ScopedAttributeELResolver} - to optimise the resolution of the identifier and avoid
+     * {@code jakarta.servlet.jsp.el.ImportELResolver} - to optimise the resolution of the identifier and avoid
      * unnecessary and expensive class loader lookups.
      * <p>
      * The EL implementation is required to set this key with the value {@code Boolean#TRUE} when resolving a single,
