@@ -32,8 +32,8 @@
             <destName>LICENSE.md</destName>
         </file>
         <file>
-            <source>${project.basedir}/src/main/resources/jakarta.el.sig_6.0</source>
-            <destName>jakarta.el.sig_6.0</destName>
+            <source>${project.basedir}/src/main/resources/jakarta.el.sig_6.1</source>
+            <destName>jakarta.el.sig_6.1</destName>
         </file>
     </files>
     <fileSets>
