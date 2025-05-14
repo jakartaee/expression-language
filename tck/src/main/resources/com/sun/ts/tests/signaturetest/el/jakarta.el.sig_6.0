@@ -1,5 +1,5 @@
 #Signature file v4.1
-#Version 6.0.0
+#Version 6.0
 
 CLSS public jakarta.el.ArrayELResolver
 cons public init()
