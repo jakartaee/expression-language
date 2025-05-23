@@ -3049,6 +3049,10 @@ This appendix is non-normative.
   identifier. This change supports a performance improvement in
   `jakarta.servlet.jsp.el.ImportELResolver`.
 
+* https://github.com/jakartaee/expression-language/issues/243[#243]
+  Add support for the null coalescing operator (`??`) and the Elvis operator
+  (`?:`).
+
 * https://github.com/jakartaee/expression-language/issues/313[#313]
   Add support for inner classes when using the `ImportHandler` and clarify that
   the import handler expects canonical class names where full class names are
