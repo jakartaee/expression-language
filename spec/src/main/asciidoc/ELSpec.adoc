@@ -876,13 +876,31 @@ operator
 
 * Otherwise, error
 
-=== String Concatenation Operator - `A += B`
+=== Concatenation Operator - `A += B`
 
 To evaluate `A += B`:
 
-* Coerce `A` and `B` to String
+* If `A` and `B` are ``Map``s
 
-* Return the concatenated string of `A` and `B`
+** return `A.putAll(B)`
+
+** If method call results in exception, error
+
+* If `A` is a `Set` and `B` is a collection
+
+** return `A.addAll(B)`
+
+** If method call results in exception, error
+
+* If `A` is a `List` and `B` is a collection
+
+** return `A.addAll(B)`
+
+** If method call results in exception, error
+
+* Otherwise, Coerce `A` and `B` to String
+
+** return the concatenated string of `A` and `B`
 
 === Relational Operators
 
@@ -3052,6 +3070,10 @@ This appendix is non-normative.
 * https://github.com/jakartaee/expression-language/issues/243[#243]
   Add support for the null coalescing operator (`??`) and the Elvis operator
   (`?:`).
+
+* https://github.com/jakartaee/expression-language/issues/247[#247]
+  Expand the definition of the concatenation operator (`+=`) to include
+  collections.
 
 * https://github.com/jakartaee/expression-language/issues/313[#313]
   Add support for inner classes when using the `ImportHandler` and clarify that
