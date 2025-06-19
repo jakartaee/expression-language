@@ -2166,8 +2166,7 @@ TOKEN_MGR_DECLS:
 |   < CONCAT : "+=" >
 |   < ASSIGN : "=" >
 |   < ARROW : "->" >
-|   < IDENTIFIER : (<LETTER>|<IMPL_OBJ_START>) (<LETTER>|<DIGIT>)* >
-|   < #IMPL_OBJ_START: "#" >
+|   < IDENTIFIER : <LETTER> (<LETTER>|<DIGIT>)* >
 |   < #LETTER:
         [
         "\u0024",
