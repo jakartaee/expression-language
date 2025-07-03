@@ -26,11 +26,7 @@ import java.util.ArrayList;
  */
 public final class TestNum {
 
-    private static final String COMPARATOR = "1";
-
-    private static ArrayList<Float> floatList;
-
-    private static ArrayList<Object> numberList;
+    private static final String NUMBER_REFERENCE = "1";
 
     /**
      * Private as this class will only have static methods and members.
@@ -45,7 +41,7 @@ public final class TestNum {
      */
     public static ArrayList<Float> getFloatList() {
 
-        floatList = new ArrayList<>();
+        ArrayList<Float> floatList = new ArrayList<>();
 
         floatList.add(Float.valueOf("1.00005f"));
         floatList.add(Float.valueOf("1.5E-4d"));
@@ -64,19 +60,19 @@ public final class TestNum {
      */
     public static ArrayList<Object> getNumberList() {
 
-        numberList = new ArrayList<>();
+        ArrayList<Object> numberList = new ArrayList<>();
 
-        numberList.add(BigDecimal.valueOf(Long.parseLong(COMPARATOR)));
-        numberList.add(Double.valueOf(COMPARATOR));
-        numberList.add(Float.valueOf(COMPARATOR));
-        numberList.add(COMPARATOR + ".0");
-        numberList.add(COMPARATOR + "e0");
-        numberList.add(COMPARATOR + "E0");
-        numberList.add(BigInteger.valueOf(Long.parseLong(COMPARATOR)));
-        numberList.add(Long.valueOf(COMPARATOR));
-        numberList.add(Integer.valueOf(COMPARATOR));
-        numberList.add(Short.valueOf(COMPARATOR));
-        numberList.add(Byte.valueOf(COMPARATOR));
+        numberList.add(BigDecimal.valueOf(Long.parseLong(NUMBER_REFERENCE)));
+        numberList.add(Double.valueOf(NUMBER_REFERENCE));
+        numberList.add(Float.valueOf(NUMBER_REFERENCE));
+        numberList.add(NUMBER_REFERENCE + ".0");
+        numberList.add(NUMBER_REFERENCE + "e0");
+        numberList.add(NUMBER_REFERENCE + "E0");
+        numberList.add(BigInteger.valueOf(Long.parseLong(NUMBER_REFERENCE)));
+        numberList.add(Long.valueOf(NUMBER_REFERENCE));
+        numberList.add(Integer.valueOf(NUMBER_REFERENCE));
+        numberList.add(Short.valueOf(NUMBER_REFERENCE));
+        numberList.add(Byte.valueOf(NUMBER_REFERENCE));
 
         return numberList;
 
