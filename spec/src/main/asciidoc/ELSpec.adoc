@@ -944,6 +944,10 @@ and use the return value of `A.compareTo(B)`
 * If `A` or `B` is `Byte`, `Short`, `Character`, `Integer`, or `Long`
 coerce both `A` and `B` to `Long` and apply operator
 
+* If `A` or `B` is `java.time.temporal.TemporalAccessor`, `java.time.Clock` or
+`java.util.Date` coerce both `A` and `B` to `java.time.Instant` and use the
+return value of `A.compareTo(B)`.
+ 
 * If `A` or `B` is `String` coerce both `A` and `B` to `String`, compare
 lexically
 
@@ -973,7 +977,7 @@ for `!=` or `ne`
 
 ** If operator is `==` or `eq`, return `A.equals(B)`
 
-** If operator is `!=` or `ne`, retur `!A.equals(B)`
+** If operator is `!=` or `ne`, return `!A.equals(B)`
 
 * If `A` or `B` is `Float` or `Double` coerce both `A` and `B` to
 `Double`, apply operator
@@ -993,6 +997,13 @@ apply operator
 
 * If `A` or `B` is an enum, coerce both `A` and `B` to enum, apply
 operator
+
+* If `A` or `B` is `java.time.temporal.TemporalAccessor`, `java.time.Clock` or
+`java.util.Date` coerce both `A` and `B` to `java.time.Instant`  and then:
+
+** If operator is `==` or `eq`, return `A.equals(B)`
+
+** If operator is `!=` or `ne`, return `!A.equals(B)`
 
 * If `A` or `B` is `String` coerce both `A` and `B` to `String`, compare
 lexically
@@ -3129,6 +3140,10 @@ This appendix is non-normative.
 * https://github.com/jakartaee/expression-language/issues/247[#247]
   Expand the definition of the concatenation operator (`+=`) to include
   collections.
+
+* https://github.com/jakartaee/expression-language/issues/273[#273]
+  Expand the types that can be used with the relational operators to include
+  types that represent a date and time.
 
 * https://github.com/jakartaee/expression-language/issues/278[#278]
   Restore definition of `Identifier` as `Java Language Identifier` and clarify
