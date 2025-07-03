@@ -18,7 +18,12 @@ package com.sun.ts.tests.el.common.util;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.time.Clock;
+import java.time.Instant;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Used to store lists that will be utilized across the board for a common
@@ -27,6 +32,10 @@ import java.util.ArrayList;
 public final class TestNum {
 
     private static final String NUMBER_REFERENCE = "1";
+
+    public static final Instant DATE_REFERENCE_BEFORE = Instant.parse("2025-04-03T02:00:59.00Z");
+    public static final Instant DATE_REFERENCE = Instant.parse("2025-04-03T02:01:00.00Z");
+    public static final Instant DATE_REFERENCE_AFTER = Instant.parse("2025-04-03T02:01:01.00Z");
 
     /**
      * Private as this class will only have static methods and members.
@@ -76,5 +85,22 @@ public final class TestNum {
 
         return numberList;
 
+    }
+
+
+    /**
+     * Used to provide a list of date and times using different implementations
+     * that all refer to 2025-04-03 02:01 UTC.
+     */
+    public static ArrayList<Object> getDateTimeList() {
+
+        ArrayList<Object> dateTimeList = new ArrayList<>();
+
+        dateTimeList.add(Date.from(DATE_REFERENCE));
+        dateTimeList.add(Clock.fixed(DATE_REFERENCE, ZoneId.of("Z")));
+        dateTimeList.add(DATE_REFERENCE);
+        dateTimeList.add(ZonedDateTime.ofInstant(DATE_REFERENCE, ZoneId.of("+12:00")));
+
+        return dateTimeList;
     }
 }
