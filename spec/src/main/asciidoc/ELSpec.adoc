@@ -1616,16 +1616,40 @@ Note: If coercion of any element in the array fails, the coercion of the array f
 
 ==== Coerce `A` to functional interface method invocation
 
- * If `A` is a `LambdaExpression` then:
+* If `A` is a `LambdaExpression` then:
  
- ** Return the result of invoking the `LambdaExpression` with the parameters
-    (coerced if necessary) that were passed to the Functional Interface method
-    invocation
+** Return the result of invoking the `LambdaExpression` with the parameters
+   (coerced if necessary) that were passed to the Functional Interface method
+   invocation
  
- * Otherwise, apply the rules in <<Coerce `A` to Any Other Type `T`>>
+* Otherwise, apply the rules in <<Coerce `A` to Any Other Type `T`>>
 
 Note: A Type is only considered to be a functional interface it it is annotated
 with `java.lang.FunctionalInterface`.
+
+==== Coerce `A` to `java.time.Instant`
+
+* If `A` is `null`, return `null`
+
+* If `A` is `java.time.Instant`, return `A`
+
+* If `A` is `java.time.temporal.TemporalAccessor`, return `Instant.from(A)`
+
+* If `A` is `java.time.Clock`, return `A.instant()`
+
+* If `A` is `java.util.Date`, return `A.toInstant()`
+
+* If `A` is `String`, return `Instant.parse(A)`
+
+* Otherwise, error
+
+==== Coerce `A` to `java.util.Date`
+
+* If `A` is `null`, return `null`
+
+* If `A` is `java.util.Date`, return `A`
+
+* Coerce `A` to `Instant` and then call `java.util.Date.from(A)`
 
 ==== Coerce `A` to Any Other Type `T`
 
