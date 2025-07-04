@@ -14,75 +14,93 @@
  *
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
-
-/*
- * $Id$
- */
 package com.sun.ts.tests.el.common.util;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.time.Clock;
+import java.time.Instant;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
- * Used to store lists that will be utilized accross the board for a common
+ * Used to store lists that will be utilized across the board for a common
  * point of reference when testing.
  */
 public final class TestNum {
 
-  private static final String COMPARATOR = "1";
+    private static final String NUMBER_REFERENCE = "1";
 
-  private static ArrayList<Float> floatList;
+    public static final Instant DATE_REFERENCE_BEFORE = Instant.parse("2025-04-03T02:00:59.00Z");
+    public static final Instant DATE_REFERENCE = Instant.parse("2025-04-03T02:01:00.00Z");
+    public static final Instant DATE_REFERENCE_AFTER = Instant.parse("2025-04-03T02:01:01.00Z");
 
-  private static ArrayList<Object> numberList;
+    /**
+     * Private as this class will only have static methods and members.
+     */
+    private TestNum() {
+    }
 
-  /**
-   * Private as this class will only have static methods and members.
-   */
-  private TestNum() {
-  }
+    /**
+     * Used for a common list of Float values when testing.
+     *
+     * @return - A set list of common Floats that we use as test values.
+     */
+    public static ArrayList<Float> getFloatList() {
 
-  /**
-   * Used for a common list of Float values when testing.
-   *
-   * @return - A set list of common Floats that we use as test values.
-   */
-  public static ArrayList<Float> getFloatList() {
+        ArrayList<Float> floatList = new ArrayList<>();
 
-    floatList = new ArrayList<>();
+        floatList.add(Float.valueOf("1.00005f"));
+        floatList.add(Float.valueOf("1.5E-4d"));
+        floatList.add(Float.valueOf("1.5E+4"));
+        floatList.add(Float.valueOf("1.5e+4"));
 
-    floatList.add(Float.valueOf("1.00005f"));
-    floatList.add(Float.valueOf("1.5E-4d"));
-    floatList.add(Float.valueOf("1.5E+4"));
-    floatList.add(Float.valueOf("1.5e+4"));
+        return floatList;
 
-    return floatList;
+    }
 
-  }
+    /**
+     * Used a common reference point for Number types and a common value is
+     * assigned (1).
+     *
+     * @return - A common List of Number types with a constant value.
+     */
+    public static ArrayList<Object> getNumberList() {
 
-  /**
-   * Used a common reference point for Number types and a common value is
-   * assigned (1).
-   *
-   * @return - A common List of Number types with a constant value.
-   */
-  public static ArrayList<Object> getNumberList() {
+        ArrayList<Object> numberList = new ArrayList<>();
 
-    numberList = new ArrayList<>();
+        numberList.add(BigDecimal.valueOf(Long.parseLong(NUMBER_REFERENCE)));
+        numberList.add(Double.valueOf(NUMBER_REFERENCE));
+        numberList.add(Float.valueOf(NUMBER_REFERENCE));
+        numberList.add(NUMBER_REFERENCE + ".0");
+        numberList.add(NUMBER_REFERENCE + "e0");
+        numberList.add(NUMBER_REFERENCE + "E0");
+        numberList.add(BigInteger.valueOf(Long.parseLong(NUMBER_REFERENCE)));
+        numberList.add(Long.valueOf(NUMBER_REFERENCE));
+        numberList.add(Integer.valueOf(NUMBER_REFERENCE));
+        numberList.add(Short.valueOf(NUMBER_REFERENCE));
+        numberList.add(Byte.valueOf(NUMBER_REFERENCE));
 
-    numberList.add(BigDecimal.valueOf(Long.parseLong(COMPARATOR)));
-    numberList.add(Double.valueOf(COMPARATOR));
-    numberList.add(Float.valueOf(COMPARATOR));
-    numberList.add(COMPARATOR + ".0");
-    numberList.add(COMPARATOR + "e0");
-    numberList.add(COMPARATOR + "E0");
-    numberList.add(BigInteger.valueOf(Long.parseLong(COMPARATOR)));
-    numberList.add(Long.valueOf(COMPARATOR));
-    numberList.add(Integer.valueOf(COMPARATOR));
-    numberList.add(Short.valueOf(COMPARATOR));
-    numberList.add(Byte.valueOf(COMPARATOR));
+        return numberList;
 
-    return numberList;
+    }
 
-  }
+
+    /**
+     * Used to provide a list of date and times using different implementations
+     * that all refer to 2025-04-03 02:01 UTC.
+     */
+    public static ArrayList<Object> getDateTimeList() {
+
+        ArrayList<Object> dateTimeList = new ArrayList<>();
+
+        dateTimeList.add(Date.from(DATE_REFERENCE));
+        dateTimeList.add(Clock.fixed(DATE_REFERENCE, ZoneId.of("Z")));
+        dateTimeList.add(DATE_REFERENCE);
+        dateTimeList.add(ZonedDateTime.ofInstant(DATE_REFERENCE, ZoneId.of("+12:00")));
+
+        return dateTimeList;
+    }
 }

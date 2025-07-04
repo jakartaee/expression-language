@@ -944,6 +944,10 @@ and use the return value of `A.compareTo(B)`
 * If `A` or `B` is `Byte`, `Short`, `Character`, `Integer`, or `Long`
 coerce both `A` and `B` to `Long` and apply operator
 
+* If `A` or `B` is `java.time.temporal.TemporalAccessor`, `java.time.Clock` or
+`java.util.Date` coerce both `A` and `B` to `java.time.Instant` and use the
+return value of `A.compareTo(B)`.
+ 
 * If `A` or `B` is `String` coerce both `A` and `B` to `String`, compare
 lexically
 
@@ -973,7 +977,7 @@ for `!=` or `ne`
 
 ** If operator is `==` or `eq`, return `A.equals(B)`
 
-** If operator is `!=` or `ne`, retur `!A.equals(B)`
+** If operator is `!=` or `ne`, return `!A.equals(B)`
 
 * If `A` or `B` is `Float` or `Double` coerce both `A` and `B` to
 `Double`, apply operator
@@ -993,6 +997,13 @@ apply operator
 
 * If `A` or `B` is an enum, coerce both `A` and `B` to enum, apply
 operator
+
+* If `A` or `B` is `java.time.temporal.TemporalAccessor`, `java.time.Clock` or
+`java.util.Date` coerce both `A` and `B` to `java.time.Instant`  and then:
+
+** If operator is `==` or `eq`, return `A.equals(B)`
+
+** If operator is `!=` or `ne`, return `!A.equals(B)`
 
 * If `A` or `B` is `String` coerce both `A` and `B` to `String`, compare
 lexically
@@ -1605,16 +1616,40 @@ Note: If coercion of any element in the array fails, the coercion of the array f
 
 ==== Coerce `A` to functional interface method invocation
 
- * If `A` is a `LambdaExpression` then:
+* If `A` is a `LambdaExpression` then:
  
- ** Return the result of invoking the `LambdaExpression` with the parameters
-    (coerced if necessary) that were passed to the Functional Interface method
-    invocation
+** Return the result of invoking the `LambdaExpression` with the parameters
+   (coerced if necessary) that were passed to the Functional Interface method
+   invocation
  
- * Otherwise, apply the rules in <<Coerce `A` to Any Other Type `T`>>
+* Otherwise, apply the rules in <<Coerce `A` to Any Other Type `T`>>
 
 Note: A Type is only considered to be a functional interface it it is annotated
 with `java.lang.FunctionalInterface`.
+
+==== Coerce `A` to `java.time.Instant`
+
+* If `A` is `null`, return `null`
+
+* If `A` is `java.time.Instant`, return `A`
+
+* If `A` is `java.time.temporal.TemporalAccessor`, return `Instant.from(A)`
+
+* If `A` is `java.time.Clock`, return `A.instant()`
+
+* If `A` is `java.util.Date`, return `A.toInstant()`
+
+* If `A` is `String`, return `Instant.parse(A)`
+
+* Otherwise, error
+
+==== Coerce `A` to `java.util.Date`
+
+* If `A` is `null`, return `null`
+
+* If `A` is `java.util.Date`, return `A`
+
+* Coerce `A` to `Instant` and then call `java.util.Date.from(A)`
 
 ==== Coerce `A` to Any Other Type `T`
 
@@ -3129,6 +3164,10 @@ This appendix is non-normative.
 * https://github.com/jakartaee/expression-language/issues/247[#247]
   Expand the definition of the concatenation operator (`+=`) to include
   collections.
+
+* https://github.com/jakartaee/expression-language/issues/273[#273]
+  Expand the types that can be used with the relational operators to include
+  types that represent a date and time.
 
 * https://github.com/jakartaee/expression-language/issues/278[#278]
   Restore definition of `Identifier` as `Java Language Identifier` and clarify
