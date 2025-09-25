@@ -289,6 +289,16 @@ Use is subject to <a href="{@docRoot}/doc-files/EFSL.html" target="_top">license
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>org.sonatype.central</groupId>
+                <artifactId>central-publishing-maven-plugin</artifactId>
+                <configuration>
+                    <publishingServerId>central</publishingServerId>
+                    <autoPublish>true</autoPublish>
+                    <waitUntil>published</waitUntil>
+                    <centralSnapshotsUrl>https://central.sonatype.com/repository/maven-snapshots/</centralSnapshotsUrl>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
