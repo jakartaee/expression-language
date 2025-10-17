@@ -17,6 +17,7 @@
     SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
 
 -->
+
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
@@ -50,7 +51,7 @@
        <contributor>
            <name>Jakarta Expression Language Contributors</name>
            <email>el-dev@eclipse.org</email>
-           <url>https://github.com/eclipse-ee4j/el-ri/graphs/contributors</url>
+           <url>https://github.com/jakartaee/expression-language/graphs/contributors</url>
        </contributor>
     </contributors>
 
@@ -77,7 +78,7 @@
     </issueManagement>
 
     <properties>
-        <!-- Timestamp for repeatable builds (more recent than parent -->
+        <!-- Timestamp for repeatable builds (more recent than parent) -->
         <project.build.outputTimestamp>2025-10-15T00:00:00Z</project.build.outputTimestamp>
         <!-- OSGi properties -->
         <!-- Make sure the two versions are in sync with the maven version -->
@@ -85,7 +86,6 @@
         <bundle.version>${project.version}</bundle.version>
         <extensionName>jakarta.el</extensionName>
         <bundle.symbolicName>jakarta.el-api</bundle.symbolicName>
-        <vendorName>Eclipse Foundation</vendorName>
     </properties>
 
     <dependencyManagement>
@@ -103,12 +103,7 @@
     <dependencies>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-engine</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-params</artifactId>
+            <artifactId>junit-jupiter</artifactId>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -119,6 +114,7 @@
                 <directory>src/main/java</directory>
                 <includes>
                     <include>**/*.properties</include>
+                    <include>**/*.html</include>
                 </includes>
             </resource>
             <resource>
@@ -181,7 +177,7 @@
                 <version>2.4</version>
                 <configuration>
                     <excludeFile>etc/config/copyright-exclude</excludeFile>
-                    <!--svn|mercurial|git - defaults to svn -->
+                    <!-- svn|mercurial|git - defaults to svn -->
                     <scm>git</scm>
                     <!-- turn on/off debugging -->
                     <debug>false</debug>
@@ -208,15 +204,19 @@
                         <supportedProjectType>jar</supportedProjectType>
                     </supportedProjectTypes>
                     <instructions>
-                        <Bundle-Description>Jakarta Expression Language ${spec.version}</Bundle-Description>
                         <Bundle-SymbolicName>${bundle.symbolicName}</Bundle-SymbolicName>
                         <Bundle-Version>${bundle.version}</Bundle-Version>
+                        <Bundle-Description>Jakarta Expression Language ${spec.version}</Bundle-Description>
                         <Extension-Name>${extensionName}</Extension-Name>
                         <Specification-Version>${spec.version}</Specification-Version>
                         <Specification-Vendor>${vendorName}</Specification-Vendor>
                         <Implementation-Version>${project.version}</Implementation-Version>
-                        <Implementation-Vendor>${vendorName}</Implementation-Vendor>
+                        <Implementation-Vendor>${project.organization.name}</Implementation-Vendor>
+                        <Implementation-Vendor-Id>org.eclipse</Implementation-Vendor-Id>
                         <Export-Package>jakarta.el</Export-Package>
+                        <_removeheaders>Bnd-LastModified</_removeheaders>
+                        <_reproducible>true</_reproducible>
+                        <_removeheaders>Include-Resource</_removeheaders>
                     </instructions>
                 </configuration>
                 <executions>
@@ -232,6 +232,7 @@
 
             <!-- Adds the manifest file created by the org.apache.felix:maven-bundle-plugin -->
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
                 <configuration>
                     <archive>

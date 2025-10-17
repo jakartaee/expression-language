@@ -27,18 +27,16 @@
         <version>2.0.0-M1</version>
     </parent>
 
-    <!--
-        This POM is only used as a convenient way to build each of the modules.
-        The individual modules do not inherit from this POM.
-    -->
-
     <groupId>jakarta.el</groupId>
     <artifactId>el-parent</artifactId>
     <version>6.1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
-    <name>Jakarta Expression Language</name>
-    <description>Jakarta Expression Language</description>
+    <name>Jakarta Expression Language Parent</name>
+    <description>
+        This POM is only used as a convenient way to build each of the modules.
+        The individual modules do not inherit from this POM.
+    </description>
     <url>https://projects.eclipse.org/projects/ee4j.el</url>
 
     <modules>
