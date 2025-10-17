@@ -22,7 +22,7 @@
     <parent>
         <groupId>org.eclipse.ee4j</groupId>
         <artifactId>project</artifactId>
-        <version>1.0.9</version>
+        <version>2.0.0-M1</version>
         <relativePath/>
     </parent>
 
@@ -34,6 +34,10 @@
     <name>Jakarta Expression Language Specification</name>
     <description>Jakarta Expression Language - Specification</description>
     <url>https://projects.eclipse.org/projects/ee4j.el</url>
+    
+    <!--
+        Override the license in the parent POM as specifications all have a different license. 
+    -->
     <licenses>
         <license>
             <name>Eclipse Foundation Specification License – v1.0</name>
@@ -62,21 +66,22 @@
         <mailingList>
             <name>Expression Language dev mailing list</name>
             <post>el-dev@eclipse.org</post>
-            <subscribe>https://dev.eclipse.org/mailman/listinfo/el-dev</subscribe>
-            <unsubscribe>https://dev.eclipse.org/mailman/listinfo/el-dev</unsubscribe>
-            <archive>https://dev.eclipse.org/mhonarc/lists/el-dev</archive>
+            <subscribe>https://accounts.eclipse.org/mailing-list/el-dev</subscribe>
+            <unsubscribe>https://accounts.eclipse.org/mailing-list/el-dev</unsubscribe>
+            <archive>https://www.eclipse.org/lists/el-dev</archive>
         </mailingList>
     </mailingLists>
 
     <scm>
-        <connection>scm:git:https://github.com/eclipse-ee4j/el-ri.git</connection>
-        <developerConnection>scm:git:ssh://git@github.com/eclipse-ee4j/el-ri.git</developerConnection>
-        <url>https://github.com/eclipse-ee4j/el-ri</url>
+        <connection>scm:git:https://github.com/jakartaee/expression-language.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com/jakartaee/expression-language.git</developerConnection>
+        <url>https://github.com/jakartaee/expression-language</url>
         <tag>HEAD</tag>
     </scm>
+
     <issueManagement>
         <system>github</system>
-        <url>https://github.com/eclipse-ee4j/el-ri/issues</url>
+        <url>https://github.com/jakartaee/expression-language/issues</url>
     </issueManagement>
 
     <properties>
@@ -107,10 +112,11 @@
                         <configuration>
                             <rules>
                                 <requireMavenVersion>
-                                    <version>3.6.0</version>
+                                    <version>3.8.6</version>
                                 </requireMavenVersion>
+                                <!-- Plugins used to build spec require Java 21 so use 21 a minimum for all modules -->
                                 <requireJavaVersion>
-                                    <version>11</version>
+                                    <version>21</version>
                                 </requireJavaVersion>
                             </rules>
                         </configuration>
