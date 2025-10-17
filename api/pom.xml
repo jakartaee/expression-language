@@ -17,14 +17,13 @@
     SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
 
 -->
-
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
         <groupId>org.eclipse.ee4j</groupId>
         <artifactId>project</artifactId>
-        <version>2.0.0-SNAPSHOT</version>
+        <version>2.0.0-M1</version>
         <relativePath/>
     </parent>
 
@@ -59,22 +58,35 @@
         <mailingList>
             <name>Expression Language dev mailing list</name>
             <post>el-dev@eclipse.org</post>
-            <subscribe>https://dev.eclipse.org/mailman/listinfo/el-dev</subscribe>
-            <unsubscribe>https://dev.eclipse.org/mailman/listinfo/el-dev</unsubscribe>
-            <archive>https://dev.eclipse.org/mhonarc/lists/el-dev</archive>
+            <subscribe>https://accounts.eclipse.org/mailing-list/el-dev</subscribe>
+            <unsubscribe>https://accounts.eclipse.org/mailing-list/el-dev</unsubscribe>
+            <archive>https://www.eclipse.org/lists/el-dev</archive>
         </mailingList>
     </mailingLists>
 
     <scm>
-        <connection>scm:git:https://github.com/eclipse-ee4j/el-ri.git</connection>
-        <developerConnection>scm:git:ssh://git@github.com/eclipse-ee4j/el-ri.git</developerConnection>
-        <url>https://github.com/eclipse-ee4j/el-ri</url>
+        <connection>scm:git:https://github.com/jakartaee/expression-language.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com/jakartaee/expression-language.git</developerConnection>
+        <url>https://github.com/jakartaee/expression-language</url>
         <tag>HEAD</tag>
     </scm>
+
     <issueManagement>
         <system>github</system>
-        <url>https://github.com/eclipse-ee4j/el-ri/issues</url>
+        <url>https://github.com/jakartaee/expression-language/issues</url>
     </issueManagement>
+
+    <properties>
+        <!-- Timestamp for repeatable builds (more recent than parent -->
+        <project.build.outputTimestamp>2025-10-15T00:00:00Z</project.build.outputTimestamp>
+        <!-- OSGi properties -->
+        <!-- Make sure the two versions are in sync with the maven version -->
+        <spec.version>6.1</spec.version>
+        <bundle.version>${project.version}</bundle.version>
+        <extensionName>jakarta.el</extensionName>
+        <bundle.symbolicName>jakarta.el-api</bundle.symbolicName>
+        <vendorName>Eclipse Foundation</vendorName>
+    </properties>
 
     <dependencyManagement>
         <dependencies>
@@ -100,15 +112,6 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-
-    <properties>
-        <!-- Make sure the two versions are in sync with the maven version -->
-        <spec.version>6.1</spec.version>
-        <bundle.version>${project.version}</bundle.version>
-        <extensionName>jakarta.el</extensionName>
-        <bundle.symbolicName>jakarta.el-api</bundle.symbolicName>
-        <vendorName>Eclipse Foundation</vendorName>
-    </properties>
 
     <build>
         <resources>
@@ -141,15 +144,19 @@
                         <configuration>
                             <rules>
                                 <requireMavenVersion>
-                                    <version>3.6.0</version>
+                                    <version>3.8.6</version>
                                 </requireMavenVersion>
+                                <!-- Plugins used to build spec require Java 21 so use 21 a minimum for all modules -->
+                                <requireJavaVersion>
+                                    <version>21</version>
+                                </requireJavaVersion>
                             </rules>
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
         
-            <!-- Restricts the Java version to 17+ -->
+            <!-- Minimum Java version in spec document is 17 -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -267,7 +274,6 @@
                             <source>17</source>
                             <additionalJOption>-Xdoclint:none</additionalJOption>
                             <quiet>true</quiet>
-                            <description>Jakarta Expression Language API documentation</description>
                             <doctitle>Jakarta Expression Language API documentation</doctitle>
                             <windowtitle>Jakarta Expression Language API documentation</windowtitle>
                             <header><![CDATA[<br>Jakarta Expression Language API v${project.version}]]></header>
@@ -289,31 +295,7 @@ Use is subject to <a href="{@docRoot}/doc-files/EFSL.html" target="_top">license
                     </execution>
                 </executions>
             </plugin>
-            <plugin>
-                <groupId>org.sonatype.central</groupId>
-                <artifactId>central-publishing-maven-plugin</artifactId>
-                <configuration>
-                    <publishingServerId>central</publishingServerId>
-                    <autoPublish>true</autoPublish>
-                    <waitUntil>published</waitUntil>
-                    <centralSnapshotsUrl>https://central.sonatype.com/repository/maven-snapshots/</centralSnapshotsUrl>
-                </configuration>
-            </plugin>
         </plugins>
     </build>
 
-    <!-- Required if parent is a SNAPSHOT -->    
-    <repositories>
-        <repository>
-            <name>Central Portal Snapshots</name>
-            <id>central-portal-snapshots</id>
-            <url>https://central.sonatype.com/repository/maven-snapshots/</url>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
-    </repositories>
 </project>

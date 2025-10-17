@@ -22,8 +22,8 @@
      <parent>
         <groupId>org.eclipse.ee4j</groupId>
         <artifactId>project</artifactId>
-        <version>2.0.0-SNAPSHOT</version>
-        <relativePath />
+        <version>2.0.0-M1</version>
+        <relativePath/>
     </parent>
 
     <groupId>jakarta.tck</groupId>
@@ -33,9 +33,51 @@
 
     <name>Jakarta Expression Language TCK</name>
     <description>Jakarta Expression Language TCK</description>
+    <url>https://projects.eclipse.org/projects/ee4j.el</url>
+
+    <developers>
+        <developer>
+            <id>jakarta-ee4j-el</id>
+            <name>Jakarta Expression Language Developers</name>
+            <organization>Eclipse Foundation</organization>
+            <email>el-dev@eclipse.org</email>
+        </developer>
+    </developers>
+    <contributors>
+       <contributor>
+           <name>Jakarta Expression Language Contributors</name>
+           <email>el-dev@eclipse.org</email>
+           <url>https://github.com/eclipse-ee4j/el-ri/graphs/contributors</url>
+       </contributor>
+    </contributors>
+
+    <mailingLists>
+        <mailingList>
+            <name>Expression Language dev mailing list</name>
+            <post>el-dev@eclipse.org</post>
+            <subscribe>https://accounts.eclipse.org/mailing-list/el-dev</subscribe>
+            <unsubscribe>https://accounts.eclipse.org/mailing-list/el-dev</unsubscribe>
+            <archive>https://www.eclipse.org/lists/el-dev</archive>
+        </mailingList>
+    </mailingLists>
+
+    <scm>
+        <connection>scm:git:https://github.com/jakartaee/expression-language.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com/jakartaee/expression-language.git</developerConnection>
+        <url>https://github.com/jakartaee/expression-language</url>
+        <tag>HEAD</tag>
+    </scm>
+
+    <issueManagement>
+        <system>github</system>
+        <url>https://github.com/jakartaee/expression-language/issues</url>
+    </issueManagement>
 
     <properties>
-        <maven.compiler.release>17</maven.compiler.release>
+        <!-- Timestamp for repeatable builds (more recent than parent -->
+        <project.build.outputTimestamp>2025-10-15T00:00:00Z</project.build.outputTimestamp>
+        <!-- API version for signature test-->
+        <api.version>6.1</api.version>
     </properties>
 
     <dependencyManagement>
@@ -54,7 +96,7 @@
         <dependency>
             <groupId>jakarta.el</groupId>
             <artifactId>jakarta.el-api</artifactId>
-            <version>6.1.0-M1</version>
+            <version>6.1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
@@ -101,12 +143,17 @@
                                 <requireMavenVersion>
                                     <version>3.8.6</version>
                                 </requireMavenVersion>
+                                <!-- Plugins used to build spec require Java 21 so use 21 a minimum for all modules -->
+                                <requireJavaVersion>
+                                    <version>21</version>
+                                </requireJavaVersion>
                             </rules>
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
             
+            <!-- Minimum Java version in spec document is 17 -->
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.14.1</version>
@@ -118,6 +165,9 @@
             <!-- Configure the jar with the sources. -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
+                <configuration>
+                    <includePom>true</includePom>
+                </configuration>
                 <artifactId>maven-source-plugin</artifactId>
                 <executions>
                     <execution>
@@ -224,7 +274,7 @@
                         <artifactId>sigtest-maven-plugin</artifactId>
                         <version>2.6</version>
                         <configuration>
-                            <FileName>${project.build.directory}/jakarta.el.sig_${project.parent.version}</FileName>
+                            <sigfile>${project.build.directory}/jakarta.el.sig_${api.version}</sigfile>
                             <packages>jakarta.el</packages>
                         </configuration>
                         <executions>
@@ -241,18 +291,4 @@
 
     </profiles>
 
-    <!-- Required if parent is a SNAPSHOT and to pickup SNAPSHOT dependencies -->
-    <repositories>
-        <repository>
-            <name>Central Portal Snapshots</name>
-            <id>central-portal-snapshots</id>
-            <url>https://central.sonatype.com/repository/maven-snapshots/</url>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
-    </repositories>
 </project>
