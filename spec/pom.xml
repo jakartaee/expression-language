@@ -16,6 +16,7 @@
     SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
 
 -->
+
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
@@ -34,7 +35,7 @@
     <name>Jakarta Expression Language Specification</name>
     <description>Jakarta Expression Language - Specification</description>
     <url>https://projects.eclipse.org/projects/ee4j.el</url>
-    
+
     <!--
         Override the license in the parent POM as specifications all have a different license. 
     -->
@@ -58,7 +59,7 @@
        <contributor>
            <name>Jakarta Expression Language Contributors</name>
            <email>el-dev@eclipse.org</email>
-           <url>https://github.com/eclipse-ee4j/el-ri/graphs/contributors</url>
+           <url>https://github.com/jakartaee/expression-language/graphs/contributors</url>
        </contributor>
     </contributors>
 
