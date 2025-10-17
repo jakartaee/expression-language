@@ -116,15 +116,9 @@
             <resource>
                 <directory>src/main/resources</directory>
                 <includes>
+                    <include>LICENSE_${license}.md</include>
                     <include>com/</include>
                 </includes>
-            </resource>
-            <resource>
-                <directory>..</directory>
-                <includes>
-                    <include>LICENSE.md</include>
-                </includes>
-                <targetPath>META-INF</targetPath>
             </resource>
         </resources>
 
@@ -165,10 +159,10 @@
             <!-- Configure the jar with the sources. -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
                 <configuration>
                     <includePom>true</includePom>
                 </configuration>
-                <artifactId>maven-source-plugin</artifactId>
                 <executions>
                     <execution>
                         <id>attach-sources</id>
@@ -187,34 +181,6 @@
                 </configuration>
             </plugin>
 
-            <!-- Generate a "consumer pom" for the generated jar -->
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>flatten-maven-plugin</artifactId>
-                <version>1.7.3</version>
-                <configuration>
-                    <flattenMode>ossrh</flattenMode>
-                </configuration>
-                <executions>
-                    <!-- enable flattening -->
-                    <execution>
-                        <id>flatten</id>
-                        <phase>process-resources</phase>
-                        <goals>
-                            <goal>flatten</goal>
-                        </goals>
-                    </execution>
-                    <!-- ensure proper cleanup -->
-                    <execution>
-                        <id>flatten.clean</id>
-                        <phase>clean</phase>
-                        <goals>
-                            <goal>clean</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>
