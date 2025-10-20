@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2018, 2024 Contributors to the Eclipse Foundation
+// Copyright (c) 2018, 2025 Contributors to the Eclipse Foundation
 //
 
 = Jakarta Expression Language
@@ -25,4 +25,4 @@ include::license-efsl.adoc[]
 
 // == Scope
 :sectnums:
-include::ELSpec.adoc[]
+include::expression-language-spec-body.adoc[]
