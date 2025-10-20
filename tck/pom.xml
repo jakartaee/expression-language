@@ -164,7 +164,7 @@
                     </execution>
                 </executions>
             </plugin>
-            
+
             <!-- Minimum Java version in spec document is 17 -->
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -173,7 +173,7 @@
                     <release>17</release>
                 </configuration>
             </plugin>
-            
+
             <!-- Configure the jar with the sources. -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
