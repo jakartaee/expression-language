@@ -60,4 +60,4 @@ Jakarta EE specification projects.
 
 Contact the project developers via the project's "dev" list.
 
-* 
+* https://accounts.eclipse.org/mailing-list/el-dev
