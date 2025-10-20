@@ -27,10 +27,9 @@
     </formats>
 
     <files>
-        <!-- license -->
         <file>
-            <source>${project.basedir}/src/main/resources/LICENSE_${license}.md</source>
-            <destName>LICENSE.md</destName>
+            <source>${project.basedir}/docs/LICENSE.html</source>
+            <destName>LICENSE.html</destName>
         </file>
         <file>
             <source>${project.basedir}/src/main/resources/com/sun/ts/tests/signaturetest/el/jakarta.el.sig_6.1</source>

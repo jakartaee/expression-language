@@ -16,6 +16,7 @@
     SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
 
 -->
+
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
@@ -34,6 +35,17 @@
     <name>Jakarta Expression Language TCK</name>
     <description>Jakarta Expression Language TCK</description>
     <url>https://projects.eclipse.org/projects/ee4j.el</url>
+
+    <!--
+        Override the license in the parent POM as TCKs all use the EFTL. 
+    -->
+    <licenses>
+        <license>
+            <name>Eclipse Foundation Technology Compatibility Kit License - v1.1</name>
+            <url>https://www.eclipse.org/legal/tck/</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
 
     <developers>
         <developer>
@@ -78,6 +90,7 @@
         <project.build.outputTimestamp>2025-10-15T00:00:00Z</project.build.outputTimestamp>
         <!-- API version for signature test-->
         <api.version>6.1</api.version>
+        <bundle-name>jakarta-expression-language-tck</bundle-name>
     </properties>
 
     <dependencyManagement>
@@ -208,31 +221,10 @@
 
     <profiles>
         <profile>
-            <id>EFTL</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <properties>
-                <bundle-name>jakarta-expression-language-tck</bundle-name>
-                <license>EFTL</license>
-            </properties>
-        </profile>
-        <profile>
-            <id>EPL</id>
-            <properties>
-                <bundle-name>expression-language-tck</bundle-name>
-                <license>EPL</license>
-            </properties>
-        </profile>
-        <profile>
             <id>record-signature</id>
             <activation>
                 <activeByDefault>false</activeByDefault>
             </activation>
-            <properties>
-                <bundle-name>jakarta-expression-language-tck</bundle-name>
-                <license>EFTL</license>
-            </properties>
             <build>
                 <plugins>
                     <plugin>
