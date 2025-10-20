@@ -51,7 +51,7 @@ from {TechnologyRIURL}
 Before you can run the {TechnologyShortName} TCK tests, you must
 install and set up the following software components:
 
-include::req-software.inc[]
+* A Jakarta EE {JakartaEEVersion} Compatible Implementation
 * Java SE {SEversion}
 * A CI for {TechnologyShortName} {TechnologyVersion}, one example is {TechnologyRI}
 * {TechnologyShortName} TCK version {TechnologyVersion}
