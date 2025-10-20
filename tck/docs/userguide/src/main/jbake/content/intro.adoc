@@ -295,7 +295,7 @@ guide.
 
 1.  Make sure that the following software has been correctly installed
 on the system :
-include::req-software.inc[]
+* A Jakarta EE {JakartaEEVersion} Compatible Implementation
 * Java SE {SEversion}
 * A CI for {TechnologyShortName} {TechnologyVersion}. One example is {TechnologyRI}.
 * {TechnologyShortName} TCK version {TechnologyVersion}
