@@ -23,7 +23,7 @@ more.
 
 The project maintains the following source code repositories
 
-* https://github.com/eclipse-ee4j/el-ri
+* https://github.com/jakartaee/expression-language
 
 ## Eclipse Contributor Agreement
 

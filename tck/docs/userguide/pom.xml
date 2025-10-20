@@ -49,7 +49,7 @@
 
     <distributionManagement>
         <site>
-            <url>scm:git:git@github.com:eclipse-ee4j/jakartaee-tck.git</url>
+            <url>scm:git:git@github.com:jakartaee/expression-language.git</url>
         </site>
     </distributionManagement>
 
