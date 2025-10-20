@@ -24,7 +24,7 @@ This chapter includes the following topics:
 * link:#GBFWM[Running a Subset of the Tests]
 * link:#GCLRR[Running the TCK Against your selected CI]
 * link:#GCLRZ[Running the TCK Against a Vendor's Implementation]
-* link:#GBFVK[Test Reports]
+* link:#GBFTR[Test Reports]
 
 
 [NOTE]
@@ -208,7 +208,7 @@ Test Applications Against the Vendor Implementation."]
 the tests,"] and, if desired, link:#GBFWM[Section 5.2, "Running a Subset
 of the Tests."]
 
-[[GBFVK]][[test-reports]]
+[[GBFTR]][[test-reports]]
 
 5.6 Test Reports
 ~~~~~~~~~~~~~~~~
