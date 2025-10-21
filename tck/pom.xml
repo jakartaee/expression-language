@@ -239,6 +239,7 @@
                         <configuration>
                             <sigfile>${project.build.directory}/jakarta.el.sig_${api.version}</sigfile>
                             <packages>jakarta.el</packages>
+                            <version>${api.version}</version>
                         </configuration>
                         <executions>
                             <execution>
