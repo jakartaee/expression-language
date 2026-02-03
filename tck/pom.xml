@@ -168,7 +168,7 @@
             <!-- Minimum Java version in spec document is 17 -->
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.14.1</version>
+                <version>3.15.0</version>
                 <configuration>
                     <release>17</release>
                 </configuration>
