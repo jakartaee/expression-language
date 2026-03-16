@@ -1056,6 +1056,8 @@ To evaluate `empty A`:
 
 * Otherwise, if `A` is an empty `Collection`, return `true`
 
+* Otherwise, if `A` is an instance of `java.util.Optional` and `A.isEmpty()` returns `true`, return `true`
+
 * Otherwise return `false`
 
 === Conditional Operator - `A ? B : C`
@@ -3178,6 +3180,11 @@ This appendix is non-normative.
   Add support for inner classes when using the `ImportHandler` and clarify that
   the import handler expects canonical class names where full class names are
   required.
+
+* https://github.com/jakartaee/expression-language/issues/437[#437]
+  Update the definition of the empty operator to include empty Optional
+  instances in the list of conditions that cause the empty operator to return
+  true.
 
 === Changes between 6.0 and 5.0
 
