@@ -22,6 +22,7 @@ package com.sun.ts.tests.el.spec.emptyoperator;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Optional;
 
 import com.sun.ts.tests.el.common.util.ExprEval;
 import com.sun.ts.tests.el.common.util.NameValuePair;
@@ -172,6 +173,14 @@ public class ELClientIT {
 
     // Clean out the Collection.
     testCollection.clear();
+  }
+
+  @Test
+  public void elEmptyOptionalTest() throws Exception {
+
+    this.testEmptyOperator(Optional.empty() , true);
+
+    this.testEmptyOperator(Optional.of("value"), false);
   }
 
   // ---------------------------------------------------------- private methods
