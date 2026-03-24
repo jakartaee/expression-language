@@ -32,7 +32,7 @@
             <destName>LICENSE.html</destName>
         </file>
         <file>
-            <source>${project.basedir}/src/main/resources/com/sun/ts/tests/signaturetest/el/jakarta.el.sig_6.1</source>
+            <source>${project.basedir}/src/main/resources/ee/jakarta/tck/el/signaturetest/jakarta.el.sig_6.1</source>
             <destName>jakarta.el.sig_6.1</destName>
         </file>
     </files>
