@@ -129,7 +129,7 @@
             <resource>
                 <directory>src/main/resources</directory>
                 <includes>
-                    <include>com/</include>
+                    <include>ee/</include>
                 </includes>
             </resource>
             <resource>
