@@ -14,17 +14,11 @@
  *
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
-
-/*
- * $Id$
- */
+package ee.jakarta.tck.el.common.spec;
 
 /*
  * Simple multi-member class to be used for type coercion tests.
  */
-
-package ee.jakarta.tck.el.common.spec;
-
 public class Book {
 
   private String title;
