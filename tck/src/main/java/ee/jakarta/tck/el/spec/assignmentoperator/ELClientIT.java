@@ -60,10 +60,10 @@ public class ELClientIT {
 
 
   /**
-   * @testName: elAssignmentOperatorBigDecimalTest
-   * @assertion_ids: EL:SPEC:48.1.1; EL:SPEC:48.1.2; EL:SPEC:48.1.3;
+   * @testName  elAssignmentOperatorBigDecimalTest
+   * @assertion_ids  EL:SPEC:48.1.1; EL:SPEC:48.1.2; EL:SPEC:48.1.3;
    *                 EL:SPEC:48.1.4
-   * @test_Strategy: Validate that when we have variable A set to a specific
+   * @test_Strategy  Validate that when we have variable A set to a specific
    *                 data type that we coerce and receive back the correct value
    *                 and Class type.
    *
@@ -77,7 +77,7 @@ public class ELClientIT {
    *
    *                 Excluded: none
    *
-   * @since: 3.0
+   * @since 3.0
    *
    */
   @Test
@@ -135,10 +135,10 @@ public class ELClientIT {
   } // End elAssignmentOperatorBigDecimalTest
 
   /**
-   * @testName: elAssignmentOperatorFloatTest
-   * @assertion_ids: EL:SPEC:48.1.1; EL:SPEC:48.1.2; EL:SPEC:48.1.3;
+   * @testName  elAssignmentOperatorFloatTest
+   * @assertion_ids  EL:SPEC:48.1.1; EL:SPEC:48.1.2; EL:SPEC:48.1.3;
    *                 EL:SPEC:48.1.4
-   * @test_Strategy: Validate that when we have variable A set to a specific
+   * @test_Strategy  Validate that when we have variable A set to a specific
    *                 data type that we coerce and receive back the correct value
    *                 and Class type.
    *
@@ -151,7 +151,7 @@ public class ELClientIT {
    *
    *                 Exclude: BigDecimal
    *
-   * @since: 3.0
+   * @since 3.0
    *
    */
   @Test
@@ -247,10 +247,10 @@ public class ELClientIT {
   } // End elAssignmentOperatorFloatTest
 
   /**
-   * @testName: elAssignmentOperatorDoubleTest
-   * @assertion_ids: EL:SPEC:48.1.1; EL:SPEC:48.1.2; EL:SPEC:48.1.3;
+   * @testName  elAssignmentOperatorDoubleTest
+   * @assertion_ids  EL:SPEC:48.1.1; EL:SPEC:48.1.2; EL:SPEC:48.1.3;
    *                 EL:SPEC:48.1.4
-   * @test_Strategy: Validate that when we have variable A set to a specific
+   * @test_Strategy  Validate that when we have variable A set to a specific
    *                 data type that we coerce and receive back the correct value
    *                 and Class type.
    *
@@ -263,7 +263,7 @@ public class ELClientIT {
    *
    *                 Exclude: BigDecimal, Float
    *
-   * @since: 3.0
+   * @since 3.0
    *
    */
   @Test
@@ -360,10 +360,10 @@ public class ELClientIT {
   } // End elAssignmentOperatorDoubleTest
 
   /**
-   * @testName: elAssignmentOperatorBigIntegerTest
-   * @assertion_ids: EL:SPEC:48.1.1; EL:SPEC:48.1.2; EL:SPEC:48.1.3;
+   * @testName  elAssignmentOperatorBigIntegerTest
+   * @assertion_ids  EL:SPEC:48.1.1; EL:SPEC:48.1.2; EL:SPEC:48.1.3;
    *                 EL:SPEC:48.1.4
-   * @test_Strategy: Validate that when we have variable A set to a specific
+   * @test_Strategy  Validate that when we have variable A set to a specific
    *                 data type that we coerce and receive back the correct value
    *                 and Class type.
    *
@@ -376,7 +376,7 @@ public class ELClientIT {
    *
    *                 Exclude: BigDecimal, Float, Double
    *
-   * @since: 3.0
+   * @since 3.0
    *
    */
   @Test
@@ -448,10 +448,10 @@ public class ELClientIT {
   } // End elAssignmentOperatorBigIntegerTest
 
   /**
-   * @testName: elAssignmentOperatorIntegerTest
-   * @assertion_ids: EL:SPEC:48.1.1; EL:SPEC:48.1.2; EL:SPEC:48.1.3;
+   * @testName  elAssignmentOperatorIntegerTest
+   * @assertion_ids  EL:SPEC:48.1.1; EL:SPEC:48.1.2; EL:SPEC:48.1.3;
    *                 EL:SPEC:48.1.4
-   * @test_Strategy: Validate that when we have variable A set to a specific
+   * @test_Strategy  Validate that when we have variable A set to a specific
    *                 data type that we coerce and receive back the correct value
    *                 and Class type.
    *
@@ -464,7 +464,7 @@ public class ELClientIT {
    *
    *                 Exclude: BigDecimal, BigInteger, Float, Double
    *
-   * @since: 3.0
+   * @since 3.0
    *
    */
   @Test
@@ -537,10 +537,10 @@ public class ELClientIT {
   } // End elAssignmentOperatorIntegerTest
 
   /**
-   * @testName: elAssignmentOperatorLongTest
-   * @assertion_ids: EL:SPEC:48.1.1; EL:SPEC:48.1.2; EL:SPEC:48.1.3;
+   * @testName  elAssignmentOperatorLongTest
+   * @assertion_ids  EL:SPEC:48.1.1; EL:SPEC:48.1.2; EL:SPEC:48.1.3;
    *                 EL:SPEC:48.1.4
-   * @test_Strategy: Validate that when we have variable A set to a specific
+   * @test_Strategy  Validate that when we have variable A set to a specific
    *                 data type that we coerce and receive back the correct value
    *                 and Class type.
    *
@@ -553,7 +553,7 @@ public class ELClientIT {
    *
    *                 Exclude: BigDecimal, BigInteger, Float, Double, Integer
    *
-   * @since: 3.0
+   * @since 3.0
    *
    */
   @Test
@@ -627,10 +627,10 @@ public class ELClientIT {
   } // End elAssignmentOperatorLongTest
 
   /**
-   * @testName: elAssignmentOperatorShortTest
-   * @assertion_ids: EL:SPEC:48.1.1; EL:SPEC:48.1.2; EL:SPEC:48.1.3;
+   * @testName  elAssignmentOperatorShortTest
+   * @assertion_ids  EL:SPEC:48.1.1; EL:SPEC:48.1.2; EL:SPEC:48.1.3;
    *                 EL:SPEC:48.1.4
-   * @test_Strategy: Validate that when we have variable A set to a specific
+   * @test_Strategy  Validate that when we have variable A set to a specific
    *                 data type that we coerce and receive back the correct value
    *                 and Class type.
    *
@@ -644,7 +644,7 @@ public class ELClientIT {
    *                 Exclude: BigDecimal, BigInteger, Float, Double, Integer,
    *                 Long
    *
-   * @since: 3.0
+   * @since 3.0
    *
    */
   @Test
@@ -719,10 +719,10 @@ public class ELClientIT {
   } // End elAssignmentOperatorShortTest
 
   /**
-   * @testName: elAssignmentOperatorByteTest
-   * @assertion_ids: EL:SPEC:48.1.1; EL:SPEC:48.1.2; EL:SPEC:48.1.3;
+   * @testName  elAssignmentOperatorByteTest
+   * @assertion_ids  EL:SPEC:48.1.1; EL:SPEC:48.1.2; EL:SPEC:48.1.3;
    *                 EL:SPEC:48.1.4
-   * @test_Strategy: Validate that when we have variable A set to a specific
+   * @test_Strategy  Validate that when we have variable A set to a specific
    *                 data type that we coerce and receive back the correct value
    *                 and Class type.
    *
@@ -736,7 +736,7 @@ public class ELClientIT {
    *                 Exclude: BigDecimal, BigInteger, Float, Double, Integer,
    *                 Long, Short
    *
-   * @since: 3.0
+   * @since 3.0
    *
    */
   @Test
@@ -812,10 +812,10 @@ public class ELClientIT {
   } // End elAssignmentOperatorByteTest
 
   /**
-   * @testName: elAssignmentOperatorNullTest
-   * @assertion_ids: EL:SPEC:48.1.1; EL:SPEC:48.1.2; EL:SPEC:48.1.3;
+   * @testName  elAssignmentOperatorNullTest
+   * @assertion_ids  EL:SPEC:48.1.1; EL:SPEC:48.1.2; EL:SPEC:48.1.3;
    *                 EL:SPEC:48.1.4
-   * @test_Strategy: Validate that when we have variable A set to a specific
+   * @test_Strategy  Validate that when we have variable A set to a specific
    *                 data type that we coerce and receive back the correct value
    *                 and Class type.
    *
@@ -825,7 +825,7 @@ public class ELClientIT {
    *
    *                 Variable B - null
    *
-   * @since: 3.0
+   * @since 3.0
    *
    */
   @Test
@@ -865,10 +865,10 @@ public class ELClientIT {
   } // End elAssignmentOperatorNullTest
 
   /**
-   * @testName: elAssignmentOperatorMultiTest
-   * @assertion_ids: EL:SPEC:48.1.1; EL:SPEC:48.1.2; EL:SPEC:48.1.3;
+   * @testName  elAssignmentOperatorMultiTest
+   * @assertion_ids  EL:SPEC:48.1.1; EL:SPEC:48.1.2; EL:SPEC:48.1.3;
    *                 EL:SPEC:48.1.4
-   * @test_Strategy: Validate that when we have variable A set to a specific
+   * @test_Strategy  Validate that when we have variable A set to a specific
    *                 data type that we coerce and receive back the correct value
    *                 and Class type.
    *
@@ -882,7 +882,7 @@ public class ELClientIT {
    *
    *                 Excluded: none
    *
-   * @since: 3.0
+   * @since 3.0
    *
    */
   @Test

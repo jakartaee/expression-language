@@ -57,11 +57,11 @@ public class ELClientIT {
 
 
   /**
-   * @testName: invokeNPETest
+   * @testName  invokeNPETest
    *
-   * @assertion_ids: EL:JAVADOC:406
+   * @assertion_ids  EL:JAVADOC:406
    *
-   * @test_Strategy: Throws a NullPointerException if elContext is null.
+   * @test_Strategy  Throws a NullPointerException if elContext is null.
    */
   @Test
   public void invokeNPETest() throws Exception {
@@ -75,11 +75,11 @@ public class ELClientIT {
   }// End invokeNPETest
 
   /**
-   * @testName: invokeELETest
+   * @testName  invokeELETest
    *
-   * @assertion_ids: EL:JAVADOC:408
+   * @assertion_ids  EL:JAVADOC:408
    *
-   * @test_Strategy: Throws a ELException if not enough arguments are provided.
+   * @test_Strategy  Throws a ELException if not enough arguments are provided.
    */
   @Test
   public void invokeELETest() throws Exception {

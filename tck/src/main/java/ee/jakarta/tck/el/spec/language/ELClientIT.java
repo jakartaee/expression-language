@@ -63,11 +63,11 @@ public class ELClientIT {
   // ------------------------------------------------------------- Test Methods
 
   /*
-   * @testName: poundDollarSameMeaning1Test
+   * @testName  poundDollarSameMeaning1Test
    *
-   * @assertion_ids: EL:SPEC:1
+   * @assertion_ids  EL:SPEC:1
    *
-   * @test_Strategy: Confirm that two EL expressions, identical except for the
+   * @test_Strategy  Confirm that two EL expressions, identical except for the
    * '$' and '#' delimiters, are evaluated the same. Case 1: base is null.
    */
   @Test
@@ -99,11 +99,11 @@ public class ELClientIT {
   }
 
   /*
-   * @testName: poundDollarSameMeaning2Test
+   * @testName  poundDollarSameMeaning2Test
    *
-   * @assertion_ids: EL:SPEC:1
+   * @assertion_ids  EL:SPEC:1
    *
-   * @test_Strategy: Confirm that two EL expressions, identical except for the
+   * @test_Strategy  Confirm that two EL expressions, identical except for the
    * '$' and '#' delimiters, are evaluated the same. Case 2: base is non-null.
    */
   @Test
@@ -140,11 +140,11 @@ public class ELClientIT {
   }
 
   /*
-   * @testName: nestedEvalExpressionsTest
+   * @testName  nestedEvalExpressionsTest
    *
-   * @assertion_ids: EL:SPEC:2
+   * @assertion_ids  EL:SPEC:2
    *
-   * @test_Strategy: Verify that nested eval-expressions are illegal.
+   * @test_Strategy  Verify that nested eval-expressions are illegal.
    */
   @Test
   public void nestedEvalExpressionsTest() throws Exception {
@@ -180,11 +180,11 @@ public class ELClientIT {
   }
 
   /*
-   * @testName: mixedCompositeExpressionsTest
+   * @testName  mixedCompositeExpressionsTest
    *
-   * @assertion_ids: EL:SPEC:12
+   * @assertion_ids  EL:SPEC:12
    *
-   * @test_Strategy: Verify that composite expressions that mix the '$' and '#'
+   * @test_Strategy  Verify that composite expressions that mix the '$' and '#'
    * delimiters are illegal.
    */
   @Test
@@ -221,11 +221,11 @@ public class ELClientIT {
   }
 
   /*
-   * @testName: compositeExprEval1Test
+   * @testName  compositeExprEval1Test
    *
-   * @assertion_ids: EL:SPEC:11
+   * @assertion_ids  EL:SPEC:11
    *
-   * @test_Strategy: Verify that in a composite expression eval-expressions are
+   * @test_Strategy  Verify that in a composite expression eval-expressions are
    * coerced to Strings according to the EL type conversion rules and
    * concatenated with any intervening literal-expressions.
    */
@@ -259,11 +259,11 @@ public class ELClientIT {
   }
 
   /*
-   * @testName: compositeExprEval2Test
+   * @testName  compositeExprEval2Test
    *
-   * @assertion_ids: EL:SPEC:11
+   * @assertion_ids  EL:SPEC:11
    *
-   * @test_Strategy: Verify that in a composite expression eval-expressions are
+   * @test_Strategy  Verify that in a composite expression eval-expressions are
    * evaluated left to right, coerced to Strings according to the EL type
    * conversion rules, and concatenated with any intervening
    * literal-expressions.
@@ -294,11 +294,11 @@ public class ELClientIT {
   }
 
   /*
-   * @testName: dotAndIndexOperatorsSameTest
+   * @testName  dotAndIndexOperatorsSameTest
    *
-   * @assertion_ids: EL:SPEC:15
+   * @assertion_ids  EL:SPEC:15
    *
-   * @test_Strategy: [DotAndIndexOperatorsSame] Verify that the dot and index
+   * @test_Strategy  [DotAndIndexOperatorsSame] Verify that the dot and index
    * operators are evaluated in the same way.
    */
   @Test
@@ -328,11 +328,11 @@ public class ELClientIT {
   }
 
   /*
-   * @testName: elSyntaxEscapeTest
+   * @testName  elSyntaxEscapeTest
    *
-   * @assertion_ids: EL:SPEC:8
+   * @assertion_ids  EL:SPEC:8
    *
-   * @test_Strategy: [ELSyntaxEscape] Verify that the EL special characters '$'
+   * @test_Strategy  [ELSyntaxEscape] Verify that the EL special characters '$'
    * and '#' are treated as literals when preceded with '\'.
    */
   @Test
@@ -365,11 +365,11 @@ public class ELClientIT {
   }
 
   /*
-   * @testName: literalExprEval1Test
+   * @testName  literalExprEval1Test
    *
-   * @assertion_ids: EL:SPEC:6
+   * @assertion_ids  EL:SPEC:6
    *
-   * @test_Strategy: [LiteralExprEval] Set the value of a ValueExpression to a
+   * @test_Strategy  [LiteralExprEval] Set the value of a ValueExpression to a
    * literal String type. Verify that the value retrieved when the expression is
    * evaluated is a String equal to the value set.
    */
@@ -397,11 +397,11 @@ public class ELClientIT {
   }
 
   /*
-   * @testName: literalExprEval2Test
+   * @testName  literalExprEval2Test
    *
-   * @assertion_ids: EL:SPEC:6
+   * @assertion_ids  EL:SPEC:6
    *
-   * @test_Strategy: [LiteralExprEval] Coerce a String literal to a Boolean in a
+   * @test_Strategy  [LiteralExprEval] Coerce a String literal to a Boolean in a
    * ValueExpression. Verify that the value retrieved when the expression is
    * evaluated is a Boolean of the expected value.
    */
@@ -429,11 +429,11 @@ public class ELClientIT {
   }
 
   /*
-   * @testName: literalExprAsMethodExpr1Test
+   * @testName  literalExprAsMethodExpr1Test
    *
-   * @assertion_ids: EL:SPEC:10
+   * @assertion_ids  EL:SPEC:10
    *
-   * @test_Strategy: [LiteralExprAsMethodExpr] Verify that a literal-expression
+   * @test_Strategy  [LiteralExprAsMethodExpr] Verify that a literal-expression
    * can also be used as a method expression that returns a non-void value.
    */
   @Test
@@ -470,11 +470,11 @@ public class ELClientIT {
   }
 
   /*
-   * @testName: literalExprAsMethodExpr2Test
+   * @testName  literalExprAsMethodExpr2Test
    *
-   * @assertion_ids: EL:SPEC:10
+   * @assertion_ids  EL:SPEC:10
    *
-   * @test_Strategy: [LiteralExprAsMethodExpr] Verify that a literal-expression
+   * @test_Strategy  [LiteralExprAsMethodExpr] Verify that a literal-expression
    * can also be used as a method expression that returns a non-void value.
    * Verify that the standard coercion rules apply if the return type is not
    * java.lang.String.
@@ -513,11 +513,11 @@ public class ELClientIT {
   }
 
   /*
-   * @testName: rValueCoercion1Test
+   * @testName  rValueCoercion1Test
    *
-   * @assertion_ids: EL:SPEC:3
+   * @assertion_ids  EL:SPEC:3
    *
-   * @test_Strategy: [RValueCoercion] Set the value of a ValueExpression to a
+   * @test_Strategy  [RValueCoercion] Set the value of a ValueExpression to a
    * String type and verify that the value retrieved when the expression is
    * evaluated is also a String type.
    */
@@ -543,11 +543,11 @@ public class ELClientIT {
   }
 
   /*
-   * @testName: rValueCoercion2Test
+   * @testName  rValueCoercion2Test
    *
-   * @assertion_ids: EL:SPEC:3
+   * @assertion_ids  EL:SPEC:3
    *
-   * @test_Strategy: [RValueCoercion] Set the value of a ValueExpression to a
+   * @test_Strategy  [RValueCoercion] Set the value of a ValueExpression to a
    * complex type and verify that the value retrieved when the expression is
    * evaluated is a String type in accordance with the coercion rules.
    */
@@ -576,11 +576,11 @@ public class ELClientIT {
   }
 
   /*
-   * @testName: parseOnceEvalManyTest
+   * @testName  parseOnceEvalManyTest
    *
-   * @assertion_ids: EL:SPEC:45
+   * @assertion_ids  EL:SPEC:45
    *
-   * @test_Strategy: [ExprParsedEvalMany] Verify that once an expression is
+   * @test_Strategy  [ExprParsedEvalMany] Verify that once an expression is
    * parsed, it can be evaluated multiple times, and that the result of the
    * evaluation will be the same even when the EL context is modified.
    */

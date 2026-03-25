@@ -187,6 +187,23 @@
                 <artifactId>maven-javadoc-plugin</artifactId>
                 <configuration>
                     <doclint>none</doclint>
+                    <tags>
+                        <tag>
+                            <name>testName</name>
+                            <placement>m</placement>
+                            <head>Test Name:</head>
+                        </tag>
+                        <tag>
+                            <name>assertion_ids</name>
+                            <placement>m</placement>
+                            <head>Assertion IDs:</head>
+                        </tag>
+                        <tag>
+                            <name>test_Strategy</name>
+                            <placement>m</placement>
+                            <head>Test Strategy:</head>
+                        </tag>
+                    </tags>
                 </configuration>
                 <executions>
                     <execution>

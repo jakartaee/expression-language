@@ -48,9 +48,9 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: recordELResolverTest
+   * @testName  recordELResolverTest
    *
-   * @test_Strategy: Verify that API calls work as expected for: arrayELResolver() getValue() getType() setValue()
+   * @test_Strategy  Verify that API calls work as expected for: arrayELResolver() getValue() getType() setValue()
    * isReadOnly() getCommonPropertyType(). Records should behave similarly to read-only beans.
    */
   @Test

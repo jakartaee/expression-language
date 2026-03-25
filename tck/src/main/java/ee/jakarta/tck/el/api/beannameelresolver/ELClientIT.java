@@ -57,13 +57,13 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: beanNameELResolverTest
+   * @testName  beanNameELResolverTest
    *
-   * @assertion_ids: EL:JAVADOC:152; EL:JAVADOC:153; EL:JAVADOC:154;
+   * @assertion_ids  EL:JAVADOC:152; EL:JAVADOC:153; EL:JAVADOC:154;
    *                 EL:JAVADOC:155; EL:JAVADOC:158; EL:JAVADOC:161;
    *                 EL:JAVADOC:164
    *
-   * @test_Strategy: Verify the following method calls work as expected:
+   * @test_Strategy  Verify the following method calls work as expected:
    *                 getValue() getType() setValue() isReadOnly()
    *                 getCommonPropertyType()
    */
@@ -98,13 +98,13 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: beanNameELResolverInvokeMNFETest
+   * @testName  beanNameELResolverInvokeMNFETest
    *
-   * @assertion_ids: EL:JAVADOC:9; EL:JAVADOC:11; EL:JAVADOC:12; EL:JAVADOC:13;
+   * @assertion_ids  EL:JAVADOC:9; EL:JAVADOC:11; EL:JAVADOC:12; EL:JAVADOC:13;
    *                 EL:JAVADOC:14; EL:JAVADOC:15; EL:JAVADOC:16;
    *                 EL:JAVADOC:143; EL:JAVADOC:237
    *
-   * @test_Strategy: Verify that the invoke() method throws
+   * @test_Strategy  Verify that the invoke() method throws
    *                 MethodNotFoundException if no suitable method can be found.
    */
   @Test
@@ -141,14 +141,14 @@ public class ELClientIT {
   }// End beanELResolverInvokeMNFETest
 
   /**
-   * @testName: beanNameELResolverInvokeTest
+   * @testName  beanNameELResolverInvokeTest
    *
-   * @assertion_ids: EL:JAVADOC:9; EL:JAVADOC:11; EL:JAVADOC:12; EL:JAVADOC:13;
+   * @assertion_ids  EL:JAVADOC:9; EL:JAVADOC:11; EL:JAVADOC:12; EL:JAVADOC:13;
    *                 EL:JAVADOC:14; EL:JAVADOC:15; EL:JAVADOC:16;
    *                 EL:JAVADOC:142; EL:JAVADOC:199; EL:JAVADOC:200;
    *                 EL:JAVADOC:202; EL:JAVADOC:203; EL:JAVADOC:236
    *
-   * @test_Strategy: Verify that API calls work as expected for
+   * @test_Strategy  Verify that API calls work as expected for
    *                 BeanNameELResolver.invoke().
    */
   @Test
@@ -185,11 +185,11 @@ public class ELClientIT {
   }// End beanELResolverInvokeTest
 
   /**
-   * @testName: beanNameELResolverGetTypeNPETest
+   * @testName  beanNameELResolverGetTypeNPETest
    *
-   * @assertion_ids: EL:JAVADOC:156
+   * @assertion_ids  EL:JAVADOC:156
    *
-   * @test_Strategy: Validate a NullPointerException is thrown if context is
+   * @test_Strategy  Validate a NullPointerException is thrown if context is
    *                 null.
    */
   @Test
@@ -204,11 +204,11 @@ public class ELClientIT {
   }// End beanNameELResolverGetTypeNPETest
 
   /**
-   * @testName: beanNameELResolverGetValueNPETest
+   * @testName  beanNameELResolverGetValueNPETest
    *
-   * @assertion_ids: EL:JAVADOC:159
+   * @assertion_ids  EL:JAVADOC:159
    *
-   * @test_Strategy: Validate a NullPointerException is thrown if context is
+   * @test_Strategy  Validate a NullPointerException is thrown if context is
    *                 null.
    */
   @Test
@@ -223,11 +223,11 @@ public class ELClientIT {
   }// End beanNameELResolverGetValueNPETest
 
   /**
-   * @testName: beanNameELResolverIsReadOnlyNPETest
+   * @testName  beanNameELResolverIsReadOnlyNPETest
    *
-   * @assertion_ids: EL:JAVADOC:162
+   * @assertion_ids  EL:JAVADOC:162
    *
-   * @test_Strategy: Validate a NullPointerException is thrown if context is
+   * @test_Strategy  Validate a NullPointerException is thrown if context is
    *                 null.
    */
   @Test
@@ -242,11 +242,11 @@ public class ELClientIT {
   }// End beanNameELResolverIsReadOnlyNPETest
 
   /**
-   * @testName: beanNameELResolverSetValueNPETest
+   * @testName  beanNameELResolverSetValueNPETest
    *
-   * @assertion_ids: EL:JAVADOC:165
+   * @assertion_ids  EL:JAVADOC:165
    *
-   * @test_Strategy: Validate a NullPointerException is thrown if context is
+   * @test_Strategy  Validate a NullPointerException is thrown if context is
    *                 null.
    */
   @Test

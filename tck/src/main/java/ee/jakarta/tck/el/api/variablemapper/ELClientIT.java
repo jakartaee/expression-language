@@ -63,10 +63,10 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: variableMapperTest
+   * @testName  variableMapperTest
    * 
-   * @assertion_ids: EL:JAVADOC:37; EL:JAVADOC:116; EL:JAVADOC:117
-   * @test_Strategy: Validate the behavior of ELContext.getVariableMapper()
+   * @assertion_ids  EL:JAVADOC:37; EL:JAVADOC:116; EL:JAVADOC:117
+   * @test_Strategy  Validate the behavior of ELContext.getVariableMapper()
    *                 VariableMapper.resolveVariable()
    *                 VariableMapper.setVariable()
    */

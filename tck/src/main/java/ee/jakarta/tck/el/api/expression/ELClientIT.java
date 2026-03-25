@@ -60,11 +60,11 @@ public class ELClientIT {
 
 
   /**
-   * @testName: negativeEqualsTest
+   * @testName  negativeEqualsTest
    *
-   * @assertion_ids: EL:JAVADOC:56
+   * @assertion_ids  EL:JAVADOC:56
    *
-   * @test_Strategy: Validate the behavior of Expression API Expression.equals()
+   * @test_Strategy  Validate the behavior of Expression API Expression.equals()
    *
    *                 Verify that an Expression cannot equal null, and that a
    *                 ValueExpression and a MethodExpression cannot be equal.
@@ -129,11 +129,11 @@ public class ELClientIT {
   }// End negativeEqualsTest
 
   /**
-   * @testName: expressionHashCodeTest
+   * @testName  expressionHashCodeTest
    *
-   * @assertion_ids: EL:JAVADOC:59
+   * @assertion_ids  EL:JAVADOC:59
    *
-   * @test_Strategy: Validate the if two objects are equal according to the
+   * @test_Strategy  Validate the if two objects are equal according to the
    *                 equals(Object) method, then calling the hashCode method on
    *                 each of the two objects must produce the same integer
    *                 result.

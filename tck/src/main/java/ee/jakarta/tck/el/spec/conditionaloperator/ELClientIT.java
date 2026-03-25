@@ -53,11 +53,11 @@ public class ELClientIT {
 
 
   /*
-   * @testName: elConditionalStringTest
+   * @testName  elConditionalStringTest
    *
-   * @assertion_ids: EL:SPEC:26.1.1; EL:SPEC:26.1.2
+   * @assertion_ids  EL:SPEC:26.1.1; EL:SPEC:26.1.2
    *
-   * @test_Strategy: Validate that if a String is passed with the conditional
+   * @test_Strategy  Validate that if a String is passed with the conditional
    * operator, the type is coerced to Boolean and the operator is applied.
    *
    * Example Equation: ${true ? true : false}
@@ -71,11 +71,11 @@ public class ELClientIT {
   }
 
   /*
-   * @testName: elConditionalBooleanTest
+   * @testName  elConditionalBooleanTest
    *
-   * @assertion_ids: EL:SPEC:26.1.1; EL:SPEC:26.1.2
+   * @assertion_ids  EL:SPEC:26.1.1; EL:SPEC:26.1.2
    *
-   * @test_Strategy: Validate that if a Boolean is passed with the conditional
+   * @test_Strategy  Validate that if a Boolean is passed with the conditional
    * operator, that the operator is applied.
    *
    * Example Equation: ${true ? true : false}

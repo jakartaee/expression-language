@@ -60,10 +60,10 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: newInstanceTest
+   * @testName  newInstanceTest
    *
-   * @assertion_ids: EL:JAVADOC:119; EL:JAVADOC:120
-   * @test_Strategy: Verify that an ExpressionFactory can be instantiated with
+   * @assertion_ids  EL:JAVADOC:119; EL:JAVADOC:120
+   * @test_Strategy  Verify that an ExpressionFactory can be instantiated with
    *                 the newInstance() API.
    */
   @Test
@@ -83,10 +83,10 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: createValueExpressionTest
+   * @testName  createValueExpressionTest
    *
-   * @assertion_ids: EL:JAVADOC:63
-   * @test_Strategy: Verify that the ExpressionFactory can handle the types of
+   * @assertion_ids  EL:JAVADOC:63
+   * @test_Strategy  Verify that the ExpressionFactory can handle the types of
    *                 input specified in the javadoc when invoking the
    *                 createValueExpression(ELContext, String, Class) method.
    */
@@ -154,10 +154,10 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: createValueExpression2Test
+   * @testName  createValueExpression2Test
    *
-   * @assertion_ids: EL:JAVADOC:64
-   * @test_Strategy: Verify the functionality of the
+   * @assertion_ids  EL:JAVADOC:64
+   * @test_Strategy  Verify the functionality of the
    *                 createValueExpression(Object, Class) method.
    */
   @Test
@@ -194,10 +194,10 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: createValueExpressionELExceptionTest
+   * @testName  createValueExpressionELExceptionTest
    *
-   * @assertion_ids: EL:JAVADOC:63
-   * @test_Strategy: Verify that
+   * @assertion_ids  EL:JAVADOC:63
+   * @test_Strategy  Verify that
    *                 ExpressionFactory.createValueExpression(ELContext, String,
    *                 Class) throws an ELException for mixed delimiter
    *                 expressions and expressions with syntactical errors.
@@ -259,10 +259,10 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: createMethodExpressionTest
+   * @testName  createMethodExpressionTest
    *
-   * @assertion_ids: EL:JAVADOC:62
-   * @test_Strategy: Verify that the ExpressionFactory can handle the types of
+   * @assertion_ids  EL:JAVADOC:62
+   * @test_Strategy  Verify that the ExpressionFactory can handle the types of
    *                 input specified in the javadoc when invoking the
    *                 createMethodExpression(ELContext, String, Class) method,
    *                 with the restriction that only expressions that share the
@@ -323,11 +323,11 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: createMethodExpressionELExceptionTest
+   * @testName  createMethodExpressionELExceptionTest
    *
-   * @assertion_ids: EL:JAVADOC:63; EL:JAVADOC:253
+   * @assertion_ids  EL:JAVADOC:63; EL:JAVADOC:253
    *
-   * @test_Strategy: Verify that ExpressionFactory.createMethodExpression()
+   * @test_Strategy  Verify that ExpressionFactory.createMethodExpression()
    *                 throws an ELException for expressions with syntactical
    *                 errors, and for expressions that are not lvalues.
    */
@@ -392,12 +392,12 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: createExpressionNPETest
+   * @testName  createExpressionNPETest
    *
-   * @assertion_ids: EL:JAVADOC:62; EL:JAVADOC:63; EL:JAVADOC:64;
+   * @assertion_ids  EL:JAVADOC:62; EL:JAVADOC:63; EL:JAVADOC:64;
    *                 EL:JAVADOC:253; EL:JAVADOC:254; EL:JAVADOC:256
    *
-   * @test_Strategy: Verify that ExpressionFactory.createValueExpression() and
+   * @test_Strategy  Verify that ExpressionFactory.createValueExpression() and
    *                 ExpressionFactory.createMethodExpression() throw a
    *                 NullPointerException under the conditions stated in the
    *                 javadoc.
@@ -429,10 +429,10 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: coerceToTypeTest
+   * @testName  coerceToTypeTest
    *
-   * @assertion_ids: EL:JAVADOC:61
-   * @test_Strategy: Verify that the coerceToType() method coerces an object to
+   * @assertion_ids  EL:JAVADOC:61
+   * @test_Strategy  Verify that the coerceToType() method coerces an object to
    *                 a specific type according to the EL type conversion rules.
    */
   @Test
@@ -481,11 +481,11 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: coerceToTypeELExceptionTest
+   * @testName  coerceToTypeELExceptionTest
    *
-   * @assertion_ids: EL:JAVADOC:61; EL:JAVADOC:251
+   * @assertion_ids  EL:JAVADOC:61; EL:JAVADOC:251
    *
-   * @test_Strategy: Verify that the coerceToType() method throws an ELException
+   * @test_Strategy  Verify that the coerceToType() method throws an ELException
    *                 for invalid type conversions.
    */
   @Test

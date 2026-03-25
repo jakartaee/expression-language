@@ -57,10 +57,10 @@ public class ELClientIT {
 
 
   /**
-   * @testName: functionMapperTest
+   * @testName  functionMapperTest
    *
-   * @assertion_ids: EL:JAVADOC:35; EL:JAVADOC:67
-   * @test_Strategy: Validate the behavior of ELContext.getFunctionMapper()
+   * @assertion_ids  EL:JAVADOC:35; EL:JAVADOC:67
+   * @test_Strategy  Validate the behavior of ELContext.getFunctionMapper()
    *                 FunctionMapper.resolveFunction()
    */
   @Test

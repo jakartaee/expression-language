@@ -55,12 +55,12 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: elProcessorDefineFunctionNPETest
-   * @assertion_ids: EL:JAVADOC:220; EL:JAVADOC:216; EL:JAVADOC:219
-   * @test_Strategy: Assert that a NullPointerException is thrown if any of the
+   * @testName  elProcessorDefineFunctionNPETest
+   * @assertion_ids  EL:JAVADOC:220; EL:JAVADOC:216; EL:JAVADOC:219
+   * @test_Strategy  Assert that a NullPointerException is thrown if any of the
    *                 arguments is null.
    *
-   * @since: 3.0
+   * @since 3.0
    */
   @Test
   public void elProcessorDefineFunctionNPETest() throws Exception {
@@ -128,12 +128,12 @@ public class ELClientIT {
   } // end elProcessorDefineFunctionNPETest
 
   /**
-   * @testName: elProcessorDefineFunctionCNFETest
-   * @assertion_ids: EL:JAVADOC:220; EL:JAVADOC:214; EL:JAVADOC:217
-   * @test_Strategy: Assert that a ClassNotFoundException if the specified class
+   * @testName  elProcessorDefineFunctionCNFETest
+   * @assertion_ids  EL:JAVADOC:220; EL:JAVADOC:214; EL:JAVADOC:217
+   * @test_Strategy  Assert that a ClassNotFoundException if the specified class
    *                 does not exists.
    *
-   * @since: 3.0
+   * @since 3.0
    */
   @Test
   public void elProcessorDefineFunctionCNFETest() throws Exception {
@@ -149,13 +149,13 @@ public class ELClientIT {
   } // end elProcessorDefineFunctionCNFETest
 
   /**
-   * @testName: elProcessorDefineFunctionNSMETest
-   * @assertion_ids: EL:JAVADOC:220; EL:JAVADOC:215
-   * @test_Strategy: Assert that a NoSuchMethodException if the method (with or
+   * @testName  elProcessorDefineFunctionNSMETest
+   * @assertion_ids  EL:JAVADOC:220; EL:JAVADOC:215
+   * @test_Strategy  Assert that a NoSuchMethodException if the method (with or
    *                 without the signature) is not a declared method of the
    *                 class, or if the method signature is not valid.
    *
-   * @since: 3.0
+   * @since 3.0
    */
   @Test
   public void elProcessorDefineFunctionNSMETest() throws Exception {

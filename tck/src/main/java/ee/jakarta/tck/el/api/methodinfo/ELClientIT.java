@@ -58,10 +58,10 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: methodInfoTest
+   * @testName  methodInfoTest
    *
-   * @assertion_ids: EL:JAVADOC:411;EL:JAVADOC:412;EL:JAVADOC:413
-   * @test_Strategy: Validate the behavior of MethodInfo MethodInfo class
+   * @assertion_ids  EL:JAVADOC:411;EL:JAVADOC:412;EL:JAVADOC:413
+   * @test_Strategy  Validate the behavior of MethodInfo MethodInfo class
    *                 methods: MethodInfo.getName() MethodInfo.getReturnType()
    *                 MethodInfo.getParamTypes()
    */

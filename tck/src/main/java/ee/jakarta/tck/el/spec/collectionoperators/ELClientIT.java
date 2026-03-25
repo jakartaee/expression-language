@@ -60,15 +60,15 @@ public class ELClientIT {
 
 
   /**
-   * @testName: elCollectionMapFilterTest
+   * @testName  elCollectionMapFilterTest
    *
-   * @assertion_ids: EL:SPEC:53; EL:SPEC:53.1; EL:SPEC:53.2; EL:SPEC:53.3;
+   * @assertion_ids  EL:SPEC:53; EL:SPEC:53.1; EL:SPEC:53.2; EL:SPEC:53.3;
    *                 EL:SPEC:59; EL:SPEC:59.1; EL:SPEC:58.1; EL:SPEC:58.2
    *
-   * @test_Strategy: Test to make sure the 'map'& "filter' operator works
+   * @test_Strategy  Test to make sure the 'map'&amp; "filter' operator works
    *                 properly.
    *
-   * @since: 3.0
+   * @since 3.0
    *
    */
   @Test
@@ -92,13 +92,13 @@ public class ELClientIT {
   } // End elCollectionMapFilterTest
 
   /**
-   * @testName: elCollectionMinTest
+   * @testName  elCollectionMinTest
    *
-   * @assertion_ids: EL:SPEC:72; EL:SPEC:72.1; EL:SPEC:72.2
+   * @assertion_ids  EL:SPEC:72; EL:SPEC:72.1; EL:SPEC:72.2
    *
-   * @test_Strategy: Test to make sure the 'min' operator works properly.
+   * @test_Strategy  Test to make sure the 'min' operator works properly.
    *
-   * @since: 3.0
+   * @since 3.0
    *
    */
   @Test
@@ -120,13 +120,13 @@ public class ELClientIT {
   } // End elCollectionMinTest()
 
   /**
-   * @testName: elCollectionMaxTest
+   * @testName  elCollectionMaxTest
    *
-   * @assertion_ids: EL:SPEC:71; EL:SPEC:71.1; EL:SPEC:71.2
+   * @assertion_ids  EL:SPEC:71; EL:SPEC:71.1; EL:SPEC:71.2
    *
-   * @test_Strategy: Test to make sure the 'max' operator works properly.
+   * @test_Strategy  Test to make sure the 'max' operator works properly.
    *
-   * @since: 3.0
+   * @since 3.0
    *
    */
   @Test
@@ -147,13 +147,13 @@ public class ELClientIT {
   } // End elCollectionMaxTest()
 
   /**
-   * @testName: elCollectionDistinctTest
+   * @testName  elCollectionDistinctTest
    *
-   * @assertion_ids: EL:SPEC:61; EL:SPEC:61.1
+   * @assertion_ids  EL:SPEC:61; EL:SPEC:61.1
    *
-   * @test_Strategy: Test to make sure the 'distinct' operator works properly.
+   * @test_Strategy  Test to make sure the 'distinct' operator works properly.
    *
-   * @since: 3.0
+   * @since 3.0
    *
    */
   @Test
@@ -167,13 +167,13 @@ public class ELClientIT {
   } // End elCollectionDistinctTest()
 
   /**
-   * @testName: elCollectionForEachTest
+   * @testName  elCollectionForEachTest
    *
-   * @assertion_ids: EL:SPEC:63; EL:SPEC:63.1
+   * @assertion_ids  EL:SPEC:63; EL:SPEC:63.1
    *
-   * @test_Strategy: Test to make sure the 'forEach' operator works properly.
+   * @test_Strategy  Test to make sure the 'forEach' operator works properly.
    *
-   * @since: 3.0
+   * @since 3.0
    *
    */
   @Test
@@ -189,14 +189,14 @@ public class ELClientIT {
   } // End elCollectionForEachTest()
 
   /**
-   * @testName: elCollectionFindFirstTest
+   * @testName  elCollectionFindFirstTest
    *
-   * @assertion_ids: EL:SPEC:78; EL:SPEC:78.1; EL:SPEC:62; EL:SPEC:62.1;
+   * @assertion_ids  EL:SPEC:78; EL:SPEC:78.1; EL:SPEC:62; EL:SPEC:62.1;
    *                 EL:SPEC:62.2
    *
-   * @test_Strategy: Test to make sure the 'findFirst' operator works properly.
+   * @test_Strategy  Test to make sure the 'findFirst' operator works properly.
    *
-   * @since: 3.0
+   * @since 3.0
    *
    */
   @Test
@@ -211,13 +211,13 @@ public class ELClientIT {
   } // End elCollectionFindFirstTest()
 
   /**
-   * @testName: elCollectionLimitTest
+   * @testName  elCollectionLimitTest
    *
-   * @assertion_ids: EL:SPEC:66; EL:SPEC:66.1
+   * @assertion_ids  EL:SPEC:66; EL:SPEC:66.1
    *
-   * @test_Strategy: Test to make sure the 'limit' operator works properly.
+   * @test_Strategy  Test to make sure the 'limit' operator works properly.
    *
-   * @since: 3.0
+   * @since 3.0
    *
    */
   @Test
@@ -244,11 +244,11 @@ public class ELClientIT {
   /**
    * testName: elCollectionAnyMatchTest
    *
-   * @assertion_ids: EL:SPEC:75; EL:SPEC:75.1
+   * @assertion_ids  EL:SPEC:75; EL:SPEC:75.1
    *
-   * @test_Strategy: Test to make sure the 'anyMatch' operator works properly.
+   * @test_Strategy  Test to make sure the 'anyMatch' operator works properly.
    *
-   * @since: 3.0
+   * @since 3.0
    *
    *         Bug 20438221 : Commented the test for now
    */
@@ -266,11 +266,11 @@ public class ELClientIT {
   /**
    * testName: elCollectionNoneMatchTest
    *
-   * @assertion_ids: EL:SPEC:77; EL:SPEC:77.1
+   * @assertion_ids  EL:SPEC:77; EL:SPEC:77.1
    *
-   * @test_Strategy: Test to make sure the 'noneMatch' operator works properly.
+   * @test_Strategy  Test to make sure the 'noneMatch' operator works properly.
    *
-   * @since: 3.0
+   * @since 3.0
    *
    *         Bug 20438221 : Commented the test for now
    */
@@ -288,11 +288,11 @@ public class ELClientIT {
   /**
    * testName: elCollectionAllMatchTest
    *
-   * @assertion_ids: EL:SPEC:76; EL:SPEC:76.1
+   * @assertion_ids  EL:SPEC:76; EL:SPEC:76.1
    *
-   * @test_Strategy: Test to make sure the 'allMatch' operator works properly.
+   * @test_Strategy  Test to make sure the 'allMatch' operator works properly.
    *
-   * @since: 3.0
+   * @since 3.0
    *
    *         Bug 20438221 : Commented the test for now.
    */
@@ -308,13 +308,13 @@ public class ELClientIT {
   } // End elCollectionAllMatchTest()
 
   /**
-   * @testName: elCollectionSumTest
+   * @testName  elCollectionSumTest
    *
-   * @assertion_ids: EL:SPEC:74; EL:SPEC:74.1
+   * @assertion_ids  EL:SPEC:74; EL:SPEC:74.1
    *
-   * @test_Strategy: Test to make sure the 'sum' operator works properly.
+   * @test_Strategy  Test to make sure the 'sum' operator works properly.
    *
-   * @since: 3.0
+   * @since 3.0
    *
    */
   @Test
@@ -329,13 +329,13 @@ public class ELClientIT {
   } // End elCollectionSumTest()
 
   /**
-   * @testName: elCollectionCountTest
+   * @testName  elCollectionCountTest
    *
-   * @assertion_ids: EL:SPEC:79; EL:SPEC:79.1
+   * @assertion_ids  EL:SPEC:79; EL:SPEC:79.1
    *
-   * @test_Strategy: Test to make sure the 'count' operator works properly.
+   * @test_Strategy  Test to make sure the 'count' operator works properly.
    *
-   * @since: 3.0
+   * @since 3.0
    *
    */
   @Test
@@ -347,13 +347,13 @@ public class ELClientIT {
   } // End elCollectionCountTest()
 
   /**
-   * @testName: elCollectionAverageTest
+   * @testName  elCollectionAverageTest
    *
-   * @assertion_ids: EL:SPEC:73; EL:SPEC:73.1
+   * @assertion_ids  EL:SPEC:73; EL:SPEC:73.1
    *
-   * @test_Strategy: Test to make sure the 'average' operator works properly.
+   * @test_Strategy  Test to make sure the 'average' operator works properly.
    *
-   * @since: 3.0
+   * @since 3.0
    *
    */
   @Test
@@ -367,13 +367,13 @@ public class ELClientIT {
   } // End elCollectionAverageTest()
 
   /**
-   * @testName: elCollectionToArrayTest
+   * @testName  elCollectionToArrayTest
    *
-   * @assertion_ids: EL:SPEC:68; EL:SPEC:68.1
+   * @assertion_ids  EL:SPEC:68; EL:SPEC:68.1
    *
-   * @test_Strategy: Test to make sure the 'toArray' operator works properly.
+   * @test_Strategy  Test to make sure the 'toArray' operator works properly.
    *
-   * @since: 3.0
+   * @since 3.0
    *
    */
   @Test
@@ -393,14 +393,14 @@ public class ELClientIT {
   }// End elCollectionToArrayTest()
 
   /**
-   * @testName: elCollectionReduceTest
+   * @testName  elCollectionReduceTest
    *
-   * @assertion_ids: EL:SPEC:70; EL:SPEC:70.1; EL:SPEC:70.2; EL:SPEC:56.2;
+   * @assertion_ids  EL:SPEC:70; EL:SPEC:70.1; EL:SPEC:70.2; EL:SPEC:56.2;
    *                 EL:SPEC:56.3
    *
-   * @test_Strategy: Test to make sure the 'reduce' operator works properly.
+   * @test_Strategy  Test to make sure the 'reduce' operator works properly.
    *
-   * @since: 3.0
+   * @since 3.0
    *
    */
   @Test
@@ -423,13 +423,13 @@ public class ELClientIT {
   }// End elCollectionReduceTest()
 
   /**
-   * @testName: elCollectionSubStreamTest
+   * @testName  elCollectionSubStreamTest
    *
-   * @assertion_ids: EL:SPEC:67; EL:SPEC:67.1; EL:SPEC:67.2
+   * @assertion_ids  EL:SPEC:67; EL:SPEC:67.1; EL:SPEC:67.2
    *
-   * @test_Strategy: Test to make sure the 'substream' operator works properly.
+   * @test_Strategy  Test to make sure the 'substream' operator works properly.
    *
-   * @since: 3.0
+   * @since 3.0
    *
    */
   @Test
@@ -446,13 +446,13 @@ public class ELClientIT {
   }// End elCollectionSubStreamTest()
 
   /**
-   * @testName: elCollectionPeekTest
+   * @testName  elCollectionPeekTest
    *
-   * @assertion_ids: EL:SPEC:4; EL:SPEC:64.1
+   * @assertion_ids  EL:SPEC:4; EL:SPEC:64.1
    *
-   * @test_Strategy: Test to make sure the 'peek' operator works properly.
+   * @test_Strategy  Test to make sure the 'peek' operator works properly.
    *
-   * @since: 3.0
+   * @since 3.0
    *
    */
   @Test
@@ -468,13 +468,13 @@ public class ELClientIT {
   }// End elCollectionPeekTest()
 
   /**
-   * @testName: elCollectionFlatMapTest
+   * @testName  elCollectionFlatMapTest
    *
-   * @assertion_ids: EL:SPEC:60; EL:SPEC:60.1
+   * @assertion_ids  EL:SPEC:60; EL:SPEC:60.1
    *
-   * @test_Strategy: Test to make sure the 'flatMap' operator works properly.
+   * @test_Strategy  Test to make sure the 'flatMap' operator works properly.
    *
-   * @since: 3.0
+   * @since 3.0
    *
    */
   @Test
@@ -495,9 +495,9 @@ public class ELClientIT {
 
 
   /**
-   * @testName: elCollectionSetLiteralTest
-   * @assertion_ids: EL:SPEC:51; EL:SPEC:51.1; EL:SPEC:51.2; EL:SPEC:51.3;
-   * @test+Strategy: Verify that a value in a literal List constructed from
+   * @testName  elCollectionSetLiteralTest
+   * @assertion_ids  EL:SPEC:51; EL:SPEC:51.1; EL:SPEC:51.2; EL:SPEC:51.3;
+   * @test_Strategy  Verify that a value in a literal List constructed from
    *                 variables can be retrieved using the associated index.
    */
   @Test
@@ -531,9 +531,9 @@ public class ELClientIT {
 
 
   /**
-   * @testName: elCollectionListLiteralTest
-   * @assertion_ids: EL:SPEC:52; EL:SPEC:52.1; EL:SPEC:52.2; EL:SPEC:52.3;
-   * @test+Strategy: Verify that a value in a literal List constructed from
+   * @testName  elCollectionListLiteralTest
+   * @assertion_ids  EL:SPEC:52; EL:SPEC:52.1; EL:SPEC:52.2; EL:SPEC:52.3;
+   * @test_Strategy  Verify that a value in a literal List constructed from
    *                 variables can be retrieved using the associated index.
    */
   @Test
@@ -567,9 +567,9 @@ public class ELClientIT {
 
 
   /**
-   * @testName: elCollectionMapLiteralTest
-   * @assertion_ids: EL:SPEC:53; EL:SPEC:53.1; EL:SPEC:53.2; EL:SPEC:53.3;
-   * @test+Strategy: Verify that a value in a literal Map constructed from
+   * @testName  elCollectionMapLiteralTest
+   * @assertion_ids  EL:SPEC:53; EL:SPEC:53.1; EL:SPEC:53.2; EL:SPEC:53.3;
+   * @test_Strategy  Verify that a value in a literal Map constructed from
    *                 variables can be retrieved using the associated key.
    */
   @Test

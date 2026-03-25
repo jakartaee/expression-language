@@ -71,12 +71,12 @@ public class ELSigTestIT extends SigTest {
   // signature tests need. Please do not use both comments.
 
   /*
-   * @testName: signatureTest
+   * @testName  signatureTest
    *
    * @assertion: An EL container must implement the required classes and APIs
    * specified in the EL Specification.
    *
-   * @test_Strategy: Using reflection, gather the implementation specific
+   * @test_Strategy  Using reflection, gather the implementation specific
    * classes and APIs. Compare these results with the expected (required)
    * classes and APIs.
    *

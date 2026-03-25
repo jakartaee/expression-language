@@ -61,9 +61,9 @@ public class ELClientIT {
   // Methods
 
   /**
-   * @testName: elBooleanLiteralTest
-   * @assertion_ids: EL:SPEC:13.1
-   * @test_Strategy: Validate that the EL Boolean literal: - 'true' is evaluated
+   * @testName  elBooleanLiteralTest
+   * @assertion_ids  EL:SPEC:13.1
+   * @test_Strategy  Validate that the EL Boolean literal: - 'true' is evaluated
    *                 as expected. - 'false' is evaluated as expected.
    */
   @Test
@@ -109,9 +109,9 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: elIntegerLiteralTest
-   * @assertion_ids: EL:SPEC:13.2
-   * @test_Strategy: Validate that the EL Integer literal with the: - '$' is
+   * @testName  elIntegerLiteralTest
+   * @assertion_ids  EL:SPEC:13.2
+   * @test_Strategy  Validate that the EL Integer literal with the: - '$' is
    *                 evaluated as expected. - '#' is evaluated as expected.
    */
   @Test
@@ -165,9 +165,9 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: elFloatingPointLiteralTest
-   * @assertion_ids: EL:SPEC:13.3
-   * @test_Strategy: Validate that the EL Float literal with the: - '$' is
+   * @testName  elFloatingPointLiteralTest
+   * @assertion_ids  EL:SPEC:13.3
+   * @test_Strategy  Validate that the EL Float literal with the: - '$' is
    *                 evaluated as expected. - '#' is evaluated as expected.
    */
   @Test
@@ -220,9 +220,9 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: elStringLiteralTest
-   * @assertion_ids: EL:SPEC:13.4; EL:SPEC:13.5
-   * @test_Strategy: Validate that the EL String literal with the: - '$' is
+   * @testName  elStringLiteralTest
+   * @assertion_ids  EL:SPEC:13.4; EL:SPEC:13.5
+   * @test_Strategy  Validate that the EL String literal with the: - '$' is
    *                 evaluated as expected. - '#' is evaluated as expected.
    */
   @Test
@@ -279,9 +279,9 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: elNullLiteralTest
-   * @assertion_ids: EL:SPEC:13.6
-   * @test_Strategy: Validate that the EL 'null' literal evalutes correctly.
+   * @testName  elNullLiteralTest
+   * @assertion_ids  EL:SPEC:13.6
+   * @test_Strategy  Validate that the EL 'null' literal evalutes correctly.
    */
   @Test
   public void elNullLiteralTest() throws Exception {
@@ -320,9 +320,9 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: elSyntaxAsLiteralTest
-   * @assertion_ids: EL:SPEC:7
-   * @test_Strategy: [ELSyntaxAsLiteral] Verify that to generate literal values
+   * @testName  elSyntaxAsLiteralTest
+   * @assertion_ids  EL:SPEC:7
+   * @test_Strategy  [ELSyntaxAsLiteral] Verify that to generate literal values
    *                 that include the character sequence "${" or "#{" a
    *                 composite expression can be used.
    */
