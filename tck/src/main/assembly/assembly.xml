@@ -28,7 +28,7 @@
 
     <files>
         <file>
-            <source>${project.basedir}/docs/LICENSE.html</source>
+            <source>${project.basedir}/LICENSE-EFTL.html</source>
             <destName>LICENSE.html</destName>
         </file>
         <file>

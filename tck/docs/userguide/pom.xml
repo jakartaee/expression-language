@@ -33,17 +33,6 @@
     
     <name>Eclipse Foundation Technology Compatibility Kit User's Guide for Jakarta Expression Language for Jakarta EE, Release 6.1</name>
 
-    <!--
-        Override the license in the parent POM as TCKs all use the EFTL. 
-    -->
-    <licenses>
-        <license>
-            <name>Eclipse Foundation Technology Compatibility Kit License - v1.1</name>
-            <url>https://www.eclipse.org/legal/tck/</url>
-            <distribution>repo</distribution>
-        </license>
-    </licenses>
-
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <site.output.dir>${project.build.directory}/staging</site.output.dir>
