@@ -36,17 +36,6 @@
     <description>Jakarta Expression Language TCK</description>
     <url>https://projects.eclipse.org/projects/ee4j.el</url>
 
-    <!--
-        Override the license in the parent POM as TCKs all use the EFTL. 
-    -->
-    <licenses>
-        <license>
-            <name>Eclipse Foundation Technology Compatibility Kit License - v1.1</name>
-            <url>https://www.eclipse.org/legal/tck/</url>
-            <distribution>repo</distribution>
-        </license>
-    </licenses>
-
     <developers>
         <developer>
             <id>jakarta-ee4j-el</id>
@@ -208,29 +197,6 @@
                     </execution>
                 </executions>
             </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-assembly-plugin</artifactId>
-                <version>3.8.0</version>
-                <executions>
-                    <execution>
-                        <id>distribution</id>
-                        <goals>
-                            <goal>single</goal>
-                        </goals>
-                        <phase>package</phase>
-                        <configuration>
-                            <descriptors>
-                                <descriptor>src/main/assembly/assembly.xml</descriptor>
-                            </descriptors>
-                            <escapeString>\</escapeString>
-                            <appendAssemblyId>false</appendAssemblyId>
-                            <finalName>${bundle-name}-${project.version}</finalName>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
         </plugins>
     </build>
 
@@ -263,6 +229,42 @@
             </build>
         </profile>
 
+        <profile>
+            <!-- Enable the EFTL profile to build the EFTL licensed *.zip distribution which is staged to -->
+            <!-- https://download.eclipse.org/ee4j/expression-language/jakartaeeXX/staged/eftl/           -->
+            <!-- Generally, this profile will only be used by CI to perform the staging or developers     -->
+            <!-- testing the build process for the staged artefact.                                       -->
+            <id>EFTL</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-assembly-plugin</artifactId>
+                        <version>3.8.0</version>
+                        <executions>
+                            <execution>
+                                <id>distribution</id>
+                                <goals>
+                                    <goal>single</goal>
+                                </goals>
+                                <phase>package</phase>
+                                <configuration>
+                                    <descriptors>
+                                        <descriptor>src/main/assembly/assembly.xml</descriptor>
+                                    </descriptors>
+                                    <escapeString>\</escapeString>
+                                    <appendAssemblyId>false</appendAssemblyId>
+                                    <finalName>${bundle-name}-${project.version}</finalName>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
     </profiles>
 
 </project>
