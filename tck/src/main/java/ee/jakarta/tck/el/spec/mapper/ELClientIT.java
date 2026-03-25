@@ -68,10 +68,10 @@ public class ELClientIT {
 
 
   /**
-   * @testName: ELFunctionBindingTest
+   * @testName  ELFunctionBindingTest
    *
-   * @assertion_ids: EL:SPEC:31
-   * @test_Strategy: [ELFunctionsBinding] Create an ELContext that uses a
+   * @assertion_ids  EL:SPEC:31
+   * @test_Strategy  [ELFunctionsBinding] Create an ELContext that uses a
    *                 non-null FunctionMapper. Create a ValueExpression from the
    *                 ELContext that references a function assigned by the
    *                 FunctionMapper. Change the function mapping in the
@@ -139,10 +139,10 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: ELVariableBindingTest
+   * @testName  ELVariableBindingTest
    *
-   * @assertion_ids: EL:SPEC:34
-   * @test_Strategy: [ELVariablesBinding] Create an ELContext that uses a
+   * @assertion_ids  EL:SPEC:34
+   * @test_Strategy  [ELVariablesBinding] Create an ELContext that uses a
    *                 non-null VariableMapper. Create a ValueExpression from the
    *                 ELContext that references a variable assigned by the
    *                 VariableMapper. Remove the assignment from the

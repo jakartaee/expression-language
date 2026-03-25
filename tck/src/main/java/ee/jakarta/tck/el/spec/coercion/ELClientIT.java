@@ -99,9 +99,9 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: positivePrimitiveToBoxedTest
-   * @assertion_ids: EL:SPEC:37.3; EL:SPEC:37.5
-   * @test_Strategy: Validate that the primitive types - boolean - char - byte -
+   * @testName  positivePrimitiveToBoxedTest
+   * @assertion_ids  EL:SPEC:37.3; EL:SPEC:37.5
+   * @test_Strategy  Validate that the primitive types - boolean - char - byte -
    *                 short - int - long - float - double when found in an
    *                 expression are converted to the appropriate 'boxed' types.
    */
@@ -165,9 +165,9 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: positiveBoxedToPrimitiveTest
-   * @assertion_ids: EL:SPEC:37.3; EL:SPEC:37.4
-   * @test_Strategy: Validate that the 'boxed' types - Boolean - Character -
+   * @testName  positiveBoxedToPrimitiveTest
+   * @assertion_ids  EL:SPEC:37.3; EL:SPEC:37.4
+   * @test_Strategy  Validate that the 'boxed' types - Boolean - Character -
    *                 Byte - Short - Integer - Long - Float - Double when found
    *                 in an expression are converted to the appropriate primitive
    *                 types. Note that the conversion takes place in
@@ -264,9 +264,9 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: positiveElBooleanCoercionTest
-   * @assertion_ids: EL:SPEC:41.1; EL:SPEC:41.2; EL:SPEC:41.3
-   * @test_Strategy: Validate that null, the empty String, a Boolean, and a
+   * @testName  positiveElBooleanCoercionTest
+   * @assertion_ids  EL:SPEC:41.1; EL:SPEC:41.2; EL:SPEC:41.3
+   * @test_Strategy  Validate that null, the empty String, a Boolean, and a
    *                 proper String argument to Boolean.valueOf() are coerced to
    *                 the expected Boolean values.
    */
@@ -304,9 +304,9 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: negativeElBooleanCoercionTest
-   * @assertion_ids: EL:SPEC:41.4; EL:JAVADOC:112
-   * @test_Strategy: Validate that an error occurs when an attempt is made to
+   * @testName  negativeElBooleanCoercionTest
+   * @assertion_ids  EL:SPEC:41.4; EL:JAVADOC:112
+   * @test_Strategy  Validate that an error occurs when an attempt is made to
    *                 coerce an invalid class to a Boolean. The coercion is
    *                 performed with a call to ValueExpression.getValue(), which
    *                 must throw an ELException.
@@ -333,9 +333,9 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: elPrimitiveToStringCoercionTest
-   * @assertion_ids: EL:SPEC:38.1; EL:SPEC:38.2; EL:SPEC:38.3; EL:SPEC:38.5
-   * @test_Strategy: Validate that the following types coerce to type of String
+   * @testName  elPrimitiveToStringCoercionTest
+   * @assertion_ids  EL:SPEC:38.1; EL:SPEC:38.2; EL:SPEC:38.3; EL:SPEC:38.5
+   * @test_Strategy  Validate that the following types coerce to type of String
    *                 and the expected String value is returned.
    *
    *                 Types: String(), boolean, null, byte, char, short, int,
@@ -477,9 +477,9 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: elWrapperToStringCoercionTest
-   * @assertion_ids: EL:SPEC:38.5
-   * @test_Strategy: Validate that the following types coerce to type of String
+   * @testName  elWrapperToStringCoercionTest
+   * @assertion_ids  EL:SPEC:38.5
+   * @test_Strategy  Validate that the following types coerce to type of String
    *                 and the expected String value is returned.
    *
    *                 Types: Boolean, Byte, Character, Short, Integer, Long,
@@ -595,9 +595,9 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: positiveElCharacterCoercionTest
-   * @assertion_ids: EL:SPEC:40.1; EL:SPEC:40.2; EL:SPEC:40.4; EL:SPEC:40.5
-   * @test_Strategy: Validate that the following types coerce to type of
+   * @testName  positiveElCharacterCoercionTest
+   * @assertion_ids  EL:SPEC:40.1; EL:SPEC:40.2; EL:SPEC:40.4; EL:SPEC:40.5
+   * @test_Strategy  Validate that the following types coerce to type of
    *                 Character and the expected Character value is returned.
    *
    *                 Types: String, Byte, Character, Short, Integer, Long,
@@ -724,9 +724,9 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: negativeElCharacterCoercionTest
-   * @assertion_ids: EL:SPEC:40.3; EL:JAVADOC:112
-   * @test_Strategy: Validate that an error occurs when an attempt is made to
+   * @testName  negativeElCharacterCoercionTest
+   * @assertion_ids  EL:SPEC:40.3; EL:JAVADOC:112
+   * @test_Strategy  Validate that an error occurs when an attempt is made to
    *                 coerce a boolean to Character. The coercion is performed
    *                 with a call to ValueExpression.getValue(), which must throw
    *                 an ELException.
@@ -755,10 +755,10 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: negativeElNumberCoercionTest
-   * @assertion_ids: EL:SPEC:39.3; EL:SPEC:39.6.1.1; EL:SPEC:39.7.3;
+   * @testName  negativeElNumberCoercionTest
+   * @assertion_ids  EL:SPEC:39.3; EL:SPEC:39.6.1.1; EL:SPEC:39.7.3;
    *                 EL:SPEC:39.7.1; EL:SPEC:39.6.1.1; EL:JAVADOC:112
-   * @test_Strategy: Validate that an error occurs when an attempt is made to
+   * @test_Strategy  Validate that an error occurs when an attempt is made to
    *                 coerce a: -Boolean to Number. -String to a Number. The
    *                 coercion is performed with a call to
    *                 ValueExpression.getValue(), which must throw an
@@ -815,9 +815,9 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: elNullToNumberCoercionTest
-   * @assertion_ids: EL:SPEC:39.1
-   * @test_Strategy: Validate that when null or empty String is given. That the
+   * @testName  elNullToNumberCoercionTest
+   * @assertion_ids  EL:SPEC:39.1
+   * @test_Strategy  Validate that when null or empty String is given. That the
    *                 returned value is 0. Test this for the Following types.
    *
    *                 Types: Byte, Short, Integer, Long, Float, Double,
@@ -876,9 +876,9 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: elNumberToByteCoercionTest
-   * @assertion_ids: EL:SPEC:39.5.3
-   * @test_Strategy: Validate that following Number types coerce to Byte and the
+   * @testName  elNumberToByteCoercionTest
+   * @assertion_ids  EL:SPEC:39.5.3
+   * @test_Strategy  Validate that following Number types coerce to Byte and the
    *                 expected Byte value is returned.
    *
    *                 Types: Byte, Short, Integer, Long, Float, Double,
@@ -950,9 +950,9 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: elNumberToShortCoercionTest
-   * @assertion_ids: EL:SPEC:39.5.4
-   * @test_Strategy: Validate that following Number types coerce to Short and
+   * @testName  elNumberToShortCoercionTest
+   * @assertion_ids  EL:SPEC:39.5.4
+   * @test_Strategy  Validate that following Number types coerce to Short and
    *                 the expected Short value is returned.
    *
    *                 Types: Byte, Short, Integer, Long, Float, Double,
@@ -1024,9 +1024,9 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: elNumberToIntegerCoercionTest
-   * @assertion_ids: EL:SPEC:39.5.5
-   * @test_Strategy: Validate that following Number types coerce to Integer and
+   * @testName  elNumberToIntegerCoercionTest
+   * @assertion_ids  EL:SPEC:39.5.5
+   * @test_Strategy  Validate that following Number types coerce to Integer and
    *                 the expected Integer value is returned.
    *
    *                 Types: Byte, Short, Integer, Long, Float, Double,
@@ -1097,9 +1097,9 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: elNumberToLongCoercionTest
-   * @assertion_ids: EL:SPEC:39.5.6
-   * @test_Strategy: Validate that following Number types coerce to Long and the
+   * @testName  elNumberToLongCoercionTest
+   * @assertion_ids  EL:SPEC:39.5.6
+   * @test_Strategy  Validate that following Number types coerce to Long and the
    *                 expected Long value is returned.
    *
    *                 Types: Byte, Short, Integer, Long, Float, Double,
@@ -1171,9 +1171,9 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: elNumberToFloatCoercionTest
-   * @assertion_ids: EL:SPEC:39.5.7
-   * @test_Strategy: Validate that following Number types coerce to Float and
+   * @testName  elNumberToFloatCoercionTest
+   * @assertion_ids  EL:SPEC:39.5.7
+   * @test_Strategy  Validate that following Number types coerce to Float and
    *                 the expected Float value is returned.
    *
    *                 Types: Byte, Short, Integer, Long, Float, Double,
@@ -1245,9 +1245,9 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: elNumberToDoubleCoercionTest
-   * @assertion_ids: EL:SPEC:39.5.8
-   * @test_Strategy: Validate that following Number types coerce to Double and
+   * @testName  elNumberToDoubleCoercionTest
+   * @assertion_ids  EL:SPEC:39.5.8
+   * @test_Strategy  Validate that following Number types coerce to Double and
    *                 the expected Double value is returned.
    *
    *                 Types: Byte, Short, Integer, Long, Float, Double,
@@ -1319,9 +1319,9 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: elStringToNumberCoercionTest
-   * @assertion_ids: EL:SPEC:39.6.1.2; EL:SPEC:39.7.2; EL:SPEC:39.7.4
-   * @test_Strategy: Validate that String types coerce to the following types
+   * @testName  elStringToNumberCoercionTest
+   * @assertion_ids  EL:SPEC:39.6.1.2; EL:SPEC:39.7.2; EL:SPEC:39.7.4
+   * @test_Strategy  Validate that String types coerce to the following types
    *                 and the expected value is returned.
    *
    *                 Types: Byte, Short, Integer, Long, Float, Double,
@@ -1394,9 +1394,9 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: elCharacterToNumberCoercionTest
-   * @assertion_ids: EL:SPEC:39.2
-   * @test_Strategy: Validate that Character types coerce to the following types
+   * @testName  elCharacterToNumberCoercionTest
+   * @assertion_ids  EL:SPEC:39.2
+   * @test_Strategy  Validate that Character types coerce to the following types
    *                 and the expected value is returned.
    *
    *                 Types: Byte, Short, Integer, Long, Float, Double,
@@ -1468,9 +1468,9 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: elNumberToBigIntegerCoercionTest
-   * @assertion_ids: EL:SPEC:39.5.1.1; EL:SPEC:39.5.1.2
-   * @test_Strategy: Validate that following Number types coerce to BigInteger
+   * @testName  elNumberToBigIntegerCoercionTest
+   * @assertion_ids  EL:SPEC:39.5.1.1; EL:SPEC:39.5.1.2
+   * @test_Strategy  Validate that following Number types coerce to BigInteger
    *                 and the expected value is returned.
    *
    *                 Types: Byte, Short, Integer, Long, Float, Double,
@@ -1543,9 +1543,9 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: elNumberToBigDecimalCoercionTest
-   * @assertion_ids: EL:SPEC:39.5.2.1; EL:SPEC:39.5.2.2
-   * @test_Strategy: Validate that following Number types coerce to BigDecimal
+   * @testName  elNumberToBigDecimalCoercionTest
+   * @assertion_ids  EL:SPEC:39.5.2.1; EL:SPEC:39.5.2.2
+   * @test_Strategy  Validate that following Number types coerce to BigDecimal
    *                 and the expected value is returned.
    *
    *                 Types: Byte, Short, Integer, Long, Float, Double,
@@ -1617,9 +1617,9 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: elCoerceToEnumTypeTest
-   * @assertion_ids: EL:SPEC:42.1; EL:SPEC:42.2; EL:SPEC:42.3; EL:SPEC:42.4
-   * @test_Strategy: Validate that - an assignable enum type can be coerced to
+   * @testName  elCoerceToEnumTypeTest
+   * @assertion_ids  EL:SPEC:42.1; EL:SPEC:42.2; EL:SPEC:42.3; EL:SPEC:42.4
+   * @test_Strategy  Validate that - an assignable enum type can be coerced to
    *                 an enum - coercing a null value to an enum type returns a
    *                 null value - coercing an empty string to an enum type
    *                 returns a null value - coercing a string to an enum is
@@ -1683,10 +1683,10 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: elCoerceToArrayTest
-   * @assertion_ids: EL:SPEC:81.1; EL:SPEC:81.2; EL:SPEC:81.3; EL:SPEC:81.4;
+   * @testName  elCoerceToArrayTest
+   * @assertion_ids  EL:SPEC:81.1; EL:SPEC:81.2; EL:SPEC:81.3; EL:SPEC:81.4;
    *                 EL:SPEC:81.5
-   * @test_Strategy: Validate that - coercing a null to an array returns a null
+   * @test_Strategy  Validate that - coercing a null to an array returns a null
    *                 value, coercing an array of type T returns an array of type
    *                 T, coercing an array coerces each member of the array to
    *                 the expected type, coercing an array where at least one
@@ -1771,9 +1771,9 @@ public class ELClientIT {
 
 
   /**
-   * @testName: elCoerceLambdaExpressionToFunctionalInterfaceTest
-   * @assertion_ids: EL:SPEC:79.1; EL:SPEC:79.2; EL:SPEC:79.3
-   * @test_Strategy: Validate that - a lambda expression can be coerced to a
+   * @testName  elCoerceLambdaExpressionToFunctionalInterfaceTest
+   * @assertion_ids  EL:SPEC:79.1; EL:SPEC:79.2; EL:SPEC:79.3
+   * @test_Strategy  Validate that - a lambda expression can be coerced to a
    *                 functional interface invocation if the parameter types
    *                 match or can be made to match via the standard coercion
    *                 rules.
@@ -1884,9 +1884,9 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: elCoerceToOtherTypeTest
-   * @assertion_ids: EL:SPEC:43.1; EL:SPEC:43.2
-   * @test_Strategy: Validate that - an assignable "other" type can be coerced
+   * @testName  elCoerceToOtherTypeTest
+   * @assertion_ids  EL:SPEC:43.1; EL:SPEC:43.2
+   * @test_Strategy  Validate that - an assignable "other" type can be coerced
    *                 to an "other" type. We coerce an instance of the class
    *                 java.sql.Time to its parent class java.util.Date. -
    *                 coercing a null value to an "other" type returns a null

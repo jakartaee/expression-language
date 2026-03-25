@@ -55,11 +55,11 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: elBigDecimalConcatenationTest
+   * @testName  elBigDecimalConcatenationTest
    *
-   * @assertion_ids: EL:SPEC:38; EL:SPEC:47.1; EL:SPEC:47.1.1; EL:SPEC:47.1.2
+   * @assertion_ids  EL:SPEC:38; EL:SPEC:47.1; EL:SPEC:47.1.1; EL:SPEC:47.1.2
    *
-   * @test_Strategy: Validate that if one of the operands is BigDecimal that the
+   * @test_Strategy  Validate that if one of the operands is BigDecimal that the
    *                 operator is '+=' that both operands are coerced to type
    *                 String and concatenated.
    *
@@ -82,9 +82,9 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: elBigIntegerConcatenationTest
-   * @assertion_ids: EL:SPEC:38; EL:SPEC:47.1; EL:SPEC:47.1.1; EL:SPEC:47.1.2
-   * @test_Strategy: Validate that if one of the operands is BigInteger that the
+   * @testName  elBigIntegerConcatenationTest
+   * @assertion_ids  EL:SPEC:38; EL:SPEC:47.1; EL:SPEC:47.1.1; EL:SPEC:47.1.2
+   * @test_Strategy  Validate that if one of the operands is BigInteger that the
    *                 operator is '+=' that both operands are coerced to type
    *                 String and concatenated.
    *
@@ -105,9 +105,9 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: elFloatConcatenationTest
-   * @assertion_ids: EL:SPEC:38; EL:SPEC:47.1; EL:SPEC:47.1.1; EL:SPEC:47.1.2
-   * @test_Strategy: Validate when the operator is '+=' that the operands are
+   * @testName  elFloatConcatenationTest
+   * @assertion_ids  EL:SPEC:38; EL:SPEC:47.1; EL:SPEC:47.1.1; EL:SPEC:47.1.2
+   * @test_Strategy  Validate when the operator is '+=' that the operands are
    *                 coerced to Strings and the result is a Concatenation.
    *
    *                 Equations tested: Float + Double Float + Float Float +
@@ -130,9 +130,9 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: elDoubleConcatenationTest
-   * @assertion_ids: EL:SPEC:38; EL:SPEC:47.1; EL:SPEC:47.1.1; EL:SPEC:47.1.2
-   * @test_Strategy: Validate when the operator is '+=' that the operands are
+   * @testName  elDoubleConcatenationTest
+   * @assertion_ids  EL:SPEC:38; EL:SPEC:47.1; EL:SPEC:47.1.1; EL:SPEC:47.1.2
+   * @test_Strategy  Validate when the operator is '+=' that the operands are
    *                 coerced to Strings and the result is a Concatenation.
    *
    *                 Equations tested: Double += Double Double += String
@@ -152,9 +152,9 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: elLongConcatenationTest
-   * @assertion_ids: EL:SPEC:38; EL:SPEC:47.1; EL:SPEC:47.1.1; EL:SPEC:47.1.2
-   * @test_Strategy: Validate when the operator is '+=' that the operands are
+   * @testName  elLongConcatenationTest
+   * @assertion_ids  EL:SPEC:38; EL:SPEC:47.1; EL:SPEC:47.1.1; EL:SPEC:47.1.2
+   * @test_Strategy  Validate when the operator is '+=' that the operands are
    *                 coerced to Strings and the result is a Concatenation.
    *
    *                 Equations tested: Long += Integer Long += Long Long +=
@@ -173,9 +173,9 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: elIntegerConcatenationTest
-   * @assertion_ids: EL:SPEC:38; EL:SPEC:47.1; EL:SPEC:47.1.1; EL:SPEC:47.1.2
-   * @test_Strategy: Validate when the operator is '+=' that the operands are
+   * @testName  elIntegerConcatenationTest
+   * @assertion_ids  EL:SPEC:38; EL:SPEC:47.1; EL:SPEC:47.1.1; EL:SPEC:47.1.2
+   * @test_Strategy  Validate when the operator is '+=' that the operands are
    *                 coerced to Strings and the result is a Concatenation.
    *
    *                 Equations tested: Integer += Integer Integer += Short
@@ -194,9 +194,9 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: elShortConcatenationTest
-   * @assertion_ids: EL:SPEC:38; EL:SPEC:47.1; EL:SPEC:47.1.1; EL:SPEC:47.1.2
-   * @test_Strategy: Validate when the operator is '+=' that the operands are
+   * @testName  elShortConcatenationTest
+   * @assertion_ids  EL:SPEC:38; EL:SPEC:47.1; EL:SPEC:47.1.1; EL:SPEC:47.1.2
+   * @test_Strategy  Validate when the operator is '+=' that the operands are
    *                 coerced to Strings and the result is a Concatenation.
    *
    *                 Equations tested: Short += Short Short += Byte
@@ -214,9 +214,9 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: elByteConcatenationTest
-   * @assertion_ids: EL:SPEC:38; EL:SPEC:47.1; EL:SPEC:47.1.1; EL:SPEC:47.1.2
-   * @test_Strategy: Validate that if the operator is '+=' that both operands
+   * @testName  elByteConcatenationTest
+   * @assertion_ids  EL:SPEC:38; EL:SPEC:47.1; EL:SPEC:47.1.1; EL:SPEC:47.1.2
+   * @test_Strategy  Validate that if the operator is '+=' that both operands
    *                 are coerced to String and the result is a Concatenation of
    *                 the operands.
    *
@@ -235,9 +235,9 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: elBooleanConcatenationTest
-   * @assertion_ids: EL:SPEC:38; EL:SPEC:47.1; EL:SPEC:47.1.1; EL:SPEC:47.1.2
-   * @test_Strategy: Validate when the operator is '+=' that both operands are
+   * @testName  elBooleanConcatenationTest
+   * @assertion_ids  EL:SPEC:38; EL:SPEC:47.1; EL:SPEC:47.1.1; EL:SPEC:47.1.2
+   * @test_Strategy  Validate when the operator is '+=' that both operands are
    *                 coerced to Strings and that they result is a Concatenation
    *                 of the operands.
    *

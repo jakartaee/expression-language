@@ -70,11 +70,11 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: positiveValueExpressionTest
-   * @assertion_ids: EL:JAVADOC:110; EL:JAVADOC:111; EL:JAVADOC:112;
+   * @testName  positiveValueExpressionTest
+   * @assertion_ids  EL:JAVADOC:110; EL:JAVADOC:111; EL:JAVADOC:112;
    *                 EL:JAVADOC:113; EL:JAVADOC:114; EL:JAVADOC:60;
    *                 EL:JAVADOC:58
-   * @test_Strategy: Validate the behavior of ValueExpression API
+   * @test_Strategy  Validate the behavior of ValueExpression API
    *                 ValueExpression.getValue() ValueExpression.setValue()
    *                 ValueExpression.getType() ValueExpression.getExpectedType()
    *                 ValueExpression.isReadOTestUtil.NEW_LINEy()
@@ -164,13 +164,13 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: negativeValueExpressionTest
-   * @assertion_ids: EL:JAVADOC:111; EL:JAVADOC:112; EL:JAVADOC:113;
+   * @testName  negativeValueExpressionTest
+   * @assertion_ids  EL:JAVADOC:111; EL:JAVADOC:112; EL:JAVADOC:113;
    *                 EL:JAVADOC:114; EL:JAVADOC:368; EL:JAVADOC:371;
    *                 EL:JAVADOC:372; EL:JAVADOC:375; EL:JAVADOC:376;
    *                 EL:JAVADOC:378; EL:JAVADOC:379; EL:JAVADOC:380
    *
-   * @test_Strategy: Validate the behavior of ValueExpression API
+   * @test_Strategy  Validate the behavior of ValueExpression API
    *                 ValueExpression.getValue() ValueExpression.setValue()
    *                 ValueExpression.getType()
    *                 ValueExpression.isReadOTestUtil.NEW_LINEy()
@@ -352,11 +352,11 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: valueExpressionSerializableTest
+   * @testName  valueExpressionSerializableTest
    *
-   * @assertion_ids: EL:SPEC:44
+   * @assertion_ids  EL:SPEC:44
    *
-   * @test_Strategy: Validate that ValueExpression implements Serializable and
+   * @test_Strategy  Validate that ValueExpression implements Serializable and
    *                 that a ValueExpression can be manually serialized and
    *                 deserialized.
    */
@@ -432,11 +432,11 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: valueExpressionEqualsTest
+   * @testName  valueExpressionEqualsTest
    *
-   * @assertion_ids: EL:JAVADOC:56
+   * @assertion_ids  EL:JAVADOC:56
    *
-   * @test_Strategy: Validate that ValueExpression implements equals() and that
+   * @test_Strategy  Validate that ValueExpression implements equals() and that
    *                 the behavior is as expected
    */
   @Test

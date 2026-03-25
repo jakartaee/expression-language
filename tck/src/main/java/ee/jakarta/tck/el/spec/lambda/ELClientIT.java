@@ -60,12 +60,12 @@ void logFinishTest(TestInfo testInfo) {
 
 
   /**
-   * @testName: elLambdaExprBigDecimalTest
+   * @testName  elLambdaExprBigDecimalTest
    *
-   * @assertion_ids: EL:SPEC:50.1; EL:SPEC:50.2; EL:SPEC:50.3; EL:SPEC:50.4;
+   * @assertion_ids  EL:SPEC:50.1; EL:SPEC:50.2; EL:SPEC:50.3; EL:SPEC:50.4;
    *                 EL:SPEC:50.5; EL:SPEC:50.6; EL:JAVADOC:212
    *
-   * @test_Strategy: Evaluate the Lambda Expression, making sure the coercion
+   * @test_Strategy  Evaluate the Lambda Expression, making sure the coercion
    *                 rules are followed.
    *
    *                 Operators: +, -, *, /, div, %, mod
@@ -83,7 +83,7 @@ void logFinishTest(TestInfo testInfo) {
    *
    *                 Excluded: none
    *
-   * @since: 3.0
+   * @since 3.0
    *
    */
   @Test
@@ -129,12 +129,12 @@ void logFinishTest(TestInfo testInfo) {
   } // End elLambdaExprBigDecimalTest
 
   /**
-   * @testName: elLambdaExprFloatTest
+   * @testName  elLambdaExprFloatTest
    *
-   * @assertion_ids: EL:SPEC:50.1; EL:SPEC:50.2; EL:SPEC:50.3; EL:SPEC:50.4;
+   * @assertion_ids  EL:SPEC:50.1; EL:SPEC:50.2; EL:SPEC:50.3; EL:SPEC:50.4;
    *                 EL:SPEC:50.5; EL:SPEC:50.6; EL:JAVADOC:212
    *
-   * @test_Strategy: Evaluate the Lambda Expression, making sure the coercion
+   * @test_Strategy  Evaluate the Lambda Expression, making sure the coercion
    *                 rules are followed.
    *
    *                 Operators: +, -, *, /, div, %, mod
@@ -151,7 +151,7 @@ void logFinishTest(TestInfo testInfo) {
    *
    *                 Exclude: BigDecimal
    *
-   * @since: 3.0
+   * @since 3.0
    *
    */
   @Test
@@ -236,12 +236,12 @@ void logFinishTest(TestInfo testInfo) {
   } // End elLambdaExprFloatTest
 
   /**
-   * @testName: elLambdaExprDoubleTest
+   * @testName  elLambdaExprDoubleTest
    *
-   * @assertion_ids: EL:SPEC:50.1; EL:SPEC:50.2; EL:SPEC:50.3; EL:SPEC:50.4;
+   * @assertion_ids  EL:SPEC:50.1; EL:SPEC:50.2; EL:SPEC:50.3; EL:SPEC:50.4;
    *                 EL:SPEC:50.5; EL:SPEC:50.6; EL:JAVADOC:212
    *
-   * @test_Strategy: Evaluate the Lambda Expression, making sure the coercion
+   * @test_Strategy  Evaluate the Lambda Expression, making sure the coercion
    *                 rules are followed.
    *
    *                 Operators: +, -, *, /, div, %, mod
@@ -258,7 +258,7 @@ void logFinishTest(TestInfo testInfo) {
    *
    *                 Exclude: BigDecimal, Float
    *
-   * @since: 3.0
+   * @since 3.0
    *
    */
   @Test
@@ -343,12 +343,12 @@ void logFinishTest(TestInfo testInfo) {
   } // End elLambdaExprDoubleTest
 
   /**
-   * @testName: elLambdaExprBigIntegerTest
+   * @testName  elLambdaExprBigIntegerTest
    *
-   * @assertion_ids: EL:SPEC:50.1; EL:SPEC:50.2; EL:SPEC:50.3; EL:SPEC:50.4;
+   * @assertion_ids  EL:SPEC:50.1; EL:SPEC:50.2; EL:SPEC:50.3; EL:SPEC:50.4;
    *                 EL:SPEC:50.5; EL:SPEC:50.6; EL:JAVADOC:212
    *
-   * @test_Strategy: Evaluate the Lambda Expression, making sure the coercion
+   * @test_Strategy  Evaluate the Lambda Expression, making sure the coercion
    *                 rules are followed.
    *
    *                 Operators: +, -, *, /, div, %, mod
@@ -363,7 +363,7 @@ void logFinishTest(TestInfo testInfo) {
    *
    *                 Exclude: BigDecimal, Float, Double
    *
-   * @since: 3.0
+   * @since 3.0
    *
    */
   @Test
@@ -420,12 +420,12 @@ void logFinishTest(TestInfo testInfo) {
   } // End elLambdaExprBigIntegerTest
 
   /**
-   * @testName: elLambdaExprIntegerTest
+   * @testName  elLambdaExprIntegerTest
    *
-   * @assertion_ids: EL:SPEC:50.1; EL:SPEC:50.2; EL:SPEC:50.3; EL:SPEC:50.4;
+   * @assertion_ids  EL:SPEC:50.1; EL:SPEC:50.2; EL:SPEC:50.3; EL:SPEC:50.4;
    *                 EL:SPEC:50.5; EL:SPEC:50.6; EL:JAVADOC:212
    *
-   * @test_Strategy: Evaluate the Lambda Expression, making sure the coercion
+   * @test_Strategy  Evaluate the Lambda Expression, making sure the coercion
    *                 rules are followed.
    *
    *                 Operators: +, -, *, /, div, %, mod
@@ -440,7 +440,7 @@ void logFinishTest(TestInfo testInfo) {
    *
    *                 Exclude: BigDecimal, BigInteger, Float, Double
    *
-   * @since: 3.0
+   * @since 3.0
    *
    */
   @Test
@@ -498,12 +498,12 @@ void logFinishTest(TestInfo testInfo) {
   } // End elLambdaExprIntegerTest
 
   /**
-   * @testName: elLambdaExprLongTest
+   * @testName  elLambdaExprLongTest
    *
-   * @assertion_ids: EL:SPEC:50.1; EL:SPEC:50.2; EL:SPEC:50.3; EL:SPEC:50.4;
+   * @assertion_ids  EL:SPEC:50.1; EL:SPEC:50.2; EL:SPEC:50.3; EL:SPEC:50.4;
    *                 EL:SPEC:50.5; EL:SPEC:50.6; EL:JAVADOC:212
    *
-   * @test_Strategy: Evaluate the Lambda Expression, making sure the coercion
+   * @test_Strategy  Evaluate the Lambda Expression, making sure the coercion
    *                 rules are followed.
    *
    *                 Operators: +, -, *, /, div, %, mod
@@ -518,7 +518,7 @@ void logFinishTest(TestInfo testInfo) {
    *
    *                 Exclude: BigDecimal, BigInteger, Float, Double, Integer
    *
-   * @since: 3.0
+   * @since 3.0
    *
    */
   @Test
@@ -577,12 +577,12 @@ void logFinishTest(TestInfo testInfo) {
   } // End elLambdaExprLongTest
 
   /**
-   * @testName: elLambdaExprShortTest
+   * @testName  elLambdaExprShortTest
    *
-   * @assertion_ids: EL:SPEC:50.1; EL:SPEC:50.2; EL:SPEC:50.3; EL:SPEC:50.4;
+   * @assertion_ids  EL:SPEC:50.1; EL:SPEC:50.2; EL:SPEC:50.3; EL:SPEC:50.4;
    *                 EL:SPEC:50.5; EL:SPEC:50.6; EL:JAVADOC:212
    *
-   * @test_Strategy: Evaluate the Lambda Expression, making sure the coercion
+   * @test_Strategy  Evaluate the Lambda Expression, making sure the coercion
    *                 rules are followed.
    *
    *                 Operators: +, -, *, /, div, %, mod
@@ -598,7 +598,7 @@ void logFinishTest(TestInfo testInfo) {
    *                 Exclude: BigDecimal, BigInteger, Float, Double, Integer,
    *                 Long
    *
-   * @since: 3.0
+   * @since 3.0
    *
    */
   @Test
@@ -658,12 +658,12 @@ void logFinishTest(TestInfo testInfo) {
   } // End elLambdaExprShortTest
 
   /**
-   * @testName: elLambdaExprByteTest
+   * @testName  elLambdaExprByteTest
    *
-   * @assertion_ids: EL:SPEC:50.1; EL:SPEC:50.2; EL:SPEC:50.3; EL:SPEC:50.4;
+   * @assertion_ids  EL:SPEC:50.1; EL:SPEC:50.2; EL:SPEC:50.3; EL:SPEC:50.4;
    *                 EL:SPEC:50.5; EL:SPEC:50.6; EL:JAVADOC:212
    *
-   * @test_Strategy: Evaluate the Lambda Expression, making sure the coercion
+   * @test_Strategy  Evaluate the Lambda Expression, making sure the coercion
    *                 rules are followed.
    *
    *                 Operators: +, -, *, /, div, %, mod
@@ -679,7 +679,7 @@ void logFinishTest(TestInfo testInfo) {
    *                 Exclude: BigDecimal, BigInteger, Float, Double, Integer,
    *                 Long, Short
    *
-   * @since: 3.0
+   * @since 3.0
    *
    */
   @Test
@@ -740,11 +740,11 @@ void logFinishTest(TestInfo testInfo) {
   } // End elLambdaExprByteTest
 
   /**
-   * @testName: elLambdaExprStringTest
+   * @testName  elLambdaExprStringTest
    *
-   * @assertion_ids: EL:SPEC:49.1; EL:JAVADOC:212
+   * @assertion_ids  EL:SPEC:49.1; EL:JAVADOC:212
    *
-   * @test_Strategy: Validate that when we have variable A set to a specific
+   * @test_Strategy  Validate that when we have variable A set to a specific
    *                 data type that we coerce and receive back the correct value
    *                 and Class type.
    *
@@ -756,7 +756,7 @@ void logFinishTest(TestInfo testInfo) {
    *
    *                 Variable B - String
    *
-   * @since: 3.0
+   * @since 3.0
    *
    */
   @Test
@@ -777,12 +777,12 @@ void logFinishTest(TestInfo testInfo) {
   } // End elLambdaExprStringTest
 
   /**
-   * @testName: elLambdaExprNullTest
+   * @testName  elLambdaExprNullTest
    *
-   * @assertion_ids: EL:SPEC:50.1; EL:SPEC:50.2; EL:SPEC:50.3; EL:SPEC:50.4;
+   * @assertion_ids  EL:SPEC:50.1; EL:SPEC:50.2; EL:SPEC:50.3; EL:SPEC:50.4;
    *                 EL:SPEC:50.5; EL:SPEC:50.6; EL:JAVADOC:212
    *
-   * @test_Strategy: Evaluate the Lambda Expression, making sure the coercion
+   * @test_Strategy  Evaluate the Lambda Expression, making sure the coercion
    *                 rules are followed.
    *
    *                 Operators: +, -, *, /, div, %, mod
@@ -793,7 +793,7 @@ void logFinishTest(TestInfo testInfo) {
    *
    *                 Variable B - null
    *
-   * @since: 3.0
+   * @since 3.0
    *
    */
   @Test

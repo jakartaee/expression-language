@@ -68,13 +68,13 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: resourceBundleELResolverTest
+   * @testName  resourceBundleELResolverTest
    *
-   * @assertion_ids: EL:JAVADOC:103; EL:JAVADOC:104; EL:JAVADOC:105;
+   * @assertion_ids  EL:JAVADOC:103; EL:JAVADOC:104; EL:JAVADOC:105;
    *                 EL:JAVADOC:106; EL:JAVADOC:107; EL:JAVADOC:108;
    *                 EL:JAVADOC:109
    *
-   * @test_Strategy: Verify that API calls work as expected:
+   * @test_Strategy  Verify that API calls work as expected:
    *                 ResourceBundleELResolver() setValue() getValue() getType()
    *                 isReadOnly() getCommonPropertyType()
    */
@@ -101,13 +101,13 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: resourceBundleELResolverNPETest
+   * @testName  resourceBundleELResolverNPETest
    *
-   * @assertion_ids: EL:JAVADOC:106; EL:JAVADOC:105; EL:JAVADOC:107;
+   * @assertion_ids  EL:JAVADOC:106; EL:JAVADOC:105; EL:JAVADOC:107;
    *                 EL:JAVADOC:108; EL:JAVADOC:109; EL:JAVADOC:313;
    *                 EL:JAVADOC:314; EL:JAVADOC:316; EL:JAVADOC:317
    *
-   * @test_Strategy: Verify that the following methods throw a
+   * @test_Strategy  Verify that the following methods throw a
    *                 NullPointerException, if context is null:
    *
    *                 getValue() getType() setValue() isReadOnly()
@@ -133,11 +133,11 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: resourceBundleELResolverPNWETest
+   * @testName  resourceBundleELResolverPNWETest
    *
-   * @assertion_ids: EL:JAVADOC:108; EL:JAVADOC:109; EL:JAVADOC:318
+   * @assertion_ids  EL:JAVADOC:108; EL:JAVADOC:109; EL:JAVADOC:318
    *
-   * @test_Strategy: Verify that the following methods throw a
+   * @test_Strategy  Verify that the following methods throw a
    *                 PropertyNotWritableException, since
    *                 ResourceBundleELResolvers are non-writable.
    *

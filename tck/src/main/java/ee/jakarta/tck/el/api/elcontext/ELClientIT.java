@@ -57,13 +57,13 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: elContextPutGetContextTest
-   * @assertion_ids: EL:JAVADOC:33; EL:JAVADOC:39; EL:JAVADOC:328;
+   * @testName  elContextPutGetContextTest
+   * @assertion_ids  EL:JAVADOC:33; EL:JAVADOC:39; EL:JAVADOC:328;
    *                 EL:JAVADOC:326; EL:JAVADOC:321
-   * @test_Strategy: Assert that we get back the expected value from
+   * @test_Strategy  Assert that we get back the expected value from
    *                 getContext() that we put in with putContext().
    *
-   * @since: 3.0
+   * @since 3.0
    */
   @Test
   public void elContextPutGetContextTest() throws Exception {
@@ -83,12 +83,12 @@ public class ELClientIT {
   } // end elContextPutGetContextTest
 
   /**
-   * @testName: elContextGetSetLocaleTest
-   * @assertion_ids: EL:JAVADOC:36; EL:JAVADOC:40; EL:JAVADOC:328;
+   * @testName  elContextGetSetLocaleTest
+   * @assertion_ids  EL:JAVADOC:36; EL:JAVADOC:40; EL:JAVADOC:328;
    *                 EL:JAVADOC:329
-   * @test_Strategy: Assert that we get back the Locale we set.
+   * @test_Strategy  Assert that we get back the Locale we set.
    *
-   * @since: 3.0
+   * @since 3.0
    */
   @Test
   public void elContextGetSetLocaleTest() throws Exception {
@@ -108,13 +108,13 @@ public class ELClientIT {
   } // end elContextGetSetLocaleTest
 
   /**
-   * @testName: elContextIsSetPropertyResolvedTest
-   * @assertion_ids: EL:JAVADOC:38; EL:JAVADOC:41; EL:JAVADOC:328;
+   * @testName  elContextIsSetPropertyResolvedTest
+   * @assertion_ids  EL:JAVADOC:38; EL:JAVADOC:41; EL:JAVADOC:328;
    *                 EL:JAVADOC:329; EL:JAVADOC:322
-   * @test_Strategy: Assert that when we call setPropertyResolved that
+   * @test_Strategy  Assert that when we call setPropertyResolved that
    *                 isPropertyResolved returns true.
    *
-   * @since: 3.0
+   * @since 3.0
    */
   @Test
   public void elContextIsSetPropertyResolvedTest() throws Exception {
@@ -141,13 +141,13 @@ public class ELClientIT {
   } // end elContextIsSetPropertyResolvedTest
 
   /**
-   * @testName: elContextPutContextNPETest
-   * @assertion_ids: EL:JAVADOC:33; EL:JAVADOC:198; EL:JAVADOC:328;
+   * @testName  elContextPutContextNPETest
+   * @assertion_ids  EL:JAVADOC:33; EL:JAVADOC:198; EL:JAVADOC:328;
    *                 EL:JAVADOC:329; EL:JAVADOC:327
-   * @test_Strategy: Validate that a NullPointerException is thrown if Class is
+   * @test_Strategy  Validate that a NullPointerException is thrown if Class is
    *                 null or Object is null.
    *
-   * @since: 3.0
+   * @since 3.0
    */
   @Test
   public void elContextPutContextNPETest() throws Exception {
@@ -167,13 +167,13 @@ public class ELClientIT {
   } // end elContextPutContextNPETest
 
   /**
-   * @testName: elContextGetContextNPETest
-   * @assertion_ids: EL:JAVADOC:33; EL:JAVADOC:194; EL:JAVADOC:328;
+   * @testName  elContextGetContextNPETest
+   * @assertion_ids  EL:JAVADOC:33; EL:JAVADOC:194; EL:JAVADOC:328;
    *                 EL:JAVADOC:329; EL:JAVADOC:321
-   * @test_Strategy: Validate that a NullPointerException is thrown if key is
+   * @test_Strategy  Validate that a NullPointerException is thrown if key is
    *                 null.
    *
-   * @since: 3.0
+   * @since 3.0
    */
   @Test
   public void elContextGetContextNPETest() throws Exception {
@@ -187,13 +187,13 @@ public class ELClientIT {
   } // end elContextGetContextNPETest
 
   /**
-   * @testName: elContextAddGetListenersTest
-   * @assertion_ids: EL:JAVADOC:33; EL:JAVADOC:191; EL:JAVADOC:197;
+   * @testName  elContextAddGetListenersTest
+   * @assertion_ids  EL:JAVADOC:33; EL:JAVADOC:191; EL:JAVADOC:197;
    *                 EL:JAVADOC:328; EL:JAVADOC:329
-   * @test_Strategy: Validate that a NullPointerException is thrown if key is
+   * @test_Strategy  Validate that a NullPointerException is thrown if key is
    *                 null.
    *
-   * @since: 3.0
+   * @since 3.0
    */
   @Test
   public void elContextAddGetListenersTest() throws Exception {

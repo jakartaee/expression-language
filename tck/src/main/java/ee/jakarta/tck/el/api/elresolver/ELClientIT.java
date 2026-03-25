@@ -64,12 +64,12 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: elResolverTest
+   * @testName  elResolverTest
    *
-   * @assertion_ids: EL:JAVADOC:50; EL:JAVADOC:51; EL:JAVADOC:52; EL:JAVADOC:53;
+   * @assertion_ids  EL:JAVADOC:50; EL:JAVADOC:51; EL:JAVADOC:52; EL:JAVADOC:53;
    *                 EL:JAVADOC:54; EL:JAVADOC:55; EL:JAVADOC:229
    *
-   * @test_Strategy: Create an ELContext and get its ELResolver. Verify that API
+   * @test_Strategy  Create an ELContext and get its ELResolver. Verify that API
    *                 calls work as expected: getValue() getType() setValue()
    *                 isReadOnly() getCommonPropertyType()
    */
@@ -96,15 +96,15 @@ public class ELClientIT {
   } // end elResolverTest
 
   /**
-   * @testName: elResolverNPETest
+   * @testName  elResolverNPETest
    *
-   * @assertion_ids: EL:JAVADOC:233; EL:JAVADOC:239; EL:JAVADOC:242
+   * @assertion_ids  EL:JAVADOC:233; EL:JAVADOC:239; EL:JAVADOC:242
    *
-   * @test_Strategy: Verify that a NullPointerException is thrown as expected
+   * @test_Strategy  Verify that a NullPointerException is thrown as expected
    *                 for the following methods: getValue() getType() setValue()
    *                 isReadOnly()
    *
-   * @since: 3.0
+   * @since 3.0
    */
   @Test
   public void elResolverNPETest() throws Exception {
@@ -138,11 +138,11 @@ public class ELClientIT {
   }// end elResolverNPETest
 
   /**
-   * @testName: elResolverPNFETest
+   * @testName  elResolverPNFETest
    *
-   * @assertion_ids: EL:JAVADOC:231; EL:JAVADOC:234; EL:JAVADOC:240
+   * @assertion_ids  EL:JAVADOC:231; EL:JAVADOC:234; EL:JAVADOC:240
    *
-   * @test_Strategy: Verify that API calls throw PropertyNotFoundException as
+   * @test_Strategy  Verify that API calls throw PropertyNotFoundException as
    *                 expected: getType() setValue() isReadOnly()
    */
   @Test
@@ -175,11 +175,11 @@ public class ELClientIT {
   }// end elResolverPNFETest
 
   /**
-   * @testName: elResolverPNWETest
+   * @testName  elResolverPNWETest
    *
-   * @assertion_ids: EL:JAVADOC:50; EL:JAVADOC:244
+   * @assertion_ids  EL:JAVADOC:50; EL:JAVADOC:244
    *
-   * @test_Strategy: Verify that the setValue() method throws a
+   * @test_Strategy  Verify that the setValue() method throws a
    *                 PropertyNotWritableException, if the resolver was
    *                 constructed in read-only mode.
    *

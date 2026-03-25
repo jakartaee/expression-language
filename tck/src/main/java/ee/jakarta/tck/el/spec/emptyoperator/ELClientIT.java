@@ -57,11 +57,11 @@ public class ELClientIT {
 
 
   /*
-   * @testName: elEmptyNullTest
+   * @testName  elEmptyNullTest
    *
-   * @assertion_ids: EL:SPEC:25.1
+   * @assertion_ids  EL:SPEC:25.1
    *
-   * @test_Strategy: Validate that if "null" is passed with the Empty operator,
+   * @test_Strategy  Validate that if "null" is passed with the Empty operator,
    * the correct Boolean result is returned.
    */
   @Test
@@ -97,11 +97,11 @@ public class ELClientIT {
   }
 
   /*
-   * @testName: elEmptyStringTest
+   * @testName  elEmptyStringTest
    *
-   * @assertion_ids: EL:SPEC:25.2; EL:SPEC:25.6
+   * @assertion_ids  EL:SPEC:25.2; EL:SPEC:25.6
    *
-   * @test_Strategy: Validate that if a String is passed with the Empty
+   * @test_Strategy  Validate that if a String is passed with the Empty
    * operator, the correct Boolean result is returned.
    */
   @Test
@@ -114,11 +114,11 @@ public class ELClientIT {
   }
 
   /*
-   * @testName: elEmptyArrayTest
+   * @testName  elEmptyArrayTest
    *
-   * @assertion_ids: EL:SPEC:25.3; EL:SPEC:25.6
+   * @assertion_ids  EL:SPEC:25.3; EL:SPEC:25.6
    *
-   * @test_Strategy: Validate that if a Array is passed with the Empty operator,
+   * @test_Strategy  Validate that if a Array is passed with the Empty operator,
    * the correct Boolean result is returned.
    */
   @Test
@@ -132,11 +132,11 @@ public class ELClientIT {
   }
 
   /*
-   * @testName: elEmptyMapTest
+   * @testName  elEmptyMapTest
    *
-   * @assertion_ids: EL:SPEC:25.4; EL:SPEC:25.6
+   * @assertion_ids  EL:SPEC:25.4; EL:SPEC:25.6
    *
-   * @test_Strategy: Validate that if a Map is passed with the Empty operator,
+   * @test_Strategy  Validate that if a Map is passed with the Empty operator,
    * the correct Boolean result is returned.
    */
   @Test
@@ -154,11 +154,11 @@ public class ELClientIT {
   }
 
   /*
-   * @testName: elEmptyCollectionTest
+   * @testName  elEmptyCollectionTest
    *
-   * @assertion_ids: EL:SPEC:25.5; EL:SPEC:25.6
+   * @assertion_ids  EL:SPEC:25.5; EL:SPEC:25.6
    *
-   * @test_Strategy: Validate that if a Collection is passed with the Empty
+   * @test_Strategy  Validate that if a Collection is passed with the Empty
    * operator, the correct Boolean result is returned.
    */
   @Test

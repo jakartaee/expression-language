@@ -67,10 +67,10 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: methodReferenceTest
+   * @testName  methodReferenceTest
    * 
-   * @assertion_ids: EL:JAVADOC:87; EL:JAVADOC:88; EL:JAVADOC:89
-   * @test_Strategy: Validate the behavior of MethodReference class methods:
+   * @assertion_ids  EL:JAVADOC:87; EL:JAVADOC:88; EL:JAVADOC:89
+   * @test_Strategy  Validate the behavior of MethodReference class methods:
    *                 MethodReference.getBase() MethodReference.getMethodInfo()
    *                 MethodReference.getAnnotations()
    *                 MethodReference.getEvaluatedParameters

@@ -62,13 +62,13 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: compositeELResolverTest
+   * @testName  compositeELResolverTest
    *
-   * @assertion_ids: EL:JAVADOC:24; EL:JAVADOC:25; EL:JAVADOC:26; EL:JAVADOC:27;
+   * @assertion_ids  EL:JAVADOC:24; EL:JAVADOC:25; EL:JAVADOC:26; EL:JAVADOC:27;
    *                 EL:JAVADOC:28; EL:JAVADOC:29; EL:JAVADOC:30; EL:JAVADOC:31;
    *                 EL:JAVADOC:34
    *
-   * @test_Strategy: Verify that API calls work as expected:
+   * @test_Strategy  Verify that API calls work as expected:
    *                 CompositeELResolver() add() getValue() getType() setValue()
    *                 isReadOnly() getCommonPropertyType()
    *                 ELContext.getELResolver()
@@ -99,11 +99,11 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: compositeELResolverInvokeTest
+   * @testName  compositeELResolverInvokeTest
    *
-   * @assertion_ids: EL:JAVADOC:24; EL:JAVADOC:25; EL:JAVADOC:181
+   * @assertion_ids  EL:JAVADOC:24; EL:JAVADOC:25; EL:JAVADOC:181
    *
-   * @test_Strategy: Verify that API calls work as expected for
+   * @test_Strategy  Verify that API calls work as expected for
    *                 BeanELResolver.invoke().
    */
   @Test
@@ -141,11 +141,11 @@ public class ELClientIT {
   }// End beanELResolverInvokeTest
 
   /**
-   * @testName: compositeELResolverAddNPETest
+   * @testName  compositeELResolverAddNPETest
    *
-   * @assertion_ids: EL:JAVADOC:24; EL:JAVADOC:25; EL:JAVADOC:174
+   * @assertion_ids  EL:JAVADOC:24; EL:JAVADOC:25; EL:JAVADOC:174
    *
-   * @test_Strategy: Verify that the CompositeELResolver.add method throws a
+   * @test_Strategy  Verify that the CompositeELResolver.add method throws a
    *                 NullPointerException if the provided resolver is null.
    */
   @Test
@@ -183,14 +183,14 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: compositeELResolverNPETest
+   * @testName  compositeELResolverNPETest
    *
-   * @assertion_ids: EL:JAVADOC:25; EL:JAVADOC:26; EL:JAVADOC:27; EL:JAVADOC:28;
+   * @assertion_ids  EL:JAVADOC:25; EL:JAVADOC:26; EL:JAVADOC:27; EL:JAVADOC:28;
    *                 EL:JAVADOC:29; EL:JAVADOC:30; EL:JAVADOC:31;
    *                 EL:JAVADOC:175; EL:JAVADOC:178; EL:JAVADOC:175;
    *                 EL:JAVADOC:182; EL:JAVADOC:185
    *
-   * @test_Strategy: Verify that API calls work as expected: getValue()
+   * @test_Strategy  Verify that API calls work as expected: getValue()
    *                 getType() setValue() isReadOnly() getCommonPropertyType()
    */
   @Test
@@ -226,13 +226,13 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: compositeELResolverPNFETest
+   * @testName  compositeELResolverPNFETest
    *
-   * @assertion_ids: EL:JAVADOC:25; EL:JAVADOC:28; EL:JAVADOC:30; EL:JAVADOC:31;
+   * @assertion_ids  EL:JAVADOC:25; EL:JAVADOC:28; EL:JAVADOC:30; EL:JAVADOC:31;
    *                 EL:JAVADOC:176; EL:JAVADOC:179; EL:JAVADOC:183;
    *                 EL:JAVADOC:186
    *
-   * @test_Strategy: Verify that API calls throw PropertyNotFoundException as
+   * @test_Strategy  Verify that API calls throw PropertyNotFoundException as
    *                 expected: getType() setValue() isReadOnly()
    */
   @Test
@@ -266,11 +266,11 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: compositeELResolverPNWETest
+   * @testName  compositeELResolverPNWETest
    *
-   * @assertion_ids: EL:JAVADOC:25; EL:JAVADOC:187
+   * @assertion_ids  EL:JAVADOC:25; EL:JAVADOC:187
    *
-   * @test_Strategy: Verify that the setValue() method throws a
+   * @test_Strategy  Verify that the setValue() method throws a
    *                 PropertyNotWritableException, if the resolver was
    *                 constructed in read-only mode.
    *

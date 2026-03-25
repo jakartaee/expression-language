@@ -63,11 +63,11 @@ public class ELClientIT {
 
 
   /*
-   * @testName: elMultiPreBinaryTest
+   * @testName  elMultiPreBinaryTest
    *
-   * @assertion_ids: EL:SPEC:28
+   * @assertion_ids  EL:SPEC:28
    *
-   * @test_Strategy: Validate that the order of precedence is followed when an
+   * @test_Strategy  Validate that the order of precedence is followed when an
    * EL Expression is evaluated.
    *
    * Rules tested: "*" is evaluated before "+" "*" is evaluated before "-"
@@ -81,11 +81,11 @@ public class ELClientIT {
   }
 
   /*
-   * @testName: elDivPreBinaryTest
+   * @testName  elDivPreBinaryTest
    *
-   * @assertion_ids: EL:SPEC:28
+   * @assertion_ids  EL:SPEC:28
    *
-   * @test_Strategy: Validate that the order of precedence is followed when an
+   * @test_Strategy  Validate that the order of precedence is followed when an
    * EL Expression is evaluated.
    *
    * Rules tested: "div, /" is evaluated before "+" "div, /" is evaluated before
@@ -102,11 +102,11 @@ public class ELClientIT {
   }
 
   /*
-   * @testName: elModPreBinaryTest
+   * @testName  elModPreBinaryTest
    *
-   * @assertion_ids: EL:SPEC:28
+   * @assertion_ids  EL:SPEC:28
    *
-   * @test_Strategy: Validate that the order of precedence is followed when an
+   * @test_Strategy  Validate that the order of precedence is followed when an
    * EL Expression is evaluated.
    *
    * Rules tested: "mod, %" is evaluated before "+" "mod, %" is evaluated before
@@ -123,11 +123,11 @@ public class ELClientIT {
   }
 
   /*
-   * @testName: elMultiPreRelationalTest
+   * @testName  elMultiPreRelationalTest
    *
-   * @assertion_ids: EL:SPEC:28
+   * @assertion_ids  EL:SPEC:28
    *
-   * @test_Strategy: Validate that the order of precedence is followed when an
+   * @test_Strategy  Validate that the order of precedence is followed when an
    * EL Expression is evaluated.
    *
    * Rules tested: "*" is evaluated before ">" "*" is evaluated before "<" "*"
@@ -158,11 +158,11 @@ public class ELClientIT {
   }
 
   /*
-   * @testName: elDivPreRelationalTest
+   * @testName  elDivPreRelationalTest
    *
-   * @assertion_ids: EL:SPEC:28
+   * @assertion_ids  EL:SPEC:28
    *
-   * @test_Strategy: Validate that the order of precedence is followed when an
+   * @test_Strategy  Validate that the order of precedence is followed when an
    * EL Expression is evaluated.
    *
    * Rules tested: "div, /" is evaluated before ">" "div, /" is evaluated before
@@ -195,11 +195,11 @@ public class ELClientIT {
   }
 
   /*
-   * @testName: elModPreRelationalTest
+   * @testName  elModPreRelationalTest
    *
-   * @assertion_ids: EL:SPEC:28
+   * @assertion_ids  EL:SPEC:28
    *
-   * @test_Strategy: Validate that the order of precedence is followed when an
+   * @test_Strategy  Validate that the order of precedence is followed when an
    * EL Expression is evaluated.
    *
    * Rules tested: "mod, %" is evaluated before ">" "mod, %" is evaluated before
@@ -232,11 +232,11 @@ public class ELClientIT {
   }
 
   /*
-   * @testName: elMultiEqualPreAndTest
+   * @testName  elMultiEqualPreAndTest
    *
-   * @assertion_ids: EL:SPEC:28
+   * @assertion_ids  EL:SPEC:28
    *
-   * @test_Strategy: Validate that the order of precedence is followed when an
+   * @test_Strategy  Validate that the order of precedence is followed when an
    * EL Expression is evaluated.
    *
    * Rules tested: "*, ==" is evaluated before "&&, and"
@@ -252,11 +252,11 @@ public class ELClientIT {
   }
 
   /*
-   * @testName: elDivEqualPreAndTest
+   * @testName  elDivEqualPreAndTest
    *
-   * @assertion_ids: EL:SPEC:28
+   * @assertion_ids  EL:SPEC:28
    *
-   * @test_Strategy: Validate that the order of precedence is followed when an
+   * @test_Strategy  Validate that the order of precedence is followed when an
    * EL Expression is evaluated.
    *
    * Rules tested: "div, /, ==" is evaluated before "&&, and"
@@ -276,11 +276,11 @@ public class ELClientIT {
   }
 
   /*
-   * @testName: elModEqualPreAndTest
+   * @testName  elModEqualPreAndTest
    *
-   * @assertion_ids: EL:SPEC:28
+   * @assertion_ids  EL:SPEC:28
    *
-   * @test_Strategy: Validate that the order of precedence is followed when an
+   * @test_Strategy  Validate that the order of precedence is followed when an
    * EL Expression is evaluated.
    *
    * Rules tested: "mod, %, ==" is evaluated before "&&, and"
@@ -300,11 +300,11 @@ public class ELClientIT {
   }
 
   /*
-   * @testName: elMultiEqualOrCondTest
+   * @testName  elMultiEqualOrCondTest
    *
-   * @assertion_ids: EL:SPEC:28
+   * @assertion_ids  EL:SPEC:28
    *
-   * @test_Strategy: Validate that the order of precedence is followed when an
+   * @test_Strategy  Validate that the order of precedence is followed when an
    * EL Expression is evaluated.
    *
    * Rules tested: "*, ==" is evaluated before "||, or"
@@ -321,11 +321,11 @@ public class ELClientIT {
   }
 
   /*
-   * @testName: elDivEqualPreOrTest
+   * @testName  elDivEqualPreOrTest
    *
-   * @assertion_ids: EL:SPEC:28
+   * @assertion_ids  EL:SPEC:28
    *
-   * @test_Strategy: Validate that the order of precedence is followed when an
+   * @test_Strategy  Validate that the order of precedence is followed when an
    * EL Expression is evaluated.
    *
    * Rules tested: "div, /, ==" is evaluated before "||, or"
@@ -347,11 +347,11 @@ public class ELClientIT {
   }
 
   /*
-   * @testName: elModEqualPreOrTest
+   * @testName  elModEqualPreOrTest
    *
-   * @assertion_ids: EL:SPEC:28
+   * @assertion_ids  EL:SPEC:28
    *
-   * @test_Strategy: Validate that the order of precedence is followed when an
+   * @test_Strategy  Validate that the order of precedence is followed when an
    * EL Expression is evaluated.
    *
    * Rules tested: "mod, %, ==" is evaluated before "||, or"
@@ -372,11 +372,11 @@ public class ELClientIT {
   }
 
   /*
-   * @testName: elMultiEqualPreCondTest
+   * @testName  elMultiEqualPreCondTest
    *
-   * @assertion_ids: EL:SPEC:28
+   * @assertion_ids  EL:SPEC:28
    *
-   * @test_Strategy: Validate that the order of precedence is followed when an
+   * @test_Strategy  Validate that the order of precedence is followed when an
    * EL Expression is evaluated.
    *
    * Rules tested: "*" is evaluated before "? :"
@@ -391,11 +391,11 @@ public class ELClientIT {
   }
 
   /*
-   * @testName: elDivEqualPreCondTest
+   * @testName  elDivEqualPreCondTest
    *
-   * @assertion_ids: EL:SPEC:28
+   * @assertion_ids  EL:SPEC:28
    *
-   * @test_Strategy: Validate that the order of precedence is followed when an
+   * @test_Strategy  Validate that the order of precedence is followed when an
    * EL Expression is evaluated.
    *
    * Rules tested: "div, /, ==" is evaluated before "? :"
@@ -411,11 +411,11 @@ public class ELClientIT {
   }
 
   /*
-   * @testName: elModEqualPreCondTest
+   * @testName  elModEqualPreCondTest
    *
-   * @assertion_ids: EL:SPEC:28
+   * @assertion_ids  EL:SPEC:28
    *
-   * @test_Strategy: Validate that the order of precedence is followed when an
+   * @test_Strategy  Validate that the order of precedence is followed when an
    * EL Expression is evaluated.
    *
    * Rules tested: "mod, %, ==" is evaluated before "||, or"
@@ -430,11 +430,11 @@ public class ELClientIT {
   }
 
   /*
-   * @testName: elParenPreBinaryTest
+   * @testName  elParenPreBinaryTest
    *
-   * @assertion_ids: EL:SPEC:28; EL:SPEC:27
+   * @assertion_ids  EL:SPEC:28; EL:SPEC:27
    *
-   * @test_Strategy: Validate that the order of precedence is followed when an
+   * @test_Strategy  Validate that the order of precedence is followed when an
    * EL Expression is evaluated.
    *
    * Rules tested: "( )" is evaluated before "+" "( )" is evaluated before "-"
@@ -467,11 +467,11 @@ public class ELClientIT {
   }
 
   /*
-   * @testName: functionPrecedenceTest
+   * @testName  functionPrecedenceTest
    *
-   * @assertion_ids: EL:SPEC:29
+   * @assertion_ids  EL:SPEC:29
    *
-   * @test_Strategy: Validate that qualified functions with a namespace prefix
+   * @test_Strategy  Validate that qualified functions with a namespace prefix
    * have precedence over the operators by constructing an expression which
    * cannot be parsed due to this rule.
    */

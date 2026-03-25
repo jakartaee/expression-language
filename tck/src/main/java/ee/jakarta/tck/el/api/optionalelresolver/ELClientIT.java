@@ -53,9 +53,9 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: optionalELResolverEmptyNullTest
+   * @testName  optionalELResolverEmptyNullTest
    *
-   * @test_Strategy: Verify that API calls work as expected for: getValue() getType() setValue() isReadOnly()
+   * @test_Strategy  Verify that API calls work as expected for: getValue() getType() setValue() isReadOnly()
    * getCommonPropertyType() when the base object is an empty Optional and the property is null
    */
   @Test
@@ -74,9 +74,9 @@ public class ELClientIT {
   }
   
   /**
-   * @testName: optionalELResolverEmptyNonNullTest
+   * @testName  optionalELResolverEmptyNonNullTest
    *
-   * @test_Strategy: Verify that API calls work as expected for: getValue() getType() setValue() isReadOnly()
+   * @test_Strategy  Verify that API calls work as expected for: getValue() getType() setValue() isReadOnly()
    * getCommonPropertyType() when the base object is an empty Optional and the property is non-null
    */
   @Test
@@ -95,9 +95,9 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: optionalELResolverObjectNullTest
+   * @testName  optionalELResolverObjectNullTest
    *
-   * @test_Strategy: Verify that API calls work as expected for: getValue() getType() setValue() isReadOnly()
+   * @test_Strategy  Verify that API calls work as expected for: getValue() getType() setValue() isReadOnly()
    * getCommonPropertyType() when the base object is an non-empty Optional and the property is null
    */
   @Test
@@ -117,9 +117,9 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: optionalELResolverObjectNonNullTest
+   * @testName  optionalELResolverObjectNonNullTest
    *
-   * @test_Strategy: Verify that API calls work as expected for: getValue() getType() setValue() isReadOnly()
+   * @test_Strategy  Verify that API calls work as expected for: getValue() getType() setValue() isReadOnly()
    * getCommonPropertyType() when the base object is an non-empty Optional and the property is non-null
    */
   @Test

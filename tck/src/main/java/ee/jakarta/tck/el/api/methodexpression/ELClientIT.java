@@ -73,10 +73,10 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: positiveMethodExpressionTest
+   * @testName  positiveMethodExpressionTest
    * 
-   * @assertion_ids: EL:JAVADOC:84; EL:JAVADOC:85; EL:JAVADOC:58; EL:JAVADOC:60
-   * @test_Strategy: Validate the behavior of MethodExpression API
+   * @assertion_ids  EL:JAVADOC:84; EL:JAVADOC:85; EL:JAVADOC:58; EL:JAVADOC:60
+   * @test_Strategy  Validate the behavior of MethodExpression API
    *                 MethodExpression.getMethodInfo() MethodExpression.invoke()
    *                 Expression.isLiteralText() Expression.getExpressionString()
    */
@@ -143,14 +143,14 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: negativeMethodExpressionTest
+   * @testName  negativeMethodExpressionTest
    * 
-   * @assertion_ids: EL:JAVADOC:84; EL:JAVADOC:85; EL:JAVADOC:302;
+   * @assertion_ids  EL:JAVADOC:84; EL:JAVADOC:85; EL:JAVADOC:302;
    *                 EL:JAVADOC:306; EL:JAVADOC:303; EL:JAVADOC:307;
    *                 EL:JAVADOC:309; EL:JAVADOC:310; EL:JAVADOC:304;
    *                 EL:JAVADOC:308
    * 
-   * @test_Strategy: Validate the behavior of MethodExpression API
+   * @test_Strategy  Validate the behavior of MethodExpression API
    *                 MethodExpression.getMethodInfo() MethodExpression.invoke()
    */
   @Test
@@ -384,11 +384,11 @@ public class ELClientIT {
   }
 
   /*
-   * @testName: methodExpressionSerializableTest
+   * @testName  methodExpressionSerializableTest
    * 
-   * @assertion_ids: EL:SPEC:44
+   * @assertion_ids  EL:SPEC:44
    * 
-   * @test_Strategy: Validate that MethodExpression implements Serializable and
+   * @test_Strategy  Validate that MethodExpression implements Serializable and
    * that a MethodExpression can be manually serialized and deserialized.
    */
   @Test
@@ -435,11 +435,11 @@ public class ELClientIT {
   }
 
   /*
-   * @testName: methodExpressionMatchingExactPreferredTest
+   * @testName  methodExpressionMatchingExactPreferredTest
    * 
-   * @assertion_ids: EL:SPEC:80
+   * @assertion_ids  EL:SPEC:80
    * 
-   * @test_Strategy: Validate that MethodExpression identifies the correct
+   * @test_Strategy  Validate that MethodExpression identifies the correct
    * method for the given parameters and that exact type matches are always
    * preferred.
    */
@@ -480,11 +480,11 @@ public class ELClientIT {
   }
   
   /*
-   * @testName: methodExpressionMatchingOverloadBeatsCoercionTest
+   * @testName  methodExpressionMatchingOverloadBeatsCoercionTest
    * 
-   * @assertion_ids: EL:SPEC:80
+   * @assertion_ids  EL:SPEC:80
    * 
-   * @test_Strategy: Validate that MethodExpression identifies the correct
+   * @test_Strategy  Validate that MethodExpression identifies the correct
    * method for the given parameters and that overloading is preferred to
    * coercion.
    */
@@ -524,11 +524,11 @@ public class ELClientIT {
   }
 
   /*
-   * @testName: methodExpressionMatchingOverloadBeatsExactVarArgsTest
+   * @testName  methodExpressionMatchingOverloadBeatsExactVarArgsTest
    * 
-   * @assertion_ids: EL:SPEC:80
+   * @assertion_ids  EL:SPEC:80
    * 
-   * @test_Strategy: Validate that MethodExpression identifies the correct
+   * @test_Strategy  Validate that MethodExpression identifies the correct
    * method for the given parameters and that any match without varags is
    * preferred to all matches with varrags
    */
@@ -568,11 +568,11 @@ public class ELClientIT {
   }
 
   /*
-   * @testName: methodExpressionMatchingCoercionBeatsExactVarArgsTest
+   * @testName  methodExpressionMatchingCoercionBeatsExactVarArgsTest
    * 
-   * @assertion_ids: EL:SPEC:80
+   * @assertion_ids  EL:SPEC:80
    * 
-   * @test_Strategy: Validate that MethodExpression identifies the correct
+   * @test_Strategy  Validate that MethodExpression identifies the correct
    * method for the given parameters and that any match without varags is
    * preferred to all matches with varrags
    */
@@ -612,11 +612,11 @@ public class ELClientIT {
   }
 
   /*
-   * @testName: methodExpressionMatchingVarArgsTest
+   * @testName  methodExpressionMatchingVarArgsTest
    * 
-   * @assertion_ids: EL:SPEC:80
+   * @assertion_ids  EL:SPEC:80
    * 
-   * @test_Strategy: Validate that MethodExpression identifies the correct
+   * @test_Strategy  Validate that MethodExpression identifies the correct
    * method for the given parameters and that varags will be matched if no other
    * suitable match is available
    */
@@ -656,11 +656,11 @@ public class ELClientIT {
   }
 
   /*
-   * @testName: methodExpressionMatchingAmbiguousTest
+   * @testName  methodExpressionMatchingAmbiguousTest
    * 
-   * @assertion_ids: EL:SPEC:80
+   * @assertion_ids  EL:SPEC:80
    * 
-   * @test_Strategy: Validate that MethodExpression does not match a method when
+   * @test_Strategy  Validate that MethodExpression does not match a method when
    * the match is ambiguous and that a MethodNotFoundException is thrown
    */
   @Test

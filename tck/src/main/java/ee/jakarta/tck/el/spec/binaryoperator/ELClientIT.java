@@ -57,9 +57,9 @@ public class ELClientIT {
 
 
   /**
-   * @testName: elNullOperandAddTest
-   * @assertion_ids: EL:SPEC:17.1
-   * @test_Strategy: Validate that if both of the operands in an EL "+"
+   * @testName  elNullOperandAddTest
+   * @assertion_ids  EL:SPEC:17.1
+   * @test_Strategy  Validate that if both of the operands in an EL "+"
    *                 (addition) operation are null, the result is (Long) 0.
    */
   @Test
@@ -87,9 +87,9 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: elNullOperandSubtractTest
-   * @assertion_ids: EL:SPEC:17.1
-   * @test_Strategy: Validate that if both of the operands in an EL "-"
+   * @testName  elNullOperandSubtractTest
+   * @assertion_ids  EL:SPEC:17.1
+   * @test_Strategy  Validate that if both of the operands in an EL "-"
    *                 (subtraction) operation are null, the result is (Long) 0.
    */
   @Test
@@ -117,9 +117,9 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: elNullOperandMultiplyTest
-   * @assertion_ids: EL:SPEC:17.1
-   * @test_Strategy: Validate that if both of the operands in an EL "*"
+   * @testName  elNullOperandMultiplyTest
+   * @assertion_ids  EL:SPEC:17.1
+   * @test_Strategy  Validate that if both of the operands in an EL "*"
    *                 (multiplication) operation are null, the result is (Long)
    *                 0.
    */
@@ -148,9 +148,9 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: elNullOperandDivisionTest
-   * @assertion_ids: EL:SPEC:18.1
-   * @test_Strategy: Validate that if both of the operands in an EL "/"
+   * @testName  elNullOperandDivisionTest
+   * @assertion_ids  EL:SPEC:18.1
+   * @test_Strategy  Validate that if both of the operands in an EL "/"
    *                 (division) operation are null, the result is (Long) 0.
    *
    */
@@ -179,9 +179,9 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: elNullOperandModulusTest
-   * @assertion_ids: EL:SPEC:19.1
-   * @test_Strategy: Validate that if both of the operands in an EL "%" (mod)
+   * @testName  elNullOperandModulusTest
+   * @assertion_ids  EL:SPEC:19.1
+   * @test_Strategy  Validate that if both of the operands in an EL "%" (mod)
    *                 operation are null, the result is (Long) 0.
    *
    */
@@ -210,9 +210,9 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: elBigDecimalAddTest
-   * @assertion_ids: EL:SPEC:17.2.1
-   * @test_Strategy: Validate that if one of the operands in an EL "+"
+   * @testName  elBigDecimalAddTest
+   * @assertion_ids  EL:SPEC:17.2.1
+   * @test_Strategy  Validate that if one of the operands in an EL "+"
    *                 (addition) operation is a BigDecimal, the result is coerced
    *                 to BigDecimal and is the sum of the operands.
    *
@@ -233,9 +233,9 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: elBigDecimalSubtractTest
-   * @assertion_ids: EL:SPEC:17.2.2
-   * @test_Strategy: Validate that if one of the operands in an EL "-"
+   * @testName  elBigDecimalSubtractTest
+   * @assertion_ids  EL:SPEC:17.2.2
+   * @test_Strategy  Validate that if one of the operands in an EL "-"
    *                 (subtraction) operation is a BigDecimal, the result is
    *                 coerced to BigDecimal and is the difference of the
    *                 operands.
@@ -257,9 +257,9 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: elBigDecimalMultiplyTest
-   * @assertion_ids: EL:SPEC:17.2.3
-   * @test_Strategy: Validate that if one of the operands in an EL "*"
+   * @testName  elBigDecimalMultiplyTest
+   * @assertion_ids  EL:SPEC:17.2.3
+   * @test_Strategy  Validate that if one of the operands in an EL "*"
    *                 (multiplication) operation is a BigDecimal, the result is
    *                 coerced to BigDecimal and is the product of the operands.
    *
@@ -280,9 +280,9 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: elBigDecimalDivisionTest
-   * @assertion_ids: EL:SPEC:18.2
-   * @test_Strategy: Validate that if one of the operands in an EL "/" (div)
+   * @testName  elBigDecimalDivisionTest
+   * @assertion_ids  EL:SPEC:18.2
+   * @test_Strategy  Validate that if one of the operands in an EL "/" (div)
    *                 operation is a BigDecimal, the result is coerced to
    *                 BigDecimal and is the quotient of the operands.
    *
@@ -303,9 +303,9 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: elBigDecimalModulusTest
-   * @assertion_ids: EL:SPEC:19.2
-   * @test_Strategy: Validate that if one of the operands in an EL "%" (mod)
+   * @testName  elBigDecimalModulusTest
+   * @assertion_ids  EL:SPEC:19.2
+   * @test_Strategy  Validate that if one of the operands in an EL "%" (mod)
    *                 operation is a BigDecimal, the result is coerced to Double
    *                 and is the remainder of the quotient of the operands.
    *
@@ -326,9 +326,9 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: elBigIntegerAddTest
-   * @assertion_ids: EL:SPEC:17.4.1
-   * @test_Strategy: Validate that if one of the operands in an EL "+"
+   * @testName  elBigIntegerAddTest
+   * @assertion_ids  EL:SPEC:17.4.1
+   * @test_Strategy  Validate that if one of the operands in an EL "+"
    *                 (addition) operation is a BigInteger, the result is coerced
    *                 to BigInteger and is the sum of the operands.
    *
@@ -347,9 +347,9 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: elBigIntegerSubtractTest
-   * @assertion_ids: EL:SPEC:17.4.2
-   * @test_Strategy: Validate that if one of the operands in an EL "-"
+   * @testName  elBigIntegerSubtractTest
+   * @assertion_ids  EL:SPEC:17.4.2
+   * @test_Strategy  Validate that if one of the operands in an EL "-"
    *                 (subtraction) operation is a BigInteger, the result is
    *                 coerced to BigInteger and is the difference of the
    *                 operands.
@@ -369,9 +369,9 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: elBigIntegerMultiplyTest
-   * @assertion_ids: EL:SPEC:17.4.3
-   * @test_Strategy: Validate that if one of the operands in an EL "*" operation
+   * @testName  elBigIntegerMultiplyTest
+   * @assertion_ids  EL:SPEC:17.4.3
+   * @test_Strategy  Validate that if one of the operands in an EL "*" operation
    *                 is a BigInteger, the result is coerced to BigInteger and is
    *                 the product of the operands.
    *
@@ -389,9 +389,9 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: elBigIntegerDivisionTest
-   * @assertion_ids: EL:SPEC:18.2
-   * @test_Strategy: Validate that if one of the operands in an EL "/" (div)
+   * @testName  elBigIntegerDivisionTest
+   * @assertion_ids  EL:SPEC:18.2
+   * @test_Strategy  Validate that if one of the operands in an EL "/" (div)
    *                 operation is a BigInteger, the result is coerced to
    *                 BigDecimal and is the quotient of the operands.
    *
@@ -409,9 +409,9 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: elBigIntegerModulusTest
-   * @assertion_ids: EL:SPEC:19.3
-   * @test_Strategy: Validate that if one of the operands in an EL "%" (mod)
+   * @testName  elBigIntegerModulusTest
+   * @assertion_ids  EL:SPEC:19.3
+   * @test_Strategy  Validate that if one of the operands in an EL "%" (mod)
    *                 operation is a BigInteger, the result is coerced to
    *                 BigInteger and is the remainder of the quotient of the
    *                 operands.
@@ -430,9 +430,9 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: elFloatAddTest
-   * @assertion_ids: EL:SPEC:17.3.1; EL:SPEC:17.3.2
-   * @test_Strategy: Validate that if one of the operands in an EL "+"
+   * @testName  elFloatAddTest
+   * @assertion_ids  EL:SPEC:17.3.1; EL:SPEC:17.3.2
+   * @test_Strategy  Validate that if one of the operands in an EL "+"
    *                 (addition) operation is a Float, the result is coerced to
    *                 Double and is the sum of the operands.
    *
@@ -454,9 +454,9 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: elFloatSubtractTest
-   * @assertion_ids: EL:SPEC:17.3.1; EL:SPEC:17.3.2
-   * @test_Strategy: Validate that if one of the operands in an EL "-"
+   * @testName  elFloatSubtractTest
+   * @assertion_ids  EL:SPEC:17.3.1; EL:SPEC:17.3.2
+   * @test_Strategy  Validate that if one of the operands in an EL "-"
    *                 (subtraction) operation is a Float, the result is coerced
    *                 to Double and is the difference of the operands.
    *
@@ -478,9 +478,9 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: elFloatMultiplyTest
-   * @assertion_ids: EL:SPEC:17.3.1; EL:SPEC:17.3.2
-   * @test_Strategy: Validate that if one of the operands in an EL "*"
+   * @testName  elFloatMultiplyTest
+   * @assertion_ids  EL:SPEC:17.3.1; EL:SPEC:17.3.2
+   * @test_Strategy  Validate that if one of the operands in an EL "*"
    *                 (multiplication) operation is a Float, the result is
    *                 coerced to Double and is the product of the operands.
    *
@@ -502,9 +502,9 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: elFloatDivisionTest
-   * @assertion_ids: EL:SPEC:18.2; EL:SPEC:18.3
-   * @test_Strategy: Validate that if one of the operands in an EL "/" (div)
+   * @testName  elFloatDivisionTest
+   * @assertion_ids  EL:SPEC:18.2; EL:SPEC:18.3
+   * @test_Strategy  Validate that if one of the operands in an EL "/" (div)
    *                 operation is a Float, the result is coerced to Double and
    *                 is the quotient of the operands.
    *
@@ -526,9 +526,9 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: elFloatModulusTest
-   * @assertion_ids: EL:SPEC:19.2
-   * @test_Strategy: Validate that if one of the operands in an EL "%" (mod)
+   * @testName  elFloatModulusTest
+   * @assertion_ids  EL:SPEC:19.2
+   * @test_Strategy  Validate that if one of the operands in an EL "%" (mod)
    *                 operation is a Float, the result is coerced to Double and
    *                 is the remainder of the quotient of the operands.
    *
@@ -550,9 +550,9 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: elDoubleAddTest
-   * @assertion_ids: EL:SPEC:17.3.1; EL:SPEC:17.3.2
-   * @test_Strategy: Validate that if one of the operands in an EL "+"
+   * @testName  elDoubleAddTest
+   * @assertion_ids  EL:SPEC:17.3.1; EL:SPEC:17.3.2
+   * @test_Strategy  Validate that if one of the operands in an EL "+"
    *                 (addition) operation is a Double, the result is coerced to
    *                 Double and is the sum of the operands.
    *
@@ -571,9 +571,9 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: elDoubleSubtractTest
-   * @assertion_ids: EL:SPEC:17.3.1; EL:SPEC:17.3.2
-   * @test_Strategy: Validate that if one of the operands in an EL "-"
+   * @testName  elDoubleSubtractTest
+   * @assertion_ids  EL:SPEC:17.3.1; EL:SPEC:17.3.2
+   * @test_Strategy  Validate that if one of the operands in an EL "-"
    *                 (subtraction) operation is a Double, the result is coerced
    *                 to Double and is the difference of the operands.
    *
@@ -592,9 +592,9 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: elDoubleMultiplyTest
-   * @assertion_ids: EL:SPEC:17.3.1; EL:SPEC:17.3.2
-   * @test_Strategy: Validate that if one of the operands in an EL "*"
+   * @testName  elDoubleMultiplyTest
+   * @assertion_ids  EL:SPEC:17.3.1; EL:SPEC:17.3.2
+   * @test_Strategy  Validate that if one of the operands in an EL "*"
    *                 (multiplication) operation is a Double, the result is
    *                 coerced to Double and is the product of the operands.
    *
@@ -613,9 +613,9 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: elDoubleDivisionTest
-   * @assertion_ids: EL:SPEC:18.2; EL:SPEC:18.3
-   * @test_Strategy: Validate that if one of the operands in an EL "/" (div)
+   * @testName  elDoubleDivisionTest
+   * @assertion_ids  EL:SPEC:18.2; EL:SPEC:18.3
+   * @test_Strategy  Validate that if one of the operands in an EL "/" (div)
    *                 operation is a Double, the result is coerced to Double and
    *                 is the quotient of the operands.
    *
@@ -634,9 +634,9 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: elDoubleModulusTest
-   * @assertion_ids: EL:SPEC:19.2
-   * @test_Strategy: Validate that if one of the operands in an EL "%" (mod)
+   * @testName  elDoubleModulusTest
+   * @assertion_ids  EL:SPEC:19.2
+   * @test_Strategy  Validate that if one of the operands in an EL "%" (mod)
    *                 operation is a Double, the result is coerced to Double and
    *                 is the remainder of the quotient of the operands.
    *
@@ -654,9 +654,9 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: elNumericStringSubtractTest
-   * @assertion_ids: EL:SPEC:17.3.1; EL:SPEC:17.3.2
-   * @test_Strategy: Validate that if one of the operands in an EL "-"
+   * @testName  elNumericStringSubtractTest
+   * @assertion_ids  EL:SPEC:17.3.1; EL:SPEC:17.3.2
+   * @test_Strategy  Validate that if one of the operands in an EL "-"
    *                 (subtraction) operation is a numeric string, the result is
    *                 coerced to Double and is the difference of the operands.
    *
@@ -676,9 +676,9 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: elNumericStringMultiplyTest
-   * @assertion_ids: EL:SPEC:17.3.1; EL:SPEC:17.3.2
-   * @test_Strategy: Validate that if one of the operands in an EL "*"
+   * @testName  elNumericStringMultiplyTest
+   * @assertion_ids  EL:SPEC:17.3.1; EL:SPEC:17.3.2
+   * @test_Strategy  Validate that if one of the operands in an EL "*"
    *                 (multiplication) operation is a numeric string, the result
    *                 is coerced to Double and is the product of the operands.
    *
@@ -698,9 +698,9 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: elNumericStringDivisionTest
-   * @assertion_ids: EL:SPEC:18.2; EL:SPEC:18.3
-   * @test_Strategy: Validate that if one of the operands in an EL "/" (div)
+   * @testName  elNumericStringDivisionTest
+   * @assertion_ids  EL:SPEC:18.2; EL:SPEC:18.3
+   * @test_Strategy  Validate that if one of the operands in an EL "/" (div)
    *                 operation is a numeric string, the result is coerced to
    *                 Double and is the quotient of the operands.
    *
@@ -720,9 +720,9 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: elNumericStringModulusTest
-   * @assertion_ids: EL:SPEC:19.2
-   * @test_Strategy: Validate that if one of the operands in an EL "%" (mod)
+   * @testName  elNumericStringModulusTest
+   * @assertion_ids  EL:SPEC:19.2
+   * @test_Strategy  Validate that if one of the operands in an EL "%" (mod)
    *                 operation is a numeric string, the result is coerced to
    *                 Double and is the remainder of the quotient of the
    *                 operands.
@@ -743,9 +743,9 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: elLongAddTest
-   * @assertion_ids: EL:SPEC:17.5
-   * @test_Strategy: Validate that if one of the operands in an EL "+"
+   * @testName  elLongAddTest
+   * @assertion_ids  EL:SPEC:17.5
+   * @test_Strategy  Validate that if one of the operands in an EL "+"
    *                 (addition) operation is a Long, the result is coerced to
    *                 Long and is the sum of the operands.
    *
@@ -763,9 +763,9 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: elLongSubtractTest
-   * @assertion_ids: EL:SPEC:17.5
-   * @test_Strategy: Validate that if one of the operands in an EL "-"
+   * @testName  elLongSubtractTest
+   * @assertion_ids  EL:SPEC:17.5
+   * @test_Strategy  Validate that if one of the operands in an EL "-"
    *                 (subtraction) operation is a Long, the result is coerced to
    *                 Long and is the difference of the operands.
    *
@@ -783,9 +783,9 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: elLongMultiplyTest
-   * @assertion_ids: EL:SPEC:17.5
-   * @test_Strategy: Validate that if one of the operands in an EL "*"
+   * @testName  elLongMultiplyTest
+   * @assertion_ids  EL:SPEC:17.5
+   * @test_Strategy  Validate that if one of the operands in an EL "*"
    *                 (multiplication) operation is a Long, the result is coerced
    *                 to Long and is the product of the operands.
    *
@@ -803,9 +803,9 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: elLongDivisionTest
-   * @assertion_ids: EL:SPEC:18.3
-   * @test_Strategy: Validate that if one of the operands in an EL "/" (div)
+   * @testName  elLongDivisionTest
+   * @assertion_ids  EL:SPEC:18.3
+   * @test_Strategy  Validate that if one of the operands in an EL "/" (div)
    *                 operation is a Long, the result is coerced to Double and is
    *                 the quotient of the operands.
    *
@@ -823,9 +823,9 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: elLongModulusTest
-   * @assertion_ids: EL:SPEC:19.4
-   * @test_Strategy: Validate that if one of the operands in an EL "%" (mod)
+   * @testName  elLongModulusTest
+   * @assertion_ids  EL:SPEC:19.4
+   * @test_Strategy  Validate that if one of the operands in an EL "%" (mod)
    *                 operation is a Long, the result is coerced to Long and is
    *                 the remainder of the quotient of the operands.
    *
@@ -843,9 +843,9 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: elIntegerAddTest
-   * @assertion_ids: EL:SPEC:17.5
-   * @test_Strategy: Validate that if one of the operands in an EL "+"
+   * @testName  elIntegerAddTest
+   * @assertion_ids  EL:SPEC:17.5
+   * @test_Strategy  Validate that if one of the operands in an EL "+"
    *                 (addition) operation is a Integer, the result is coerced to
    *                 Long and is the sum of the operands.
    *
@@ -863,9 +863,9 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: elIntegerSubtractTest
-   * @assertion_ids: EL:SPEC:17.5
-   * @test_Strategy: Validate that if one of the operands in an EL "-"
+   * @testName  elIntegerSubtractTest
+   * @assertion_ids  EL:SPEC:17.5
+   * @test_Strategy  Validate that if one of the operands in an EL "-"
    *                 (subtraction) operation is a Integer, the result is coerced
    *                 to Long and is the difference of the operands.
    *
@@ -882,9 +882,9 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: elIntegerMultiplyTest
-   * @assertion_ids: EL:SPEC:17.5
-   * @test_Strategy: Validate that if one of the operands in an EL "*"
+   * @testName  elIntegerMultiplyTest
+   * @assertion_ids  EL:SPEC:17.5
+   * @test_Strategy  Validate that if one of the operands in an EL "*"
    *                 (multiplication) operation is a Integer, the result is
    *                 coerced to Long and is the product of the operands.
    *
@@ -902,9 +902,9 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: elIntegerDivisionTest
-   * @assertion_ids: EL:SPEC:18.3
-   * @test_Strategy: Validate that if one of the operands in an EL "/" (div)
+   * @testName  elIntegerDivisionTest
+   * @assertion_ids  EL:SPEC:18.3
+   * @test_Strategy  Validate that if one of the operands in an EL "/" (div)
    *                 operation is a Integer, the result is coerced to Double and
    *                 is the quotient of the operands.
    *
@@ -922,9 +922,9 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: elIntegerModulusTest
-   * @assertion_ids: EL:SPEC:19.4
-   * @test_Strategy: Validate that if one of the operands in an EL "%" (mod)
+   * @testName  elIntegerModulusTest
+   * @assertion_ids  EL:SPEC:19.4
+   * @test_Strategy  Validate that if one of the operands in an EL "%" (mod)
    *                 operation is a Integer, the result is coerced to Long and
    *                 is the remainder of the quotient of the operands.
    *
@@ -942,9 +942,9 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: elShortAddTest
-   * @assertion_ids: EL:SPEC:17.5
-   * @test_Strategy: Validate that if one of the operands in an EL "+"
+   * @testName  elShortAddTest
+   * @assertion_ids  EL:SPEC:17.5
+   * @test_Strategy  Validate that if one of the operands in an EL "+"
    *                 (addition) operation is a Short, the result is coerced to
    *                 Long and is the sum of the operands.
    *
@@ -961,9 +961,9 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: elShortSubtractTest
-   * @assertion_ids: EL:SPEC:17.5
-   * @test_Strategy: Validate that if one of the operands in an EL "-"
+   * @testName  elShortSubtractTest
+   * @assertion_ids  EL:SPEC:17.5
+   * @test_Strategy  Validate that if one of the operands in an EL "-"
    *                 (subtraction) operation is a Short, the result is coerced
    *                 to Long and is the difference of the operands.
    *
@@ -980,9 +980,9 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: elShortMultiplyTest
-   * @assertion_ids: EL:SPEC:17.5
-   * @test_Strategy: Validate that if one of the operands in an EL "*"
+   * @testName  elShortMultiplyTest
+   * @assertion_ids  EL:SPEC:17.5
+   * @test_Strategy  Validate that if one of the operands in an EL "*"
    *                 (multiplication) operation is a Short, the result is
    *                 coerced to Long and is the product of the operands.
    *
@@ -999,9 +999,9 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: elShortDivisionTest
-   * @assertion_ids: EL:SPEC:18.3
-   * @test_Strategy: Validate that if one of the operands in an EL "/" (div)
+   * @testName  elShortDivisionTest
+   * @assertion_ids  EL:SPEC:18.3
+   * @test_Strategy  Validate that if one of the operands in an EL "/" (div)
    *                 operation is a Short, the result is coerced to Double and
    *                 is the quotient of the operands.
    *
@@ -1018,9 +1018,9 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: elShortModulusTest
-   * @assertion_ids: EL:SPEC:19.4
-   * @test_Strategy: Validate that if one of the operands in an EL "%" (mod)
+   * @testName  elShortModulusTest
+   * @assertion_ids  EL:SPEC:19.4
+   * @test_Strategy  Validate that if one of the operands in an EL "%" (mod)
    *                 operation is a Short, the result is coerced to Long and is
    *                 the remainder of the quotient of the operands.
    *
@@ -1037,9 +1037,9 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: elByteAddTest
-   * @assertion_ids: EL:SPEC:17.5
-   * @test_Strategy: Validate that if both operands in an EL "+" (addition)
+   * @testName  elByteAddTest
+   * @assertion_ids  EL:SPEC:17.5
+   * @test_Strategy  Validate that if both operands in an EL "+" (addition)
    *                 operation are Bytes, the result is coerced to Long and is
    *                 the sum of the operands.
    *
@@ -1056,9 +1056,9 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: elByteSubtractTest
-   * @assertion_ids: EL:SPEC:17.5
-   * @test_Strategy: Validate that if both operands in an EL "-" (subtraction)
+   * @testName  elByteSubtractTest
+   * @assertion_ids  EL:SPEC:17.5
+   * @test_Strategy  Validate that if both operands in an EL "-" (subtraction)
    *                 operation are Bytes, the result is coerced to Long and is
    *                 the difference of the operands.
    *
@@ -1075,9 +1075,9 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: elByteMultiplyTest
-   * @assertion_ids: EL:SPEC:17.5
-   * @test_Strategy: Validate that if both operands in an EL "*"
+   * @testName  elByteMultiplyTest
+   * @assertion_ids  EL:SPEC:17.5
+   * @test_Strategy  Validate that if both operands in an EL "*"
    *                 (multiplication) operation are Bytes, the result is coerced
    *                 to Long and is the product of the operands.
    *
@@ -1094,9 +1094,9 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: elByteDivisionTest
-   * @assertion_ids: EL:SPEC:18.3
-   * @test_Strategy: Validate that if both operands in an EL "/" (div) operation
+   * @testName  elByteDivisionTest
+   * @assertion_ids  EL:SPEC:18.3
+   * @test_Strategy  Validate that if both operands in an EL "/" (div) operation
    *                 are Bytes, the result is coerced to Double and is the
    *                 quotient of the operands.
    *
@@ -1113,9 +1113,9 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: elByteModulusTest
-   * @assertion_ids: EL:SPEC:19.4
-   * @test_Strategy: Validate that if both operands in an EL "%" (mod) operation
+   * @testName  elByteModulusTest
+   * @assertion_ids  EL:SPEC:19.4
+   * @test_Strategy  Validate that if both operands in an EL "%" (mod) operation
    *                 are Bytes, the result is coerced to Long and is the
    *                 remainder of the quotient of the operands.
    *
@@ -1132,12 +1132,12 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: elBooleanAndTest
-   * @assertion_ids: EL:SPEC:23.1; EL:SPEC:24.2.1
-   * @test_Strategy: Validate that if one of the operands in an EL "&&", "and"
+   * @testName  elBooleanAndTest
+   * @assertion_ids  EL:SPEC:23.1; EL:SPEC:24.2.1
+   * @test_Strategy  Validate that if one of the operands in an EL "&amp;&amp;", "and"
    *                 operation is a Boolean, the result is coerced to Boolean.
    *
-   *                 Equations tested: Boolean && String Boolean && Boolean
+   *                 Equations tested: Boolean &amp;&amp; String Boolean &amp;&amp; Boolean
    *                 Boolean and String Boolean and Boolean
    *
    */
@@ -1153,9 +1153,9 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: elBooleanOrTest
-   * @assertion_ids: EL:SPEC:23.1; EL:SPEC:24.2.1
-   * @test_Strategy: Validate that if one of the operands in an EL "||", "or"
+   * @testName  elBooleanOrTest
+   * @assertion_ids  EL:SPEC:23.1; EL:SPEC:24.2.1
+   * @test_Strategy  Validate that if one of the operands in an EL "||", "or"
    *                 operation is a Boolean, the result is coerced to Boolean.
    *
    *                 Equations tested: Boolean || String Boolean || Boolean

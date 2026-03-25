@@ -60,12 +60,12 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: beanELResolverTest
+   * @testName  beanELResolverTest
    *
-   * @assertion_ids: EL:JAVADOC:9; EL:JAVADOC:11; EL:JAVADOC:12; EL:JAVADOC:13;
+   * @assertion_ids  EL:JAVADOC:9; EL:JAVADOC:11; EL:JAVADOC:12; EL:JAVADOC:13;
    *                 EL:JAVADOC:14; EL:JAVADOC:15; EL:JAVADOC:16
    *
-   * @test_Strategy: Verify that API calls work as expected: beanELResolver()
+   * @test_Strategy  Verify that API calls work as expected: beanELResolver()
    *                 getValue() getType() setValue() isReadOnly()
    *                 getCommonPropertyType()
    */
@@ -94,12 +94,12 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: beanELResolverDefaultMethodReadOnlyTest
+   * @testName  beanELResolverDefaultMethodReadOnlyTest
    *
-   * @assertion_ids: EL:JAVADOC:9; EL:JAVADOC:11; EL:JAVADOC:12; EL:JAVADOC:13;
+   * @assertion_ids  EL:JAVADOC:9; EL:JAVADOC:11; EL:JAVADOC:12; EL:JAVADOC:13;
    *                 EL:JAVADOC:14; EL:JAVADOC:15; EL:JAVADOC:16
    *
-   * @test_Strategy: Verify that API calls work as expected when accessing
+   * @test_Strategy  Verify that API calls work as expected when accessing
    *                 read-only properties defined via a default interface method
    */
   @Test
@@ -132,12 +132,12 @@ public class ELClientIT {
 
 
   /**
-   * @testName: beanELResolverDefaultMethodReadWriteTest
+   * @testName  beanELResolverDefaultMethodReadWriteTest
    *
-   * @assertion_ids: EL:JAVADOC:9; EL:JAVADOC:11; EL:JAVADOC:12; EL:JAVADOC:13;
+   * @assertion_ids  EL:JAVADOC:9; EL:JAVADOC:11; EL:JAVADOC:12; EL:JAVADOC:13;
    *                 EL:JAVADOC:14; EL:JAVADOC:15; EL:JAVADOC:16
    *
-   * @test_Strategy: Verify that API calls work as expected when accessing
+   * @test_Strategy  Verify that API calls work as expected when accessing
    *                 writable properties defined via a default interface method
    */
   @Test
@@ -169,10 +169,10 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: beanELResolverInvokeTest
-   * @assertion_ids: EL:JAVADOC:9; EL:JAVADOC:11; EL:JAVADOC:12; EL:JAVADOC:13;
+   * @testName  beanELResolverInvokeTest
+   * @assertion_ids  EL:JAVADOC:9; EL:JAVADOC:11; EL:JAVADOC:12; EL:JAVADOC:13;
    *                 EL:JAVADOC:14; EL:JAVADOC:15; EL:JAVADOC:16; EL:JAVADOC:142
-   * @test_Strategy: Verify that API calls work as expected for
+   * @test_Strategy  Verify that API calls work as expected for
    *                 BeanELResolver.invoke().
    */
   @Test
@@ -202,10 +202,10 @@ public class ELClientIT {
   }// End beanELResolverInvokeTest
 
   /**
-   * @testName: beanELResolverInvokeVoidTest
-   * @assertion_ids: EL:JAVADOC:9; EL:JAVADOC:11; EL:JAVADOC:12; EL:JAVADOC:13;
+   * @testName  beanELResolverInvokeVoidTest
+   * @assertion_ids  EL:JAVADOC:9; EL:JAVADOC:11; EL:JAVADOC:12; EL:JAVADOC:13;
    *                 EL:JAVADOC:14; EL:JAVADOC:15; EL:JAVADOC:16
-   * @test_Strategy: Verify that the ELResolver.invoke() API calls work as
+   * @test_Strategy  Verify that the ELResolver.invoke() API calls work as
    *                 expected when calling a method that returns void.
    */
   @Test
@@ -248,10 +248,10 @@ public class ELClientIT {
   }// End beanELResolverInvokeVoidTest
 
   /**
-   * @testName: beanELResolverInvokeMNFETest
-   * @assertion_ids: EL:JAVADOC:9; EL:JAVADOC:11; EL:JAVADOC:12; EL:JAVADOC:13;
+   * @testName  beanELResolverInvokeMNFETest
+   * @assertion_ids  EL:JAVADOC:9; EL:JAVADOC:11; EL:JAVADOC:12; EL:JAVADOC:13;
    *                 EL:JAVADOC:14; EL:JAVADOC:15; EL:JAVADOC:16; EL:JAVADOC:143
-   * @test_Strategy: Verify that the invoke() method throws
+   * @test_Strategy  Verify that the invoke() method throws
    *                 MethodNotFoundException if no suitable method can be found.
    */
   @Test
@@ -283,13 +283,13 @@ public class ELClientIT {
   }// End beanELResolverInvokeMNFETest
 
   /**
-   * @testName: beanELResolverNPETest
+   * @testName  beanELResolverNPETest
    *
-   * @assertion_ids: EL:JAVADOC:9; EL:JAVADOC:13; EL:JAVADOC:14; EL:JAVADOC:15;
+   * @assertion_ids  EL:JAVADOC:9; EL:JAVADOC:13; EL:JAVADOC:14; EL:JAVADOC:15;
    *                 EL:JAVADOC:16; EL:JAVADOC:136; EL:JAVADOC:139;
    *                 EL:JAVADOC:145; EL:JAVADOC:148
    *
-   * @test_Strategy: Verify that the following methods throw a
+   * @test_Strategy  Verify that the following methods throw a
    *                 NullPointerException, if context is null:
    *
    *                 getType() getValue() isReadOnly() setValue()
@@ -317,13 +317,13 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: beanELResolverPNFETest
+   * @testName  beanELResolverPNFETest
    *
-   * @assertion_ids: EL:JAVADOC:9; EL:JAVADOC:13; EL:JAVADOC:14; EL:JAVADOC:15;
+   * @assertion_ids  EL:JAVADOC:9; EL:JAVADOC:13; EL:JAVADOC:14; EL:JAVADOC:15;
    *                 EL:JAVADOC:16; EL:JAVADOC:137; EL:JAVADOC:140;
    *                 EL:JAVADOC:146; EL:JAVADOC:149
    *
-   * @test_Strategy: Verify that the following methods throw a
+   * @test_Strategy  Verify that the following methods throw a
    *                 PropertyNotFoundException, if the base is not null and the
    *                 specified property does not exist.
    *
@@ -355,11 +355,11 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: beanELResolverPNWETest
+   * @testName  beanELResolverPNWETest
    *
-   * @assertion_ids: EL:JAVADOC:10; EL:JAVADOC:16; EL:JAVADOC:150
+   * @assertion_ids  EL:JAVADOC:10; EL:JAVADOC:16; EL:JAVADOC:150
    *
-   * @test_Strategy: Verify that the single-parameter constructor for
+   * @test_Strategy  Verify that the single-parameter constructor for
    *                 beanELResolver can be used to construct a read-only
    *                 resolver, and that the setValue() method throws a
    *                 PropertyNotWritableException, if the resolver was
@@ -391,9 +391,9 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: beanELResolverMethodVisibilityTest
+   * @testName  beanELResolverMethodVisibilityTest
    *
-   * @test_Strategy: Verify that API calls work as expected for a property that is not visible via the implementing
+   * @test_Strategy  Verify that API calls work as expected for a property that is not visible via the implementing
    *                 class (it is in an internal, non-exported class) but is visible via an interface method:
    *                 beanELResolver() getValue() getType() setValue() isReadOnly() getCommonPropertyType()
    */

@@ -69,11 +69,11 @@ public class ELClientIT {
 
 
   /**
-   * @testName: mapELResolverTest
+   * @testName  mapELResolverTest
    *
-   * @assertion_ids: EL:JAVADOC:76; EL:JAVADOC:77; EL:JAVADOC:78; EL:JAVADOC:79;
+   * @assertion_ids  EL:JAVADOC:76; EL:JAVADOC:77; EL:JAVADOC:78; EL:JAVADOC:79;
    *                 EL:JAVADOC:80; EL:JAVADOC:81; EL:JAVADOC:83
-   * @test_Strategy: Verify that API calls work as expected: MapELResolver()
+   * @test_Strategy  Verify that API calls work as expected: MapELResolver()
    *                 getValue() getType() setValue() isReadOnly()
    *                 getCommonPropertyType()
    */
@@ -100,13 +100,13 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: mapELResolverNPETest
+   * @testName  mapELResolverNPETest
    *
-   * @assertion_ids: EL:JAVADOC:78; EL:JAVADOC:79; EL:JAVADOC:80; EL:JAVADOC:81;
+   * @assertion_ids  EL:JAVADOC:78; EL:JAVADOC:79; EL:JAVADOC:80; EL:JAVADOC:81;
    *                 EL:JAVADOC:83; EL:JAVADOC:293; EL:JAVADOC:295;
    *                 EL:JAVADOC:298; EL:JAVADOC:290
    *
-   * @test_Strategy: Verify that the following methods throw a
+   * @test_Strategy  Verify that the following methods throw a
    *                 NullPointerException, if context is null:
    *
    *                 getType() getValue() isReadOnly() setValue()
@@ -132,11 +132,11 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: mapELResolverPNWETest
+   * @testName  mapELResolverPNWETest
    *
-   * @assertion_ids: EL:JAVADOC:82; EL:JAVADOC:83; EL:JAVADOC:301
+   * @assertion_ids  EL:JAVADOC:82; EL:JAVADOC:83; EL:JAVADOC:301
    *
-   * @test_Strategy: Verify that the single-parameter constructor for
+   * @test_Strategy  Verify that the single-parameter constructor for
    *                 mapELResolver can be used to construct a read-only
    *                 resolver, and that the setValue() method throws a
    *                 PropertyNotWritableException, if the resolver was

@@ -60,12 +60,12 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: arrayELResolverTest
+   * @testName  arrayELResolverTest
    *
-   * @assertion_ids: EL:JAVADOC:1; EL:JAVADOC:3; EL:JAVADOC:4; EL:JAVADOC:5;
+   * @assertion_ids  EL:JAVADOC:1; EL:JAVADOC:3; EL:JAVADOC:4; EL:JAVADOC:5;
    *                 EL:JAVADOC:6; EL:JAVADOC:7; EL:JAVADOC:8
    *
-   * @test_Strategy: Verify that API calls work as expected: arrayELResolver()
+   * @test_Strategy  Verify that API calls work as expected: arrayELResolver()
    *                 getValue() getType() setValue() isReadOnly()
    *                 getCommonPropertyType()
    */
@@ -94,13 +94,13 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: arrayELResolverNPETest
+   * @testName  arrayELResolverNPETest
    *
-   * @assertion_ids: EL:JAVADOC:1; EL:JAVADOC:5; EL:JAVADOC:6; EL:JAVADOC:7;
+   * @assertion_ids  EL:JAVADOC:1; EL:JAVADOC:5; EL:JAVADOC:6; EL:JAVADOC:7;
    *                 EL:JAVADOC:8; EL:JAVADOC:122; EL:JAVADOC:125;
    *                 EL:JAVADOC:128; EL:JAVADOC:131
    *
-   * @test_Strategy: Verify that the following methods throw a
+   * @test_Strategy  Verify that the following methods throw a
    *                 NullPointerException, if context is null:
    *
    *                 getValue() getType() setValue() isReadOnly()
@@ -127,12 +127,12 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: arrayELResolverPNFETest
+   * @testName  arrayELResolverPNFETest
    *
-   * @assertion_ids: EL:JAVADOC:1; EL:JAVADOC:5; EL:JAVADOC:7; EL:JAVADOC:8;
+   * @assertion_ids  EL:JAVADOC:1; EL:JAVADOC:5; EL:JAVADOC:7; EL:JAVADOC:8;
    *                 EL:JAVADOC:121; EL:JAVADOC:127; EL:JAVADOC:134
    *
-   * @test_Strategy: Verify that the following methods throw a
+   * @test_Strategy  Verify that the following methods throw a
    *                 PropertyNotFoundException, if the given index is out of
    *                 bounds for this array :
    *
@@ -163,12 +163,12 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: arrayELResolverIAETest
+   * @testName  arrayELResolverIAETest
    *
-   * @assertion_ids: EL:JAVADOC:1; EL:JAVADOC:6; EL:JAVADOC:8; EL:JAVADOC:124;
+   * @assertion_ids  EL:JAVADOC:1; EL:JAVADOC:6; EL:JAVADOC:8; EL:JAVADOC:124;
    *                 EL:JAVADOC:132
    *
-   * @test_Strategy: Verify that the following methods throw an
+   * @test_Strategy  Verify that the following methods throw an
    *                 IllegalArgumentException, if the property could not be
    *                 coerced into an integer:
    *
@@ -198,11 +198,11 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: arrayELResolverPNWETest
+   * @testName  arrayELResolverPNWETest
    *
-   * @assertion_ids: EL:JAVADOC:2; EL:JAVADOC:8; EL:JAVADOC:127; EL:JAVADOC:133
+   * @assertion_ids  EL:JAVADOC:2; EL:JAVADOC:8; EL:JAVADOC:127; EL:JAVADOC:133
    *
-   * @test_Strategy: Verify that the single-parameter constructor for
+   * @test_Strategy  Verify that the single-parameter constructor for
    *                 arrayELResolver can be used to construct a read-only
    *                 resolver, and that the setValue() method throws a
    *                 PropertyNotWritableException, if the resolver was
@@ -235,11 +235,11 @@ public class ELClientIT {
   }
 
   /*
-   * @testName: arrayELResolverOBETest
+   * @testName  arrayELResolverOBETest
    *
-   * @assertion_ids: EL:JAVADOC:1; EL:JAVADOC:6
+   * @assertion_ids  EL:JAVADOC:1; EL:JAVADOC:6
    *
-   * @test_Strategy: Verify that if the index is out of bounds, null is
+   * @test_Strategy  Verify that if the index is out of bounds, null is
    * returned.
    *
    * getValue()
@@ -274,11 +274,11 @@ public class ELClientIT {
   }
 
   /*
-   * @testName: arrayELResolverCCETest
+   * @testName  arrayELResolverCCETest
    *
-   * @assertion_ids: EL:JAVADOC:1; EL:JAVADOC:8; EL:JAVADOC:130
+   * @assertion_ids  EL:JAVADOC:1; EL:JAVADOC:8; EL:JAVADOC:130
    *
-   * @test_Strategy: Verify that if the class of a specified object prevents it
+   * @test_Strategy  Verify that if the class of a specified object prevents it
    * from being added to the array, a ClassCastException is thrown.
    *
    * setValue()
@@ -311,9 +311,9 @@ public class ELClientIT {
 
 
   /*
-   * @testName: arrayELResolverLengthTest
+   * @testName  arrayELResolverLengthTest
    *
-   * @test_Strategy: Verify that the length of an array is available as a read-only property.
+   * @test_Strategy  Verify that the length of an array is available as a read-only property.
    */
   @Test
   public void arrayELResolverLengthTest() throws Exception {

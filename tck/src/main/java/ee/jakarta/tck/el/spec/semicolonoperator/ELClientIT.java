@@ -59,11 +59,11 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: elSemiColonOperatorBigDecimalTest
+   * @testName  elSemiColonOperatorBigDecimalTest
    *
-   * @assertion_ids: EL:SPEC:49.1
+   * @assertion_ids  EL:SPEC:49.1
    *
-   * @test_Strategy: To evaluate A;B, A is first evaluated, and its value is
+   * @test_Strategy  To evaluate A;B, A is first evaluated, and its value is
    *                 discarded. B is then evaluated and its value is returned.
    *
    *                 Operators: +, -, *, /, div, %, mod
@@ -78,7 +78,7 @@ public class ELClientIT {
    *
    *                 Excluded: none
    *
-   * @since: 3.0
+   * @since 3.0
    *
    */
   @Test
@@ -134,11 +134,11 @@ public class ELClientIT {
   } // End elSemiColonOperatorBigDecimalTest
 
   /**
-   * @testName: elSemiColonOperatorFloatTest
+   * @testName  elSemiColonOperatorFloatTest
    *
-   * @assertion_ids: EL:SPEC:49.1
+   * @assertion_ids  EL:SPEC:49.1
    *
-   * @test_Strategy: Validate that when we have variable A set to a specific
+   * @test_Strategy  Validate that when we have variable A set to a specific
    *                 data type that we coerce and receive back the correct value
    *                 and Class type.
    *
@@ -153,7 +153,7 @@ public class ELClientIT {
    *
    *                 Exclude: BigDecimal
    *
-   * @since: 3.0
+   * @since 3.0
    *
    */
   @Test
@@ -246,11 +246,11 @@ public class ELClientIT {
   } // End elSemiColonOperatorFloatTest
 
   /**
-   * @testName: elSemiColonOperatorDoubleTest
+   * @testName  elSemiColonOperatorDoubleTest
    *
-   * @assertion_ids: EL:SPEC:49.1
+   * @assertion_ids  EL:SPEC:49.1
    *
-   * @test_Strategy: Validate that when we have variable A set to a specific
+   * @test_Strategy  Validate that when we have variable A set to a specific
    *                 data type that we coerce and receive back the correct value
    *                 and Class type.
    *
@@ -265,7 +265,7 @@ public class ELClientIT {
    *
    *                 Exclude: BigDecimal, Float
    *
-   * @since: 3.0
+   * @since 3.0
    *
    */
   @Test
@@ -359,11 +359,11 @@ public class ELClientIT {
   } // End elSemiColonOperatorDoubleTest
 
   /**
-   * @testName: elSemiColonOperatorBigIntegerTest
+   * @testName  elSemiColonOperatorBigIntegerTest
    *
-   * @assertion_ids: EL:SPEC:49.1
+   * @assertion_ids  EL:SPEC:49.1
    *
-   * @test_Strategy: Validate that when we have variable A set to a specific
+   * @test_Strategy  Validate that when we have variable A set to a specific
    *                 data type that we coerce and receive back the correct value
    *                 and Class type.
    *
@@ -378,7 +378,7 @@ public class ELClientIT {
    *
    *                 Exclude: BigDecimal, Float, Double
    *
-   * @since: 3.0
+   * @since 3.0
    *
    */
   @Test
@@ -447,11 +447,11 @@ public class ELClientIT {
   } // End elSemiColonOperatorBigIntegerTest
 
   /**
-   * @testName: elSemiColonOperatorIntegerTest
+   * @testName  elSemiColonOperatorIntegerTest
    *
-   * @assertion_ids: EL:SPEC:49.1
+   * @assertion_ids  EL:SPEC:49.1
    *
-   * @test_Strategy: Validate that when we have variable A set to a specific
+   * @test_Strategy  Validate that when we have variable A set to a specific
    *                 data type that we coerce and receive back the correct value
    *                 and Class type.
    *
@@ -466,7 +466,7 @@ public class ELClientIT {
    *
    *                 Exclude: BigDecimal, BigInteger, Float, Double
    *
-   * @since: 3.0
+   * @since 3.0
    *
    */
   @Test
@@ -536,11 +536,11 @@ public class ELClientIT {
   } // End elSemiColonOperatorIntegerTest
 
   /**
-   * @testName: elSemiColonOperatorLongTest
+   * @testName  elSemiColonOperatorLongTest
    *
-   * @assertion_ids: EL:SPEC:49.1
+   * @assertion_ids  EL:SPEC:49.1
    *
-   * @test_Strategy: Validate that when we have variable A set to a specific
+   * @test_Strategy  Validate that when we have variable A set to a specific
    *                 data type that we coerce and receive back the correct value
    *                 and Class type.
    *
@@ -555,7 +555,7 @@ public class ELClientIT {
    *
    *                 Exclude: BigDecimal, BigInteger, Float, Double, Integer
    *
-   * @since: 3.0
+   * @since 3.0
    *
    */
   @Test
@@ -626,11 +626,11 @@ public class ELClientIT {
   } // End elSemiColonOperatorLongTest
 
   /**
-   * @testName: elSemiColonOperatorShortTest
+   * @testName  elSemiColonOperatorShortTest
    *
-   * @assertion_ids: EL:SPEC:49.1
+   * @assertion_ids  EL:SPEC:49.1
    *
-   * @test_Strategy: Validate that when we have variable A set to a specific
+   * @test_Strategy  Validate that when we have variable A set to a specific
    *                 data type that we coerce and receive back the correct value
    *                 and Class type.
    *
@@ -646,7 +646,7 @@ public class ELClientIT {
    *                 Exclude: BigDecimal, BigInteger, Float, Double, Integer,
    *                 Long
    *
-   * @since: 3.0
+   * @since 3.0
    *
    */
   @Test
@@ -718,11 +718,11 @@ public class ELClientIT {
   } // End elSemiColonOperatorShortTest
 
   /**
-   * @testName: elSemiColonOperatorByteTest
+   * @testName  elSemiColonOperatorByteTest
    *
-   * @assertion_ids: EL:SPEC:49.1
+   * @assertion_ids  EL:SPEC:49.1
    *
-   * @test_Strategy: Validate that when we have variable A set to a specific
+   * @test_Strategy  Validate that when we have variable A set to a specific
    *                 data type that we coerce and receive back the correct value
    *                 and Class type.
    *
@@ -738,7 +738,7 @@ public class ELClientIT {
    *                 Exclude: BigDecimal, BigInteger, Float, Double, Integer,
    *                 Long, Short
    *
-   * @since: 3.0
+   * @since 3.0
    *
    */
   @Test
@@ -811,11 +811,11 @@ public class ELClientIT {
   } // End elSemiColonOperatorByteTest
 
   /**
-   * @testName: elSemiColonOperatorNullTest
+   * @testName  elSemiColonOperatorNullTest
    *
-   * @assertion_ids: EL:SPEC:49.1
+   * @assertion_ids  EL:SPEC:49.1
    *
-   * @test_Strategy: Validate that when we have variable A set to a specific
+   * @test_Strategy  Validate that when we have variable A set to a specific
    *                 data type that we coerce and receive back the correct value
    *                 and Class type.
    *
@@ -827,7 +827,7 @@ public class ELClientIT {
    *
    *                 Variable B - null
    *
-   * @since: 3.0
+   * @since 3.0
    *
    */
   @Test
