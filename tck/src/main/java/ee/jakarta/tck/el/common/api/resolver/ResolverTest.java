@@ -14,10 +14,6 @@
  *
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
-
-/*
- * $Id$
- */
 package ee.jakarta.tck.el.common.api.resolver;
 
 import java.util.Objects;
@@ -231,7 +227,7 @@ public class ResolverTest {
 
   /**
    * Test the ELResolver.invoke() mthod.
-   * 
+   *
    * @param elContext
    *          - elContext
    * @param resolver

@@ -14,11 +14,6 @@
  *
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
-
-/*
- * $Id$
- */
-
 package ee.jakarta.tck.el.api.methodexpression;
 
 import java.util.Properties;
@@ -74,7 +69,7 @@ public class ELClientIT {
 
   /**
    * @testName  positiveMethodExpressionTest
-   * 
+   *
    * @assertion_ids  EL:JAVADOC:84; EL:JAVADOC:85; EL:JAVADOC:58; EL:JAVADOC:60
    * @test_Strategy  Validate the behavior of MethodExpression API
    *                 MethodExpression.getMethodInfo() MethodExpression.invoke()
@@ -144,12 +139,12 @@ public class ELClientIT {
 
   /**
    * @testName  negativeMethodExpressionTest
-   * 
+   *
    * @assertion_ids  EL:JAVADOC:84; EL:JAVADOC:85; EL:JAVADOC:302;
    *                 EL:JAVADOC:306; EL:JAVADOC:303; EL:JAVADOC:307;
    *                 EL:JAVADOC:309; EL:JAVADOC:310; EL:JAVADOC:304;
    *                 EL:JAVADOC:308
-   * 
+   *
    * @test_Strategy  Validate the behavior of MethodExpression API
    *                 MethodExpression.getMethodInfo() MethodExpression.invoke()
    */
@@ -196,7 +191,7 @@ public class ELClientIT {
     try {
       mexp1.invoke(null, params);
       pass = false;
-      logger.log(Logger.Level.ERROR, 
+      logger.log(Logger.Level.ERROR,
           "Call to invoke() with null ELContext parameter did " + "not" + NL);
       logger.log(Logger.Level.ERROR, " cause an exception to be thrown" + NL);
 
@@ -234,7 +229,7 @@ public class ELClientIT {
 
     } catch (Exception e) {
       pass = false;
-      logger.log(Logger.Level.ERROR, 
+      logger.log(Logger.Level.ERROR,
           "Call to getMethodInfo() for non-existent method threw the wrong "
               + "exception!" + NL + "Expected: MethodNotFoundException" + NL
               + "Received: " + e.toString() + NL);
@@ -245,7 +240,7 @@ public class ELClientIT {
     try {
       mexp2.invoke(context, params);
       pass = false;
-      logger.log(Logger.Level.ERROR, 
+      logger.log(Logger.Level.ERROR,
           "Call to invoke() for non-existent method did not " + "cause" + NL);
       logger.log(Logger.Level.ERROR, " an exception to be thrown" + NL);
 
@@ -256,7 +251,7 @@ public class ELClientIT {
 
     } catch (Exception e) {
       pass = false;
-      logger.log(Logger.Level.ERROR, 
+      logger.log(Logger.Level.ERROR,
           "Call to getMethodInfo() for non-existent method threw the wrong "
               + "exception!" + NL + "Expected: MethodNotFoundException" + NL
               + "Received: " + e.toString() + NL);
@@ -279,13 +274,13 @@ public class ELClientIT {
 
     } catch (PropertyNotFoundException pnfe) {
       // Do nothing test passed!
-      logger.log(Logger.Level.INFO, 
+      logger.log(Logger.Level.INFO,
           "Expected Exception Thrown, No such property in " + "ELContext"
               + "for getMethodInfo(): " + pnfe.getClass().getSimpleName());
 
     } catch (Exception e) {
       pass = false;
-      logger.log(Logger.Level.ERROR, 
+      logger.log(Logger.Level.ERROR,
           "Call to getMethodInfo() for non-existent property threw the wrong "
               + "exception!" + NL + "Expected: PropertyNotFoundException" + NL
               + "Received: " + e.toString() + NL);
@@ -307,7 +302,7 @@ public class ELClientIT {
 
     } catch (Exception e) {
       pass = false;
-      logger.log(Logger.Level.ERROR, 
+      logger.log(Logger.Level.ERROR,
           "Call to invoke() for non-existent property threw " + "the wrong "
               + "exception!" + NL + "Expected: PropertyNotFoundException" + NL
               + "Received: " + e.toString() + NL);
@@ -325,9 +320,9 @@ public class ELClientIT {
     try {
       mexp4.invoke(context, params);
       pass = false;
-      logger.log(Logger.Level.ERROR, 
+      logger.log(Logger.Level.ERROR,
           "Call to invoke() for string literal with expected " + "return" + NL);
-      logger.log(Logger.Level.ERROR, 
+      logger.log(Logger.Level.ERROR,
           " value of void did not cause an exception to be " + "thrown" + NL);
 
     } catch (ELException ee) {
@@ -357,7 +352,7 @@ public class ELClientIT {
       pass = false;
       logger.log(Logger.Level.ERROR, "Call to invoke() for string literal with "
           + "non-coercable expected " + NL);
-      logger.log(Logger.Level.ERROR, 
+      logger.log(Logger.Level.ERROR,
           "return value did not cause an exception to be " + "thrown" + NL);
 
     } catch (ELException ee) {
@@ -369,7 +364,7 @@ public class ELClientIT {
 
     } catch (Exception e) {
       pass = false;
-      logger.log(Logger.Level.ERROR, 
+      logger.log(Logger.Level.ERROR,
           "Call to invoke() for string literal with non-coercable expected "
               + NL + "return value caused the wrong exception to be thrown!"
               + NL + "Expected: ELException: " + NL + "Received: "
@@ -385,9 +380,9 @@ public class ELClientIT {
 
   /*
    * @testName  methodExpressionSerializableTest
-   * 
+   *
    * @assertion_ids  EL:SPEC:44
-   * 
+   *
    * @test_Strategy  Validate that MethodExpression implements Serializable and
    * that a MethodExpression can be manually serialized and deserialized.
    */
@@ -408,7 +403,7 @@ public class ELClientIT {
       // Setup eval-expression
       MethodExpression evalmexp = expFactory.createMethodExpression(context,
           exprStr, Boolean.class, paramTypes);
-      logger.log(Logger.Level.TRACE, 
+      logger.log(Logger.Level.TRACE,
           "Eval Method Expression For Testing: " + evalmexp.toString() + NL);
 
       // Setup literal-expression
@@ -436,9 +431,9 @@ public class ELClientIT {
 
   /*
    * @testName  methodExpressionMatchingExactPreferredTest
-   * 
+   *
    * @assertion_ids  EL:SPEC:80
-   * 
+   *
    * @test_Strategy  Validate that MethodExpression identifies the correct
    * method for the given parameters and that exact type matches are always
    * preferred.
@@ -447,7 +442,7 @@ public class ELClientIT {
   public void methodExpressionMatchingExactPreferredTest() throws Exception {
 
     StringBuffer buf = new StringBuffer();
-    String exprStr = "#{bean.targetA('text')}"; 
+    String exprStr = "#{bean.targetA('text')}";
 
     boolean pass = true;
 
@@ -455,7 +450,7 @@ public class ELClientIT {
 
       ExpressionFactory expFactory = ExpressionFactory.newInstance();
       ELContext context = (new VarMapperELContext(testProps)).getELContext();
-      
+
       MethodsBean bean = new MethodsBean();
       ValueExpression ve = expFactory.createValueExpression(bean, MethodsBean.class);
       context.getVariableMapper().setVariable("bean", ve);
@@ -478,12 +473,12 @@ public class ELClientIT {
     else
       logger.log(Logger.Level.TRACE, buf.toString());
   }
-  
+
   /*
    * @testName  methodExpressionMatchingOverloadBeatsCoercionTest
-   * 
+   *
    * @assertion_ids  EL:SPEC:80
-   * 
+   *
    * @test_Strategy  Validate that MethodExpression identifies the correct
    * method for the given parameters and that overloading is preferred to
    * coercion.
@@ -492,7 +487,7 @@ public class ELClientIT {
   public void methodExpressionMatchingOverloadBeatsCoercionTest() throws Exception {
 
     StringBuffer buf = new StringBuffer();
-    String exprStr = "#{bean.targetB('1')}"; 
+    String exprStr = "#{bean.targetB('1')}";
 
     boolean pass = true;
 
@@ -500,7 +495,7 @@ public class ELClientIT {
 
       ExpressionFactory expFactory = ExpressionFactory.newInstance();
       ELContext context = (new VarMapperELContext(testProps)).getELContext();
-      
+
       MethodsBean bean = new MethodsBean();
       ValueExpression ve = expFactory.createValueExpression(bean, MethodsBean.class);
       context.getVariableMapper().setVariable("bean", ve);
@@ -525,9 +520,9 @@ public class ELClientIT {
 
   /*
    * @testName  methodExpressionMatchingOverloadBeatsExactVarArgsTest
-   * 
+   *
    * @assertion_ids  EL:SPEC:80
-   * 
+   *
    * @test_Strategy  Validate that MethodExpression identifies the correct
    * method for the given parameters and that any match without varags is
    * preferred to all matches with varrags
@@ -536,7 +531,7 @@ public class ELClientIT {
   public void methodExpressionMatchingOverloadBeatsExactVarArgsTest() throws Exception {
 
     StringBuffer buf = new StringBuffer();
-    String exprStr = "#{bean.targetC('aaa','bbb')}"; 
+    String exprStr = "#{bean.targetC('aaa','bbb')}";
 
     boolean pass = true;
 
@@ -544,7 +539,7 @@ public class ELClientIT {
 
       ExpressionFactory expFactory = ExpressionFactory.newInstance();
       ELContext context = (new VarMapperELContext(testProps)).getELContext();
-      
+
       MethodsBean bean = new MethodsBean();
       ValueExpression ve = expFactory.createValueExpression(bean, MethodsBean.class);
       context.getVariableMapper().setVariable("bean", ve);
@@ -569,9 +564,9 @@ public class ELClientIT {
 
   /*
    * @testName  methodExpressionMatchingCoercionBeatsExactVarArgsTest
-   * 
+   *
    * @assertion_ids  EL:SPEC:80
-   * 
+   *
    * @test_Strategy  Validate that MethodExpression identifies the correct
    * method for the given parameters and that any match without varags is
    * preferred to all matches with varrags
@@ -580,7 +575,7 @@ public class ELClientIT {
   public void methodExpressionMatchingCoercionBeatsExactVarArgsTest() throws Exception {
 
     StringBuffer buf = new StringBuffer();
-    String exprStr = "#{bean.targetD('1','1')}"; 
+    String exprStr = "#{bean.targetD('1','1')}";
 
     boolean pass = true;
 
@@ -588,7 +583,7 @@ public class ELClientIT {
 
       ExpressionFactory expFactory = ExpressionFactory.newInstance();
       ELContext context = (new VarMapperELContext(testProps)).getELContext();
-      
+
       MethodsBean bean = new MethodsBean();
       ValueExpression ve = expFactory.createValueExpression(bean, MethodsBean.class);
       context.getVariableMapper().setVariable("bean", ve);
@@ -613,9 +608,9 @@ public class ELClientIT {
 
   /*
    * @testName  methodExpressionMatchingVarArgsTest
-   * 
+   *
    * @assertion_ids  EL:SPEC:80
-   * 
+   *
    * @test_Strategy  Validate that MethodExpression identifies the correct
    * method for the given parameters and that varags will be matched if no other
    * suitable match is available
@@ -624,7 +619,7 @@ public class ELClientIT {
   public void methodExpressionMatchingVarArgsTest() throws Exception {
 
     StringBuffer buf = new StringBuffer();
-    String exprStr = "#{bean.targetD('aaa','bbb')}"; 
+    String exprStr = "#{bean.targetD('aaa','bbb')}";
 
     boolean pass = true;
 
@@ -632,7 +627,7 @@ public class ELClientIT {
 
       ExpressionFactory expFactory = ExpressionFactory.newInstance();
       ELContext context = (new VarMapperELContext(testProps)).getELContext();
-      
+
       MethodsBean bean = new MethodsBean();
       ValueExpression ve = expFactory.createValueExpression(bean, MethodsBean.class);
       context.getVariableMapper().setVariable("bean", ve);
@@ -657,9 +652,9 @@ public class ELClientIT {
 
   /*
    * @testName  methodExpressionMatchingAmbiguousTest
-   * 
+   *
    * @assertion_ids  EL:SPEC:80
-   * 
+   *
    * @test_Strategy  Validate that MethodExpression does not match a method when
    * the match is ambiguous and that a MethodNotFoundException is thrown
    */
@@ -667,7 +662,7 @@ public class ELClientIT {
   public void methodExpressionMatchingAmbiguousTest() throws Exception {
 
     StringBuffer buf = new StringBuffer();
-    String exprStr = "#{bean.targetE('1234',1234)}"; 
+    String exprStr = "#{bean.targetE('1234',1234)}";
 
     boolean pass = true;
 
@@ -675,7 +670,7 @@ public class ELClientIT {
 
       ExpressionFactory expFactory = ExpressionFactory.newInstance();
       ELContext context = (new VarMapperELContext(testProps)).getELContext();
-      
+
       MethodsBean bean = new MethodsBean();
       ValueExpression ve = expFactory.createValueExpression(bean, MethodsBean.class);
       context.getVariableMapper().setVariable("bean", ve);
