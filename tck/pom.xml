@@ -27,8 +27,8 @@
         <relativePath/>
     </parent>
 
-    <groupId>jakarta.tck</groupId>
-    <artifactId>jakarta-expression-language-tck</artifactId>
+    <groupId>jakarta.el</groupId>
+    <artifactId>expression-language-tck</artifactId>
     <version>6.1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
