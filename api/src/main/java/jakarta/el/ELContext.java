@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997, 2024 Oracle and/or its affiliates and others.
+ * Copyright (c) 1997, 2026 Oracle and/or its affiliates and others.
  * All rights reserved.
  * Copyright 2004 The Apache Software Foundation
  *
@@ -72,7 +72,7 @@ import java.util.Stack;
  * @see ImportHandler
  * @see LambdaExpression
  * @see StandardELContext
- * 
+ *
  * @since Jakarta Expression Language 2.1 and Jakarta Expression Language 3.0
  */
 public abstract class ELContext {
@@ -207,7 +207,7 @@ public abstract class ELContext {
      * Retrieves the <code>ImportHandler</code> associated with this <code>ELContext</code>.
      *
      * @return The import handler to manage imports of classes and packages.
-     * 
+     *
      * @since Jakarta Expression Language 3.0
      */
     public ImportHandler getImportHandler() {
@@ -357,7 +357,7 @@ public abstract class ELContext {
      *
      * @param arg The formal parameter for the Lambda argument
      * @return The object associated with formal parameter. Null if no object has been associated with the parameter.
-     * 
+     *
      * @since Jakarta Expression Language 3.0
      */
     public Object getLambdaArgument(String arg) {
@@ -368,7 +368,7 @@ public abstract class ELContext {
         for (int i = lambdaArgs.size() - 1; i >= 0; i--) {
             Map<String, Object> lmap = lambdaArgs.elementAt(i);
             Object v = lmap.get(arg);
-            if (v != null) {
+            if (v != null || lmap.containsKey(arg)) {
                 return v;
             }
         }
@@ -381,7 +381,7 @@ public abstract class ELContext {
      * will be in scope during the evaluation of the Lambda expression.
      *
      * @param args The Lambda arguments map
-     * 
+     *
      * @since Jakarta Expression Language 3.0
      */
     public void enterLambdaScope(Map<String, Object> args) {
@@ -413,7 +413,7 @@ public abstract class ELContext {
      * @param <T> The target type for the conversion.
      * @param obj The object to convert.
      * @param targetType The target type for the conversion.
-     * 
+     *
      * @return object converted to <code>targetType</code>
      * @throws ELException thrown if errors occur.
      *
