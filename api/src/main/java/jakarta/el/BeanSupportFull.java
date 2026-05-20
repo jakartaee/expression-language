@@ -1,6 +1,6 @@
 /*
- * Copyright (c) 2023 Contributors to the Eclipse Foundation
- * 
+ * Copyright (c) 2026 Contributors to the Eclipse Foundation
+ *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
  * http://www.eclipse.org/legal/epl-2.0.
@@ -41,32 +41,8 @@ class BeanSupportFull extends BeanSupport {
                 for (PropertyDescriptor pd : pds) {
                     this.propertyMap.put(pd.getName(), new BeanPropertyFull(baseClass, pd));
                 }
-                /*
-                 * Populating from any interfaces causes default methods to be included.
-                 */
-                populateFromInterfaces(baseClass);
             } catch (IntrospectionException ie) {
                 throw new ELException(ie);
-            }
-        }
-
-        private void populateFromInterfaces(Class<?> aClass) throws IntrospectionException {
-            Class<?> interfaces[] = aClass.getInterfaces();
-            if (interfaces.length > 0) {
-                for (Class<?> ifs : interfaces) {
-                    BeanInfo info = Introspector.getBeanInfo(ifs);
-                    PropertyDescriptor[] pds = info.getPropertyDescriptors();
-                    for (PropertyDescriptor pd : pds) {
-                        if (!this.propertyMap.containsKey(pd.getName())) {
-                            this.propertyMap.put(pd.getName(), new BeanPropertyFull(this.baseClass, pd));
-                        }
-                    }
-                    populateFromInterfaces(ifs);
-                }
-            }
-            Class<?> superclass = aClass.getSuperclass();
-            if (superclass != null) {
-                populateFromInterfaces(superclass);
             }
         }
     }
