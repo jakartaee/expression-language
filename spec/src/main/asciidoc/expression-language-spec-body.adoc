@@ -3186,6 +3186,10 @@ This appendix is non-normative.
   instances in the list of conditions that cause the empty operator to return
   true.
 
+* https://github.com/jakartaee/expression-language/issues/447[#447]
+  Fix an issue in the `ELContext` class so that expression such as
+  `(x -> (x -> x)(null))(42)` correctly evaluate to `null` rather than `42`.
+
 === Changes between 6.0 and 5.0
 
 * The EL API requires Java 17 as a minimum.
