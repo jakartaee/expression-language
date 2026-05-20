@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2023 Contributors to the Eclipse Foundation
- * 
+ *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
  * http://www.eclipse.org/legal/epl-2.0.
@@ -94,6 +94,12 @@ public class TestBeanSupport extends ELBaseTest {
     @MethodSource("data")
     public void testAmbiguousBean02(boolean useStandalone) {
         doTest(useStandalone, AmbiguousBean02.class, "value", TypeA.class, null, TypeA.class);
+    }
+
+    @ParameterizedTest
+    @MethodSource("data")
+    public void testInterfaceDefaultMethod(boolean useStandalone) {
+        doTest(useStandalone, BeanB.class, "defaultValue", String.class, String.class, null);
     }
 
     private void doTest(boolean useStandalone, Class<?> clazz, String propertyName, Class<?> type, Class<?> typeGet,
@@ -264,5 +270,16 @@ public class TestBeanSupport extends ELBaseTest {
 
 
     public static class TypeAAA extends TypeAA {
+    }
+
+
+    public static interface InterfaceB {
+        default String getDefaultValue() {
+            return "";
+        }
+    }
+
+
+    public static class BeanB implements InterfaceB {
     }
 }

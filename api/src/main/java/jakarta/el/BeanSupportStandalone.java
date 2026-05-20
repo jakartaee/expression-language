@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2023 Contributors to the Eclipse Foundation
- * 
+ *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
  * http://www.eclipse.org/legal/epl-2.0.
@@ -170,29 +170,6 @@ class BeanSupportStandalone extends BeanSupport {
             PropertyDescriptor[] pds = getPropertyDescriptors(this.baseClass);
             for (PropertyDescriptor pd : pds) {
                 this.propertyMap.put(pd.getName(), new BeanPropertyStandalone(baseClass, pd));
-            }
-            /*
-             * Populating from any interfaces causes default methods to be included.
-             */
-            populateFromInterfaces(baseClass);
-        }
-
-        private void populateFromInterfaces(Class<?> aClass) {
-            Class<?> interfaces[] = aClass.getInterfaces();
-            if (interfaces.length > 0) {
-                for (Class<?> ifs : interfaces) {
-                    PropertyDescriptor[] pds = getPropertyDescriptors(baseClass);
-                    for (PropertyDescriptor pd : pds) {
-                        if (!this.propertyMap.containsKey(pd.getName())) {
-                            this.propertyMap.put(pd.getName(), new BeanPropertyStandalone(this.baseClass, pd));
-                        }
-                    }
-                    populateFromInterfaces(ifs);
-                }
-            }
-            Class<?> superclass = aClass.getSuperclass();
-            if (superclass != null) {
-                populateFromInterfaces(superclass);
             }
         }
     }
