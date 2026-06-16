@@ -170,30 +170,6 @@
                 <version>3.5.5</version>
             </plugin>
 
-            <!-- Checks copyright / license headers -->
-            <plugin>
-                <groupId>org.glassfish.copyright</groupId>
-                <artifactId>glassfish-copyright-maven-plugin</artifactId>
-                <version>2.4</version>
-                <configuration>
-                    <excludeFile>etc/config/copyright-exclude</excludeFile>
-                    <!-- svn|mercurial|git - defaults to svn -->
-                    <scm>git</scm>
-                    <!-- turn on/off debugging -->
-                    <debug>false</debug>
-                    <!-- skip files not under SCM -->
-                    <scmOnly>true</scmOnly>
-                    <!-- turn off warnings -->
-                    <warn>true</warn>
-                    <!-- for use with repair -->
-                    <update>false</update>
-                    <!-- check that year is correct -->
-                    <ignoreYear>false</ignoreYear>
-                    <templateFile>etc/config/copyright-eclipse.txt</templateFile>
-                    <alternateTemplateFile>etc/config/copyright-oracle.txt</alternateTemplateFile>
-                </configuration>
-            </plugin>
-
             <!-- Creates the OSGi MANIFEST.MF file -->
             <plugin>
                 <groupId>org.apache.felix</groupId>
