@@ -71,7 +71,7 @@
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>sigtest-maven-plugin</artifactId>
-            <version>2.6</version>
+            <version>2.7</version>
         </dependency>
     </dependencies>
 
@@ -229,7 +229,7 @@
                     <plugin>
                         <groupId>jakarta.tck</groupId>
                         <artifactId>sigtest-maven-plugin</artifactId>
-                        <version>2.6</version>
+                        <version>2.7</version>
                         <configuration>
                             <FileName>${project.build.directory}/jakarta.el.sig_${project.parent.version}</FileName>
                             <packages>jakarta.el</packages>
