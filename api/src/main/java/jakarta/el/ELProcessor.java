@@ -199,10 +199,11 @@ public class ELProcessor {
             if (p < 0) {
                 throw new NoSuchMethodException("Bad method signature: " + method);
             }
-            String[] params = method.substring(j + 1, p).split(",");
+            String paramString = method.substring(j + 1, p).trim();
+            String[] params = paramString.isEmpty() ? new String[0] : paramString.split(",");
             Class<?>[] paramTypes = new Class<?>[params.length];
             for (int i = 0; i < params.length; i++) {
-                paramTypes[i] = toClass(params[i], loader);
+                paramTypes[i] = toClass(params[i].trim(), loader);
             }
             meth = klass.getDeclaredMethod(methodName, paramTypes);
         }
@@ -211,7 +212,7 @@ public class ELProcessor {
         }
 
         if (function.equals("")) {
-            function = method;
+            function = meth.getName();
         }
 
         elManager.mapFunction(prefix, function, meth);
