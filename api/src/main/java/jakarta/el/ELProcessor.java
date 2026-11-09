@@ -200,10 +200,14 @@ public class ELProcessor {
                 throw new NoSuchMethodException("Bad method signature: " + method);
             }
             String paramString = method.substring(j + 1, p).trim();
-            String[] params = paramString.isEmpty() ? new String[0] : paramString.split(",");
+            String[] params = paramString.isEmpty() ? new String[0] : paramString.split(",", -1);
             Class<?>[] paramTypes = new Class<?>[params.length];
             for (int i = 0; i < params.length; i++) {
-                paramTypes[i] = toClass(params[i].trim(), loader);
+                String param = params[i].trim();
+                if (param.isEmpty()) {
+                    throw new NoSuchMethodException("Bad method signature: " + method);
+                }
+                paramTypes[i] = toClass(param, loader);
             }
             meth = klass.getDeclaredMethod(methodName, paramTypes);
         }

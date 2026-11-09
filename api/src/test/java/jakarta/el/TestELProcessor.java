@@ -25,7 +25,13 @@ public class TestELProcessor {
 
     @BeforeAll
     public static void setup() {
-        // The API has no Jakarta Expression Language implementation available when running these tests
+        /*
+         * The API has no Jakarta Expression Language implementation available when running these tests.
+         *
+         * Note: This system property is JVM-global so it applies to every test that runs in the same JVM after this
+         * one, not just the tests in this class. That is acceptable for the limited API tests that currently exist but
+         * if a test ever needs a different ExpressionFactory, the tests will need to run in a fresh JVM per test.
+         */
         System.setProperty(ExpressionFactory.class.getName(), TesterExpressionFactory.class.getName());
     }
 
@@ -53,6 +59,27 @@ public class TestELProcessor {
 
         Assertions.assertEquals(TestELProcessor.class.getMethod("sum", int.class, int.class),
                 resolve(elp, "fn", "sum"));
+    }
+
+    @Test
+    public void testDefineFunctionSignatureEmptyLeadingParameter() {
+        ELProcessor elp = new ELProcessor();
+        Assertions.assertThrows(NoSuchMethodException.class,
+                () -> elp.defineFunction("fn", "sum", TestELProcessor.class.getName(), "int sum(,int)"));
+    }
+
+    @Test
+    public void testDefineFunctionSignatureEmptyTrailingParameter() {
+        ELProcessor elp = new ELProcessor();
+        Assertions.assertThrows(NoSuchMethodException.class,
+                () -> elp.defineFunction("fn", "sum", TestELProcessor.class.getName(), "int sum(int,)"));
+    }
+
+    @Test
+    public void testDefineFunctionSignatureEmptyMiddleParameter() {
+        ELProcessor elp = new ELProcessor();
+        Assertions.assertThrows(NoSuchMethodException.class,
+                () -> elp.defineFunction("fn", "sum", TestELProcessor.class.getName(), "int sum(int, ,int)"));
     }
 
     private static Method resolve(ELProcessor elp, String prefix, String function) {
