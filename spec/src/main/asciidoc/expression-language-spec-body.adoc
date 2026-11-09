@@ -141,6 +141,10 @@ dependency on the `java.desktop` module optional. New resolvers have been added
 for `java.lang.Record` and `java.lang.Optional` instances and support for the
 `length` property has been added to arrays.
 
+EL 6.1 added the null coalescing and Elvis operators and expanded the definition
+of the concatenation and relational operators to allow more natural usage. The
+meaning of `Identifier` and the behaviour of the import handler was clarified.
+
 ==== EL in a nutshell
 
 The syntax is quite simple. Model objects are
