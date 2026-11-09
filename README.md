@@ -2,6 +2,8 @@
 
 This repository contains the source for the Jakarta Expression Language API and associated specification document.
 
+Jakarta Expression Language defines an expression language for Java applications.
+
 Releases of both the API and the specification document, along with a details of the compatible implementations for each
 release, are listed on the Jakarta EE [specification page](https://jakarta.ee/specifications/expression-language/) for
 the Jakarta Expression Language.
@@ -34,11 +36,16 @@ The API jar can then be found in `/spec/target`.
 
 To make changes, fork this repository, make your changes, and submit a pull request.
 
-## About Jakarta Expression Language
-
-Jakarta Expression Language defines an expression language for Java applications.
 
 ## TCK Challenges
 
 All test challenges for Jakarta Expression Language must be resolved by Active Resolution.
 Please see the TCK Users guide for more details.
+
+
+## Releases
+
+API releases are made via the `expression-language-zzz-api-publish` CI job.
+Remember to select the `PUBLISH_TO_CENTRAL` option to publish to Maven Central.
+
+TCK releases are staged via the `expression-language-main-tck-stage` CI job.
