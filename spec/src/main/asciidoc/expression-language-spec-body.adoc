@@ -2,8 +2,7 @@
 :sectnums!:
 == Jakarta Expression Language, Version 6.1
 
-Copyright (c) 2013, 2025 Oracle and/or its affiliates and others.
-All rights reserved.
+Copyright (c) 2013 Oracle and/or its affiliates and others.
 
 Eclipse is a registered trademark of the Eclipse Foundation. Jakarta
 is a trademark of the Eclipse Foundation. Oracle and Java are
@@ -141,6 +140,10 @@ EL 6.0 made Java 17 the minimum version, removed deprecated code and made the
 dependency on the `java.desktop` module optional. New resolvers have been added
 for `java.lang.Record` and `java.lang.Optional` instances and support for the
 `length` property has been added to arrays.
+
+EL 6.1 added the null coalescing and Elvis operators and expanded the definition
+of the concatenation and relational operators to allow more natural usage. The
+meaning of `Identifier` and the behaviour of the import handler was clarified.
 
 ==== EL in a nutshell
 
