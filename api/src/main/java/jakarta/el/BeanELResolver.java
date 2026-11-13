@@ -36,7 +36,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * implementation provided by the JRE is used. If the {@code java.beans.*} package is not available, a built-in
  * stand-alone implementation is used that just provides getter/setter support (as everything else requires classes from
  * {@code java.beans.*}).
- * 
+ *
  * <p>
  * This resolver handles base objects of any type, as long as the base is not <code>null</code>. It accepts any object
  * as a property or method, and coerces it to a string.
@@ -61,7 +61,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * <p>
  * The JavaBeans specification predates the introduction of Modules. In addition to the JavaBeans specification
  * requirements for looking up property getters, property setters and methods, this resolver also considers module
- * visibility. 
+ * visibility.
  * </p>
  *
  * <p>
@@ -82,7 +82,7 @@ import java.util.concurrent.ConcurrentHashMap;
  *
  * @see CompositeELResolver
  * @see ELResolver
- * 
+ *
  * @since Jakarta Server Pages 2.1
  */
 public class BeanELResolver extends ELResolver {
@@ -181,9 +181,9 @@ public class BeanELResolver extends ELResolver {
             }
             return writeMethod;
         }
-        
+
         abstract Method getWriteMethod();
-        
+
         abstract Method getReadMethod();
     }
 
@@ -262,11 +262,11 @@ public class BeanELResolver extends ELResolver {
 
         BeanProperty beanProperty = getBeanProperty(context, base, property);
         context.setPropertyResolved(true);
-        
+
         if (isReadOnly || beanProperty.isReadOnly(base)) {
             return null;
         }
-        
+
         return beanProperty.getPropertyType();
     }
 
@@ -448,11 +448,13 @@ public class BeanELResolver extends ELResolver {
 
         Method method = ELUtil.findMethod(base.getClass(), base, methodName.toString(), paramTypes, params, false);
 
-        for (Object param : params) {
-            // If the parameters is a LambdaExpression, set the ELContext
-            // for its evaluation
-            if (param instanceof LambdaExpression) {
-                ((LambdaExpression) param).setELContext(context);
+        if (params != null) {
+            for (Object param : params) {
+                // If the parameters is a LambdaExpression, set the ELContext
+                // for its evaluation
+                if (param instanceof LambdaExpression) {
+                    ((LambdaExpression) param).setELContext(context);
+                }
             }
         }
 
