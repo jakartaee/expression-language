@@ -16,7 +16,6 @@
 package jakarta.el;
 
 import java.lang.reflect.Method;
-
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -80,6 +79,13 @@ public class TestELProcessor {
         ELProcessor elp = new ELProcessor();
         Assertions.assertThrows(NoSuchMethodException.class,
                 () -> elp.defineFunction("fn", "sum", TestELProcessor.class.getName(), "int sum(int, ,int)"));
+    }
+
+    @Test
+    public void testDefineFunctionSignatureEmptyTrailingNonsense() {
+        ELProcessor elp = new ELProcessor();
+        Assertions.assertThrows(NoSuchMethodException.class,
+                () -> elp.defineFunction("fn", "sum", TestELProcessor.class.getName(), "int sum(int,int) nonsense"));
     }
 
     private static Method resolve(ELProcessor elp, String prefix, String function) {

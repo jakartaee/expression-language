@@ -116,7 +116,7 @@ public class ELProcessor {
      *
      * @param expression The target expression
      * @param value The new value to set.
-     * 
+     *
      * @throws PropertyNotFoundException if one of the property resolutions failed because a specified variable or property
      * does not exist or is not readable.
      * @throws PropertyNotWritableException if the final variable or property resolution failed because the specified
@@ -197,6 +197,9 @@ public class ELProcessor {
             if (p < 0) {
                 throw new NoSuchMethodException("Bad method signature: " + method);
             }
+            if (method.substring(p + 1).trim().length() > 0) {
+                throw new NoSuchMethodException("Bad method signature: " + method);
+            }
             String paramString = method.substring(j + 1, p).trim();
             String[] params = paramString.isEmpty() ? new String[0] : paramString.split(",", -1);
             Class<?>[] paramTypes = new Class<?>[params.length];
@@ -226,7 +229,7 @@ public class ELProcessor {
      * @param prefix The namespace for the function or "" for no namesapce.
      * @param function The name of the function. If empty (""), the method name is used as the function name.
      * @param method The <code>java.lang.reflect.Method</code> instance of the method that implements the function.
-     * 
+     *
      * @throws NullPointerException if any of the arguments is null.
      * @throws NoSuchMethodException if the method is not a static method
      */
