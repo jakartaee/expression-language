@@ -299,7 +299,8 @@ public abstract class ELContext {
     }
 
     /**
-     * Notifies the listeners after an Jakarta Expression Language expression is evaluated
+     * Notifies the listeners after an Jakarta Expression Language expression is evaluated. This notification is not
+     * made if an exception is thrown during the evaluation of an expression.
      *
      * @param expr The Jakarta Expression Language expression string that has been evaluated
      */

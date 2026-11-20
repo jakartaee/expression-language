@@ -34,7 +34,8 @@ public abstract class EvaluationListener {
     }
 
     /**
-     * Receives notification after a Jakarta Expression Language expression is evaluated
+     * Receives notification after a Jakarta Expression Language expression is evaluated. This notification is not made
+     * if an exception is thrown during the evaluation of an expression.
      *
      * @param context The ELContext
      * @param expression The Jakarta Expression Language expression string to be evaluated
