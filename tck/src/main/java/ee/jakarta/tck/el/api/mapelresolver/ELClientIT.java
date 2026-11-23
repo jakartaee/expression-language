@@ -37,12 +37,16 @@ public class ELClientIT {
   private static final Logger logger = System.getLogger(ELClientIT.class.getName());
 
   private HashMap<String, String> animals;
+  private HashMap<String, String> nullKeyMap;
 
   public ELClientIT(){
     animals = new HashMap<>();
     animals.put("dog", "retriever");
     animals.put("fish", "bass");
     animals.put("bird", "parrot");
+
+    nullKeyMap = new HashMap<>();
+    nullKeyMap.put(null, "data");
   }
 
 
@@ -161,4 +165,22 @@ public class ELClientIT {
     logger.log(Logger.Level.TRACE, buf.toString());
   }
 
+  @Test
+  public void mapELResolverNullKeyTest() throws Exception {
+
+    boolean pass = false;
+    StringBuffer buf = new StringBuffer();
+
+    MapELResolver resolver = new MapELResolver();
+
+    try {
+      pass = ResolverTest.testELResolverNPE(resolver, nullKeyMap, null, "data", buf);
+    } catch (Exception ex) {
+      throw new Exception(ex);
+    }
+
+    if (!pass)
+      throw new Exception(ELTestUtil.FAIL + buf.toString());
+    logger.log(Logger.Level.TRACE, buf.toString());
+  }
 }

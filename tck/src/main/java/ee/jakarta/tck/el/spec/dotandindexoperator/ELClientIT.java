@@ -21,9 +21,13 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
 
 import ee.jakarta.tck.el.common.util.ExprEval;
+import ee.jakarta.tck.el.common.util.NameValuePair;
 import jakarta.el.PropertyNotFoundException;
 
 import java.lang.System.Logger;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class ELClientIT {
 
@@ -99,7 +103,37 @@ public class ELClientIT {
     }
 
 
+    @Test
+    public void testMapLookupNullWhenNullPresent() throws Exception {
+        Map<String,String> testMap = new HashMap<>();
+        testMap.put(null, "data");
+        NameValuePair nvp = new NameValuePair("map", testMap);
+        doTestNullExpected("map[null]", new NameValuePair[] { nvp });
+    }
+
+
+    @Test
+    public void testMapLookupNullWhenNullNotPresent() throws Exception {
+        Map<String,String> testMap = new HashMap<>();
+        NameValuePair nvp = new NameValuePair("map", testMap);
+        doTestNullExpected("map[null]", new NameValuePair[] { nvp });
+    }
+
+
+    @Test
+    public void testMapLookupNullWhenNullNotPresentAndNotPermitted() throws Exception {
+        Map<String,String> testMap = new ConcurrentHashMap<>();
+        NameValuePair nvp = new NameValuePair("map", testMap);
+        doTestNullExpected("map[null]", new NameValuePair[] { nvp });
+    }
+
+
     private void doTestNullExpected(String expression) throws Exception {
+        doTestNullExpected(expression, null);
+    }
+
+
+    private void doTestNullExpected(String expression, NameValuePair[] nvps) throws Exception {
 
         boolean pass = false;
 
@@ -108,7 +142,7 @@ public class ELClientIT {
         try {
             for (String prefix : symbols) {
                 String expr = prefix + "{" + expression + "}";
-                Object result = ExprEval.evaluateValueExpression(expr, null, Object.class);
+                Object result = ExprEval.evaluateValueExpression(expr, nvps, Object.class);
 
                 if (result == null) {
                     logger.log(Logger.Level.TRACE, "result is null");
