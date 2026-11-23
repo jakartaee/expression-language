@@ -13,14 +13,14 @@
  *
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
-package ee.jakarta.tck.el.spec.dotandindexoperator;
+package com.sun.ts.tests.el.spec.dotandindexoperator;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
 
-import ee.jakarta.tck.el.common.util.ExprEval;
+import com.sun.ts.tests.el.common.util.ExprEval;
 import jakarta.el.PropertyNotFoundException;
 
 import java.lang.System.Logger;
